@@ -1,11 +1,21 @@
-using System.Collections.Generic;
-using System.Numerics;
-using Google.Protobuf.Collections;
-using SC2APIProtocol;
+/*
+ * Copyright Jesper Larsson 2019, Linköping, Sweden
+ */
+namespace Bot
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Numerics;
+    using System.Security.Cryptography;
+    using System.Threading;
 
-// ReSharper disable MemberCanBePrivate.Global
+    using SC2APIProtocol;
+    using Google.Protobuf.Collections;
+    using Action = SC2APIProtocol.Action;
+    using static CurrentGameState;
+    using static GameUtility;
 
-namespace Bot {
     public class Unit {
         private SC2APIProtocol.Unit original;
         private UnitTypeData unitTypeData;
@@ -25,7 +35,7 @@ namespace Bot {
 
         public Unit(SC2APIProtocol.Unit unit) {
             this.original = unit;
-            this.unitTypeData = CurrentGameState.gameData.Units[(int) unit.UnitType];
+            this.unitTypeData = CurrentGameState.GameData.Units[(int) unit.UnitType];
 
             this.name = unitTypeData.Name;
             this.tag = unit.Tag;
@@ -51,20 +61,20 @@ namespace Bot {
         public double GetDistance(Vector3 location) {
             return Vector3.Distance(position, location);
         }
-        
-        //public void Train(uint unitType, bool queue=false) {            
-        //    if (!queue && orders.Count > 0)
-        //        return;            
 
-        //    var abilityID = Abilities.GetID(unitType);            
-        //    var action = Controller.CreateRawUnitCommand(abilityID);
-        //    action.ActionRaw.UnitCommand.UnitTags.Add(tag);
-        //    Controller.AddAction(action);
+        public void Train(uint unitType, bool queue = false)
+        {
+            if (!queue && orders.Count > 0)
+                return;
 
-        //    var targetName = Controller.GetUnitName(unitType);
-        //    Logger.Info("Started training: {0}", targetName);
-        //}
-        
+            var abilityID = Abilities.GetID(unitType);
+            var action = CommandBuilder.CreateRawUnitCommand(abilityID);
+            action.ActionRaw.UnitCommand.UnitTags.Add(tag);
+            GameOutput.QueuedActions.Add(action);
+
+            Logger.Info("Started training: {0}", GetUnitName(unitType));
+        }
+
         //private void FocusCamera() {
         //    var action = new Action();
         //    action.ActionRaw = new ActionRaw();
@@ -75,8 +85,8 @@ namespace Bot {
         //    action.ActionRaw.CameraMove.CenterWorldSpace.Z = position.Z;            
         //    Controller.AddAction(action);
         //}
-        
-        
+
+
         //public void Move(Vector3 target) {
         //    var action = Controller.CreateRawUnitCommand(Abilities.MOVE);
         //    action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
@@ -85,7 +95,7 @@ namespace Bot {
         //    action.ActionRaw.UnitCommand.UnitTags.Add(tag);
         //    Controller.AddAction(action);
         //}
-        
+
         //public void Smart(Unit unit) {
         //    var action = Controller.CreateRawUnitCommand(Abilities.SMART);
         //    action.ActionRaw.UnitCommand.TargetUnitTag = unit.tag;
@@ -94,6 +104,6 @@ namespace Bot {
         //}
 
 
-        
+
     }
 }

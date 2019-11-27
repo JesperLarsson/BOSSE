@@ -51,7 +51,7 @@ namespace Bot {
 
 
         public static int GetID(uint unit) {
-            return (int) CurrentGameState.gameData.Units[(int) unit].AbilityId;
+            return (int) CurrentGameState.GameData.Units[(int) unit].AbilityId;
         }
         
     }

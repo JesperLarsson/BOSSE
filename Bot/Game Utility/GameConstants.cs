@@ -21,5 +21,8 @@ namespace Bot
     {
         public const double FRAMES_PER_SECOND = 22.4;
 
+        public const Race SpawnAsRace = Race.Terran;
+
+        public const string ApplicationVersion = "0.1dev";
     }
 }

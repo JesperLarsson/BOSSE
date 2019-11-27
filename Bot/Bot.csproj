@@ -48,10 +48,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Input\CurrentGameState.cs" />
+    <Compile Include="Game Output\CommandBuilder.cs" />
     <Compile Include="Game Utility\GameConstants.cs" />
     <Compile Include="Game Utility\GameUtility.cs" />
+    <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Init\Abilities.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="Legacy\Controller.cs" />
+    <Compile Include="Misc\Globals.cs" />
     <Compile Include="Misc\Logger.cs" />
     <Compile Include="Init\Program.cs" />
     <Compile Include="Init\Protocol\Common.cs" />
@@ -71,7 +74,7 @@
     <Compile Include="Init\Wrapper\GameConnection.cs" />
     <Compile Include="Init\Wrapper\ProtobufProxy.cs" />
     <Compile Include="Init\Units.cs" />
-    <Compile Include="Init\RaxBot.cs" />
+    <Compile Include="Legacy\RaxBot.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

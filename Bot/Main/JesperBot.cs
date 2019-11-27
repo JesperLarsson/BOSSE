@@ -11,21 +11,28 @@ namespace Bot
     using System.Threading;
 
     using SC2APIProtocol;
+    using Google.Protobuf.Collections;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static GameUtility;
 
-    internal class JesperBot : Bot
+    public class JesperBot : Bot
     {
-        private List<SC2APIProtocol.Action> actions = new List<SC2APIProtocol.Action>();
-
-        public IEnumerable<Action> OnFrame()
+        public void OnFrame()
         {
-            actions.Clear();
+            GameOutput.QueuedActions.Clear();
 
+            var resourceCenters = GetUnits(Units.ResourceCenters);
+            foreach (var rc in resourceCenters)
+            {
+                if (CanConstruct(Units.SCV))
+                    rc.Train(Units.SCV);
+            }
 
-
-            return actions;
+            if (CurrentGameState.MaxSupply - CurrentGameState.CurrentSupply <= 5)
+                if (CanConstruct(Units.SUPPLY_DEPOT))
+                    if (GetPendingCount(Units.SUPPLY_DEPOT) == 0)
+                        Construct(Units.SUPPLY_DEPOT);
         }
     }
 }
