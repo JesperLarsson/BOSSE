@@ -1,4 +1,6 @@
-﻿// Taken from: https://github.com/NikEyX/SC2-CSharpe-Starterkit
+﻿/*
+ * Copyright Jesper Larsson 2019, Linköping, Sweden
+ */
 namespace BOSSE
 {
     using System;
@@ -7,15 +9,19 @@ namespace BOSSE
     using System.Net.WebSockets;
     using System.Threading;
     using System.Threading.Tasks;
+
     using SC2APIProtocol;
 
+    /// <summary>
+    /// Handles the connection to StarCraft
+    /// </summary>
     public class GameConnection
     {
         private const string address = "127.0.0.1";
         private const int stepSize = 1;
         private readonly ProtobufProxy proxy = new ProtobufProxy();
-        private string starcraftDir;
 
+        private string starcraftDir;
         private string starcraftExe;
         private string starcraftMaps;
 
@@ -25,10 +31,6 @@ namespace BOSSE
             processStartInfo.Arguments = string.Format("-listen {0} -port {1} -displayMode 0", address, port);
             processStartInfo.WorkingDirectory = Path.Combine(starcraftDir, "Support64");
 
-            Log.LogInformation("Launching SC2:");
-            Log.LogInformation("--> File: {0}", starcraftExe);
-            Log.LogInformation("--> Working Dir: {0}", processStartInfo.WorkingDirectory);
-            Log.LogInformation("--> Arguments: {0}", processStartInfo.Arguments);
             Process.Start(processStartInfo);
         }
 
@@ -40,7 +42,6 @@ namespace BOSSE
                 try
                 {
                     await proxy.Connect(address, port);
-                    Log.LogInformation("--> Connected");
                     return;
                 }
                 catch (WebSocketException)
@@ -51,7 +52,7 @@ namespace BOSSE
                 Thread.Sleep(500);
             }
 
-            Log.LogInformation("Unable to connect to SC2 after {0} seconds.", timeout);
+            Log.Info("Unable to connect to SC2 after {0} seconds.", timeout);
             throw new Exception("Unable to make a connection.");
         }
 
@@ -64,7 +65,7 @@ namespace BOSSE
 
             if (!File.Exists(mapPath))
             {
-                Log.LogInformation("Unable to locate map: " + mapPath);
+                Log.Error("Unable to locate map: " + mapPath);
                 throw new Exception("Unable to locate map: " + mapPath);
             }
 
@@ -87,15 +88,15 @@ namespace BOSSE
 
             if (response.CreateGame.Error != ResponseCreateGame.Types.Error.Unset)
             {
-                Log.LogError("CreateGame error: {0}", response.CreateGame.Error.ToString());
+                Log.Error("CreateGame error: {0}", response.CreateGame.Error.ToString());
                 if (!String.IsNullOrEmpty(response.CreateGame.ErrorDetails))
                 {
-                    Log.LogError(response.CreateGame.ErrorDetails);
+                    Log.Error(response.CreateGame.ErrorDetails);
                 }
             }
         }
 
-        public void readSettings()
+        public void ReadSettings()
         {
             var myDocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var executeInfo = Path.Combine(myDocuments, "StarCraft II", "ExecuteInfo.txt");
@@ -141,10 +142,10 @@ namespace BOSSE
 
             if (response.JoinGame.Error != ResponseJoinGame.Types.Error.Unset)
             {
-                Log.LogError("JoinGame error: {0}", response.JoinGame.Error.ToString());
+                Log.Error("JoinGame error: {0}", response.JoinGame.Error.ToString());
                 if (!String.IsNullOrEmpty(response.JoinGame.ErrorDetails))
                 {
-                    Log.LogError(response.JoinGame.ErrorDetails);
+                    Log.Error(response.JoinGame.ErrorDetails);
                 }
             }
 
@@ -176,10 +177,10 @@ namespace BOSSE
 
             if (response.JoinGame.Error != ResponseJoinGame.Types.Error.Unset)
             {
-                Log.LogError("JoinGame error: {0}", response.JoinGame.Error.ToString());
+                Log.Error("JoinGame error: {0}", response.JoinGame.Error.ToString());
                 if (!String.IsNullOrEmpty(response.JoinGame.ErrorDetails))
                 {
-                    Log.LogError(response.JoinGame.ErrorDetails);
+                    Log.Error(response.JoinGame.ErrorDetails);
                 }
             }
 
@@ -245,7 +246,7 @@ namespace BOSSE
                     {
                         if (result.PlayerId == playerId)
                         {
-                            Log.LogInformation("Result: {0}", result.Result);
+                            Log.Info("Result: {0}", result.Result);
                             // Do whatever you want with the info
                         }
                     }
@@ -274,13 +275,9 @@ namespace BOSSE
             Difficulty opponentDifficulty)
         {
             var port = 5678;
-            Log.LogInformation("Starting SinglePlayer Instance");
             StartSC2Instance(port);
-            Log.LogInformation("Connecting to port: {0}", port);
             await Connect(port);
-            Log.LogInformation("Creating game");
             await CreateGame(map, opponentRace, opponentDifficulty);
-            Log.LogInformation("Joining game");
             var playerId = await JoinGame(myRace);
             await Run(bot, playerId);
         }
@@ -295,7 +292,7 @@ namespace BOSSE
 
         public async Task RunLadder(Bot bot, Race myRace, string[] args)
         {
-            var commandLineArgs = new CLArgs(args);
+            var commandLineArgs = new CommandLine(args);
             await RunLadder(bot, myRace, commandLineArgs.GamePort, commandLineArgs.StartPort);
         }
 
@@ -303,10 +300,10 @@ namespace BOSSE
         {
             if (response.Error.Count > 0)
             {
-                Log.LogError("Response errors:");
+                Log.Error("Response errors:");
                 foreach (var error in response.Error)
                 {
-                    Log.LogError(error);
+                    Log.Error(error);
                 }
             }
             return response;

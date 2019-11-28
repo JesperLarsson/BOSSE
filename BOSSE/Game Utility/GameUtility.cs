@@ -68,20 +68,20 @@ namespace BOSSE
         public static bool CanConstruct(uint unitType)
         {
             //we need worker for every structure
-            if (GetUnits(Units.Workers).Count == 0) return false;
+            if (GetUnits(UnitConstants.Workers).Count == 0) return false;
 
             //we need an RC for any structure
-            var resourceCenters = GetUnits(Units.ResourceCenters, onlyCompleted: true);
+            var resourceCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
             if (resourceCenters.Count == 0) return false;
 
-            if ((unitType == Units.COMMAND_CENTER) || (unitType == Units.SUPPLY_DEPOT))
+            if ((unitType == UnitConstants.COMMAND_CENTER) || (unitType == UnitConstants.SUPPLY_DEPOT))
                 return CanAfford(unitType);
 
             //we need supply depots for the following structures
-            var depots = GetUnits(Units.SupplyDepots, onlyCompleted: true);
+            var depots = GetUnits(UnitConstants.SupplyDepots, onlyCompleted: true);
             if (depots.Count == 0) return false;
 
-            if (unitType == Units.BARRACKS)
+            if (unitType == UnitConstants.BARRACKS)
                 return CanAfford(unitType);
 
             return CanAfford(unitType);
@@ -89,7 +89,7 @@ namespace BOSSE
 
         public static int GetPendingCount(uint unitType, bool inConstruction = true)
         {
-            var workers = GetUnits(Units.Workers);
+            var workers = GetUnits(UnitConstants.Workers);
             var abilityID = Abilities.GetID(unitType);
 
             var counter = 0;
@@ -97,7 +97,7 @@ namespace BOSSE
             //count workers that have been sent to build this structure
             foreach (var worker in workers)
             {
-                if (worker.order.AbilityId == abilityID)
+                if (worker.CurrentOrder.AbilityId == abilityID)
                     counter += 1;
             }
 
@@ -105,7 +105,7 @@ namespace BOSSE
             if (inConstruction)
             {
                 foreach (var unit in GetUnits(unitType))
-                    if (unit.buildProgress < 1)
+                    if (unit.BuildProgress < 1)
                         counter += 1;
             }
 
@@ -123,7 +123,7 @@ namespace BOSSE
             var maxDistanceSqr = maxDistance * maxDistance;
             foreach (var unit in units)
             {
-                if (Vector3.DistanceSquared(targetPosition, unit.position) <= maxDistanceSqr)
+                if (Vector3.DistanceSquared(targetPosition, unit.Position) <= maxDistanceSqr)
                     return unit;
             }
             return null;
@@ -154,19 +154,19 @@ namespace BOSSE
         {
             Vector3 startingSpot;
 
-            var resourceCenters = GetUnits(Units.ResourceCenters);
+            var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
             if (resourceCenters.Count > 0)
-                startingSpot = resourceCenters[0].position;
+                startingSpot = resourceCenters[0].Position;
             else
             {
-                Log.LogError("Unable to construct: {0}. No resource center was found.", GetUnitName(unitType));
+                Log.Error("Unable to construct: {0}. No resource center was found.", GetUnitName(unitType));
                 return;
             }
 
             const int radius = 12;
 
             //trying to find a valid construction spot
-            var mineralFields = GetUnits(Units.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+            var mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
             Vector3 constructionSpot;
             while (true)
             {
@@ -185,27 +185,28 @@ namespace BOSSE
             var worker = GetAvailableWorker(constructionSpot);
             if (worker == null)
             {
-                Log.LogError("Unable to find worker to construct: {0}", GetUnitName(unitType));
+                Log.Error("Unable to find worker to construct: {0}", GetUnitName(unitType));
                 return;
             }
 
             var abilityID = Abilities.GetID(unitType);
             var constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
-            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.tag);
+            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
             constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
             constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
             constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
             GameOutput.QueuedActions.Add(constructAction);
 
-            Log.LogInformation("Constructing: {0} @ {1} / {2}", GetUnitName(unitType), constructionSpot.X, constructionSpot.Y);
+            Log.Info("Constructing: {0} @ {1} / {2}", GetUnitName(unitType), constructionSpot.X, constructionSpot.Y);
         }
 
         public static Unit GetAvailableWorker(Vector3 targetPosition)
         {
-            var workers = GetUnits(Units.Workers);
-            foreach (var worker in workers)
+            var workers = GetUnits(UnitConstants.Workers);
+            foreach (Unit worker in workers)
             {
-                if (worker.order.AbilityId != Abilities.GATHER_MINERALS) continue;
+                if (worker.CurrentOrder.AbilityId != Abilities.GATHER_MINERALS)
+                    continue;
 
                 return worker;
             }

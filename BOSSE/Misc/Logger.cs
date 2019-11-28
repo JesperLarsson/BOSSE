@@ -25,17 +25,17 @@ namespace BOSSE
         private static string logFile;
         private static bool stdoutClosed;
 
-        public static void LogInformation(string line, params object[] parameters)
+        public static void Info(string line, params object[] parameters)
         {
             WriteLine("INFO", line, parameters);
         }
 
-        public static void LogWarning(string line, params object[] parameters)
+        public static void Warning(string line, params object[] parameters)
         {
             WriteLine("WARNING", line, parameters);
         }
 
-        public static void LogError(string line, params object[] parameters)
+        public static void Error(string line, params object[] parameters)
         {
             WriteLine("ERROR", line, parameters);
         }

@@ -17,7 +17,7 @@
         {
             try
             {
-                Log.LogInformation("Started version " + GameConstants.ApplicationVersion);
+                Log.Info("Started version " + GameConstants.ApplicationVersion);
 
                 Globals.StarcraftRef = new GameConnection();
                 if (args.Length == 0)
@@ -25,7 +25,7 @@
                     Globals.IsSinglePlayer = true;
                     Globals.Random = new Random(1234567); // use the same random number generation every time to make debugging problems easier
 
-                    Globals.StarcraftRef.readSettings();
+                    Globals.StarcraftRef.ReadSettings();
                     Globals.StarcraftRef.RunSinglePlayer(Globals.BotRef, mapName, GameConstants.SpawnAsRace, opponentRace, opponentDifficulty).Wait();
                 }
                 else
@@ -36,10 +36,10 @@
             }
             catch (Exception ex)
             {
-                Log.LogError("TOP LOOP EXCEPTION" + ex.ToString());
+                Log.Error("TOP LOOP EXCEPTION" + ex.ToString());
             }
 
-            Log.LogInformation("Exiting...");
+            Log.Info("Exiting...");
         }
     }
 }

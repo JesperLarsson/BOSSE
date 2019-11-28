@@ -30,7 +30,7 @@ namespace BOSSE
         /// <summary>
         /// Pointer to our bot instance
         /// </summary>
-        public static Bot BotRef = new JesperBot();
+        public static Bot BotRef = new BOSSE();
         
         /// <summary>
         /// Generates random numbers globally

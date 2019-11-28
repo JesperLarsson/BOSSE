@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\GameObject.cs" />
+    <Compile Include="Entities\Unit.cs" />
+    <Compile Include="Game Input\Constants\AbilityConstants.cs" />
+    <Compile Include="Game Input\Constants\UnitConstants.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
     <Compile Include="Game Utility\GameConstants.cs" />
@@ -67,13 +71,11 @@
     <Compile Include="Init\Protocol\Score.cs" />
     <Compile Include="Init\Protocol\Spatial.cs" />
     <Compile Include="Init\Protocol\Ui.cs" />
-    <Compile Include="Main\JesperBot.cs" />
-    <Compile Include="Init\Unit.cs" />
+    <Compile Include="Main\BOSSE.cs" />
     <Compile Include="Init\Wrapper\Interface.cs" />
     <Compile Include="Init\Wrapper\CommandLine.cs" />
     <Compile Include="Init\Wrapper\GameConnection.cs" />
     <Compile Include="Init\Wrapper\ProtobufProxy.cs" />
-    <Compile Include="Init\Units.cs" />
     <Compile Include="Legacy\RaxBot.cs" />
   </ItemGroup>
   <ItemGroup />

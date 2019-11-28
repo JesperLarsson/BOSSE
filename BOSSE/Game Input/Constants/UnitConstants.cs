@@ -1,7 +1,21 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * Copyright Jesper Larsson 2019, Linköping, Sweden
+ */
+namespace BOSSE
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Numerics;
+    using System.Security.Cryptography;
+    using System.Threading;
 
-namespace BOSSE {
-    internal static class Units {
+    using SC2APIProtocol;
+    using Action = SC2APIProtocol.Action;
+    using static CurrentGameState;
+
+    internal static class UnitConstants
+    {
         public static uint COLOSSUS = 4;
         public static uint TECHLAB = 5;
         public static uint REACTOR = 6;
@@ -786,7 +800,7 @@ namespace BOSSE {
             STARPORT_TECHLAB,
             STARPORT_REACTOR
         };
-        
+
         public static readonly HashSet<uint> SupplyDepots = new HashSet<uint> {
             SUPPLY_DEPOT,
             SUPPLY_DEPOT_LOWERED
