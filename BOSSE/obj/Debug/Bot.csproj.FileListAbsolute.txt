@@ -1,0 +1,18 @@
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\bin\Debug\Bot.exe
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\bin\Debug\Bot.pdb
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\bin\Debug\Google.Protobuf.dll
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\bin\Debug\Google.Protobuf.xml
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\obj\Debug\Bot.csprojAssemblyReference.cache
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\obj\Debug\Bot.csproj.CoreCompileInputs.cache
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\obj\Debug\Bot.csproj.CopyComplete
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\obj\Debug\Bot.exe
+C:\Users\Jesper Larsson\Desktop\Repositories\SC2-CSharpe-Starterkit-master\SC2-CSharpe-Starterkit-master\Bot\obj\Debug\Bot.pdb
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\bin\Debug\Bot.exe
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\bin\Debug\Bot.pdb
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\bin\Debug\Google.Protobuf.dll
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\bin\Debug\Google.Protobuf.xml
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\obj\Debug\Bot.csprojAssemblyReference.cache
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\obj\Debug\Bot.csproj.CoreCompileInputs.cache
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\obj\Debug\Bot.csproj.CopyComplete
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\obj\Debug\Bot.exe
+C:\Users\Jesper Larsson\Desktop\Repositories\Starcraft Bot\Bot\obj\Debug\Bot.pdb
