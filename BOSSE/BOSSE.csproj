@@ -61,16 +61,6 @@
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Misc\Log.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Common.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Data.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Debug.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Error.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Query.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Raw.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Sc2Api.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Score.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Spatial.cs" />
-    <Compile Include="Misc\Protobuff Protocol\Ui.cs" />
     <Compile Include="Bot\BotStateEngine.cs" />
     <Compile Include="Main\Game Bootstrapper\Interface.cs" />
     <Compile Include="Main\Game Bootstrapper\CommandLine.cs" />
@@ -83,6 +73,10 @@
     <ProjectReference Include="..\DebugGui\DebugGui.csproj">
       <Project>{4b39055a-9de9-417a-b880-b4dd75eddbf1}</Project>
       <Name>DebugGui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProtoBuff\Protocol Buffer.csproj">
+      <Project>{b16698d5-deac-4de3-a552-d6ed2a4cd4e7}</Project>
+      <Name>Protocol Buffer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

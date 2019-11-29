@@ -22,7 +22,7 @@ namespace BOSSE
     /// </summary>
     public class MainLoop
     {
-        // Debug settings (single player mode)
+        // Debug settings (single player local mode)
         private static readonly string mapName = "ThunderbirdLE.SC2Map";
         private static readonly Race opponentRace = Race.Protoss;
         private static readonly Difficulty opponentDifficulty = Difficulty.VeryEasy;
@@ -42,24 +42,22 @@ namespace BOSSE
                 Globals.IsSinglePlayer = true;
                 Globals.Random = new Random(123456987); // use the same random number generation every time to make reproducing behaviour more likely
                 DebugGui.BosseGui.StartGui();
-
                 Globals.GameConnection = bootStrapper.RunSinglePlayer(mapName, BotConstants.SpawnAsRace, opponentRace, opponentDifficulty).Result;
             }
             else
             {
                 // Ladder play
                 Globals.IsSinglePlayer = false;
-
                 Globals.GameConnection = bootStrapper.RunLadder(BotConstants.SpawnAsRace, commandLineArguments).Result;
             }
 
             // Game has started, read initial state
-            InitializeGameState().Wait();
+            ReadInitialState().Wait();
 
             // Main loop
             while (true)
             {
-                UpdateGameData().Wait();
+                ReadPerFrameState().Wait();
 
                 Globals.BotRef.Update();
 
@@ -70,11 +68,10 @@ namespace BOSSE
         /// <summary>
         /// Polls sc2 once for the initial complete state, populates global state parameters
         /// </summary>
-        private async Task InitializeGameState()
+        private async Task ReadInitialState()
         {
             Request gameInfoReq = new Request();
             gameInfoReq.GameInfo = new RequestGameInfo();
-
             Response gameInfoResponse = await Globals.GameConnection.SendRequest(gameInfoReq);
 
             var dataReq = new Request();
@@ -84,17 +81,18 @@ namespace BOSSE
             dataReq.Data.BuffId = true;
             dataReq.Data.EffectId = true;
             dataReq.Data.UpgradeId = true;
-
             Response dataResponse = await Globals.GameConnection.SendRequest(dataReq);
 
             CurrentGameState.GameInformation = gameInfoResponse.GameInfo;
             CurrentGameState.GameData = dataResponse.Data;
+            DebugGui.BosseGui.GameInformation = gameInfoResponse.GameInfo;
+            DebugGui.BosseGui.GameData = dataResponse.Data;
         }
 
         /// <summary>
-        /// Poll game data every frame
+        /// Poll observational game data every frame
         /// </summary>
-        private async Task UpdateGameData()
+        private async Task ReadPerFrameState()
         {
             Request observationRequest = new Request();
             observationRequest.Observation = new RequestObservation();
@@ -102,6 +100,7 @@ namespace BOSSE
 
             // Update global state
             CurrentGameState.ObservationState = response.Observation;
+            DebugGui.BosseGui.ObservationState = response.Observation;
 
             // Check for game over
             if (response.Status == Status.Ended || response.Status == Status.Quit)

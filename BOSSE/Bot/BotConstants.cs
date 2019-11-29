@@ -25,6 +25,11 @@ namespace BOSSE
         public const string ApplicationVersion = "0.1dev";
 
         /// <summary>
+        /// Singleplayer only, sc2 will simulate the game as fast as possible
+        /// </summary>
+        public const bool TurboMode = false;
+
+        /// <summary>
         /// Number of logical frames per second of real time
         /// </summary>
         public const double FRAMES_PER_SECOND = 22.4;

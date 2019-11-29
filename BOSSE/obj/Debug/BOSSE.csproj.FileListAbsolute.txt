@@ -19,3 +19,5 @@ C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\obj\Debug\BOSSE.csproj.
 C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\DebugGui.pdb
 C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\DebugGui.dll
 C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\DebugGui.dll.config
+C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\ProtoBuff.dll
+C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\ProtoBuff.pdb

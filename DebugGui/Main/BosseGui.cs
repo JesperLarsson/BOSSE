@@ -11,8 +11,25 @@ namespace DebugGui
     using System.Windows.Forms;
     using System.Threading;
 
+    using SC2APIProtocol;
+
     public static class BosseGui
     {
+        /// <summary>
+        /// Set once during initialization
+        /// </summary>
+        public static ResponseGameInfo GameInformation;
+
+        /// <summary>
+        /// Set once during initialization
+        /// </summary>
+        public static ResponseData GameData;
+
+        /// <summary>
+        /// Set each frame
+        /// </summary>
+        public static ResponseObservation ObservationState;
+
         public static void StartGui()
         {
             Thread guiThread = new Thread(GuiEnterLoop);

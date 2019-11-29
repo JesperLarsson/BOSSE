@@ -39,7 +39,7 @@ namespace BOSSE
             }
 
             // Build depots
-            if (CurrentMinerals > 100)
+            if (CurrentMinerals > 100 && GetUnits(UnitConstants.UnitId.SUPPLY_DEPOT).Count < 4)
             {
                 Construct(UnitConstants.UnitId.SUPPLY_DEPOT);
             }
