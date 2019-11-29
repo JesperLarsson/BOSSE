@@ -22,6 +22,14 @@ namespace BOSSE
     public static class GameUtility
     {
         /// <summary>
+        /// Returns which ability builds the given unit
+        /// </summary>
+        public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unit)
+        {
+            return (int)CurrentGameState.GameData.Units[(int)unit].AbilityId;
+        }
+
+        /// <summary>
         /// Converts seconds to number of logical frames
         /// </summary>
         public static ulong SecsToFrames(int seconds)
@@ -79,7 +87,7 @@ namespace BOSSE
         public static int GetPendingBuildingCount(UnitId unitType, bool inConstruction = true)
         {
             List<Unit> workers = GetUnits(UnitConstants.Workers);
-            int abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitType);
+            int abilityID = GetAbilityIdToBuildUnit(unitType);
 
             var counter = 0;
 
@@ -133,7 +141,7 @@ namespace BOSSE
         /// </summary>
         public static bool CanPlace(UnitId unitType, Vector3 targetPos)
         {
-            var abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitType);
+            var abilityID = GetAbilityIdToBuildUnit(unitType);
 
             RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
             queryBuildingPlacement.AbilityId = abilityID;
@@ -194,7 +202,7 @@ namespace BOSSE
                 return;
             }
 
-            int abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitType);
+            int abilityID = GetAbilityIdToBuildUnit(unitType);
             Action constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
             constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
             constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();

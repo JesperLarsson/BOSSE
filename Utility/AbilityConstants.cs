@@ -12,7 +12,6 @@ namespace BOSSE
 
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
-    using static CurrentGameState;
 
     /// <summary>
     /// Constant values used to identify specific unit abilities
@@ -20,14 +19,6 @@ namespace BOSSE
     /// </summary>
     public static class AbilityConstants
     {
-        /// <summary>
-        /// Returns which ability builds the given unit
-        /// </summary>
-        public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unit)
-        {
-            return (int)CurrentGameState.GameData.Units[(int)unit].AbilityId;
-        }
-
         public enum AbilityId
         {
             RESEARCH_BANSHEE_CLOAK = 790,

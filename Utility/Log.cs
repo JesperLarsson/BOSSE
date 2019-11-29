@@ -11,12 +11,6 @@ namespace BOSSE
     using System.Security.Cryptography;
     using System.Threading;
 
-    using SC2APIProtocol;
-    using Google.Protobuf.Collections;
-    using Action = SC2APIProtocol.Action;
-    using static CurrentGameState;
-    using static GameUtility;
-
     /// <summary>
     /// Writes logging information
     /// </summary>
@@ -48,9 +42,6 @@ namespace BOSSE
 
         private static void WriteLine(string prefix, string line, params object[] parameters)
         {
-            if (!Globals.IsSinglePlayer)
-                return;
-
             if (logFile == null)
                 Initialize();
 

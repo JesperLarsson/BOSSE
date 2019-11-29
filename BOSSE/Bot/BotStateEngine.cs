@@ -50,7 +50,7 @@ namespace BOSSE
             if (!allowQueue && fromCenter.QueuedOrders.Count > 0)
                 return false;
 
-            var abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitTypeToBuild);
+            var abilityID = GetAbilityIdToBuildUnit(unitTypeToBuild);
             var action = CommandBuilder.CreateRawUnitCommand(abilityID);
             action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
             GameOutput.QueuedActions.Add(action);

@@ -3,7 +3,6 @@
  */
 namespace DebugGui
 {
-    using SC2APIProtocol;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -14,19 +13,23 @@ namespace DebugGui
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
+    using BOSSE;
+    using SC2APIProtocol;
+
     /// <summary>
     /// Standard minimap, only with the real coordinates as seen through the API
     /// </summary>
     public static class StandardMap
     {
-        private static Graphics FormGraphics;
-        private static int BaseX;
-        private static int BaseY;
+        static Graphics FormGraphics;
+        static int BaseX;
+        static int BaseY;
 
         const int RenderScale = 2;
-        static readonly System.Drawing.SolidBrush BackgroundColor = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-        static readonly System.Drawing.SolidBrush SelfColor = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
-        static readonly System.Drawing.SolidBrush EnemyColor = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
+        static readonly SolidBrush BackgroundColor = new SolidBrush(System.Drawing.Color.Black);
+        static readonly SolidBrush SelfColor = new SolidBrush(System.Drawing.Color.Blue);
+        static readonly SolidBrush EnemyColor = new SolidBrush(System.Drawing.Color.Red);
+        static readonly SolidBrush MineralColor = new SolidBrush(System.Drawing.Color.White);
 
         public static void Init(Graphics _formGraphics, int _baseX, int _baseY)
         {
@@ -58,9 +61,14 @@ namespace DebugGui
                 {
                     unitBrush = EnemyColor;
                 }
+                else if (UnitConstants.MineralFields.Contains((UnitConstants.UnitId)unitIter.UnitType))
+                {
+                    unitBrush = MineralColor;
+                }
                 else
                 {
                     continue; // ignore neutral etc
+                    //unitBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
                 }
 
                 float x = unitIter.Pos.X - playArea.P0.X;

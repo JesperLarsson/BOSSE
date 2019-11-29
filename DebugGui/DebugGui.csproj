@@ -93,6 +93,10 @@
       <Project>{b16698d5-deac-4de3-a552-d6ed2a4cd4e7}</Project>
       <Name>Protocol Buffer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{084ec48e-2600-439c-a754-4904464fe9c8}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

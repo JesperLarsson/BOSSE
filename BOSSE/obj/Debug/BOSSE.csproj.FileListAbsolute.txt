@@ -21,3 +21,5 @@ C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\DebugGui.dll
 C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\DebugGui.dll.config
 C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\ProtoBuff.dll
 C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\ProtoBuff.pdb
+C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\Utility.dll
+C:\Users\Jesper Larsson\Desktop\Repositories\BOSSE\BOSSE\bin\Debug\Utility.pdb

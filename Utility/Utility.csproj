@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50579668-A3FB-43F4-B88C-05995BE4C8CC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>BOSSE</RootNamespace>
-    <AssemblyName>BOSSE</AssemblyName>
+    <ProjectGuid>{084EC48E-2600-439C-A754-4904464FE9C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Utility</RootNamespace>
+    <AssemblyName>Utility</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,10 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>CS1998</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,10 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604">
+    <Reference Include="Google.Protobuf">
       <HintPath>..\References\Google.Protobuf.dll</HintPath>
     </Reference>
-    <Reference Include="netstandard" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -48,36 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\GameObject.cs" />
-    <Compile Include="Entities\Unit.cs" />
-    <Compile Include="Game Input\CurrentGameState.cs" />
-    <Compile Include="Game Output\CommandBuilder.cs" />
-    <Compile Include="Bot\BotConstants.cs" />
-    <Compile Include="Game Utility\GameUtility.cs" />
-    <Compile Include="Game Output\GameOutput.cs" />
-    <Compile Include="Main\Main.cs" />
-    <Compile Include="Misc\Globals.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Bot\BotStateEngine.cs" />
-    <Compile Include="Main\Game Bootstrapper\Interface.cs" />
-    <Compile Include="Main\Game Bootstrapper\CommandLine.cs" />
-    <Compile Include="Main\Game Bootstrapper\GameBootstrapper.cs" />
-    <Compile Include="Main\Game Bootstrapper\ProtobufProxy.cs" />
-    <Compile Include="Misc\Extensions\PrettyPrintExtensions.cs" />
-    <Compile Include="Misc\Extensions\VectorExtensions.cs" />
+    <Compile Include="AbilityConstants.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitConstants.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DebugGui\DebugGui.csproj">
-      <Project>{4b39055a-9de9-417a-b880-b4dd75eddbf1}</Project>
-      <Name>DebugGui</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProtoBuff\Protocol Buffer.csproj">
       <Project>{b16698d5-deac-4de3-a552-d6ed2a4cd4e7}</Project>
       <Name>Protocol Buffer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Utility\Utility.csproj">
-      <Project>{084ec48e-2600-439c-a754-4904464fe9c8}</Project>
-      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

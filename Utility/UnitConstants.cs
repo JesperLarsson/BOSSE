@@ -12,7 +12,6 @@ namespace BOSSE
 
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
-    using static CurrentGameState;
 
     /// <summary>
     /// StarCraft API unit identifiers and groupings
