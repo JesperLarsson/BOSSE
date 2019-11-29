@@ -21,9 +21,13 @@ namespace BOSSE
         public static ResponseObservation ObservationState;
 
         public static uint CurrentSupply { get => ObservationState.Observation.PlayerCommon.FoodUsed; }
+        public static uint CurrentMinerals { get => ObservationState.Observation.PlayerCommon.Minerals; }
+        public static uint CurrentVespene { get => ObservationState.Observation.PlayerCommon.Vespene; }
         public static uint MaxSupply { get => ObservationState.Observation.PlayerCommon.FoodCap; }
-        public static uint Minerals { get => ObservationState.Observation.PlayerCommon.Minerals; }
-        public static uint Vespene { get => ObservationState.Observation.PlayerCommon.Vespene; }
-        public static ulong Frame { get => ObservationState.Observation.GameLoop; }
+
+        /// <summary>
+        /// Active logical frame counter, starts at 0
+        /// </summary>
+        public static ulong OnFrame { get => ObservationState.Observation.GameLoop; }
     }
 }

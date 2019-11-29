@@ -1,10 +1,21 @@
-﻿namespace BOSSE
+﻿/*
+ * Copyright Jesper Larsson 2019, Linköping, Sweden
+ */
+namespace BOSSE
 {
     using System.Collections.Generic;
 
     internal static class Abilities
     {
-        //you can get all these values from the stableid.json file (just search for it on your PC)
+        // Latest values can be found in sc2 directory as stableid.json
+
+        /// <summary>
+        /// Returns which ability builds the given unit
+        /// </summary>
+        public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unit)
+        {
+            return (int)CurrentGameState.GameData.Units[(int)unit].AbilityId;
+        }
 
         public static int RESEARCH_BANSHEE_CLOAK = 790;
         public static int RESEARCH_INFERNAL_PREIGNITER = 761;
@@ -49,10 +60,5 @@
         //gathering/returning minerals
         public static int GATHER_MINERALS = 295;
         public static int RETURN_MINERALS = 296;
-
-        public static int GetID(uint unit)
-        {
-            return (int)CurrentGameState.GameData.Units[(int)unit].AbilityId;
-        }
     }
 }

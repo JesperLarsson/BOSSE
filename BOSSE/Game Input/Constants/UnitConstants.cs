@@ -14,797 +14,800 @@ namespace BOSSE
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
 
-    internal static class UnitConstants
+    /// <summary>
+    /// StarCraft API unit identifiers and groupings
+    /// </summary>
+    public static class UnitConstants
     {
-        public static uint COLOSSUS = 4;
-        public static uint TECHLAB = 5;
-        public static uint REACTOR = 6;
-        public static uint INFESTOR_TERRAN = 7;
-        public static uint BANELING_COCOON = 8;
-        public static uint BANELING = 9;
-        public static uint MOTHERSHIP = 10;
-        public static uint POINT_DEFENSE_DRONE = 11;
-        public static uint CHANGELING = 12;
-        public static uint CHANGELING_ZEALOT = 13;
-        public static uint CHANGELING_MARINE_SHIELD = 14;
-        public static uint CHANGELING_MARINE = 15;
-        public static uint CHANGELING_ZERGLING_WINGS = 16;
-        public static uint CHANGELING_ZERGLING = 17;
-        public static uint COMMAND_CENTER = 18;
-        public static uint SUPPLY_DEPOT = 19;
-        public static uint REFINERY = 20;
-        public static uint BARRACKS = 21;
-        public static uint ENGINEERING_BAY = 22;
-        public static uint MISSILE_TURRET = 23;
-        public static uint BUNKER = 24;
-        public static uint SENSOR_TOWER = 25;
-        public static uint GHOST_ACADEMY = 26;
-        public static uint FACTORY = 27;
-        public static uint STARPORT = 28;
-        public static uint ARMORY = 29;
-        public static uint FUSION_CORE = 30;
-        public static uint AUTO_TURRET = 31;
-        public static uint SIEGE_TANK_SIEGED = 32;
-        public static uint SIEGE_TANK = 33;
-        public static uint VIKING_ASSAULT = 34;
-        public static uint VIKING_FIGHTER = 35;
-        public static uint COMMAND_CENTER_FLYING = 36;
-        public static uint BARRACKS_TECHLAB = 37;
-        public static uint BARRACKS_REACTOR = 38;
-        public static uint FACTORY_TECHLAB = 39;
-        public static uint FACTORY_REACTOR = 40;
-        public static uint STARPORT_TECHLAB = 41;
-        public static uint STARPORT_REACTOR = 42;
-        public static uint FACTORY_FLYING = 43;
-        public static uint STARPORT_FLYING = 44;
-        public static uint SCV = 45;
-        public static uint BARRACKS_FLYING = 46;
-        public static uint SUPPLY_DEPOT_LOWERED = 47;
-        public static uint MARINE = 48;
-        public static uint REAPER = 49;
-        public static uint WIDOW_MINE = 498;
-        public static uint WIDOW_MINE_BURROWED = 500;
-        public static uint LIBERATOR = 689;
-        public static uint GHOST = 50;
-        public static uint MARAUDER = 51;
-        public static uint MULE = 268;
-        public static uint THOR = 52;
-        public static uint HELLION = 53;
-        public static uint HELLBAT = 484;
-        public static uint CYCLONE = 692;
-        public static uint MEDIVAC = 54;
-        public static uint BANSHEE = 55;
-        public static uint RAVEN = 56;
-        public static uint BATTLECRUISER = 57;
-        public static uint NUKE = 58;
-        public static uint NEXUS = 59;
-        public static uint PYLON = 60;
-        public static uint ASSIMILATOR = 61;
-        public static uint GATEWAY = 62;
-        public static uint FORGE = 63;
-        public static uint FLEET_BEACON = 64;
-        public static uint TWILIGHT_COUNSEL = 65;
-        public static uint PHOTON_CANNON = 66;
-        public static uint STARGATE = 67;
-        public static uint TEMPLAR_ARCHIVE = 68;
-        public static uint DARK_SHRINE = 69;
-        public static uint ROBOTICS_BAY = 70;
-        public static uint ROBOTICS_FACILITY = 71;
-        public static uint CYBERNETICS_CORE = 72;
-        public static uint ZEALOT = 73;
-        public static uint STALKER = 74;
-        public static uint ADEPT = 311;
-        public static uint HIGH_TEMPLAR = 75;
-        public static uint DARK_TEMPLAR = 76;
-        public static uint SENTRY = 77;
-        public static uint PHOENIX = 78;
-        public static uint CARRIER = 79;
-        public static uint VOID_RAY = 80;
-        public static uint WARP_PRISM = 81;
-        public static uint OBSERVER = 82;
-        public static uint IMMORTAL = 83;
-        public static uint PROBE = 84;
-        public static uint INTERCEPTOR = 85;
-        public static uint HATCHERY = 86;
-        public static uint CREEP_TUMOR = 87;
-        public static uint EXTRACTOR = 88;
-        public static uint SPAWNING_POOL = 89;
-        public static uint EVOLUTION_CHAMBER = 90;
-        public static uint HYDRALISK_DEN = 91;
-        public static uint SPIRE = 92;
-        public static uint ULTRALISK_CAVERN = 93;
-        public static uint INVESTATION_PIT = 94;
-        public static uint NYDUS_NETWORK = 95;
-        public static uint BANELING_NEST = 96;
-        public static uint ROACH_WARREN = 97;
-        public static uint SPINE_CRAWLER = 98;
-        public static uint SPORE_CRAWLER = 99;
-        public static uint LAIR = 100;
-        public static uint HIVE = 101;
-        public static uint GREATER_SPIRE = 102;
-        public static uint EGG = 103;
-        public static uint DRONE = 104;
-        public static uint ZERGLING = 105;
-        public static uint OVERLORD = 106;
-        public static uint HYDRALISK = 107;
-        public static uint MUTALISK = 108;
-        public static uint ULTRALISK = 109;
-        public static uint ROACH = 110;
-        public static uint INFESTOR = 111;
-        public static uint CORRUPTOR = 112;
-        public static uint BROOD_LORD_COCOON = 113;
-        public static uint BROOD_LORD = 114;
-        public static uint BANELING_BURROWED = 115;
-        public static uint DRONE_BURROWED = 116;
-        public static uint HYDRALISK_BURROWED = 117;
-        public static uint ROACH_BURROWED = 118;
-        public static uint ZERGLING_BURROWED = 119;
-        public static uint INFESTOR_TERRAN_BURROWED = 120;
-        public static uint QUEEN_BURROWED = 125;
-        public static uint QUEEN = 126;
-        public static uint INFESTOR_BURROWED = 127;
-        public static uint OVERLORD_COCOON = 128;
-        public static uint OVERSEER = 129;
-        public static uint PLANETARY_FORTRESS = 130;
-        public static uint ULTRALISK_BURROWED = 131;
-        public static uint ORBITAL_COMMAND = 132;
-        public static uint WARP_GATE = 133;
-        public static uint ORBITAL_COMMAND_FLYING = 134;
-        public static uint FORCE_FIELD = 135;
-        public static uint WARP_PRISM_PHASING = 136;
-        public static uint CREEP_TUMOR_BURROWED = 137;
-        public static uint CREEP_TUMOR_QUEEN = 138;
-        public static uint SPINE_CRAWLER_UPROOTED = 139;
-        public static uint SPORE_CRAWLER_UPROOTED = 140;
-        public static uint ARCHON = 141;
-        public static uint NYDUS_CANAL = 142;
-        public static uint BROODLING_ESCORT = 143;
-        public static uint RICH_MINERAL_FIELD = 146;
-        public static uint RICH_MINERAL_FIELD_750 = 147;
-        public static uint URSADON = 148;
-        public static uint XEL_NAGA_TOWER = 149;
-        public static uint INFESTED_TERRANS_EGG = 150;
-        public static uint LARVA = 151;
-        public static uint MINERAL_FIELD = 341;
-        public static uint VESPENE_GEYSER = 342;
-        public static uint SPACE_PLATFORM_GEYSER = 343;
-        public static uint RICH_VESPENE_GEYSER = 344;
-        public static uint MINERAL_FIELD_750 = 483;
-        public static uint PROTOSS_VESPENE_GEYSER = 608;
-        public static uint LAB_MINERAL_FIELD = 665;
-        public static uint LAB_MINERAL_FIELD_750 = 666;
-        public static uint PURIFIER_RICH_MINERAL_FIELD = 796;
-        public static uint PURIFIER_RICH_MINERAL_FIELD_750 = 797;
-        public static uint PURIFIER_VESPENE_GEYSER = 880;
-        public static uint SHAKURAS_VESPENE_GEYSER = 881;
-        public static uint PURIFIER_MINERAL_FIELD = 884;
-        public static uint PURIFIER_MINERAL_FIELD_750 = 885;
-        public static uint BATTLE_STATION_MINERAL_FIELD = 886;
-        public static uint BATTLE_STATION_MINERAL_FIELD_750 = 887;
+        public enum UnitId
+        {
+            COLOSSUS = 4,
+            TECHLAB = 5,
+            REACTOR = 6,
+            INFESTOR_TERRAN = 7,
+            BANELING_COCOON = 8,
+            BANELING = 9,
+            MOTHERSHIP = 10,
+            POINT_DEFENSE_DRONE = 11,
+            CHANGELING = 12,
+            CHANGELING_ZEALOT = 13,
+            CHANGELING_MARINE_SHIELD = 14,
+            CHANGELING_MARINE = 15,
+            CHANGELING_ZERGLING_WINGS = 16,
+            CHANGELING_ZERGLING = 17,
+            COMMAND_CENTER = 18,
+            SUPPLY_DEPOT = 19,
+            REFINERY = 20,
+            BARRACKS = 21,
+            ENGINEERING_BAY = 22,
+            MISSILE_TURRET = 23,
+            BUNKER = 24,
+            SENSOR_TOWER = 25,
+            GHOST_ACADEMY = 26,
+            FACTORY = 27,
+            STARPORT = 28,
+            ARMORY = 29,
+            FUSION_CORE = 30,
+            AUTO_TURRET = 31,
+            SIEGE_TANK_SIEGED = 32,
+            SIEGE_TANK = 33,
+            VIKING_ASSAULT = 34,
+            VIKING_FIGHTER = 35,
+            COMMAND_CENTER_FLYING = 36,
+            BARRACKS_TECHLAB = 37,
+            BARRACKS_REACTOR = 38,
+            FACTORY_TECHLAB = 39,
+            FACTORY_REACTOR = 40,
+            STARPORT_TECHLAB = 41,
+            STARPORT_REACTOR = 42,
+            FACTORY_FLYING = 43,
+            STARPORT_FLYING = 44,
+            SCV = 45,
+            BARRACKS_FLYING = 46,
+            SUPPLY_DEPOT_LOWERED = 47,
+            MARINE = 48,
+            REAPER = 49,
+            WIDOW_MINE = 498,
+            WIDOW_MINE_BURROWED = 500,
+            LIBERATOR = 689,
+            GHOST = 50,
+            MARAUDER = 51,
+            MULE = 268,
+            THOR = 52,
+            HELLION = 53,
+            HELLBAT = 484,
+            CYCLONE = 692,
+            MEDIVAC = 54,
+            BANSHEE = 55,
+            RAVEN = 56,
+            BATTLECRUISER = 57,
+            NUKE = 58,
+            NEXUS = 59,
+            PYLON = 60,
+            ASSIMILATOR = 61,
+            GATEWAY = 62,
+            FORGE = 63,
+            FLEET_BEACON = 64,
+            TWILIGHT_COUNSEL = 65,
+            PHOTON_CANNON = 66,
+            STARGATE = 67,
+            TEMPLAR_ARCHIVE = 68,
+            DARK_SHRINE = 69,
+            ROBOTICS_BAY = 70,
+            ROBOTICS_FACILITY = 71,
+            CYBERNETICS_CORE = 72,
+            ZEALOT = 73,
+            STALKER = 74,
+            ADEPT = 311,
+            HIGH_TEMPLAR = 75,
+            DARK_TEMPLAR = 76,
+            SENTRY = 77,
+            PHOENIX = 78,
+            CARRIER = 79,
+            VOID_RAY = 80,
+            WARP_PRISM = 81,
+            OBSERVER = 82,
+            IMMORTAL = 83,
+            PROBE = 84,
+            INTERCEPTOR = 85,
+            HATCHERY = 86,
+            CREEP_TUMOR = 87,
+            EXTRACTOR = 88,
+            SPAWNING_POOL = 89,
+            EVOLUTION_CHAMBER = 90,
+            HYDRALISK_DEN = 91,
+            SPIRE = 92,
+            ULTRALISK_CAVERN = 93,
+            INVESTATION_PIT = 94,
+            NYDUS_NETWORK = 95,
+            BANELING_NEST = 96,
+            ROACH_WARREN = 97,
+            SPINE_CRAWLER = 98,
+            SPORE_CRAWLER = 99,
+            LAIR = 100,
+            HIVE = 101,
+            GREATER_SPIRE = 102,
+            EGG = 103,
+            DRONE = 104,
+            ZERGLING = 105,
+            OVERLORD = 106,
+            HYDRALISK = 107,
+            MUTALISK = 108,
+            ULTRALISK = 109,
+            ROACH = 110,
+            INFESTOR = 111,
+            CORRUPTOR = 112,
+            BROOD_LORD_COCOON = 113,
+            BROOD_LORD = 114,
+            BANELING_BURROWED = 115,
+            DRONE_BURROWED = 116,
+            HYDRALISK_BURROWED = 117,
+            ROACH_BURROWED = 118,
+            ZERGLING_BURROWED = 119,
+            INFESTOR_TERRAN_BURROWED = 120,
+            QUEEN_BURROWED = 125,
+            QUEEN = 126,
+            INFESTOR_BURROWED = 127,
+            OVERLORD_COCOON = 128,
+            OVERSEER = 129,
+            PLANETARY_FORTRESS = 130,
+            ULTRALISK_BURROWED = 131,
+            ORBITAL_COMMAND = 132,
+            WARP_GATE = 133,
+            ORBITAL_COMMAND_FLYING = 134,
+            FORCE_FIELD = 135,
+            WARP_PRISM_PHASING = 136,
+            CREEP_TUMOR_BURROWED = 137,
+            CREEP_TUMOR_QUEEN = 138,
+            SPINE_CRAWLER_UPROOTED = 139,
+            SPORE_CRAWLER_UPROOTED = 140,
+            ARCHON = 141,
+            NYDUS_CANAL = 142,
+            BROODLING_ESCORT = 143,
+            RICH_MINERAL_FIELD = 146,
+            RICH_MINERAL_FIELD_750 = 147,
+            URSADON = 148,
+            XEL_NAGA_TOWER = 149,
+            INFESTED_TERRANS_EGG = 150,
+            LARVA = 151,
+            MINERAL_FIELD = 341,
+            VESPENE_GEYSER = 342,
+            SPACE_PLATFORM_GEYSER = 343,
+            RICH_VESPENE_GEYSER = 344,
+            MINERAL_FIELD_750 = 483,
+            PROTOSS_VESPENE_GEYSER = 608,
+            LAB_MINERAL_FIELD = 665,
+            LAB_MINERAL_FIELD_750 = 666,
+            PURIFIER_RICH_MINERAL_FIELD = 796,
+            PURIFIER_RICH_MINERAL_FIELD_750 = 797,
+            PURIFIER_VESPENE_GEYSER = 880,
+            SHAKURAS_VESPENE_GEYSER = 881,
+            PURIFIER_MINERAL_FIELD = 884,
+            PURIFIER_MINERAL_FIELD_750 = 885,
+            BATTLE_STATION_MINERAL_FIELD = 886,
+            BATTLE_STATION_MINERAL_FIELD_750 = 887,
+        }
 
-
-        public static readonly HashSet<uint> All = new HashSet<uint> {
-            HELLBAT,
-            LIBERATOR,
-            WIDOW_MINE,
-            WIDOW_MINE_BURROWED,
-            CYCLONE,
-            ADEPT,
-            MULE,
-            COLOSSUS,
-            TECHLAB,
-            REACTOR,
-            INFESTOR_TERRAN,
-            BANELING_COCOON,
-            BANELING,
-            MOTHERSHIP,
-            POINT_DEFENSE_DRONE,
-            CHANGELING,
-            CHANGELING_ZEALOT,
-            CHANGELING_MARINE_SHIELD,
-            CHANGELING_MARINE,
-            CHANGELING_ZERGLING_WINGS,
-            CHANGELING_ZERGLING,
-            COMMAND_CENTER,
-            SUPPLY_DEPOT,
-            REFINERY,
-            BARRACKS,
-            ENGINEERING_BAY,
-            MISSILE_TURRET,
-            BUNKER,
-            SENSOR_TOWER,
-            GHOST_ACADEMY,
-            FACTORY,
-            STARPORT,
-            ARMORY,
-            FUSION_CORE,
-            AUTO_TURRET,
-            SIEGE_TANK_SIEGED,
-            SIEGE_TANK,
-            VIKING_ASSAULT,
-            VIKING_FIGHTER,
-            COMMAND_CENTER_FLYING,
-            BARRACKS_TECHLAB,
-            BARRACKS_REACTOR,
-            FACTORY_TECHLAB,
-            FACTORY_REACTOR,
-            STARPORT_TECHLAB,
-            STARPORT_REACTOR,
-            FACTORY_FLYING,
-            STARPORT_FLYING,
-            SCV,
-            BARRACKS_FLYING,
-            SUPPLY_DEPOT_LOWERED,
-            MARINE,
-            REAPER,
-            GHOST,
-            MARAUDER,
-            THOR,
-            HELLION,
-            MEDIVAC,
-            BANSHEE,
-            RAVEN,
-            BATTLECRUISER,
-            NUKE,
-            NEXUS,
-            PYLON,
-            ASSIMILATOR,
-            GATEWAY,
-            FORGE,
-            FLEET_BEACON,
-            TWILIGHT_COUNSEL,
-            PHOTON_CANNON,
-            STARGATE,
-            TEMPLAR_ARCHIVE,
-            DARK_SHRINE,
-            ROBOTICS_BAY,
-            ROBOTICS_FACILITY,
-            CYBERNETICS_CORE,
-            ZEALOT,
-            STALKER,
-            HIGH_TEMPLAR,
-            DARK_TEMPLAR,
-            SENTRY,
-            PHOENIX,
-            CARRIER,
-            VOID_RAY,
-            WARP_PRISM,
-            OBSERVER,
-            IMMORTAL,
-            PROBE,
-            INTERCEPTOR,
-            HATCHERY,
-            CREEP_TUMOR,
-            EXTRACTOR,
-            SPAWNING_POOL,
-            EVOLUTION_CHAMBER,
-            HYDRALISK_DEN,
-            SPIRE,
-            ULTRALISK_CAVERN,
-            INVESTATION_PIT,
-            NYDUS_NETWORK,
-            BANELING_NEST,
-            ROACH_WARREN,
-            SPINE_CRAWLER,
-            SPORE_CRAWLER,
-            LAIR,
-            HIVE,
-            GREATER_SPIRE,
-            EGG,
-            DRONE,
-            ZERGLING,
-            OVERLORD,
-            HYDRALISK,
-            MUTALISK,
-            ULTRALISK,
-            ROACH,
-            INFESTOR,
-            CORRUPTOR,
-            BROOD_LORD_COCOON,
-            BROOD_LORD,
-            BANELING_BURROWED,
-            DRONE_BURROWED,
-            HYDRALISK_BURROWED,
-            ROACH_BURROWED,
-            ZERGLING_BURROWED,
-            INFESTOR_TERRAN_BURROWED,
-            QUEEN_BURROWED,
-            QUEEN,
-            INFESTOR_BURROWED,
-            OVERLORD_COCOON,
-            OVERSEER,
-            PLANETARY_FORTRESS,
-            ULTRALISK_BURROWED,
-            ORBITAL_COMMAND,
-            WARP_GATE,
-            ORBITAL_COMMAND_FLYING,
-            FORCE_FIELD,
-            WARP_PRISM_PHASING,
-            CREEP_TUMOR_BURROWED,
-            CREEP_TUMOR_QUEEN,
-            SPINE_CRAWLER_UPROOTED,
-            SPORE_CRAWLER_UPROOTED,
-            ARCHON,
-            NYDUS_CANAL,
-            BROODLING_ESCORT,
-            RICH_MINERAL_FIELD,
-            RICH_MINERAL_FIELD_750,
-            URSADON,
-            XEL_NAGA_TOWER,
-            INFESTED_TERRANS_EGG,
-            LARVA,
-            MINERAL_FIELD,
-            VESPENE_GEYSER,
-            SPACE_PLATFORM_GEYSER,
-            RICH_VESPENE_GEYSER,
-            MINERAL_FIELD_750,
-            PROTOSS_VESPENE_GEYSER,
-            LAB_MINERAL_FIELD,
-            LAB_MINERAL_FIELD_750,
-            PURIFIER_RICH_MINERAL_FIELD,
-            PURIFIER_RICH_MINERAL_FIELD_750,
-            PURIFIER_VESPENE_GEYSER,
-            SHAKURAS_VESPENE_GEYSER,
-            PURIFIER_MINERAL_FIELD,
-            PURIFIER_MINERAL_FIELD_750,
-            BATTLE_STATION_MINERAL_FIELD,
-            BATTLE_STATION_MINERAL_FIELD_750
+        public static readonly HashSet<UnitId> All = new HashSet<UnitId>
+        {
+            UnitId.HELLBAT,
+            UnitId.LIBERATOR,
+            UnitId.WIDOW_MINE,
+            UnitId.WIDOW_MINE_BURROWED,
+            UnitId.CYCLONE,
+            UnitId.ADEPT,
+            UnitId.MULE,
+            UnitId.COLOSSUS,
+            UnitId.TECHLAB,
+            UnitId.REACTOR,
+            UnitId.INFESTOR_TERRAN,
+            UnitId.BANELING_COCOON,
+            UnitId.BANELING,
+            UnitId.MOTHERSHIP,
+            UnitId.POINT_DEFENSE_DRONE,
+            UnitId.CHANGELING,
+            UnitId.CHANGELING_ZEALOT,
+            UnitId.CHANGELING_MARINE_SHIELD,
+            UnitId.CHANGELING_MARINE,
+            UnitId.CHANGELING_ZERGLING_WINGS,
+            UnitId.CHANGELING_ZERGLING,
+            UnitId.COMMAND_CENTER,
+            UnitId.SUPPLY_DEPOT,
+            UnitId.REFINERY,
+            UnitId.BARRACKS,
+            UnitId.ENGINEERING_BAY,
+            UnitId.MISSILE_TURRET,
+            UnitId.BUNKER,
+            UnitId.SENSOR_TOWER,
+            UnitId.GHOST_ACADEMY,
+            UnitId.FACTORY,
+            UnitId.STARPORT,
+            UnitId.ARMORY,
+            UnitId.FUSION_CORE,
+            UnitId.AUTO_TURRET,
+            UnitId.SIEGE_TANK_SIEGED,
+            UnitId.SIEGE_TANK,
+            UnitId.VIKING_ASSAULT,
+            UnitId.VIKING_FIGHTER,
+            UnitId.COMMAND_CENTER_FLYING,
+            UnitId.BARRACKS_TECHLAB,
+            UnitId.BARRACKS_REACTOR,
+            UnitId.FACTORY_TECHLAB,
+            UnitId.FACTORY_REACTOR,
+            UnitId.STARPORT_TECHLAB,
+            UnitId.STARPORT_REACTOR,
+            UnitId.FACTORY_FLYING,
+            UnitId.STARPORT_FLYING,
+            UnitId.SCV,
+            UnitId.BARRACKS_FLYING,
+            UnitId.SUPPLY_DEPOT_LOWERED,
+            UnitId.MARINE,
+            UnitId.REAPER,
+            UnitId.GHOST,
+            UnitId.MARAUDER,
+            UnitId.THOR,
+            UnitId.HELLION,
+            UnitId.MEDIVAC,
+            UnitId.BANSHEE,
+            UnitId.RAVEN,
+            UnitId.BATTLECRUISER,
+            UnitId.NUKE,
+            UnitId.NEXUS,
+            UnitId.PYLON,
+            UnitId.ASSIMILATOR,
+            UnitId.GATEWAY,
+            UnitId.FORGE,
+            UnitId.FLEET_BEACON,
+            UnitId.TWILIGHT_COUNSEL,
+            UnitId.PHOTON_CANNON,
+            UnitId.STARGATE,
+            UnitId.TEMPLAR_ARCHIVE,
+            UnitId.DARK_SHRINE,
+            UnitId.ROBOTICS_BAY,
+            UnitId.ROBOTICS_FACILITY,
+            UnitId.CYBERNETICS_CORE,
+            UnitId.ZEALOT,
+            UnitId.STALKER,
+            UnitId.HIGH_TEMPLAR,
+            UnitId.DARK_TEMPLAR,
+            UnitId.SENTRY,
+            UnitId.PHOENIX,
+            UnitId.CARRIER,
+            UnitId.VOID_RAY,
+            UnitId.WARP_PRISM,
+            UnitId.OBSERVER,
+            UnitId.IMMORTAL,
+            UnitId.PROBE,
+            UnitId.INTERCEPTOR,
+            UnitId.HATCHERY,
+            UnitId.CREEP_TUMOR,
+            UnitId.EXTRACTOR,
+            UnitId.SPAWNING_POOL,
+            UnitId.EVOLUTION_CHAMBER,
+            UnitId.HYDRALISK_DEN,
+            UnitId.SPIRE,
+            UnitId.ULTRALISK_CAVERN,
+            UnitId.INVESTATION_PIT,
+            UnitId.NYDUS_NETWORK,
+            UnitId.BANELING_NEST,
+            UnitId.ROACH_WARREN,
+            UnitId.SPINE_CRAWLER,
+            UnitId.SPORE_CRAWLER,
+            UnitId.LAIR,
+            UnitId.HIVE,
+            UnitId.GREATER_SPIRE,
+            UnitId.EGG,
+            UnitId.DRONE,
+            UnitId.ZERGLING,
+            UnitId.OVERLORD,
+            UnitId.HYDRALISK,
+            UnitId.MUTALISK,
+            UnitId.ULTRALISK,
+            UnitId.ROACH,
+            UnitId.INFESTOR,
+            UnitId.CORRUPTOR,
+            UnitId.BROOD_LORD_COCOON,
+            UnitId.BROOD_LORD,
+            UnitId.BANELING_BURROWED,
+            UnitId.DRONE_BURROWED,
+            UnitId.HYDRALISK_BURROWED,
+            UnitId.ROACH_BURROWED,
+            UnitId.ZERGLING_BURROWED,
+            UnitId.INFESTOR_TERRAN_BURROWED,
+            UnitId.QUEEN_BURROWED,
+            UnitId.QUEEN,
+            UnitId.INFESTOR_BURROWED,
+            UnitId.OVERLORD_COCOON,
+            UnitId.OVERSEER,
+            UnitId.PLANETARY_FORTRESS,
+            UnitId.ULTRALISK_BURROWED,
+            UnitId.ORBITAL_COMMAND,
+            UnitId.WARP_GATE,
+            UnitId.ORBITAL_COMMAND_FLYING,
+            UnitId.FORCE_FIELD,
+            UnitId.WARP_PRISM_PHASING,
+            UnitId.CREEP_TUMOR_BURROWED,
+            UnitId.CREEP_TUMOR_QUEEN,
+            UnitId.SPINE_CRAWLER_UPROOTED,
+            UnitId.SPORE_CRAWLER_UPROOTED,
+            UnitId.ARCHON,
+            UnitId.NYDUS_CANAL,
+            UnitId.BROODLING_ESCORT,
+            UnitId.RICH_MINERAL_FIELD,
+            UnitId.RICH_MINERAL_FIELD_750,
+            UnitId.URSADON,
+            UnitId.XEL_NAGA_TOWER,
+            UnitId.INFESTED_TERRANS_EGG,
+            UnitId.LARVA,
+            UnitId.MINERAL_FIELD,
+            UnitId.VESPENE_GEYSER,
+            UnitId.SPACE_PLATFORM_GEYSER,
+            UnitId.RICH_VESPENE_GEYSER,
+            UnitId.MINERAL_FIELD_750,
+            UnitId.PROTOSS_VESPENE_GEYSER,
+            UnitId.LAB_MINERAL_FIELD,
+            UnitId.LAB_MINERAL_FIELD_750,
+            UnitId.PURIFIER_RICH_MINERAL_FIELD,
+            UnitId.PURIFIER_RICH_MINERAL_FIELD_750,
+            UnitId.PURIFIER_VESPENE_GEYSER,
+            UnitId.SHAKURAS_VESPENE_GEYSER,
+            UnitId.PURIFIER_MINERAL_FIELD,
+            UnitId.PURIFIER_MINERAL_FIELD_750,
+            UnitId.BATTLE_STATION_MINERAL_FIELD,
+            UnitId.BATTLE_STATION_MINERAL_FIELD_750
         };
 
+        public static readonly HashSet<UnitId> Zerg = new HashSet<UnitId> {
+            UnitId.INFESTOR_TERRAN,
+            UnitId.BANELING_COCOON,
+            UnitId.BANELING,
+            UnitId.CHANGELING,
+            UnitId.CHANGELING_ZEALOT,
+            UnitId.CHANGELING_MARINE_SHIELD,
+            UnitId.CHANGELING_MARINE,
+            UnitId.CHANGELING_ZERGLING_WINGS,
+            UnitId.CHANGELING_ZERGLING,
+            UnitId.HATCHERY,
+            UnitId.CREEP_TUMOR,
+            UnitId.EXTRACTOR,
+            UnitId.SPAWNING_POOL,
+            UnitId.EVOLUTION_CHAMBER,
+            UnitId.HYDRALISK_DEN,
+            UnitId.SPIRE,
+            UnitId.ULTRALISK_CAVERN,
+            UnitId.INVESTATION_PIT,
+            UnitId.NYDUS_NETWORK,
+            UnitId.BANELING_NEST,
+            UnitId.ROACH_WARREN,
+            UnitId.SPINE_CRAWLER,
+            UnitId.SPORE_CRAWLER,
+            UnitId.LAIR,
+            UnitId.HIVE,
+            UnitId.GREATER_SPIRE,
+            UnitId.EGG,
+            UnitId.DRONE,
+            UnitId.ZERGLING,
+            UnitId.OVERLORD,
+            UnitId.HYDRALISK,
+            UnitId.MUTALISK,
+            UnitId.ULTRALISK,
+            UnitId.ROACH,
+            UnitId.INFESTOR,
+            UnitId.CORRUPTOR,
+            UnitId.BROOD_LORD_COCOON,
+            UnitId.BROOD_LORD,
+            UnitId.BANELING_BURROWED,
+            UnitId.DRONE_BURROWED,
+            UnitId.HYDRALISK_BURROWED,
+            UnitId.ROACH_BURROWED,
+            UnitId.ZERGLING_BURROWED,
+            UnitId.INFESTOR_TERRAN_BURROWED,
+            UnitId.QUEEN_BURROWED,
+            UnitId.QUEEN,
+            UnitId.INFESTOR_BURROWED,
+            UnitId.OVERLORD_COCOON,
+            UnitId.OVERSEER,
+            UnitId.ULTRALISK_BURROWED,
+            UnitId.CREEP_TUMOR_BURROWED,
+            UnitId.CREEP_TUMOR_QUEEN,
+            UnitId.SPINE_CRAWLER_UPROOTED,
+            UnitId.SPORE_CRAWLER_UPROOTED,
+            UnitId.NYDUS_CANAL,
+            UnitId.BROODLING_ESCORT,
+            UnitId.LARVA
+            };
+        
+        public static readonly HashSet<UnitId> Terran = new HashSet<UnitId> {
+            UnitId.HELLBAT,
+            UnitId.LIBERATOR,
+            UnitId.WIDOW_MINE,
+            UnitId.WIDOW_MINE_BURROWED,
+            UnitId.CYCLONE,
+            UnitId.MULE,
+            UnitId.TECHLAB,
+            UnitId.REACTOR,
+            UnitId.POINT_DEFENSE_DRONE,
+            UnitId.COMMAND_CENTER,
+            UnitId.SUPPLY_DEPOT,
+            UnitId.REFINERY,
+            UnitId.BARRACKS,
+            UnitId.ENGINEERING_BAY,
+            UnitId.MISSILE_TURRET,
+            UnitId.BUNKER,
+            UnitId.SENSOR_TOWER,
+            UnitId.GHOST_ACADEMY,
+            UnitId.FACTORY,
+            UnitId.STARPORT,
+            UnitId.ARMORY,
+            UnitId.FUSION_CORE,
+            UnitId.AUTO_TURRET,
+            UnitId.SIEGE_TANK_SIEGED,
+            UnitId.SIEGE_TANK,
+            UnitId.VIKING_ASSAULT,
+            UnitId.VIKING_FIGHTER,
+            UnitId.COMMAND_CENTER_FLYING,
+            UnitId.BARRACKS_TECHLAB,
+            UnitId.BARRACKS_REACTOR,
+            UnitId.FACTORY_TECHLAB,
+            UnitId.FACTORY_REACTOR,
+            UnitId.STARPORT_TECHLAB,
+            UnitId.STARPORT_REACTOR,
+            UnitId.FACTORY_FLYING,
+            UnitId.STARPORT_FLYING,
+            UnitId.SCV,
+            UnitId.BARRACKS_FLYING,
+            UnitId.SUPPLY_DEPOT_LOWERED,
+            UnitId.MARINE,
+            UnitId.REAPER,
+            UnitId.GHOST,
+            UnitId.MARAUDER,
+            UnitId.THOR,
+            UnitId.HELLION,
+            UnitId.MEDIVAC,
+            UnitId.BANSHEE,
+            UnitId.RAVEN,
+            UnitId.BATTLECRUISER,
+            UnitId.NUKE,
+            UnitId.PLANETARY_FORTRESS,
+            UnitId.ORBITAL_COMMAND,
+            UnitId.ORBITAL_COMMAND_FLYING
+            };
 
-        public static readonly HashSet<uint> Zerg = new HashSet<uint> {
-            INFESTOR_TERRAN,
-            BANELING_COCOON,
-            BANELING,
-            CHANGELING,
-            CHANGELING_ZEALOT,
-            CHANGELING_MARINE_SHIELD,
-            CHANGELING_MARINE,
-            CHANGELING_ZERGLING_WINGS,
-            CHANGELING_ZERGLING,
-            HATCHERY,
-            CREEP_TUMOR,
-            EXTRACTOR,
-            SPAWNING_POOL,
-            EVOLUTION_CHAMBER,
-            HYDRALISK_DEN,
-            SPIRE,
-            ULTRALISK_CAVERN,
-            INVESTATION_PIT,
-            NYDUS_NETWORK,
-            BANELING_NEST,
-            ROACH_WARREN,
-            SPINE_CRAWLER,
-            SPORE_CRAWLER,
-            LAIR,
-            HIVE,
-            GREATER_SPIRE,
-            EGG,
-            DRONE,
-            ZERGLING,
-            OVERLORD,
-            HYDRALISK,
-            MUTALISK,
-            ULTRALISK,
-            ROACH,
-            INFESTOR,
-            CORRUPTOR,
-            BROOD_LORD_COCOON,
-            BROOD_LORD,
-            BANELING_BURROWED,
-            DRONE_BURROWED,
-            HYDRALISK_BURROWED,
-            ROACH_BURROWED,
-            ZERGLING_BURROWED,
-            INFESTOR_TERRAN_BURROWED,
-            QUEEN_BURROWED,
-            QUEEN,
-            INFESTOR_BURROWED,
-            OVERLORD_COCOON,
-            OVERSEER,
-            ULTRALISK_BURROWED,
-            CREEP_TUMOR_BURROWED,
-            CREEP_TUMOR_QUEEN,
-            SPINE_CRAWLER_UPROOTED,
-            SPORE_CRAWLER_UPROOTED,
-            NYDUS_CANAL,
-            BROODLING_ESCORT,
-            LARVA
-        };
+        public static readonly HashSet<UnitId> Protoss = new HashSet<UnitId> {
+            UnitId.ADEPT,
+            UnitId.COLOSSUS,
+            UnitId.MOTHERSHIP,
+            UnitId.NEXUS,
+            UnitId.PYLON,
+            UnitId.ASSIMILATOR,
+            UnitId.GATEWAY,
+            UnitId.FORGE,
+            UnitId.FLEET_BEACON,
+            UnitId.TWILIGHT_COUNSEL,
+            UnitId.PHOTON_CANNON,
+            UnitId.STARGATE,
+            UnitId.TEMPLAR_ARCHIVE,
+            UnitId.DARK_SHRINE,
+            UnitId.ROBOTICS_BAY,
+            UnitId.ROBOTICS_FACILITY,
+            UnitId.CYBERNETICS_CORE,
+            UnitId.ZEALOT,
+            UnitId.STALKER,
+            UnitId.HIGH_TEMPLAR,
+            UnitId.DARK_TEMPLAR,
+            UnitId.SENTRY,
+            UnitId.PHOENIX,
+            UnitId.CARRIER,
+            UnitId.VOID_RAY,
+            UnitId.WARP_PRISM,
+            UnitId.OBSERVER,
+            UnitId.IMMORTAL,
+            UnitId.PROBE,
+            UnitId.INTERCEPTOR,
+            UnitId.WARP_GATE,
+            UnitId.FORCE_FIELD,
+            UnitId.WARP_PRISM_PHASING,
+            UnitId.ARCHON,
+            UnitId.PROTOSS_VESPENE_GEYSER
+            };
+        
+        public static readonly HashSet<UnitId> Structures = new HashSet<UnitId> {
+            UnitId.ARMORY,
+            UnitId.ASSIMILATOR,
+            UnitId.BANELING_NEST,
+            UnitId.BARRACKS,
+            UnitId.BARRACKS_FLYING,
+            UnitId.BARRACKS_REACTOR,
+            UnitId.BARRACKS_TECHLAB,
+            UnitId.BUNKER,
+            UnitId.COMMAND_CENTER,
+            UnitId.COMMAND_CENTER_FLYING,
+            UnitId.CYBERNETICS_CORE,
+            UnitId.DARK_SHRINE,
+            UnitId.ENGINEERING_BAY,
+            UnitId.EVOLUTION_CHAMBER,
+            UnitId.EXTRACTOR,
+            UnitId.FACTORY,
+            UnitId.FACTORY_FLYING,
+            UnitId.FACTORY_REACTOR,
+            UnitId.FACTORY_TECHLAB,
+            UnitId.FLEET_BEACON,
+            UnitId.FORGE,
+            UnitId.FUSION_CORE,
+            UnitId.GATEWAY,
+            UnitId.GHOST_ACADEMY,
+            UnitId.GREATER_SPIRE,
+            UnitId.HATCHERY,
+            UnitId.HIVE,
+            UnitId.HYDRALISK_DEN,
+            UnitId.INVESTATION_PIT,
+            UnitId.LAIR,
+            UnitId.MISSILE_TURRET,
+            UnitId.NEXUS,
+            UnitId.NYDUS_NETWORK,
+            UnitId.ORBITAL_COMMAND,
+            UnitId.ORBITAL_COMMAND_FLYING,
+            UnitId.PHOTON_CANNON,
+            UnitId.PLANETARY_FORTRESS,
+            UnitId.PYLON,
+            UnitId.REACTOR,
+            UnitId.REFINERY,
+            UnitId.ROACH_WARREN,
+            UnitId.ROBOTICS_BAY,
+            UnitId.ROBOTICS_FACILITY,
+            UnitId.SENSOR_TOWER,
+            UnitId.SPAWNING_POOL,
+            UnitId.SPINE_CRAWLER,
+            UnitId.SPINE_CRAWLER_UPROOTED,
+            UnitId.SPIRE,
+            UnitId.SPORE_CRAWLER,
+            UnitId.SPORE_CRAWLER_UPROOTED,
+            UnitId.STARPORT,
+            UnitId.STARGATE,
+            UnitId.STARPORT_FLYING,
+            UnitId.STARPORT_REACTOR,
+            UnitId.STARPORT_TECHLAB,
+            UnitId.SUPPLY_DEPOT,
+            UnitId.SUPPLY_DEPOT_LOWERED,
+            UnitId.TECHLAB,
+            UnitId.TEMPLAR_ARCHIVE,
+            UnitId.TWILIGHT_COUNSEL,
+            UnitId.ULTRALISK_CAVERN,
+            UnitId.WARP_GATE
+            };
 
+        public static readonly HashSet<UnitId> Production = new HashSet<UnitId> {
+            UnitId.ARMORY,
+            UnitId.BANELING_NEST,
+            UnitId.BARRACKS,
+            UnitId.BARRACKS_TECHLAB,
+            UnitId.COMMAND_CENTER,
+            UnitId.CYBERNETICS_CORE,
+            UnitId.ENGINEERING_BAY,
+            UnitId.EVOLUTION_CHAMBER,
+            UnitId.FACTORY,
+            UnitId.FACTORY_TECHLAB,
+            UnitId.FLEET_BEACON,
+            UnitId.FORGE,
+            UnitId.FUSION_CORE,
+            UnitId.GATEWAY,
+            UnitId.GHOST_ACADEMY,
+            UnitId.GREATER_SPIRE,
+            UnitId.HATCHERY,
+            UnitId.HIVE,
+            UnitId.HYDRALISK_DEN,
+            UnitId.INVESTATION_PIT,
+            UnitId.LAIR,
+            UnitId.NEXUS,
+            UnitId.NYDUS_NETWORK,
+            UnitId.ORBITAL_COMMAND,
+            UnitId.PLANETARY_FORTRESS,
+            UnitId.ROACH_WARREN,
+            UnitId.ROBOTICS_BAY,
+            UnitId.ROBOTICS_FACILITY,
+            UnitId.SPAWNING_POOL,
+            UnitId.SPIRE,
+            UnitId.STARPORT,
+            UnitId.STARGATE,
+            UnitId.STARPORT_TECHLAB,
+            UnitId.TECHLAB,
+            UnitId.TEMPLAR_ARCHIVE,
+            UnitId.TWILIGHT_COUNSEL,
+            UnitId.ULTRALISK_CAVERN,
+            UnitId.WARP_GATE
+            };
 
-        public static readonly HashSet<uint> Terran = new HashSet<uint> {
-            HELLBAT,
-            LIBERATOR,
-            WIDOW_MINE,
-            WIDOW_MINE_BURROWED,
-            CYCLONE,
-            MULE,
-            TECHLAB,
-            REACTOR,
-            POINT_DEFENSE_DRONE,
-            COMMAND_CENTER,
-            SUPPLY_DEPOT,
-            REFINERY,
-            BARRACKS,
-            ENGINEERING_BAY,
-            MISSILE_TURRET,
-            BUNKER,
-            SENSOR_TOWER,
-            GHOST_ACADEMY,
-            FACTORY,
-            STARPORT,
-            ARMORY,
-            FUSION_CORE,
-            AUTO_TURRET,
-            SIEGE_TANK_SIEGED,
-            SIEGE_TANK,
-            VIKING_ASSAULT,
-            VIKING_FIGHTER,
-            COMMAND_CENTER_FLYING,
-            BARRACKS_TECHLAB,
-            BARRACKS_REACTOR,
-            FACTORY_TECHLAB,
-            FACTORY_REACTOR,
-            STARPORT_TECHLAB,
-            STARPORT_REACTOR,
-            FACTORY_FLYING,
-            STARPORT_FLYING,
-            SCV,
-            BARRACKS_FLYING,
-            SUPPLY_DEPOT_LOWERED,
-            MARINE,
-            REAPER,
-            GHOST,
-            MARAUDER,
-            THOR,
-            HELLION,
-            MEDIVAC,
-            BANSHEE,
-            RAVEN,
-            BATTLECRUISER,
-            NUKE,
-            PLANETARY_FORTRESS,
-            ORBITAL_COMMAND,
-            ORBITAL_COMMAND_FLYING
-        };
+        public static readonly HashSet<UnitId> ArmyUnits = new HashSet<UnitId> {
+            UnitId.HELLBAT,
+            UnitId.LIBERATOR,
+            UnitId.WIDOW_MINE,
+            UnitId.WIDOW_MINE_BURROWED,
+            UnitId.CYCLONE,
+            UnitId.ADEPT,
+            UnitId.ARCHON,
+            UnitId.AUTO_TURRET,
+            UnitId.BANELING,
+            UnitId.BANELING_BURROWED,
+            UnitId.BANELING_COCOON,
+            UnitId.BANSHEE,
+            UnitId.BATTLECRUISER,
+            UnitId.BROOD_LORD,
+            UnitId.BROOD_LORD_COCOON,
+            UnitId.CARRIER,
+            UnitId.COLOSSUS,
+            UnitId.CORRUPTOR,
+            UnitId.DARK_TEMPLAR,
+            UnitId.GHOST,
+            UnitId.HELLION,
+            UnitId.HIGH_TEMPLAR,
+            UnitId.HYDRALISK,
+            UnitId.HYDRALISK_BURROWED,
+            UnitId.IMMORTAL,
+            UnitId.INFESTED_TERRANS_EGG,
+            UnitId.INFESTOR_BURROWED,
+            UnitId.INFESTOR_TERRAN,
+            UnitId.INFESTOR_TERRAN_BURROWED,
+            UnitId.MARAUDER,
+            UnitId.MARINE,
+            UnitId.MEDIVAC,
+            UnitId.MOTHERSHIP,
+            UnitId.MUTALISK,
+            UnitId.PHOENIX,
+            UnitId.QUEEN,
+            UnitId.QUEEN_BURROWED,
+            UnitId.RAVEN,
+            UnitId.REAPER,
+            UnitId.ROACH,
+            UnitId.ROACH_BURROWED,
+            UnitId.SENTRY,
+            UnitId.SIEGE_TANK,
+            UnitId.SIEGE_TANK_SIEGED,
+            UnitId.STALKER,
+            UnitId.THOR,
+            UnitId.ULTRALISK,
+            UnitId.URSADON,
+            UnitId.VIKING_ASSAULT,
+            UnitId.VIKING_FIGHTER,
+            UnitId.VOID_RAY,
+            UnitId.ZEALOT,
+            UnitId.ZERGLING,
+            UnitId.ZERGLING_BURROWED
+            };
 
-        public static readonly HashSet<uint> Protoss = new HashSet<uint> {
-            ADEPT,
-            COLOSSUS,
-            MOTHERSHIP,
-            NEXUS,
-            PYLON,
-            ASSIMILATOR,
-            GATEWAY,
-            FORGE,
-            FLEET_BEACON,
-            TWILIGHT_COUNSEL,
-            PHOTON_CANNON,
-            STARGATE,
-            TEMPLAR_ARCHIVE,
-            DARK_SHRINE,
-            ROBOTICS_BAY,
-            ROBOTICS_FACILITY,
-            CYBERNETICS_CORE,
-            ZEALOT,
-            STALKER,
-            HIGH_TEMPLAR,
-            DARK_TEMPLAR,
-            SENTRY,
-            PHOENIX,
-            CARRIER,
-            VOID_RAY,
-            WARP_PRISM,
-            OBSERVER,
-            IMMORTAL,
-            PROBE,
-            INTERCEPTOR,
-            WARP_GATE,
-            FORCE_FIELD,
-            WARP_PRISM_PHASING,
-            ARCHON,
-            PROTOSS_VESPENE_GEYSER
-        };
+        public static readonly HashSet<UnitId> ResourceCenters = new HashSet<UnitId> {
+            UnitId.COMMAND_CENTER,
+            UnitId.COMMAND_CENTER_FLYING,
+            UnitId.HATCHERY,
+            UnitId.LAIR,
+            UnitId.HIVE,
+            UnitId.NEXUS,
+            UnitId.ORBITAL_COMMAND,
+            UnitId.ORBITAL_COMMAND_FLYING,
+            UnitId.PLANETARY_FORTRESS
+            };
 
+        public static readonly HashSet<UnitId> MineralFields = new HashSet<UnitId> {
+            UnitId.RICH_MINERAL_FIELD,
+            UnitId.RICH_MINERAL_FIELD_750,
+            UnitId.MINERAL_FIELD,
+            UnitId.MINERAL_FIELD_750,
+            UnitId.LAB_MINERAL_FIELD,
+            UnitId.LAB_MINERAL_FIELD_750,
+            UnitId.PURIFIER_RICH_MINERAL_FIELD,
+            UnitId.PURIFIER_RICH_MINERAL_FIELD_750,
+            UnitId.PURIFIER_MINERAL_FIELD,
+            UnitId.PURIFIER_MINERAL_FIELD_750,
+            UnitId.BATTLE_STATION_MINERAL_FIELD,
+            UnitId.BATTLE_STATION_MINERAL_FIELD_750
+            };
 
-        public static readonly HashSet<uint> Structures = new HashSet<uint> {
-            ARMORY,
-            ASSIMILATOR,
-            BANELING_NEST,
-            BARRACKS,
-            BARRACKS_FLYING,
-            BARRACKS_REACTOR,
-            BARRACKS_TECHLAB,
-            BUNKER,
-            COMMAND_CENTER,
-            COMMAND_CENTER_FLYING,
-            CYBERNETICS_CORE,
-            DARK_SHRINE,
-            ENGINEERING_BAY,
-            EVOLUTION_CHAMBER,
-            EXTRACTOR,
-            FACTORY,
-            FACTORY_FLYING,
-            FACTORY_REACTOR,
-            FACTORY_TECHLAB,
-            FLEET_BEACON,
-            FORGE,
-            FUSION_CORE,
-            GATEWAY,
-            GHOST_ACADEMY,
-            GREATER_SPIRE,
-            HATCHERY,
-            HIVE,
-            HYDRALISK_DEN,
-            INVESTATION_PIT,
-            LAIR,
-            MISSILE_TURRET,
-            NEXUS,
-            NYDUS_NETWORK,
-            ORBITAL_COMMAND,
-            ORBITAL_COMMAND_FLYING,
-            PHOTON_CANNON,
-            PLANETARY_FORTRESS,
-            PYLON,
-            REACTOR,
-            REFINERY,
-            ROACH_WARREN,
-            ROBOTICS_BAY,
-            ROBOTICS_FACILITY,
-            SENSOR_TOWER,
-            SPAWNING_POOL,
-            SPINE_CRAWLER,
-            SPINE_CRAWLER_UPROOTED,
-            SPIRE,
-            SPORE_CRAWLER,
-            SPORE_CRAWLER_UPROOTED,
-            STARPORT,
-            STARGATE,
-            STARPORT_FLYING,
-            STARPORT_REACTOR,
-            STARPORT_TECHLAB,
-            SUPPLY_DEPOT,
-            SUPPLY_DEPOT_LOWERED,
-            TECHLAB,
-            TEMPLAR_ARCHIVE,
-            TWILIGHT_COUNSEL,
-            ULTRALISK_CAVERN,
-            WARP_GATE
-        };
+        public static readonly HashSet<UnitId> GasGeysers = new HashSet<UnitId> {
+            UnitId.VESPENE_GEYSER,
+            UnitId.SPACE_PLATFORM_GEYSER,
+            UnitId.RICH_VESPENE_GEYSER,
+            UnitId.PROTOSS_VESPENE_GEYSER,
+            UnitId.PURIFIER_VESPENE_GEYSER,
+            UnitId.SHAKURAS_VESPENE_GEYSER,
+            UnitId.EXTRACTOR,
+            UnitId.ASSIMILATOR,
+            UnitId.REFINERY
+            };
 
-        public static readonly HashSet<uint> Production = new HashSet<uint> {
-            ARMORY,
-            BANELING_NEST,
-            BARRACKS,
-            BARRACKS_TECHLAB,
-            COMMAND_CENTER,
-            CYBERNETICS_CORE,
-            ENGINEERING_BAY,
-            EVOLUTION_CHAMBER,
-            FACTORY,
-            FACTORY_TECHLAB,
-            FLEET_BEACON,
-            FORGE,
-            FUSION_CORE,
-            GATEWAY,
-            GHOST_ACADEMY,
-            GREATER_SPIRE,
-            HATCHERY,
-            HIVE,
-            HYDRALISK_DEN,
-            INVESTATION_PIT,
-            LAIR,
-            NEXUS,
-            NYDUS_NETWORK,
-            ORBITAL_COMMAND,
-            PLANETARY_FORTRESS,
-            ROACH_WARREN,
-            ROBOTICS_BAY,
-            ROBOTICS_FACILITY,
-            SPAWNING_POOL,
-            SPIRE,
-            STARPORT,
-            STARGATE,
-            STARPORT_TECHLAB,
-            TECHLAB,
-            TEMPLAR_ARCHIVE,
-            TWILIGHT_COUNSEL,
-            ULTRALISK_CAVERN,
-            WARP_GATE
-        };
-
-        public static readonly HashSet<uint> ArmyUnits = new HashSet<uint> {
-            HELLBAT,
-            LIBERATOR,
-            WIDOW_MINE,
-            WIDOW_MINE_BURROWED,
-            CYCLONE,
-            ADEPT,
-            ARCHON,
-            AUTO_TURRET,
-            BANELING,
-            BANELING_BURROWED,
-            BANELING_COCOON,
-            BANSHEE,
-            BATTLECRUISER,
-            BROOD_LORD,
-            BROOD_LORD_COCOON,
-            CARRIER,
-            COLOSSUS,
-            CORRUPTOR,
-            DARK_TEMPLAR,
-            GHOST,
-            HELLION,
-            HIGH_TEMPLAR,
-            HYDRALISK,
-            HYDRALISK_BURROWED,
-            IMMORTAL,
-            INFESTED_TERRANS_EGG,
-            INFESTOR_BURROWED,
-            INFESTOR_TERRAN,
-            INFESTOR_TERRAN_BURROWED,
-            MARAUDER,
-            MARINE,
-            MEDIVAC,
-            MOTHERSHIP,
-            MUTALISK,
-            PHOENIX,
-            QUEEN,
-            QUEEN_BURROWED,
-            RAVEN,
-            REAPER,
-            ROACH,
-            ROACH_BURROWED,
-            SENTRY,
-            SIEGE_TANK,
-            SIEGE_TANK_SIEGED,
-            STALKER,
-            THOR,
-            ULTRALISK,
-            URSADON,
-            VIKING_ASSAULT,
-            VIKING_FIGHTER,
-            VOID_RAY,
-            ZEALOT,
-            ZERGLING,
-            ZERGLING_BURROWED
-        };
-
-        public static readonly HashSet<uint> ResourceCenters = new HashSet<uint> {
-            COMMAND_CENTER,
-            COMMAND_CENTER_FLYING,
-            HATCHERY,
-            LAIR,
-            HIVE,
-            NEXUS,
-            ORBITAL_COMMAND,
-            ORBITAL_COMMAND_FLYING,
-            PLANETARY_FORTRESS
-        };
-
-        public static readonly HashSet<uint> MineralFields = new HashSet<uint> {
-            RICH_MINERAL_FIELD,
-            RICH_MINERAL_FIELD_750,
-            MINERAL_FIELD,
-            MINERAL_FIELD_750,
-            LAB_MINERAL_FIELD,
-            LAB_MINERAL_FIELD_750,
-            PURIFIER_RICH_MINERAL_FIELD,
-            PURIFIER_RICH_MINERAL_FIELD_750,
-            PURIFIER_MINERAL_FIELD,
-            PURIFIER_MINERAL_FIELD_750,
-            BATTLE_STATION_MINERAL_FIELD,
-            BATTLE_STATION_MINERAL_FIELD_750
-        };
-
-        public static readonly HashSet<uint> GasGeysers = new HashSet<uint> {
-            VESPENE_GEYSER,
-            SPACE_PLATFORM_GEYSER,
-            RICH_VESPENE_GEYSER,
-            PROTOSS_VESPENE_GEYSER,
-            PURIFIER_VESPENE_GEYSER,
-            SHAKURAS_VESPENE_GEYSER,
-            EXTRACTOR,
-            ASSIMILATOR,
-            REFINERY
-        };
-
-        public static readonly HashSet<uint> Workers = new HashSet<uint> {
-            SCV,
-            PROBE,
-            DRONE
-        };
+        public static readonly HashSet<UnitId> Workers = new HashSet<UnitId> {
+            UnitId.SCV,
+            UnitId.PROBE,
+            UnitId.DRONE
+            };
 
 
-        public static readonly HashSet<uint> Mechanical = new HashSet<uint> {
-            HELLBAT,
-            BANSHEE,
-            THOR,
-            SIEGE_TANK,
-            SIEGE_TANK_SIEGED,
-            BATTLECRUISER,
-            VIKING_ASSAULT,
-            VIKING_FIGHTER,
-            HELLION,
-            CYCLONE,
-            WIDOW_MINE,
-            WIDOW_MINE_BURROWED,
-            LIBERATOR,
-            RAVEN,
-            MEDIVAC
-        };
+        public static readonly HashSet<UnitId> Mechanical = new HashSet<UnitId> {
+            UnitId.HELLBAT,
+            UnitId.BANSHEE,
+            UnitId.THOR,
+            UnitId.SIEGE_TANK,
+            UnitId.SIEGE_TANK_SIEGED,
+            UnitId.BATTLECRUISER,
+            UnitId.VIKING_ASSAULT,
+            UnitId.VIKING_FIGHTER,
+            UnitId.HELLION,
+            UnitId.CYCLONE,
+            UnitId.WIDOW_MINE,
+            UnitId.WIDOW_MINE_BURROWED,
+            UnitId.LIBERATOR,
+            UnitId.RAVEN,
+            UnitId.MEDIVAC
+            };
 
-        public static readonly HashSet<uint> Liftable = new HashSet<uint> {
-            COMMAND_CENTER,
-            ORBITAL_COMMAND,
-            BARRACKS,
-            FACTORY,
-            STARPORT
-        };
+        public static readonly HashSet<UnitId> Liftable = new HashSet<UnitId> {
+            UnitId.COMMAND_CENTER,
+            UnitId.ORBITAL_COMMAND,
+            UnitId.BARRACKS,
+            UnitId.FACTORY,
+            UnitId.STARPORT
+            };
 
-        public static readonly HashSet<uint> StaticAirDefense = new HashSet<uint> {
-            PHOTON_CANNON,
-            MISSILE_TURRET,
-            SPORE_CRAWLER,
-            BUNKER
-        };
+        public static readonly HashSet<UnitId> StaticAirDefense = new HashSet<UnitId> {
+            UnitId.PHOTON_CANNON,
+            UnitId.MISSILE_TURRET,
+            UnitId.SPORE_CRAWLER,
+            UnitId.BUNKER
+            };
 
-        public static readonly HashSet<uint> StaticGroundDefense = new HashSet<uint> {
-            PHOTON_CANNON,
-            BUNKER,
-            SPINE_CRAWLER,
-            PLANETARY_FORTRESS
-        };
+        public static readonly HashSet<UnitId> StaticGroundDefense = new HashSet<UnitId> {
+            UnitId.PHOTON_CANNON,
+            UnitId.BUNKER,
+            UnitId.SPINE_CRAWLER,
+            UnitId.PLANETARY_FORTRESS
+            };
 
-        public static readonly HashSet<uint> SiegeTanks = new HashSet<uint> {
-            SIEGE_TANK,
-            SIEGE_TANK_SIEGED
-        };
+        public static readonly HashSet<UnitId> SiegeTanks = new HashSet<UnitId> {
+            UnitId.SIEGE_TANK,
+            UnitId.SIEGE_TANK_SIEGED
+            };
 
-        public static readonly HashSet<uint> Vikings = new HashSet<uint> {
-            VIKING_ASSAULT,
-            VIKING_FIGHTER
-        };
+        public static readonly HashSet<UnitId> Vikings = new HashSet<UnitId> {
+            UnitId.VIKING_ASSAULT,
+            UnitId.VIKING_FIGHTER
+            };
 
-        public static readonly HashSet<uint> FromBarracks = new HashSet<uint> {
-            REAPER,
-            MARINE,
-            MARAUDER,
-            GHOST
-        };
+        public static readonly HashSet<UnitId> FromBarracks = new HashSet<UnitId> {
+            UnitId.REAPER,
+            UnitId.MARINE,
+            UnitId.MARAUDER,
+            UnitId.GHOST
+            };
 
-        public static readonly HashSet<uint> FromFactory = new HashSet<uint> {
-            THOR,
-            HELLION,
-            HELLBAT,
-            SIEGE_TANK,
-            CYCLONE
-        };
+        public static readonly HashSet<UnitId> FromFactory = new HashSet<UnitId> {
+            UnitId.THOR,
+            UnitId.HELLION,
+            UnitId.HELLBAT,
+            UnitId.SIEGE_TANK,
+            UnitId.CYCLONE
+            };
 
-        public static readonly HashSet<uint> FromStarport = new HashSet<uint> {
-            VIKING_FIGHTER,
-            RAVEN,
-            BANSHEE,
-            BATTLECRUISER,
-            LIBERATOR
-        };
+        public static readonly HashSet<UnitId> FromStarport = new HashSet<UnitId> {
+            UnitId.VIKING_FIGHTER,
+            UnitId.RAVEN,
+            UnitId.BANSHEE,
+            UnitId.BATTLECRUISER,
+            UnitId.LIBERATOR
+            };
 
-        public static readonly HashSet<uint> AddOns = new HashSet<uint> {
-            TECHLAB,
-            REACTOR,
-            BARRACKS_REACTOR,
-            BARRACKS_TECHLAB,
-            FACTORY_TECHLAB,
-            FACTORY_REACTOR,
-            STARPORT_TECHLAB,
-            STARPORT_REACTOR
-        };
+        public static readonly HashSet<UnitId> AddOns = new HashSet<UnitId> {
+            UnitId.TECHLAB,
+            UnitId.REACTOR,
+            UnitId.BARRACKS_REACTOR,
+            UnitId.BARRACKS_TECHLAB,
+            UnitId.FACTORY_TECHLAB,
+            UnitId.FACTORY_REACTOR,
+            UnitId.STARPORT_TECHLAB,
+            UnitId.STARPORT_REACTOR
+            };
 
-        public static readonly HashSet<uint> SupplyDepots = new HashSet<uint> {
-            SUPPLY_DEPOT,
-            SUPPLY_DEPOT_LOWERED
-        };
+        public static readonly HashSet<UnitId> SupplyDepots = new HashSet<UnitId> {
+            UnitId.SUPPLY_DEPOT,
+            UnitId.SUPPLY_DEPOT_LOWERED
+            };
 
     }
 }

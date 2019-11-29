@@ -13,6 +13,7 @@ namespace BOSSE
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
+    using static UnitConstants;
 
     /// <summary>
     /// Various helper functions for interacting with StarCraft 2
@@ -27,31 +28,36 @@ namespace BOSSE
             return (ulong)(GameConstants.FRAMES_PER_SECOND * seconds);
         }
 
-        public static string GetUnitName(uint unitType)
+        /// <summary>
+        /// Determines if we can afford to build/train the given unit
+        /// </summary>
+        public static bool CanAfford(UnitId unitType)
         {
-            return CurrentGameState.GameData.Units[(int)unitType].Name;
+            UnitTypeData unitData = GameData.Units[(int)unitType];
+            return (CurrentMinerals >= unitData.MineralCost) && (CurrentVespene >= unitData.VespeneCost);
         }
 
-        public static bool CanAfford(uint unitType)
+        /// <summary>
+        /// Get a list of active units for the given search parameter
+        /// </summary>
+        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false)
         {
-            var unitData = GameData.Units[(int)unitType];
-            return (Minerals >= unitData.MineralCost) && (Vespene >= unitData.VespeneCost);
-        }
-
-        public static List<Unit> GetUnits(uint unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false)
-        {
-            var temp = new HashSet<uint>();
+            HashSet<UnitId> temp = new HashSet<UnitId>();
             temp.Add(unitType);
+
             return GetUnits(temp, alliance, onlyCompleted, onlyVisible);
         }
 
-        public static List<Unit> GetUnits(HashSet<uint> hashset, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false)
+        /// <summary>
+        /// Get a list of active units for the given search parameter
+        /// </summary>
+        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false)
         {
-#warning TODO: ideally this should be cached in the future and cleared at each new frame
-            var units = new List<Unit>();
+            List<Unit> units = new List<Unit>();
+
             foreach (var unit in CurrentGameState.ObservationState.Observation.RawData.Units)
             {
-                if (hashset.Contains(unit.UnitType) && unit.Alliance == alliance)
+                if (unitTypesToFind.Contains((UnitId)unit.UnitType) && unit.Alliance == alliance)
                 {
                     if (onlyCompleted && unit.BuildProgress < 1)
                         continue;
@@ -62,46 +68,25 @@ namespace BOSSE
                     units.Add(new Unit(unit));
                 }
             }
+
             return units;
         }
 
-        public static bool CanConstruct(uint unitType)
+        public static int GetPendingCount(UnitId unitType, bool inConstruction = true)
         {
-            //we need worker for every structure
-            if (GetUnits(UnitConstants.Workers).Count == 0) return false;
-
-            //we need an RC for any structure
-            var resourceCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
-            if (resourceCenters.Count == 0) return false;
-
-            if ((unitType == UnitConstants.COMMAND_CENTER) || (unitType == UnitConstants.SUPPLY_DEPOT))
-                return CanAfford(unitType);
-
-            //we need supply depots for the following structures
-            var depots = GetUnits(UnitConstants.SupplyDepots, onlyCompleted: true);
-            if (depots.Count == 0) return false;
-
-            if (unitType == UnitConstants.BARRACKS)
-                return CanAfford(unitType);
-
-            return CanAfford(unitType);
-        }
-
-        public static int GetPendingCount(uint unitType, bool inConstruction = true)
-        {
-            var workers = GetUnits(UnitConstants.Workers);
-            var abilityID = Abilities.GetID(unitType);
+            List<Unit> workers = GetUnits(UnitConstants.Workers);
+            int abilityID = Abilities.GetAbilityIdToBuildUnit(unitType);
 
             var counter = 0;
 
-            //count workers that have been sent to build this structure
+            // Find build orders to build this building
             foreach (var worker in workers)
             {
                 if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == abilityID)
                     counter += 1;
             }
 
-            //count buildings that are already in construction
+            // Count buildings under construction
             if (inConstruction)
             {
                 foreach (var unit in GetUnits(unitType))
@@ -112,11 +97,17 @@ namespace BOSSE
             return counter;
         }
 
+        /// <summary>
+        /// Get if any unit in the given collection is close to the given point
+        /// </summary>
         public static bool IsInRange(Vector3 targetPosition, List<Unit> units, float maxDistance)
         {
             return (GetFirstInRange(targetPosition, units, maxDistance) != null);
         }
 
+        /// <summary>
+        /// Get any unit in the given collection which is close to the given point
+        /// </summary>
         public static Unit GetFirstInRange(Vector3 targetPosition, List<Unit> units, float maxDistance)
         {
             //squared distance is faster to calculate
@@ -129,89 +120,89 @@ namespace BOSSE
             return null;
         }
 
-        public static bool CanPlace(uint unitType, Vector3 targetPos)
-        {
-            //Note: this is a blocking call! Use it sparingly, or you will slow down your execution significantly!
-            var abilityID = Abilities.GetID(unitType);
+        //        public static bool CanPlace(uint unitType, Vector3 targetPos)
+        //        {
+        //            //Note: this is a blocking call! Use it sparingly, or you will slow down your execution significantly!
+        //            var abilityID = Abilities.GetID(unitType);
 
-            RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
-            queryBuildingPlacement.AbilityId = abilityID;
-            queryBuildingPlacement.TargetPos = new Point2D();
-            queryBuildingPlacement.TargetPos.X = targetPos.X;
-            queryBuildingPlacement.TargetPos.Y = targetPos.Y;
+        //            RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
+        //            queryBuildingPlacement.AbilityId = abilityID;
+        //            queryBuildingPlacement.TargetPos = new Point2D();
+        //            queryBuildingPlacement.TargetPos.X = targetPos.X;
+        //            queryBuildingPlacement.TargetPos.Y = targetPos.Y;
 
-            Request requestQuery = new Request();
-            requestQuery.Query = new RequestQuery();
-            requestQuery.Query.Placements.Add(queryBuildingPlacement);
+        //            Request requestQuery = new Request();
+        //            requestQuery.Query = new RequestQuery();
+        //            requestQuery.Query.Placements.Add(queryBuildingPlacement);
 
-            var result = Globals.StarcraftRef.SendQuery(requestQuery.Query);
-            if (result.Result.Placements.Count > 0)
-                return (result.Result.Placements[0].Result == ActionResult.Success);
-            return false;
-        }
+        //            var result = Globals.StarcraftRef.SendQuery(requestQuery.Query);
+        //            if (result.Result.Placements.Count > 0)
+        //                return (result.Result.Placements[0].Result == ActionResult.Success);
+        //            return false;
+        //        }
 
-        public static void Construct(uint unitType)
-        {
-            Vector3 startingSpot;
+        //        public static void Construct(uint unitType)
+        //        {
+        //            Vector3 startingSpot;
 
-            var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-            if (resourceCenters.Count > 0)
-                startingSpot = resourceCenters[0].Position;
-            else
-            {
-                Log.Error("Unable to construct: {0}. No resource center was found.", GetUnitName(unitType));
-                return;
-            }
+        //            var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
+        //            if (resourceCenters.Count > 0)
+        //                startingSpot = resourceCenters[0].Position;
+        //            else
+        //            {
+        //                Log.Error("Unable to construct: {0}. No resource center was found.", GetUnitName(unitType));
+        //                return;
+        //            }
 
-            const int radius = 12;
+        //            const int radius = 12;
 
-            //trying to find a valid construction spot
-            var mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-            Vector3 constructionSpot;
-            while (true)
-            {
-                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
+        //            //trying to find a valid construction spot
+        //            var mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+        //            Vector3 constructionSpot;
+        //            while (true)
+        //            {
+        //                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
 
-                //avoid building in the mineral line
-                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
+        //                //avoid building in the mineral line
+        //                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
 
-                //check if the building fits
-                if (!CanPlace(unitType, constructionSpot)) continue;
+        //                //check if the building fits
+        //                if (!CanPlace(unitType, constructionSpot)) continue;
 
-                //ok, we found a spot
-                break;
-            }
+        //                //ok, we found a spot
+        //                break;
+        //            }
 
-            var worker = GetAvailableWorker(constructionSpot);
-            if (worker == null)
-            {
-                Log.Error("Unable to find worker to construct: {0}", GetUnitName(unitType));
-                return;
-            }
+        //            var worker = GetAvailableWorker(constructionSpot);
+        //            if (worker == null)
+        //            {
+        //                Log.Error("Unable to find worker to construct: {0}", GetUnitName(unitType));
+        //                return;
+        //            }
 
-            var abilityID = Abilities.GetID(unitType);
-            var constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
-            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
-            GameOutput.QueuedActions.Add(constructAction);
+        //            var abilityID = Abilities.GetID(unitType);
+        //            var constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
+        //            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
+        //            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+        //            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
+        //            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
+        //            GameOutput.QueuedActions.Add(constructAction);
 
-            Log.Info("Constructing: {0} @ {1} / {2}", GetUnitName(unitType), constructionSpot.X, constructionSpot.Y);
-        }
+        //            Log.Info("Constructing: {0} @ {1} / {2}", GetUnitName(unitType), constructionSpot.X, constructionSpot.Y);
+        //        }
 
-        public static Unit GetAvailableWorker(Vector3 targetPosition)
-        {
-            var workers = GetUnits(UnitConstants.Workers);
-            foreach (Unit worker in workers)
-            {
-                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId != Abilities.GATHER_MINERALS)
-                    continue;
+        //        public static Unit GetAvailableWorker(Vector3 targetPosition)
+        //        {
+        //            var workers = GetUnits(UnitConstants.Workers);
+        //            foreach (Unit worker in workers)
+        //            {
+        //                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId != Abilities.GATHER_MINERALS)
+        //                    continue;
 
-                return worker;
-            }
+        //                return worker;
+        //            }
 
-            return null;
-        }
+        //            return null;
+        //        }
     }
 }
