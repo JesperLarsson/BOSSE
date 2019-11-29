@@ -75,7 +75,7 @@ namespace BOSSE
         public static int GetPendingCount(UnitId unitType, bool inConstruction = true)
         {
             List<Unit> workers = GetUnits(UnitConstants.Workers);
-            int abilityID = Abilities.GetAbilityIdToBuildUnit(unitType);
+            int abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitType);
 
             var counter = 0;
 

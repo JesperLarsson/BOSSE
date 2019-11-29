@@ -1,9 +1,12 @@
-﻿namespace BOSSE
+﻿/*
+ * Copyright Jesper Larsson 2019, Linköping, Sweden
+ */
+namespace BOSSE
 {
     using System;
     using SC2APIProtocol;
 
-    class Program
+    public class Program
     {
         // Debug settings (single player mode)
         private static readonly string mapName = "ThunderbirdLE.SC2Map";
@@ -17,7 +20,9 @@
         {
             try
             {
-                Log.Info("Started version " + GameConstants.ApplicationVersion);
+                Log.Info("****************");
+                Log.Info("Started BOSSE version " + GameConstants.ApplicationVersion);
+                Log.Info("****************");
 
                 Globals.StarcraftRef = new GameConnection();
                 if (args.Length == 0)
@@ -36,7 +41,7 @@
             }
             catch (Exception ex)
             {
-                Log.Error("TOP LOOP EXCEPTION" + ex.ToString());
+                Log.Error("TOP LOOP EXCEPTION" + Environment.NewLine + ex.ToString());
             }
 
             Log.Info("Exiting...");

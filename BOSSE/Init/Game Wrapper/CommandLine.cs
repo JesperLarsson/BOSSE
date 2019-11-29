@@ -9,7 +9,7 @@ namespace BOSSE
     /// <summary>
     /// Reads commandline arguments passed to the bot
     /// </summary>
-    class CommandLine
+    public class CommandLine
     {
         public CommandLine(string[] args)
         {
