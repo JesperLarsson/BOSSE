@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.LabelTestMap = new System.Windows.Forms.Label();
+            this.LabelStandardMap = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // LabelTestMap
+            // LabelStandardMap
             // 
-            this.LabelTestMap.AutoSize = true;
-            this.LabelTestMap.Location = new System.Drawing.Point(12, 21);
-            this.LabelTestMap.Name = "LabelTestMap";
-            this.LabelTestMap.Size = new System.Drawing.Size(187, 21);
-            this.LabelTestMap.TabIndex = 0;
-            this.LabelTestMap.Text = "True Coordinate Minimap";
+            this.LabelStandardMap.AutoSize = true;
+            this.LabelStandardMap.Location = new System.Drawing.Point(12, 21);
+            this.LabelStandardMap.Name = "LabelStandardMap";
+            this.LabelStandardMap.Size = new System.Drawing.Size(194, 21);
+            this.LabelStandardMap.TabIndex = 0;
+            this.LabelStandardMap.Text = "Minimap (API coordinates)";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 879);
-            this.Controls.Add(this.LabelTestMap);
+            this.Controls.Add(this.LabelStandardMap);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
@@ -59,7 +59,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label LabelTestMap;
+        private System.Windows.Forms.Label LabelStandardMap;
     }
 }
 

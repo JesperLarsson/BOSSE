@@ -18,6 +18,7 @@ namespace DebugGui
     public partial class MainForm : Form
     {
         private const int RefreshIntervalMs = 1000;
+        private Graphics FormGraphics;
 
         public MainForm()
         {
@@ -36,59 +37,20 @@ namespace DebugGui
             if (BosseGui.ObservationState == null)
                 return; // Wait for data
 
-            DrawTestMap();
+            // Draw maps
+            StandardMap.Draw();
         }
-
-        private void DrawTestMap()
-        {
-            const int scale = 2; // ex 2:1
-
-            System.Drawing.SolidBrush backgroundBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Black);
-            System.Drawing.Graphics formGraphics;
-            formGraphics = this.CreateGraphics();
-            int baseX = this.LabelTestMap.Location.X;
-            int baseY = this.LabelTestMap.Location.Y + this.LabelTestMap.Height + 10;
-
-            // Background
-            Size2DI size = BosseGui.GameInformation.StartRaw.MapSize;
-            formGraphics.FillRectangle(backgroundBrush, baseX, baseY, size.X * scale, size.Y * scale);
-
-            // Units
-            foreach (Unit unitIter in BosseGui.ObservationState.Observation.RawData.Units)
-            {
-                System.Drawing.SolidBrush unitBrush;
-                if (unitIter.Alliance == Alliance.Self)
-                {
-                    unitBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Blue);
-                }
-                else if (unitIter.Alliance == Alliance.Ally)
-                {
-                    unitBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
-                }
-                else if (unitIter.Alliance == Alliance.Enemy)
-                {
-                    unitBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Red);
-                }
-                else
-                {
-                    continue; // ignore neutral etc
-                }
-
-                float x = unitIter.Pos.X;
-                float y = unitIter.Pos.Y;
-
-                formGraphics.FillRectangle(unitBrush, (scale * x) + baseX, (scale * y) + baseY, scale, scale);
-            }
-
-            backgroundBrush.Dispose();
-            formGraphics.Dispose();
-        }
-
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Reduce flickering
             this.DoubleBuffered = true;
+            
+            // Init maps
+            FormGraphics = this.CreateGraphics();
+            StandardMap.Init(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height);
 
+            // Update maps periodically in GUI thread
             Timer timer = new Timer();
             timer.Interval = RefreshIntervalMs;
             timer.Tick += new EventHandler(UpdateIncomingData);
