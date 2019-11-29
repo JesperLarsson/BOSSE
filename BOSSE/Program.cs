@@ -4,7 +4,6 @@
 namespace BOSSE
 {
     using System;
-    using SC2APIProtocol;
 
     public class Program
     {
@@ -15,9 +14,9 @@ namespace BOSSE
         {
             try
             {
-                Log.Info("****************");
-                Log.Info("Started BOSSE version " + BotConstants.ApplicationVersion);
-                Log.Info("****************");
+                Log.Info($"****************");
+                Log.Info($"StarCraft 2 Bot - BOSSE - Version {BotConstants.ApplicationVersion}");
+                Log.Info($"****************");
 
                 MainLoop mainLoop = new MainLoop();
                 mainLoop.Start(args);

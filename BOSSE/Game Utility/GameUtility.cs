@@ -14,6 +14,7 @@ namespace BOSSE
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static UnitConstants;
+    using static AbilityConstants;
 
     /// <summary>
     /// Various helper functions for interacting with StarCraft 2
@@ -153,70 +154,69 @@ namespace BOSSE
         /// <summary>
         /// Builds the given type
         /// </summary>
-        //public static void Construct(UnitId unitType)
-        //{
-        //    Vector3 startingSpot;
+        public static void Construct(UnitId unitType)
+        {
+            const int radius = 12;
+            Vector3 startingSpot;
 
-        //    var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-        //    if (resourceCenters.Count > 0)
-        //    {
-        //        startingSpot = resourceCenters[0].Position;
-        //    }
-        //    else
-        //    {
-        //        Log.Error($"Unable to construct {unitType} - no resource center was found");
-        //        return;
-        //    }
+            List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
+            if (resourceCenters.Count > 0)
+            {
+                startingSpot = resourceCenters[0].Position;
+            }
+            else
+            {
+                Log.Error($"Unable to construct {unitType} - no resource center was found");
+                return;
+            }
 
-        //    const int radius = 12;
+            // Find a valid spot, the slow way
+            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+            Vector3 constructionSpot;
+            while (true)
+            {
+                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
 
-        //    // Find a valid spot, VERY SLOW
-        //    var mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-        //    Vector3 constructionSpot;
-        //    while (true)
-        //    {
-        //        constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
+                //avoid building in the mineral line
+                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
 
-        //        //avoid building in the mineral line
-        //        if (IsInRange(constructionSpot, mineralFields, 5)) continue;
+                //check if the building fits
+                if (!CanPlace(unitType, constructionSpot)) continue;
 
-        //        //check if the building fits
-        //        if (!CanPlace(unitType, constructionSpot)) continue;
+                //ok, we found a spot
+                break;
+            }
 
-        //        //ok, we found a spot
-        //        break;
-        //    }
+            Unit worker = GetAvailableWorker(constructionSpot);
+            if (worker == null)
+            {
+                Log.Error($"Unable to find worker to construct {unitType}");
+                return;
+            }
 
-        //    var worker = GetAvailableWorker(constructionSpot);
-        //    if (worker == null)
-        //    {
-        //        Log.Error("Unable to find worker to construct: {0}", GetUnitName(unitType));
-        //        return;
-        //    }
+            int abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitType);
+            Action constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
+            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
+            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
+            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
+            GameOutput.QueuedActions.Add(constructAction);
 
-        //    var abilityID = Abilities.GetID(unitType);
-        //    var constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
-        //    constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
-        //    constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
-        //    constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
-        //    constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
-        //    GameOutput.QueuedActions.Add(constructAction);
+            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()} / {constructionSpot.Y}");
+        }
 
-        //    Log.Info($"Constructing: {unitType} @ {constructionSpot.ToString2()} / {constructionSpot.Y}");
-        //}
+        public static Unit GetAvailableWorker(Vector3 targetPosition)
+        {
+            var workers = GetUnits(UnitConstants.Workers);
+            foreach (Unit worker in workers)
+            {
+                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId != (uint)AbilityId.GATHER_MINERALS)
+                    continue;
 
-        //        public static Unit GetAvailableWorker(Vector3 targetPosition)
-        //        {
-        //            var workers = GetUnits(UnitConstants.Workers);
-        //            foreach (Unit worker in workers)
-        //            {
-        //                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId != Abilities.GATHER_MINERALS)
-        //                    continue;
+                return worker;
+            }
 
-        //                return worker;
-        //            }
-
-        //            return null;
-        //        }
+            return null;
+        }
     }
 }

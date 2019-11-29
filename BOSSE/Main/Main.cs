@@ -18,7 +18,7 @@ namespace BOSSE
     using static GameUtility;
 
     /// <summary>
-    /// Main loop used once the game is running
+    /// Top level object which bootstraps the engine and runs the main loop
     /// </summary>
     public class MainLoop
     {
@@ -33,34 +33,29 @@ namespace BOSSE
         public void Start(string[] commandLineArguments)
         {
             GameBootstrapper bootStrapper = new GameBootstrapper();
+            Globals.BotRef = new BotStateEngine();
 
             // Set up game
             if (commandLineArguments.Length == 0)
             {
                 // Single player, debug mode
                 Globals.IsSinglePlayer = true;
-                Globals.Random = new Random(1234567); // use the same random number generation every time to make reproducing behaviour more likely
+                Globals.Random = new Random(123456987); // use the same random number generation every time to make reproducing behaviour more likely
 
-                Globals.GameConnection = bootStrapper.RunSinglePlayer(Globals.BotRef, mapName, BotConstants.SpawnAsRace, opponentRace, opponentDifficulty).Result;
+                Globals.GameConnection = bootStrapper.RunSinglePlayer(mapName, BotConstants.SpawnAsRace, opponentRace, opponentDifficulty).Result;
             }
             else
             {
                 // Ladder play
                 Globals.IsSinglePlayer = false;
 
-                Globals.GameConnection = bootStrapper.RunLadder(Globals.BotRef, BotConstants.SpawnAsRace, commandLineArguments).Result;
+                Globals.GameConnection = bootStrapper.RunLadder(BotConstants.SpawnAsRace, commandLineArguments).Result;
             }
 
-            // Start main loop
+            // Game has started, read initial state
             InitializeGameState().Wait();
-            Loop().Wait();
-        }
 
-        /// <summary>
-        /// Top level main loop
-        /// </summary>
-        private async Task Loop()
-        {
+            // Main loop
             while (true)
             {
                 UpdateGameData().Wait();
@@ -72,14 +67,14 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Polls sc2 once for the initial complete state and populates our global state
+        /// Polls sc2 once for the initial complete state, populates global state parameters
         /// </summary>
         private async Task InitializeGameState()
         {
-            var gameInfoReq = new Request();
+            Request gameInfoReq = new Request();
             gameInfoReq.GameInfo = new RequestGameInfo();
 
-            var gameInfoResponse = await Globals.GameConnection.SendRequest(gameInfoReq);
+            Response gameInfoResponse = await Globals.GameConnection.SendRequest(gameInfoReq);
 
             var dataReq = new Request();
             dataReq.Data = new RequestData();
@@ -89,12 +84,15 @@ namespace BOSSE
             dataReq.Data.EffectId = true;
             dataReq.Data.UpgradeId = true;
 
-            var dataResponse = await Globals.GameConnection.SendRequest(dataReq);
+            Response dataResponse = await Globals.GameConnection.SendRequest(dataReq);
 
             CurrentGameState.GameInformation = gameInfoResponse.GameInfo;
             CurrentGameState.GameData = dataResponse.Data;
         }
 
+        /// <summary>
+        /// Poll game data every frame
+        /// </summary>
         private async Task UpdateGameData()
         {
             Request observationRequest = new Request();
@@ -118,19 +116,24 @@ namespace BOSSE
             }
         }
 
+        /// <summary>
+        /// Outputs all queued actions from the bot to sc2
+        /// </summary>
         private async Task SendQueuedActions()
         {
             const int stepSize = 1;
 
-            var actions = GameOutput.QueuedActions;
+            List<Action> actions = GameOutput.QueuedActions;
 
-            var actionRequest = new Request();
+            Request actionRequest = new Request();
             actionRequest.Action = new RequestAction();
             actionRequest.Action.Actions.AddRange(actions);
             if (actionRequest.Action.Actions.Count > 0)
+            {
                 await Globals.GameConnection.SendRequest(actionRequest);
+            }
 
-            var stepRequest = new Request();
+            Request stepRequest = new Request();
             stepRequest.Step = new RequestStep();
             stepRequest.Step.Count = stepSize;
             await Globals.GameConnection.SendRequest(stepRequest);

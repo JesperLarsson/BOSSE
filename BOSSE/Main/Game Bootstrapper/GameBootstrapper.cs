@@ -204,7 +204,7 @@ namespace BOSSE
             await proxy.SendRequest(request);
         }
 
-        public async Task<ProtobufProxy> RunSinglePlayer(IBot bot, string map, Race myRace, Race opponentRace, Difficulty opponentDifficulty)
+        public async Task<ProtobufProxy> RunSinglePlayer(string map, Race myRace, Race opponentRace, Difficulty opponentDifficulty)
         {
             ReadSettings();
 
@@ -219,7 +219,7 @@ namespace BOSSE
             return this.proxy;
         }
 
-        public async Task<ProtobufProxy> RunLadder(IBot bot, Race myRace, string[] args)
+        public async Task<ProtobufProxy> RunLadder(Race myRace, string[] args)
         {
             var commandLineArgs = new CommandLine(args);
 

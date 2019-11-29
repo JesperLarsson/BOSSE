@@ -54,10 +54,9 @@
     <Compile Include="Game Input\Constants\UnitConstants.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
-    <Compile Include="Game Utility\BotConstants.cs" />
+    <Compile Include="Bot\BotConstants.cs" />
     <Compile Include="Game Utility\GameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
-    <Compile Include="Legacy\Controller.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Misc\Logger.cs" />
@@ -72,12 +71,11 @@
     <Compile Include="Misc\Protobuff Protocol\Score.cs" />
     <Compile Include="Misc\Protobuff Protocol\Spatial.cs" />
     <Compile Include="Misc\Protobuff Protocol\Ui.cs" />
-    <Compile Include="Bot\BOSSE.cs" />
+    <Compile Include="Bot\BotStateEngine.cs" />
     <Compile Include="Main\Game Bootstrapper\Interface.cs" />
     <Compile Include="Main\Game Bootstrapper\CommandLine.cs" />
     <Compile Include="Main\Game Bootstrapper\GameBootstrapper.cs" />
     <Compile Include="Main\Game Bootstrapper\ProtobufProxy.cs" />
-    <Compile Include="Legacy\RaxBot.cs" />
     <Compile Include="Misc\Extensions\PrettyPrintExtensions.cs" />
     <Compile Include="Misc\Extensions\VectorExtensions.cs" />
   </ItemGroup>
