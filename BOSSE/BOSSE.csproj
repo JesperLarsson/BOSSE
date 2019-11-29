@@ -53,7 +53,7 @@
     <Compile Include="Game Input\Constants\UnitConstants.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
-    <Compile Include="Game Utility\GameConstants.cs" />
+    <Compile Include="Game Utility\BotConstants.cs" />
     <Compile Include="Game Utility\GameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Legacy\Controller.cs" />
@@ -76,6 +76,8 @@
     <Compile Include="Init\Game Wrapper\GameConnection.cs" />
     <Compile Include="Init\Game Wrapper\ProtobufProxy.cs" />
     <Compile Include="Legacy\RaxBot.cs" />
+    <Compile Include="Misc\Extensions\PrettyPrintExtensions.cs" />
+    <Compile Include="Misc\Extensions\VectorExtensions.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

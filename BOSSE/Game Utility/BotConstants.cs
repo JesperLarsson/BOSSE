@@ -15,14 +15,23 @@ namespace BOSSE
     using static CurrentGameState;
 
     /// <summary>
-    /// Game constants not available in the wrapper layer
+    /// Bot constant values, set during development
     /// </summary>
-    public static class GameConstants
+    public static class BotConstants
     {
+        /// <summary>
+        /// Version of the bot
+        /// </summary>
+        public const string ApplicationVersion = "0.1dev";
+
+        /// <summary>
+        /// Number of logical frames per second of real time
+        /// </summary>
         public const double FRAMES_PER_SECOND = 22.4;
 
+        /// <summary>
+        /// Bot will spawn as the given race
+        /// </summary>
         public const Race SpawnAsRace = Race.Terran;
-
-        public const string ApplicationVersion = "0.1dev";
     }
 }

@@ -25,7 +25,7 @@ namespace BOSSE
         /// </summary>
         public static ulong SecsToFrames(int seconds)
         {
-            return (ulong)(GameConstants.FRAMES_PER_SECOND * seconds);
+            return (ulong)(BotConstants.FRAMES_PER_SECOND * seconds);
         }
 
         /// <summary>
@@ -72,7 +72,10 @@ namespace BOSSE
             return units;
         }
 
-        public static int GetPendingCount(UnitId unitType, bool inConstruction = true)
+        /// <summary>
+        /// Get number of buildings that are being built
+        /// </summary>
+        public static int GetPendingBuildingCount(UnitId unitType, bool inConstruction = true)
         {
             List<Unit> workers = GetUnits(UnitConstants.Workers);
             int abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitType);
@@ -98,7 +101,7 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Get if any unit in the given collection is close to the given point
+        /// Get if any unit in the given collection which is close to the given point
         /// </summary>
         public static bool IsInRange(Vector3 targetPosition, List<Unit> units, float maxDistance)
         {
@@ -110,86 +113,97 @@ namespace BOSSE
         /// </summary>
         public static Unit GetFirstInRange(Vector3 targetPosition, List<Unit> units, float maxDistance)
         {
-            //squared distance is faster to calculate
             var maxDistanceSqr = maxDistance * maxDistance;
+
             foreach (var unit in units)
             {
                 if (Vector3.DistanceSquared(targetPosition, unit.Position) <= maxDistanceSqr)
+                {
                     return unit;
+                }
             }
+
             return null;
         }
 
-        //        public static bool CanPlace(uint unitType, Vector3 targetPos)
-        //        {
-        //            //Note: this is a blocking call! Use it sparingly, or you will slow down your execution significantly!
-        //            var abilityID = Abilities.GetID(unitType);
+        /// <summary>
+        /// Check if the given building type can be placed at the given point
+        /// This is a BLOCKING call, ie very slow
+        /// </summary>
+        public static bool CanPlace(UnitId unitType, Vector3 targetPos)
+        {
+            var abilityID = AbilityConstants.GetAbilityIdToBuildUnit(unitType);
 
-        //            RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
-        //            queryBuildingPlacement.AbilityId = abilityID;
-        //            queryBuildingPlacement.TargetPos = new Point2D();
-        //            queryBuildingPlacement.TargetPos.X = targetPos.X;
-        //            queryBuildingPlacement.TargetPos.Y = targetPos.Y;
+            RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
+            queryBuildingPlacement.AbilityId = abilityID;
+            queryBuildingPlacement.TargetPos = new Point2D();
+            queryBuildingPlacement.TargetPos.X = targetPos.X;
+            queryBuildingPlacement.TargetPos.Y = targetPos.Y;
 
-        //            Request requestQuery = new Request();
-        //            requestQuery.Query = new RequestQuery();
-        //            requestQuery.Query.Placements.Add(queryBuildingPlacement);
+            Request requestQuery = new Request();
+            requestQuery.Query = new RequestQuery();
+            requestQuery.Query.Placements.Add(queryBuildingPlacement);
 
-        //            var result = Globals.StarcraftRef.SendQuery(requestQuery.Query);
-        //            if (result.Result.Placements.Count > 0)
-        //                return (result.Result.Placements[0].Result == ActionResult.Success);
-        //            return false;
-        //        }
+            var result = Globals.StarcraftRef.SendQuery(requestQuery.Query);
+            if (result.Result.Placements.Count > 0)
+                return (result.Result.Placements[0].Result == ActionResult.Success);
+            return false;
+        }
 
-        //        public static void Construct(uint unitType)
-        //        {
-        //            Vector3 startingSpot;
+        /// <summary>
+        /// Builds the given type
+        /// </summary>
+        //public static void Construct(UnitId unitType)
+        //{
+        //    Vector3 startingSpot;
 
-        //            var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-        //            if (resourceCenters.Count > 0)
-        //                startingSpot = resourceCenters[0].Position;
-        //            else
-        //            {
-        //                Log.Error("Unable to construct: {0}. No resource center was found.", GetUnitName(unitType));
-        //                return;
-        //            }
+        //    var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
+        //    if (resourceCenters.Count > 0)
+        //    {
+        //        startingSpot = resourceCenters[0].Position;
+        //    }
+        //    else
+        //    {
+        //        Log.Error($"Unable to construct {unitType} - no resource center was found");
+        //        return;
+        //    }
 
-        //            const int radius = 12;
+        //    const int radius = 12;
 
-        //            //trying to find a valid construction spot
-        //            var mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-        //            Vector3 constructionSpot;
-        //            while (true)
-        //            {
-        //                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
+        //    // Find a valid spot, VERY SLOW
+        //    var mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+        //    Vector3 constructionSpot;
+        //    while (true)
+        //    {
+        //        constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
 
-        //                //avoid building in the mineral line
-        //                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
+        //        //avoid building in the mineral line
+        //        if (IsInRange(constructionSpot, mineralFields, 5)) continue;
 
-        //                //check if the building fits
-        //                if (!CanPlace(unitType, constructionSpot)) continue;
+        //        //check if the building fits
+        //        if (!CanPlace(unitType, constructionSpot)) continue;
 
-        //                //ok, we found a spot
-        //                break;
-        //            }
+        //        //ok, we found a spot
+        //        break;
+        //    }
 
-        //            var worker = GetAvailableWorker(constructionSpot);
-        //            if (worker == null)
-        //            {
-        //                Log.Error("Unable to find worker to construct: {0}", GetUnitName(unitType));
-        //                return;
-        //            }
+        //    var worker = GetAvailableWorker(constructionSpot);
+        //    if (worker == null)
+        //    {
+        //        Log.Error("Unable to find worker to construct: {0}", GetUnitName(unitType));
+        //        return;
+        //    }
 
-        //            var abilityID = Abilities.GetID(unitType);
-        //            var constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
-        //            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
-        //            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
-        //            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
-        //            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
-        //            GameOutput.QueuedActions.Add(constructAction);
+        //    var abilityID = Abilities.GetID(unitType);
+        //    var constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
+        //    constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
+        //    constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+        //    constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
+        //    constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
+        //    GameOutput.QueuedActions.Add(constructAction);
 
-        //            Log.Info("Constructing: {0} @ {1} / {2}", GetUnitName(unitType), constructionSpot.X, constructionSpot.Y);
-        //        }
+        //    Log.Info($"Constructing: {unitType} @ {constructionSpot.ToString2()} / {constructionSpot.Y}");
+        //}
 
         //        public static Unit GetAvailableWorker(Vector3 targetPosition)
         //        {

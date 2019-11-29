@@ -21,7 +21,7 @@ namespace BOSSE
             try
             {
                 Log.Info("****************");
-                Log.Info("Started BOSSE version " + GameConstants.ApplicationVersion);
+                Log.Info("Started BOSSE version " + BotConstants.ApplicationVersion);
                 Log.Info("****************");
 
                 Globals.StarcraftRef = new GameConnection();
@@ -31,12 +31,12 @@ namespace BOSSE
                     Globals.Random = new Random(1234567); // use the same random number generation every time to make debugging problems easier
 
                     Globals.StarcraftRef.ReadSettings();
-                    Globals.StarcraftRef.RunSinglePlayer(Globals.BotRef, mapName, GameConstants.SpawnAsRace, opponentRace, opponentDifficulty).Wait();
+                    Globals.StarcraftRef.RunSinglePlayer(Globals.BotRef, mapName, BotConstants.SpawnAsRace, opponentRace, opponentDifficulty).Wait();
                 }
                 else
                 {
                     Globals.IsSinglePlayer = false;
-                    Globals.StarcraftRef.RunLadder(Globals.BotRef, GameConstants.SpawnAsRace, args).Wait();
+                    Globals.StarcraftRef.RunLadder(Globals.BotRef, BotConstants.SpawnAsRace, args).Wait();
                 }
             }
             catch (Exception ex)

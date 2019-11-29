@@ -25,6 +25,9 @@ namespace BOSSE
         {
             GameOutput.QueuedActions.Clear();
 
+            List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
+            Log.Info(resourceCenters.DumpObject());
+
             //// Build workers
             //var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
             //foreach (var rc in resourceCenters)
