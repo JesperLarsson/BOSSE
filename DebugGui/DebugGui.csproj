@@ -60,6 +60,8 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maps\Base Class\BaseMap.cs" />
+    <Compile Include="Maps\TerrainMap.cs" />
     <Compile Include="Maps\StandardMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">

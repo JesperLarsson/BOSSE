@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.LabelStandardMap = new System.Windows.Forms.Label();
+            this.LabelTerrainMap = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LabelStandardMap
@@ -36,15 +37,25 @@
             this.LabelStandardMap.AutoSize = true;
             this.LabelStandardMap.Location = new System.Drawing.Point(12, 21);
             this.LabelStandardMap.Name = "LabelStandardMap";
-            this.LabelStandardMap.Size = new System.Drawing.Size(194, 21);
+            this.LabelStandardMap.Size = new System.Drawing.Size(233, 21);
             this.LabelStandardMap.TabIndex = 0;
-            this.LabelStandardMap.Text = "Minimap (API coordinates)";
+            this.LabelStandardMap.Text = "Overview Map (API coordinates)";
+            // 
+            // LabelTerrainMap
+            // 
+            this.LabelTerrainMap.AutoSize = true;
+            this.LabelTerrainMap.Location = new System.Drawing.Point(398, 21);
+            this.LabelTerrainMap.Name = "LabelTerrainMap";
+            this.LabelTerrainMap.Size = new System.Drawing.Size(92, 21);
+            this.LabelTerrainMap.TabIndex = 1;
+            this.LabelTerrainMap.Text = "Terrain Map";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 879);
+            this.Controls.Add(this.LabelTerrainMap);
             this.Controls.Add(this.LabelStandardMap);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -60,6 +71,7 @@
         #endregion
 
         private System.Windows.Forms.Label LabelStandardMap;
+        private System.Windows.Forms.Label LabelTerrainMap;
     }
 }
 

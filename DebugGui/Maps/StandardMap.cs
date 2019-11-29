@@ -19,30 +19,24 @@ namespace DebugGui
     /// <summary>
     /// Standard minimap, only with the real coordinates as seen through the API
     /// </summary>
-    public static class StandardMap
+    public class StandardMap : BaseMap
     {
-        static Graphics FormGraphics;
-        static int BaseX;
-        static int BaseY;
-
         const int RenderScale = 2;
+
         static readonly SolidBrush BackgroundColor = new SolidBrush(System.Drawing.Color.Black);
         static readonly SolidBrush SelfColor = new SolidBrush(System.Drawing.Color.Blue);
         static readonly SolidBrush EnemyColor = new SolidBrush(System.Drawing.Color.Red);
         static readonly SolidBrush MineralColor = new SolidBrush(System.Drawing.Color.White);
 
-        public static void Init(Graphics _formGraphics, int _baseX, int _baseY)
+        public StandardMap(Graphics _formGraphics, int _baseX, int _baseY) : base(_formGraphics, _baseX, _baseY)
         {
-            FormGraphics = _formGraphics;
-            BaseX = _baseX;
-            BaseY = _baseY + 10;
         }
 
-        public static void Draw()
+        public void Draw()
         {
             RectangleI playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
 
-            // Background, note that a border around the map is not usable (so we ignore it)
+            // Background - Note that a border around the map is not usable (so we ignore it)
             int bgX = BaseX;
             int bgY = BaseY;
             int bgWidth = playArea.P1.X - playArea.P0.X;
@@ -67,8 +61,7 @@ namespace DebugGui
                 }
                 else
                 {
-                    continue; // ignore neutral etc
-                    //unitBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Green);
+                    continue; // ignore
                 }
 
                 float x = unitIter.Pos.X - playArea.P0.X;

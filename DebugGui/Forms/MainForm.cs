@@ -20,6 +20,9 @@ namespace DebugGui
         private const int RefreshIntervalMs = 1000;
         private Graphics FormGraphics;
 
+        private StandardMap StandardMapRef;
+        private TerrainMap TerraindMapRef;
+
         public MainForm()
         {
             InitializeComponent();
@@ -38,7 +41,8 @@ namespace DebugGui
                 return; // Wait for data
 
             // Draw maps
-            StandardMap.Draw();
+            StandardMapRef.Draw();
+            TerraindMapRef.Draw();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -48,13 +52,15 @@ namespace DebugGui
             
             // Init maps
             FormGraphics = this.CreateGraphics();
-            StandardMap.Init(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height);
+            StandardMapRef = new StandardMap(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height);
+            TerraindMapRef = new TerrainMap(FormGraphics, this.LabelTerrainMap.Location.X, this.LabelTerrainMap.Location.Y + this.LabelTerrainMap.Size.Height);
 
             // Update maps periodically in GUI thread
             Timer timer = new Timer();
             timer.Interval = RefreshIntervalMs;
             timer.Tick += new EventHandler(UpdateIncomingData);
             timer.Start();
+            UpdateIncomingData(null, null);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
