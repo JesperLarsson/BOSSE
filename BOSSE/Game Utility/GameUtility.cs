@@ -97,7 +97,7 @@ namespace BOSSE
             //count workers that have been sent to build this structure
             foreach (var worker in workers)
             {
-                if (worker.CurrentOrder.AbilityId == abilityID)
+                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == abilityID)
                     counter += 1;
             }
 
@@ -205,7 +205,7 @@ namespace BOSSE
             var workers = GetUnits(UnitConstants.Workers);
             foreach (Unit worker in workers)
             {
-                if (worker.CurrentOrder.AbilityId != Abilities.GATHER_MINERALS)
+                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId != Abilities.GATHER_MINERALS)
                     continue;
 
                 return worker;

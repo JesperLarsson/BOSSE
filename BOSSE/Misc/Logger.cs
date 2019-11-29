@@ -65,6 +65,7 @@ namespace BOSSE
                 try
                 {
                     Console.WriteLine(msg, parameters);
+                    System.Diagnostics.Debug.WriteLine(msg, parameters);
                 }
                 catch
                 {
