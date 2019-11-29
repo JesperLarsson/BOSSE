@@ -41,6 +41,7 @@ namespace BOSSE
                 // Single player, debug mode
                 Globals.IsSinglePlayer = true;
                 Globals.Random = new Random(123456987); // use the same random number generation every time to make reproducing behaviour more likely
+                DebugGui.BosseGui.StartGui();
 
                 Globals.GameConnection = bootStrapper.RunSinglePlayer(mapName, BotConstants.SpawnAsRace, opponentRace, opponentDifficulty).Result;
             }

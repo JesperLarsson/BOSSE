@@ -65,13 +65,16 @@ namespace BOSSE
                 try
                 {
                     Console.WriteLine(msg, parameters);
-                    System.Diagnostics.Debug.WriteLine(msg, parameters);
+                   
                 }
                 catch
                 {
                     stdoutClosed = true;
                 }
             }
+
+            // To VS output
+            System.Diagnostics.Debug.WriteLine(msg, parameters);
         }
     }
 }

@@ -59,7 +59,7 @@
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="Misc\Globals.cs" />
-    <Compile Include="Misc\Logger.cs" />
+    <Compile Include="Misc\Log.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Misc\Protobuff Protocol\Common.cs" />
     <Compile Include="Misc\Protobuff Protocol\Data.cs" />
@@ -79,6 +79,11 @@
     <Compile Include="Misc\Extensions\PrettyPrintExtensions.cs" />
     <Compile Include="Misc\Extensions\VectorExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DebugGui\DebugGui.csproj">
+      <Project>{4b39055a-9de9-417a-b880-b4dd75eddbf1}</Project>
+      <Name>DebugGui</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
