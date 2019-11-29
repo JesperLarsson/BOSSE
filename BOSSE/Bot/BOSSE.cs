@@ -19,15 +19,17 @@ namespace BOSSE
     /// <summary>
     /// Main bot entry point
     /// </summary>
-    public class BOSSE : Bot
+    public class BOSSE : IBot
     {
-        public void OnFrame()
+        /// <summary>
+        /// Entry point from main loop which updates the bot, called on each logical frame
+        /// </summary>
+        public void Update()
         {
             GameOutput.QueuedActions.Clear();
 
             List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-            Log.Info(resourceCenters.DumpObject());
-
+            
             //// Build workers
             //var resourceCenters = GetUnits(UnitConstants.ResourceCenters);
             //foreach (var rc in resourceCenters)

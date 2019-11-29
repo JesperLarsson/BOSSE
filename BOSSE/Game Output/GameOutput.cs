@@ -21,5 +21,14 @@ namespace BOSSE
         /// These will be sent to the game at the end of each logical frame
         /// </summary>
         public static List<SC2APIProtocol.Action> QueuedActions = new List<SC2APIProtocol.Action>();
+
+        public static async Task<ResponseQuery> SendSynchronousRequest_BLOCKING(RequestQuery query)
+        {
+            var request = new Request();
+            request.Query = query;
+            var response = await Globals.GameConnection.SendRequest(request);
+
+            return response.Query;
+        }
     }
 }

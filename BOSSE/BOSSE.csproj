@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>CS1998</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,24 +58,25 @@
     <Compile Include="Game Utility\GameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Legacy\Controller.cs" />
+    <Compile Include="Main\Main.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Misc\Logger.cs" />
-    <Compile Include="Init\Program.cs" />
-    <Compile Include="Init\Protobuff Protocol\Common.cs" />
-    <Compile Include="Init\Protobuff Protocol\Data.cs" />
-    <Compile Include="Init\Protobuff Protocol\Debug.cs" />
-    <Compile Include="Init\Protobuff Protocol\Error.cs" />
-    <Compile Include="Init\Protobuff Protocol\Query.cs" />
-    <Compile Include="Init\Protobuff Protocol\Raw.cs" />
-    <Compile Include="Init\Protobuff Protocol\Sc2Api.cs" />
-    <Compile Include="Init\Protobuff Protocol\Score.cs" />
-    <Compile Include="Init\Protobuff Protocol\Spatial.cs" />
-    <Compile Include="Init\Protobuff Protocol\Ui.cs" />
-    <Compile Include="Main\BOSSE.cs" />
-    <Compile Include="Init\Game Wrapper\Interface.cs" />
-    <Compile Include="Init\Game Wrapper\CommandLine.cs" />
-    <Compile Include="Init\Game Wrapper\GameConnection.cs" />
-    <Compile Include="Init\Game Wrapper\ProtobufProxy.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Common.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Data.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Debug.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Error.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Query.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Raw.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Sc2Api.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Score.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Spatial.cs" />
+    <Compile Include="Misc\Protobuff Protocol\Ui.cs" />
+    <Compile Include="Bot\BOSSE.cs" />
+    <Compile Include="Main\Game Bootstrapper\Interface.cs" />
+    <Compile Include="Main\Game Bootstrapper\CommandLine.cs" />
+    <Compile Include="Main\Game Bootstrapper\GameBootstrapper.cs" />
+    <Compile Include="Main\Game Bootstrapper\ProtobufProxy.cs" />
     <Compile Include="Legacy\RaxBot.cs" />
     <Compile Include="Misc\Extensions\PrettyPrintExtensions.cs" />
     <Compile Include="Misc\Extensions\VectorExtensions.cs" />

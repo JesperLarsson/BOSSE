@@ -13,9 +13,9 @@ namespace BOSSE
     using SC2APIProtocol;
 
     /// <summary>
-    /// Handles the connection to StarCraft
+    /// Handles setting up a proto buff connection to StarCraft 2 via a local proxy
     /// </summary>
-    public class GameConnection
+    public class GameBootstrapper
     {
         private const string address = "127.0.0.1";
         private const int stepSize = 1;
@@ -46,7 +46,7 @@ namespace BOSSE
                 }
                 catch (WebSocketException)
                 {
-                    //                    Logger.Info("Failed. Retrying...");
+                    // Try again
                 }
 
                 Thread.Sleep(500);
@@ -96,7 +96,7 @@ namespace BOSSE
             }
         }
 
-        public void ReadSettings()
+        private void ReadSettings()
         {
             var myDocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var executeInfo = Path.Combine(myDocuments, "StarCraft II", "ExecuteInfo.txt");
@@ -204,103 +204,37 @@ namespace BOSSE
             await proxy.SendRequest(request);
         }
 
-        public async Task<ResponseQuery> SendQuery(RequestQuery query)
+        public async Task<ProtobufProxy> RunSinglePlayer(IBot bot, string map, Race myRace, Race opponentRace, Difficulty opponentDifficulty)
         {
-            var request = new Request();
-            request.Query = query;
-            var response = await proxy.SendRequest(request);
-            return response.Query;
-        }
+            ReadSettings();
 
-        private async Task Run(Bot bot, uint playerId)
-        {
-            var gameInfoReq = new Request();
-            gameInfoReq.GameInfo = new RequestGameInfo();
+            const int port = 5678;
 
-            var gameInfoResponse = await proxy.SendRequest(gameInfoReq);
-
-            var dataReq = new Request();
-            dataReq.Data = new RequestData();
-            dataReq.Data.UnitTypeId = true;
-            dataReq.Data.AbilityId = true;
-            dataReq.Data.BuffId = true;
-            dataReq.Data.EffectId = true;
-            dataReq.Data.UpgradeId = true;
-
-            var dataResponse = await proxy.SendRequest(dataReq);
-
-            CurrentGameState.GameInformation = gameInfoResponse.GameInfo;
-            CurrentGameState.GameData = dataResponse.Data;
-
-            while (true)
-            {
-                var observationRequest = new Request();
-                observationRequest.Observation = new RequestObservation();
-                var response = await proxy.SendRequest(observationRequest);
-
-                var observation = response.Observation;
-
-                if (response.Status == Status.Ended || response.Status == Status.Quit)
-                {
-                    foreach (var result in observation.PlayerResult)
-                    {
-                        if (result.PlayerId == playerId)
-                        {
-                            Log.Info("Result: {0}", result.Result);
-                            // Do whatever you want with the info
-                        }
-                    }
-                    break;
-                }
-
-                CurrentGameState.ObservationState = observation;
-
-                bot.OnFrame();
-                var actions = GameOutput.QueuedActions;
-
-                var actionRequest = new Request();
-                actionRequest.Action = new RequestAction();
-                actionRequest.Action.Actions.AddRange(actions);
-                if (actionRequest.Action.Actions.Count > 0)
-                    await proxy.SendRequest(actionRequest);
-
-                var stepRequest = new Request();
-                stepRequest.Step = new RequestStep();
-                stepRequest.Step.Count = stepSize;
-                await proxy.SendRequest(stepRequest);
-            }
-        }
-
-        public async Task RunSinglePlayer(Bot bot, string map, Race myRace, Race opponentRace,
-            Difficulty opponentDifficulty)
-        {
-            var port = 5678;
             StartSC2Instance(port);
             await Connect(port);
             await CreateGame(map, opponentRace, opponentDifficulty);
-            var playerId = await JoinGame(myRace);
-            await Run(bot, playerId);
+
+            Globals.PlayerId = await JoinGame(myRace);
+
+            return this.proxy;
         }
 
-        private async Task RunLadder(Bot bot, Race myRace, int gamePort, int startPort)
-        {
-            await Connect(gamePort);
-            var playerId = await JoinGameLadder(myRace, startPort);
-            await Run(bot, playerId);
-            // await RequestLeaveGame();
-        }
-
-        public async Task RunLadder(Bot bot, Race myRace, string[] args)
+        public async Task<ProtobufProxy> RunLadder(IBot bot, Race myRace, string[] args)
         {
             var commandLineArgs = new CommandLine(args);
-            await RunLadder(bot, myRace, commandLineArgs.GamePort, commandLineArgs.StartPort);
+
+            await Connect(commandLineArgs.GamePort);
+
+            Globals.PlayerId = await JoinGameLadder(myRace, commandLineArgs.StartPort);
+
+            return this.proxy;
         }
 
         private Response CheckResponse(Response response)
         {
             if (response.Error.Count > 0)
             {
-                Log.Error("Response errors:");
+                Log.Error("Starcraft errors received:");
                 foreach (var error in response.Error)
                 {
                     Log.Error(error);

@@ -23,14 +23,14 @@ namespace BOSSE
     public static class Globals
     {
         /// <summary>
-        /// Global reference to the running game instance
+        /// Global reference to the running game instance, via protobuff proxy
         /// </summary>
-        public static GameConnection StarcraftRef;
+        public static ProtobufProxy GameConnection;
 
         /// <summary>
         /// Pointer to our bot instance
         /// </summary>
-        public static Bot BotRef = new BOSSE();
+        public static IBot BotRef = new BOSSE();
         
         /// <summary>
         /// Generates random numbers globally
@@ -42,5 +42,10 @@ namespace BOSSE
         /// False = Ladder play
         /// </summary>
         public static bool IsSinglePlayer = false;
+
+        /// <summary>
+        /// Id of our player in the current match
+        /// </summary>
+        public static uint PlayerId = uint.MaxValue;
     }
 }

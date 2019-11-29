@@ -144,7 +144,7 @@ namespace BOSSE
             requestQuery.Query = new RequestQuery();
             requestQuery.Query.Placements.Add(queryBuildingPlacement);
 
-            var result = Globals.StarcraftRef.SendQuery(requestQuery.Query);
+            var result = GameOutput.SendSynchronousRequest_BLOCKING(requestQuery.Query);
             if (result.Result.Placements.Count > 0)
                 return (result.Result.Placements[0].Result == ActionResult.Success);
             return false;
