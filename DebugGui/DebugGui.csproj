@@ -62,12 +62,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\Base Class\BaseMap.cs" />
-    <Compile Include="Maps\PathingMap.cs" />
     <Compile Include="Maps\Strategic\VulnerabilityMapGui.cs" />
     <Compile Include="Maps\Strategic\TensionMapGui.cs" />
     <Compile Include="Maps\Strategic\InfluenceMap.cs" />
     <Compile Include="Maps\TerrainMap.cs" />
-    <Compile Include="Maps\StandardMap.cs" />
+    <Compile Include="Maps\OverviewMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

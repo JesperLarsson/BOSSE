@@ -17,12 +17,11 @@ namespace DebugGui
 
     public partial class MainForm : Form
     {
-        private const int RefreshIntervalMs = 1000;
+        private const int RefreshIntervalMs = 5000;
         private Graphics FormGraphics;
 
-        private StandardMap StandardMapRef;
+        private OverviewMap StandardMapRef;
         private TerrainMap TerraindMapRef;
-        private PathingMap PathingMapRef;
         private InfluenceMapGui InfluenceMapRef;
         private TensionMapGui TensionMapRef;
         private VulnerabilityMapGui VulnerabilityMapRef;        
@@ -47,10 +46,11 @@ namespace DebugGui
             // Draw maps
             StandardMapRef.Tick();
             TerraindMapRef.Tick();
-            PathingMapRef.Tick();
             InfluenceMapRef.Tick();
             TensionMapRef.Tick();
             VulnerabilityMapRef.Tick();
+
+            Application.DoEvents();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -60,9 +60,8 @@ namespace DebugGui
 
             // Init maps
             FormGraphics = this.CreateGraphics();
-            StandardMapRef = new StandardMap(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height);
+            StandardMapRef = new OverviewMap(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height);
             TerraindMapRef = new TerrainMap(FormGraphics, this.LabelTerrainMap.Location.X, this.LabelTerrainMap.Location.Y + this.LabelTerrainMap.Size.Height);
-            PathingMapRef = new PathingMap(FormGraphics, this.LabelPathMap.Location.X, this.LabelPathMap.Location.Y + this.LabelPathMap.Size.Height);
             InfluenceMapRef = new InfluenceMapGui(FormGraphics, this.LabelInfluenceMap.Location.X, this.LabelInfluenceMap.Location.Y + this.LabelInfluenceMap.Size.Height);
             TensionMapRef = new TensionMapGui(FormGraphics, this.LabelTensionMap.Location.X, this.LabelTensionMap.Location.Y + this.LabelTensionMap.Size.Height);
             VulnerabilityMapRef = new VulnerabilityMapGui(FormGraphics, this.LabelVulnerabilityMap.Location.X, this.LabelVulnerabilityMap.Location.Y + this.LabelVulnerabilityMap.Size.Height);

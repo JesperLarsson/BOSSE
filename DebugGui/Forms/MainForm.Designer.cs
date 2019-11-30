@@ -30,7 +30,6 @@
         {
             this.LabelStandardMap = new System.Windows.Forms.Label();
             this.LabelTerrainMap = new System.Windows.Forms.Label();
-            this.LabelPathMap = new System.Windows.Forms.Label();
             this.LabelInfluenceMap = new System.Windows.Forms.Label();
             this.LabelTensionMap = new System.Windows.Forms.Label();
             this.LabelVulnerabilityMap = new System.Windows.Forms.Label();
@@ -53,15 +52,6 @@
             this.LabelTerrainMap.Size = new System.Drawing.Size(92, 21);
             this.LabelTerrainMap.TabIndex = 1;
             this.LabelTerrainMap.Text = "Terrain Map";
-            // 
-            // LabelPathMap
-            // 
-            this.LabelPathMap.AutoSize = true;
-            this.LabelPathMap.Location = new System.Drawing.Point(1180, 359);
-            this.LabelPathMap.Name = "LabelPathMap";
-            this.LabelPathMap.Size = new System.Drawing.Size(97, 21);
-            this.LabelPathMap.TabIndex = 2;
-            this.LabelPathMap.Text = "Pathing Map";
             // 
             // LabelInfluenceMap
             // 
@@ -98,7 +88,6 @@
             this.Controls.Add(this.LabelVulnerabilityMap);
             this.Controls.Add(this.LabelTensionMap);
             this.Controls.Add(this.LabelInfluenceMap);
-            this.Controls.Add(this.LabelPathMap);
             this.Controls.Add(this.LabelTerrainMap);
             this.Controls.Add(this.LabelStandardMap);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -116,7 +105,6 @@
 
         private System.Windows.Forms.Label LabelStandardMap;
         private System.Windows.Forms.Label LabelTerrainMap;
-        private System.Windows.Forms.Label LabelPathMap;
         private System.Windows.Forms.Label LabelInfluenceMap;
         private System.Windows.Forms.Label LabelTensionMap;
         private System.Windows.Forms.Label LabelVulnerabilityMap;
