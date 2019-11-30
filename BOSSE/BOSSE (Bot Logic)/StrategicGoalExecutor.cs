@@ -58,7 +58,7 @@ namespace BOSSE
             }
             else if (CurrentGoal == StrategicGoal.BuildMilitary)
             {
-                ExecuteEconomyFocus();
+                ExecuteBuildMilitary();
             }
             else
             {
@@ -86,8 +86,8 @@ namespace BOSSE
         {
             // Build depots as we need them
             UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
-            uint supplyDiff = MaxSupply - CurrentSupply - BotConstants.MinSupplyMargin;
-            while (supplyDiff > 0 && CurrentMinerals >= houseInfo.MineralCost)
+            uint supplyDiff = MaxSupply - CurrentSupply;
+            while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
                 BuildStructureAnyWhere(UnitConstants.UnitId.SUPPLY_DEPOT);
                 supplyDiff -= (uint)houseInfo.FoodProvided;
@@ -111,9 +111,10 @@ namespace BOSSE
             else
             {
                 // Train marines
+                UnitTypeData marineInfo = GetUnitInfo(UnitId.MARINE);
                 foreach (Unit rax in activeRaxes)
                 {
-                    if (CurrentMinerals >= GetUnitInfo(UnitId.MARINE).MineralCost)
+                    if (CurrentMinerals >= marineInfo.MineralCost && CurrentSupply >= marineInfo.FoodRequired)
                     {
                         Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));
                     }
@@ -130,9 +131,10 @@ namespace BOSSE
             if (workerCount < (BotConstants.TargetWorkerPerBase * commandCenters.Count))
             {
                 // Build more workers
+                UnitTypeData workerInfo = GetUnitInfo(UnitId.SCV);
                 foreach (Unit cc in commandCenters)
                 {
-                    if (CurrentMinerals >= GetUnitInfo(UnitId.SCV).MineralCost)
+                    if (CurrentMinerals >= workerInfo.MineralCost && CurrentSupply >= workerInfo.FoodRequired)
                     {
                         Queue(CommandBuilder.TrainAction(cc, UnitConstants.UnitId.SCV));
                     }

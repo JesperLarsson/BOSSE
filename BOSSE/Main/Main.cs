@@ -70,6 +70,10 @@ namespace BOSSE
                 {
                     Globals.BotRef.Every22Frames();
                 }
+                if (Globals.CurrentFrameCount % 1000 == 0)
+                {
+                    Globals.BotRef.PeriodicalUpdate();
+                }
                 Globals.BotRef.OnFrame();
 
                 // Send actions to sc2

@@ -27,7 +27,7 @@ namespace BOSSE
         /// <summary>
         /// Executes the goals we have set
         /// </summary>
-        public static StrategicGoalExecutor GoalExecutorRef;
+        public static StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
 
         /// <summary>
         /// Initializes bot layer, game has an initial state when this is called
@@ -48,13 +48,20 @@ namespace BOSSE
         /// </summary>
         public void Every22Frames()
         {
+            // Update strategy maps
+            StrategicMapSet.CalculateNewFromCurrentMapState();
+        }
+
+        /// <summary>
+        /// Entry point from main loop which updates the bot, called every now and then
+        /// Called before OnFrame on the first frame
+        /// </summary>
+        public void PeriodicalUpdate()
+        {
             // Update Tyr maps
             Tyr.Tyr.Observation = CurrentGameState.ObservationState;
             Tyr.Tyr.MapAnalyzer.Analyze();
             Tyr.Tyr.MapAnalyzer.AddToGui();
-
-            // Update strategy maps
-            StrategicMapSet.CalculateNewFromCurrentMapState();
         }
 
         /// <summary>

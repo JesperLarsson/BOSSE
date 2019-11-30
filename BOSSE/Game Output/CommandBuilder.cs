@@ -73,6 +73,9 @@ namespace BOSSE
                 var info = GetUnitInfo(unitTypeToBuild);
                 CurrentMinerals -= info.MineralCost;
                 CurrentVespene -= info.VespeneCost;
+
+                CurrentSupply += (uint)info.FoodProvided;
+                CurrentSupply -= (uint)info.FoodRequired;
             }
 
             return action;
