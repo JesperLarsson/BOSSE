@@ -18,7 +18,7 @@ namespace BOSSE.Tyr
     using System.IO;
     using System.Diagnostics;
 
-    using static BOSSE.Tyr.UnitTypes;
+    using static global::BOSSE.Tyr.UnitTypes;
 
     public class BaseManager
     {

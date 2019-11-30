@@ -18,7 +18,7 @@ namespace BOSSE.Tyr
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static UnitConstants;
-    using static BOSSE.Tyr.UnitTypes;
+    using static global::BOSSE.Tyr.UnitTypes;
 
 
     public static class Tyr

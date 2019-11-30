@@ -30,6 +30,15 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Returns static information (HP, cost, etc) about the given unit
+        /// </summary>
+        public static UnitTypeData GetUnitInfo(UnitId unitId)
+        {
+            UnitTypeData info = CurrentGameState.GameData.Units[(int)unitId];
+            return info;
+        }
+
+        /// <summary>
         /// Queues the given action for output to sc2
         /// </summary>
         public static void Queue(Action action)

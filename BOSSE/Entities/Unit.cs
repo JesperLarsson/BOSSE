@@ -39,6 +39,8 @@ namespace BOSSE
         public int IdealWorkers { get => original.IdealHarvesters; }
         public int AssignedWorkers { get => original.AssignedHarvesters; }
         public float BuildProgress { get => original.BuildProgress; }
+        public float MineralCost { get => unitInformation.MineralCost; }
+        public float VespeneCost { get => unitInformation.VespeneCost; }
         public RepeatedField<UnitOrder> QueuedOrders { get => original.Orders; }
         public UnitOrder CurrentOrder { get => QueuedOrders.Count > 0 ? QueuedOrders[0] : null; }
 

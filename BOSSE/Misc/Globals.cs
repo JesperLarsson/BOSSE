@@ -30,7 +30,7 @@ namespace BOSSE
         /// <summary>
         /// Pointer to our bot instance
         /// </summary>
-        public static BotStateEngine BotRef;
+        public static BOSSE BotRef;
         
         /// <summary>
         /// Generates random numbers globally

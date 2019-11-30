@@ -49,11 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BOSSE %28Bot Logic%29\StrategicGoalExecutor.cs" />
     <Compile Include="Entities\GameObject.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
-    <Compile Include="Bot\BotConstants.cs" />
+    <Compile Include="Misc\BotConstants.cs" />
     <Compile Include="Game Utility\GameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
@@ -62,7 +63,7 @@
     <Compile Include="Strategic Maps\StrategicMapSet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Bot\BotStateEngine.cs" />
+    <Compile Include="BOSSE %28Bot Logic%29\BOSSE.cs" />
     <Compile Include="Main\Game Bootstrapper\Interface.cs" />
     <Compile Include="Main\Game Bootstrapper\CommandLine.cs" />
     <Compile Include="Main\Game Bootstrapper\GameBootstrapper.cs" />

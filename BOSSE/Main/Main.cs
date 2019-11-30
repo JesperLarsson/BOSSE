@@ -33,12 +33,12 @@ namespace BOSSE
         public void Start(string[] commandLineArguments)
         {
             GameBootstrapper bootStrapper = new GameBootstrapper();
-            Globals.BotRef = new BotStateEngine();
+            Globals.BotRef = new BOSSE();
 
             // Set up game
             if (commandLineArguments.Length == 0)
             {
-                // Single player, debug mode
+                // Single player development mode
                 Globals.IsSinglePlayer = true;
                 Globals.Random = new Random(123456987); // use the same random number generation every time to make reproducing behaviour more likely
                 DebugGui.BosseGui.StartGui();

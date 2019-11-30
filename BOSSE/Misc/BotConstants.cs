@@ -38,5 +38,15 @@ namespace BOSSE
         /// Bot will spawn as the given race
         /// </summary>
         public const Race SpawnAsRace = Race.Terran;
+
+        /// <summary>
+        /// We want at least this amount of supply as a margin before we reach the max
+        /// </summary>
+        public const int MinSupplyMargin = 4;
+
+        /// <summary>
+        /// Number of workers to aim for at each base
+        /// </summary>
+        public const int TargetWorkerPerBase = 24;
     }
 }

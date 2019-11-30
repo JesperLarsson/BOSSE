@@ -21,8 +21,8 @@ namespace BOSSE
         public static ResponseObservation ObservationState;
 
         public static uint CurrentSupply { get => ObservationState.Observation.PlayerCommon.FoodUsed; }
-        public static uint CurrentMinerals { get => ObservationState.Observation.PlayerCommon.Minerals; }
-        public static uint CurrentVespene { get => ObservationState.Observation.PlayerCommon.Vespene; }
+        public static uint CurrentMinerals { get => ObservationState.Observation.PlayerCommon.Minerals; set => CurrentMinerals = value; }
+        public static uint CurrentVespene { get => ObservationState.Observation.PlayerCommon.Vespene; set => CurrentVespene = value; }
         public static uint MaxSupply { get => ObservationState.Observation.PlayerCommon.FoodCap; }
 
         /// <summary>

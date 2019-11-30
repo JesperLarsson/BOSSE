@@ -59,7 +59,7 @@ namespace BOSSE
             return action;
         }
 
-        public static Action TrainAction(Unit fromCenter, UnitId unitTypeToBuild, bool allowQueue = false)
+        public static Action TrainAction(Unit fromCenter, UnitId unitTypeToBuild, bool allowQueue = false, bool updateResourcesAvailable = true)
         {
             if (!allowQueue && fromCenter.QueuedOrders.Count > 0)
                 return null;
@@ -67,6 +67,13 @@ namespace BOSSE
             var abilityID = GetAbilityIdToBuildUnit(unitTypeToBuild);
             var action = CommandBuilder.RawCommand(abilityID);
             action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
+
+            if (updateResourcesAvailable)
+            {
+                var info = GetUnitInfo(unitTypeToBuild);
+                CurrentMinerals -= info.MineralCost;
+                CurrentVespene -= info.VespeneCost;
+            }
 
             return action;
         }
