@@ -31,6 +31,7 @@
             this.LabelStandardMap = new System.Windows.Forms.Label();
             this.LabelTerrainMap = new System.Windows.Forms.Label();
             this.LabelPathMap = new System.Windows.Forms.Label();
+            this.LabelInfluenceMap = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LabelStandardMap
@@ -45,7 +46,7 @@
             // LabelTerrainMap
             // 
             this.LabelTerrainMap.AutoSize = true;
-            this.LabelTerrainMap.Location = new System.Drawing.Point(683, 21);
+            this.LabelTerrainMap.Location = new System.Drawing.Point(1180, 21);
             this.LabelTerrainMap.Name = "LabelTerrainMap";
             this.LabelTerrainMap.Size = new System.Drawing.Size(92, 21);
             this.LabelTerrainMap.TabIndex = 1;
@@ -54,17 +55,27 @@
             // LabelPathMap
             // 
             this.LabelPathMap.AutoSize = true;
-            this.LabelPathMap.Location = new System.Drawing.Point(992, 21);
+            this.LabelPathMap.Location = new System.Drawing.Point(1180, 359);
             this.LabelPathMap.Name = "LabelPathMap";
             this.LabelPathMap.Size = new System.Drawing.Size(97, 21);
             this.LabelPathMap.TabIndex = 2;
             this.LabelPathMap.Text = "Pathing Map";
             // 
+            // LabelInfluenceMap
+            // 
+            this.LabelInfluenceMap.AutoSize = true;
+            this.LabelInfluenceMap.Location = new System.Drawing.Point(1522, 21);
+            this.LabelInfluenceMap.Name = "LabelInfluenceMap";
+            this.LabelInfluenceMap.Size = new System.Drawing.Size(108, 21);
+            this.LabelInfluenceMap.TabIndex = 3;
+            this.LabelInfluenceMap.Text = "Influence Map";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1955, 907);
+            this.ClientSize = new System.Drawing.Size(2049, 1195);
+            this.Controls.Add(this.LabelInfluenceMap);
             this.Controls.Add(this.LabelPathMap);
             this.Controls.Add(this.LabelTerrainMap);
             this.Controls.Add(this.LabelStandardMap);
@@ -84,6 +95,7 @@
         private System.Windows.Forms.Label LabelStandardMap;
         private System.Windows.Forms.Label LabelTerrainMap;
         private System.Windows.Forms.Label LabelPathMap;
+        private System.Windows.Forms.Label LabelInfluenceMap;
     }
 }
 

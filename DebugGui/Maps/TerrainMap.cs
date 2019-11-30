@@ -30,7 +30,7 @@ namespace DebugGui
         {
         }
 
-        public void Draw()
+        public void Tick()
         {
             if (renderedOnce)
                 return; // Does not change

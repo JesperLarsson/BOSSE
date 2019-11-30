@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,7 @@
     </Compile>
     <Compile Include="Maps\Base Class\BaseMap.cs" />
     <Compile Include="Maps\PathingMap.cs" />
+    <Compile Include="Maps\InfluenceMap.cs" />
     <Compile Include="Maps\TerrainMap.cs" />
     <Compile Include="Maps\StandardMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -21,7 +21,7 @@ namespace DebugGui
     /// </summary>
     public class StandardMap : BaseMap
     {
-        const int RenderScale = 4;
+        const int RenderScale = 8;
 
         static readonly SolidBrush BackgroundColor = new SolidBrush(System.Drawing.Color.Black);
         static readonly SolidBrush SelfColor = new SolidBrush(System.Drawing.Color.Blue);
@@ -32,7 +32,7 @@ namespace DebugGui
         {
         }
 
-        public void Draw()
+        public void Tick()
         {
             RectangleI playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
 

@@ -17,7 +17,7 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Pathing minimap, ie which ones can be found and not
+    /// Pathing minimap, ie which locations can be walked across or not
     /// </summary>
     public class PathingMap : BaseMap
     {
@@ -31,7 +31,7 @@ namespace DebugGui
         {
         }
 
-        public void Draw()
+        public void Tick()
         {
             if (renderedOnce)
                 return; // Does not change
