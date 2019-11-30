@@ -20,10 +20,39 @@ namespace BOSSE
     {
         public static Action CreateRawUnitCommand(int ability)
         {
-            var action = new Action();
+            Action action = new Action();
             action.ActionRaw = new ActionRaw();
             action.ActionRaw.UnitCommand = new ActionRawUnitCommand();
             action.ActionRaw.UnitCommand.AbilityId = ability;
+
+            return action;
+        }
+
+        public static Action CreateAttackMoveAction(List<Unit> units, Vector3 target)
+        {
+            Action action = CreateRawUnitCommand((int)AbilityConstants.AbilityId.ATTACK);
+
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = target.X;
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = target.Y;
+
+            foreach (var unit in units)
+                action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+
+            return action;
+        }
+
+        public static Action CreateMoveAction(List<Unit> units, Vector3 target)
+        {
+            Action action = CreateRawUnitCommand((int)AbilityConstants.AbilityId.MOVE);
+
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = target.X;
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = target.Y;
+
+            foreach (var unit in units)
+                action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+
             return action;
         }
     }

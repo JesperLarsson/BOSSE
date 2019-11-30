@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <NoWarn>CS1998</NoWarn>
+    <NoWarn>CS1998, CS0162</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,6 +39,7 @@
     <Reference Include="netstandard" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,7 +57,9 @@
     <Compile Include="Game Utility\GameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
-    <Compile Include="Map Analysis\StrategicMapSet.cs" />
+    <Compile Include="Map Analysis %28Tyr%29\BaseManager.cs" />
+    <Compile Include="Map Analysis %28Tyr%29\MapAnalyzer.cs" />
+    <Compile Include="Strategic Maps\StrategicMapSet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Bot\BotStateEngine.cs" />
