@@ -27,6 +27,16 @@ namespace BOSSE
         {
             return $"[{obj.X}, {obj.Y}]";
         }
+        /// <summary>
+        /// XY string
+        /// </summary>
+        public static string ToStringSafe2(this Vector3? obj)
+        {
+            if (obj == null)
+                return "NoPoint";
+
+            return $"[{obj.Value.X}, {obj.Value.Y}]";
+        }
 
         /// <summary>
         /// XYZ string
@@ -34,6 +44,17 @@ namespace BOSSE
         public static string ToString3(this Vector3 obj)
         {
             return $"[{obj.X}, {obj.Y}, {obj.Y}]";
+        }
+
+        /// <summary>
+        /// XYZ string
+        /// </summary>
+        public static string ToString3(this Vector3? obj)
+        {
+            if (obj == null)
+                return "NoPoint";
+
+            return $"[{obj.Value.X}, {obj.Value.Y}, {obj.Value.Y}]";
         }
     }
 }

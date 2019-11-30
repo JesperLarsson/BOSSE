@@ -25,13 +25,20 @@ namespace BOSSE
     /// </summary>
     public class SquadManager
     {
-        public MilitaryGoal CurrentMilitaryGoal = MilitaryGoal.NotSet;
+        /// <summary>
+        /// Current global military goal
+        /// </summary>
+        private MilitaryGoal CurrentMilitaryGoal = MilitaryGoal.NotSet;
 
         /// <summary>
         /// Military target, if any (can be null)
         /// </summary>
-        public Vector3? TargetPoint = null;
+        private Vector3? TargetPoint = null;
 
+        /// <summary>
+        /// Determines our overall military goal at this moment
+        /// Squad may have goals which override this behaviour
+        /// </summary>
         public enum MilitaryGoal
         {
             NotSet = 0,
@@ -46,11 +53,14 @@ namespace BOSSE
         /// All active squads
         /// Name => Squad instance mapping
         /// </summary>
-        private Dictionary<string, Squad> Squads = new Dictionary<string, Squad>();
+        private readonly Dictionary<string, Squad> Squads = new Dictionary<string, Squad>();
 
+        /// <summary>
+        /// Initializes the squad manager
+        /// </summary>
         public void Initialize()
         {
-            SetNewGoal(MilitaryGoal.DefendGeneral);
+            SetNewGoal(MilitaryGoal.DefendGeneral, null);
         }
 
         /// <summary>
@@ -70,12 +80,12 @@ namespace BOSSE
         /// <summary>
         /// Sets a new military goal
         /// </summary>
-        public void SetNewGoal(MilitaryGoal newGoal)
+        public void SetNewGoal(MilitaryGoal newGoal, Vector3? newPoint)
         {
             if (newGoal == CurrentMilitaryGoal)
                 return;
 
-            Log.Info($"Setting new military goal = {newGoal} (was {this.CurrentMilitaryGoal})");
+            Log.Info($"Setting new military goal = {newGoal} (was {this.CurrentMilitaryGoal}) at {newPoint.ToStringSafe2()}");
             this.CurrentMilitaryGoal = newGoal;
         }
 

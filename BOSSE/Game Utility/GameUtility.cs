@@ -50,6 +50,20 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Guesstimates the enemy base location, null = no decent guess
+        /// </summary>
+        public static Vector3? GuessEnemyBaseLocation()
+        {
+            // Most maps are symmetrical, so we should be in mirror locations
+            Vector3 ourLocation = Globals.MainBaseLocation;
+
+            float x = CurrentGameState.GameInformation.StartRaw.MapSize.X - ourLocation.X;
+            float y = CurrentGameState.GameInformation.StartRaw.MapSize.X - ourLocation.Y;
+
+            return new Vector3(x, y, 0);
+        }
+
+        /// <summary>
         /// Converts seconds to number of logical frames
         /// </summary>
         public static ulong SecsToFrames(int seconds)

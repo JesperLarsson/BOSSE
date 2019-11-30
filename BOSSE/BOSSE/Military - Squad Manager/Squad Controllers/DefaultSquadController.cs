@@ -60,8 +60,15 @@ namespace BOSSE
             }
             else if (currentGlobalGoal == SquadManager.MilitaryGoal.AttackGeneral)
             {
-                // TODO
-#warning TODO: AttackGeneral command
+                // Attack move towards enemy main base
+                Vector3? enemyLocation = GuessEnemyBaseLocation();
+                if (enemyLocation == null)
+                {
+                    Log.Warning("Unable to find enemy base location");
+                    return;
+                }
+
+                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(enemyLocation.Value.X, enemyLocation.Value.Y, 0)));
             }
             else if (currentGlobalGoal == SquadManager.MilitaryGoal.AttackPoint)
             {
