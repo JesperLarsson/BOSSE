@@ -72,11 +72,11 @@ namespace BOSSE
                 }
                 if (Globals.CurrentFrameCount % 1000 == 0)
                 {
-                    Globals.BotRef.PeriodicalUpdate();
+                    Globals.BotRef.LongTermPeriodical();
                 }
                 if (Globals.CurrentFrameCount % 22 == 0)
                 {
-                    Globals.BotRef.Every22Frames();
+                    Globals.BotRef.EverySecond();
                 }
                 Globals.BotRef.OnFrame();
 

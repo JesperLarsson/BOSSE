@@ -35,6 +35,11 @@ namespace BOSSE
         public static WorkerManager WorkerManagerRef = new WorkerManager();
 
         /// <summary>
+        /// Manges our army
+        /// </summary>
+        public static SquadManager SquadManagerRef = new SquadManager();
+
+        /// <summary>
         /// Initializes bot layer, game has an initial state when this is called
         /// </summary>
         public void Initialize()
@@ -44,15 +49,16 @@ namespace BOSSE
             Tyr.Tyr.PlayerId = Globals.PlayerId;
             Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
 
-            // Initialize strategy layer
+            // Initialize sub-managers
             GoalExecutorRef.Initialize();
+            SquadManagerRef.Initialize();
         }
 
         /// <summary>
         /// Entry point from main loop which updates the bot, called approx once a second in real time - Used to update expensive calculations
         /// Called before OnFrame on the first frame
         /// </summary>
-        public void Every22Frames()
+        public void EverySecond()
         {
             // Refresh strategy maps
             StrategicMapSet.CalculateNewFromCurrentMapState();
@@ -65,7 +71,7 @@ namespace BOSSE
         /// Entry point from main loop which updates the bot, called every now and then
         /// Called before OnFrame on the first frame
         /// </summary>
-        public void PeriodicalUpdate()
+        public void LongTermPeriodical()
         {
             // Update Tyr maps
             Tyr.Tyr.Observation = CurrentGameState.ObservationState;
@@ -88,6 +94,7 @@ namespace BOSSE
         public void OnFrame()
         {
             GoalExecutorRef.Tick();
+            SquadManagerRef.Tick();
         }
     }
 }

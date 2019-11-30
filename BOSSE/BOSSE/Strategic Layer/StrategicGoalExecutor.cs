@@ -33,7 +33,7 @@ namespace BOSSE
             BuildMilitary,
             Expand
         }
-        public StrategicGoal CurrentGoal = StrategicGoal.Unset;
+        public StrategicGoal CurrentStrategicGoal = StrategicGoal.Unset;
 
         const int MinSupplyMargin = 4;
         const int TargetWorkerPerBase = 24;
@@ -43,7 +43,6 @@ namespace BOSSE
         /// </summary>
         public void Initialize()
         {
-            Log.Info("Setting initial strategic goal");
             SetNewGoal(StrategicGoal.EconomyFocus);
         }
 
@@ -54,17 +53,17 @@ namespace BOSSE
         {
             AllStrategiesPreRun();
 
-            if (CurrentGoal == StrategicGoal.EconomyFocus)
+            if (CurrentStrategicGoal == StrategicGoal.EconomyFocus)
             {
                 ExecuteEconomyFocus();
             }
-            else if (CurrentGoal == StrategicGoal.BuildMilitary)
+            else if (CurrentStrategicGoal == StrategicGoal.BuildMilitary)
             {
                 ExecuteBuildMilitary();
             }
             else
             {
-                throw new NotImplementedException("Unsupported " + CurrentGoal.ToString());
+                throw new NotImplementedException("Unsupported " + CurrentStrategicGoal.ToString());
             }
 
             AllStrategiesPostRun();
@@ -75,11 +74,11 @@ namespace BOSSE
         /// </summary>
         public void SetNewGoal(StrategicGoal newGoal)
         {
-            if (newGoal == CurrentGoal)
+            if (newGoal == CurrentStrategicGoal)
                 return;
 
-            Log.Info($"Setting new strategic goal = {newGoal} (was {this.CurrentGoal})");
-            this.CurrentGoal = newGoal;
+            Log.Info($"Setting new strategic goal = {newGoal} (was {this.CurrentStrategicGoal})");
+            this.CurrentStrategicGoal = newGoal;
         }
 
         /// <summary>

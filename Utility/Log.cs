@@ -39,6 +39,11 @@ namespace BOSSE
             WriteLine("ERROR", line, true, parameters);
         }
 
+        public static void SanityCheckFailed(string line, params object[] parameters)
+        {
+            WriteLine("SANITY CHECK FAILED", line, true, parameters);
+        }
+
         private static void Initialize()
         {
             FilePath = "Logs/" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";

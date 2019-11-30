@@ -27,9 +27,10 @@ namespace BOSSE
         /// <summary>
         /// Returns a raw sc2 command without any actions in it
         /// </summary>
-        public static Action RawCommand(int ability)
+        private static Action RawCommand(int ability)
         {
             Action action = new Action();
+
             action.ActionRaw = new ActionRaw();
             action.ActionRaw.UnitCommand = new ActionRawUnitCommand();
             action.ActionRaw.UnitCommand.AbilityId = ability;
@@ -40,7 +41,7 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to attack move to the given location
         /// </summary>
-        public static Action AttackMoveAction(List<Unit> units, Vector3 target)
+        public static Action AttackMoveAction(IEnumerable<Unit> units, Vector3 target)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.ATTACK);
 
@@ -49,7 +50,9 @@ namespace BOSSE
             action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = target.Y;
 
             foreach (var unit in units)
+            {
                 action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+            }
 
             return action;
         }
@@ -57,13 +60,15 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to gather the given mineral field
         /// </summary>
-        public static Action MineMineralsAction(List<Unit> units, Unit mineralPatch)
+        public static Action MineMineralsAction(IEnumerable<Unit> units, Unit mineralPatch)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.GATHER_RESOURCES);
-
             action.ActionRaw.UnitCommand.TargetUnitTag = mineralPatch.Tag;
+
             foreach (var unit in units)
+            {
                 action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+            }
 
             return action;
         }
@@ -71,7 +76,7 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to move to the given location
         /// </summary>
-        public static Action MoveAction(List<Unit> units, Vector3 target)
+        public static Action MoveAction(IEnumerable<Unit> units, Vector3 target)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.MOVE);
 
@@ -91,8 +96,8 @@ namespace BOSSE
         public static Action ConstructAction(UnitId structureToBuild, Unit unitThatBuilds, Vector3 location)
         {
             int abilityID = GetAbilityIdToBuildUnit(structureToBuild);
-
             Action actionObj = CommandBuilder.RawCommand(abilityID);
+
             actionObj.ActionRaw.UnitCommand.UnitTags.Add(unitThatBuilds.Tag);
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos.X = location.X;

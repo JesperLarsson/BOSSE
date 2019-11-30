@@ -9,6 +9,7 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Linq;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
@@ -18,8 +19,7 @@ namespace BOSSE
     using static GameUtility;
     using static UnitConstants;
     using static AbilityConstants;
-    using System.Linq;
-
+    
     /// <summary>
     /// Manages worker units
     /// </summary>
