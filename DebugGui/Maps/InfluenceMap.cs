@@ -44,24 +44,23 @@ namespace DebugGui
                     foreach (Unit unitIter in BosseGui.ObservationState.Observation.RawData.Units)
                     {
                         float standardInfluence = 1.0f;
-                        float dissipationRate = 0.5f;
-                        if (unitIter.Alliance == Alliance.Self)
+                        float dissipationRate = 10.0f;
+                        if (unitIter.Alliance != Alliance.Self && unitIter.Alliance != Alliance.Enemy)
                         {
-                        }
-                        //else if (unitIter.Alliance == Alliance.Enemy)
-                        //{
-                        //}
-                        else
-                        {
-                            continue; // ignore
+                            continue;
                         }
 
                         Vector2 tilePos = new Vector2(x, y);
-                        Vector2 unitPos = new Vector2(unitIter.Pos.X, unitIter.Pos.Y);
+                        Vector2 unitPos = new Vector2(unitIter.Pos.X - playArea.P0.X, unitIter.Pos.Y - playArea.P0.Y);
                         float distanceToUnit = Vector2.Distance(tilePos, unitPos);
 
                         float fallOffValue = 1 - (dissipationRate / (dissipationRate - distanceToUnit));
                         float influenceContribution = standardInfluence * Math.Max(0, fallOffValue);
+
+                        if (unitIter.Alliance == Alliance.Enemy)
+                        {
+                            influenceContribution = -influenceContribution;
+                        }
 
                         buffer[x, y] += influenceContribution;
                     }
@@ -73,13 +72,22 @@ namespace DebugGui
             {
                 for (int y = 0; y < ySize; y++)
                 {
-                    int value = (int)buffer[x, y] * 10;
-                    SolidBrush unitBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, Math.Min(value, 255), Math.Min(value, 255), Math.Min(value, 255)));
+                    int value = (int)(buffer[x, y] * 10.0f);
+                    SolidBrush brushColor;
+
+                    if (value >= 0)
+                    {
+                        brushColor = new SolidBrush(System.Drawing.Color.FromArgb(255, 0, 0, Math.Min(value, 255)));
+                    }
+                    else
+                    {
+                        brushColor = new SolidBrush(System.Drawing.Color.FromArgb(255, Math.Min(-value, 255), 0, 0));
+                    }
 
                     float xPos = x;
                     float yPos = y;
 
-                    FormGraphics.FillRectangle(unitBrush, (RenderScale * xPos) + BaseX, (RenderScale * yPos) + BaseY, RenderScale, RenderScale);
+                    FormGraphics.FillRectangle(brushColor, (RenderScale * xPos) + BaseX, (RenderScale * yPos) + BaseY, RenderScale, RenderScale);
                 }
             }
         }
