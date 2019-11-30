@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE %28Bot Logic%29\StrategicGoalExecutor.cs" />
+    <Compile Include="BOSSE\Managers\WorkerManager.cs" />
+    <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
     <Compile Include="Entities\GameObject.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
@@ -63,7 +64,7 @@
     <Compile Include="Strategic Maps\StrategicMapSet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="BOSSE %28Bot Logic%29\BOSSE.cs" />
+    <Compile Include="BOSSE\BOSSE.cs" />
     <Compile Include="Main\Game Bootstrapper\Interface.cs" />
     <Compile Include="Main\Game Bootstrapper\CommandLine.cs" />
     <Compile Include="Main\Game Bootstrapper\GameBootstrapper.cs" />

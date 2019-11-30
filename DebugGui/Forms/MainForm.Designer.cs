@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.LabelStandardMap = new System.Windows.Forms.Label();
             this.LabelTerrainMap = new System.Windows.Forms.Label();
             this.LabelInfluenceMap = new System.Windows.Forms.Label();
@@ -91,9 +92,10 @@
             this.Controls.Add(this.LabelTerrainMap);
             this.Controls.Add(this.LabelStandardMap);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
-            this.Text = "BOSSE Maps";
+            this.Text = "BOSSE - StarCraft 2 Bot";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);

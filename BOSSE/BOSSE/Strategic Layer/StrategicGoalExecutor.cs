@@ -26,12 +26,14 @@ namespace BOSSE
     {
         public enum StrategicGoal
         {
+            Unset = 0,
+
             EconomyFocus,
             BuildMilitaryPlusEconomy,
             BuildMilitary,
             Expand
         }
-        public StrategicGoal CurrentGoal;
+        public StrategicGoal CurrentGoal = StrategicGoal.Unset;
 
         const int MinSupplyMargin = 4;
         const int TargetWorkerPerBase = 24;
@@ -68,6 +70,9 @@ namespace BOSSE
             AllStrategiesPostRun();
         }
 
+        /// <summary>
+        /// Pushes a new goal to accomplish
+        /// </summary>
         public void SetNewGoal(StrategicGoal newGoal)
         {
             if (newGoal == CurrentGoal)
@@ -77,11 +82,17 @@ namespace BOSSE
             this.CurrentGoal = newGoal;
         }
 
+        /// <summary>
+        /// Called before all strategies are executed
+        /// </summary>
         private void AllStrategiesPreRun()
         {
 
         }
 
+        /// <summary>
+        /// Called after all strategies are executed
+        /// </summary>
         private void AllStrategiesPostRun()
         {
             // Build depots as we need them
@@ -95,6 +106,9 @@ namespace BOSSE
             }
         }
 
+        /// <summary>
+        /// Execute specific strategy
+        /// </summary>
         private void ExecuteBuildMilitary()
         {
             const int RaxesWanted = 2;
@@ -122,6 +136,9 @@ namespace BOSSE
             }
         }
 
+        /// <summary>
+        /// Execute specific strategy
+        /// </summary>
         private void ExecuteEconomyFocus()
         {
             List<Unit> commandCenters = GetUnits(UnitId.COMMAND_CENTER);
@@ -147,7 +164,8 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Builds the given type
+        /// Builds the given type anywhere, palceholder for a better solution
+        /// Super slow, polls the game for a location
         /// </summary>
         public static void BuildStructureAnyWhere(UnitId unitType)
         {
@@ -161,7 +179,7 @@ namespace BOSSE
             }
             else
             {
-                Log.Error($"Unable to construct {unitType} - no resource center was found");
+                Log.Warning($"Unable to construct {unitType} - no resource center was found");
                 return;
             }
 
@@ -182,21 +200,14 @@ namespace BOSSE
                 break;
             }
 
-            Unit worker = GetAvailableWorker(constructionSpot);
+            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPoint(constructionSpot);
             if (worker == null)
             {
-                Log.Error($"Unable to find worker to construct {unitType}");
+                Log.Warning($"Unable to find a worker to construct {unitType}");
                 return;
             }
 
-            int abilityID = GetAbilityIdToBuildUnit(unitType);
-            Action constructAction = CommandBuilder.RawCommand(abilityID);
-            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
-            Queue(constructAction);
-
+            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot));
             Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()} / {constructionSpot.Y}");
         }
     }

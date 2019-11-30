@@ -30,15 +30,21 @@ namespace BOSSE
         public static StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
 
         /// <summary>
+        /// Manages our workers
+        /// </summary>
+        public static WorkerManager WorkerManagerRef = new WorkerManager();
+
+        /// <summary>
         /// Initializes bot layer, game has an initial state when this is called
         /// </summary>
         public void Initialize()
         {
-            // Tyr setup
+            // Initialize Tyr (map analysis)
             Tyr.Tyr.Debug = Globals.IsSinglePlayer;
             Tyr.Tyr.PlayerId = Globals.PlayerId;
             Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
 
+            // Initialize strategy layer
             GoalExecutorRef.Initialize();
         }
 
@@ -48,8 +54,11 @@ namespace BOSSE
         /// </summary>
         public void Every22Frames()
         {
-            // Update strategy maps
+            // Refresh strategy maps
             StrategicMapSet.CalculateNewFromCurrentMapState();
+
+            // Move workers to optimal locations
+            WorkerManagerRef.Tick();
         }
 
         /// <summary>
@@ -62,6 +71,15 @@ namespace BOSSE
             Tyr.Tyr.Observation = CurrentGameState.ObservationState;
             Tyr.Tyr.MapAnalyzer.Analyze();
             Tyr.Tyr.MapAnalyzer.AddToGui();
+        }
+
+        /// <summary>
+        /// First frame setup
+        /// </summary>
+        public void FirstFrame()
+        {
+            // Set main location
+            Globals.MainBaseLocation = GetUnits(UnitId.COMMAND_CENTER)[0].Position;
         }
 
         /// <summary>

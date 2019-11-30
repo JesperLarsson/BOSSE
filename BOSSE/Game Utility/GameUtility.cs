@@ -178,19 +178,5 @@ namespace BOSSE
                 return (result.Result.Placements[0].Result == ActionResult.Success);
             return false;
         }
-
-        public static Unit GetAvailableWorker(Vector3 targetPosition)
-        {
-            var workers = GetUnits(UnitConstants.Workers);
-            foreach (Unit worker in workers)
-            {
-                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId != (uint)AbilityId.GATHER_MINERALS)
-                    continue;
-
-                return worker;
-            }
-
-            return null;
-        }
     }
 }

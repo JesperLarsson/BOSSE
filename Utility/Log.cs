@@ -12,60 +12,69 @@ namespace BOSSE
     using System.Threading;
 
     /// <summary>
-    /// Writes logging information
+    /// Writes logging information to file/console/visual studio
     /// </summary>
     public static class Log
     {
-        private static string logFile;
-        private static bool stdoutClosed;
+        private static string FilePath;
+        private static bool StdoutClosed;
+
+        public static void Bulk(string line, params object[] parameters)
+        {
+            WriteLine("BULK", line, true, parameters);
+        }
 
         public static void Info(string line, params object[] parameters)
         {
-            WriteLine("INFO", line, parameters);
+            WriteLine("INFO", line, true, parameters);
         }
 
         public static void Warning(string line, params object[] parameters)
         {
-            WriteLine("WARNING", line, parameters);
+            WriteLine("WARNING", line, true, parameters);
         }
 
         public static void Error(string line, params object[] parameters)
         {
-            WriteLine("ERROR", line, parameters);
+            WriteLine("ERROR", line, true, parameters);
         }
 
         private static void Initialize()
         {
-            logFile = "Logs/" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";
-            Directory.CreateDirectory(Path.GetDirectoryName(logFile));
+            FilePath = "Logs/" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";
+            Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
         }
 
-        private static void WriteLine(string prefix, string line, params object[] parameters)
+        private static void WriteLine(string prefix, string line, bool trace, params object[] parameters)
         {
-            if (logFile == null)
+            if (FilePath == null)
+            {
                 Initialize();
+            }
 
             var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + string.Format(line, parameters);
 
-            var fileStream = new StreamWriter(logFile, true);
+            var fileStream = new StreamWriter(FilePath, true);
             fileStream.WriteLine(msg);
             fileStream.Close();
 
-            if (!stdoutClosed)
+            if (!StdoutClosed && trace)
             {
                 try
                 {
                     Console.WriteLine(msg, parameters);
-                   
                 }
                 catch
                 {
-                    stdoutClosed = true;
+                    StdoutClosed = true;
                 }
             }
 
             // To VS output
-            System.Diagnostics.Debug.WriteLine(msg, parameters);
+            if (trace)
+            {
+                System.Diagnostics.Debug.WriteLine(msg, parameters);
+            }
         }
     }
 }

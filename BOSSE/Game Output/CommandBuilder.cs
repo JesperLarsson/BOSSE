@@ -19,8 +19,14 @@ namespace BOSSE
     using static UnitConstants;
     using static AbilityConstants;
 
+    /// <summary>
+    /// Builds sc2 actions that can be sent to the game
+    /// </summary>
     public static class CommandBuilder
     {
+        /// <summary>
+        /// Returns a raw sc2 command without any actions in it
+        /// </summary>
         public static Action RawCommand(int ability)
         {
             Action action = new Action();
@@ -31,6 +37,9 @@ namespace BOSSE
             return action;
         }
 
+        /// <summary>
+        /// Build sc2 action to attack move to the given location
+        /// </summary>
         public static Action AttackMoveAction(List<Unit> units, Vector3 target)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.ATTACK);
@@ -45,6 +54,23 @@ namespace BOSSE
             return action;
         }
 
+        /// <summary>
+        /// Build sc2 action to gather the given mineral field
+        /// </summary>
+        public static Action MineMineralsAction(List<Unit> units, Unit mineralPatch)
+        {
+            Action action = RawCommand((int)AbilityConstants.AbilityId.GATHER_RESOURCES);
+
+            action.ActionRaw.UnitCommand.TargetUnitTag = mineralPatch.Tag;
+            foreach (var unit in units)
+                action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+
+            return action;
+        }
+
+        /// <summary>
+        /// Build sc2 action to move to the given location
+        /// </summary>
         public static Action MoveAction(List<Unit> units, Vector3 target)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.MOVE);
@@ -59,6 +85,25 @@ namespace BOSSE
             return action;
         }
 
+        /// <summary>
+        /// Build sc2 action to make the given unit construct the given building at a location
+        /// </summary>
+        public static Action ConstructAction(UnitId structureToBuild, Unit unitThatBuilds, Vector3 location)
+        {
+            int abilityID = GetAbilityIdToBuildUnit(structureToBuild);
+
+            Action actionObj = CommandBuilder.RawCommand(abilityID);
+            actionObj.ActionRaw.UnitCommand.UnitTags.Add(unitThatBuilds.Tag);
+            actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos.X = location.X;
+            actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = location.Y;
+
+            return actionObj;
+        }
+
+        /// <summary>
+        /// Build sc2 action to train the specified unit from the given resource center
+        /// </summary>
         public static Action TrainAction(Unit fromCenter, UnitId unitTypeToBuild, bool allowQueue = false, bool updateResourcesAvailable = true)
         {
             if (!allowQueue && fromCenter.QueuedOrders.Count > 0)

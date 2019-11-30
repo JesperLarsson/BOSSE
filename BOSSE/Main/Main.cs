@@ -66,13 +66,17 @@ namespace BOSSE
                 ReadPerFrameState().Wait();
 
                 // Update bot
-                if (Globals.CurrentFrameCount % 22 == 0)
+                if (Globals.CurrentFrameCount == 0)
                 {
-                    Globals.BotRef.Every22Frames();
+                    Globals.BotRef.FirstFrame();
                 }
                 if (Globals.CurrentFrameCount % 1000 == 0)
                 {
                     Globals.BotRef.PeriodicalUpdate();
+                }
+                if (Globals.CurrentFrameCount % 22 == 0)
+                {
+                    Globals.BotRef.Every22Frames();
                 }
                 Globals.BotRef.OnFrame();
 

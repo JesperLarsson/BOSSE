@@ -52,5 +52,10 @@ namespace BOSSE
         /// Current logical frame count, starts at 0
         /// </summary>
         public static ulong CurrentFrameCount = 0;
+
+        /// <summary>
+        /// Location of our main starting base
+        /// </summary>
+        public static Vector3 MainBaseLocation;
     }
 }
