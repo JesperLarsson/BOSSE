@@ -102,6 +102,21 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Get total number of buildings of a certain type that we own / are in progress of being built
+        /// </summary>
+        public static uint GetBuildingCountTotal(UnitId unitType, bool includingPending = true)
+        {
+            uint count = (uint)GetUnits(unitType).Count;
+
+            if (includingPending)
+            {
+                count += (uint)GetPendingBuildingCount(unitType);
+            }
+
+            return count;
+        }
+
+        /// <summary>
         /// Get number of buildings that are being built
         /// </summary>
         public static int GetPendingBuildingCount(UnitId unitType, bool inConstruction = true)

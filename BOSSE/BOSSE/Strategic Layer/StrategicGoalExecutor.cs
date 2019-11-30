@@ -114,9 +114,9 @@ namespace BOSSE
             const int RaxesWanted = 2;
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
-            List<Unit> activeRaxes = GetUnits(UnitId.BARRACKS);
+            uint raxCount = GetBuildingCountTotal(UnitId.BARRACKS);
 
-            if (activeRaxes.Count < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost)
+            if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost)
             {
                 // Build barracks
                 BuildStructureAnyWhere(UnitConstants.UnitId.BARRACKS);
@@ -126,12 +126,16 @@ namespace BOSSE
             {
                 // Train marines
                 UnitTypeData marineInfo = GetUnitInfo(UnitId.MARINE);
+                List<Unit> activeRaxes = GetUnits(UnitId.BARRACKS, onlyCompleted: true);
+
                 foreach (Unit rax in activeRaxes)
                 {
-                    if (CurrentMinerals >= marineInfo.MineralCost && CurrentSupply >= marineInfo.FoodRequired)
+                    if (CurrentMinerals < marineInfo.MineralCost || CurrentSupply < marineInfo.FoodRequired)
                     {
-                        Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));
+                        break;
                     }
+
+                    Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));
                 }
             }
         }
