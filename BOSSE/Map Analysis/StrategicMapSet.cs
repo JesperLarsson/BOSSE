@@ -67,18 +67,23 @@ namespace BOSSE
                     foreach (SC2APIProtocol.Unit unitIter in CurrentGameState.ObservationState.Observation.RawData.Units)
                     {
                         const float standardInfluence = 1.0f;
-                        const float dissipationRateFalloff = 10.0f;
+                        const float dissipationRateFalloff = 0.9f;
                         if (unitIter.Alliance != Alliance.Self && unitIter.Alliance != Alliance.Enemy)
                         {
                             continue;
                         }
-
+                        
                         Vector2 tilePos = new Vector2(x, y);
                         Vector2 unitPos = new Vector2(unitIter.Pos.X - playArea.P0.X, unitIter.Pos.Y - playArea.P0.Y);
                         float distanceToUnit = Vector2.Distance(tilePos, unitPos);
 
                         float fallOffValue = 1 - (dissipationRateFalloff / (dissipationRateFalloff - distanceToUnit));
                         float influenceContribution = standardInfluence * Math.Max(0, fallOffValue);
+
+                        if (distanceToUnit > 9) // 9 = vision of a marine and decent average of all units
+                        {
+                            influenceContribution = 0;
+                        }
 
                         if (unitIter.Alliance == Alliance.Self)
                         {
