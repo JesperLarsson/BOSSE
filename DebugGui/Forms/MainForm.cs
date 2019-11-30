@@ -22,6 +22,7 @@ namespace DebugGui
 
         private StandardMap StandardMapRef;
         private TerrainMap TerraindMapRef;
+        private PathingMap PathingMapRef;        
 
         public MainForm()
         {
@@ -43,6 +44,7 @@ namespace DebugGui
             // Draw maps
             StandardMapRef.Draw();
             TerraindMapRef.Draw();
+            PathingMapRef.Draw();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -54,6 +56,7 @@ namespace DebugGui
             FormGraphics = this.CreateGraphics();
             StandardMapRef = new StandardMap(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height);
             TerraindMapRef = new TerrainMap(FormGraphics, this.LabelTerrainMap.Location.X, this.LabelTerrainMap.Location.Y + this.LabelTerrainMap.Size.Height);
+            PathingMapRef = new PathingMap(FormGraphics, this.LabelPathMap.Location.X, this.LabelPathMap.Location.Y + this.LabelPathMap.Size.Height);
 
             // Update maps periodically in GUI thread
             Timer timer = new Timer();

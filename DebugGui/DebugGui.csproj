@@ -61,6 +61,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\Base Class\BaseMap.cs" />
+    <Compile Include="Maps\PathingMap.cs" />
     <Compile Include="Maps\TerrainMap.cs" />
     <Compile Include="Maps\StandardMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
