@@ -10,15 +10,16 @@ namespace BOSSE.Tyr
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.IO;
+    using System.Diagnostics;
 
+    using DebugGui;
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static UnitConstants;
-    using System.IO;
-    using System.Diagnostics;
-
     using static BOSSE.Tyr.UnitTypes;
+
 
     public static class Tyr
     {
@@ -26,11 +27,10 @@ namespace BOSSE.Tyr
         public static bool OldMapData = false;
         public static uint PlayerId = 0;
 
-        public static MapAnalyzer MapAnalyzer;
-        public static BaseManager BaseManager;
+        public static MapAnalyzer MapAnalyzer = new MapAnalyzer();
+        public static BaseManager BaseManager = new BaseManager();
 
         public static ResponseGameInfo GameInfo;
-        //public static ResponseData GameData;
         public static ResponseObservation Observation;
     }
 
@@ -54,6 +54,22 @@ namespace BOSSE.Tyr
         public BoolGrid Pathable;
         //public BoolGrid UnPathable;
         //private Point2D EnemyRamp = null;
+
+        public void AddToGui()
+        {
+            List<KeyValuePair<Point2D, string>> newPoints = new List<KeyValuePair<Point2D, string>>();
+
+            Point2D ramp = this.GetMainRamp();
+            newPoints.Add(new KeyValuePair<Point2D, string>(ramp, "Ramp"));
+
+            if (Tyr.BaseManager.Natural != null)
+            {
+                Point2D natural = Tyr.BaseManager.Natural.BaseLocation.Pos;
+                newPoints.Add(new KeyValuePair<Point2D, string>(natural, "Natural"));
+            }
+
+            TerrainMap.MarkedPoints = newPoints;
+        }
 
         public void Analyze()
         {

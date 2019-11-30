@@ -23,8 +23,9 @@ namespace DebugGui
     {
         const int RenderScale = 2;
         bool renderedOnce = false;
-
         SolidBrush pixelBrush;
+
+        public static List<KeyValuePair<Point2D, string>> MarkedPoints = new List<KeyValuePair<Point2D, string>>();
 
         public TerrainMap(Graphics _formGraphics, int _baseX, int _baseY) : base(_formGraphics, _baseX, _baseY)
         {
@@ -50,10 +51,23 @@ namespace DebugGui
                     pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, heightValue, heightValue, heightValue));
 
                     float posX = x - playArea.P0.X;
-                    float poxY = y - playArea.P0.Y;
+                    float posY = y - playArea.P0.Y;
 
-                    FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * poxY) + BaseY, RenderScale, RenderScale);
+                    FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
                 }
+            }
+
+            for (int index = 0; index < MarkedPoints.Count; index++)
+            {
+                KeyValuePair<Point2D, string> iter = MarkedPoints[index];
+
+                float posX = iter.Key.X - playArea.P0.X;
+                float posY = iter.Key.Y - playArea.P0.Y;
+
+                Font font = new Font("Arial", 12);
+                FormGraphics.DrawString(iter.Value, font, new SolidBrush(System.Drawing.Color.Red), new PointF((RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY));
+
+                //FormGraphics.FillRectangle(new SolidBrush(System.Drawing.Color.Red), , (RenderScale * poxY) + BaseY, RenderScale, RenderScale);
             }
 
             renderedOnce = true;

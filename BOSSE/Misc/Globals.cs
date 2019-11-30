@@ -47,5 +47,10 @@ namespace BOSSE
         /// Id of our player in the current match
         /// </summary>
         public static uint PlayerId = uint.MaxValue;
+
+        /// <summary>
+        /// Current logical frame count, starts at 0
+        /// </summary>
+        public static ulong CurrentFrameCount = 0;
     }
 }

@@ -12,13 +12,16 @@ namespace BOSSE
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
+
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static GameUtility;
+    using static UnitConstants;
+    using static AbilityConstants;
 
     public static class CommandBuilder
     {
-        public static Action CreateRawUnitCommand(int ability)
+        public static Action RawCommand(int ability)
         {
             Action action = new Action();
             action.ActionRaw = new ActionRaw();
@@ -28,9 +31,9 @@ namespace BOSSE
             return action;
         }
 
-        public static Action CreateAttackMoveAction(List<Unit> units, Vector3 target)
+        public static Action AttackMoveAction(List<Unit> units, Vector3 target)
         {
-            Action action = CreateRawUnitCommand((int)AbilityConstants.AbilityId.ATTACK);
+            Action action = RawCommand((int)AbilityConstants.AbilityId.ATTACK);
 
             action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
             action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = target.X;
@@ -42,9 +45,9 @@ namespace BOSSE
             return action;
         }
 
-        public static Action CreateMoveAction(List<Unit> units, Vector3 target)
+        public static Action MoveAction(List<Unit> units, Vector3 target)
         {
-            Action action = CreateRawUnitCommand((int)AbilityConstants.AbilityId.MOVE);
+            Action action = RawCommand((int)AbilityConstants.AbilityId.MOVE);
 
             action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
             action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = target.X;
@@ -52,6 +55,18 @@ namespace BOSSE
 
             foreach (var unit in units)
                 action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+
+            return action;
+        }
+
+        public static Action TrainAction(Unit fromCenter, UnitId unitTypeToBuild, bool allowQueue = false)
+        {
+            if (!allowQueue && fromCenter.QueuedOrders.Count > 0)
+                return null;
+
+            var abilityID = GetAbilityIdToBuildUnit(unitTypeToBuild);
+            var action = CommandBuilder.RawCommand(abilityID);
+            action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
 
             return action;
         }

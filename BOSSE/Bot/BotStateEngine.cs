@@ -25,32 +25,42 @@ namespace BOSSE
     public class BotStateEngine
     {
         /// <summary>
-        /// Entry point from main loop which updates the bot, called on each logical frame
+        /// Initializes bot layer, game has an initial state when this is called
         /// </summary>
-        public void Update()
+        public void Initialize()
         {
-            GameOutput.QueuedActions.Clear();
-
-            StrategicMapSet strategyMaps = StrategicMapSet.CalculateNewFromCurrentMapState();
-            DebugGui.InfluenceMapGui.NewInfluenceMapIsAvailable(strategyMaps.InfluenceMap, strategyMaps.xSize, strategyMaps.ySize);
-            DebugGui.TensionMapGui.NewTensionMapIsAvailable(strategyMaps.TensionMap, strategyMaps.xSize, strategyMaps.ySize);
-            DebugGui.VulnerabilityMapGui.NewVulnerabilityMapIsAvailable(strategyMaps.VulnerabilityMap, strategyMaps.xSize, strategyMaps.ySize);
-
+            // Tyr setup
             Tyr.Tyr.Debug = Globals.IsSinglePlayer;
             Tyr.Tyr.PlayerId = Globals.PlayerId;
-            Tyr.Tyr.MapAnalyzer = new Tyr.MapAnalyzer();
-            Tyr.Tyr.BaseManager = new Tyr.BaseManager();
             Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
+        }
+
+        /// <summary>
+        /// Entry point from main loop which updates the bot, called approx once a second in real time
+        /// Called before OnFrame on the first loop
+        /// Used to update expensive calculations
+        /// </summary>
+        public void Every22Frames()
+        {
+            // Update Tyr maps
             Tyr.Tyr.Observation = CurrentGameState.ObservationState;
             Tyr.Tyr.MapAnalyzer.Analyze();
+            Tyr.Tyr.MapAnalyzer.AddToGui();
 
-            Point2D rampPoint = Tyr.Tyr.MapAnalyzer.GetMainRamp();
+            // Update strategy maps
+            StrategicMapSet.CalculateNewFromCurrentMapState();
+        }
 
+        /// <summary>
+        /// Entry point from main loop which updates the bot, called on each logical frame
+        /// </summary>
+        public void OnFrame()
+        {
             // Build workers
             List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
             foreach (var rc in resourceCenters)
             {
-                Train(rc, UnitConstants.UnitId.SCV);
+                Queue(CommandBuilder.TrainAction(rc, UnitConstants.UnitId.SCV));
             }
 
             // Build depots
@@ -58,25 +68,60 @@ namespace BOSSE
             {
                 Construct(UnitConstants.UnitId.SUPPLY_DEPOT);
             }
-
-            var allWorkers = GetUnits(UnitConstants.Workers);
-            var action = CommandBuilder.CreateMoveAction(allWorkers, new Vector3(rampPoint.X, rampPoint.Y, 0));
-            GameOutput.QueuedActions.Add(action);
         }
 
-        private bool Train(Unit fromCenter, UnitId unitTypeToBuild, bool allowQueue = false)
+        /// <summary>
+        /// Builds the given type
+        /// </summary>
+        public static void Construct(UnitId unitType)
         {
-            if (!allowQueue && fromCenter.QueuedOrders.Count > 0)
-                return false;
+            const int radius = 12;
+            Vector3 startingSpot;
 
-            var abilityID = GetAbilityIdToBuildUnit(unitTypeToBuild);
-            var action = CommandBuilder.CreateRawUnitCommand(abilityID);
-            action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
-            GameOutput.QueuedActions.Add(action);
+            List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
+            if (resourceCenters.Count > 0)
+            {
+                startingSpot = resourceCenters[0].Position;
+            }
+            else
+            {
+                Log.Error($"Unable to construct {unitType} - no resource center was found");
+                return;
+            }
 
-            Log.Info($"Training unit {unitTypeToBuild}");
+            // Find a valid spot, the slow way
+            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+            Vector3 constructionSpot;
+            while (true)
+            {
+                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
 
-            return true;
+                //avoid building in the mineral line
+                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
+
+                //check if the building fits
+                if (!CanPlace(unitType, constructionSpot)) continue;
+
+                //ok, we found a spot
+                break;
+            }
+
+            Unit worker = GetAvailableWorker(constructionSpot);
+            if (worker == null)
+            {
+                Log.Error($"Unable to find worker to construct {unitType}");
+                return;
+            }
+
+            int abilityID = GetAbilityIdToBuildUnit(unitType);
+            Action constructAction = CommandBuilder.RawCommand(abilityID);
+            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
+            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
+            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
+            GameOutput.QueuedActions.Add(constructAction);
+
+            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()} / {constructionSpot.Y}");
         }
     }
 }

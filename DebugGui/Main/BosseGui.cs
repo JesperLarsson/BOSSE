@@ -32,6 +32,10 @@ namespace DebugGui
 
         public static void StartGui()
         {
+#if !DEBUG
+            return;
+#endif
+
             Thread guiThread = new Thread(GuiEnterLoop);
             guiThread.Start();
         }

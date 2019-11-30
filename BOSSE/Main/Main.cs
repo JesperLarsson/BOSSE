@@ -53,15 +53,28 @@ namespace BOSSE
 
             // Game has started, read initial state
             ReadInitialState().Wait();
+            Globals.BotRef.Initialize();
 
             // Main loop
+            Globals.CurrentFrameCount = 0;
             while (true)
             {
+                // Remove previous frame actions
+                GameOutput.QueuedActions.Clear();
+
+                // Read from sc2
                 ReadPerFrameState().Wait();
 
-                Globals.BotRef.Update();
+                // Update bot
+                if (Globals.CurrentFrameCount % 22 == 0)
+                {
+                    Globals.BotRef.Every22Frames();
+                }
+                Globals.BotRef.OnFrame();
 
+                // Send actions to sc2
                 SendQueuedActions().Wait();
+                Globals.CurrentFrameCount++;
             }
         }
 

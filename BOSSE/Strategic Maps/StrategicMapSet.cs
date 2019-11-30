@@ -21,6 +21,11 @@ namespace BOSSE
     public class StrategicMapSet
     {
         /// <summary>
+        /// Pointer to the latest version of our strategy layer maps
+        /// </summary>
+        public static StrategicMapSet LatestMapSet = null;
+
+        /// <summary>
         /// Map width, in float count
         /// </summary>
         public int xSize;
@@ -52,7 +57,6 @@ namespace BOSSE
         {
             StrategicMapSet outObj = new StrategicMapSet();
             RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
-            const int gridSize = 4;
 
             int xSize = playArea.P1.X - playArea.P0.X;
             int ySize = playArea.P1.Y - playArea.P0.Y;
@@ -72,7 +76,7 @@ namespace BOSSE
                         {
                             continue;
                         }
-                        
+
                         Vector2 tilePos = new Vector2(x, y);
                         Vector2 unitPos = new Vector2(unitIter.Pos.X - playArea.P0.X, unitIter.Pos.Y - playArea.P0.Y);
                         float distanceToUnit = Vector2.Distance(tilePos, unitPos);
@@ -117,7 +121,7 @@ namespace BOSSE
                 }
             }
 
-            // Calculate vulnerability map = tension - Abs(influence)
+            // Calculate vulnerability map = tension - abs(influence)
             outObj.VulnerabilityMap = new float[xSize, ySize];
             for (int x = 0; x < xSize; x++)
             {
@@ -129,6 +133,15 @@ namespace BOSSE
 
             outObj.xSize = xSize;
             outObj.ySize = ySize;
+
+            // Give GUI a reference to the new version
+            if (Globals.IsSinglePlayer)
+            {
+                DebugGui.InfluenceMapGui.NewInfluenceMapIsAvailable(outObj.InfluenceMap, outObj.xSize, outObj.ySize);
+                DebugGui.TensionMapGui.NewTensionMapIsAvailable(outObj.TensionMap, outObj.xSize, outObj.ySize);
+                DebugGui.VulnerabilityMapGui.NewVulnerabilityMapIsAvailable(outObj.VulnerabilityMap, outObj.xSize, outObj.ySize);
+            }
+
             return outObj;
         }
     }

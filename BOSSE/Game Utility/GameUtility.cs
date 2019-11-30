@@ -30,6 +30,17 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Queues the given action for output to sc2
+        /// </summary>
+        public static void Queue(Action action)
+        {
+            if (action == null)
+                return;
+
+            GameOutput.QueuedActions.Add(action);
+        }
+
+        /// <summary>
         /// Converts seconds to number of logical frames
         /// </summary>
         public static ulong SecsToFrames(int seconds)
@@ -157,60 +168,6 @@ namespace BOSSE
             if (result.Result.Placements.Count > 0)
                 return (result.Result.Placements[0].Result == ActionResult.Success);
             return false;
-        }
-
-        /// <summary>
-        /// Builds the given type
-        /// </summary>
-        public static void Construct(UnitId unitType)
-        {
-            const int radius = 12;
-            Vector3 startingSpot;
-
-            List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-            if (resourceCenters.Count > 0)
-            {
-                startingSpot = resourceCenters[0].Position;
-            }
-            else
-            {
-                Log.Error($"Unable to construct {unitType} - no resource center was found");
-                return;
-            }
-
-            // Find a valid spot, the slow way
-            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-            Vector3 constructionSpot;
-            while (true)
-            {
-                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
-
-                //avoid building in the mineral line
-                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
-
-                //check if the building fits
-                if (!CanPlace(unitType, constructionSpot)) continue;
-
-                //ok, we found a spot
-                break;
-            }
-
-            Unit worker = GetAvailableWorker(constructionSpot);
-            if (worker == null)
-            {
-                Log.Error($"Unable to find worker to construct {unitType}");
-                return;
-            }
-
-            int abilityID = GetAbilityIdToBuildUnit(unitType);
-            Action constructAction = CommandBuilder.CreateRawUnitCommand(abilityID);
-            constructAction.ActionRaw.UnitCommand.UnitTags.Add(worker.Tag);
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.X = constructionSpot.X;
-            constructAction.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = constructionSpot.Y;
-            GameOutput.QueuedActions.Add(constructAction);
-
-            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()} / {constructionSpot.Y}");
         }
 
         public static Unit GetAvailableWorker(Vector3 targetPosition)

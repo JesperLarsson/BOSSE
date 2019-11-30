@@ -17,7 +17,7 @@ namespace DebugGui
 
     public partial class MainForm : Form
     {
-        private const int RefreshIntervalMs = 5000;
+        private const int RefreshIntervalMs = 3000;
         private Graphics FormGraphics;
 
         private OverviewMap StandardMapRef;
