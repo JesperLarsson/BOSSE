@@ -32,6 +32,8 @@
             this.LabelTerrainMap = new System.Windows.Forms.Label();
             this.LabelPathMap = new System.Windows.Forms.Label();
             this.LabelInfluenceMap = new System.Windows.Forms.Label();
+            this.LabelTensionMap = new System.Windows.Forms.Label();
+            this.LabelVulnerabilityMap = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LabelStandardMap
@@ -70,11 +72,31 @@
             this.LabelInfluenceMap.TabIndex = 3;
             this.LabelInfluenceMap.Text = "Influence Map";
             // 
+            // LabelTensionMap
+            // 
+            this.LabelTensionMap.AutoSize = true;
+            this.LabelTensionMap.Location = new System.Drawing.Point(1522, 359);
+            this.LabelTensionMap.Name = "LabelTensionMap";
+            this.LabelTensionMap.Size = new System.Drawing.Size(97, 21);
+            this.LabelTensionMap.TabIndex = 4;
+            this.LabelTensionMap.Text = "Tension Map";
+            // 
+            // LabelVulnerabilityMap
+            // 
+            this.LabelVulnerabilityMap.AutoSize = true;
+            this.LabelVulnerabilityMap.Location = new System.Drawing.Point(1522, 697);
+            this.LabelVulnerabilityMap.Name = "LabelVulnerabilityMap";
+            this.LabelVulnerabilityMap.Size = new System.Drawing.Size(133, 21);
+            this.LabelVulnerabilityMap.TabIndex = 5;
+            this.LabelVulnerabilityMap.Text = "Vulnerability Map";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2049, 1195);
+            this.Controls.Add(this.LabelVulnerabilityMap);
+            this.Controls.Add(this.LabelTensionMap);
             this.Controls.Add(this.LabelInfluenceMap);
             this.Controls.Add(this.LabelPathMap);
             this.Controls.Add(this.LabelTerrainMap);
@@ -96,6 +118,8 @@
         private System.Windows.Forms.Label LabelTerrainMap;
         private System.Windows.Forms.Label LabelPathMap;
         private System.Windows.Forms.Label LabelInfluenceMap;
+        private System.Windows.Forms.Label LabelTensionMap;
+        private System.Windows.Forms.Label LabelVulnerabilityMap;
     }
 }
 

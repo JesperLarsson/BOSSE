@@ -31,6 +31,11 @@ namespace BOSSE
         {
             GameOutput.QueuedActions.Clear();
 
+            StrategicMapSet strategyMaps = StrategicMapSet.CalculateNewFromCurrentMapState();
+            DebugGui.InfluenceMapGui.NewInfluenceMapIsAvailable(strategyMaps.InfluenceMap, strategyMaps.xSize, strategyMaps.ySize);
+            DebugGui.TensionMapGui.NewTensionMapIsAvailable(strategyMaps.TensionMap, strategyMaps.xSize, strategyMaps.ySize);
+            DebugGui.VulnerabilityMapGui.NewVulnerabilityMapIsAvailable(strategyMaps.VulnerabilityMap, strategyMaps.xSize, strategyMaps.ySize);
+
             // Build workers
             List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
             foreach (var rc in resourceCenters)

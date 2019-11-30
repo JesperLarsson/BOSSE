@@ -63,7 +63,9 @@
     </Compile>
     <Compile Include="Maps\Base Class\BaseMap.cs" />
     <Compile Include="Maps\PathingMap.cs" />
-    <Compile Include="Maps\InfluenceMap.cs" />
+    <Compile Include="Maps\Strategic\VulnerabilityMapGui.cs" />
+    <Compile Include="Maps\Strategic\TensionMapGui.cs" />
+    <Compile Include="Maps\Strategic\InfluenceMap.cs" />
     <Compile Include="Maps\TerrainMap.cs" />
     <Compile Include="Maps\StandardMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
