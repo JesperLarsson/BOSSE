@@ -110,7 +110,18 @@ namespace BOSSE
                     if (onlyVisible && (unit.DisplayType != DisplayType.Visible))
                         continue;
 
-                    units.Add(new Unit(unit));
+                    // Get managed unit instance (adds things on top of sc2 api entity)
+                    Unit managedUnit;
+                    if (Unit.AllUnitInstances.ContainsKey(unit.Tag))
+                    {
+                        // Re-use existing instance
+                        managedUnit = Unit.AllUnitInstances[unit.Tag];
+                    }
+                    else
+                    {
+                        managedUnit = new Unit(unit);
+                    }
+                    units.Add(managedUnit);
                 }
             }
 

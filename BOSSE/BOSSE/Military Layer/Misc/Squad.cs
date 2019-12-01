@@ -27,12 +27,15 @@ namespace BOSSE
     {
         public string Name;
         public HashSet<Unit> AssignedUnits = new HashSet<Unit>();
-        public ISquadController ControlledBy;
+        public SquadControllerBase ControlledBy;
 
-        public Squad(string name, ISquadController controller = null)
+        public Squad(string name, SquadControllerBase controller = null)
         {
             if (controller == null)
-                controller = new DefaultSquadController(this);
+            {
+                controller = new DefaultSquadController();
+            }
+            controller.AssignSquad(this);
 
             ControlledBy = controller;
             Name = name;

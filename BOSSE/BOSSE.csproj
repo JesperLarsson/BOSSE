@@ -49,8 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE\Military Layer\Misc\ISquadController.cs" />
+    <Compile Include="BOSSE\Military Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Military Layer\Misc\Squad.cs" />
+    <Compile Include="BOSSE\Military Layer\Squad Controllers\ScoutingWorkerController.cs" />
     <Compile Include="BOSSE\Military Layer\Squad Controllers\DefaultSquadController.cs" />
     <Compile Include="BOSSE\Military Layer\SquadManager.cs" />
     <Compile Include="BOSSE\Sensor Layer\Implementations\OwnMilitaryUnitDiedSensor.cs" />

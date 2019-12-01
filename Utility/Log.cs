@@ -39,9 +39,14 @@ namespace BOSSE
             WriteLine("ERROR", line, true, parameters);
         }
 
-        public static void SanityCheckFailed(string line, params object[] parameters)
+        public static void SanityCheckFailed(string line, bool breakExe = true, params object[] parameters)
         {
             WriteLine("SANITY CHECK FAILED", line, true, parameters);
+
+            if (breakExe && System.Diagnostics.Debugger.IsAttached)
+            {
+                System.Diagnostics.Debugger.Break();
+            }
         }
 
         private static void Initialize()

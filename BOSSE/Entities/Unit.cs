@@ -22,9 +22,14 @@ namespace BOSSE
     public class Unit : GameObject
     {
         /// <summary>
+        /// Contained for all available unit objects
+        /// </summary>
+        public static Dictionary<ulong, Unit> AllUnitInstances = new Dictionary<ulong, Unit>();
+
+        /// <summary>
         /// Original data as received from StarCraft
         /// </summary>
-        private readonly SC2APIProtocol.Unit original;
+        private SC2APIProtocol.Unit original;
 
         /// <summary>
         /// Looked up unit information
@@ -48,6 +53,37 @@ namespace BOSSE
         {
             this.original = unit;
             this.unitInformation = CurrentGameState.GameData.Units[(int)unit.UnitType];
+
+#if DEBUG
+            if (AllUnitInstances.ContainsKey(this.Tag))
+            {
+                Log.SanityCheckFailed("Already have an instance of unit " + this.Tag);
+            }
+#endif
+
+            AllUnitInstances.Add(this.Tag, this);
+        }
+
+        /// <summary>
+        /// Refresh with latest observational data
+        /// </summary>
+        public void RefreshData(SC2APIProtocol.Unit newOriginal)
+        {
+            this.original = newOriginal;
+        }
+
+        /// <summary>
+        /// Refreshes current position etc of all units
+        /// </summary>
+        public static void RefreshAllUnitData()
+        {
+            foreach (SC2APIProtocol.Unit sc2UnitData in CurrentGameState.ObservationState.Observation.RawData.Units)
+            {
+                if (!Unit.AllUnitInstances.ContainsKey(sc2UnitData.Tag))
+                    continue;
+
+                Unit.AllUnitInstances[sc2UnitData.Tag].RefreshData(sc2UnitData);
+            }
         }
     }
 }

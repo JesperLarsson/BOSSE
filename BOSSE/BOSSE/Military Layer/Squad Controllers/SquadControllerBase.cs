@@ -23,8 +23,23 @@ namespace BOSSE
     /// <summary>
     /// Interface for all squad controllers
     /// </summary>
-    public interface ISquadController
+    public abstract class SquadControllerBase
     {
-        void Tick(SquadManager.MilitaryGoal currentGlobalGoal, Vector3? TargetPoint);
+        /// <summary>
+        /// The squad that we're controlling
+        /// </summary>
+        protected Squad controlledSquad;
+
+        public abstract void Tick(SquadManager.MilitaryGoal currentGlobalGoal, Vector3? TargetPoint);
+
+        public void AssignSquad(Squad newSquad)
+        {
+            if (controlledSquad != newSquad && controlledSquad != null)
+            {
+                Log.SanityCheckFailed("Assigned new squad to existing squad controller");
+            }
+
+            controlledSquad = newSquad;
+        }
     }
 }

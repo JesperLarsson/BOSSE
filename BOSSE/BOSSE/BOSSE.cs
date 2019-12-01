@@ -40,22 +40,6 @@ namespace BOSSE
             Tyr.Tyr.Debug = Globals.IsSinglePlayer;
             Tyr.Tyr.PlayerId = Globals.PlayerId;
             Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
-
-            // Initialize sub-managers
-            SensorManagerRef.Initialize();
-            GoalExecutorRef.Initialize();
-            SquadManagerRef.Initialize();
-
-            // Test sensor
-            SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
-            {
-                OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
-
-                foreach (var iter in details.NewStructures)
-                {
-                    Log.Info("Completed new building: " + iter.Name);
-                }
-            }));
         }
 
         /// <summary>
@@ -77,7 +61,7 @@ namespace BOSSE
         /// </summary>
         public void LongTermPeriodical()
         {
-            
+
         }
 
         /// <summary>
@@ -92,6 +76,26 @@ namespace BOSSE
             Tyr.Tyr.Observation = CurrentGameState.ObservationState;
             Tyr.Tyr.MapAnalyzer.Analyze();
             Tyr.Tyr.MapAnalyzer.AddToGui();
+
+            // Initialize sub-managers
+            SensorManagerRef.Initialize();
+            GoalExecutorRef.Initialize();
+            SquadManagerRef.Initialize();
+
+            // Test sensor
+            SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
+            {
+                OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
+
+                foreach (var iter in details.NewStructures)
+                {
+                    Log.Info("Completed new building: " + iter.Name);
+                }
+            }));
+
+            BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
+            Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
+            BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
         }
 
         /// <summary>
@@ -99,7 +103,8 @@ namespace BOSSE
         /// </summary>
         public void OnFrame()
         {
-            // Sensors should update first
+            Unit.RefreshAllUnitData();
+
             SensorManagerRef.Tick();
 
             GoalExecutorRef.Tick();

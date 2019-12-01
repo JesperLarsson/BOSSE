@@ -23,22 +23,12 @@ namespace BOSSE
     /// <summary>
     /// Standard squad controller without special logic, this is the default fallback suitable for many situations
     /// </summary>
-    public class DefaultSquadController : ISquadController
+    public class DefaultSquadController : SquadControllerBase
     {
-        /// <summary>
-        /// The squad that we're controlling
-        /// </summary>
-        private readonly Squad controlledSquad;
-
-        public DefaultSquadController(Squad squadToControl)
-        {
-            controlledSquad = squadToControl;
-        }
-
         /// <summary>
         /// Updates squad controller
         /// </summary>
-        public void Tick(SquadManager.MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
+        public override void Tick(SquadManager.MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
         {
             if (currentGlobalGoal == SquadManager.MilitaryGoal.DefendGeneral)
             {
