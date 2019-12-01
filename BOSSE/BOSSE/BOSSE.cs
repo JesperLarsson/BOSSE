@@ -20,24 +20,16 @@ namespace BOSSE
     using static AbilityConstants;
 
     /// <summary>
-    /// Main bot entry point
+    /// AI top layer
+    /// BOSSE - BOt Starcraft(2), e as in e-sports :)
     /// </summary>
     public class BOSSE
     {
-        /// <summary>
-        /// Executes the goals we have set
-        /// </summary>
+        // Pointers to our sub-managers - see class comment for details on what they do
         public static StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
-
-        /// <summary>
-        /// Manages our workers
-        /// </summary>
         public static WorkerManager WorkerManagerRef = new WorkerManager();
-
-        /// <summary>
-        /// Manges our army
-        /// </summary>
         public static SquadManager SquadManagerRef = new SquadManager();
+        public static SensorManager SensorManagerRef = new SensorManager();
 
         /// <summary>
         /// Initializes bot layer, game has an initial state when this is called
@@ -52,6 +44,7 @@ namespace BOSSE
             // Initialize sub-managers
             GoalExecutorRef.Initialize();
             SquadManagerRef.Initialize();
+            SensorManagerRef.Initialize();
         }
 
         /// <summary>
@@ -93,6 +86,9 @@ namespace BOSSE
         /// </summary>
         public void OnFrame()
         {
+            // Sensors should update first
+            SensorManagerRef.Tick();
+
             GoalExecutorRef.Tick();
             SquadManagerRef.Tick();
         }

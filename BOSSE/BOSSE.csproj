@@ -49,11 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE\Military - Squad Manager\Misc\ISquadController.cs" />
-    <Compile Include="BOSSE\Military - Squad Manager\Misc\Squad.cs" />
-    <Compile Include="BOSSE\Military - Squad Manager\Squad Controllers\DefaultSquadController.cs" />
-    <Compile Include="BOSSE\Military - Squad Manager\SquadManager.cs" />
-    <Compile Include="BOSSE\Managers\WorkerManager.cs" />
+    <Compile Include="BOSSE\Military Layer\Misc\ISquadController.cs" />
+    <Compile Include="BOSSE\Military Layer\Misc\Squad.cs" />
+    <Compile Include="BOSSE\Military Layer\Squad Controllers\DefaultSquadController.cs" />
+    <Compile Include="BOSSE\Military Layer\SquadManager.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Implementations\OwnStructureWasCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\SensorManager.cs" />
+    <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
     <Compile Include="Entities\GameObject.cs" />
     <Compile Include="Entities\Unit.cs" />
@@ -63,8 +65,9 @@
     <Compile Include="Game Utility\GameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
-    <Compile Include="Map Analysis %28Tyr%29\BaseManager.cs" />
-    <Compile Include="Map Analysis %28Tyr%29\MapAnalyzer.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensor.cs" />
+    <Compile Include="Static Analysis %28Tyr%29\BaseManager.cs" />
+    <Compile Include="Static Analysis %28Tyr%29\MapAnalyzer.cs" />
     <Compile Include="Misc\GeneralUtility.cs" />
     <Compile Include="Strategic Maps\StrategicMapSet.cs" />
     <Compile Include="Misc\Globals.cs" />
