@@ -32,7 +32,7 @@ namespace BOSSE
         public static SensorManager SensorManagerRef = new SensorManager();
 
         /// <summary>
-        /// Initializes bot layer, game has an initial state when this is called
+        /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
         /// </summary>
         public void Initialize()
         {
@@ -45,6 +45,16 @@ namespace BOSSE
             GoalExecutorRef.Initialize();
             SquadManagerRef.Initialize();
             SensorManagerRef.Initialize();
+
+            SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
+            {
+                OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
+
+                foreach (var iter in details.NewStructures)
+                {
+                    Log.Info("Completed new building: " + iter.Name);
+                }
+            }));
         }
 
         /// <summary>

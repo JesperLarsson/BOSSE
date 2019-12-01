@@ -25,19 +25,25 @@ namespace BOSSE
         public enum SensorId
         {
             NotSet = 0,
-            OwnStructureCompletedSensor
+            OwnStructureWasCompletedSensor
         }
         public SensorId Id = SensorId.NotSet;
 
         /// <summary>
         /// Callback events which are trigged when the sensor detects whatever it's looking for
         /// </summary>
-        public event EventHandler SensorTriggeredEvent;
+        private event EventHandler SensorTriggeredEvent;
 
         /// <summary>
         /// Updates sensor logic
         /// </summary>
         public abstract void Tick();
+
+        public void AddHandler(EventHandler handler)
+        {
+            Log.Info("Added new subscriber to sensor " + this);
+            SensorTriggeredEvent += handler;
+        }
 
         public override string ToString()
         {
@@ -49,7 +55,6 @@ namespace BOSSE
         /// </summary>
         protected void Trigger(EventArgs args)
         {
-            Log.Info("Sensor: Triggered " + this);
             SensorTriggeredEvent?.Invoke(this, args);
         }
     }
