@@ -28,6 +28,11 @@ namespace BOSSE
         private Vector3? scoutTargetLocation = null;
 
         /// <summary>
+        /// Time that we last picked a new target, 0 = still going to enemy base
+        /// </summary>
+        private ulong lastTargetFrame = 0;
+
+        /// <summary>
         /// Updates squad controller
         /// </summary>
         public override void Tick(SquadManager.MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
@@ -54,15 +59,19 @@ namespace BOSSE
                 Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + scoutTargetLocation);
             }
 
-            // Pick new spot when we get close
-            double distanceToTarget = worker.GetDistance(scoutTargetLocation.Value);
-            if (distanceToTarget < 17)
+            if ((Globals.CurrentFrameCount - lastTargetFrame) > 50)
             {
-                int xDiff = Globals.Random.Next(-25, 25);
-                int yDiff = Globals.Random.Next(-25, 25);
-
-                scoutTargetLocation = new Vector3(worker.Position.X + xDiff, worker.Position.Y + yDiff, worker.Position.Z);
-                Log.Bulk("ScoutingWorkerController - New scout target = " + scoutTargetLocation);
+                var candidateLocations = GetUnits(UnitConstants.Production, Alliance.Enemy, false, false);
+                if (candidateLocations.Count == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    // Pick a previous building location
+                    int randIndex = Globals.Random.Next(0, candidateLocations.Count - 1);
+                    scoutTargetLocation = candidateLocations[randIndex].Position;
+                }
             }
 
             // Move towards location

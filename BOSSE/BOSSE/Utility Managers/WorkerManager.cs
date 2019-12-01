@@ -38,7 +38,7 @@ namespace BOSSE
                 return;
             }
 
-            List<Unit> workers = GetUnits(UnitId.SCV).Where(p => p.CurrentOrder == null).ToList();
+            List<Unit> workers = GetUnits(UnitId.SCV).Where(p => p.CurrentOrder == null && p.IsReserved == false).ToList();
             Queue(CommandBuilder.MineMineralsAction(workers, mineralToReturnTo));
 
             if (workers.Count > 0)

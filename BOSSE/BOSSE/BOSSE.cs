@@ -95,6 +95,7 @@ namespace BOSSE
 
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
             Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
+            scoutingWorker.IsReserved = true;
             BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
         }
 

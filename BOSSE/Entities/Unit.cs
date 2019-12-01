@@ -36,6 +36,11 @@ namespace BOSSE
         /// </summary>
         private readonly UnitTypeData unitInformation;
 
+        /// <summary>
+        /// If set, this unit is reserved for a specific use and should not be touched by general management classes
+        /// </summary>
+        public bool IsReserved = false;
+
         public string Name { get => unitInformation.Name; }
         public ulong Tag { get => original.Tag; }
         public uint UnitType { get => original.UnitType; }
