@@ -79,7 +79,7 @@ namespace DebugGui
                 }
             }
 
-            // Units, updates every GUI frame
+            // Units
             foreach (Unit unitIter in BosseGui.ObservationState.Observation.RawData.Units)
             {
                 SolidBrush unitBrush;
@@ -101,7 +101,7 @@ namespace DebugGui
                 }
 
                 float x = unitIter.Pos.X - playArea.P0.X;
-                float y = unitIter.Pos.Y - playArea.P0.Y;
+                float y = CompensateY(unitIter.Pos.Y - playArea.P0.Y);
                 
                 FormGraphics.FillRectangle(unitBrush, (RenderScale * x) + BaseX, (RenderScale * y) + BaseY, RenderScale, RenderScale);
             }
@@ -120,14 +120,16 @@ namespace DebugGui
             }
 
             float posX = x - playArea.P0.X;
-            float poxY = y - playArea.P0.Y;
+            float posY = y - playArea.P0.Y;
 
             if (posX > (playArea.P1.X - playArea.P0.X))
                 return;
-            if (poxY > playArea.P1.Y - playArea.P0.Y)
+            if (posY > playArea.P1.Y - playArea.P0.Y)
                 return;
 
-            FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * poxY) + BaseY, RenderScale, RenderScale);
+            posY = CompensateY(posY);
+
+            FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
         }
     }
 }

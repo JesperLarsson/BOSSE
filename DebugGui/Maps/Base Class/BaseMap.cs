@@ -31,5 +31,16 @@ namespace DebugGui
             BaseX = _baseX;
             BaseY = _baseY + 10;
         }
+
+        /// <summary>
+        /// We need to compensate Y coordinates, game uses from the bottom left, and GUI from the top left
+        /// </summary>
+        protected float CompensateY(float y)
+        {
+            var playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
+
+            float temp = playArea.P1.Y - y - playArea.P0.Y;
+            return temp;
+        }
     }
 }

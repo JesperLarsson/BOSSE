@@ -55,7 +55,7 @@ namespace DebugGui
                     brushColor = new SolidBrush(System.Drawing.Color.FromArgb(255, Math.Min(value, 255), Math.Min(value, 255), Math.Min(value, 255)));
 
                     float xPos = x;
-                    float yPos = y;
+                    float yPos = CompensateY(y);
 
                     FormGraphics.FillRectangle(brushColor, (RenderScale * xPos) + BaseX, (RenderScale * yPos) + BaseY, RenderScale, RenderScale);
                 }

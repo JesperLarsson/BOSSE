@@ -51,7 +51,7 @@ namespace DebugGui
                     pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, heightValue, heightValue, heightValue));
 
                     float posX = x - playArea.P0.X;
-                    float posY = y - playArea.P0.Y;
+                    float posY = CompensateY(y - playArea.P0.Y);
 
                     FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
                 }
@@ -62,7 +62,7 @@ namespace DebugGui
                 KeyValuePair<Point2D, string> iter = MarkedPoints[index];
 
                 float posX = iter.Key.X - playArea.P0.X;
-                float posY = iter.Key.Y - playArea.P0.Y;
+                float posY = CompensateY(iter.Key.Y - playArea.P0.Y);
 
                 Font font = new Font("Arial", 12);
                 FormGraphics.DrawString(iter.Value, font, new SolidBrush(System.Drawing.Color.Red), new PointF((RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY));

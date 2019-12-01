@@ -62,7 +62,7 @@ namespace DebugGui
                     }
 
                     float xPos = x;
-                    float yPos = y;
+                    float yPos = CompensateY(y);
 
                     FormGraphics.FillRectangle(brushColor, (RenderScale * xPos) + BaseX, (RenderScale * yPos) + BaseY, RenderScale, RenderScale);
                 }

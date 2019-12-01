@@ -48,7 +48,7 @@ namespace BOSSE
             // Create main squad
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
 
-            // Subscribe to built marines
+            // Subscribe to built marines and add them to main squad
             int marineCount = 0;
             BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
             {

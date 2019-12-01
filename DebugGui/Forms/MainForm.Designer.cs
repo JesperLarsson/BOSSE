@@ -41,9 +41,9 @@
             this.LabelStandardMap.AutoSize = true;
             this.LabelStandardMap.Location = new System.Drawing.Point(12, 21);
             this.LabelStandardMap.Name = "LabelStandardMap";
-            this.LabelStandardMap.Size = new System.Drawing.Size(233, 21);
+            this.LabelStandardMap.Size = new System.Drawing.Size(111, 21);
             this.LabelStandardMap.TabIndex = 0;
-            this.LabelStandardMap.Text = "Overview Map (API coordinates)";
+            this.LabelStandardMap.Text = "Overview Map";
             // 
             // LabelTerrainMap
             // 
