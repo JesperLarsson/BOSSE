@@ -54,13 +54,15 @@ namespace BOSSE
         /// </summary>
         public static Vector3? GuessEnemyBaseLocation()
         {
-            // Most maps are symmetrical, so we should be in mirror locations
-            Vector3 ourLocation = Globals.MainBaseLocation;
+            foreach (var startLocation in CurrentGameState.GameInformation.StartRaw.StartLocations)
+            {
+                var enemyLocation = new Vector3(startLocation.X, startLocation.Y, 0);
+                var distance = Vector3.Distance(enemyLocation, Globals.MainBaseLocation);
+                if (distance > 30)
+                    return enemyLocation;
+            }
 
-            float x = CurrentGameState.GameInformation.StartRaw.MapSize.X - ourLocation.X;
-            float y = CurrentGameState.GameInformation.StartRaw.MapSize.X - ourLocation.Y;
-
-            return new Vector3(x, y, 0);
+            return null;
         }
 
         /// <summary>

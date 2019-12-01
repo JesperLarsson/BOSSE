@@ -44,6 +44,32 @@ namespace BOSSE
         public void Initialize()
         {
             SetNewGoal(StrategicGoal.EconomyFocus);
+
+            // Create main squad
+            BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
+
+            // Subscribe to built marines
+            int marineCount = 0;
+            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
+            {
+                OwnMilitaryUnitWasCompletedSensor.Details details = (OwnMilitaryUnitWasCompletedSensor.Details)args;
+
+                foreach (var iter in details.NewUnits)
+                {
+                    if (iter.UnitType != (uint)UnitId.MARINE)
+                        continue;
+
+                    var squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
+                    squad.AddUnit(iter);
+                    Log.Info("  Added marine to main squad: " + iter.Tag);
+                    marineCount++;
+                }
+
+                if (marineCount > 10)
+                {
+                    BOSSE.SquadManagerRef.SetNewGoal(SquadManager.MilitaryGoal.AttackGeneral);
+                }
+            }));
         }
 
         /// <summary>

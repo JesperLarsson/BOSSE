@@ -42,10 +42,11 @@ namespace BOSSE
             Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
 
             // Initialize sub-managers
+            SensorManagerRef.Initialize();
             GoalExecutorRef.Initialize();
             SquadManagerRef.Initialize();
-            SensorManagerRef.Initialize();
 
+            // Test sensor
             SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
             {
                 OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;

@@ -78,9 +78,22 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Gets the given squad name
+        /// </summary>
+        public Squad GetSquadOrNull(string squadName)
+        {
+            if (!Squads.ContainsKey(squadName))
+            {
+                return null;
+            }
+
+            return Squads[squadName];
+        }
+
+        /// <summary>
         /// Sets a new military goal
         /// </summary>
-        public void SetNewGoal(MilitaryGoal newGoal, Vector3? newPoint)
+        public void SetNewGoal(MilitaryGoal newGoal, Vector3? newPoint = null)
         {
             if (newGoal == CurrentMilitaryGoal)
                 return;

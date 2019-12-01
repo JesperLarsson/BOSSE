@@ -25,7 +25,8 @@ namespace BOSSE
         public enum SensorId
         {
             NotSet = 0,
-            OwnStructureWasCompletedSensor
+            OwnStructureWasCompletedSensor,
+            OwnMilitaryUnitWasCompletedSensor
         }
         public SensorId Id = SensorId.NotSet;
 

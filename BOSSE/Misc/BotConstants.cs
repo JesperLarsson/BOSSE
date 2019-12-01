@@ -49,6 +49,6 @@ namespace BOSSE
         /// <summary>
         /// Number of workers to aim for at each base
         /// </summary>
-        public const int TargetWorkerPerBase = 24;
+        public const int TargetWorkerPerBase = 16;
     }
 }

@@ -136,12 +136,12 @@ namespace BOSSE.Tyr
                 {
                     if (SC2Util.DistanceSq(loc.Pos, SC2Util.Point(141.5f, 112.5f)) <= 5 * 5 && (loc.Pos.X != 141.5 || loc.Pos.Y != 112.5))
                     {
-                        Log.Info("Incorrect base location, fixing: " + loc.Pos);
+                        Log.Bulk("Incorrect base location, fixing: " + loc.Pos);
                         loc.Pos = SC2Util.Point(141.5f, 112.5f);
                     }
                     else if (SC2Util.DistanceSq(loc.Pos, SC2Util.Point(34.5f, 63.5f)) <= 5 * 5 && (loc.Pos.X != 34.5 || loc.Pos.Y != 63.5))
                     {
-                        Log.Info("Incorrect base location, fixing: " + loc.Pos);
+                        Log.Bulk("Incorrect base location, fixing: " + loc.Pos);
                         loc.Pos = SC2Util.Point(34.5f, 63.5f);
                     }
                 }
@@ -209,7 +209,7 @@ namespace BOSSE.Tyr
             WallDistances = Distances(unPathable);
 
             stopWatch.Stop();
-            Log.Info("Total time to find wall: " + stopWatch.ElapsedMilliseconds);
+            Log.Bulk("Total time to find wall: " + stopWatch.ElapsedMilliseconds);
         }
 
         public Point2D GetMainRamp()
@@ -343,9 +343,9 @@ namespace BOSSE.Tyr
             }
 
             if (loc.Gasses.Count != 2)
-                Log.Info("Wrong number of gasses, found: " + loc.Gasses.Count);
+                Log.Bulk("Wrong number of gasses, found: " + loc.Gasses.Count);
             if (closestDist >= 999999)
-                Log.Info("Unable to find proper base placement: " + loc.Pos);
+                Log.Bulk("Unable to find proper base placement: " + loc.Pos);
 
         }
 
@@ -796,7 +796,7 @@ namespace BOSSE.Tyr
         //            if (mainExits[x, y])
         //            {
         //                int newDist = startDistances[x, y];
-        //                Log.Info("Ramp distance: " + newDist);
+        //                Log.Bulk("Ramp distance: " + newDist);
         //                if (newDist < dist)
         //                {
         //                    dist = newDist;

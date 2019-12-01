@@ -53,6 +53,7 @@
     <Compile Include="BOSSE\Military Layer\Misc\Squad.cs" />
     <Compile Include="BOSSE\Military Layer\Squad Controllers\DefaultSquadController.cs" />
     <Compile Include="BOSSE\Military Layer\SquadManager.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Implementations\OwnMilitaryUnitWasCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\Implementations\OwnStructureWasCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\SensorManager.cs" />
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />

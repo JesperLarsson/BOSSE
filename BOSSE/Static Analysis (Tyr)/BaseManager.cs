@@ -48,7 +48,7 @@ namespace BOSSE.Tyr
                 else if (Tyr.MapAnalyzer.MainAndPocketArea[loc.Pos])
                 {
                     Pocket = newBase;
-                    Log.Info("Found pocket base at: " + Pocket.BaseLocation.Pos);
+                    Log.Bulk("Found pocket base at: " + Pocket.BaseLocation.Pos);
                 }
                 else if (distanceToMain < dist)
                 {
