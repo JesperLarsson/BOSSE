@@ -122,7 +122,8 @@ namespace BOSSE
         {
             // Build depots as we need them
             UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
-            uint supplyDiff = MaxSupply - CurrentSupply;
+            uint pendingFood = (uint)(GetPendingBuildingCount(UnitId.SUPPLY_DEPOT) * houseInfo.FoodProvided);
+            uint supplyDiff = MaxSupply - CurrentSupply - pendingFood;
             while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
                 BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
