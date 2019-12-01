@@ -24,12 +24,13 @@ namespace BOSSE
         /// <summary>
         /// Name => Sensor instance mapping
         /// </summary>
-        private Dictionary<Sensor.SensorId, Sensor> ActiveSensors = new Dictionary<Sensor.SensorId, Sensor>();
+        private readonly Dictionary<Sensor.SensorId, Sensor> ActiveSensors = new Dictionary<Sensor.SensorId, Sensor>();
 
         public void Initialize()
         {
             AddSensor(new OwnStructureWasCompletedSensor());
             AddSensor(new OwnMilitaryUnitWasCompletedSensor());
+            AddSensor(new OwnMilitaryUnitDiedSensor());
         }
 
         public void AddSensor(Sensor newSensor)

@@ -17,9 +17,9 @@ namespace BOSSE
     using static AbilityConstants;
 
     /// <summary>
-    /// Sensor - Triggers if one of our own military units has finished training
+    /// Sensor - Triggers if one of our own units died
     /// </summary>
-    public class OwnMilitaryUnitWasCompletedSensor : Sensor
+    public class OwnMilitaryUnitDiedSensor : Sensor
     {
         private bool HasInitialized = false;
         private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
@@ -29,17 +29,17 @@ namespace BOSSE
         /// </summary>
         public class Details : EventArgs
         {
-            public List<Unit> NewUnits;
+            public List<Unit> KilledUnits;
 
             public Details(List<Unit> completedStructures)
             {
-                NewUnits = completedStructures;
+                KilledUnits = completedStructures;
             }
         }
 
-        public OwnMilitaryUnitWasCompletedSensor()
+        public OwnMilitaryUnitDiedSensor()
         {
-            Id = SensorId.OwnMilitaryUnitWasCompletedSensor;
+            Id = SensorId.OwnMilitaryUnitDiedSensor;
         }
 
         /// <summary>
@@ -48,23 +48,34 @@ namespace BOSSE
         public override void Tick()
         {
             List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, onlyCompleted: true);
+            List<Unit> killedUnits = new List<Unit>();
 
-            List<Unit> newStructures = new List<Unit>();
-            foreach (Unit iter in currentUnits)
+            foreach (uint prevIterTag in PreviousUnitTags)
             {
-                if (!PreviousUnitTags.Contains(iter.Tag))
+                bool found = false;
+                Unit refUnits = null;
+                foreach (Unit currentUnit in currentUnits)
                 {
-                    newStructures.Add(iter);
-                    PreviousUnitTags.Add(iter.Tag);
+                    if (currentUnit.Tag == prevIterTag)
+                    {
+                        found = true;
+                        continue;
+                    }
+                }
+
+                if (!found)
+                {
+                    killedUnits.Add(refUnits);
+                    PreviousUnitTags.Remove(prevIterTag);
                 }
             }
 
             if (HasInitialized)
             {
-                if (newStructures.Count == 0)
+                if (killedUnits.Count == 0)
                     return;
 
-                var details = new Details(newStructures);
+                var details = new Details(killedUnits);
                 Trigger(details);
             }
             else

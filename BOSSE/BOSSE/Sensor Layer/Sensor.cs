@@ -26,7 +26,8 @@ namespace BOSSE
         {
             NotSet = 0,
             OwnStructureWasCompletedSensor,
-            OwnMilitaryUnitWasCompletedSensor
+            OwnMilitaryUnitWasCompletedSensor,
+            OwnMilitaryUnitDiedSensor,
         }
         public SensorId Id = SensorId.NotSet;
 

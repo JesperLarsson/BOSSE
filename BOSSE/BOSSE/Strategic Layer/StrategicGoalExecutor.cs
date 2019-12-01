@@ -125,8 +125,8 @@ namespace BOSSE
             uint supplyDiff = MaxSupply - CurrentSupply;
             while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
-                BuildStructureAnyWhere(UnitConstants.UnitId.SUPPLY_DEPOT);
-                supplyDiff -= (uint)houseInfo.FoodProvided;
+                BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
+                supplyDiff += (uint)houseInfo.FoodProvided;
                 CurrentMinerals -= houseInfo.MineralCost;
             }
         }
@@ -144,7 +144,7 @@ namespace BOSSE
             if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost)
             {
                 // Build barracks
-                BuildStructureAnyWhere(UnitConstants.UnitId.BARRACKS);
+                BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.BARRACKS);
                 CurrentMinerals -= raxInfo.MineralCost;
             }
             else
@@ -183,6 +183,7 @@ namespace BOSSE
                     if (CurrentMinerals >= workerInfo.MineralCost && CurrentSupply >= workerInfo.FoodRequired)
                     {
                         Queue(CommandBuilder.TrainAction(cc, UnitConstants.UnitId.SCV));
+                        workerCount++;
                     }
                 }
             }
@@ -193,10 +194,10 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Builds the given type anywhere, palceholder for a better solution
+        /// Builds the given type anywhere, placeholder for a better solution
         /// Super slow, polls the game for a location
         /// </summary>
-        public static void BuildStructureAnyWhere(UnitId unitType)
+        public static void BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId unitType)
         {
             const int radius = 12;
             Vector3 startingSpot;
@@ -237,7 +238,7 @@ namespace BOSSE
             }
 
             Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot));
-            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()} / {constructionSpot.Y}");
+            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()}");
         }
     }
 }

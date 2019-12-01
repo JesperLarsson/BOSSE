@@ -36,6 +36,25 @@ namespace BOSSE
 
             ControlledBy = controller;
             Name = name;
+
+            // Subscribe to "unit died" event - Remove it from the squad
+            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitDiedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
+            {
+                OwnMilitaryUnitDiedSensor.Details details = (OwnMilitaryUnitDiedSensor.Details)args;
+
+                var ownedUnits = AssignedUnits.ToList();
+                foreach (var killedIter in details.KilledUnits)
+                {
+                    ownedUnits = ownedUnits.Where(x => x.Tag != killedIter.Tag).ToList();
+                }
+
+                HashSet<Unit> newUnitSet = new HashSet<Unit>();
+                foreach (var iter in ownedUnits)
+                {
+                    Log.Info($"Removed unit {iter.Tag} from squad {Name} (unit died)");
+                    newUnitSet.Add(iter);
+                }
+            }));
         }
 
         public void AddUnit(Unit newUnit)

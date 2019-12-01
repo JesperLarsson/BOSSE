@@ -77,10 +77,7 @@ namespace BOSSE
         /// </summary>
         public void LongTermPeriodical()
         {
-            // Update Tyr maps
-            Tyr.Tyr.Observation = CurrentGameState.ObservationState;
-            Tyr.Tyr.MapAnalyzer.Analyze();
-            Tyr.Tyr.MapAnalyzer.AddToGui();
+            
         }
 
         /// <summary>
@@ -90,6 +87,11 @@ namespace BOSSE
         {
             // Set main location
             Globals.MainBaseLocation = GetUnits(UnitId.COMMAND_CENTER)[0].Position;
+
+            // Update Tyr maps
+            Tyr.Tyr.Observation = CurrentGameState.ObservationState;
+            Tyr.Tyr.MapAnalyzer.Analyze();
+            Tyr.Tyr.MapAnalyzer.AddToGui();
         }
 
         /// <summary>

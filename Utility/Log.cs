@@ -21,7 +21,7 @@ namespace BOSSE
 
         public static void Bulk(string line, params object[] parameters)
         {
-            WriteLine("BULK", line, true, parameters);
+            WriteLine("BULK", line, false, parameters);
         }
 
         public static void Info(string line, params object[] parameters)
