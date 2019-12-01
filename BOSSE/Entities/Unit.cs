@@ -48,8 +48,9 @@ namespace BOSSE
         public float VespeneCost { get => unitInformation.VespeneCost; }
         public RepeatedField<UnitOrder> QueuedOrders { get => original.Orders; }
         public UnitOrder CurrentOrder { get => QueuedOrders.Count > 0 ? QueuedOrders[0] : null; }
+        public Vector3 Position { get => new Vector3(original.Pos.X, original.Pos.Y, original.Pos.Z); }
 
-        public Unit(SC2APIProtocol.Unit unit) : base(position: new Vector3(unit.Pos.X, unit.Pos.Y, unit.Pos.Z))
+        public Unit(SC2APIProtocol.Unit unit) : base()
         {
             this.original = unit;
             this.unitInformation = CurrentGameState.GameData.Units[(int)unit.UnitType];
@@ -84,6 +85,16 @@ namespace BOSSE
 
                 Unit.AllUnitInstances[sc2UnitData.Tag].RefreshData(sc2UnitData);
             }
+        }
+
+        public double GetDistance(Unit otherUnit)
+        {
+            return Vector3.Distance(Position, otherUnit.Position);
+        }
+
+        public double GetDistance(Vector3 location)
+        {
+            return Vector3.Distance(Position, location);
         }
     }
 }

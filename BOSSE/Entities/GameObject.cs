@@ -21,21 +21,6 @@ namespace BOSSE
     /// </summary>
     public abstract class GameObject
     {
-        public Vector3 Position;
 
-        public GameObject(Vector3 position)
-        {
-            this.Position = position;
-        }
-
-        public double GetDistance(Unit otherUnit)
-        {
-            return Vector3.Distance(Position, otherUnit.Position);
-        }
-
-        public double GetDistance(Vector3 location)
-        {
-            return Vector3.Distance(Position, location);
-        }
     }
 }

@@ -56,12 +56,12 @@ namespace BOSSE
 
             // Pick new spot when we get close
             double distanceToTarget = worker.GetDistance(scoutTargetLocation.Value);
-            if (distanceToTarget < 8)
+            if (distanceToTarget < 17)
             {
-                int xDiff = Globals.Random.Next(5, 10);
-                int yDiff = Globals.Random.Next(5, 10);
+                int xDiff = Globals.Random.Next(-25, 25);
+                int yDiff = Globals.Random.Next(-25, 25);
 
-                scoutTargetLocation = new Vector3(worker.Position.X + xDiff, worker.Position.Y + yDiff, 0);
+                scoutTargetLocation = new Vector3(worker.Position.X + xDiff, worker.Position.Y + yDiff, worker.Position.Z);
                 Log.Bulk("ScoutingWorkerController - New scout target = " + scoutTargetLocation);
             }
 

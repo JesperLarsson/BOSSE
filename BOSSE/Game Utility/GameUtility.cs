@@ -44,7 +44,10 @@ namespace BOSSE
         public static void Queue(Action action)
         {
             if (action == null)
+            {
+                Log.Warning("Tried to queue invalid action");
                 return;
+            }
 
             GameOutput.QueuedActions.Add(action);
         }

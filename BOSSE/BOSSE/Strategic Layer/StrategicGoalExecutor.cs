@@ -156,7 +156,7 @@ namespace BOSSE
 
                 foreach (Unit rax in activeRaxes)
                 {
-                    if (CurrentMinerals < marineInfo.MineralCost || CurrentSupply < marineInfo.FoodRequired)
+                    if (CurrentMinerals < marineInfo.MineralCost || AvailableSupply < marineInfo.FoodRequired)
                     {
                         break;
                     }
@@ -181,7 +181,7 @@ namespace BOSSE
                 UnitTypeData workerInfo = GetUnitInfo(UnitId.SCV);
                 foreach (Unit cc in commandCenters)
                 {
-                    if (CurrentMinerals >= workerInfo.MineralCost && CurrentSupply >= workerInfo.FoodRequired)
+                    if (CurrentMinerals >= workerInfo.MineralCost && AvailableSupply >= workerInfo.FoodRequired && cc.CurrentOrder == null)
                     {
                         Queue(CommandBuilder.TrainAction(cc, UnitConstants.UnitId.SCV));
                         workerCount++;
@@ -225,6 +225,7 @@ namespace BOSSE
                 if (IsInRange(constructionSpot, mineralFields, 5)) continue;
 
                 //check if the building fits
+                Log.Info("Running canplace hack...");
                 if (!CanPlace(unitType, constructionSpot)) continue;
 
                 //ok, we found a spot
