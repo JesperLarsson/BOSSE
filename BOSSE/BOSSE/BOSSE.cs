@@ -29,6 +29,8 @@ namespace BOSSE
         public static WorkerManager WorkerManagerRef = new WorkerManager();
         public static SquadManager SquadManagerRef = new SquadManager();
         public static SensorManager SensorManagerRef = new SensorManager();
+        public static DiscrepenceyDetector DiscrepenceyDetectorRef = new DiscrepenceyDetector();
+        public static GoalFormulator GoalFormulatorRef = new GoalFormulator();
 
         /// <summary>
         /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
@@ -81,6 +83,8 @@ namespace BOSSE
             SensorManagerRef.Initialize();
             GoalExecutorRef.Initialize();
             SquadManagerRef.Initialize();
+            DiscrepenceyDetectorRef.Initialize();
+            GoalFormulatorRef.Initialize();
 
             // Test sensor
             SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
@@ -106,9 +110,15 @@ namespace BOSSE
         {
             Unit.RefreshAllUnitData();
 
+            // Sensor layer
             SensorManagerRef.Tick();
 
+            // Strategic layer
+            DiscrepenceyDetectorRef.Tick();
+            GoalFormulatorRef.Tick();
             GoalExecutorRef.Tick();
+
+            // Tactical (military) layer
             SquadManagerRef.Tick();
         }
     }

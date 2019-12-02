@@ -3,7 +3,7 @@ BOt Starcraft(2) -e
 
 ## About
 BOSSE is an experimental Bot / Ai for the game StarCraft 2 written in C#, made by Jesper Larsson.
-Supports local debugging sessions (against Blizzard AI) as well as online ladder play,
+Supports local debugging sessions (against Blizzard AI) as well as online ladder play.
 
 ## Features:
 - Separation of goals from game logic (separated into military/scouting/economic and tactical goals)
