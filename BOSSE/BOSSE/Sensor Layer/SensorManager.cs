@@ -37,11 +37,10 @@ namespace BOSSE
         {
             if (ActiveSensors.ContainsKey(newSensor.Id))
             {
-                Log.Warning("Already have a sensor with name " + newSensor.ToString());
+                Log.SanityCheckFailed("Already have a sensor with name " + newSensor.ToString());
             }
 
             ActiveSensors[newSensor.Id] = newSensor;
-            Log.Info("Added new sensor: " + newSensor.ToString());
         }
 
         public Sensor GetSensor(Sensor.SensorId id)

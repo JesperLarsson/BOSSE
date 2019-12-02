@@ -25,7 +25,7 @@ namespace BOSSE
         // Debug settings (single player local mode)
         private static readonly string mapName = "ThunderbirdLE.SC2Map";
         private static readonly Race opponentRace = Race.Protoss;
-        private static readonly Difficulty opponentDifficulty = Difficulty.VeryEasy;
+        private static readonly Difficulty opponentDifficulty = Difficulty.Easy;
 
         /// <summary>
         /// Initializes the application

@@ -54,9 +54,9 @@
     <Compile Include="BOSSE\Military Layer\Squad Controllers\ScoutingWorkerController.cs" />
     <Compile Include="BOSSE\Military Layer\Squad Controllers\DefaultSquadController.cs" />
     <Compile Include="BOSSE\Military Layer\SquadManager.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Implementations\OwnMilitaryUnitDiedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Implementations\OwnMilitaryUnitWasCompletedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Implementations\OwnStructureWasCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnMilitaryUnitDiedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnMilitaryUnitWasCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnStructureWasCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\SensorManager.cs" />
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
@@ -72,6 +72,7 @@
     <Compile Include="Static Analysis %28Tyr%29\BaseManager.cs" />
     <Compile Include="Static Analysis %28Tyr%29\MapAnalyzer.cs" />
     <Compile Include="Misc\GeneralUtility.cs" />
+    <Compile Include="Static Analysis %28Tyr%29\TargetManager.cs" />
     <Compile Include="Strategic Maps\StrategicMapSet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Program.cs" />

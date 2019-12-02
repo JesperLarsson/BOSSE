@@ -59,7 +59,7 @@ namespace BOSSE
                 Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + scoutTargetLocation);
             }
 
-            if ((Globals.CurrentFrameCount - lastTargetFrame) > 50)
+            if ((Globals.CurrentFrameCount - lastTargetFrame) > 100)
             {
                 var candidateLocations = GetUnits(UnitConstants.Production, Alliance.Enemy, false, false);
                 if (candidateLocations.Count == 0)
@@ -71,6 +71,8 @@ namespace BOSSE
                     // Pick a previous building location
                     int randIndex = Globals.Random.Next(0, candidateLocations.Count - 1);
                     scoutTargetLocation = candidateLocations[randIndex].Position;
+
+                    lastTargetFrame = Globals.CurrentFrameCount;
                 }
             }
 

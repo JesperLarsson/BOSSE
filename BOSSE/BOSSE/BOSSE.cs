@@ -21,7 +21,6 @@ namespace BOSSE
 
     /// <summary>
     /// AI top layer
-    /// BOSSE - BOt Starcraft(2), e as in e-sports :)
     /// </summary>
     public class BOSSE
     {
@@ -36,10 +35,6 @@ namespace BOSSE
         /// </summary>
         public void Initialize()
         {
-            // Initialize Tyr (map analysis)
-            Tyr.Tyr.Debug = Globals.IsSinglePlayer;
-            Tyr.Tyr.PlayerId = Globals.PlayerId;
-            Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
         }
 
         /// <summary>
@@ -72,9 +67,14 @@ namespace BOSSE
             // Set main location
             Globals.MainBaseLocation = GetUnits(UnitId.COMMAND_CENTER)[0].Position;
 
-            // Update Tyr maps
+            // Initialize Tyr (map analysis)
+            Tyr.Tyr.Debug = Globals.IsSinglePlayer;
+            Tyr.Tyr.PlayerId = Globals.PlayerId;
+            Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
             Tyr.Tyr.Observation = CurrentGameState.ObservationState;
             Tyr.Tyr.MapAnalyzer.Analyze();
+            Tyr.Tyr.TargetManager.OnStart();
+            Tyr.Tyr.BaseManager.OnStart();
             Tyr.Tyr.MapAnalyzer.AddToGui();
 
             // Initialize sub-managers
@@ -87,7 +87,7 @@ namespace BOSSE
             {
                 OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
 
-                foreach (var iter in details.NewStructures)
+                foreach (Unit iter in details.NewStructures)
                 {
                     Log.Info("Completed new building: " + iter.Name);
                 }

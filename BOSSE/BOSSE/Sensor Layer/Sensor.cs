@@ -43,7 +43,7 @@ namespace BOSSE
 
         public void AddHandler(EventHandler handler)
         {
-            Log.Info("Added new subscriber to sensor " + this);
+            Log.Bulk("Sensor: New subscriber to " + this);
             SensorTriggeredEvent += handler;
         }
 

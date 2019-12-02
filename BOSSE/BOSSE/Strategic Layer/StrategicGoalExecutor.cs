@@ -26,14 +26,14 @@ namespace BOSSE
     {
         public enum StrategicGoal
         {
-            Unset = 0,
+            NotSet = 0,
 
             EconomyFocus,
             BuildMilitaryPlusEconomy,
             BuildMilitary,
             Expand
         }
-        public StrategicGoal CurrentStrategicGoal = StrategicGoal.Unset;
+        public StrategicGoal CurrentStrategicGoal = StrategicGoal.NotSet;
 
         const int MinSupplyMargin = 4;
         const int TargetWorkerPerBase = 24;
@@ -54,12 +54,12 @@ namespace BOSSE
             {
                 OwnMilitaryUnitWasCompletedSensor.Details details = (OwnMilitaryUnitWasCompletedSensor.Details)args;
 
-                foreach (var iter in details.NewUnits)
+                foreach (Unit iter in details.NewUnits)
                 {
                     if (iter.UnitType != (uint)UnitId.MARINE)
                         continue;
 
-                    var squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
+                    Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
                     squad.AddUnit(iter);
                     Log.Info("  Added marine to main squad: " + iter.Tag);
                     marineCount++;

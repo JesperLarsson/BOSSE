@@ -29,6 +29,7 @@ namespace BOSSE.Tyr
 
         public static MapAnalyzer MapAnalyzer = new MapAnalyzer();
         public static BaseManager BaseManager = new BaseManager();
+        public static TargetManager TargetManager = new TargetManager();
 
         public static ResponseGameInfo GameInfo;
         public static ResponseObservation Observation;
@@ -59,13 +60,40 @@ namespace BOSSE.Tyr
         {
             List<KeyValuePair<Point2D, string>> newPoints = new List<KeyValuePair<Point2D, string>>();
 
-            Point2D ramp = this.GetMainRamp();
-            newPoints.Add(new KeyValuePair<Point2D, string>(ramp, "Ramp"));
+            Point2D sRamp = this.GetMainRamp();
+            newPoints.Add(new KeyValuePair<Point2D, string>(sRamp, "Ramp"));
+
+            Point2D eRamp = this.GetEnemyRamp();
+            newPoints.Add(new KeyValuePair<Point2D, string>(eRamp, "EnemyRamp"));
 
             if (Tyr.BaseManager.Natural != null)
             {
-                Point2D natural = Tyr.BaseManager.Natural.BaseLocation.Pos;
-                newPoints.Add(new KeyValuePair<Point2D, string>(natural, "Natural"));
+                Point2D point = Tyr.BaseManager.Natural.BaseLocation.Pos;
+                newPoints.Add(new KeyValuePair<Point2D, string>(point, "Natural"));
+            }
+
+            if (Tyr.BaseManager.Main != null)
+            {
+                Point2D point = Tyr.BaseManager.Main.BaseLocation.Pos;
+                newPoints.Add(new KeyValuePair<Point2D, string>(point, "Main"));
+            }
+
+            if (Tyr.BaseManager.MainDefensePos != null)
+            {
+                Point2D point = Tyr.BaseManager.MainDefensePos;
+                newPoints.Add(new KeyValuePair<Point2D, string>(point, "MainDefense"));
+            }
+
+            if (Tyr.BaseManager.NaturalDefensePos != null)
+            {
+                Point2D point = Tyr.BaseManager.NaturalDefensePos;
+                newPoints.Add(new KeyValuePair<Point2D, string>(point, "NaturalDefense"));
+            }
+
+            for (int i = 0; i < Tyr.TargetManager.PotentialEnemyStartLocations.Count; i++)
+            {
+                Point2D point = Tyr.TargetManager.PotentialEnemyStartLocations[i];
+                newPoints.Add(new KeyValuePair<Point2D, string>(point, "PossibleEnemyStart" + i));
             }
 
             TerrainMap.MarkedPoints = newPoints;
@@ -769,61 +797,62 @@ namespace BOSSE.Tyr
             return false;
         }
 
-        //public Point2D GetEnemyRamp()
-        //{
-        //    if (EnemyRamp != null)
-        //        return EnemyRamp;
-        //    if (Tyr.TargetManager.PotentialEnemyStartLocations.Count != 1)
-        //        return null;
+        private Point2D EnemyRamp = null;
+        public Point2D GetEnemyRamp()
+        {
+            if (EnemyRamp != null)
+                return EnemyRamp;
+            if (Tyr.TargetManager.PotentialEnemyStartLocations.Count != 1)
+                return null;
 
-        //    int width = Tyr.GameInfo.StartRaw.MapSize.X;
-        //    int height = Tyr.GameInfo.StartRaw.MapSize.Y;
+            int width = Tyr.GameInfo.StartRaw.MapSize.X;
+            int height = Tyr.GameInfo.StartRaw.MapSize.Y;
 
-        //    Point2D start = Tyr.TargetManager.PotentialEnemyStartLocations[0];
-        //    BoolGrid enemyStartArea = Placement.GetConnected(start);
+            Point2D start = Tyr.TargetManager.PotentialEnemyStartLocations[0];
+            BoolGrid enemyStartArea = Placement.GetConnected(start);
 
 
-        //    BoolGrid chokes = Placement.Invert().GetAnd(Pathable);
-        //    BoolGrid mainExits = chokes.GetAdjacent(enemyStartArea);
+            BoolGrid chokes = Placement.Invert().GetAnd(Pathable);
+            BoolGrid mainExits = chokes.GetAdjacent(enemyStartArea);
 
-        //    int[,] startDistances = Distances(SC2Util.To2D(StartLocation));
+            int[,] startDistances = Distances(SC2Util.To2D(StartLocation));
 
-        //    int dist = 1000;
-        //    Point2D mainRamp = null;
-        //    for (int x = 0; x < width; x++)
-        //        for (int y = 0; y < height; y++)
-        //        {
-        //            if (mainExits[x, y])
-        //            {
-        //                int newDist = startDistances[x, y];
-        //                Log.Bulk("Ramp distance: " + newDist);
-        //                if (newDist < dist)
-        //                {
-        //                    dist = newDist;
-        //                    mainRamp = SC2Util.Point(x, y);
-        //                }
-        //            }
-        //        }
+            int dist = 1000;
+            Point2D mainRamp = null;
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                {
+                    if (mainExits[x, y])
+                    {
+                        int newDist = startDistances[x, y];
+                        Log.Bulk("Ramp distance: " + newDist);
+                        if (newDist < dist)
+                        {
+                            dist = newDist;
+                            mainRamp = SC2Util.Point(x, y);
+                        }
+                    }
+                }
 
-        //    BoolGrid enemyRamp = chokes.GetConnected(mainRamp);
+            BoolGrid enemyRamp = chokes.GetConnected(mainRamp);
 
-        //    float totalX = 0;
-        //    float totalY = 0;
-        //    float count = 0;
-        //    for (int x = 0; x < width; x++)
-        //        for (int y = 0; y < height; y++)
-        //        {
-        //            if (enemyRamp[x, y])
-        //            {
-        //                totalX += x;
-        //                totalY += y;
-        //                count++;
-        //            }
-        //        }
+            float totalX = 0;
+            float totalY = 0;
+            float count = 0;
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                {
+                    if (enemyRamp[x, y])
+                    {
+                        totalX += x;
+                        totalY += y;
+                        count++;
+                    }
+                }
 
-        //    EnemyRamp = new Point2D() { X = totalX / count, Y = totalY / count };
-        //    return EnemyRamp;
-        //}
+            EnemyRamp = new Point2D() { X = totalX / count, Y = totalY / count };
+            return EnemyRamp;
+        }
 
         public Point2D Walk(Point2D start, int[,] distances, int steps)
         {
