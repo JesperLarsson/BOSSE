@@ -24,17 +24,6 @@ namespace BOSSE
     /// </summary>
     public class StrategicGoalExecutor
     {
-        public enum StrategicGoal
-        {
-            NotSet = 0,
-
-            EconomyFocus,
-            BuildMilitaryPlusEconomy,
-            BuildMilitary,
-            Expand
-        }
-        public StrategicGoal CurrentStrategicGoal = StrategicGoal.NotSet;
-
         const int MinSupplyMargin = 4;
         const int TargetWorkerPerBase = 24;
 
@@ -43,8 +32,6 @@ namespace BOSSE
         /// </summary>
         public void Initialize()
         {
-            SetNewGoal(StrategicGoal.EconomyFocus);
-
             // Create main squad
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
 
@@ -67,7 +54,7 @@ namespace BOSSE
 
                 if (marineCount > 10)
                 {
-                    BOSSE.SquadManagerRef.SetNewGoal(SquadManager.MilitaryGoal.AttackGeneral);
+                    BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
                 }
             }));
         }
@@ -79,34 +66,23 @@ namespace BOSSE
         {
             AllStrategiesPreRun();
 
-            if (CurrentStrategicGoal == StrategicGoal.EconomyFocus)
+            StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
+            if (currentGoal == StrategicGoal.EconomyFocus)
             {
                 ExecuteEconomyFocus();
             }
-            else if (CurrentStrategicGoal == StrategicGoal.BuildMilitary)
+            else if (currentGoal == StrategicGoal.BuildMilitary)
             {
                 ExecuteBuildMilitary();
             }
             else
             {
-                throw new NotImplementedException("Unsupported " + CurrentStrategicGoal.ToString());
+                throw new NotImplementedException("Unsupported " + currentGoal.ToString());
             }
 
             AllStrategiesPostRun();
         }
-
-        /// <summary>
-        /// Pushes a new goal to accomplish
-        /// </summary>
-        public void SetNewGoal(StrategicGoal newGoal)
-        {
-            if (newGoal == CurrentStrategicGoal)
-                return;
-
-            Log.Info($"Setting new strategic goal = {newGoal} (was {this.CurrentStrategicGoal})");
-            this.CurrentStrategicGoal = newGoal;
-        }
-
+        
         /// <summary>
         /// Called before all strategies are executed
         /// </summary>
@@ -190,7 +166,7 @@ namespace BOSSE
             }
             else
             {
-                this.SetNewGoal(StrategicGoal.BuildMilitary);
+                BOSSE.StrategicGoalRef.SetNewGoal(StrategicGoal.BuildMilitary);
             }
         }
 

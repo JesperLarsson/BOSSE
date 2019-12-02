@@ -24,31 +24,7 @@ namespace BOSSE
     /// Manages our squads consisting of army units
     /// </summary>
     public class SquadManager
-    {
-        /// <summary>
-        /// Current global military goal
-        /// </summary>
-        private MilitaryGoal CurrentMilitaryGoal = MilitaryGoal.NotSet;
-
-        /// <summary>
-        /// Military target, if any (can be null)
-        /// </summary>
-        private Vector3? TargetPoint = null;
-
-        /// <summary>
-        /// Determines our overall military goal at this moment
-        /// Squad may have goals which override this behaviour
-        /// </summary>
-        public enum MilitaryGoal
-        {
-            NotSet = 0,
-
-            DefendGeneral,
-            AttackGeneral,
-            DefendPoint,
-            AttackPoint
-        }
-
+    {        
         /// <summary>
         /// All active squads
         /// Name => Squad instance mapping
@@ -60,7 +36,7 @@ namespace BOSSE
         /// </summary>
         public void Initialize()
         {
-            SetNewGoal(MilitaryGoal.DefendGeneral, null);
+            
         }
 
         /// <summary>
@@ -89,27 +65,17 @@ namespace BOSSE
 
             return Squads[squadName];
         }
-
-        /// <summary>
-        /// Sets a new military goal
-        /// </summary>
-        public void SetNewGoal(MilitaryGoal newGoal, Vector3? newPoint = null)
-        {
-            if (newGoal == CurrentMilitaryGoal)
-                return;
-
-            Log.Info($"Setting new military goal = {newGoal} (was {this.CurrentMilitaryGoal}) at {newPoint.ToStringSafe2()}");
-            this.CurrentMilitaryGoal = newGoal;
-        }
-
+        
         /// <summary>
         /// Updates all squad logic
         /// </summary>
         public void Tick()
         {
+            BOSSE.TacticalGoalRef.Get(out MilitaryGoal currentMilitaryGoal, out Vector3? currentMilitaryGoalPoint);
+
 #if DEBUG
             // Sanity check
-            if ((CurrentMilitaryGoal == MilitaryGoal.AttackPoint || CurrentMilitaryGoal == MilitaryGoal.DefendPoint) && TargetPoint == null)
+            if ((currentMilitaryGoal == MilitaryGoal.AttackPoint || currentMilitaryGoal == MilitaryGoal.DefendPoint) && currentMilitaryGoalPoint == null)
             {
                 Log.SanityCheckFailed("Point goal without a point specified");
                 GeneralUtility.BreakIfAttached();
@@ -118,7 +84,7 @@ namespace BOSSE
 
             foreach (var squadIter in Squads.Values)
             {
-                squadIter.ControlledBy.Tick(CurrentMilitaryGoal, TargetPoint);
+                squadIter.ControlledBy.Tick(currentMilitaryGoal, currentMilitaryGoalPoint);
             }
         }
     }

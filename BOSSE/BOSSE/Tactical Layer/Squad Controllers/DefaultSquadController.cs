@@ -28,9 +28,9 @@ namespace BOSSE
         /// <summary>
         /// Updates squad controller
         /// </summary>
-        public override void Tick(SquadManager.MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
+        public override void Tick(MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
         {
-            if (currentGlobalGoal == SquadManager.MilitaryGoal.DefendGeneral)
+            if (currentGlobalGoal == MilitaryGoal.DefendGeneral)
             {
                 // Move units to our ramp
                 Point2D ramp = Tyr.Tyr.MapAnalyzer.GetMainRamp();
@@ -43,12 +43,12 @@ namespace BOSSE
 
                 Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(ramp.X, ramp.Y, 0)));
             }
-            else if (currentGlobalGoal == SquadManager.MilitaryGoal.DefendPoint)
+            else if (currentGlobalGoal == MilitaryGoal.DefendPoint)
             {
                 // Attack move to point
                 Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(TargetPoint.Value.X, TargetPoint.Value.Y, 0)));
             }
-            else if (currentGlobalGoal == SquadManager.MilitaryGoal.AttackGeneral)
+            else if (currentGlobalGoal == MilitaryGoal.AttackGeneral)
             {
                 // Attack move towards enemy main base
                 Vector3? enemyLocation = GuessEnemyBaseLocation();
@@ -60,7 +60,7 @@ namespace BOSSE
 
                 Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(enemyLocation.Value.X, enemyLocation.Value.Y, 0)));
             }
-            else if (currentGlobalGoal == SquadManager.MilitaryGoal.AttackPoint)
+            else if (currentGlobalGoal == MilitaryGoal.AttackPoint)
             {
                 // Attack move to point
                 Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(TargetPoint.Value.X, TargetPoint.Value.Y, 0)));

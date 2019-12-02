@@ -24,19 +24,29 @@ namespace BOSSE
     /// </summary>
     public class BOSSE
     {
-        // Pointers to our sub-managers - see class comment for details on what they do
-        public static StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
-        public static WorkerManager WorkerManagerRef = new WorkerManager();
-        public static SquadManager SquadManagerRef = new SquadManager();
+        // Input managers
         public static SensorManager SensorManagerRef = new SensorManager();
+
+        // Strategic managers
         public static DiscrepenceyDetector DiscrepenceyDetectorRef = new DiscrepenceyDetector();
         public static GoalFormulator GoalFormulatorRef = new GoalFormulator();
+        public static StrategicGoalManager StrategicGoalRef = new StrategicGoalManager();
+        public static StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
+
+        // Tactical managers
+        public static TacticalGoalManager TacticalGoalRef = new TacticalGoalManager();
+        public static SquadManager SquadManagerRef = new SquadManager();
+
+        // Utility managers
+        public static WorkerManager WorkerManagerRef = new WorkerManager();
 
         /// <summary>
         /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
         /// </summary>
         public void Initialize()
         {
+            StrategicGoalRef.SetNewGoal(StrategicGoal.EconomyFocus);
+            TacticalGoalRef.SetNewGoal(MilitaryGoal.DefendGeneral, null);
         }
 
         /// <summary>

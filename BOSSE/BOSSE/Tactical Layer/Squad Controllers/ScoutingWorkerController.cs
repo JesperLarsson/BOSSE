@@ -35,7 +35,7 @@ namespace BOSSE
         /// <summary>
         /// Updates squad controller
         /// </summary>
-        public override void Tick(SquadManager.MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
+        public override void Tick(MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
         {
             // We don't care about the military goal provided
             if (this.controlledSquad.AssignedUnits.Count == 0)
