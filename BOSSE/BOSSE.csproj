@@ -52,6 +52,7 @@
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalManager.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
+    <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
     <Compile Include="Entities\Squad.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\ScoutingWorkerController.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\DefaultSquadController.cs" />

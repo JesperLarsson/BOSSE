@@ -19,18 +19,27 @@ namespace BOSSE
     using static GameUtility;
     using static UnitConstants;
     using static AbilityConstants;
-    
+
     /// <summary>
     /// Manages worker units
     /// </summary>
     public class WorkerManager
     {
+        public void Initialize()
+        {
+
+        }
+
         /// <summary>
         /// Called periodically
         /// </summary>
         public void Tick()
         {
-            // Return idle workers to mining
+            ReturnIdleWorkersToMining();
+        }
+
+        private void ReturnIdleWorkersToMining()
+        {
             Unit mineralToReturnTo = GetMineralInMainMineralLine();
             if (mineralToReturnTo == null)
             {
@@ -66,21 +75,6 @@ namespace BOSSE
                 {
                     return worker;
                 }
-            }
-
-            return null;
-        }
-
-        private Unit GetMineralInMainMineralLine()
-        {
-            Vector3 posVector = new Vector3(Globals.MainBaseLocation.X, Globals.MainBaseLocation.Y, 0);
-
-            List<Unit> allMinerals = GetUnits(UnitConstants.MineralFields, Alliance.Neutral, false, true);
-            foreach (var iter in allMinerals)
-            {
-                var distance = iter.GetDistance(posVector);
-                if (distance < 15)
-                    return iter;
             }
 
             return null;

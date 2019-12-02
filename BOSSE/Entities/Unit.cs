@@ -41,6 +41,7 @@ namespace BOSSE
         /// </summary>
         public bool IsReserved = false;
 
+        // Property lookups
         public string Name { get => unitInformation.Name; }
         public ulong Tag { get => original.Tag; }
         public uint UnitType { get => original.UnitType; }
@@ -49,12 +50,16 @@ namespace BOSSE
         public int IdealWorkers { get => original.IdealHarvesters; }
         public int AssignedWorkers { get => original.AssignedHarvesters; }
         public float BuildProgress { get => original.BuildProgress; }
+        public float Energy { get => original.Energy; set => original.Energy = value; }
         public float MineralCost { get => unitInformation.MineralCost; }
         public float VespeneCost { get => unitInformation.VespeneCost; }
         public RepeatedField<UnitOrder> QueuedOrders { get => original.Orders; }
         public UnitOrder CurrentOrder { get => QueuedOrders.Count > 0 ? QueuedOrders[0] : null; }
         public Vector3 Position { get => new Vector3(original.Pos.X, original.Pos.Y, original.Pos.Z); }
 
+        /// <summary>
+        /// Create a new instance from sc2 instance, we wrap around it and add some functionality
+        /// </summary>
         public Unit(SC2APIProtocol.Unit unit) : base()
         {
             this.original = unit;

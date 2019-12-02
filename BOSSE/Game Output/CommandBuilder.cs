@@ -142,5 +142,33 @@ namespace BOSSE
 
             return action;
         }
+
+        /// <summary>
+        /// Build sc2 action for the given unit to use an ability on another unit
+        /// </summary>
+        public static Action UseAbilityOnOtherUnit(AbilityConstants.AbilityId ability, Unit unitToUseAbility, Unit targetUnit)
+        {
+            Action action = CommandBuilder.RawCommand((int)ability);
+
+            action.ActionRaw.UnitCommand.UnitTags.Add(unitToUseAbility.Tag);
+            action.ActionRaw.UnitCommand.TargetUnitTag = targetUnit.Tag;
+
+            return action;
+        }
+
+        /// <summary>
+        /// Build sc2 action for the given unit to use an ability at a target location
+        /// </summary>
+        public static Action UseAbilityOnGround(AbilityConstants.AbilityId ability, Unit unitToUseAbility, Vector3 location)
+        {
+            Action action = CommandBuilder.RawCommand((int)ability);
+
+            action.ActionRaw.UnitCommand.UnitTags.Add(unitToUseAbility.Tag);
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = location.X;
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = location.Y;
+
+            return action;
+        }
     }
 }

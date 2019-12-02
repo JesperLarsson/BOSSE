@@ -39,6 +39,7 @@ namespace BOSSE
 
         // Utility managers
         public static WorkerManager WorkerManagerRef = new WorkerManager();
+        public static OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();        
 
         /// <summary>
         /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
@@ -58,8 +59,9 @@ namespace BOSSE
             // Refresh strategy maps
             StrategicMapSet.CalculateNewFromCurrentMapState();
 
-            // Move workers to optimal locations
+            // Utility managers
             WorkerManagerRef.Tick();
+            OrbitalCommandManagerRef.Tick();
         }
 
         /// <summary>
@@ -93,6 +95,8 @@ namespace BOSSE
             SensorManagerRef.Initialize();
             GoalExecutorRef.Initialize();
             SquadManagerRef.Initialize();
+            WorkerManagerRef.Initialize();
+            OrbitalCommandManagerRef.Initialize();
             DiscrepenceyDetectorRef.Initialize();
             GoalFormulatorRef.Initialize();
 

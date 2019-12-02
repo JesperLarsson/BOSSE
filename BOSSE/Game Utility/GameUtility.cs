@@ -272,5 +272,23 @@ namespace BOSSE
                 return (result.Result.Placements[0].Result == ActionResult.Success);
             return false;
         }
+
+        /// <summary>
+        /// Returns any mineral field in our main base
+        /// </summary>
+        public static Unit GetMineralInMainMineralLine()
+        {
+            Vector3 posVector = new Vector3(Globals.MainBaseLocation.X, Globals.MainBaseLocation.Y, 0);
+
+            List<Unit> allMinerals = GetUnits(UnitConstants.MineralFields, Alliance.Neutral, false, true);
+            foreach (var iter in allMinerals)
+            {
+                var distance = iter.GetDistance(posVector);
+                if (distance < 15)
+                    return iter;
+            }
+
+            return null;
+        }
     }
 }
