@@ -9,6 +9,7 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Linq;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
@@ -35,7 +36,7 @@ namespace BOSSE
             // Create main squad
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
 
-            // Subscribe to built marines and add them to main squad
+            // Subscribe to all built marines and add them to main squad
             int marineCount = 0;
             BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
             {
@@ -57,6 +58,9 @@ namespace BOSSE
                     BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
                 }
             }));
+
+            // Subscribe to finished buildings
+            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(ReceiveEventBuildingFinished);
         }
 
         /// <summary>
@@ -82,7 +86,7 @@ namespace BOSSE
 
             AllStrategiesPostRun();
         }
-        
+
         /// <summary>
         /// Called before all strategies are executed
         /// </summary>
@@ -170,53 +174,25 @@ namespace BOSSE
             }
         }
 
-        /// <summary>
-        /// Builds the given type anywhere, placeholder for a better solution
-        /// Super slow, polls the game for a location
-        /// </summary>
-        public static void BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId unitType)
+        private void ReceiveEventBuildingFinished(Object sensorRef, EventArgs args)
         {
-            const int radius = 12;
-            Vector3 startingSpot;
+            OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
 
-            List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-            if (resourceCenters.Count > 0)
+            // We can upgrade our CC after the barracks finish
+            StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
+            bool completedBarracks = details.NewStructures.Any(item => item.UnitType == (uint)UnitId.BARRACKS);
+            if (!completedBarracks)
             {
-                startingSpot = resourceCenters[0].Position;
-            }
-            else
-            {
-                Log.Warning($"Unable to construct {unitType} - no resource center was found");
                 return;
             }
 
-            // Find a valid spot, the slow way
-            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-            Vector3 constructionSpot;
-            while (true)
+            // Upgrade to orbital commands
+            List<Unit> commandCenters = GetUnits(UnitId.COMMAND_CENTER, onlyCompleted: true);
+            foreach (Unit ccIter in commandCenters)
             {
-                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
-
-                //avoid building in the mineral line
-                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
-
-                //check if the building fits
-                Log.Info("Running canplace hack...");
-                if (!CanPlace(unitType, constructionSpot)) continue;
-
-                //ok, we found a spot
-                break;
+                // We queue the upgrade action right away, even if building a worker, we will upgrade next after it's done building
+                Queue(CommandBuilder.UseAbility(AbilityId.UPGRADE_TO_ORBITAL, ccIter));
             }
-
-            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPoint(constructionSpot);
-            if (worker == null)
-            {
-                Log.Warning($"Unable to find a worker to construct {unitType}");
-                return;
-            }
-
-            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot));
-            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()}");
         }
     }
 }

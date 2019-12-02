@@ -96,7 +96,7 @@ namespace BOSSE
             DiscrepenceyDetectorRef.Initialize();
             GoalFormulatorRef.Initialize();
 
-            // Test sensor
+            // Debug sensor - Prints all buildings as we complete them
             SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
             {
                 OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
@@ -107,6 +107,7 @@ namespace BOSSE
                 }
             }));
 
+            // Assign a random worker to scout
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
             Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
             scoutingWorker.IsReserved = true;

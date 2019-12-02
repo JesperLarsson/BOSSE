@@ -27,6 +27,8 @@ namespace BOSSE
             RESEARCH_UPGRADE_MECH_ARMOR = 3700,
             RESEARCH_UPGRADE_MECH_GROUND = 3701,
 
+            UPGRADE_TO_ORBITAL = 1516,
+
             CANCEL_CONSTRUCTION = 314,
             CANCEL = 3659,
             CANCEL_LAST = 3671,
@@ -62,6 +64,7 @@ namespace BOSSE
 
             GATHER_MINERALS = 295,
             RETURN_MINERALS = 296,
+
         }
     }
 }

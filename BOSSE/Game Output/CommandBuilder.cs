@@ -114,8 +114,8 @@ namespace BOSSE
             if (!allowQueue && fromCenter.QueuedOrders.Count > 0)
                 return null;
 
-            var abilityID = GetAbilityIdToBuildUnit(unitTypeToBuild);
-            var action = CommandBuilder.RawCommand(abilityID);
+            int abilityID = GetAbilityIdToBuildUnit(unitTypeToBuild);
+            Action action = CommandBuilder.RawCommand(abilityID);
             action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
 
             if (updateResourcesAvailable)
@@ -127,6 +127,18 @@ namespace BOSSE
                 CurrentSupply += (uint)info.FoodProvided;
                 CurrentSupply -= (uint)info.FoodRequired;
             }
+
+            return action;
+        }
+
+        /// <summary>
+        /// Build sc2 action for the given unit to use an ability
+        /// </summary>
+        public static Action UseAbility(AbilityConstants.AbilityId ability, Unit unitToUseAbility)
+        {
+            Action action = CommandBuilder.RawCommand((int)ability);
+
+            action.ActionRaw.UnitCommand.UnitTags.Add(unitToUseAbility.Tag);
 
             return action;
         }
