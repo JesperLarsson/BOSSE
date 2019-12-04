@@ -24,19 +24,6 @@ namespace BOSSE
         private bool HasInitialized = false;
         private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
 
-        /// <summary>
-        /// Details sent to the subscribers on each trigger
-        /// </summary>
-        public class Details : EventArgs
-        {
-            public List<Unit> Units;
-
-            public Details(List<Unit> argList)
-            {
-                Units = argList;
-            }
-        }
-
         public EnemyArmyUnitDetectedFirstTimeSensor()
         {
             Id = SensorId.EnemyArmyUnitDetectedFirstTimeSensor;
@@ -49,7 +36,7 @@ namespace BOSSE
         {
             List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, Alliance.Enemy, true, false);
 
-            List<Unit> returnList = new List<Unit>();
+            HashSet<Unit> returnList = new HashSet<Unit>();
             foreach (Unit iter in currentUnits)
             {
                 if (!PreviousUnitTags.Contains(iter.Tag))
@@ -64,7 +51,7 @@ namespace BOSSE
                 if (returnList.Count == 0)
                     return;
 
-                var details = new Details(returnList);
+                var details = new HashSet<Unit>(returnList);
                 Trigger(details);
             }
             else

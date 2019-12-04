@@ -24,19 +24,6 @@ namespace BOSSE
         private bool HasInitialized = false;
         private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
 
-        /// <summary>
-        /// Details sent to the subscribers on each trigger
-        /// </summary>
-        public class Details : EventArgs
-        {
-            public List<Unit> NewStructures;
-
-            public Details(List<Unit> completedStructures)
-            {
-                NewStructures = completedStructures;
-            }
-        }
-
         public OwnStructureWasCompletedSensor()
         {
             Id = SensorId.OwnStructureWasCompletedSensor;
@@ -49,7 +36,7 @@ namespace BOSSE
         {
             List<Unit> currentStructures = GameUtility.GetUnits(UnitConstants.Structures, onlyCompleted: true);
 
-            List<Unit> newStructures = new List<Unit>();
+            HashSet<Unit> newStructures = new HashSet<Unit>();
             foreach (Unit iter in currentStructures)
             {
                 if (!PreviousUnitTags.Contains(iter.Tag))
@@ -64,7 +51,7 @@ namespace BOSSE
                 if (newStructures.Count == 0)
                     return;
 
-                var details = new Details(newStructures);
+                var details = new HashSet<Unit>(newStructures);
                 Trigger(details);
             }
             else

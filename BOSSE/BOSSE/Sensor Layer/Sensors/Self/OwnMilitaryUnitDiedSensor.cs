@@ -21,21 +21,7 @@ namespace BOSSE
     /// </summary>
     public class OwnMilitaryUnitDiedSensor : Sensor
     {
-        private bool HasInitialized = false;
         private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
-
-        /// <summary>
-        /// Details sent to the subscribers on each trigger
-        /// </summary>
-        public class Details : EventArgs
-        {
-            public List<Unit> KilledUnits;
-
-            public Details(List<Unit> argList)
-            {
-                KilledUnits = argList;
-            }
-        }
 
         public OwnMilitaryUnitDiedSensor()
         {
@@ -48,7 +34,7 @@ namespace BOSSE
         public override void Tick()
         {
             List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, onlyCompleted: true);
-            List<Unit> killedUnits = new List<Unit>();
+            HashSet<Unit> killedUnits = new HashSet<Unit>();
 
             foreach (uint prevIterTag in PreviousUnitTags)
             {
@@ -70,19 +56,11 @@ namespace BOSSE
                 }
             }
 
-            if (HasInitialized)
-            {
-                if (killedUnits.Count == 0)
-                    return;
+            if (killedUnits.Count == 0)
+                return;
 
-                var details = new Details(killedUnits);
-                Trigger(details);
-            }
-            else
-            {
-                // The first iteration is a "dry run" to set the initial state
-                HasInitialized = true;
-            }
+            var details = new HashSet<Unit>(killedUnits);
+            Trigger(details);
         }
     }
 }

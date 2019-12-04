@@ -101,11 +101,19 @@ namespace BOSSE
             GoalFormulatorRef.Initialize();
 
             // Debug sensor - Prints all buildings as we complete them
-            SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
-            {
-                OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
+            //SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
+            //{
+            //    OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
 
-                foreach (Unit iter in details.NewStructures)
+            //    foreach (Unit iter in details.NewStructures)
+            //    {
+            //        Log.Info("Completed new building: " + iter.Name);
+            //    }
+            //}));
+
+            SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+            {
+                foreach (Unit iter in affectedUnits)
                 {
                     Log.Info("Completed new building: " + iter.Name);
                 }

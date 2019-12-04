@@ -21,23 +21,8 @@ namespace BOSSE
     /// </summary>
     public class OwnUnitChangedTypeSensor : Sensor
     {
-        private bool HasInitialized = false;
-
         // Tag => Type
         private Dictionary<ulong, UnitId> PreviousUnitTags = new Dictionary<ulong, UnitId>();
-
-        /// <summary>
-        /// Details sent to the subscribers on each trigger
-        /// </summary>
-        public class Details : EventArgs
-        {
-            public List<Unit> ChangedUnits;
-
-            public Details(List<Unit> argList)
-            {
-                ChangedUnits = argList;
-            }
-        }
 
         public OwnUnitChangedTypeSensor()
         {
@@ -51,7 +36,7 @@ namespace BOSSE
         {
             List<Unit> currentStructures = GameUtility.GetUnits(UnitConstants.Structures, onlyCompleted: true);
 
-            List<Unit> returnList = new List<Unit>();
+            HashSet<Unit> returnList = new HashSet<Unit>();
             foreach (Unit iter in currentStructures)
             {
                 UnitId type = (UnitId)iter.UnitType;
@@ -67,19 +52,11 @@ namespace BOSSE
                 }
             }
 
-            if (HasInitialized)
-            {
-                if (returnList.Count == 0)
-                    return;
+            if (returnList.Count == 0)
+                return;
 
-                var details = new Details(returnList);
-                Trigger(details);
-            }
-            else
-            {
-                // The first iteration is a "dry run" to set the initial state
-                HasInitialized = true;
-            }
+            var details = new HashSet<Unit>(returnList);
+            Trigger(details);
         }
     }
 }

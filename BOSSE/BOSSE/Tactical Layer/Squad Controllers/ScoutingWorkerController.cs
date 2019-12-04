@@ -122,7 +122,7 @@ namespace BOSSE
             Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + enemyBaseLoc.Value);
         }
 
-        private void ReceiveEventEnemyDetected(Object sensorRef, EventArgs args)
+        private void ReceiveEventEnemyDetected(HashSet<Unit> detectedUnits)
         {
             IsTimeToGoHome = true;
         }

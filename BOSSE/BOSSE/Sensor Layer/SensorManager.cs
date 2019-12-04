@@ -9,13 +9,15 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Reflection;
+    using System.Linq;
 
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static UnitConstants;
     using static AbilityConstants;
-
+    
     /// <summary>
     /// Holds all of our sensors
     /// </summary>
@@ -28,11 +30,11 @@ namespace BOSSE
 
         public void Initialize()
         {
-            AddSensor(new OwnStructureWasCompletedSensor());
-            AddSensor(new OwnMilitaryUnitWasCompletedSensor());
-            AddSensor(new OwnMilitaryUnitDiedSensor());
-            AddSensor(new OwnUnitChangedTypeSensor());
-            AddSensor(new EnemyArmyUnitDetectedFirstTimeSensor());            
+            // Create an object of each sensor
+            foreach (Type type in Assembly.GetAssembly(typeof(Sensor)).GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Sensor))))
+            {
+                AddSensor((Sensor)Activator.CreateInstance(type));
+            }      
         }
 
         public void AddSensor(Sensor newSensor)

@@ -28,6 +28,8 @@ namespace BOSSE
         const int MinSupplyMargin = 4;
         const int TargetWorkerPerBase = 24;
 
+        int marineCount = 0;
+
         /// <summary>
         /// Called once during start
         /// </summary>
@@ -37,30 +39,32 @@ namespace BOSSE
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
 
             // Subscribe to all built marines and add them to main squad
-            int marineCount = 0;
-            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
-            {
-                OwnMilitaryUnitWasCompletedSensor.Details details = (OwnMilitaryUnitWasCompletedSensor.Details)args;
-
-                foreach (Unit iter in details.NewUnits)
-                {
-                    if (iter.UnitType != (uint)UnitId.MARINE)
-                        continue;
-
-                    Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
-                    squad.AddUnit(iter);
-                    Log.Info("  Added marine to main squad: " + iter.Tag);
-                    marineCount++;
-                }
-
-                if (marineCount > 10)
-                {
-                    BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
-                }
-            }));
+            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitWasCompletedSensor).AddHandler(
+                ReceiveEventRecruitedMarine,
+                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == (uint)UnitId.MARINE))
+            );
 
             // Subscribe to finished buildings
             BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(ReceiveEventBuildingFinished);
+        }
+
+        private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)
+        {
+            foreach (Unit iter in newMarines)
+            {
+                if (iter.UnitType != (uint)UnitId.MARINE)
+                    continue;
+
+                Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
+                squad.AddUnit(iter);
+                Log.Info("  Added marine to main squad: " + iter.Tag);
+                marineCount++;
+            }
+
+            if (marineCount > 10)
+            {
+                BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
+            }
         }
 
         /// <summary>
@@ -174,13 +178,11 @@ namespace BOSSE
             }
         }
 
-        private void ReceiveEventBuildingFinished(Object sensorRef, EventArgs args)
+        private void ReceiveEventBuildingFinished(HashSet<Unit> buildings)
         {
-            OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
-
             // We can upgrade our CC after the barracks finish
             StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
-            bool completedBarracks = details.NewStructures.Any(item => item.UnitType == (uint)UnitId.BARRACKS);
+            bool completedBarracks = buildings.Any(item => item.UnitType == (uint)UnitId.BARRACKS);
             if (!completedBarracks)
             {
                 return;

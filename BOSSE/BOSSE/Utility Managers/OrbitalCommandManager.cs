@@ -31,7 +31,10 @@ namespace BOSSE
 
         public void Initialize()
         {
-            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnUnitChangedTypeSensor).AddHandler(ReceiveEventChangedtype);
+            BOSSE.SensorManagerRef.GetSensor(
+                Sensor.SensorId.OwnUnitChangedTypeSensor).AddHandler(ReceiveEventNewOrbitalCommand,
+                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == (uint)UnitId.ORBITAL_COMMAND))
+            );
         }
 
         public void Tick()
@@ -59,11 +62,8 @@ namespace BOSSE
         /// <summary>
         /// Callback event whenever a new building is completed
         /// </summary>
-        private void ReceiveEventChangedtype(Object sensorRef, EventArgs args)
+        private void ReceiveEventNewOrbitalCommand(HashSet<Unit> newOrbitalCommands)
         {
-            OwnUnitChangedTypeSensor.Details details = (OwnUnitChangedTypeSensor.Details)args;
-
-            IEnumerable<Unit> newOrbitalCommands = details.ChangedUnits.Where(item => item.UnitType == (uint)UnitId.ORBITAL_COMMAND);
             foreach (Unit ocIter in newOrbitalCommands)
             {
                 this.ManagedOrbitalCommands.Add(ocIter);
