@@ -25,12 +25,15 @@ namespace BOSSE
     /// </summary>
     public class ScoutingWorkerController : SquadControllerBase
     {
-        private Vector3? scoutTargetLocation = null;
-
         /// <summary>
         /// Time that we last picked a new target, 0 = still going to enemy base
         /// </summary>
-        private ulong lastTargetFrame = 0;
+        private ulong LastTargetFrame = 0;
+
+        private double CurrentDegrees = 0;
+        const double StepSize = 0.2f;
+        const double Radius = 10;
+        const int UpdateFrequencyTicks = 10;
 
         /// <summary>
         /// Updates squad controller
@@ -46,38 +49,50 @@ namespace BOSSE
             }
             Unit worker = this.controlledSquad.AssignedUnits.First();
 
-            // Move to enemy base to start
-            if (scoutTargetLocation == null)
+            // Move around enmy resource center if we can find it
+            List<Unit> candidateLocations = GetUnits(UnitConstants.ResourceCenters, Alliance.Enemy, false, false);
+            if (candidateLocations.Count == 0)
             {
-                Vector3? enemyBaseLoc = GuessEnemyBaseLocation();
-                if (enemyBaseLoc == null)
-                {
-                    Log.Info("Unable to find enemy location to scout");
-                    return;
-                }
-                scoutTargetLocation = enemyBaseLoc.Value;
-                Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + scoutTargetLocation);
+                SearchEnemyMainBase(worker);
             }
-
-            if ((Globals.CurrentFrameCount - lastTargetFrame) > 100)
+            else
             {
-                var candidateLocations = GetUnits(UnitConstants.Production, Alliance.Enemy, false, false);
-                if (candidateLocations.Count == 0)
-                {
-                    return;
-                }
-                else
-                {
-                    // Pick a previous building location
-                    int randIndex = Globals.Random.Next(0, candidateLocations.Count - 1);
-                    scoutTargetLocation = candidateLocations[randIndex].Position;
-
-                    lastTargetFrame = Globals.CurrentFrameCount;
-                }
+                ScoutAroundEnemyBase(worker, candidateLocations[0]);
             }
+        }
 
-            // Move towards location
-            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, scoutTargetLocation.Value));
+        private void ScoutAroundEnemyBase(Unit worker, Unit enemyResourceCenter)
+        {
+            if ((Globals.CurrentFrameCount - LastTargetFrame) < UpdateFrequencyTicks)
+                return; // Not time to update yet
+
+            Vector3 scoutTargetLocation = PickNextSpotToGo(worker, enemyResourceCenter);
+            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, scoutTargetLocation));
+            LastTargetFrame = Globals.CurrentFrameCount;
+        }
+
+        private Vector3 PickNextSpotToGo(Unit worker, Unit enemyResourceCenter)
+        {
+            double x = enemyResourceCenter.Position.X + (Radius * Math.Cos(CurrentDegrees));
+            double y = enemyResourceCenter.Position.Y + (Radius * Math.Sin(CurrentDegrees));
+            CurrentDegrees += StepSize;
+
+            return new Vector3((float)x, (float)y, 0);
+        }
+
+        private void SearchEnemyMainBase(Unit worker)
+        {
+            if (worker.CurrentOrder.AbilityId == (uint)AbilityId.MOVE)
+                return; // Already moving
+
+            Vector3? enemyBaseLoc = GuessEnemyBaseLocation();
+            if (enemyBaseLoc == null)
+            {
+                Log.Info("Unable to find enemy location to scout");
+                return;
+            }
+            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, enemyBaseLoc.Value));
+            Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + enemyBaseLoc.Value);
         }
     }
 }
