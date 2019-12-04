@@ -29,7 +29,8 @@ namespace BOSSE
         /// All active squads
         /// Name => Squad instance mapping
         /// </summary>
-        private volatile Dictionary<string, Squad> Squads = new Dictionary<string, Squad>();
+        private readonly Dictionary<string, Squad> Squads = new Dictionary<string, Squad>();
+        private bool SquadsModified = false;
 
         /// <summary>
         /// Initializes the squad manager
@@ -66,6 +67,7 @@ namespace BOSSE
 
             Squads[name].IsBeingDeleted();
             Squads.Remove(name);
+            SquadsModified = true;
         }
 
         /// <summary>
@@ -100,6 +102,14 @@ namespace BOSSE
             foreach (var squadIter in Squads.Values)
             {
                 squadIter.ControlledBy.Tick(currentMilitaryGoal, currentMilitaryGoalPoint);
+
+                // Re-run if we modified our controllers
+                if (SquadsModified)
+                {
+                    SquadsModified = false;
+                    Tick();
+                    return;
+                }
             }
         }
     }
