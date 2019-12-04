@@ -52,7 +52,7 @@ namespace BOSSE
 
         private void CallDownMule(Unit fromOrbitalCommand)
         {
-            Queue(CommandBuilder.UseAbilityOnGround(AbilityId.CALL_DOWN_MULE, fromOrbitalCommand, GetMineralInMainMineralLine().Position));
+            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.CALL_DOWN_MULE, fromOrbitalCommand, GetMineralInMainMineralLine()));
             fromOrbitalCommand.Energy -= muleEnergyCost;
         }
 
@@ -61,9 +61,9 @@ namespace BOSSE
         /// </summary>
         private void ReceiveEventChangedtype(Object sensorRef, EventArgs args)
         {
-            OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
+            OwnUnitChangedTypeSensor.Details details = (OwnUnitChangedTypeSensor.Details)args;
 
-            IEnumerable<Unit> newOrbitalCommands = details.NewStructures.Where(item => item.UnitType == (uint)UnitId.ORBITAL_COMMAND);
+            IEnumerable<Unit> newOrbitalCommands = details.ChangedUnits.Where(item => item.UnitType == (uint)UnitId.ORBITAL_COMMAND);
             foreach (Unit ocIter in newOrbitalCommands)
             {
                 this.ManagedOrbitalCommands.Add(ocIter);
