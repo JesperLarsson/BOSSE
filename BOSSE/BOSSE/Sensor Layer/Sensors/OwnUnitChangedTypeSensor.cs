@@ -17,29 +17,31 @@ namespace BOSSE
     using static AbilityConstants;
 
     /// <summary>
-    /// Sensor - Triggers if one of our own military units has finished training
+    /// Sensor - Triggers if one of our own units (including structures) change type (CC to orbital command, etc)
     /// </summary>
-    public class OwnMilitaryUnitWasCompletedSensor : Sensor
+    public class OwnUnitChangedTypeSensor : Sensor
     {
         private bool HasInitialized = false;
-        private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
+
+        // Tag => Type
+        private Dictionary<ulong, UnitId> PreviousUnitTags = new Dictionary<ulong, UnitId>();
 
         /// <summary>
         /// Details sent to the subscribers on each trigger
         /// </summary>
         public class Details : EventArgs
         {
-            public List<Unit> NewUnits;
+            public List<Unit> ChangedUnits;
 
             public Details(List<Unit> argList)
             {
-                NewUnits = argList;
+                ChangedUnits = argList;
             }
         }
 
-        public OwnMilitaryUnitWasCompletedSensor()
+        public OwnUnitChangedTypeSensor()
         {
-            Id = SensorId.OwnMilitaryUnitWasCompletedSensor;
+            Id = SensorId.OwnUnitChangedTypeSensor;
         }
 
         /// <summary>
@@ -47,24 +49,30 @@ namespace BOSSE
         /// </summary>
         public override void Tick()
         {
-            List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, onlyCompleted: true);
+            List<Unit> currentStructures = GameUtility.GetUnits(UnitConstants.Structures, onlyCompleted: true);
 
-            List<Unit> newStructures = new List<Unit>();
-            foreach (Unit iter in currentUnits)
+            List<Unit> returnList = new List<Unit>();
+            foreach (Unit iter in currentStructures)
             {
-                if (!PreviousUnitTags.Contains(iter.Tag))
+                UnitId type = (UnitId)iter.UnitType;
+
+                if (!PreviousUnitTags.ContainsKey(iter.Tag))
                 {
-                    newStructures.Add(iter);
-                    PreviousUnitTags.Add(iter.Tag);
+                    PreviousUnitTags[iter.Tag] = type;
+                }
+                else if (PreviousUnitTags[iter.Tag] != type)
+                {
+                    PreviousUnitTags[iter.Tag] = type;
+                    returnList.Add(iter);
                 }
             }
 
             if (HasInitialized)
             {
-                if (newStructures.Count == 0)
+                if (returnList.Count == 0)
                     return;
 
-                var details = new Details(newStructures);
+                var details = new Details(returnList);
                 Trigger(details);
             }
             else

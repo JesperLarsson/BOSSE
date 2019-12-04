@@ -31,7 +31,7 @@ namespace BOSSE
 
         public void Initialize()
         {
-            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(ReceiveEventBuildingFinished);
+            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnUnitChangedTypeSensor).AddHandler(ReceiveEventChangedtype);
         }
 
         public void Tick()
@@ -59,7 +59,7 @@ namespace BOSSE
         /// <summary>
         /// Callback event whenever a new building is completed
         /// </summary>
-        private void ReceiveEventBuildingFinished(Object sensorRef, EventArgs args)
+        private void ReceiveEventChangedtype(Object sensorRef, EventArgs args)
         {
             OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
 

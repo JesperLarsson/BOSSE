@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnUnitChangedTypeSensor.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalManager.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Game Utility\GameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Sensor.cs" />
     <Compile Include="Static Analysis %28Tyr%29\BaseManager.cs" />
     <Compile Include="Static Analysis %28Tyr%29\MapAnalyzer.cs" />
     <Compile Include="Misc\GeneralUtility.cs" />

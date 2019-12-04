@@ -31,9 +31,9 @@ namespace BOSSE
         {
             public List<Unit> KilledUnits;
 
-            public Details(List<Unit> completedStructures)
+            public Details(List<Unit> argList)
             {
-                KilledUnits = completedStructures;
+                KilledUnits = argList;
             }
         }
 

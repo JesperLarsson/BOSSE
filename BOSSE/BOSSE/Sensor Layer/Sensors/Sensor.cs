@@ -26,6 +26,7 @@ namespace BOSSE
         {
             NotSet = 0,
             OwnStructureWasCompletedSensor,
+            OwnUnitChangedTypeSensor,
             OwnMilitaryUnitWasCompletedSensor,
             OwnMilitaryUnitDiedSensor,
         }
