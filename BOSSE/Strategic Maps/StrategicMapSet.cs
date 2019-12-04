@@ -17,6 +17,7 @@ namespace BOSSE
 
     /// <summary>
     /// A set of maps that can be used for planning or presenting current world state at a high level
+    /// Thread safety: This is calculated in a background thread, but a full instance is swapped in place to LatestMapSet that is valid when it's written. Reading from LatestMapSet is safe
     /// </summary>
     public class StrategicMapSet
     {
@@ -53,7 +54,7 @@ namespace BOSSE
         /// <summary>
         /// Calculates a new set of strategic maps. This is an expensive calculation CPU-wise
         /// </summary>
-        public static StrategicMapSet CalculateNewFromCurrentMapState()
+        public static void CalculateNewFromCurrentMapState()
         {
             StrategicMapSet outObj = new StrategicMapSet();
             RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
@@ -142,7 +143,7 @@ namespace BOSSE
                 DebugGui.VulnerabilityMapGui.NewVulnerabilityMapIsAvailable(outObj.VulnerabilityMap, outObj.xSize, outObj.ySize);
             }
 
-            return outObj;
+            LatestMapSet = outObj;
         }
     }
 }

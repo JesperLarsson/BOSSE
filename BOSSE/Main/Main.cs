@@ -70,15 +70,7 @@ namespace BOSSE
                 {
                     Globals.BotRef.FirstFrame();
                 }
-                if (Globals.CurrentFrameCount % 1000 == 0)
-                {
-                    Globals.BotRef.LongTermPeriodical();
-                }
-                if (Globals.CurrentFrameCount % 22 == 0)
-                {
-                    Globals.BotRef.EverySecond();
-                }
-                Globals.BotRef.OnFrame();
+                Globals.BotRef.OnFrameTick();
 
                 // Send actions to sc2
                 SendQueuedActions().Wait();

@@ -18,6 +18,7 @@ namespace BOSSE
     {
         private static string FilePath;
         private static bool StdoutClosed;
+        private static object LogLock = new object();
 
         public static void Bulk(string line, params object[] parameters)
         {
@@ -57,33 +58,36 @@ namespace BOSSE
 
         private static void WriteLine(string prefix, string line, bool trace, params object[] parameters)
         {
-            if (FilePath == null)
+            lock (LogLock)
             {
-                Initialize();
-            }
-
-            var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + string.Format(line, parameters);
-
-            var fileStream = new StreamWriter(FilePath, true);
-            fileStream.WriteLine(msg);
-            fileStream.Close();
-
-            if (!StdoutClosed && trace)
-            {
-                try
+                if (FilePath == null)
                 {
-                    Console.WriteLine(msg, parameters);
+                    Initialize();
                 }
-                catch
-                {
-                    StdoutClosed = true;
-                }
-            }
 
-            // To VS output
-            if (trace)
-            {
-                System.Diagnostics.Debug.WriteLine(msg, parameters);
+                var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + string.Format(line, parameters);
+
+                var fileStream = new StreamWriter(FilePath, true);
+                fileStream.WriteLine(msg);
+                fileStream.Close();
+
+                if (!StdoutClosed && trace)
+                {
+                    try
+                    {
+                        Console.WriteLine(msg, parameters);
+                    }
+                    catch
+                    {
+                        StdoutClosed = true;
+                    }
+                }
+
+                // To VS output
+                if (trace)
+                {
+                    System.Diagnostics.Debug.WriteLine(msg, parameters);
+                }
             }
         }
     }

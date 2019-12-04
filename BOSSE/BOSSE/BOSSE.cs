@@ -39,7 +39,10 @@ namespace BOSSE
 
         // Utility managers
         public static WorkerManager WorkerManagerRef = new WorkerManager();
-        public static OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();        
+        public static OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
+
+        // Background thread
+        public static BackgroundWorkerThread BackgroundWorkerThreadRef = new BackgroundWorkerThread();
 
         /// <summary>
         /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
@@ -48,29 +51,6 @@ namespace BOSSE
         {
             StrategicGoalRef.SetNewGoal(StrategicGoal.EconomyFocus);
             TacticalGoalRef.SetNewGoal(MilitaryGoal.DefendGeneral, null);
-        }
-
-        /// <summary>
-        /// Entry point from main loop which updates the bot, called approx once a second in real time - Used to update expensive calculations
-        /// Called before OnFrame on the first frame
-        /// </summary>
-        public void EverySecond()
-        {
-            // Refresh strategy maps
-            StrategicMapSet.CalculateNewFromCurrentMapState();
-
-            // Utility managers
-            WorkerManagerRef.Tick();
-            OrbitalCommandManagerRef.Tick();
-        }
-
-        /// <summary>
-        /// Entry point from main loop which updates the bot, called every now and then
-        /// Called before OnFrame on the first frame
-        /// </summary>
-        public void LongTermPeriodical()
-        {
-
         }
 
         /// <summary>
@@ -100,17 +80,10 @@ namespace BOSSE
             DiscrepenceyDetectorRef.Initialize();
             GoalFormulatorRef.Initialize();
 
-            // Debug sensor - Prints all buildings as we complete them
-            //SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new EventHandler(delegate (Object sensorRef, EventArgs args)
-            //{
-            //    OwnStructureWasCompletedSensor.Details details = (OwnStructureWasCompletedSensor.Details)args;
+            // Start BG thread
+            BackgroundWorkerThreadRef.StartThread();
 
-            //    foreach (Unit iter in details.NewStructures)
-            //    {
-            //        Log.Info("Completed new building: " + iter.Name);
-            //    }
-            //}));
-
+            // Debug sensor - Log building completions
             SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
             {
                 foreach (Unit iter in affectedUnits)
@@ -129,7 +102,7 @@ namespace BOSSE
         /// <summary>
         /// Entry point from main loop which updates the bot, called on each logical frame
         /// </summary>
-        public void OnFrame()
+        public void OnFrameTick()
         {
             Unit.RefreshAllUnitData();
 
@@ -143,6 +116,10 @@ namespace BOSSE
 
             // Tactical (military) layer
             SquadManagerRef.Tick();
+
+            // Utility managers
+            WorkerManagerRef.Tick();
+            OrbitalCommandManagerRef.Tick();
         }
     }
 }
