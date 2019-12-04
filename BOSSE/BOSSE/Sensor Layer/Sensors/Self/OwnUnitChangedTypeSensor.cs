@@ -24,11 +24,6 @@ namespace BOSSE
         // Tag => Type
         private Dictionary<ulong, UnitId> PreviousUnitTags = new Dictionary<ulong, UnitId>();
 
-        public OwnUnitChangedTypeSensor()
-        {
-            Id = SensorId.OwnUnitChangedTypeSensor;
-        }
-
         /// <summary>
         /// Updates sensor
         /// </summary>

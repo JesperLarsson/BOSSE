@@ -26,7 +26,7 @@ namespace BOSSE
         /// <summary>
         /// Name => Sensor instance mapping
         /// </summary>
-        private readonly Dictionary<Sensor.SensorId, Sensor> ActiveSensors = new Dictionary<Sensor.SensorId, Sensor>();
+        private readonly Dictionary<Type, Sensor> ActiveSensors = new Dictionary<Type, Sensor>();
 
         public void Initialize()
         {
@@ -39,15 +39,17 @@ namespace BOSSE
 
         public void AddSensor(Sensor newSensor)
         {
-            if (ActiveSensors.ContainsKey(newSensor.Id))
+            Type sensorType = newSensor.GetType();
+
+            if (ActiveSensors.ContainsKey(sensorType))
             {
                 Log.SanityCheckFailed("Already have a sensor with name " + newSensor.ToString());
             }
 
-            ActiveSensors[newSensor.Id] = newSensor;
+            ActiveSensors[sensorType] = newSensor;
         }
 
-        public Sensor GetSensor(Sensor.SensorId id)
+        public Sensor GetSensor(Type id)
         {
             if (!ActiveSensors.ContainsKey(id))
             {

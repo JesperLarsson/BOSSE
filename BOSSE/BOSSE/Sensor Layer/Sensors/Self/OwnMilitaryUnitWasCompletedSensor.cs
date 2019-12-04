@@ -24,11 +24,6 @@ namespace BOSSE
         private bool HasInitialized = false;
         private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
 
-        public OwnMilitaryUnitWasCompletedSensor()
-        {
-            Id = SensorId.OwnMilitaryUnitWasCompletedSensor;
-        }
-
         /// <summary>
         /// Updates sensor
         /// </summary>

@@ -41,7 +41,7 @@ namespace BOSSE
             Name = name;
 
             // Subscribe to "unit died" event - Remove it from the squad
-            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitDiedSensor).AddHandler(ReceiveEventUnitDied);
+            BOSSE.SensorManagerRef.GetSensor(typeof(OwnMilitaryUnitDiedSensor)).AddHandler(ReceiveEventUnitDied);
         }
 
         private void ReceiveEventUnitDied(HashSet<Unit> killedUnits)

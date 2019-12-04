@@ -23,11 +23,6 @@ namespace BOSSE
     {
         private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
 
-        public OwnMilitaryUnitDiedSensor()
-        {
-            Id = SensorId.OwnMilitaryUnitDiedSensor;
-        }
-
         /// <summary>
         /// Updates sensor
         /// </summary>

@@ -84,7 +84,7 @@ namespace BOSSE
             BackgroundWorkerThreadRef.StartThread();
 
             // Debug sensor - Log building completions
-            SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+            SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
             {
                 foreach (Unit iter in affectedUnits)
                 {

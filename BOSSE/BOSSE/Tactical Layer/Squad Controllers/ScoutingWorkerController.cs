@@ -38,7 +38,7 @@ namespace BOSSE
 
         public ScoutingWorkerController()
         {
-            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.EnemyArmyUnitDetectedFirstTimeSensor).AddHandler(ReceiveEventEnemyDetected);
+            BOSSE.SensorManagerRef.GetSensor(typeof(EnemyArmyUnitDetectedFirstTimeSensor)).AddHandler(ReceiveEventEnemyDetected);
         }
 
         /// <summary>

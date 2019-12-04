@@ -39,13 +39,13 @@ namespace BOSSE
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
 
             // Subscribe to all built marines and add them to main squad
-            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnMilitaryUnitWasCompletedSensor).AddHandler(
+            BOSSE.SensorManagerRef.GetSensor(typeof(OwnMilitaryUnitWasCompletedSensor)).AddHandler(
                 ReceiveEventRecruitedMarine,
                 unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == (uint)UnitId.MARINE))
             );
 
             // Subscribe to finished buildings
-            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.OwnStructureWasCompletedSensor).AddHandler(ReceiveEventBuildingFinished);
+            BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
         }
 
         private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)

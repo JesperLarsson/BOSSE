@@ -40,17 +40,17 @@ namespace BOSSE
     /// </summary>
     public abstract class Sensor
     {
-        public enum SensorId
-        {
-            NotSet = 0,
-            OwnStructureWasCompletedSensor,
-            OwnUnitChangedTypeSensor,
-            OwnMilitaryUnitWasCompletedSensor,
-            OwnMilitaryUnitDiedSensor,
+        //public enum SensorId
+        //{
+        //    NotSet = 0,
+        //    OwnStructureWasCompletedSensor,
+        //    OwnUnitChangedTypeSensor,
+        //    OwnMilitaryUnitWasCompletedSensor,
+        //    OwnMilitaryUnitDiedSensor,
 
-            EnemyArmyUnitDetectedFirstTimeSensor,
-        }
-        public SensorId Id = SensorId.NotSet;
+        //    EnemyArmyUnitDetectedFirstTimeSensor,
+        //}
+        //public SensorId Id = SensorId.NotSet;
 
 
         // Common type filters
@@ -82,7 +82,7 @@ namespace BOSSE
 
         public override string ToString()
         {
-            return this.Id.ToString();
+            return this.GetType().Name;
         }
 
         /// <summary>
