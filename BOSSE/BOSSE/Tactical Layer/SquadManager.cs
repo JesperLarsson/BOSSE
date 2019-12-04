@@ -24,19 +24,19 @@ namespace BOSSE
     /// Manages our squads consisting of army units
     /// </summary>
     public class SquadManager
-    {        
+    {
         /// <summary>
         /// All active squads
         /// Name => Squad instance mapping
         /// </summary>
-        private readonly Dictionary<string, Squad> Squads = new Dictionary<string, Squad>();
+        private volatile Dictionary<string, Squad> Squads = new Dictionary<string, Squad>();
 
         /// <summary>
         /// Initializes the squad manager
         /// </summary>
         public void Initialize()
         {
-            
+
         }
 
         /// <summary>
@@ -54,6 +54,21 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Removes the squad from the manager, it will no longer receive update ticks
+        /// </summary>
+        public void DeleteExistingSquad(string name)
+        {
+            if (!Squads.ContainsKey(name))
+            {
+                Log.Warning("Tried to delete squad that doesn't exist: " + name);
+                return;
+            }
+
+            Squads[name].IsBeingDeleted();
+            Squads.Remove(name);
+        }
+
+        /// <summary>
         /// Gets the given squad name
         /// </summary>
         public Squad GetSquadOrNull(string squadName)
@@ -65,7 +80,7 @@ namespace BOSSE
 
             return Squads[squadName];
         }
-        
+
         /// <summary>
         /// Updates all squad logic
         /// </summary>

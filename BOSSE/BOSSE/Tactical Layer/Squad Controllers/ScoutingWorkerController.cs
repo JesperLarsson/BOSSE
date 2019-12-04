@@ -29,11 +29,17 @@ namespace BOSSE
         /// Time that we last picked a new target, 0 = still going to enemy base
         /// </summary>
         private ulong LastTargetFrame = 0;
+        private bool IsTimeToGoHome = false;
 
         private double CurrentDegrees = 0;
         const double StepSize = 0.2f;
         const double Radius = 10;
         const int UpdateFrequencyTicks = 10;
+
+        public ScoutingWorkerController()
+        {
+            BOSSE.SensorManagerRef.GetSensor(Sensor.SensorId.EnemyArmyUnitDetectedFirstTimeSensor).AddHandler(ReceiveEventEnemyDetected);
+        }
 
         /// <summary>
         /// Updates squad controller
@@ -48,6 +54,14 @@ namespace BOSSE
                 Log.Warning("ScoutingWorkerController have more than 1 unit assigned, not supported");
             }
             Unit worker = this.controlledSquad.AssignedUnits.First();
+
+            // Check finish condition
+            if (IsTimeToGoHome)
+            {
+                // This terminates the controller
+                GoHome();
+                return;
+            }
 
             // Move around enmy resource center if we can find it
             List<Unit> candidateLocations = GetUnits(UnitConstants.ResourceCenters, Alliance.Enemy, false, false);
@@ -80,6 +94,19 @@ namespace BOSSE
             return new Vector3((float)x, (float)y, 0);
         }
 
+        private void GoHome()
+        {
+            Queue(CommandBuilder.MineMineralsAction(this.controlledSquad.AssignedUnits, GetMineralInMainMineralLine()));
+            Log.Info("ScoutingWorkerController - Scout going home");
+
+            foreach (var iter in this.controlledSquad.AssignedUnits)
+            {
+                iter.IsReserved = false;
+            }
+
+            BOSSE.SquadManagerRef.DeleteExistingSquad("ScoutingWorker");
+        }
+
         private void SearchEnemyMainBase(Unit worker)
         {
             if (worker.CurrentOrder.AbilityId == (uint)AbilityId.MOVE)
@@ -93,6 +120,11 @@ namespace BOSSE
             }
             Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, enemyBaseLoc.Value));
             Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + enemyBaseLoc.Value);
+        }
+
+        private void ReceiveEventEnemyDetected(Object sensorRef, EventArgs args)
+        {
+            IsTimeToGoHome = true;
         }
     }
 }

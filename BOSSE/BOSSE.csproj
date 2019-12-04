@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnUnitChangedTypeSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalManager.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
@@ -58,9 +59,9 @@
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\ScoutingWorkerController.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\DefaultSquadController.cs" />
     <Compile Include="BOSSE\Tactical Layer\SquadManager.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnMilitaryUnitDiedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnMilitaryUnitWasCompletedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\OwnStructureWasCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnMilitaryUnitDiedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnMilitaryUnitWasCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnStructureWasCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\SensorManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\DiscrepenceyDetector.cs" />
     <Compile Include="BOSSE\Strategic Layer\GoalFormulator.cs" />

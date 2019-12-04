@@ -32,6 +32,7 @@ namespace BOSSE
             AddSensor(new OwnMilitaryUnitWasCompletedSensor());
             AddSensor(new OwnMilitaryUnitDiedSensor());
             AddSensor(new OwnUnitChangedTypeSensor());
+            AddSensor(new EnemyArmyUnitDetectedFirstTimeSensor());            
         }
 
         public void AddSensor(Sensor newSensor)

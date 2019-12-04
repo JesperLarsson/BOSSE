@@ -60,7 +60,12 @@ namespace BOSSE
             }));
         }
 
-        public void AddUnit(Unit newUnit)
+        public virtual void IsBeingDeleted()
+        {
+            Log.Bulk("Deleted squad " + Name);
+        }
+
+        public virtual void AddUnit(Unit newUnit)
         {
             AssignedUnits.Add(newUnit);
         }

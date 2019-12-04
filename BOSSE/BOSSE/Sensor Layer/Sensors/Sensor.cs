@@ -29,6 +29,8 @@ namespace BOSSE
             OwnUnitChangedTypeSensor,
             OwnMilitaryUnitWasCompletedSensor,
             OwnMilitaryUnitDiedSensor,
+
+            EnemyArmyUnitDetectedFirstTimeSensor,
         }
         public SensorId Id = SensorId.NotSet;
 
