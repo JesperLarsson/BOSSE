@@ -46,7 +46,7 @@ namespace BOSSE
 
         public override void OnFrameTick()
         {
-            throw new NotImplementedException();
+
         }
 
         public void SetNewGoal(StrategicGoal newGoal)

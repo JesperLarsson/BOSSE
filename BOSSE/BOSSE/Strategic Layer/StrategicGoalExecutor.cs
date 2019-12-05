@@ -159,20 +159,7 @@ namespace BOSSE
 
             // Check worker count
             int workerCount = GetUnits(UnitId.SCV).Count;
-            if (workerCount < (BotConstants.TargetWorkerPerBase * commandCenters.Count))
-            {
-                // Build more workers
-                UnitTypeData workerInfo = GetUnitInfo(UnitId.SCV);
-                foreach (Unit cc in commandCenters)
-                {
-                    if (CurrentMinerals >= workerInfo.MineralCost && AvailableSupply >= workerInfo.FoodRequired && cc.CurrentOrder == null)
-                    {
-                        Queue(CommandBuilder.TrainAction(cc, UnitConstants.UnitId.SCV));
-                        workerCount++;
-                    }
-                }
-            }
-            else
+            if (workerCount >= 18)
             {
                 BOSSE.StrategicGoalRef.SetNewGoal(StrategicGoal.BuildMilitary);
             }

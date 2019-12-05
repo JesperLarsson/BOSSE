@@ -25,9 +25,28 @@ namespace BOSSE
     /// </summary>
     public class WorkerManager : Manager
     {
+        private bool AllowWorkerTraining = true;
+        private bool AllowWorkerOverProduction = false;
+
         public override void Initialize()
         {
 
+        }
+
+        public void SetWorkerTrainingAllowed(bool isAllowed)
+        {
+            if (isAllowed == this.AllowWorkerTraining)
+                return;
+
+            if (isAllowed)
+            {
+                Log.Info("WorkerManager - Allowing workers to be trained again");
+            }
+            else
+            {
+                Log.Info("WorkerManager - No longer allowing workers to be trained");
+            }
+            AllowWorkerTraining = isAllowed;
         }
 
         /// <summary>
@@ -35,6 +54,7 @@ namespace BOSSE
         /// </summary>
         public override void OnFrameTick()
         {
+            TrainWorkersIfNecessary();
             ReturnIdleWorkersToMining();
         }
 
@@ -64,6 +84,32 @@ namespace BOSSE
             return null;
         }
 
+        private void TrainWorkersIfNecessary()
+        {
+            if (!this.AllowWorkerTraining)
+                return;
+
+            List<Unit> commandCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
+            UnitTypeData workerInfo = GetUnitInfo(UnitId.SCV);
+            foreach (Unit cc in commandCenters)
+            {
+                if (cc.CurrentOrder != null)
+                    continue;
+
+                int idealWorkerCount = cc.IdealWorkers;
+                if (AllowWorkerOverProduction)
+                    idealWorkerCount = (int)(idealWorkerCount * 1.5f);
+
+                if (cc.AssignedWorkers >= idealWorkerCount)
+                    continue;
+
+                if (CurrentMinerals >= workerInfo.MineralCost && AvailableSupply >= workerInfo.FoodRequired)
+                {
+                    Queue(CommandBuilder.TrainAction(cc, UnitConstants.UnitId.SCV));
+                }
+            }
+        }
+
         private void ReturnIdleWorkersToMining()
         {
             Unit mineralToReturnTo = GetMineralInMainMineralLine();
@@ -79,7 +125,5 @@ namespace BOSSE
             if (workers.Count > 0)
                 Log.Info($"WorkerManager returned {workers.Count} workers to mining");
         }
-
-        
     }
 }

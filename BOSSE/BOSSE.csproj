@@ -67,7 +67,7 @@
     <Compile Include="BOSSE\Strategic Layer\DiscrepenceyDetector.cs" />
     <Compile Include="BOSSE\Strategic Layer\GoalFormulator.cs" />
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
-    <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutionManager.cs" />
+    <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
     <Compile Include="Entities\GameObject.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
