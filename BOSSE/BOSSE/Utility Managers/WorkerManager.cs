@@ -152,8 +152,65 @@ namespace BOSSE
             }
             else if (currentWorkersAssigned >= this.RequestedWorkersOnGas)
             {
-#warning TODO: Return workers to mining
-                // Return workers to mining
+                // Return workers to mining if we have too many
+                int workerCountToReturn = currentWorkersAssigned - this.RequestedWorkersOnGas;
+                List<Unit> workersToMoveOffGas = new List<Unit>();
+
+                // Make sure extractors are at their ideal count first
+                foreach (Unit extractor in extractors)
+                {
+                    if (extractor.AssignedWorkers <= extractor.IdealWorkers)
+                        continue;
+
+                    int nonIdealWorkerCount = extractor.IdealWorkers - extractor.AssignedWorkers;
+
+                    List<Unit> workers = GetUnits(UnitId.SCV, onlyCompleted: true);
+                    int movedWorkerCount = 0;
+                    foreach (Unit workerIter in workers)
+                    {
+                        if (workerIter.CurrentOrder == null)
+                            continue;
+                        if (workerIter.CurrentOrder.TargetUnitTag != extractor.Tag)
+                            continue;
+
+                        workersToMoveOffGas.Add(workerIter);
+                        movedWorkerCount++;
+
+                        if (movedWorkerCount >= workerCountToReturn)
+                            break;
+                        if (movedWorkerCount >= nonIdealWorkerCount)
+                            break;
+                    }
+                }
+
+                // Move more workers if necessary (ie we reduced the number of workers allowed)
+                if (workerCountToReturn > workersToMoveOffGas.Count)
+                {
+                    foreach (Unit extractor in extractors)
+                    {
+                        List<Unit> workers = GetUnits(UnitId.SCV, onlyCompleted: true);
+                        int movedWorkerCount = 0;
+                        foreach (Unit workerIter in workers)
+                        {
+                            if (workerIter.CurrentOrder == null)
+                                continue;
+                            if (workerIter.CurrentOrder.TargetUnitTag != extractor.Tag)
+                                continue;
+
+                            workersToMoveOffGas.Add(workerIter);
+                            movedWorkerCount++;
+
+                            if (movedWorkerCount >= workerCountToReturn)
+                                break;
+                        }
+                    }
+                }
+
+                if (workersToMoveOffGas.Count > 0)
+                {
+                    Log.Info($"WorkerManager - Moving {workersToMoveOffGas.Count} workers from gas to mining minerals");
+                    Queue(CommandBuilder.MineMineralsAction(workersToMoveOffGas, GetMineralInMainMineralLine()));
+                }
             }
             else
             {
@@ -174,7 +231,7 @@ namespace BOSSE
 
                     List<Unit> workersToExtractor = RequestWorkersForJobCloseToPointOrNull(extractor.Position, workersToPutOnExtractor);
                     Queue(CommandBuilder.MineMineralsAction(workersToExtractor, extractor));
-                    Log.Info($"Workermanager - Put {workersToPutOnExtractor} workers on gas " + extractor.Tag);
+                    Log.Info($"Workermanager - Put {workersToExtractor.Count} workers on gas " + extractor.Tag);
                 }
             }
         }
@@ -187,6 +244,9 @@ namespace BOSSE
             for (int i = 0; i < gasGeysers.Count && i < numberOfExtractors && CurrentMinerals >= extractorInfo.MineralCost; i++)
             {
                 Unit geyser = gasGeysers[i];
+
+                if (geyser.GetDistance(Globals.MainBaseLocation) > 20)
+                    continue;
 
                 Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(geyser.Position);
                 if (worker == null)

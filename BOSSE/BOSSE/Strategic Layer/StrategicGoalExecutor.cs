@@ -65,6 +65,7 @@ namespace BOSSE
 
             if (marineCount > 10)
             {
+                BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(0);
                 BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
             }
         }
