@@ -14,7 +14,7 @@ namespace BOSSE
     using Google.Protobuf.Collections;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GameUtility;
+    using static GeneralGameUtility;
 
     /// <summary>
     /// A single in-game object of any type (building etc)

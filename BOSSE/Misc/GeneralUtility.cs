@@ -17,7 +17,7 @@ namespace BOSSE
 
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GameUtility;
+    using static GeneralGameUtility;
     using static UnitConstants;
     using static AbilityConstants;
 

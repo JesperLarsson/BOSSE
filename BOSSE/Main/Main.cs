@@ -15,7 +15,7 @@ namespace BOSSE
     using Google.Protobuf.Collections;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GameUtility;
+    using static GeneralGameUtility;
 
     /// <summary>
     /// Top level object which bootstraps the engine and runs the main loop

@@ -16,7 +16,7 @@ namespace BOSSE
 
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GameUtility;
+    using static GeneralGameUtility;
     using static UnitConstants;
     using static AbilityConstants;
 
@@ -27,6 +27,7 @@ namespace BOSSE
     {
         private bool AllowWorkerTraining = true;
         private bool AllowWorkerOverProduction = false;
+        private int RequestedWorkersOnGas = 0;
 
         public override void Initialize()
         {
@@ -49,6 +50,15 @@ namespace BOSSE
             AllowWorkerTraining = isAllowed;
         }
 
+        public void SetNumberOfWorkersOnGas(int numberOfWorkersOnGas)
+        {
+            if (numberOfWorkersOnGas == this.RequestedWorkersOnGas)
+                return;
+
+            Log.Info($"WorkerManager - Changed number of workers on gas to {numberOfWorkersOnGas} (was {this.RequestedWorkersOnGas})");
+            this.RequestedWorkersOnGas = numberOfWorkersOnGas;
+        }
+
         /// <summary>
         /// Called periodically
         /// </summary>
@@ -56,32 +66,139 @@ namespace BOSSE
         {
             TrainWorkersIfNecessary();
             ReturnIdleWorkersToMining();
+
+            ResolveGasNeeds();
+            AssignWorkersToGasExtractors();
         }
 
         /// <summary>
         /// Returns a single worker close to the given point which can be used for a new job
         /// </summary>
-        public Unit RequestWorkerForJobCloseToPoint(Vector3 point)
+        public Unit RequestWorkerForJobCloseToPointOrNull(Vector3 point)
+        {
+            var result = RequestWorkersForJobCloseToPointOrNull(point, 1);
+            if (result == null || result.Count == 0)
+                return null;
+
+            return result[0];
+        }
+
+        /// <summary>
+        /// Returns a multiple workers close to the given point which can be used for a new job
+        /// Can return a partial amount, null = no workers found
+        /// </summary>
+        public List<Unit> RequestWorkersForJobCloseToPointOrNull(Vector3 point, int maxWorkerCount)
         {
             List<Unit> workers = GetUnits(UnitId.SCV);
 
             // Sort by distance to point
             workers.Sort((a, b) => a.GetDistance(point).CompareTo(b.GetDistance(point)));
 
+            List<Unit> matchedWorkers = new List<Unit>();
             foreach (Unit worker in workers)
             {
                 // Is worker suitable?
                 if (worker.CurrentOrder == null)
                 {
-                    return worker;
+                    matchedWorkers.Add(worker);
                 }
-                if (worker.CurrentOrder.AbilityId == (uint)AbilityId.GATHER_MINERALS)
+                else if (worker.CurrentOrder.AbilityId == (uint)AbilityId.GATHER_MINERALS)
                 {
-                    return worker;
+                    matchedWorkers.Add(worker);
                 }
+
+                if (matchedWorkers.Count >= maxWorkerCount)
+                    break;
             }
 
-            return null;
+            if (matchedWorkers.Count == 0)
+                return null;
+
+            return matchedWorkers;
+        }
+
+        private void ResolveGasNeeds()
+        {
+            if (this.RequestedWorkersOnGas <= 0)
+                return;
+
+            const float workersPerExtractor = 3;
+            int extractorsNecessary = (int)Math.Ceiling((((float)RequestedWorkersOnGas) / workersPerExtractor));
+            List<Unit> extractors = GetUnits(UnitId.REFINERY);
+
+#warning TODO: Also take pending geysers into account
+
+            if (extractorsNecessary > extractors.Count)
+            {
+                BuildNewGasExtractors(extractorsNecessary - extractors.Count);
+            }
+        }
+
+        private void AssignWorkersToGasExtractors()
+        {
+            List<Unit> extractors = GetUnits(UnitId.REFINERY, onlyCompleted: true);
+            if (extractors.Count == 0)
+                return;
+
+            int currentWorkersAssigned = 0;
+            foreach (Unit iter in extractors)
+            {
+                currentWorkersAssigned += iter.AssignedWorkers;
+            }
+
+            if (currentWorkersAssigned == this.RequestedWorkersOnGas)
+            {
+                return;
+            }
+            else if (currentWorkersAssigned >= this.RequestedWorkersOnGas)
+            {
+#warning TODO: Return workers to mining
+                // Return workers to mining
+            }
+            else
+            {
+                // Assign workers to work on gas
+                int workersNeeded = this.RequestedWorkersOnGas - currentWorkersAssigned;
+
+                foreach (Unit extractor in extractors)
+                {
+                    if (extractor.AssignedWorkers >= extractor.IdealWorkers)
+                        continue;
+
+                    int workersToPutOnExtractor = extractor.IdealWorkers - extractor.AssignedWorkers;
+                    if (workersNeeded < workersToPutOnExtractor)
+                    {
+                        workersToPutOnExtractor = workersNeeded;
+                    }
+                    workersNeeded -= workersToPutOnExtractor;
+
+                    List<Unit> workersToExtractor = RequestWorkersForJobCloseToPointOrNull(extractor.Position, workersToPutOnExtractor);
+                    Queue(CommandBuilder.MineMineralsAction(workersToExtractor, extractor));
+                    Log.Info($"Workermanager - Put {workersToPutOnExtractor} workers on gas " + extractor.Tag);
+                }
+            }
+        }
+
+        private void BuildNewGasExtractors(int numberOfExtractors)
+        {
+            UnitTypeData extractorInfo = GetUnitInfo(UnitId.REFINERY);
+            List<Unit> gasGeysers = GetUnits(UnitConstants.GasGeysers, Alliance.Neutral, false, true);
+
+            for (int i = 0; i < gasGeysers.Count && i < numberOfExtractors && CurrentMinerals >= extractorInfo.MineralCost; i++)
+            {
+                Unit geyser = gasGeysers[i];
+
+                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(geyser.Position);
+                if (worker == null)
+                {
+                    Log.Warning($"Unable to find a worker to construct gas geyser near " + geyser.Position.ToString2());
+                    return;
+                }
+
+                Log.Info($"WorkerManager - Building new gas extractor at " + geyser.Position.ToString2());
+                Queue(CommandBuilder.ConstructActionOnTarget(UnitId.REFINERY, worker, geyser));
+                CurrentMinerals -= extractorInfo.MineralCost;
+            }
         }
 
         private void TrainWorkersIfNecessary()
@@ -123,7 +240,9 @@ namespace BOSSE
             Queue(CommandBuilder.MineMineralsAction(workers, mineralToReturnTo));
 
             if (workers.Count > 0)
-                Log.Info($"WorkerManager returned {workers.Count} workers to mining");
+            {
+                Log.Info($"WorkerManager - Returned {workers.Count} workers to mining");
+            }
         }
     }
 }

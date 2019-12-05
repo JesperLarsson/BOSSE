@@ -29,7 +29,7 @@ namespace BOSSE
         /// </summary>
         public override void OnFrameTick()
         {
-            List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, Alliance.Enemy, true, false);
+            List<Unit> currentUnits = GeneralGameUtility.GetUnits(UnitConstants.ArmyUnits, Alliance.Enemy, true, false);
 
             HashSet<Unit> returnList = new HashSet<Unit>();
             foreach (Unit iter in currentUnits)

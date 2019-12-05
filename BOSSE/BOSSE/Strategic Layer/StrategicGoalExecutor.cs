@@ -16,7 +16,7 @@ namespace BOSSE
 
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GameUtility;
+    using static GeneralGameUtility;
     using static UnitConstants;
     using static AbilityConstants;
 
@@ -46,6 +46,8 @@ namespace BOSSE
 
             // Subscribe to finished buildings
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
+
+            BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
         }
 
         private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)
@@ -110,7 +112,7 @@ namespace BOSSE
             uint supplyDiff = MaxSupply - CurrentSupply - pendingFood;
             while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
-                BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
+                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
                 supplyDiff += (uint)houseInfo.FoodProvided;
                 CurrentMinerals -= houseInfo.MineralCost;
             }
@@ -129,7 +131,7 @@ namespace BOSSE
             if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost)
             {
                 // Build barracks
-                BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.BARRACKS);
+                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.BARRACKS);
                 CurrentMinerals -= raxInfo.MineralCost;
             }
             else

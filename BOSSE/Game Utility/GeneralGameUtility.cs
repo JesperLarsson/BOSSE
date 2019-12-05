@@ -19,7 +19,7 @@ namespace BOSSE
     /// <summary>
     /// Various helper functions for interacting with StarCraft 2
     /// </summary>
-    public static class GameUtility
+    public static class GeneralGameUtility
     {
         /// <summary>
         /// Returns which ability builds the given unit
@@ -129,55 +129,6 @@ namespace BOSSE
             }
 
             return units;
-        }
-
-        /// <summary>
-        /// Builds the given type anywhere, placeholder for a better solution
-        /// Super slow, polls the game for a location
-        /// </summary>
-        public static void BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId unitType)
-        {
-            const int radius = 12;
-            Vector3 startingSpot;
-
-            List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-            if (resourceCenters.Count > 0)
-            {
-                startingSpot = resourceCenters[0].Position;
-            }
-            else
-            {
-                Log.Warning($"Unable to construct {unitType} - no resource center was found");
-                return;
-            }
-
-            // Find a valid spot, the slow way
-            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-            Vector3 constructionSpot;
-            while (true)
-            {
-                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
-
-                //avoid building in the mineral line
-                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
-
-                //check if the building fits
-                Log.Info("Running canplace hack...");
-                if (!CanPlace(unitType, constructionSpot)) continue;
-
-                //ok, we found a spot
-                break;
-            }
-
-            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPoint(constructionSpot);
-            if (worker == null)
-            {
-                Log.Warning($"Unable to find a worker to construct {unitType}");
-                return;
-            }
-
-            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot));
-            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()}");
         }
 
         /// <summary>

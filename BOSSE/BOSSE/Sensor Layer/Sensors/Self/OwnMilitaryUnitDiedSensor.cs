@@ -28,7 +28,7 @@ namespace BOSSE
         /// </summary>
         public override void OnFrameTick()
         {
-            List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, onlyCompleted: true);
+            List<Unit> currentUnits = GeneralGameUtility.GetUnits(UnitConstants.ArmyUnits, onlyCompleted: true);
             HashSet<Unit> killedUnits = new HashSet<Unit>();
 
             foreach (uint prevIterTag in PreviousUnitTags)

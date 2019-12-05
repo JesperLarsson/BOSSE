@@ -29,7 +29,7 @@ namespace BOSSE
         /// </summary>
         public override void OnFrameTick()
         {
-            List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, onlyCompleted: true);
+            List<Unit> currentUnits = GeneralGameUtility.GetUnits(UnitConstants.ArmyUnits, onlyCompleted: true);
 
             HashSet<Unit> newStructures = new HashSet<Unit>();
             foreach (Unit iter in currentUnits)

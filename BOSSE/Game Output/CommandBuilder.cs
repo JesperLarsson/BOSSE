@@ -15,7 +15,7 @@ namespace BOSSE
 
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GameUtility;
+    using static GeneralGameUtility;
     using static UnitConstants;
     using static AbilityConstants;
 
@@ -102,6 +102,20 @@ namespace BOSSE
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos.X = location.X;
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = location.Y;
+
+            return actionObj;
+        }
+
+        /// <summary>
+        /// Build sc2 action to make the given unit construct the given building at a on another location (gas geyser)
+        /// </summary>
+        public static Action ConstructActionOnTarget(UnitId structureToBuild, Unit unitThatBuilds, Unit onUnit)
+        {
+            int abilityID = GetAbilityIdToBuildUnit(structureToBuild);
+            Action actionObj = CommandBuilder.RawCommand(abilityID);
+
+            actionObj.ActionRaw.UnitCommand.UnitTags.Add(unitThatBuilds.Tag);
+            actionObj.ActionRaw.UnitCommand.TargetUnitTag = onUnit.Tag;
 
             return actionObj;
         }

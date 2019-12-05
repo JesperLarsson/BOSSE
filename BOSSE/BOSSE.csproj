@@ -72,9 +72,10 @@
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
+    <Compile Include="Game Utility\ConstructionUtility.cs" />
     <Compile Include="Main\BackgroundWorkerThread.cs" />
     <Compile Include="Misc\BotConstants.cs" />
-    <Compile Include="Game Utility\GameUtility.cs" />
+    <Compile Include="Game Utility\GeneralGameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="BOSSE\Sensor Layer\Sensors\Sensor.cs" />
