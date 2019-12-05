@@ -47,7 +47,7 @@ namespace BOSSE
             // Subscribe to finished buildings
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
 
-            BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
+            //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
         }
 
         private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)
@@ -65,7 +65,7 @@ namespace BOSSE
 
             if (marineCount > 10)
             {
-                BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(0);
+                //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(0);
                 BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
             }
         }
@@ -132,6 +132,7 @@ namespace BOSSE
             if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost)
             {
                 // Build barracks
+                Log.Debug("Calling build barracks at tick " + Globals.CurrentFrameIndex);
                 ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.BARRACKS);
                 CurrentMinerals -= raxInfo.MineralCost;
             }
@@ -162,7 +163,7 @@ namespace BOSSE
 
             // Check worker count
             int workerCount = GetUnits(UnitId.SCV).Count;
-            if (workerCount >= 18)
+            if (workerCount >= 14)
             {
                 BOSSE.StrategicGoalRef.SetNewGoal(StrategicGoal.BuildMilitary);
             }

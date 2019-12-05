@@ -77,12 +77,12 @@ namespace BOSSE
 
         private void ScoutAroundEnemyBase(Unit worker, Unit enemyResourceCenter)
         {
-            if ((Globals.CurrentFrameCount - LastTargetFrame) < UpdateFrequencyTicks)
+            if ((Globals.CurrentFrameIndex - LastTargetFrame) < UpdateFrequencyTicks)
                 return; // Not time to update yet
 
             Vector3 scoutTargetLocation = PickNextSpotToGo(worker, enemyResourceCenter);
             Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, scoutTargetLocation));
-            LastTargetFrame = Globals.CurrentFrameCount;
+            LastTargetFrame = Globals.CurrentFrameIndex;
         }
 
         private Vector3 PickNextSpotToGo(Unit worker, Unit enemyResourceCenter)

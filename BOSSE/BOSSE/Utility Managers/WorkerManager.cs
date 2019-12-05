@@ -126,7 +126,7 @@ namespace BOSSE
             int extractorsNecessary = (int)Math.Ceiling((((float)RequestedWorkersOnGas) / workersPerExtractor));
             List<Unit> extractors = GetUnits(UnitId.REFINERY);
 
-#warning TODO: Also take pending geysers into account
+#warning TODO: Also take pending extractors into account
 
             if (extractorsNecessary > extractors.Count)
             {
@@ -140,12 +140,14 @@ namespace BOSSE
             if (extractors.Count == 0)
                 return;
 
+            // Count workers assigned on all gases
             int currentWorkersAssigned = 0;
             foreach (Unit iter in extractors)
             {
                 currentWorkersAssigned += iter.AssignedWorkers;
             }
 
+            // Determine action
             if (currentWorkersAssigned == this.RequestedWorkersOnGas)
             {
                 return;

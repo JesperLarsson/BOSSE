@@ -23,7 +23,7 @@ namespace BOSSE
     public static class Globals
     {
         /// <summary>
-        /// Global reference to the running game instance, via protobuff proxy
+        /// Global reference to the running game instance, via protobuff websocket proxy
         /// </summary>
         public static ProtobufProxy GameConnection;
 
@@ -49,9 +49,9 @@ namespace BOSSE
         public static uint PlayerId = uint.MaxValue;
 
         /// <summary>
-        /// Current logical frame count, starts at 0
+        /// We are currently running the current logical frame, starts at 0
         /// </summary>
-        public static ulong CurrentFrameCount = 0;
+        public static ulong CurrentFrameIndex = 0;
 
         /// <summary>
         /// Location of our main starting base

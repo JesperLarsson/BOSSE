@@ -20,26 +20,49 @@ namespace BOSSE
         private static bool StdoutClosed;
         private static object LogLock = new object();
 
+        /// <summary>
+        /// Log file only, not to console
+        /// </summary>
         public static void Bulk(string line, params object[] parameters)
         {
             WriteLine("BULK", line, false, parameters);
         }
 
+        /// <summary>
+        /// General information
+        /// </summary>
         public static void Info(string line, params object[] parameters)
         {
             WriteLine("INFO", line, true, parameters);
         }
 
+        /// <summary>
+        /// For temporary debugging of specific points of the code
+        /// </summary>
+        public static void Debug(string line, params object[] parameters)
+        {
+            WriteLine("DEBUG", line, true, parameters);
+        }
+
+        /// <summary>
+        /// Semi-serious issues
+        /// </summary>
         public static void Warning(string line, params object[] parameters)
         {
             WriteLine("WARNING", line, true, parameters);
         }
 
+        /// <summary>
+        /// Serious errors and unexepcted exceptions
+        /// </summary>
         public static void Error(string line, params object[] parameters)
         {
             WriteLine("ERROR", line, true, parameters);
         }
 
+        /// <summary>
+        /// Will stop execution if called during a debugging session
+        /// </summary>
         public static void SanityCheckFailed(string line, bool breakExe = true, params object[] parameters)
         {
             WriteLine("SANITY CHECK FAILED", line, true, parameters);

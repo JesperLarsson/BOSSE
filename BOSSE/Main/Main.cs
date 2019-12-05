@@ -56,7 +56,7 @@ namespace BOSSE
             Globals.BotRef.Initialize();
 
             // Main loop
-            Globals.CurrentFrameCount = 0;
+            Globals.CurrentFrameIndex = 0;
             while (true)
             {
                 // Remove previous frame actions
@@ -66,7 +66,7 @@ namespace BOSSE
                 ReadPerFrameState().Wait();
 
                 // Update bot
-                if (Globals.CurrentFrameCount == 0)
+                if (Globals.CurrentFrameIndex == 0)
                 {
                     Globals.BotRef.FirstFrame();
                 }
@@ -74,7 +74,8 @@ namespace BOSSE
 
                 // Send actions to sc2
                 SendQueuedActions().Wait();
-                Globals.CurrentFrameCount++;
+
+                Globals.CurrentFrameIndex++;
             }
         }
 
@@ -114,6 +115,12 @@ namespace BOSSE
             // Update global state
             CurrentGameState.ObservationState = response.Observation;
             DebugGui.BosseGui.ObservationState = response.Observation;
+
+            // Check for errors
+            foreach (ActionError errorIter in CurrentGameState.ObservationState.ActionErrors)
+            {
+                Log.Error("Received error from starcraft: " + errorIter.Result + "(unit " + errorIter.UnitTag + " ability " + errorIter.AbilityId + ")");
+            }
 
             // Check for game over
             if (response.Status == Status.Ended || response.Status == Status.Quit)

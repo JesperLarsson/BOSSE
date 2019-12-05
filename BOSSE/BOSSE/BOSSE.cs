@@ -81,6 +81,9 @@ namespace BOSSE
             // Initialize Tyr (map analysis)
             Tyr.Tyr.Initialize();
 
+            // Build construction map
+            ConstructionUtility.Initialize();
+
             // Initialize sub-managers
             foreach (Manager managerIter in AllManagers)
             {

@@ -73,6 +73,7 @@
     <Compile Include="Game Input\CurrentGameState.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
     <Compile Include="Game Utility\ConstructionUtility.cs" />
+    <Compile Include="Game Utility\WallBuilderUtility.cs" />
     <Compile Include="Main\BackgroundWorkerThread.cs" />
     <Compile Include="Misc\BotConstants.cs" />
     <Compile Include="Game Utility\GeneralGameUtility.cs" />

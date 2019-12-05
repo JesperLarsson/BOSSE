@@ -22,53 +22,82 @@ namespace BOSSE
     /// </summary>
     public static class ConstructionUtility
     {
+        private static List<WallBuilderUtility.PlacementResult> defensiveBuildLocationsRequsted;
+
+        public static void Initialize()
+        {
+            List<UnitId> standardWallConfig = new List<UnitId> { UnitId.BARRACKS, UnitId.BARRACKS, UnitId.SUPPLY_DEPOT };
+            defensiveBuildLocationsRequsted = WallBuilderUtility.DeterminePlacementsForRampWall(standardWallConfig);
+        }
+
         /// <summary>
         /// Builds the given type anywhere, placeholder for a better solution
         /// Super slow, polls the game for a location
         /// </summary>
         public static void BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId unitType)
         {
-            const int radius = 12;
-            Vector3 startingSpot;
+            Vector3? constructionSpot = null;
 
-            List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-            if (resourceCenters.Count > 0)
-            {
-                startingSpot = resourceCenters[0].Position;
-            }
-            else
-            {
-                Log.Warning($"Unable to construct {unitType} - no resource center was found");
-                return;
-            }
+            // See if our defense config has requested a building of this type
+            //Log.Debug("Running A");
+            //foreach (WallBuilderUtility.PlacementResult defensiveLocationIter in defensiveBuildLocationsRequsted)
+            //{
+            //    Log.Debug("Running B " + defensiveLocationIter.BuildingType + " vs " + unitType);
+            //    if (defensiveLocationIter.BuildingType == unitType)
+            //    {
+            //        // Take this one
+            //        //constructionSpot = new Vector3(defensiveLocationIter.Position.X - 1, defensiveLocationIter.Position.Y - 1, 0);
+            //        constructionSpot = defensiveLocationIter.Position;
+            //        Log.Info("ConstructionUtility - Building ramp location " + defensiveLocationIter.Position.ToString2());
+            //        defensiveBuildLocationsRequsted.Remove(defensiveLocationIter);
+            //        break;
+            //    }
+            //}
 
             // Find a valid spot, the slow way
-            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-            Vector3 constructionSpot;
-            while (true)
+            if (constructionSpot == null)
             {
-                constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
+                Log.Debug("Running backup solution...");
+                const int radius = 12;
+                Vector3 startingSpot;
 
-                //avoid building in the mineral line
-                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
+                List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
+                if (resourceCenters.Count > 0)
+                {
+                    startingSpot = resourceCenters[0].Position;
+                }
+                else
+                {
+                    Log.Warning($"Unable to construct {unitType} - no resource center was found");
+                    return;
+                }
 
-                //check if the building fits
-                Log.Info("Running canplace hack...");
-                if (!CanPlace(unitType, constructionSpot)) continue;
+                List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+                while (true)
+                {
+                    constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
 
-                //ok, we found a spot
-                break;
+                    //avoid building in the mineral line
+                    if (IsInRange(constructionSpot.Value, mineralFields, 5)) continue;
+
+                    //check if the building fits
+                    Log.Info("Running canplace hack...");
+                    if (!CanPlace(unitType, constructionSpot.Value)) continue;
+
+                    //ok, we found a spot
+                    break;
+                }
             }
 
-            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
+            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot.Value);
             if (worker == null)
             {
                 Log.Warning($"Unable to find a worker to construct {unitType}");
                 return;
             }
 
-            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot));
-            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()}");
+            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot.Value));
+            Log.Info($"Constructing {unitType} at {constructionSpot.Value.ToString2()} using worker " + worker.Tag);
         }
     }
 }
