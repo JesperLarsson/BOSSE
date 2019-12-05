@@ -21,14 +21,14 @@ namespace BOSSE
     /// <summary>
     /// Holds all of our sensors
     /// </summary>
-    public class SensorManager
+    public class SensorManager : Manager
     {
         /// <summary>
         /// Name => Sensor instance mapping
         /// </summary>
         private readonly Dictionary<Type, Sensor> ActiveSensors = new Dictionary<Type, Sensor>();
 
-        public void Initialize()
+        public override void Initialize()
         {
             // Create an object of each sensor
             foreach (Type type in Assembly.GetAssembly(typeof(Sensor)).GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Sensor))))
@@ -62,11 +62,11 @@ namespace BOSSE
         /// <summary>
         /// Updates all sensors
         /// </summary>
-        public void Tick()
+        public override void OnFrameTick()
         {
             foreach (var iter in ActiveSensors)
             {
-                iter.Value.Tick();
+                iter.Value.OnFrameTick();
             }
         }
     }

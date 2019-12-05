@@ -9,6 +9,7 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Linq;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
@@ -20,18 +21,18 @@ namespace BOSSE
     using static AbilityConstants;
 
     /// <summary>
-    /// Formulates new high level goals, based on input from <see cref="DiscrepenceyDetector"/>
+    /// Manager base class, each manager will be updated each tick
     /// </summary>
-    public class GoalFormulator : Manager
+    public abstract class Manager
     {
-        public override void Initialize()
-        {
+        /// <summary>
+        /// Called when the bot starts
+        /// </summary>
+        public abstract void Initialize();
 
-        }
-
-        public override void OnFrameTick()
-        {
-
-        }
+        /// <summary>
+        /// Update each bot logical frame
+        /// </summary>
+        public abstract void OnFrameTick();
     }
 }

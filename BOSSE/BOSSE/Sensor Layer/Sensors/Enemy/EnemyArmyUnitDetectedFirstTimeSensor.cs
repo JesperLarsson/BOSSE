@@ -27,7 +27,7 @@ namespace BOSSE
         /// <summary>
         /// Updates sensor
         /// </summary>
-        public override void Tick()
+        public override void OnFrameTick()
         {
             List<Unit> currentUnits = GameUtility.GetUnits(UnitConstants.ArmyUnits, Alliance.Enemy, true, false);
 

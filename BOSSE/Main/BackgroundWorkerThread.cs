@@ -21,7 +21,7 @@ namespace BOSSE
     public class BackgroundWorkerThread
     {
         private Thread ThreadInstance;
-
+        
         public void StartThread()
         {
             ThreadInstance = new Thread(new ThreadStart(MainLoop));

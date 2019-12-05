@@ -23,9 +23,9 @@ namespace BOSSE
     /// <summary>
     /// Manages worker units
     /// </summary>
-    public class WorkerManager
+    public class WorkerManager : Manager
     {
-        public void Initialize()
+        public override void Initialize()
         {
 
         }
@@ -33,25 +33,9 @@ namespace BOSSE
         /// <summary>
         /// Called periodically
         /// </summary>
-        public void Tick()
+        public override void OnFrameTick()
         {
             ReturnIdleWorkersToMining();
-        }
-
-        private void ReturnIdleWorkersToMining()
-        {
-            Unit mineralToReturnTo = GetMineralInMainMineralLine();
-            if (mineralToReturnTo == null)
-            {
-                Log.Warning("Unable to find a mineral to return workers to");
-                return;
-            }
-
-            List<Unit> workers = GetUnits(UnitId.SCV).Where(p => p.CurrentOrder == null && p.IsReserved == false).ToList();
-            Queue(CommandBuilder.MineMineralsAction(workers, mineralToReturnTo));
-
-            if (workers.Count > 0)
-                Log.Info($"WorkerManager returned {workers.Count} workers to mining");
         }
 
         /// <summary>
@@ -79,5 +63,23 @@ namespace BOSSE
 
             return null;
         }
+
+        private void ReturnIdleWorkersToMining()
+        {
+            Unit mineralToReturnTo = GetMineralInMainMineralLine();
+            if (mineralToReturnTo == null)
+            {
+                Log.Warning("Unable to find a mineral to return workers to");
+                return;
+            }
+
+            List<Unit> workers = GetUnits(UnitId.SCV).Where(p => p.CurrentOrder == null && p.IsReserved == false).ToList();
+            Queue(CommandBuilder.MineMineralsAction(workers, mineralToReturnTo));
+
+            if (workers.Count > 0)
+                Log.Info($"WorkerManager returned {workers.Count} workers to mining");
+        }
+
+        
     }
 }

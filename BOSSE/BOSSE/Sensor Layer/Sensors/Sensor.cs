@@ -65,7 +65,7 @@ namespace BOSSE
         /// <summary>
         /// Updates sensor logic
         /// </summary>
-        public abstract void Tick();
+        public abstract void OnFrameTick();
 
         public void AddHandler(SensorEventHandler handler)
         {

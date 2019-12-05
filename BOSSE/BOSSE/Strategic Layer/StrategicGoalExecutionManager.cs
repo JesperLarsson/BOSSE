@@ -23,7 +23,7 @@ namespace BOSSE
     /// <summary>
     /// Translates the given goal inte sc2 actions
     /// </summary>
-    public class StrategicGoalExecutor
+    public class StrategicGoalExecutor : Manager
     {
         const int MinSupplyMargin = 4;
         const int TargetWorkerPerBase = 24;
@@ -33,7 +33,7 @@ namespace BOSSE
         /// <summary>
         /// Called once during start
         /// </summary>
-        public void Initialize()
+        public override void Initialize()
         {
             // Create main squad
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
@@ -70,7 +70,7 @@ namespace BOSSE
         /// <summary>
         /// Main function for the goal executor
         /// </summary>
-        public void Tick()
+        public override void OnFrameTick()
         {
             AllStrategiesPreRun();
 

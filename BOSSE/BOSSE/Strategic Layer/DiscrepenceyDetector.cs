@@ -22,14 +22,14 @@ namespace BOSSE
     /// <summary>
     /// Compares the current game state against our goals, and generates high level events based on that which might result in new goals
     /// </summary>
-    public class DiscrepenceyDetector
+    public class DiscrepenceyDetector : Manager
     {
-        public void Initialize()
+        public override void Initialize()
         {
 
         }
 
-        public void Tick()
+        public override void OnFrameTick()
         {
 
         }

@@ -27,7 +27,7 @@ namespace BOSSE
         /// <summary>
         /// Updates sensor
         /// </summary>
-        public override void Tick()
+        public override void OnFrameTick()
         {
             List<Unit> currentStructures = GameUtility.GetUnits(UnitConstants.Structures, onlyCompleted: true);
 

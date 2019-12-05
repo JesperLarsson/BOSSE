@@ -23,7 +23,7 @@ namespace BOSSE
     /// <summary>
     /// Manages our squads consisting of army units
     /// </summary>
-    public class SquadManager
+    public class SquadManager : Manager
     {
         /// <summary>
         /// All active squads
@@ -35,7 +35,7 @@ namespace BOSSE
         /// <summary>
         /// Initializes the squad manager
         /// </summary>
-        public void Initialize()
+        public override void Initialize()
         {
 
         }
@@ -86,7 +86,7 @@ namespace BOSSE
         /// <summary>
         /// Updates all squad logic
         /// </summary>
-        public void Tick()
+        public override void OnFrameTick()
         {
             BOSSE.TacticalGoalRef.Get(out MilitaryGoal currentMilitaryGoal, out Vector3? currentMilitaryGoalPoint);
 
@@ -107,7 +107,7 @@ namespace BOSSE
                 if (SquadsModified)
                 {
                     SquadsModified = false;
-                    Tick();
+                    OnFrameTick();
                     return;
                 }
             }

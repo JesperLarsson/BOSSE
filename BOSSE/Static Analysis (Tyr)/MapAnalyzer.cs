@@ -33,6 +33,18 @@ namespace BOSSE.Tyr
 
         public static ResponseGameInfo GameInfo;
         public static ResponseObservation Observation;
+
+        public static void Initialize()
+        {
+            Tyr.Debug = Globals.IsSinglePlayer;
+            Tyr.PlayerId = Globals.PlayerId;
+            Tyr.GameInfo = CurrentGameState.GameInformation;
+            Tyr.Observation = CurrentGameState.ObservationState;
+            Tyr.MapAnalyzer.Analyze();
+            Tyr.TargetManager.OnStart();
+            Tyr.BaseManager.OnStart();
+            Tyr.MapAnalyzer.AddToGui();
+        }
     }
 
     public class MapAnalyzer

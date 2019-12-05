@@ -23,13 +23,13 @@ namespace BOSSE
     /// <summary>
     /// Manages our orbital command resources (scan / mule / etc). Does not produce workers
     /// </summary>
-    public class OrbitalCommandManager
+    public class OrbitalCommandManager : Manager
     {
         private HashSet<Unit> ManagedOrbitalCommands = new HashSet<Unit>();
 
         const int muleEnergyCost = 50;
 
-        public void Initialize()
+        public override void Initialize()
         {
             BOSSE.SensorManagerRef.GetSensor(
                 typeof(OwnUnitChangedTypeSensor)).AddHandler(ReceiveEventNewOrbitalCommand,
@@ -37,7 +37,7 @@ namespace BOSSE
             );
         }
 
-        public void Tick()
+        public override void OnFrameTick()
         {
             foreach (Unit ocIter in ManagedOrbitalCommands)
             {

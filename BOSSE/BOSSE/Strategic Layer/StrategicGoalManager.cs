@@ -35,9 +35,19 @@ namespace BOSSE
     /// <summary>
     /// Holds our overall strategic goal
     /// </summary>
-    public class StrategicGoalManager
+    public class StrategicGoalManager : Manager
     {
         private StrategicGoal CurrentStrategicGoal = StrategicGoal.NotSet;
+
+        public override void Initialize()
+        {
+            
+        }
+
+        public override void OnFrameTick()
+        {
+            throw new NotImplementedException();
+        }
 
         public void SetNewGoal(StrategicGoal newGoal)
         {

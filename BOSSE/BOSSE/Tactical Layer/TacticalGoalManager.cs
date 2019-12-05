@@ -36,7 +36,7 @@ namespace BOSSE
     /// <summary>
     /// Holds our high level tactical goal
     /// </summary>
-    public class TacticalGoalManager
+    public class TacticalGoalManager : Manager
     {
         private MilitaryGoal CurrentMilitaryGoal = MilitaryGoal.NotSet;
 
@@ -44,6 +44,14 @@ namespace BOSSE
         /// Military target, if any (can be null)
         /// </summary>
         private Vector3? CurrentMilitaryGoalPoint = null;
+
+        public override void Initialize()
+        {
+        }
+
+        public override void OnFrameTick()
+        {
+        }
 
         public void SetNewGoal(MilitaryGoal newGoal, Vector3? newPoint = null)
         {

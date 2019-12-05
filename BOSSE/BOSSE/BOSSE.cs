@@ -25,22 +25,39 @@ namespace BOSSE
     public class BOSSE
     {
         // Input managers
-        public static SensorManager SensorManagerRef = new SensorManager();
+        public static readonly SensorManager SensorManagerRef = new SensorManager();
 
         // Strategic managers
-        public static DiscrepenceyDetector DiscrepenceyDetectorRef = new DiscrepenceyDetector();
-        public static GoalFormulator GoalFormulatorRef = new GoalFormulator();
-        public static StrategicGoalManager StrategicGoalRef = new StrategicGoalManager();
-        public static StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
+        public static readonly DiscrepenceyDetector DiscrepenceyDetectorRef = new DiscrepenceyDetector();
+        public static readonly GoalFormulator GoalFormulatorRef = new GoalFormulator();
+        public static readonly StrategicGoalManager StrategicGoalRef = new StrategicGoalManager();
+        public static readonly StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
 
         // Tactical managers
-        public static TacticalGoalManager TacticalGoalRef = new TacticalGoalManager();
-        public static SquadManager SquadManagerRef = new SquadManager();
+        public static readonly TacticalGoalManager TacticalGoalRef = new TacticalGoalManager();
+        public static readonly SquadManager SquadManagerRef = new SquadManager();
 
         // Utility managers
-        public static WorkerManager WorkerManagerRef = new WorkerManager();
-        public static OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
+        public static readonly WorkerManager WorkerManagerRef = new WorkerManager();
+        public static readonly OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
 
+        // List of all active managers. NOTE: Order matters for which gets to update first
+        public static readonly List<Manager> AllManagers = new List<Manager>
+        {
+            SensorManagerRef,
+
+            StrategicGoalRef,
+            DiscrepenceyDetectorRef,
+            GoalFormulatorRef,
+            GoalExecutorRef,
+
+            TacticalGoalRef,
+            SquadManagerRef,
+
+            WorkerManagerRef,
+            OrbitalCommandManagerRef
+        };
+        
         // Background thread
         public static BackgroundWorkerThread BackgroundWorkerThreadRef = new BackgroundWorkerThread();
 
@@ -62,25 +79,15 @@ namespace BOSSE
             Globals.MainBaseLocation = GetUnits(UnitId.COMMAND_CENTER)[0].Position;
 
             // Initialize Tyr (map analysis)
-            Tyr.Tyr.Debug = Globals.IsSinglePlayer;
-            Tyr.Tyr.PlayerId = Globals.PlayerId;
-            Tyr.Tyr.GameInfo = CurrentGameState.GameInformation;
-            Tyr.Tyr.Observation = CurrentGameState.ObservationState;
-            Tyr.Tyr.MapAnalyzer.Analyze();
-            Tyr.Tyr.TargetManager.OnStart();
-            Tyr.Tyr.BaseManager.OnStart();
-            Tyr.Tyr.MapAnalyzer.AddToGui();
+            Tyr.Tyr.Initialize();
 
             // Initialize sub-managers
-            SensorManagerRef.Initialize();
-            GoalExecutorRef.Initialize();
-            SquadManagerRef.Initialize();
-            WorkerManagerRef.Initialize();
-            OrbitalCommandManagerRef.Initialize();
-            DiscrepenceyDetectorRef.Initialize();
-            GoalFormulatorRef.Initialize();
+            foreach (Manager managerIter in AllManagers)
+            {
+                managerIter.Initialize();
+            }
 
-            // Start BG thread
+            // Start background worker thread
             BackgroundWorkerThreadRef.StartThread();
 
             // Debug sensor - Log building completions
@@ -106,20 +113,10 @@ namespace BOSSE
         {
             Unit.RefreshAllUnitData();
 
-            // Sensor layer
-            SensorManagerRef.Tick();
-
-            // Strategic layer
-            DiscrepenceyDetectorRef.Tick();
-            GoalFormulatorRef.Tick();
-            GoalExecutorRef.Tick();
-
-            // Tactical (military) layer
-            SquadManagerRef.Tick();
-
-            // Utility managers
-            WorkerManagerRef.Tick();
-            OrbitalCommandManagerRef.Tick();
+            foreach (Manager managerIter in AllManagers)
+            {
+                managerIter.OnFrameTick();
+            }
         }
     }
 }
