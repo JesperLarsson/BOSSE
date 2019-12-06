@@ -30,6 +30,8 @@ namespace BOSSE
         /// </summary>
         private ulong LastTargetFrame = 0;
         private bool IsTimeToGoHome = false;
+        private bool HasScoutedNatural = false;
+        private int TicksUpdated = 0;
 
         private double CurrentDegrees = 0;
         const double StepSize = 0.2f;
@@ -71,8 +73,36 @@ namespace BOSSE
             }
             else
             {
-                ScoutAroundEnemyBase(worker, candidateLocations[0]);
+                // Take two loops around enemy base, then scout natural location, then loop again until we see an enemy army unit
+                if (TicksUpdated >= 10 && (!HasScoutedNatural))
+                {
+                    ScoutNatural(worker);
+                }
+                else
+                {
+                    ScoutAroundEnemyBase(worker, candidateLocations[0]);
+                }
             }
+        }
+
+        private void ScoutNatural(Unit worker)
+        {
+            Tyr.BaseLocation location = Tyr.Tyr.MapAnalyzer.GetEnemyNatural();
+            if (location == null)
+            {
+                Log.Warning("Scout unable to locate enemy natural");
+                HasScoutedNatural = true;
+                return;
+            }
+
+            if (worker.GetDistance(new Vector3(location.Pos.X, location.Pos.Y, 0)) < 3)
+            {
+                Log.Bulk("Scout completed natural scouting");
+                HasScoutedNatural = true;
+                return;
+            }
+
+            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, new Vector3(location.Pos.X, location.Pos.Y, 0)));
         }
 
         private void ScoutAroundEnemyBase(Unit worker, Unit enemyResourceCenter)
@@ -80,6 +110,7 @@ namespace BOSSE
             if ((Globals.CurrentFrameIndex - LastTargetFrame) < UpdateFrequencyTicks)
                 return; // Not time to update yet
 
+            TicksUpdated++;
             Vector3 scoutTargetLocation = PickNextSpotToGo(worker, enemyResourceCenter);
             Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, scoutTargetLocation));
             LastTargetFrame = Globals.CurrentFrameIndex;

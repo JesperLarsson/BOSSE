@@ -905,54 +905,54 @@ namespace BOSSE.Tyr
             return cur;
         }
 
-        //public BaseLocation GetEnemyNatural()
-        //{
-        //    if (Tyr.TargetManager.PotentialEnemyStartLocations.Count != 1)
-        //        return null;
-        //    int[,] distances = Distances(Tyr.TargetManager.PotentialEnemyStartLocations[0]);
-        //    int dist = 1000000000;
-        //    BaseLocation enemyNatural = null;
-        //    foreach (BaseLocation loc in Tyr.MapAnalyzer.BaseLocations)
-        //    {
-        //        int distanceToMain = distances[(int)loc.Pos.X, (int)loc.Pos.Y];
+        public BaseLocation GetEnemyNatural()
+        {
+            if (Tyr.TargetManager.PotentialEnemyStartLocations.Count != 1)
+                return null;
+            int[,] distances = Distances(Tyr.TargetManager.PotentialEnemyStartLocations[0]);
+            int dist = 1000000000;
+            BaseLocation enemyNatural = null;
+            foreach (BaseLocation loc in Tyr.MapAnalyzer.BaseLocations)
+            {
+                int distanceToMain = distances[(int)loc.Pos.X, (int)loc.Pos.Y];
 
-        //        if (distanceToMain <= 5)
-        //            continue;
+                if (distanceToMain <= 5)
+                    continue;
 
-        //        if (distanceToMain < dist)
-        //        {
-        //            dist = distanceToMain;
-        //            enemyNatural = loc;
-        //        }
-        //    }
-        //    return enemyNatural;
-        //}
+                if (distanceToMain < dist)
+                {
+                    dist = distanceToMain;
+                    enemyNatural = loc;
+                }
+            }
+            return enemyNatural;
+        }
 
-        //public BaseLocation GetEnemyThird()
-        //{
-        //    if (Tyr.TargetManager.PotentialEnemyStartLocations.Count != 1)
-        //        return null;
-        //    float dist = 1000000000;
-        //    BaseLocation enemyNatural = GetEnemyNatural();
-        //    BaseLocation enemyThird = null;
-        //    foreach (BaseLocation loc in Tyr.MapAnalyzer.BaseLocations)
-        //    {
-        //        float distanceToMain = SC2Util.DistanceSq(Tyr.TargetManager.PotentialEnemyStartLocations[0], loc.Pos);
+        public BaseLocation GetEnemyThird()
+        {
+            if (Tyr.TargetManager.PotentialEnemyStartLocations.Count != 1)
+                return null;
+            float dist = 1000000000;
+            BaseLocation enemyNatural = GetEnemyNatural();
+            BaseLocation enemyThird = null;
+            foreach (BaseLocation loc in Tyr.MapAnalyzer.BaseLocations)
+            {
+                float distanceToMain = SC2Util.DistanceSq(Tyr.TargetManager.PotentialEnemyStartLocations[0], loc.Pos);
 
-        //        if (distanceToMain <= 4)
-        //            continue;
+                if (distanceToMain <= 4)
+                    continue;
 
-        //        if (SC2Util.DistanceSq(enemyNatural.Pos, loc.Pos) <= 2 * 2)
-        //            continue;
+                if (SC2Util.DistanceSq(enemyNatural.Pos, loc.Pos) <= 2 * 2)
+                    continue;
 
-        //        if (distanceToMain < dist)
-        //        {
-        //            dist = distanceToMain;
-        //            enemyThird = loc;
-        //        }
-        //    }
-        //    return enemyThird;
-        //}
+                if (distanceToMain < dist)
+                {
+                    dist = distanceToMain;
+                    enemyThird = loc;
+                }
+            }
+            return enemyThird;
+        }
     }
 
     public class MineralField

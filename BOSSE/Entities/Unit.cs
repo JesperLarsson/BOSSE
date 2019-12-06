@@ -99,12 +99,12 @@ namespace BOSSE
 
         public double GetDistance(Unit otherUnit)
         {
-            return Vector3.Distance(Position, otherUnit.Position);
+            return GetDistance(otherUnit.Position);
         }
 
         public double GetDistance(Vector3 location)
         {
-            return Vector3.Distance(Position, location);
+            return Vector3.Distance(new Vector3(Position.X, Position.Y, 0), new Vector3(location.X, location.Y, 0));
         }
     }
 }
