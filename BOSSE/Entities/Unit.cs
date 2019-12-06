@@ -44,7 +44,7 @@ namespace BOSSE
         // Property lookups
         public string Name { get => unitInformation.Name; }
         public ulong Tag { get => original.Tag; }
-        public uint UnitType { get => original.UnitType; }
+        public UnitConstants.UnitId UnitType { get => (UnitConstants.UnitId)original.UnitType; }
         public float Integrity { get => (original.Health + original.Shield) / (original.HealthMax + original.ShieldMax); }
         public bool IsVisible { get => original.DisplayType == DisplayType.Visible; }
         public int IdealWorkers { get => original.IdealHarvesters; }
@@ -105,6 +105,11 @@ namespace BOSSE
         public double GetDistance(Vector3 location)
         {
             return Vector3.Distance(new Vector3(Position.X, Position.Y, 0), new Vector3(location.X, location.Y, 0));
+        }
+
+        public override string ToString()
+        {
+            return $"[{this.UnitType} {this.Tag} {this.Position.ToString2()}]";
         }
     }
 }

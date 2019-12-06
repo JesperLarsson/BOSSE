@@ -26,8 +26,11 @@ namespace BOSSE
 
         public static void Initialize()
         {
-            List<UnitId> standardWallConfig = new List<UnitId> { UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT };
-            defensiveBuildLocationsRequsted = WallBuilderUtility.DeterminePlacementsForRampWall(standardWallConfig);
+            List<UnitId> rampConfig = new List<UnitId> { UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT };
+            List<UnitId> naturalConfig = new List<UnitId> { UnitId.BARRACKS, UnitId.BARRACKS, UnitId.SUPPLY_DEPOT, UnitId.BARRACKS };
+
+            defensiveBuildLocationsRequsted = WallBuilderUtility.DeterminePlacementsForRampWall(rampConfig);
+            defensiveBuildLocationsRequsted.AddRange(WallBuilderUtility.DeterminePlacementsForNaturalWall(naturalConfig));
         }
 
         /// <summary>

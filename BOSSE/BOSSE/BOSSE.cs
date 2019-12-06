@@ -40,11 +40,12 @@ namespace BOSSE
         // Utility managers
         public static readonly WorkerManager WorkerManagerRef = new WorkerManager();
         public static readonly OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
+        public static readonly RampManager RampManagerRef = new RampManager();        
 
         // List of all active managers. NOTE: Order matters for which gets to update first
         public static readonly List<Manager> AllManagers = new List<Manager>
         {
-            SensorManagerRef,
+            SensorManagerRef, // should be first to generate events for other managers
 
             StrategicGoalRef,
             DiscrepenceyDetectorRef,
@@ -55,7 +56,8 @@ namespace BOSSE
             SquadManagerRef,
 
             WorkerManagerRef,
-            OrbitalCommandManagerRef
+            OrbitalCommandManagerRef,
+            RampManagerRef,
         };
         
         // Background thread
@@ -98,7 +100,13 @@ namespace BOSSE
             {
                 foreach (Unit iter in affectedUnits)
                 {
-                    Log.Info("Completed new building: " + iter.Name);
+                    Log.Info("Completed new building: " + iter);
+
+                    // Add all depots to ramp manager for now
+                    if (iter.UnitType == UnitId.SUPPLY_DEPOT)
+                    {
+                        RampManagerRef.AddSupplyDepot(iter);
+                    }
                 }
             }));
 

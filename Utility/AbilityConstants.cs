@@ -65,6 +65,8 @@ namespace BOSSE
             GATHER_MINERALS = 295,
             RETURN_MINERALS = 296,
 
+            SupplyDepotLower = 556,
+            SupplyDepotRaise = 558
         }
     }
 }

@@ -33,7 +33,7 @@ namespace BOSSE
         {
             BOSSE.SensorManagerRef.GetSensor(
                 typeof(OwnUnitChangedTypeSensor)).AddHandler(ReceiveEventNewOrbitalCommand,
-                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == (uint)UnitId.ORBITAL_COMMAND))
+                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.ORBITAL_COMMAND))
             );
         }
 

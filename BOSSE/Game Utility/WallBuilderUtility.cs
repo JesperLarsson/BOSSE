@@ -71,5 +71,38 @@ namespace BOSSE
 
             return resultList;
         }
+
+        public static List<PlacementResult> DeterminePlacementsForNaturalWall(List<UnitId> unitTypes)
+        {
+            List<uint> types = new List<uint>();
+            foreach (UnitId unitType in unitTypes)
+            {
+                types.Add((uint)unitType);
+            }
+            WallInCreator.CreateFullNatural(types);
+
+            // Pop each result
+            List<PlacementResult> resultList = new List<PlacementResult>();
+            while (WallInCreator.Wall.Count > 0)
+            {
+                Tyr.WallBuilding tyrResult = WallInCreator.Wall[0];
+
+                // Find in input data
+                foreach (UnitId searchIter in unitTypes)
+                {
+                    if ((uint)searchIter == tyrResult.Type)
+                    {
+                        PlacementResult obj = new PlacementResult(searchIter, new Vector3(tyrResult.Pos.X, tyrResult.Pos.Y, 0));
+                        resultList.Add(obj);
+                        unitTypes.Remove(searchIter);
+                        break;
+                    }
+                }
+
+                WallInCreator.Wall.RemoveAt(0);
+            }
+
+            return resultList;
+        }
     }
 }

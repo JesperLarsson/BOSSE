@@ -3,22 +3,14 @@
  */
 namespace BOSSE
 {
+    using SC2APIProtocol;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Numerics;
-    using System.Security.Cryptography;
-    using System.Threading;
     using System.Linq;
-
-    using SC2APIProtocol;
-    using Google.Protobuf.Collections;
-
-    using Action = SC2APIProtocol.Action;
+    using static AbilityConstants;
     using static CurrentGameState;
     using static GeneralGameUtility;
     using static UnitConstants;
-    using static AbilityConstants;
 
     /// <summary>
     /// Translates the given goal inte sc2 actions
@@ -41,7 +33,7 @@ namespace BOSSE
             // Subscribe to all built marines and add them to main squad
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnMilitaryUnitWasCompletedSensor)).AddHandler(
                 ReceiveEventRecruitedMarine,
-                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == (uint)UnitId.MARINE))
+                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.MARINE))
             );
 
             // Subscribe to finished buildings
@@ -54,7 +46,7 @@ namespace BOSSE
         {
             foreach (Unit iter in newMarines)
             {
-                if (iter.UnitType != (uint)UnitId.MARINE)
+                if (iter.UnitType != UnitId.MARINE)
                     continue;
 
                 Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
@@ -124,7 +116,7 @@ namespace BOSSE
         /// </summary>
         private void ExecuteBuildMilitary()
         {
-            const int RaxesWanted = 2;
+            const int RaxesWanted = 3;
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
             uint raxCount = GetBuildingCountTotal(UnitId.BARRACKS);
@@ -140,9 +132,9 @@ namespace BOSSE
             {
                 // Train marines
                 UnitTypeData marineInfo = GetUnitInfo(UnitId.MARINE);
-                List<Unit> activeRaxes = GetUnits(UnitId.BARRACKS, onlyCompleted: true);
+                List<Unit> activeSingleRaxes = GetUnits(UnitId.BARRACKS, onlyCompleted: true);
 
-                foreach (Unit rax in activeRaxes)
+                foreach (Unit rax in activeSingleRaxes)
                 {
                     if (CurrentMinerals < marineInfo.MineralCost || AvailableSupply < marineInfo.FoodRequired)
                     {
@@ -173,7 +165,7 @@ namespace BOSSE
         {
             // We can upgrade our CC after the barracks finish
             StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
-            bool completedBarracks = buildings.Any(item => item.UnitType == (uint)UnitId.BARRACKS);
+            bool completedBarracks = buildings.Any(item => item.UnitType == UnitId.BARRACKS);
             if (!completedBarracks)
             {
                 return;
