@@ -45,10 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbilityConstants.cs" />
+    <Compile Include="Game Constants\AbilityConstants.cs" />
+    <Compile Include="Game Constants\UpgradeConstants.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitConstants.cs" />
+    <Compile Include="Game Constants\UnitConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProtoBuff\Protocol Buffer.csproj">

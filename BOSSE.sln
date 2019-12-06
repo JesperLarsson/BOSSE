@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugGui", "DebugGui\DebugG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol Buffer", "ProtoBuff\Protocol Buffer.csproj", "{B16698D5-DEAC-4DE3-A552-D6ED2A4CD4E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{084EC48E-2600-439C-A754-4904464FE9C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared Files", "Utility\Shared Files.csproj", "{084EC48E-2600-439C-A754-4904464FE9C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
