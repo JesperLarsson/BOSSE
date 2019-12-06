@@ -49,6 +49,14 @@ namespace BOSSE
                 return;
             }
 
+            if (action.ActionRaw.UnitCommand != null)
+            {
+                foreach (ulong iter in action.ActionRaw.UnitCommand.UnitTags)
+                {
+                    Log.Debug("Issued a command to unit " + iter);
+                }
+            }
+
             GameOutput.QueuedActions.Add(action);
         }
 

@@ -26,7 +26,7 @@ namespace BOSSE
 
         public static void Initialize()
         {
-            List<UnitId> standardWallConfig = new List<UnitId> { UnitId.BARRACKS, UnitId.BARRACKS, UnitId.SUPPLY_DEPOT };
+            List<UnitId> standardWallConfig = new List<UnitId> { UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT };
             defensiveBuildLocationsRequsted = WallBuilderUtility.DeterminePlacementsForRampWall(standardWallConfig);
         }
 
@@ -39,20 +39,20 @@ namespace BOSSE
             Vector3? constructionSpot = null;
 
             // See if our defense config has requested a building of this type
-            //Log.Debug("Running A");
-            //foreach (WallBuilderUtility.PlacementResult defensiveLocationIter in defensiveBuildLocationsRequsted)
-            //{
-            //    Log.Debug("Running B " + defensiveLocationIter.BuildingType + " vs " + unitType);
-            //    if (defensiveLocationIter.BuildingType == unitType)
-            //    {
-            //        // Take this one
-            //        //constructionSpot = new Vector3(defensiveLocationIter.Position.X - 1, defensiveLocationIter.Position.Y - 1, 0);
-            //        constructionSpot = defensiveLocationIter.Position;
-            //        Log.Info("ConstructionUtility - Building ramp location " + defensiveLocationIter.Position.ToString2());
-            //        defensiveBuildLocationsRequsted.Remove(defensiveLocationIter);
-            //        break;
-            //    }
-            //}
+            Log.Debug("Running A");
+            foreach (WallBuilderUtility.PlacementResult defensiveLocationIter in defensiveBuildLocationsRequsted)
+            {
+                Log.Debug("Running B " + defensiveLocationIter.BuildingType + " vs " + unitType);
+                if (defensiveLocationIter.BuildingType == unitType)
+                {
+                    // Take this one
+                    //constructionSpot = new Vector3(defensiveLocationIter.Position.X - 1, defensiveLocationIter.Position.Y - 1, 0);
+                    constructionSpot = defensiveLocationIter.Position;
+                    Log.Info("ConstructionUtility - Building ramp location " + defensiveLocationIter.Position.ToString2());
+                    defensiveBuildLocationsRequsted.Remove(defensiveLocationIter);
+                    break;
+                }
+            }
 
             // Find a valid spot, the slow way
             if (constructionSpot == null)
@@ -81,7 +81,7 @@ namespace BOSSE
                     if (IsInRange(constructionSpot.Value, mineralFields, 5)) continue;
 
                     //check if the building fits
-                    Log.Info("Running canplace hack...");
+                    Log.Bulk("Running canplace hack...");
                     if (!CanPlace(unitType, constructionSpot.Value)) continue;
 
                     //ok, we found a spot
