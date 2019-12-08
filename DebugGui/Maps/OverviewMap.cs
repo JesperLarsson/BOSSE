@@ -21,8 +21,6 @@ namespace DebugGui
     /// </summary>
     public class OverviewMap : BaseMap
     {
-        const int RenderScale = 8;
-
         static readonly SolidBrush BackgroundColor = new SolidBrush(System.Drawing.Color.Black);
         static readonly SolidBrush SelfColor = new SolidBrush(System.Drawing.Color.Blue);
         static readonly SolidBrush EnemyColor = new SolidBrush(System.Drawing.Color.Red);
@@ -31,11 +29,11 @@ namespace DebugGui
         SolidBrush noPathColor = new SolidBrush(System.Drawing.Color.Black);
         SolidBrush pathColor = new SolidBrush(System.Drawing.Color.DarkGray);
 
-        public OverviewMap(Graphics _formGraphics, int _baseX, int _baseY) : base(_formGraphics, _baseX, _baseY)
+        public OverviewMap(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
         {
         }
 
-        public void Tick()
+        public override void Tick()
         {
             RectangleI playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
 

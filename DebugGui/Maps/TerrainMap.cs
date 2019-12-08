@@ -21,17 +21,16 @@ namespace DebugGui
     /// </summary>
     public class TerrainMap : BaseMap
     {
-        const int RenderScale = 2;
         bool renderedOnce = false;
         SolidBrush pixelBrush;
 
         public static List<KeyValuePair<Point2D, string>> MarkedPoints = new List<KeyValuePair<Point2D, string>>();
 
-        public TerrainMap(Graphics _formGraphics, int _baseX, int _baseY) : base(_formGraphics, _baseX, _baseY)
+        public TerrainMap(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
         {
         }
 
-        public void Tick()
+        public override void Tick()
         {
             if (renderedOnce)
                 return; // Does not change

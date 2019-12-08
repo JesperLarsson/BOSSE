@@ -22,13 +22,11 @@ namespace DebugGui
     /// </summary>
     public class TensionMapGui : BaseMap
     {
-        const int RenderScale = 2;
-
         protected static float[,] TensionMapInput = null;
         protected static int xSize;
         protected static int ySize;
 
-        public TensionMapGui(Graphics _formGraphics, int _baseX, int _baseY) : base(_formGraphics, _baseX, _baseY)
+        public TensionMapGui(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
         {
         }
 
@@ -39,7 +37,7 @@ namespace DebugGui
             TensionMapInput = _influenceMapInput;
         }
 
-        public void Tick()
+        public override void Tick()
         {
             if (TensionMapInput == null)
                 return;

@@ -39,11 +39,12 @@
             // LabelStandardMap
             // 
             this.LabelStandardMap.AutoSize = true;
-            this.LabelStandardMap.Location = new System.Drawing.Point(12, 21);
+            this.LabelStandardMap.Location = new System.Drawing.Point(1180, 359);
             this.LabelStandardMap.Name = "LabelStandardMap";
             this.LabelStandardMap.Size = new System.Drawing.Size(111, 21);
             this.LabelStandardMap.TabIndex = 0;
             this.LabelStandardMap.Text = "Overview Map";
+            this.LabelStandardMap.Click += new System.EventHandler(this.LabelStandardMap_Click);
             // 
             // LabelTerrainMap
             // 
@@ -53,6 +54,7 @@
             this.LabelTerrainMap.Size = new System.Drawing.Size(92, 21);
             this.LabelTerrainMap.TabIndex = 1;
             this.LabelTerrainMap.Text = "Terrain Map";
+            this.LabelTerrainMap.Click += new System.EventHandler(this.LabelTerrainMap_Click);
             // 
             // LabelInfluenceMap
             // 
@@ -62,6 +64,7 @@
             this.LabelInfluenceMap.Size = new System.Drawing.Size(108, 21);
             this.LabelInfluenceMap.TabIndex = 3;
             this.LabelInfluenceMap.Text = "Influence Map";
+            this.LabelInfluenceMap.Click += new System.EventHandler(this.LabelInfluenceMap_Click);
             // 
             // LabelTensionMap
             // 
@@ -71,6 +74,7 @@
             this.LabelTensionMap.Size = new System.Drawing.Size(97, 21);
             this.LabelTensionMap.TabIndex = 4;
             this.LabelTensionMap.Text = "Tension Map";
+            this.LabelTensionMap.Click += new System.EventHandler(this.LabelTensionMap_Click);
             // 
             // LabelVulnerabilityMap
             // 
@@ -80,6 +84,7 @@
             this.LabelVulnerabilityMap.Size = new System.Drawing.Size(133, 21);
             this.LabelVulnerabilityMap.TabIndex = 5;
             this.LabelVulnerabilityMap.Text = "Vulnerability Map";
+            this.LabelVulnerabilityMap.Click += new System.EventHandler(this.LabelVulnerabilityMap_Click);
             // 
             // MainForm
             // 

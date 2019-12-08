@@ -21,15 +21,17 @@ namespace DebugGui
     /// </summary>
     public abstract class BaseMap
     {
+        protected int RenderScale;
         protected Graphics FormGraphics;
         protected int BaseX;
         protected int BaseY;
 
-        public BaseMap(Graphics _formGraphics, int _baseX, int _baseY)
+        public BaseMap(Graphics _formGraphics, int _baseX, int _baseY, int _renderScale)
         {
             FormGraphics = _formGraphics;
             BaseX = _baseX;
             BaseY = _baseY + 10;
+            RenderScale = _renderScale;
         }
 
         /// <summary>
@@ -41,6 +43,11 @@ namespace DebugGui
 
             float temp = playArea.P1.Y - y - playArea.P0.Y;
             return temp;
+        }
+
+        public virtual void Tick()
+        {
+
         }
     }
 }

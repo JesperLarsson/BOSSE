@@ -17,8 +17,12 @@ namespace DebugGui
 
     public partial class MainForm : Form
     {
-        private const int RefreshIntervalMs = 3000;
+        const int standardScale = 2;
+        const int bigScale = 8;
+        private const int RefreshIntervalMs = 1000;
         private Graphics FormGraphics;
+
+        private BaseMap BigMapRef;
 
         private OverviewMap StandardMapRef;
         private TerrainMap TerraindMapRef;
@@ -49,6 +53,7 @@ namespace DebugGui
             InfluenceMapRef.Tick();
             TensionMapRef.Tick();
             VulnerabilityMapRef.Tick();
+            BigMapRef.Tick();
 
             Application.DoEvents();
         }
@@ -60,11 +65,13 @@ namespace DebugGui
 
             // Init maps
             FormGraphics = this.CreateGraphics();
-            StandardMapRef = new OverviewMap(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height);
-            TerraindMapRef = new TerrainMap(FormGraphics, this.LabelTerrainMap.Location.X, this.LabelTerrainMap.Location.Y + this.LabelTerrainMap.Size.Height);
-            InfluenceMapRef = new InfluenceMapGui(FormGraphics, this.LabelInfluenceMap.Location.X, this.LabelInfluenceMap.Location.Y + this.LabelInfluenceMap.Size.Height);
-            TensionMapRef = new TensionMapGui(FormGraphics, this.LabelTensionMap.Location.X, this.LabelTensionMap.Location.Y + this.LabelTensionMap.Size.Height);
-            VulnerabilityMapRef = new VulnerabilityMapGui(FormGraphics, this.LabelVulnerabilityMap.Location.X, this.LabelVulnerabilityMap.Location.Y + this.LabelVulnerabilityMap.Size.Height);
+            StandardMapRef = new OverviewMap(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height, standardScale);
+            TerraindMapRef = new TerrainMap(FormGraphics, this.LabelTerrainMap.Location.X, this.LabelTerrainMap.Location.Y + this.LabelTerrainMap.Size.Height, standardScale);
+            InfluenceMapRef = new InfluenceMapGui(FormGraphics, this.LabelInfluenceMap.Location.X, this.LabelInfluenceMap.Location.Y + this.LabelInfluenceMap.Size.Height, standardScale);
+            TensionMapRef = new TensionMapGui(FormGraphics, this.LabelTensionMap.Location.X, this.LabelTensionMap.Location.Y + this.LabelTensionMap.Size.Height, standardScale);
+            VulnerabilityMapRef = new VulnerabilityMapGui(FormGraphics, this.LabelVulnerabilityMap.Location.X, this.LabelVulnerabilityMap.Location.Y + this.LabelVulnerabilityMap.Size.Height, standardScale);
+
+            BigMapRef = new OverviewMap(FormGraphics, 0, 0, bigScale);
 
             // Update maps periodically in GUI thread
             Timer timer = new Timer();
@@ -77,6 +84,31 @@ namespace DebugGui
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void LabelTerrainMap_Click(object sender, EventArgs e)
+        {
+            BigMapRef = new TerrainMap(FormGraphics, 0, 0, bigScale);
+        }
+
+        private void LabelStandardMap_Click(object sender, EventArgs e)
+        {
+            BigMapRef = new OverviewMap(FormGraphics, 0, 0, bigScale);
+        }
+
+        private void LabelInfluenceMap_Click(object sender, EventArgs e)
+        {
+            BigMapRef = new InfluenceMapGui(FormGraphics, 0, 0, bigScale);
+        }
+
+        private void LabelTensionMap_Click(object sender, EventArgs e)
+        {
+            BigMapRef = new TensionMapGui(FormGraphics, 0, 0, bigScale);
+        }
+
+        private void LabelVulnerabilityMap_Click(object sender, EventArgs e)
+        {
+            BigMapRef = new VulnerabilityMapGui(FormGraphics, 0, 0, bigScale);
         }
     }
 }

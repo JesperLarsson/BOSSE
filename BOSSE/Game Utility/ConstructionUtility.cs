@@ -42,16 +42,16 @@ namespace BOSSE
             Vector3? constructionSpot = null;
 
             // See if our defense config has requested a building of this type
-            Log.Debug("Running A");
+            //Log.Debug("Running A");
             foreach (WallBuilderUtility.PlacementResult defensiveLocationIter in defensiveBuildLocationsRequsted)
             {
-                Log.Debug("Running B " + defensiveLocationIter.BuildingType + " vs " + unitType);
+                //Log.Debug("Running B " + defensiveLocationIter.BuildingType + " vs " + unitType);
                 if (defensiveLocationIter.BuildingType == unitType)
                 {
                     // Take this one
                     //constructionSpot = new Vector3(defensiveLocationIter.Position.X - 1, defensiveLocationIter.Position.Y - 1, 0);
                     constructionSpot = defensiveLocationIter.Position;
-                    Log.Info("ConstructionUtility - Building ramp location " + defensiveLocationIter.Position.ToString2());
+                    //Log.Info("ConstructionUtility - Building ramp location " + defensiveLocationIter.Position.ToString2());
                     defensiveBuildLocationsRequsted.Remove(defensiveLocationIter);
                     break;
                 }
@@ -60,7 +60,7 @@ namespace BOSSE
             // Find a valid spot, the slow way
             if (constructionSpot == null)
             {
-                Log.Debug("Running backup solution...");
+                //Log.Debug("Running backup solution...");
                 const int radius = 12;
                 Vector3 startingSpot;
 
@@ -84,7 +84,7 @@ namespace BOSSE
                     if (IsInRange(constructionSpot.Value, mineralFields, 5)) continue;
 
                     //check if the building fits
-                    Log.Bulk("Running canplace hack...");
+                    //Log.Bulk("Running canplace hack...");
                     if (!CanPlace(unitType, constructionSpot.Value)) continue;
 
                     //ok, we found a spot
