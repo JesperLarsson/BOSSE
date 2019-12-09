@@ -62,6 +62,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\Base Class\BaseMap.cs" />
+    <Compile Include="Maps\PlacementGridMap.cs" />
     <Compile Include="Maps\Strategic\VulnerabilityMapGui.cs" />
     <Compile Include="Maps\Strategic\TensionMapGui.cs" />
     <Compile Include="Maps\Strategic\InfluenceMap.cs" />

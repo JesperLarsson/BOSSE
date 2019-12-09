@@ -76,6 +76,11 @@ namespace BOSSE
                 SendQueuedActions().Wait();
 
                 Globals.CurrentFrameIndex++;
+
+                if (BotConstants.TickLockMode)
+                {
+                    Thread.Sleep(10);
+                }
             }
         }
 

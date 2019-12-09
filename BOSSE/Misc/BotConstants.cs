@@ -27,9 +27,9 @@ namespace BOSSE
         /// <summary>
         /// Singleplayer only, sc2 will simulate the game as fast as possible
         /// False = Game behaves as during normal play, aka realtime mode
-        /// True = Game will wait for our output and run as fast as possible, very laggy
+        /// True = Game will wait for our output and runs as fast as possible
         /// </summary>
-        public const bool TickLockMode = false;
+        public const bool TickLockMode = true;
 
         /// <summary>
         /// Number of logical frames per second of real time

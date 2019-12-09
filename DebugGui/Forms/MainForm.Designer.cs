@@ -34,6 +34,7 @@
             this.LabelInfluenceMap = new System.Windows.Forms.Label();
             this.LabelTensionMap = new System.Windows.Forms.Label();
             this.LabelVulnerabilityMap = new System.Windows.Forms.Label();
+            this.LabelPlacementGrid = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LabelStandardMap
@@ -86,11 +87,21 @@
             this.LabelVulnerabilityMap.Text = "Vulnerability Map";
             this.LabelVulnerabilityMap.Click += new System.EventHandler(this.LabelVulnerabilityMap_Click);
             // 
+            // LabelPlacementGrid
+            // 
+            this.LabelPlacementGrid.AutoSize = true;
+            this.LabelPlacementGrid.Location = new System.Drawing.Point(1180, 697);
+            this.LabelPlacementGrid.Name = "LabelPlacementGrid";
+            this.LabelPlacementGrid.Size = new System.Drawing.Size(116, 21);
+            this.LabelPlacementGrid.TabIndex = 6;
+            this.LabelPlacementGrid.Text = "Placement Grid";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2049, 1195);
+            this.Controls.Add(this.LabelPlacementGrid);
             this.Controls.Add(this.LabelVulnerabilityMap);
             this.Controls.Add(this.LabelTensionMap);
             this.Controls.Add(this.LabelInfluenceMap);
@@ -115,6 +126,7 @@
         private System.Windows.Forms.Label LabelInfluenceMap;
         private System.Windows.Forms.Label LabelTensionMap;
         private System.Windows.Forms.Label LabelVulnerabilityMap;
+        private System.Windows.Forms.Label LabelPlacementGrid;
     }
 }
 

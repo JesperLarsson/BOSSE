@@ -132,6 +132,7 @@ namespace BOSSE
                     {
                         managedUnit = new Unit(unit);
                     }
+
                     units.Add(managedUnit);
                 }
             }
@@ -139,48 +140,110 @@ namespace BOSSE
             return units;
         }
 
-        /// <summary>
-        /// Get total number of buildings of a certain type that we own / are in progress of being built
-        /// </summary>
-        public static uint GetBuildingCountTotal(UnitId unitType, bool includingPending = true)
+        public static uint GetUnitCountTotal(UnitId unitTypeToFind, bool includePending = true, bool onlyCompleted = false, HashSet<ulong> excludeUnitTags = null)
         {
-            uint count = (uint)GetUnits(unitType).Count;
+            var temp = new HashSet<UnitId>() { unitTypeToFind };
+            return GetUnitCountTotal(temp, includePending, onlyCompleted, excludeUnitTags);
+        }
 
-            if (includingPending)
+        public static uint GetUnitCountTotal(HashSet<UnitId> unitTypesToFind, bool includePending = true, bool onlyCompleted = false, HashSet<ulong> excludeUnitTags = null)
+        {
+            List<Unit> activeUnits = GetUnits(unitTypesToFind, onlyCompleted: onlyCompleted);
+            uint count = (uint)activeUnits.Count;
+            
+            // Check for pending units
+            if (includePending)
             {
-                count += (uint)GetPendingBuildingCount(unitType);
+                foreach (UnitId unitType in unitTypesToFind)
+                {
+                    List<Unit> workersBuildingType = GetAllWorkersTaskedToBuildType(unitType);
+
+                    foreach (Unit workerIter in workersBuildingType)
+                    {
+                        if (workerIter.CurrentOrder != null && (!UnitListContainsTag(activeUnits, workerIter.CurrentOrder.TargetUnitTag)))
+                        {
+                            if (excludeUnitTags != null && excludeUnitTags.Contains(workerIter.CurrentOrder.TargetUnitTag))
+                                continue;
+
+                            count++;
+                        }
+                    }
+                }
             }
 
             return count;
         }
 
-        /// <summary>
-        /// Get number of buildings that are being built
-        /// </summary>
-        public static int GetPendingBuildingCount(UnitId unitType, bool inConstruction = true)
+        private static bool UnitListContainsTag(List<Unit> unitList, ulong tag)
         {
-            List<Unit> workers = GetUnits(UnitConstants.Workers);
+            foreach (var iter in unitList)
+            {
+                if (iter.Tag == tag)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static List<Unit> GetAllWorkersTaskedToBuildType(UnitId unitType)
+        {
             int abilityID = GetAbilityIdToBuildUnit(unitType);
+            List<Unit> allWorkers = GetUnits(UnitId.SCV, onlyCompleted: true);
+            List<Unit> returnList = new List<Unit>();
 
-            var counter = 0;
-
-            // Find build orders to build this building
-            foreach (var worker in workers)
+            foreach (Unit worker in allWorkers)
             {
                 if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == abilityID)
-                    counter += 1;
+                {
+                    returnList.Add(worker);
+                }
             }
 
-            // Count buildings under construction
-            if (inConstruction)
-            {
-                foreach (var unit in GetUnits(unitType))
-                    if (unit.BuildProgress < 1)
-                        counter += 1;
-            }
-
-            return counter;
+            return returnList;
         }
+
+        ///// <summary>
+        ///// Get total number of buildings of a certain type that we own / are in progress of being built
+        ///// </summary>
+        //public static uint GetBuildingCountTotal(UnitId unitType, bool includingPending = true)
+        //{
+        //    uint count = (uint)GetUnits(unitType).Count;
+
+        //    if (includingPending)
+        //    {
+        //        count += (uint)GetPendingBuildingCount(unitType, false);
+        //    }
+
+        //    return count;
+        //}
+
+        ///// <summary>
+        ///// Get number of buildings that are being built
+        ///// </summary>
+        //public static int GetPendingBuildingCount(UnitId unitType, bool inConstruction = true)
+        //{
+        //    List<Unit> workers = GetUnits(UnitConstants.Workers);
+        //    int abilityID = GetAbilityIdToBuildUnit(unitType);
+
+        //    var counter = 0;
+
+        //    // Find build orders to build this building
+        //    foreach (var worker in workers)
+        //    {
+        //        if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == abilityID)
+        //            counter += 1;
+        //    }
+
+        //    // Count buildings under construction
+        //    if (inConstruction)
+        //    {
+        //        foreach (var unit in GetUnits(unitType))
+        //            if (unit.BuildProgress < 1)
+        //                counter += 1;
+        //    }
+
+        //    return counter;
+        //}
 
         /// <summary>
         /// Get if any unit in the given collection which is close to the given point
@@ -227,6 +290,12 @@ namespace BOSSE
             requestQuery.Query.Placements.Add(queryBuildingPlacement);
 
             var result = GameOutput.SendSynchronousRequest_BLOCKING(requestQuery.Query);
+            if (result == null)
+            {
+                Log.Warning("Did not receive a reply to sc2 synchronous request");
+                return false;
+            }
+
             if (result.Result.Placements.Count > 0)
                 return (result.Result.Placements[0].Result == ActionResult.Success);
             return false;

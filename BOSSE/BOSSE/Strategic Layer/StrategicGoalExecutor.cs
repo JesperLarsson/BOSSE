@@ -39,7 +39,7 @@ namespace BOSSE
             // Subscribe to finished buildings
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
 
-            //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
+            BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(6);
         }
 
         private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)
@@ -101,8 +101,8 @@ namespace BOSSE
         {
             // Build depots as we need them
             UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
-            uint pendingFood = (uint)(GetPendingBuildingCount(UnitId.SUPPLY_DEPOT) * houseInfo.FoodProvided);
-            uint supplyDiff = MaxSupply - CurrentSupply - pendingFood;
+            uint currentAndPendingFood = (uint)(GetUnitCountTotal(UnitId.SUPPLY_DEPOT) * houseInfo.FoodProvided);
+            uint supplyDiff = MaxSupply - currentAndPendingFood;
             while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
                 ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
@@ -119,7 +119,7 @@ namespace BOSSE
             const int RaxesWanted = 3;
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
-            uint raxCount = GetBuildingCountTotal(UnitId.BARRACKS);
+            uint raxCount = GetUnitCountTotal(UnitId.BARRACKS);
 
             if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost)
             {

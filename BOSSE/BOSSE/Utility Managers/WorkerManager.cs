@@ -28,10 +28,16 @@ namespace BOSSE
         private bool AllowWorkerTraining = true;
         private bool AllowWorkerOverProduction = false;
         private int RequestedWorkersOnGas = 0;
+        private uint extractorCount = 0;
 
         public override void Initialize()
         {
-
+            // Subscribe to extractors being destroyed
+            BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+            {
+                extractorCount--;
+                Log.Info("Extractor destroyed, current count = " + extractorCount);
+            }), unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.REFINERY)));
         }
 
         public void SetWorkerTrainingAllowed(bool isAllowed)
@@ -123,14 +129,11 @@ namespace BOSSE
                 return;
 
             const float workersPerExtractor = 3;
-            int extractorsNecessary = (int)Math.Ceiling((((float)RequestedWorkersOnGas) / workersPerExtractor));
-            List<Unit> extractors = GetUnits(UnitId.REFINERY);
+            uint extractorsNecessary = (uint)Math.Ceiling((((float)RequestedWorkersOnGas) / workersPerExtractor));
 
-#warning TODO: Also take pending extractors into account
-
-            if (extractorsNecessary > extractors.Count)
+            if (extractorsNecessary > this.extractorCount)
             {
-                BuildNewGasExtractors(extractorsNecessary - extractors.Count);
+                BuildNewGasExtractors((int)(extractorsNecessary - this.extractorCount));
             }
         }
 
@@ -249,6 +252,8 @@ namespace BOSSE
 
                 if (geyser.GetDistance(Globals.MainBaseLocation) > 20)
                     continue;
+                if (geyser.IsReserved)
+                    continue;
 
                 Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(geyser.Position);
                 if (worker == null)
@@ -257,9 +262,11 @@ namespace BOSSE
                     return;
                 }
 
-                Log.Info($"WorkerManager - Building new gas extractor at " + geyser.Position.ToString2());
+                Log.Info($"WorkerManager - Building new gas extractor at " + geyser.Position.ToString2() + ", geyser = " + geyser.Tag);
+                geyser.IsReserved = true;
                 Queue(CommandBuilder.ConstructActionOnTarget(UnitId.REFINERY, worker, geyser));
                 CurrentMinerals -= extractorInfo.MineralCost;
+                this.extractorCount++;
             }
         }
 

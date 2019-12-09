@@ -28,7 +28,8 @@ namespace DebugGui
         private TerrainMap TerraindMapRef;
         private InfluenceMapGui InfluenceMapRef;
         private TensionMapGui TensionMapRef;
-        private VulnerabilityMapGui VulnerabilityMapRef;        
+        private VulnerabilityMapGui VulnerabilityMapRef;
+        private PlacementGridMap PlacementGridMapRef;
 
         public MainForm()
         {
@@ -53,6 +54,8 @@ namespace DebugGui
             InfluenceMapRef.Tick();
             TensionMapRef.Tick();
             VulnerabilityMapRef.Tick();
+            PlacementGridMapRef.Tick();
+
             BigMapRef.Tick();
 
             Application.DoEvents();
@@ -70,6 +73,7 @@ namespace DebugGui
             InfluenceMapRef = new InfluenceMapGui(FormGraphics, this.LabelInfluenceMap.Location.X, this.LabelInfluenceMap.Location.Y + this.LabelInfluenceMap.Size.Height, standardScale);
             TensionMapRef = new TensionMapGui(FormGraphics, this.LabelTensionMap.Location.X, this.LabelTensionMap.Location.Y + this.LabelTensionMap.Size.Height, standardScale);
             VulnerabilityMapRef = new VulnerabilityMapGui(FormGraphics, this.LabelVulnerabilityMap.Location.X, this.LabelVulnerabilityMap.Location.Y + this.LabelVulnerabilityMap.Size.Height, standardScale);
+            PlacementGridMapRef = new PlacementGridMap(FormGraphics, this.LabelPlacementGrid.Location.X, this.LabelPlacementGrid.Location.Y + this.LabelPlacementGrid.Size.Height, standardScale);            
 
             BigMapRef = new OverviewMap(FormGraphics, 0, 0, bigScale);
 

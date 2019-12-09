@@ -1,5 +1,4 @@
 # BOSSE
-BOt Starcraft(2) -e
 
 ## About
 BOSSE is an experimental AI for the game StarCraft 2 written in C#, made by Jesper Larsson.
@@ -18,7 +17,7 @@ Supports local debugging sessions (against Blizzard AI) as well as online ladder
 ## Running BOSSE
 1. Download StarCraft 2
 2. Download the latest ladder map pack from here: https://github.com/Blizzard/s2client-proto#downloads
-3. Extract the maps to your StarCraft 2 install directory under /Maps
+3. Extract the maps to your StarCraft 2 install directory under /Maps (create the folder if it doesn't exist)
 4. Open solution in Visual Studio and click 'Run'
 
 ## Troubleshooting

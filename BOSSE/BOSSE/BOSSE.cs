@@ -40,7 +40,7 @@ namespace BOSSE
         // Utility managers
         public static readonly WorkerManager WorkerManagerRef = new WorkerManager();
         public static readonly OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
-        public static readonly RampManager RampManagerRef = new RampManager();        
+        public static readonly RampManager RampManagerRef = new RampManager();
 
         // List of all active managers. NOTE: Order matters for which gets to update first
         public static readonly List<Manager> AllManagers = new List<Manager>
@@ -59,7 +59,7 @@ namespace BOSSE
             OrbitalCommandManagerRef,
             RampManagerRef,
         };
-        
+
         // Background thread
         public static BackgroundWorkerThread BackgroundWorkerThreadRef = new BackgroundWorkerThread();
 
@@ -111,10 +111,10 @@ namespace BOSSE
             }));
 
             // Assign a random worker to scout
-            BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
-            Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
-            scoutingWorker.IsReserved = true;
-            BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
+            //BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
+            //Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
+            //scoutingWorker.IsReserved = true;
+            //BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
         }
 
         /// <summary>
