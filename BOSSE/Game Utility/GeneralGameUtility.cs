@@ -24,18 +24,31 @@ namespace BOSSE
         /// <summary>
         /// Returns which ability builds the given unit
         /// </summary>
-        public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unit)
+        public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unitType)
         {
-            return (int)CurrentGameState.GameData.Units[(int)unit].AbilityId;
+            return (int)CurrentGameState.GameData.Units[(int)unitType].AbilityId;
         }
 
         /// <summary>
         /// Returns static information (HP, cost, etc) about the given unit
         /// </summary>
-        public static UnitTypeData GetUnitInfo(UnitId unitId)
+        public static UnitTypeData GetUnitInfo(UnitId unitType)
         {
-            UnitTypeData info = CurrentGameState.GameData.Units[(int)unitId];
+            UnitTypeData info = CurrentGameState.GameData.Units[(int)unitType];
             return info;
+        }
+
+        /// <summary>
+        /// Determines if we currently have the requirements to build the given unit or not 
+        /// </summary>
+        public static bool HaveTechRequirementsToBuild(UnitId unitType)
+        {
+            UnitTypeData data = GetUnitInfo(unitType);
+
+            List<Unit> activeUnitsOftype = GetUnits((UnitId)data.TechRequirement, onlyCompleted: true);
+            if (activeUnitsOftype.Count == 0)
+                return false;
+            return true;
         }
 
         /// <summary>

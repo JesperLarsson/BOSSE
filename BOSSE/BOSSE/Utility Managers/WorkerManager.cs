@@ -36,7 +36,7 @@ namespace BOSSE
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
             {
                 extractorCount--;
-                Log.Info("Extractor destroyed, current count = " + extractorCount);
+                Log.Info("Extractor destroyed, updated count = " + extractorCount);
             }), unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.REFINERY)));
         }
 
@@ -128,8 +128,8 @@ namespace BOSSE
             if (this.RequestedWorkersOnGas <= 0)
                 return;
 
-            const float workersPerExtractor = 3;
-            uint extractorsNecessary = (uint)Math.Ceiling((((float)RequestedWorkersOnGas) / workersPerExtractor));
+            const float maxWorkersPerExtractor = 3;
+            uint extractorsNecessary = (uint)Math.Ceiling((((float)RequestedWorkersOnGas) / maxWorkersPerExtractor));
 
             if (extractorsNecessary > this.extractorCount)
             {
@@ -289,7 +289,7 @@ namespace BOSSE
                 if (cc.AssignedWorkers >= idealWorkerCount)
                     continue;
 
-                if (CurrentMinerals >= workerInfo.MineralCost && AvailableSupply >= workerInfo.FoodRequired)
+                if (CurrentMinerals >= workerInfo.MineralCost && FreeSupply >= workerInfo.FoodRequired)
                 {
                     Queue(CommandBuilder.TrainAction(cc, UnitConstants.UnitId.SCV));
                 }

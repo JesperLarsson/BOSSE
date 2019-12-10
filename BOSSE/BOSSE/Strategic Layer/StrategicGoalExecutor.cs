@@ -101,8 +101,8 @@ namespace BOSSE
         {
             // Build depots as we need them
             UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
-            uint currentAndPendingFood = (uint)(GetUnitCountTotal(UnitId.SUPPLY_DEPOT) * houseInfo.FoodProvided);
-            uint supplyDiff = MaxSupply - currentAndPendingFood;
+            uint currentAndPendingFood = GetCurrentAndPendingSupply();
+            uint supplyDiff =  currentAndPendingFood - CurrentGameState.UsedSupply;
             while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
                 ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
@@ -121,11 +121,11 @@ namespace BOSSE
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
             uint raxCount = GetUnitCountTotal(UnitId.BARRACKS);
 
-            if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost)
+            if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost && HaveTechRequirementsToBuild(UnitId.BARRACKS))
             {
                 // Build barracks
                 Log.Debug("Calling build barracks at tick " + Globals.CurrentFrameIndex);
-                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.BARRACKS);
+                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.BARRACKS);
                 CurrentMinerals -= raxInfo.MineralCost;
             }
             else
@@ -136,9 +136,13 @@ namespace BOSSE
 
                 foreach (Unit rax in activeSingleRaxes)
                 {
-                    if (CurrentMinerals < marineInfo.MineralCost || AvailableSupply < marineInfo.FoodRequired)
+                    if (CurrentMinerals < marineInfo.MineralCost || FreeSupply < marineInfo.FoodRequired)
                     {
                         break;
+                    }
+                    if (rax.CurrentOrder != null)
+                    {
+                        continue; // Do not queue unit
                     }
 
                     Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));

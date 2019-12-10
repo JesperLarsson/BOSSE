@@ -10,9 +10,11 @@ namespace BOSSE
     using System.Threading.Tasks;
 
     using SC2APIProtocol;
+    using static GeneralGameUtility;
+    using static UnitConstants;
 
     /// <summary>
-    /// Holds the current state of the match, updates each logical tick
+    /// Holds the current state of the match, observational data is updated each tick
     /// </summary>
     public static class CurrentGameState
     {
@@ -20,15 +22,23 @@ namespace BOSSE
         public static ResponseData GameData;
         public static ResponseObservation ObservationState;
 
-        public static uint AvailableSupply { get => MaxSupply - CurrentSupply;}
-        public static uint CurrentSupply { get => ObservationState.Observation.PlayerCommon.FoodUsed; set => ObservationState.Observation.PlayerCommon.FoodUsed = value; }
-        public static uint CurrentMinerals { get => ObservationState.Observation.PlayerCommon.Minerals; set => ObservationState.Observation.PlayerCommon.Minerals = value; }
-        public static uint CurrentVespene { get => ObservationState.Observation.PlayerCommon.Vespene; set => ObservationState.Observation.PlayerCommon.Vespene = value; }
+        // Current supply, does not take into account pending supply
+        public static uint FreeSupply { get => MaxSupply - UsedSupply;}
+        public static uint UsedSupply { get => ObservationState.Observation.PlayerCommon.FoodUsed; set => ObservationState.Observation.PlayerCommon.FoodUsed = value; }
         public static uint MaxSupply { get => ObservationState.Observation.PlayerCommon.FoodCap; }
 
-        /// <summary>
-        /// Active logical frame counter, starts at 0
-        /// </summary>
-        public static ulong OnFrame { get => ObservationState.Observation.GameLoop; }
+        public static uint CurrentMinerals { get => ObservationState.Observation.PlayerCommon.Minerals; set => ObservationState.Observation.PlayerCommon.Minerals = value; }
+        public static uint CurrentVespene { get => ObservationState.Observation.PlayerCommon.Vespene; set => ObservationState.Observation.PlayerCommon.Vespene = value; }
+
+        public static uint GetCurrentAndPendingSupply()
+        {
+            UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
+            UnitTypeData ccInfo = GetUnitInfo(UnitId.COMMAND_CENTER);
+
+            uint depotFood = (uint)(GetUnitCountTotal(UnitId.SUPPLY_DEPOT) * houseInfo.FoodProvided);
+            uint ccFood = (uint)(GetUnitCountTotal(UnitId.COMMAND_CENTER) * ccInfo.FoodProvided);
+
+            return depotFood + ccFood;
+        }
     }
 }

@@ -138,8 +138,8 @@ namespace BOSSE
                 CurrentMinerals -= info.MineralCost;
                 CurrentVespene -= info.VespeneCost;
 
-                CurrentSupply += (uint)info.FoodProvided;
-                CurrentSupply -= (uint)info.FoodRequired;
+                UsedSupply += (uint)info.FoodProvided;
+                UsedSupply -= (uint)info.FoodRequired;
             }
 
             return action;
