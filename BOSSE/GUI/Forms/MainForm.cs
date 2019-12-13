@@ -29,7 +29,7 @@ namespace DebugGui
         private InfluenceMapGui InfluenceMapRef;
         private TensionMapGui TensionMapRef;
         private VulnerabilityMapGui VulnerabilityMapRef;
-        private PlacementGridMap PlacementGridMapRef;
+        //private PlacementGridMap PlacementGridMapRef;
 
         public MainForm()
         {
@@ -54,7 +54,7 @@ namespace DebugGui
             InfluenceMapRef.Tick();
             TensionMapRef.Tick();
             VulnerabilityMapRef.Tick();
-            PlacementGridMapRef.Tick();
+            //PlacementGridMapRef.Tick();
 
             BigMapRef.Tick();
 

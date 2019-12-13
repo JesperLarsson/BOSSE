@@ -31,7 +31,7 @@ namespace BOSSE
             new List<String>() { "glhf" },
             new List<String>() { "Good bot (；^＿^)ッ" },
             new List<String>() { "What happens when you cross a werewolf with Santa?", "Santa Claws" },
-            new List<String>() { "THIS IS NOT A DRILL!", "#====" },
+            //new List<String>() { "THIS IS NOT A DRILL!", "#====" },
             new List<String>() { "A Mexican magician says he will disappear on the count of 3", "\"uno, dos...\" poof", "He disappeared without a tres" },
             new List<String>() { "What's the difference between a good joke and a bad joke timing" },
             new List<String>() { "How do you find Will Smith in the snow?", "You look for the fresh prints" },
