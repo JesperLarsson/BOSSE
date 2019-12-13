@@ -39,7 +39,7 @@ namespace BOSSE
             // Subscribe to finished buildings
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
 
-            BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(6);
+            //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(6);
         }
 
         private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)
