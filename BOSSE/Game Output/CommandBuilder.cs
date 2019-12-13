@@ -184,5 +184,20 @@ namespace BOSSE
 
             return action;
         }
+
+        /// <summary>
+        /// Build sc2 action for inserting the given message in ingame chat
+        /// </summary>
+        public static Action Chat(string message)
+        {
+            var actionChat = new ActionChat();
+            actionChat.Channel = ActionChat.Types.Channel.Broadcast;
+            actionChat.Message = message;
+
+            var action = new Action();
+            action.ActionChat = actionChat;
+
+            return action;
+        }
     }
 }

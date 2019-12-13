@@ -81,6 +81,7 @@
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="BOSSE\Sensor Layer\Sensors\Sensor.cs" />
+    <Compile Include="Misc\JokeGenerator.cs" />
     <Compile Include="Static Analysis %28Tyr%29\BaseManager.cs" />
     <Compile Include="Static Analysis %28Tyr%29\MapAnalyzer.cs" />
     <Compile Include="Misc\GeneralUtility.cs" />

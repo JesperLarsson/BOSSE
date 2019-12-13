@@ -62,7 +62,7 @@ namespace BOSSE
                 return;
             }
 
-            if (action.ActionRaw.UnitCommand != null)
+            if (action.ActionRaw != null && action.ActionRaw.UnitCommand != null)
             {
                 foreach (ulong iter in action.ActionRaw.UnitCommand.UnitTags)
                 {

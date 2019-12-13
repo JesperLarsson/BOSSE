@@ -115,6 +115,12 @@ namespace BOSSE
             Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
             scoutingWorker.IsReserved = true;
             BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
+
+            // Insert a random joke in chat
+            foreach (string jokeLine in JokeGenerator.GetJoke())
+            {
+                Queue(CommandBuilder.Chat(jokeLine));
+            }
         }
 
         /// <summary>
