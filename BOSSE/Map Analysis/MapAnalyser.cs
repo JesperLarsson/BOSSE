@@ -9,68 +9,99 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Runtime.CompilerServices;
 
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static UnitConstants;
 
-    //public class AnalysedMap
-    //{
-    //    public ulong[,]
-
-    //}
+#warning TODO: Save results to file and load it. Use folder ./data
 
     /// <summary>
-    /// Parses the sc2 map, finds chokepoints, etc
+    /// Stores information about each tile of the ingame map
     /// </summary>
-    public class MapAnalyser
+    public class TileMap<TileType>
     {
-            //        public AnalysedMap CurrentMap = null;
+        public readonly int Width;
+        public readonly int Height;
+        private readonly TileType[,] Map;
 
-            //        public void Initialize()
-            //        {
-            //#warning TODO: Load from file
-            //            this.CurrentMap = AnalyseCurrentMap();
-            //        }
-
-            //    private AnalysedMap AnalyseCurrentMap()
-            //    {
-            //        // Pathing overlay - input data contains 1 bit per pixel
-            //        ImageData pathingMap = CurrentGameState.GameInformation.StartRaw.PathingGrid;
-            //        for (int y = 0; y < pathingMap.Size.Y; y++)
-            //        {
-            //            for (int x = 0; x < (pathingMap.Size.X / 8); x++)
-            //            {
-            //                byte value = pathingMap.Data[x + (y * pathingMap.Size.X / 8)];
-            //                //if (value == 0)
-            //                //    continue;
-
-            //                byte pixel1 = (byte)(value & 0x01);
-            //                byte pixel2 = (byte)(value & 0x02);
-            //                byte pixel3 = (byte)(value & 0x04);
-            //                byte pixel4 = (byte)(value & 0x08);
-            //                byte pixel5 = (byte)(value & 0x10);
-            //                byte pixel6 = (byte)(value & 0x20);
-            //                byte pixel7 = (byte)(value & 0x40);
-            //                byte pixel8 = (byte)(value & 0x80);
-
-            //                int xPos = x * 8;
-            //                int yPos = y;
-
-            //                DrawPathingPixel(pixel1, xPos + 7, yPos, playArea);
-            //                DrawPathingPixel(pixel2, xPos + 6, yPos, playArea);
-            //                DrawPathingPixel(pixel3, xPos + 5, yPos, playArea);
-            //                DrawPathingPixel(pixel4, xPos + 4, yPos, playArea);
-            //                DrawPathingPixel(pixel5, xPos + 3, yPos, playArea);
-            //                DrawPathingPixel(pixel6, xPos + 2, yPos, playArea);
-            //                DrawPathingPixel(pixel7, xPos + 1, yPos, playArea);
-            //                DrawPathingPixel(pixel8, xPos + 0, yPos, playArea);
-            //            }
-            //        }
-
-
-            //        return null;
-            //    }
+        public TileMap(int xSize, int ySize)
+        {
+            this.Width = xSize;
+            this.Height = ySize;
+            this.Map = new TileType[xSize, ySize];
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public TileType GetTile(int x, int y)
+        {
+            return this.Map[x, y];
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetTile(int x, int y, TileType value)
+        {
+            this.Map[x, y] = value;
+        }
+    }
+
+    /// <summary>
+    /// Contains various static metrics about the map that doesn't change between runs (chokepoints etc)
+    /// </summary>
+    public class AnalysedMap
+    {
+        /// <summary>
+        /// Higher values indicate chokepoints between ours and the enemy main base
+        /// </summary>
+        public TileMap<byte> MainBaseChokeScore;
+    }
+
+    /// <summary>
+    /// Analyses the current map and generates a result object
+    /// </summary>
+    public static class MapAnalyser
+    {
+        public static AnalysedMap GenerateNewAnalysis()
+        {
+            AnalysedMap mapObject = new AnalysedMap();
+
+            CalculateMainBaseChokeScore(mapObject);
+
+            return mapObject;
+        }
+
+        private static void CalculateMainBaseChokeScore(AnalysedMap mapObject)
+        {
+
+
+
+
+
+
+
+
+
+
+
+
+
+            mapObject.MainBaseChokeScore = ,,,;
+        }
+    }
+
+    /// <summary>
+    /// Container which holds the reference to the current analysed map
+    /// Results can be saved between sessions for performance reasons
+    /// </summary>
+    public class MapAnalysisHandler
+    {
+        public AnalysedMap Map = null;
+
+        public void Initialize()
+        {
+            this.Map = MapAnalyser.GenerateNewAnalysis();
+        }
+    }
 }

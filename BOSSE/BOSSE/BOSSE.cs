@@ -20,7 +20,8 @@ namespace BOSSE
     using static AbilityConstants;
 
     /// <summary>
-    /// AI top layer
+    /// Bot top level class
+    /// Receives input from the main loop and outputs sc2 actions in <see cref="GameOutput"/>
     /// </summary>
     public class BOSSE
     {
@@ -64,7 +65,7 @@ namespace BOSSE
         public static BackgroundWorkerThread BackgroundWorkerThreadRef = new BackgroundWorkerThread();
 
         // Map handling
-        public static MapAnalyser MapAnalyserRef = new MapAnalyser();
+        public static MapAnalysisHandler MapAnalysisHandlerRef = new MapAnalysisHandler();
         public static PathFinder PathFinderRef = new PathFinder();
 
         /// <summary>
@@ -92,8 +93,7 @@ namespace BOSSE
 
             // General map analysis
             PathFinderRef.Initialize();
-            //MapAnalyserRef.Initialize();
-            //Dijkstra.Main2();
+            MapAnalysisHandlerRef.Initialize();
 
             // Initialize sub-managers
             foreach (Manager managerIter in AllManagers)
