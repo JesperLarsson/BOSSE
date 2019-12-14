@@ -106,7 +106,7 @@ namespace BOSSE
         public static string ToString2(this Point2D obj)
         {
             if (obj == null)
-                return $"[NULL Point2D]";
+                return $"[NoLocation]";
             return $"[{obj.X}, {obj.Y}]";
         }
     }

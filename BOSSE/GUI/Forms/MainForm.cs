@@ -14,7 +14,6 @@ namespace DebugGui
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
-
     public partial class MainForm : Form
     {
         const int standardScale = 2;
@@ -30,6 +29,8 @@ namespace DebugGui
         private TensionMapGui TensionMapRef;
         private VulnerabilityMapGui VulnerabilityMapRef;
         //private PlacementGridMap PlacementGridMapRef;
+
+        MainBaseChokeScore chokeForm = new MainBaseChokeScore();
 
         public MainForm()
         {
@@ -63,8 +64,8 @@ namespace DebugGui
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Reduce flickering
             this.DoubleBuffered = true;
+            this.WindowState = FormWindowState.Maximized;
 
             // Init maps
             FormGraphics = this.CreateGraphics();
@@ -83,6 +84,9 @@ namespace DebugGui
             timer.Tick += new EventHandler(UpdateIncomingData);
             timer.Start();
             UpdateIncomingData(null, null);
+
+            // Show other forms
+            chokeForm.Show(this);
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)

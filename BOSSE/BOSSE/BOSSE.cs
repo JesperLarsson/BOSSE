@@ -69,6 +69,11 @@ namespace BOSSE
         public static PathFinder PathFinderRef = new PathFinder();
 
         /// <summary>
+        /// Set after the first frame initialization has been completed
+        /// </summary>
+        public static bool HasCompletedFirstFrameInit = false;
+
+        /// <summary>
         /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
         /// </summary>
         public void Initialize()
@@ -130,6 +135,8 @@ namespace BOSSE
             {
                 Queue(CommandBuilder.Chat(jokeLine));
             }
+
+            HasCompletedFirstFrameInit = true;
         }
 
         /// <summary>

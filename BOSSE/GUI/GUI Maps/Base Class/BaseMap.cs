@@ -37,7 +37,7 @@ namespace DebugGui
         /// <summary>
         /// We need to compensate Y coordinates, game uses from the bottom left, and GUI from the top left
         /// </summary>
-        protected float CompensateY(float y)
+        public static float CompensateY(float y)
         {
             var playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
 

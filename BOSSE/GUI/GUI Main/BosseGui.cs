@@ -30,18 +30,20 @@ namespace DebugGui
         /// </summary>
         public static ResponseObservation ObservationState;
 
+        private static Thread ThreadMainForm;
+
         public static void StartGui()
         {
 #if !DEBUG
             return;
 #endif
 
-            Thread guiThread = new Thread(GuiEnterLoop);
-            guiThread.Start();
+            ThreadMainForm = new Thread(MainFormMain);
+            ThreadMainForm.Start();
         }
 
         [STAThread]
-        private static void GuiEnterLoop()
+        private static void MainFormMain()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
