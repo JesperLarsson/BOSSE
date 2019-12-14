@@ -1,4 +1,4 @@
-﻿namespace AStar
+﻿namespace BOSSE
 {
     // Based 2019-12-14 on (MIT license): https://www.codeproject.com/Articles/118015/Fast-A-Star-2D-Implementation-for-C
     using System;
@@ -13,7 +13,7 @@
     /// <summary>
     /// A single ingame tile which we can perform pathfinding on
     /// </summary>
-    public class BossePathNode : IPathNode<Object>
+    public class BossePathNode : AStar.IPathNode<Object>
     {
         public Int32 X { get; set; }
         public Int32 Y { get; set; }

@@ -54,7 +54,7 @@ namespace BOSSE
         /// <summary>
         /// Determines if we are within the given range of another point
         /// </summary>
-        public static bool IsWithinRange(this Point2D self, AStar.BossePathNode node, float range)
+        public static bool IsWithinRange(this Point2D self, BossePathNode node, float range)
         {
             return self.IsWithinRange(new Point2D(node.X, node.Y), range);
         }
@@ -87,9 +87,17 @@ namespace BOSSE
         /// <summary>
         /// Determines if we are close to the given point
         /// </summary>
-        public static bool IsClose(this Point2D self, AStar.BossePathNode node)
+        public static bool IsClose(this Point2D self, BossePathNode node)
         {
             return self.IsClose(new Point2D(node.X, node.Y));
+        }
+
+        /// <summary>
+        /// Finds a path to the given point
+        /// </summary>
+        public static LinkedList<BossePathNode> FindPath(this Point2D self, Point2D to)
+        {
+            return BOSSE.PathFinderRef.FindPath(self, to);
         }
     }
 }

@@ -108,7 +108,7 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to move to the given location
         /// </summary>
-        public static Action MoveAction(IEnumerable<Unit> units, AStar.BossePathNode target)
+        public static Action MoveAction(IEnumerable<Unit> units, BossePathNode target)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.MOVE);
 

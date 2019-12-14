@@ -32,6 +32,7 @@ namespace BOSSE
         public void Initialize()
         {
             // Initialize A star grid
+#warning TODO: Include buildings, mineral fields, etc in pathfinding
             ImageData pathingMap = CurrentGameState.GameInformation.StartRaw.PathingGrid;
             BossePathNode[,] grid = new BossePathNode[pathingMap.Size.X, pathingMap.Size.Y];
 
@@ -53,6 +54,9 @@ namespace BOSSE
             PathGrid = new BossePathSolver<BossePathNode, Object>(grid);
         }
 
+        /// <summary>
+        /// Finds a path between the two points
+        /// </summary>
         public LinkedList<BossePathNode> FindPath(Point2D from, Point2D to)
         {
             LinkedList<BossePathNode> path = PathGrid.Search(new System.Drawing.Point((int)from.X, (int)from.Y), new System.Drawing.Point((int)to.X, (int)to.Y), null);
