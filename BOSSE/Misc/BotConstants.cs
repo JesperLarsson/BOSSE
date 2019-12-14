@@ -32,6 +32,17 @@ namespace BOSSE
         public const bool TickLockMode = true;
 
         /// <summary>
+        /// Number of milliseconds to sleep after each bot tick
+        /// </summary>
+        public static TimeSpan TickLockSleep = TimeSpan.FromMilliseconds(0);
+
+        /// <summary>
+        /// Number of logical ingame steps to perform each bot tick
+        /// The API can be slightly inconsistent and cause issues for lower values, ex orders not having being applied to the next tick
+        /// </summary>
+        public const int stepSize = 8;
+
+        /// <summary>
         /// Number of logical frames per second of real time
         /// </summary>
         public const double FRAMES_PER_SECOND = 22.4;

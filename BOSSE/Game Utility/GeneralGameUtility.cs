@@ -66,7 +66,7 @@ namespace BOSSE
             {
                 foreach (ulong iter in action.ActionRaw.UnitCommand.UnitTags)
                 {
-                    Log.Debug("Issued a command to unit " + iter);
+                    Log.Bulk("Issued a command to unit " + iter);
                 }
             }
 

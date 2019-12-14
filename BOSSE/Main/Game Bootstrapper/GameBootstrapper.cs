@@ -18,7 +18,6 @@ namespace BOSSE
     public class GameBootstrapper
     {
         private const string address = "127.0.0.1";
-        private const int stepSize = 1;
         private readonly ProtobufProxy proxy = new ProtobufProxy();
 
         private string starcraftDir;

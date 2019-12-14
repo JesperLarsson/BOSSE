@@ -79,7 +79,7 @@ namespace BOSSE
 
                 if (BotConstants.TickLockMode)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(BotConstants.TickLockSleep);
                 }
             }
         }
