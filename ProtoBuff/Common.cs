@@ -778,6 +778,15 @@ namespace SC2APIProtocol {
       OnConstruction();
     }
 
+    // Human added 2019-12-14
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Point2D(float x, float y)
+    {
+        x_ = x;
+        y_ = y;
+        OnConstruction();
+    }
+
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -31,6 +31,8 @@ namespace DebugGui
 
         public override void Tick()
         {
+            throw new NotImplementedException();
+
             SolidBrush pixelBrush;
             RectangleI playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
             ImageData gridMap = BosseGui.GameInformation.StartRaw.PlacementGrid;

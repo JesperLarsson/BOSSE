@@ -63,6 +63,10 @@ namespace BOSSE
         // Background thread
         public static BackgroundWorkerThread BackgroundWorkerThreadRef = new BackgroundWorkerThread();
 
+        // Map handling
+        public static MapAnalyser MapAnalyserRef = new MapAnalyser();
+        public static PathFinder PathFinderRef = new PathFinder();
+
         /// <summary>
         /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
         /// </summary>
@@ -86,10 +90,31 @@ namespace BOSSE
             // Build construction map
             ConstructionUtility.Initialize();
 
+            // General map analysis
+            PathFinderRef.Initialize();
+            //MapAnalyserRef.Initialize();
+            //Dijkstra.Main2();
+
             // Initialize sub-managers
             foreach (Manager managerIter in AllManagers)
             {
                 managerIter.Initialize();
+            }
+
+            // Test path finding
+            Vector3? enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
+            Point2D ramp = Tyr.Tyr.MapAnalyzer.GetMainRamp();
+            var path = PathFinderRef.FindPath(
+                new Point2D(ramp.X, ramp.Y),
+                new Point2D(enemyBase.Value.X + 1, enemyBase.Value.Y + 1)
+                );
+            if (path.Success)
+            {
+                Log.Info("Yea");
+            }
+            else
+            {
+                Log.Info("Awwww");
             }
 
             // Start background worker thread
