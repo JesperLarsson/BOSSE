@@ -55,8 +55,7 @@ namespace BOSSE
         public float VespeneCost { get => unitInformation.VespeneCost; }
         public RepeatedField<UnitOrder> QueuedOrders { get => original.Orders; }
         public UnitOrder CurrentOrder { get => QueuedOrders.Count > 0 ? QueuedOrders[0] : null; }
-        public Vector3 Position { get => new Vector3(original.Pos.X, original.Pos.Y, original.Pos.Z); }
-        public Point2D Position2d { get => new Point2D(original.Pos.X, original.Pos.Y); }
+        public Point2D Position { get => new Point2D(original.Pos.X, original.Pos.Y); }
 
         /// <summary>
         /// Create a new instance from sc2 instance, we wrap around it and add some functionality
@@ -96,16 +95,6 @@ namespace BOSSE
 
                 Unit.AllUnitInstances[sc2UnitData.Tag].RefreshData(sc2UnitData);
             }
-        }
-
-        public double GetDistance(Unit otherUnit)
-        {
-            return GetDistance(otherUnit.Position);
-        }
-
-        public double GetDistance(Vector3 location)
-        {
-            return Vector3.Distance(new Vector3(Position.X, Position.Y, 0), new Vector3(location.X, location.Y, 0));
         }
 
         public override string ToString()

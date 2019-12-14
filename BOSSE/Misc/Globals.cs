@@ -56,6 +56,6 @@ namespace BOSSE
         /// <summary>
         /// Location of our main starting base
         /// </summary>
-        public static Vector3 MainBaseLocation;
+        public static Point2D MainBaseLocation;
     }
 }

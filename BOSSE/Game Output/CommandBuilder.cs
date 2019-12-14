@@ -41,13 +41,11 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to attack move to the given location
         /// </summary>
-        public static Action AttackMoveAction(IEnumerable<Unit> units, Vector3 target)
+        public static Action AttackMoveAction(IEnumerable<Unit> units, Point2D target)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.ATTACK);
 
-            action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
-            action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = target.X;
-            action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = target.Y;
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = target;
 
             foreach (var unit in units)
             {
@@ -69,23 +67,6 @@ namespace BOSSE
             {
                 action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
             }
-
-            return action;
-        }
-
-        /// <summary>
-        /// Build sc2 action to move to the given location
-        /// </summary>
-        public static Action MoveAction(IEnumerable<Unit> units, Vector3 target)
-        {
-            Action action = RawCommand((int)AbilityConstants.AbilityId.MOVE);
-
-            action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
-            action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = target.X;
-            action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = target.Y;
-
-            foreach (var unit in units)
-                action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
 
             return action;
         }
@@ -125,7 +106,7 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to make the given unit construct the given building at a location
         /// </summary>
-        public static Action ConstructAction(UnitId structureToBuild, Unit unitThatBuilds, Vector3 location)
+        public static Action ConstructAction(UnitId structureToBuild, Unit unitThatBuilds, Point2D location)
         {
             int abilityID = GetAbilityIdToBuildUnit(structureToBuild);
             Action actionObj = CommandBuilder.RawCommand(abilityID);
@@ -205,7 +186,7 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action for the given unit to use an ability at a target location
         /// </summary>
-        public static Action UseAbilityOnGround(AbilityConstants.AbilityId ability, Unit unitToUseAbility, Vector3 location)
+        public static Action UseAbilityOnGround(AbilityConstants.AbilityId ability, Unit unitToUseAbility, Point2D location)
         {
             Action action = CommandBuilder.RawCommand((int)ability);
 

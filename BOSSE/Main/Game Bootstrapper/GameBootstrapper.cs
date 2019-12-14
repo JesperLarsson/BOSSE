@@ -52,7 +52,7 @@ namespace BOSSE
                 Thread.Sleep(500);
             }
 
-            Log.Info("Unable to connect to SC2 after {0} seconds.", timeout);
+            Log.Info($"Unable to connect to SC2 after {timeout} seconds.");
             throw new Exception("Unable to make a connection.");
         }
 
@@ -88,7 +88,7 @@ namespace BOSSE
 
             if (response.CreateGame.Error != ResponseCreateGame.Types.Error.Unset)
             {
-                Log.Error("CreateGame error: {0}", response.CreateGame.Error.ToString());
+                Log.Error("CreateGame error: " + response.CreateGame.Error.ToString());
                 if (!String.IsNullOrEmpty(response.CreateGame.ErrorDetails))
                 {
                     Log.Error(response.CreateGame.ErrorDetails);
@@ -142,7 +142,7 @@ namespace BOSSE
 
             if (response.JoinGame.Error != ResponseJoinGame.Types.Error.Unset)
             {
-                Log.Error("JoinGame error: {0}", response.JoinGame.Error.ToString());
+                Log.Error("JoinGame error:" + response.JoinGame.Error.ToString());
                 if (!String.IsNullOrEmpty(response.JoinGame.ErrorDetails))
                 {
                     Log.Error(response.JoinGame.ErrorDetails);
@@ -177,7 +177,7 @@ namespace BOSSE
 
             if (response.JoinGame.Error != ResponseJoinGame.Types.Error.Unset)
             {
-                Log.Error("JoinGame error: {0}", response.JoinGame.Error.ToString());
+                Log.Error("JoinGame error: " + response.JoinGame.Error.ToString());
                 if (!String.IsNullOrEmpty(response.JoinGame.ErrorDetails))
                 {
                     Log.Error(response.JoinGame.ErrorDetails);

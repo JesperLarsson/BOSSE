@@ -43,7 +43,7 @@ namespace BOSSE
         /// <summary>
         /// Military target, if any (can be null)
         /// </summary>
-        private Vector3? CurrentMilitaryGoalPoint = null;
+        private Point2D CurrentMilitaryGoalPoint = null;
 
         public override void Initialize()
         {
@@ -53,12 +53,12 @@ namespace BOSSE
         {
         }
 
-        public void SetNewGoal(MilitaryGoal newGoal, Vector3? newPoint = null)
+        public void SetNewGoal(MilitaryGoal newGoal, Point2D newPoint = null)
         {
             if (newGoal == CurrentMilitaryGoal)
                 return;
 
-            Log.Info($"Setting new military goal = {newGoal} (was {this.CurrentMilitaryGoal}) at {newPoint.ToStringSafe2()}");
+            Log.Info($"Setting new military goal = {newGoal} (was {this.CurrentMilitaryGoal}) at {newPoint.ToString2()}");
             this.CurrentMilitaryGoal = newGoal;
         }
 
@@ -72,12 +72,12 @@ namespace BOSSE
             return CurrentMilitaryGoalPoint != null;
         }
 
-        public Vector3? GetTarget()
+        public Point2D GetTarget()
         {
             return CurrentMilitaryGoalPoint;
         }
 
-        public void Get(out MilitaryGoal outGoal, out Vector3? point)
+        public void Get(out MilitaryGoal outGoal, out Point2D point)
         {
             outGoal = CurrentMilitaryGoal;
             point = CurrentMilitaryGoalPoint;

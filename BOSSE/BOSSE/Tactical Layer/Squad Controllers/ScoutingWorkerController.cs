@@ -46,7 +46,7 @@ namespace BOSSE
         /// <summary>
         /// Updates squad controller
         /// </summary>
-        public override void Tick(MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
+        public override void Tick(MilitaryGoal currentGlobalGoal, Point2D targetPoint)
         {
             // We don't care about the military goal provided
             if (this.controlledSquad.AssignedUnits.Count == 0)
@@ -95,14 +95,14 @@ namespace BOSSE
                 return;
             }
 
-            if (worker.GetDistance(new Vector3(location.Pos.X, location.Pos.Y, 0)) < 3)
+            if (worker.Position.IsWithinRange(location.Pos, 3))
             {
                 Log.Bulk("Scout completed natural scouting");
                 HasScoutedNatural = true;
                 return;
             }
 
-            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, new Vector3(location.Pos.X, location.Pos.Y, 0)));
+            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, location.Pos));
         }
 
         private void ScoutAroundEnemyBase(Unit worker, Unit enemyResourceCenter)
@@ -111,18 +111,18 @@ namespace BOSSE
                 return; // Not time to update yet
 
             TicksUpdated++;
-            Vector3 scoutTargetLocation = PickNextSpotToGo(worker, enemyResourceCenter);
+            Point2D scoutTargetLocation = PickNextSpotToGo(worker, enemyResourceCenter);
             Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, scoutTargetLocation));
             LastTargetFrame = Globals.CurrentFrameIndex;
         }
 
-        private Vector3 PickNextSpotToGo(Unit worker, Unit enemyResourceCenter)
+        private Point2D PickNextSpotToGo(Unit worker, Unit enemyResourceCenter)
         {
             double x = enemyResourceCenter.Position.X + (Radius * Math.Cos(CurrentDegrees));
             double y = enemyResourceCenter.Position.Y + (Radius * Math.Sin(CurrentDegrees));
             CurrentDegrees += StepSize;
 
-            return new Vector3((float)x, (float)y, 0);
+            return new Point2D((float)x, (float)y);
         }
 
         private void GoHome()
@@ -143,14 +143,14 @@ namespace BOSSE
             if (worker.CurrentOrder.AbilityId == (uint)AbilityId.MOVE)
                 return; // Already moving
 
-            Vector3? enemyBaseLoc = GuessEnemyBaseLocation();
+            Point2D enemyBaseLoc = GuessEnemyBaseLocation();
             if (enemyBaseLoc == null)
             {
                 Log.Info("Unable to find enemy location to scout");
                 return;
             }
-            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, enemyBaseLoc.Value));
-            Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + enemyBaseLoc.Value);
+            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, enemyBaseLoc));
+            Log.Bulk("ScoutingWorkerController - Scouting enemy base at = " + enemyBaseLoc);
         }
 
         private void ReceiveEventEnemyDetected(HashSet<Unit> detectedUnits)

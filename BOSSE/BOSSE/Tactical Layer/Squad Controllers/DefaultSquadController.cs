@@ -28,7 +28,7 @@ namespace BOSSE
         /// <summary>
         /// Updates squad controller
         /// </summary>
-        public override void Tick(MilitaryGoal currentGlobalGoal, Vector3? TargetPoint)
+        public override void Tick(MilitaryGoal currentGlobalGoal, Point2D targetPoint)
         {
             if (currentGlobalGoal == MilitaryGoal.DefendGeneral)
             {
@@ -41,29 +41,29 @@ namespace BOSSE
                     return;
                 }
 
-                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(ramp.X, ramp.Y, 0)));
+                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, ramp));
             }
             else if (currentGlobalGoal == MilitaryGoal.DefendPoint)
             {
                 // Attack move to point
-                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(TargetPoint.Value.X, TargetPoint.Value.Y, 0)));
+                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, targetPoint));
             }
             else if (currentGlobalGoal == MilitaryGoal.AttackGeneral)
             {
                 // Attack move towards enemy main base
-                Vector3? enemyLocation = GuessEnemyBaseLocation();
+                Point2D enemyLocation = GuessEnemyBaseLocation();
                 if (enemyLocation == null)
                 {
                     Log.Warning("Unable to find enemy base location");
                     return;
                 }
 
-                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(enemyLocation.Value.X, enemyLocation.Value.Y, 0)));
+                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, enemyLocation));
             }
             else if (currentGlobalGoal == MilitaryGoal.AttackPoint)
             {
                 // Attack move to point
-                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, new Vector3(TargetPoint.Value.X, TargetPoint.Value.Y, 0)));
+                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, targetPoint));
             }
             else
             {

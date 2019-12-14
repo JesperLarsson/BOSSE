@@ -88,7 +88,7 @@ namespace BOSSE
         /// </summary>
         public override void OnFrameTick()
         {
-            BOSSE.TacticalGoalRef.Get(out MilitaryGoal currentMilitaryGoal, out Vector3? currentMilitaryGoalPoint);
+            BOSSE.TacticalGoalRef.Get(out MilitaryGoal currentMilitaryGoal, out Point2D currentMilitaryGoalPoint);
 
 #if DEBUG
             // Sanity check

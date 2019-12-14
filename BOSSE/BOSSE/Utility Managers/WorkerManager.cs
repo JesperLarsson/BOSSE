@@ -80,7 +80,7 @@ namespace BOSSE
         /// <summary>
         /// Returns a single worker close to the given point which can be used for a new job
         /// </summary>
-        public Unit RequestWorkerForJobCloseToPointOrNull(Vector3 point)
+        public Unit RequestWorkerForJobCloseToPointOrNull(Point2D point)
         {
             var result = RequestWorkersForJobCloseToPointOrNull(point, 1);
             if (result == null || result.Count == 0)
@@ -93,12 +93,12 @@ namespace BOSSE
         /// Returns a multiple workers close to the given point which can be used for a new job
         /// Can return a partial amount, null = no workers found
         /// </summary>
-        public List<Unit> RequestWorkersForJobCloseToPointOrNull(Vector3 point, int maxWorkerCount)
+        public List<Unit> RequestWorkersForJobCloseToPointOrNull(Point2D point, int maxWorkerCount)
         {
             List<Unit> workers = GetUnits(UnitId.SCV);
 
             // Sort by distance to point
-            workers.Sort((a, b) => a.GetDistance(point).CompareTo(b.GetDistance(point)));
+            workers.Sort((a, b) => a.Position.DistanceSquared(point).CompareTo(b.Position.DistanceSquared(point)));
 
             List<Unit> matchedWorkers = new List<Unit>();
             foreach (Unit worker in workers)
@@ -250,7 +250,7 @@ namespace BOSSE
             {
                 Unit geyser = gasGeysers[i];
 
-                if (geyser.GetDistance(Globals.MainBaseLocation) > 20)
+                if (!geyser.Position.IsWithinRange(Globals.MainBaseLocation, 20))
                     continue;
                 if (geyser.IsReserved)
                     continue;

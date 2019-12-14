@@ -30,7 +30,7 @@ namespace BOSSE
         /// </summary>
         protected Squad controlledSquad;
 
-        public abstract void Tick(MilitaryGoal currentGlobalGoal, Vector3? TargetPoint);
+        public abstract void Tick(MilitaryGoal currentGlobalGoal, Point2D targetPoint);
 
         public void AssignSquad(Squad newSquad)
         {

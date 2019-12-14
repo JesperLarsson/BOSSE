@@ -23,49 +23,49 @@ namespace BOSSE
         /// <summary>
         /// Log file only, not to console
         /// </summary>
-        public static void Bulk(string line, params object[] parameters)
+        public static void Bulk(string line)
         {
-            WriteLine("BULK", line, false, parameters);
+            WriteLine("BULK", line, false);
         }
 
         /// <summary>
         /// General information
         /// </summary>
-        public static void Info(string line, params object[] parameters)
+        public static void Info(string line)
         {
-            WriteLine("INFO", line, true, parameters);
+            WriteLine("INFO", line, true);
         }
 
         /// <summary>
         /// For temporary debugging of specific points of the code
         /// </summary>
-        public static void Debug(string line, params object[] parameters)
+        public static void Debug(string line)
         {
-            WriteLine("DEBUG", line, true, parameters);
+            WriteLine("DEBUG", line, true);
         }
 
         /// <summary>
         /// Semi-serious issues
         /// </summary>
-        public static void Warning(string line, params object[] parameters)
+        public static void Warning(string line)
         {
-            WriteLine("WARNING", line, true, parameters);
+            WriteLine("WARNING", line, true);
         }
 
         /// <summary>
         /// Serious errors and unexepcted exceptions
         /// </summary>
-        public static void Error(string line, params object[] parameters)
+        public static void Error(string line)
         {
-            WriteLine("ERROR", line, true, parameters);
+            WriteLine("ERROR", line, true);
         }
 
         /// <summary>
         /// Will stop execution if called during a debugging session
         /// </summary>
-        public static void SanityCheckFailed(string line, bool breakExe = true, params object[] parameters)
+        public static void SanityCheckFailed(string line, bool breakExe = true)
         {
-            WriteLine("SANITY CHECK FAILED", line, true, parameters);
+            WriteLine("SANITY CHECK FAILED", line, true);
 
             if (breakExe && System.Diagnostics.Debugger.IsAttached)
             {
@@ -79,7 +79,7 @@ namespace BOSSE
             Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
         }
 
-        private static void WriteLine(string prefix, string line, bool trace, params object[] parameters)
+        private static void WriteLine(string prefix, string line, bool trace)
         {
             lock (LogLock)
             {
@@ -88,7 +88,7 @@ namespace BOSSE
                     Initialize();
                 }
 
-                var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + string.Format(line, parameters);
+                var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + line;
 
                 var fileStream = new StreamWriter(FilePath, true);
                 fileStream.WriteLine(msg);
@@ -98,7 +98,7 @@ namespace BOSSE
                 {
                     try
                     {
-                        Console.WriteLine(msg, parameters);
+                        Console.WriteLine(msg);
                     }
                     catch
                     {
@@ -109,7 +109,7 @@ namespace BOSSE
                 // To VS output
                 if (trace)
                 {
-                    System.Diagnostics.Debug.WriteLine(msg, parameters);
+                    System.Diagnostics.Debug.WriteLine(msg);
                 }
             }
         }

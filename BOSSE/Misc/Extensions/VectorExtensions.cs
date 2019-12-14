@@ -27,6 +27,7 @@ namespace BOSSE
         {
             return $"[{obj.X}, {obj.Y}]";
         }
+
         /// <summary>
         /// XY string
         /// </summary>

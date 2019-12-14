@@ -64,7 +64,7 @@ namespace BOSSE
         /// </summary>
         public static void BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId unitType)
         {
-            Vector3? constructionSpot = null;
+            Point2D constructionSpot = null;
 
             // See if our defense config has requested a building of this type
             //Log.Debug("Running A");
@@ -87,7 +87,7 @@ namespace BOSSE
             {
                 //Log.Debug("Running backup solution...");
                 const int radius = 12;
-                Vector3 startingSpot;
+                Point2D startingSpot;
 
                 List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
                 if (resourceCenters.Count > 0)
@@ -103,29 +103,29 @@ namespace BOSSE
                 List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
                 while (true)
                 {
-                    constructionSpot = new Vector3(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1), 0);
+                    constructionSpot = new Point2D(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1));
 
                     //avoid building in the mineral line
-                    if (IsInRange(constructionSpot.Value, mineralFields, 5)) continue;
+                    if (IsInRange(constructionSpot, mineralFields, 5)) continue;
 
                     //check if the building fits
                     //Log.Bulk("Running canplace hack...");
-                    if (!CanPlace(unitType, constructionSpot.Value)) continue;
+                    if (!CanPlace(unitType, constructionSpot)) continue;
 
                     //ok, we found a spot
                     break;
                 }
             }
 
-            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot.Value);
+            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
             if (worker == null)
             {
                 Log.Warning($"Unable to find a worker to construct {unitType}");
                 return;
             }
 
-            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot.Value));
-            Log.Info($"Constructing {unitType} at {constructionSpot.Value.ToString2()} using worker " + worker.Tag);
+            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot));
+            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()} using worker " + worker.Tag);
         }
     }
 }

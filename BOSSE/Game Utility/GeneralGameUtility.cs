@@ -76,13 +76,12 @@ namespace BOSSE
         /// <summary>
         /// Guesstimates the enemy base location, null = no decent guess
         /// </summary>
-        public static Vector3? GuessEnemyBaseLocation()
+        public static Point2D GuessEnemyBaseLocation()
         {
             foreach (var startLocation in CurrentGameState.GameInformation.StartRaw.StartLocations)
             {
-                var enemyLocation = new Vector3(startLocation.X, startLocation.Y, 0);
-                var distance = Vector3.Distance(enemyLocation, Globals.MainBaseLocation);
-                if (distance > 30)
+                Point2D enemyLocation = new Point2D(startLocation.X, startLocation.Y);
+                if (!enemyLocation.IsWithinRange(Globals.MainBaseLocation, 30))
                     return enemyLocation;
             }
 
@@ -163,7 +162,7 @@ namespace BOSSE
         {
             List<Unit> activeUnits = GetUnits(unitTypesToFind, onlyCompleted: onlyCompleted);
             uint count = (uint)activeUnits.Count;
-            
+
             // Check for pending units
             if (includePending)
             {
@@ -261,7 +260,7 @@ namespace BOSSE
         /// <summary>
         /// Get if any unit in the given collection which is close to the given point
         /// </summary>
-        public static bool IsInRange(Vector3 targetPosition, List<Unit> units, float maxDistance)
+        public static bool IsInRange(Point2D targetPosition, List<Unit> units, float maxDistance)
         {
             return (GetFirstInRange(targetPosition, units, maxDistance) != null);
         }
@@ -269,13 +268,11 @@ namespace BOSSE
         /// <summary>
         /// Get any unit in the given collection which is close to the given point
         /// </summary>
-        public static Unit GetFirstInRange(Vector3 targetPosition, List<Unit> units, float maxDistance)
+        public static Unit GetFirstInRange(Point2D targetPosition, List<Unit> units, float maxDistance)
         {
-            var maxDistanceSqr = maxDistance * maxDistance;
-
             foreach (var unit in units)
             {
-                if (Vector3.DistanceSquared(targetPosition, unit.Position) <= maxDistanceSqr)
+                if (targetPosition.IsWithinRange(unit.Position, maxDistance))
                 {
                     return unit;
                 }
@@ -288,7 +285,7 @@ namespace BOSSE
         /// Check if the given building type can be placed at the given point
         /// This is a BLOCKING call, ie very slow
         /// </summary>
-        public static bool CanPlace(UnitId unitType, Vector3 targetPos)
+        public static bool CanPlace(UnitId unitType, Point2D targetPos)
         {
             var abilityID = GetAbilityIdToBuildUnit(unitType);
 
@@ -319,13 +316,12 @@ namespace BOSSE
         /// </summary>
         public static Unit GetMineralInMainMineralLine()
         {
-            Vector3 posVector = new Vector3(Globals.MainBaseLocation.X, Globals.MainBaseLocation.Y, 0);
+            Point2D posVector = new Point2D(Globals.MainBaseLocation.X, Globals.MainBaseLocation.Y);
 
             List<Unit> allMinerals = GetUnits(UnitConstants.MineralFields, Alliance.Neutral, false, true);
             foreach (var iter in allMinerals)
             {
-                var distance = iter.GetDistance(posVector);
-                if (distance < 15)
+                if (iter.Position.IsWithinRange(posVector, 15))
                     return iter;
             }
 

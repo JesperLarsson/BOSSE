@@ -99,5 +99,15 @@ namespace BOSSE
         {
             return BOSSE.PathFinderRef.FindPath(self, to);
         }
+
+        /// <summary>
+        /// XY string
+        /// </summary>
+        public static string ToString2(this Point2D obj)
+        {
+            if (obj == null)
+                return $"[NULL Point2D]";
+            return $"[{obj.X}, {obj.Y}]";
+        }
     }
 }
