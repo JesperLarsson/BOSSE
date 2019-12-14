@@ -56,6 +56,7 @@ namespace BOSSE
         public RepeatedField<UnitOrder> QueuedOrders { get => original.Orders; }
         public UnitOrder CurrentOrder { get => QueuedOrders.Count > 0 ? QueuedOrders[0] : null; }
         public Vector3 Position { get => new Vector3(original.Pos.X, original.Pos.Y, original.Pos.Z); }
+        public Point2D Position2d { get => new Point2D(original.Pos.X, original.Pos.Y); }
 
         /// <summary>
         /// Create a new instance from sc2 instance, we wrap around it and add some functionality

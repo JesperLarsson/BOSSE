@@ -25,25 +25,6 @@
     /// </summary>
     public class SpatialAStar<TPathNode, TUserContext> where TPathNode : IPathNode<TUserContext>
     {
-        /// <summary>
-        /// A single calculated path
-        /// </summary>
-        public class AStarPath
-        {
-            /// <summary>
-            /// Set if a path could be found
-            /// </summary>
-            public bool Success;
-
-            public LinkedList<TPathNode> Path;
-
-            public AStarPath(bool valid, LinkedList<TPathNode> path)
-            {
-                Success = valid;
-                Path = path;
-            }
-        }
-
         private OpenCloseMap m_ClosedSet;
         private OpenCloseMap m_OpenSet;
         private PriorityQueue<PathNode> m_OrderedOpenSet;
@@ -143,7 +124,7 @@
         /// Returns null, if no path is found. Start- and End-Node are included in returned path. The user context
         /// is passed to IsWalkable().
         /// </summary>
-        public AStarPath Search(System.Drawing.Point inStartNode, System.Drawing.Point inEndNode, TUserContext inUserContext)
+        public LinkedList<TPathNode> Search(System.Drawing.Point inStartNode, System.Drawing.Point inEndNode, TUserContext inUserContext)
         {
             PathNode startNode = m_SearchSpace[inStartNode.X, inStartNode.Y];
             PathNode endNode = m_SearchSpace[inEndNode.X, inEndNode.Y];
@@ -154,7 +135,7 @@
             if (startNode == endNode)
             {
                 var path = new LinkedList<TPathNode>(new TPathNode[] { startNode.UserContext });
-                return new AStarPath(true, path);
+                return path;
             }
 
             PathNode[] neighborNodes = new PathNode[8];
@@ -199,8 +180,7 @@
                     result.AddLast(endNode.UserContext);
 
                     // Done
-                    AStarPath path = new AStarPath(true, result);
-                    return path;
+                    return result;
                 }
 
                 m_OpenSet.Remove(x);
@@ -261,7 +241,7 @@
                 }
             }
 
-            return new AStarPath(false, null);
+            return null;
         }
 
         private LinkedList<TPathNode> ReconstructPath(PathNode[,] came_from, PathNode current_node)

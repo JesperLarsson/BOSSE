@@ -53,9 +53,9 @@ namespace BOSSE
             PathGrid = new BossePathSolver<BossePathNode, Object>(grid);
         }
 
-        public SpatialAStar<BossePathNode, object>.AStarPath FindPath(Point2D from, Point2D to)
+        public LinkedList<BossePathNode> FindPath(Point2D from, Point2D to)
         {
-            SpatialAStar<BossePathNode, object>.AStarPath path = PathGrid.Search(new System.Drawing.Point((int)from.X, (int)from.Y), new System.Drawing.Point((int)to.X, (int)to.Y), null);
+            LinkedList<BossePathNode> path = PathGrid.Search(new System.Drawing.Point((int)from.X, (int)from.Y), new System.Drawing.Point((int)to.X, (int)to.Y), null);
             return path;
         }
     }

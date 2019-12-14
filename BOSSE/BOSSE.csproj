@@ -107,6 +107,7 @@
     <Compile Include="Map Analysis\Path Finding\AStar\AStar.cs" />
     <Compile Include="Map Analysis\Path Finding\AStar\BossePathNode.cs" />
     <Compile Include="Map Analysis\Path Finding\AStar\BossePathSolver.cs" />
+    <Compile Include="Misc\Extensions\Point2DExtensions.cs" />
     <Compile Include="Misc\JokeGenerator.cs" />
     <Compile Include="Misc\Log.cs" />
     <Compile Include="Map Analysis\Path Finding\PathFinder.cs" />

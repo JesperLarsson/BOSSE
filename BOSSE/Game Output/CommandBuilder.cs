@@ -91,6 +91,38 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Build sc2 action to move to the given location
+        /// </summary>
+        public static Action MoveAction(IEnumerable<Unit> units, Point2D target)
+        {
+            Action action = RawCommand((int)AbilityConstants.AbilityId.MOVE);
+
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = target;
+
+            foreach (var unit in units)
+                action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+
+            return action;
+        }
+
+        /// <summary>
+        /// Build sc2 action to move to the given location
+        /// </summary>
+        public static Action MoveAction(IEnumerable<Unit> units, AStar.BossePathNode target)
+        {
+            Action action = RawCommand((int)AbilityConstants.AbilityId.MOVE);
+
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = target.X;
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = target.Y;
+
+            foreach (var unit in units)
+                action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
+
+            return action;
+        }
+
+        /// <summary>
         /// Build sc2 action to make the given unit construct the given building at a location
         /// </summary>
         public static Action ConstructAction(UnitId structureToBuild, Unit unitThatBuilds, Vector3 location)

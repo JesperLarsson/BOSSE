@@ -101,22 +101,6 @@ namespace BOSSE
                 managerIter.Initialize();
             }
 
-            // Test path finding
-            Vector3? enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
-            Point2D ramp = Tyr.Tyr.MapAnalyzer.GetMainRamp();
-            var path = PathFinderRef.FindPath(
-                new Point2D(ramp.X, ramp.Y),
-                new Point2D(enemyBase.Value.X + 1, enemyBase.Value.Y + 1)
-                );
-            if (path.Success)
-            {
-                Log.Info("Yea");
-            }
-            else
-            {
-                Log.Info("Awwww");
-            }
-
             // Start background worker thread
             BackgroundWorkerThreadRef.StartThread();
 

@@ -39,6 +39,11 @@ namespace BOSSE
 
         public static List<string> GetJoke()
         {
+#if DEBUG
+            // Only ladder gets the jokes
+            return new List<string>();
+#endif
+
             Random rand = new Random();
             int index = rand.Next(0, jokes.Count - 1);
 

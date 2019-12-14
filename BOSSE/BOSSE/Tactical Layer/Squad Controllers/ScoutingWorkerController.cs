@@ -38,9 +38,21 @@ namespace BOSSE
         const double Radius = 10;
         const int UpdateFrequencyTicks = 10;
 
+        LinkedList<AStar.BossePathNode> path;
+        LinkedListNode<AStar.BossePathNode> currentPathNode = null;
+
         public ScoutingWorkerController()
         {
             BOSSE.SensorManagerRef.GetSensor(typeof(EnemyArmyUnitDetectedFirstTimeSensor)).AddHandler(ReceiveEventEnemyDetected);
+
+            // Test path finding
+            Vector3? enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
+            Point2D ramp = Tyr.Tyr.MapAnalyzer.GetMainRamp();
+
+            this.path = BOSSE.PathFinderRef.FindPath(
+                new Point2D(ramp.X, ramp.Y),
+                new Point2D(enemyBase.Value.X + 1, enemyBase.Value.Y + 1)
+                );
         }
 
         /// <summary>
@@ -57,32 +69,50 @@ namespace BOSSE
             }
             Unit worker = this.controlledSquad.AssignedUnits.First();
 
-            // Check finish condition
-            if (IsTimeToGoHome)
+            // Select node
+            if (currentPathNode == null)
             {
-                // This terminates the controller
-                GoHome();
-                return;
+                currentPathNode = path.First;
+            }
+            else if (worker.Position2d.IsClose(currentPathNode.Value))
+            {
+                currentPathNode = currentPathNode.Next;
+
+                if (currentPathNode == null)
+                {
+                    return;
+                }
             }
 
-            // Move around enmy resource center if we can find it
-            List<Unit> candidateLocations = GetUnits(UnitConstants.ResourceCenters, Alliance.Enemy, false, false);
-            if (candidateLocations.Count == 0)
-            {
-                SearchEnemyMainBase(worker);
-            }
-            else
-            {
-                // Take two loops around enemy base, then scout natural location, then loop again until we see an enemy army unit
-                if (TicksUpdated >= 10 && (!HasScoutedNatural))
-                {
-                    ScoutNatural(worker);
-                }
-                else
-                {
-                    ScoutAroundEnemyBase(worker, candidateLocations[0]);
-                }
-            }
+            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, currentPathNode.Value));
+
+
+            //// Check finish condition
+            //if (IsTimeToGoHome)
+            //{
+            //    // This terminates the controller
+            //    GoHome();
+            //    return;
+            //}
+
+            //// Move around enmy resource center if we can find it
+            //List<Unit> candidateLocations = GetUnits(UnitConstants.ResourceCenters, Alliance.Enemy, false, false);
+            //if (candidateLocations.Count == 0)
+            //{
+            //    SearchEnemyMainBase(worker);
+            //}
+            //else
+            //{
+            //    // Take two loops around enemy base, then scout natural location, then loop again until we see an enemy army unit
+            //    if (TicksUpdated >= 10 && (!HasScoutedNatural))
+            //    {
+            //        ScoutNatural(worker);
+            //    }
+            //    else
+            //    {
+            //        ScoutAroundEnemyBase(worker, candidateLocations[0]);
+            //    }
+            //}
         }
 
         private void ScoutNatural(Unit worker)
