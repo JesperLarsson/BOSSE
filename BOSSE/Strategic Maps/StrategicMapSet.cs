@@ -149,14 +149,6 @@ namespace BOSSE
             outObj.xSize = xSize;
             outObj.ySize = ySize;
 
-            // Give GUI a reference to the new version
-            if (Globals.IsSinglePlayer)
-            {
-                DebugGui.InfluenceMapGui.NewInfluenceMapIsAvailable(outObj.InfluenceMap, outObj.xSize, outObj.ySize);
-                DebugGui.TensionMapGui.NewTensionMapIsAvailable(outObj.TensionMap, outObj.xSize, outObj.ySize);
-                DebugGui.VulnerabilityMapGui.NewVulnerabilityMapIsAvailable(outObj.VulnerabilityMap, outObj.xSize, outObj.ySize);
-            }
-
             LatestMapSet = outObj;
         }
     }

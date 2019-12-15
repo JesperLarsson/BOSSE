@@ -37,7 +37,7 @@ namespace DebugGui
     {
         public PlacementGridDebugMap()
         {
-            this.MapName = "Building placement grid";
+            this.MapName = "Input - Building placement grid";
         }
 
         protected override Image RenderMap()

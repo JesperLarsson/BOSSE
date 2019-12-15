@@ -50,7 +50,7 @@ namespace DebugGui
             if (StrategicMapSet.LatestMapSet == null)
                 return null;
 
-            var InfluenceMapInput = StrategicMapSet.LatestMapSet.InfluenceMap;
+            var influenceMan = StrategicMapSet.LatestMapSet.InfluenceMap;
             int xSize = StrategicMapSet.LatestMapSet.xSize;
             int ySize = StrategicMapSet.LatestMapSet.ySize;
 
@@ -59,7 +59,7 @@ namespace DebugGui
             {
                 for (int y = 0; y < ySize; y++)
                 {
-                    int value = (int)(InfluenceMapInput[x, y] * 10.0f);
+                    int value = (int)(influenceMan[x, y] * 10.0f);
                     SolidBrush brushColor;
 
                     if (value >= 0)

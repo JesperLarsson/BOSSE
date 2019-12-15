@@ -40,7 +40,7 @@ namespace DebugGui
 
         public TerrainDebugMap()
         {
-            this.MapName = "Terrain Height";
+            this.MapName = "Input - Terrain Height";
         }
 
         protected override Image RenderMap()

@@ -42,7 +42,10 @@ namespace DebugGui
             new OverviewDebugMap(),
             new TerrainDebugMap(),
             new PlacementGridDebugMap(),
+
             new InfluenceDebugMap(),
+            new VulnerabilityDebugMap(),
+            new TensionDebugMap(),
 
         };
 

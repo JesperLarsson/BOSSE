@@ -23,7 +23,6 @@ namespace DebugGui
     using System.Data;
     using System.Drawing;
     using System.Linq;
-    using System.Numerics;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
@@ -32,55 +31,46 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Influence minimap
+    /// Debug map - Tension
     /// </summary>
-    public class InfluenceMapGui : BaseMap
+    public class TensionDebugMap : BaseDebugMap
     {
-        protected static float[,] InfluenceMapInput = null;
-        protected static int xSize;
-        protected static int ySize;
-
-        public InfluenceMapGui(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
+        public TensionDebugMap()
         {
+            this.MapName = "Strategic - Tension";
         }
 
-        public static void NewInfluenceMapIsAvailable(float[,] _influenceMapInput, int _xSize, int _ySize)
+        protected override Image RenderMap()
         {
-            xSize = _xSize;
-            ySize = _ySize;
-            InfluenceMapInput = _influenceMapInput;
-        }
+            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Graphics surface = Graphics.FromImage(bmp);
+            surface.Clear(System.Drawing.Color.Black);
 
-        public override void Tick()
-        {
-            if (InfluenceMapInput == null)
-                return;
+            if (StrategicMapSet.LatestMapSet == null)
+                return null;
+
+            var tensionMap = StrategicMapSet.LatestMapSet.TensionMap;
+            int xSize = StrategicMapSet.LatestMapSet.xSize;
+            int ySize = StrategicMapSet.LatestMapSet.ySize;
 
             // Draw it
             for (int x = 0; x < xSize; x++)
             {
                 for (int y = 0; y < ySize; y++)
                 {
-                    int value = (int)(InfluenceMapInput[x, y] * 10.0f);
+                    int value = (int)(tensionMap[x, y] * 10.0f);
                     SolidBrush brushColor;
 
-                    if (value >= 0)
-                    {
-                        brushColor = new SolidBrush(System.Drawing.Color.FromArgb(255, 0, 0, Math.Min(value, 255)));
-                    }
-                    else
-                    {
-                        brushColor = new SolidBrush(System.Drawing.Color.FromArgb(255, Math.Min(-value, 255), 0, 0));
-                    }
+                    brushColor = new SolidBrush(System.Drawing.Color.FromArgb(255, Math.Min(value, 255), Math.Min(value, 255), Math.Min(value, 255)));
 
                     float xPos = x;
                     float yPos = CompensateY(y);
 
-                    FormGraphics.FillRectangle(brushColor, (RenderScale * xPos) + BaseX, (RenderScale * yPos) + BaseY, RenderScale, RenderScale);
+                    surface.FillRectangle(brushColor, (RenderScale * xPos), (RenderScale * yPos), RenderScale, RenderScale);
                 }
             }
 
-            InfluenceMapInput = null; // do not redraw the same data again
+            return bmp;
         }
     }
 }

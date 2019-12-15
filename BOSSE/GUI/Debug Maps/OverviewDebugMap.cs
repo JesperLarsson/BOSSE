@@ -45,7 +45,7 @@ namespace DebugGui
 
         public OverviewDebugMap()
         {
-            this.MapName = "General Overview";
+            this.MapName = "General - Overview";
         }
 
         protected override Image RenderMap()
