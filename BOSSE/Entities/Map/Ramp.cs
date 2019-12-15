@@ -17,13 +17,12 @@ namespace BOSSE
     using static GeneralGameUtility;
 
     /// <summary>
-    /// Contains various static metrics about the map that doesn't change between runs (chokepoints etc)
+    /// A single ramp leading up to a base
     /// </summary>
-    public class AnalysedMap
+    public class Ramp
     {
-        /// <summary>
-        /// Higher values indicate chokepoints between ours and the enemy main base
-        /// </summary>
-        public TileMap<byte> MainBaseChokeScore;
+        public Point2D Location;
+        public BaseLocation LeadsToBase;
+
     }
 }

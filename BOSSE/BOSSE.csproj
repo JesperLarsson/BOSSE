@@ -36,7 +36,13 @@
     <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604">
       <HintPath>..\References\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="Mnemosyne, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mnemosyne.1.1.0.2\lib\netstandard2.0\Mnemosyne.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard" />
+    <Reference Include="SpookilySharp, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpookilySharp.1.2.0\lib\netstandard2.0\SpookilySharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -60,9 +66,10 @@
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
-    <Compile Include="Entities\AnalysedMap.cs" />
-    <Compile Include="Entities\Manager.cs" />
-    <Compile Include="Entities\Squad.cs" />
+    <Compile Include="Entities\Map\AnalysedRuntimeMap.cs" />
+    <Compile Include="Entities\Map\AnalysedStaticMap.cs" />
+    <Compile Include="Entities\Internal\Manager.cs" />
+    <Compile Include="Entities\Internal\Squad.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\ScoutingWorkerController.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\DefaultSquadController.cs" />
     <Compile Include="BOSSE\Tactical Layer\SquadManager.cs" />
@@ -74,9 +81,11 @@
     <Compile Include="BOSSE\Strategic Layer\GoalFormulator.cs" />
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
-    <Compile Include="Entities\GameObject.cs" />
-    <Compile Include="Entities\TileMap.cs" />
-    <Compile Include="Entities\Unit.cs" />
+    <Compile Include="Entities\Internal\GameObject.cs" />
+    <Compile Include="Entities\Map\BaseLocation.cs" />
+    <Compile Include="Entities\Map\Ramp.cs" />
+    <Compile Include="Entities\Map\TileMap.cs" />
+    <Compile Include="Entities\Internal\Unit.cs" />
     <Compile Include="Game Input\StarCraft Constants\AbilityConstants.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
     <Compile Include="Game Input\StarCraft Constants\UnitConstants.cs" />
@@ -105,7 +114,8 @@
     <Compile Include="GUI\GUI Maps\Strategic\VulnerabilityMapGui.cs" />
     <Compile Include="GUI\GUI Maps\TerrainMap.cs" />
     <Compile Include="Main\BackgroundWorkerThread.cs" />
-    <Compile Include="Map Analysis\MapAnalyser.cs" />
+    <Compile Include="Map Analysis\RuntimeMapAnalyser.cs" />
+    <Compile Include="Map Analysis\StaticMapAnalyser.cs" />
     <Compile Include="BOSSE\BotConstants.cs" />
     <Compile Include="Game Utility\GeneralGameUtility.cs" />
     <Compile Include="Game Output\GameOutput.cs" />

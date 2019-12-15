@@ -17,7 +17,7 @@ namespace BOSSE
     using static CurrentGameState;
     using static UnitConstants;
 
-#warning TODO: Save results to file and load it. Use folder ./data
+#warning TODO: Save static results to file and load it. Use folder ./data
 
     /// <summary>
     /// Container which holds the reference to the current analysed map
@@ -25,11 +25,16 @@ namespace BOSSE
     /// </summary>
     public class MapAnalysisWrapper
     {
-        public AnalysedMap Map = null;
+        public AnalysedStaticMap AnalysedStaticMapRef = null;
+        public AnalysedRuntimeMap AnalysedRuntimeMapRef = null;
 
         public void Initialize()
         {
-            this.Map = MapAnalyser.GenerateNewAnalysis();
+            // Perform runtime analysis
+            this.AnalysedRuntimeMapRef = RuntimeMapAnalyser.AnalyseCurrentMap();
+
+            // Load static analysis
+            this.AnalysedStaticMapRef = StaticMapAnalyser.GenerateNewAnalysis();
         }
     }
 }

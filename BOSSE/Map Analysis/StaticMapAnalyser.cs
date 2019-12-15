@@ -18,25 +18,30 @@ namespace BOSSE
     using static UnitConstants;
 
     /// <summary>
-    /// Analyses the current map and generates a result object
+    /// Performs static analysis of the current map. All generated data does not change during runtime
     /// </summary>
-    public static class MapAnalyser
+    public static class StaticMapAnalyser
     {
-        public static AnalysedMap GenerateNewAnalysis()
+        public static AnalysedStaticMap GenerateNewAnalysis()
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            AnalysedMap mapObject = new AnalysedMap();
-
-            Point2D ourBase = Globals.MainBaseLocation;
-            Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
-            mapObject.MainBaseChokeScore = CalculateChokeScoreBetweenPoints(ourBase, enemyBase);
+            AnalysedStaticMap mapObject = new AnalysedStaticMap();
+            PopulateMapData(mapObject);
 
             sw.Stop();
             Log.Info("Completed map analysis in " + sw.Elapsed.TotalMilliseconds + " ms");
 
             return mapObject;
+        }
+
+        private static void PopulateMapData(AnalysedStaticMap mapObject)
+        {
+            Point2D ourBase = Globals.MainBaseLocation;
+            Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
+
+            mapObject.MainBaseChokeScore = CalculateChokeScoreBetweenPoints(ourBase, enemyBase);
         }
 
         /// <summary>
