@@ -39,7 +39,6 @@ namespace BOSSE
         {
             var baseLocations = FindBaseLocations();
 
-
             AnalysedRuntimeMap completedMap = new AnalysedRuntimeMap(
                 baseLocations: baseLocations,
                 mainBase: null,

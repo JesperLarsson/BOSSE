@@ -4,6 +4,10 @@
 BOSSE is an AI for the game StarCraft 2 written in C# as a hobby project.
 Supports local debugging sessions (against Blizzard AI), as well as online ladder play against other bots.
 
+- Interacts with StarCraft 2 using the official protocol buffer API by Blizzard, which can be found here: https://github.com/Blizzard/s2client-api
+- API documentation: https://blizzard.github.io/s2client-api/annotated.html
+- Empty template with just the basic necessities can be found here: https://github.com/JesperLarsson/BOSSE/releases/tag/BasicStartingTemplate
+
 ## Features
 - Static map analysis (finds chokepoints, natural expansion, etc). Performed once per map and saved to file
 - Runtime map analysis, including influence, tension and vulnerability
