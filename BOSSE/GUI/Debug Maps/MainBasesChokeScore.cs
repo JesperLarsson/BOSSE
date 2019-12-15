@@ -27,38 +27,30 @@ namespace DebugGui
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
-    public partial class MainBaseChokeScore : Form
+    using BOSSE;
+    using SC2APIProtocol;
+
+    /// <summary>
+    /// Chokepoint score
+    /// </summary>
+    public class MainBasesChokeScore : BaseDebugMap
     {
-        private const int RefreshIntervalMs = 5000;
-        const int RenderScale = 8;
-
-        public MainBaseChokeScore()
+        public MainBasesChokeScore()
         {
-            InitializeComponent();
+            this.MapName = "Chokepoints - Main bases";
         }
 
-        private void MainBaseChokeScore_Load(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Maximized;
-
-            // Update periodically
-            Timer timer = new Timer();
-            timer.Interval = RefreshIntervalMs;
-            timer.Tick += new EventHandler(UpdateMap);
-            timer.Start();
-            UpdateMap(null, null);
-        }
-
-        private void UpdateMap(object sender, EventArgs e)
+        protected override Image RenderMap()
         {
             // Wait for initialization
-            while (!BOSSE.BOSSE.HasCompletedFirstFrameInit)
-            {
-                System.Threading.Thread.Sleep(1000);
-            }
+            if (!BOSSE.HasCompletedFirstFrameInit)
+                return null;
 
-            var formGraphics = this.CreateGraphics();
-            BOSSE.TileMap<byte> map = BOSSE.BOSSE.MapAnalysisRef.AnalysedStaticMapRef.MainBaseChokeScore;
+            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Graphics surface = Graphics.FromImage(bmp);
+            surface.Clear(System.Drawing.Color.Black);
+
+            TileMap<byte> map = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.MainBaseChokeScore;
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)
@@ -74,12 +66,14 @@ namespace DebugGui
                         value = (byte)sqValue;
                     }
 
-                    var pixelBrush = new SolidBrush(Color.FromArgb(255, value, 0, 0));
+                    var pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, value, 0, 0));
                     int yPos = map.Height - y;
 
-                    formGraphics.FillRectangle(pixelBrush, (RenderScale * x), (RenderScale * yPos), RenderScale, RenderScale);
+                    surface.FillRectangle(pixelBrush, (RenderScale * x), (RenderScale * yPos), RenderScale, RenderScale);
                 }
             }
+
+            return bmp;
         }
     }
 }

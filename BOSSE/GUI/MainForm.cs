@@ -47,6 +47,8 @@ namespace DebugGui
             new VulnerabilityDebugMap(),
             new TensionDebugMap(),
 
+            new MainBasesChokeScore(),
+
         };
 
         public MainForm()

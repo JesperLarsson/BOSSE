@@ -95,24 +95,19 @@
     <Compile Include="Game Utility\WallBuilderUtility.cs" />
     <Compile Include="GUI\Debug Maps\BaseDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\InfluenceDebugMap.cs" />
+    <Compile Include="GUI\Debug Maps\MainBasesChokeScore.cs" />
     <Compile Include="GUI\Debug Maps\OverviewDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\PlacementGridDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\TensionDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\TerrainDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\VulnerabilityDebugMap.cs" />
-    <Compile Include="GUI\Forms\MainBaseChokeScore.cs">
+    <Compile Include="GUI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Forms\MainBaseChokeScore.Designer.cs">
-      <DependentUpon>MainBaseChokeScore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Forms\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Forms\MainForm.Designer.cs">
+    <Compile Include="GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\GUI Main\BosseGui.cs" />
+    <Compile Include="GUI\BosseGui.cs" />
     <Compile Include="Main\BackgroundWorkerThread.cs" />
     <Compile Include="Map Analysis\RuntimeMapAnalyser.cs" />
     <Compile Include="Map Analysis\StaticMapAnalyser.cs" />
@@ -152,10 +147,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\Forms\MainBaseChokeScore.resx">
-      <DependentUpon>MainBaseChokeScore.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Forms\MainForm.resx">
+    <EmbeddedResource Include="GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
