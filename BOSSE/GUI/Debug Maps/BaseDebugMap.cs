@@ -40,7 +40,7 @@ namespace DebugGui
         public string MapName = "N/A";
 
         protected TimeSpan RenderInterval = TimeSpan.FromMilliseconds(500);
-        protected int RenderScale = 6;
+        protected int RenderScale = 8;
         protected Image CurrentOutputtedMap = null;
         protected bool EnableCropping = true;
 

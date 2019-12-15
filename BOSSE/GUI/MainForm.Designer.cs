@@ -48,16 +48,16 @@
             // 
             this.DropdownMapChoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DropdownMapChoice.FormattingEnabled = true;
-            this.DropdownMapChoice.Location = new System.Drawing.Point(1419, 12);
+            this.DropdownMapChoice.Location = new System.Drawing.Point(1463, 12);
             this.DropdownMapChoice.MaxDropDownItems = 32;
             this.DropdownMapChoice.Name = "DropdownMapChoice";
-            this.DropdownMapChoice.Size = new System.Drawing.Size(473, 29);
+            this.DropdownMapChoice.Size = new System.Drawing.Size(429, 29);
             this.DropdownMapChoice.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1335, 12);
+            this.label1.Location = new System.Drawing.Point(1379, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 21);
             this.label1.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1904, 1186);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DropdownMapChoice);
             this.Controls.Add(this.PictureMain);
