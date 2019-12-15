@@ -1,24 +1,33 @@
 # BOSSE
 
 ## About
-BOSSE is an experimental AI for the game StarCraft 2 written in C#, made by Jesper Larsson.
-Supports local debugging sessions (against Blizzard AI) as well as online ladder play.
+BOSSE is an AI for the game StarCraft 2 written in C# as a hobby project.
+Supports local debugging sessions (against Blizzard AI), as well as online ladder play against other bots.
 
-## Features:
-- Separation of goals from game logic (separated into military/scouting/economic and tactical goals)
-- Squad unit management with overridable logic. Squads may also be given their own goals
-- Building placement logic (defensive walls around natural expansion)
-- 'Sensors' use the subscriber design pattern to provide callbacks for abstracted inputs ('a cloaked unit was seen', 'a unit has died', etc)
-- Strategic maps are calculated periodically which calculate influence, tension and vulnerability for each game tile
-- GUI which draws various minimaps and other internal data for debugging
-- Static map analysis (finds cliffs, base location, chokepoints, ramps and more). Taken from Tyr project: https://github.com/SimonPrins/TyrSc2
+## Features
+- Static map analysis (finds chokepoints, natural expansion, etc). Performed once per map and saved to file
+- Runtime map analysis, including influence, tension and vulnerability
+- High level separation of goals and game logic
+- Squad unit management with overridable logic
+- Building placement planning
+- Path finding through A*
+- Multithreading
+- Capable of running in real time
+- Debug GUI. Draws various maps and other debugging data
 - More to come
 
+## TODO / Major limitations
+- Currently only supports 2-player maps
+- Does not support multiple build orders
+- Prediction of enemy plans
+- Currently only plays as Terran
+- Micro management
+
 ## Running BOSSE
-1. Download StarCraft 2
+1. Download StarCraft 2, start it at least once to initialize
 2. Download the latest ladder map pack from here: https://github.com/Blizzard/s2client-proto#downloads
 3. Extract the maps to your StarCraft 2 install directory under /Maps (create the folder if it doesn't exist)
-4. Open solution in Visual Studio and click 'Run'
+4. Open solution in Visual Studio and click 'Run' (developed using VS 2019, but other versions will probably work)
 
 ## Troubleshooting
 When starting a local debugging session BOSSE will use a hardcoded map name (currently ThunderbirdLE) to start, which you might not have.

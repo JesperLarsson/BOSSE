@@ -84,9 +84,10 @@ namespace BOSSE
         /// </summary>
         private static void CalculateMainBaseChokeScore(AnalysedMap mapObject)
         {
-            const int selfXRadius = 4;
+            const int tileSkipCount = 2;
+            const int selfXRadius = 4 * tileSkipCount;
             const int selfYRadius = 0;
-            const int enemyXRadius = 1;
+            const int enemyXRadius = 1 * tileSkipCount;
             const int enemyYRadius = 0;
             Point2D ourBase = Globals.MainBaseLocation;
             Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
@@ -102,15 +103,15 @@ namespace BOSSE
             int enemyEndY = (int)enemyBase.Y + enemyYRadius;
 
             mapObject.MainBaseChokeScore = new TileMap<byte>(mapSize.X, mapSize.Y);
-            for (int selfX = selfStartX; selfX <= selfEndX; selfX++)
+            for (int selfX = selfStartX; selfX <= selfEndX; selfX += tileSkipCount)
             {
-                for (int selfY = selfStartY; selfY <= selfEndY; selfY++)
+                for (int selfY = selfStartY; selfY <= selfEndY; selfY += tileSkipCount)
                 {
                     Point2D from = new Point2D(selfX, selfY);
 
-                    for (int enemyX = enemyStartX; enemyX <= enemyEndX; enemyX++)
+                    for (int enemyX = enemyStartX; enemyX <= enemyEndX; enemyX += tileSkipCount)
                     {
-                        for (int enemyY = enemyStartY; enemyY <= enemyEndY; enemyY++)
+                        for (int enemyY = enemyStartY; enemyY <= enemyEndY; enemyY += tileSkipCount)
                         {
                             Point2D to = new Point2D(enemyX, enemyY);
 

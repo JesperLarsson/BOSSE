@@ -22,7 +22,7 @@ namespace BOSSE
     /// </summary>
     public class MainLoop
     {
-        // Debug settings (single player local mode)
+        // Debug settings (vs Blizzard AI)
         private static readonly string mapName = "AcropolisLE.SC2Map";
         private static readonly Race opponentRace = Race.Zerg;
         private static readonly Difficulty opponentDifficulty = Difficulty.Easy;
@@ -78,7 +78,6 @@ namespace BOSSE
                 SendQueuedActions().Wait();
 
                 Globals.CurrentFrameIndex++;
-
                 if (BotConstants.TickLockMode)
                 {
                     Thread.Sleep(BotConstants.TickLockSleep);

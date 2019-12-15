@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1958, 1171);
             this.Name = "MainBaseChokeScore";
-            this.Text = "Main bases - Choke point score";
+            this.Text = "Chokepoints";
             this.Load += new System.EventHandler(this.MainBaseChokeScore_Load);
             this.ResumeLayout(false);
 
