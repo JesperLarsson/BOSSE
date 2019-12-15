@@ -39,7 +39,10 @@ namespace DebugGui
         /// </summary>
         private readonly List<BaseDebugMap> Maps = new List<BaseDebugMap>()
         {
-            new OverviewMap(),
+            new OverviewDebugMap(),
+            new TerrainDebugMap(),
+            new PlacementGridDebugMap(),
+            new InfluenceDebugMap(),
 
         };
 

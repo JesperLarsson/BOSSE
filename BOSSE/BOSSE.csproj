@@ -94,7 +94,10 @@
     <Compile Include="Game Utility\ConstructionUtility.cs" />
     <Compile Include="Game Utility\WallBuilderUtility.cs" />
     <Compile Include="GUI\Debug Maps\BaseDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\OverviewMap.cs" />
+    <Compile Include="GUI\Debug Maps\InfluenceDebugMap.cs" />
+    <Compile Include="GUI\Debug Maps\OverviewDebugMap.cs" />
+    <Compile Include="GUI\Debug Maps\PlacementGridDebugMap.cs" />
+    <Compile Include="GUI\Debug Maps\TerrainDebugMap.cs" />
     <Compile Include="GUI\Forms\MainBaseChokeScore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,12 +112,9 @@
     </Compile>
     <Compile Include="GUI\GUI Main\BosseGui.cs" />
     <Compile Include="GUI\GUI Maps\Base Class\BaseMap.cs" />
-    <Compile Include="GUI\GUI Maps\OverviewMapOLD.cs" />
-    <Compile Include="GUI\GUI Maps\PlacementGridMap.cs" />
     <Compile Include="GUI\GUI Maps\Strategic\InfluenceMap.cs" />
     <Compile Include="GUI\GUI Maps\Strategic\TensionMapGui.cs" />
     <Compile Include="GUI\GUI Maps\Strategic\VulnerabilityMapGui.cs" />
-    <Compile Include="GUI\GUI Maps\TerrainMap.cs" />
     <Compile Include="Main\BackgroundWorkerThread.cs" />
     <Compile Include="Map Analysis\RuntimeMapAnalyser.cs" />
     <Compile Include="Map Analysis\StaticMapAnalyser.cs" />

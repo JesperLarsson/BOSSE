@@ -42,6 +42,7 @@ namespace DebugGui
         protected TimeSpan RenderInterval = TimeSpan.FromMilliseconds(500);
         protected int RenderScale = 6;
         protected Image CurrentOutputtedMap = null;
+        protected bool EnableCropping = true;
 
         /// <summary>
         /// Called for GUI thread periodically
@@ -65,12 +66,17 @@ namespace DebugGui
                 try
                 {
                     Image map = RenderMap();
-                    map = CropMapToPlayArea(map);
+
+                    if (EnableCropping)
+                    {
+                        map = CropMapToPlayArea(map);
+                    }
+
                     this.CurrentOutputtedMap = map;
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning("Gui exception: " + ex);
+                    Log.Warning("Gui exception in " + MapName + Environment.NewLine + ex);
                 }
 
                 Thread.Sleep(RenderInterval);
@@ -79,6 +85,9 @@ namespace DebugGui
 
         private Image CropMapToPlayArea(Image prevImage)
         {
+            if (prevImage == null)
+                return null;
+
             RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
 
             int x = playArea.P0.X;
@@ -99,9 +108,7 @@ namespace DebugGui
 
             using (Graphics g = Graphics.FromImage(target))
             {
-                g.DrawImage(img, new Rectangle(0, 0, target.Width, target.Height),
-                                 cropArea,
-                                 GraphicsUnit.Pixel);
+                g.DrawImage(img, new Rectangle(0, 0, target.Width, target.Height), cropArea, GraphicsUnit.Pixel);
             }
 
             return target;

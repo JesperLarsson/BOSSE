@@ -108,7 +108,7 @@ namespace BOSSE.Tyr
                 newPoints.Add(new KeyValuePair<Point2D, string>(point, "PossibleEnemyStart" + i));
             }
 
-            TerrainMap.MarkedPoints = newPoints;
+            TerrainDebugMap.MarkedPoints = newPoints;
         }
 
         public void Analyze()

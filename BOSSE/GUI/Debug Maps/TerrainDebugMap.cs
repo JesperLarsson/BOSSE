@@ -31,25 +31,23 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Terrain minimap
+    /// Debug map - Terrain height
     /// </summary>
-    public class TerrainMap : BaseMap
+    public class TerrainDebugMap : BaseDebugMap
     {
-        bool renderedOnce = false;
         SolidBrush pixelBrush;
-
         public static List<KeyValuePair<Point2D, string>> MarkedPoints = new List<KeyValuePair<Point2D, string>>();
 
-        public TerrainMap(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
+        public TerrainDebugMap()
         {
+            this.MapName = "Terrain Height";
         }
 
-        public override void Tick()
+        protected override Image RenderMap()
         {
-            if (renderedOnce)
-                return; // Does not change
-
-            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
+            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Graphics surface = Graphics.FromImage(bmp);
+            surface.Clear(System.Drawing.Color.Black);
 
             // Terrain height
             ImageData terrainMap = CurrentGameState.GameInformation.StartRaw.TerrainHeight;
@@ -63,10 +61,10 @@ namespace DebugGui
 
                     pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, heightValue, heightValue, heightValue));
 
-                    float posX = x - playArea.P0.X;
-                    float posY = CompensateY(y - playArea.P0.Y);
+                    float posX = x;
+                    float posY = CompensateY(y);
 
-                    FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
+                    surface.FillRectangle(pixelBrush, (RenderScale * posX), (RenderScale * posY), RenderScale, RenderScale);
                 }
             }
 
@@ -74,16 +72,14 @@ namespace DebugGui
             {
                 KeyValuePair<Point2D, string> iter = MarkedPoints[index];
 
-                float posX = iter.Key.X - playArea.P0.X;
-                float posY = CompensateY(iter.Key.Y - playArea.P0.Y);
+                float posX = iter.Key.X;
+                float posY = CompensateY(iter.Key.Y);
 
                 Font font = new Font("Arial", 12);
-                FormGraphics.DrawString(iter.Value, font, new SolidBrush(System.Drawing.Color.Red), new PointF((RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY));
-
-                //FormGraphics.FillRectangle(new SolidBrush(System.Drawing.Color.Red), , (RenderScale * poxY) + BaseY, RenderScale, RenderScale);
+                surface.DrawString(iter.Value, font, new SolidBrush(System.Drawing.Color.Red), new PointF((RenderScale * posX), (RenderScale * posY)));
             }
 
-            renderedOnce = true;
+            return bmp;
         }
     }
 }

@@ -31,9 +31,9 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Standard minimap, only with the real coordinates as seen through the API
+    /// Debug map - Overview
     /// </summary>
-    public class OverviewMapOLD : BaseMap
+    public class OverviewDebugMap : BaseDebugMap
     {
         static readonly SolidBrush BackgroundColor = new SolidBrush(System.Drawing.Color.Black);
         static readonly SolidBrush SelfColor = new SolidBrush(System.Drawing.Color.Blue);
@@ -43,20 +43,16 @@ namespace DebugGui
         SolidBrush noPathColor = new SolidBrush(System.Drawing.Color.Black);
         SolidBrush pathColor = new SolidBrush(System.Drawing.Color.DarkGray);
 
-        public OverviewMapOLD(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
+        public OverviewDebugMap()
         {
+            this.MapName = "General Overview";
         }
 
-        public override void Tick()
+        protected override Image RenderMap()
         {
-            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
-
-            // Background - Note that a border around the map is not usable (so we ignore it)
-            //int bgX = BaseX;
-            //int bgY = BaseY;
-            //int bgWidth = playArea.P1.X - playArea.P0.X;
-            //int bgHeight = playArea.P1.Y - playArea.P0.Y;
-            //FormGraphics.FillRectangle(BackgroundColor, bgX, bgY, bgWidth * RenderScale, bgHeight * RenderScale);
+            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Graphics surface = Graphics.FromImage(bmp);
+            surface.Clear(System.Drawing.Color.Black);
 
             // Pathing overlay - input data contains 1 bit per pixel
             ImageData pathingMap = CurrentGameState.GameInformation.StartRaw.PathingGrid;
@@ -79,15 +75,15 @@ namespace DebugGui
 
                     int xPos = x * 8;
                     int yPos = y;
-                    
-                    DrawPathingPixel(pixel1, xPos + 7, yPos, playArea);
-                    DrawPathingPixel(pixel2, xPos + 6, yPos, playArea);
-                    DrawPathingPixel(pixel3, xPos + 5, yPos, playArea);
-                    DrawPathingPixel(pixel4, xPos + 4, yPos, playArea);
-                    DrawPathingPixel(pixel5, xPos + 3, yPos, playArea);
-                    DrawPathingPixel(pixel6, xPos + 2, yPos, playArea);
-                    DrawPathingPixel(pixel7, xPos + 1, yPos, playArea);
-                    DrawPathingPixel(pixel8, xPos + 0, yPos, playArea);
+
+                    DrawPathingPixel(pixel1, xPos + 7, yPos, surface);
+                    DrawPathingPixel(pixel2, xPos + 6, yPos, surface);
+                    DrawPathingPixel(pixel3, xPos + 5, yPos, surface);
+                    DrawPathingPixel(pixel4, xPos + 4, yPos, surface);
+                    DrawPathingPixel(pixel5, xPos + 3, yPos, surface);
+                    DrawPathingPixel(pixel6, xPos + 2, yPos, surface);
+                    DrawPathingPixel(pixel7, xPos + 1, yPos, surface);
+                    DrawPathingPixel(pixel8, xPos + 0, yPos, surface);
                 }
             }
 
@@ -112,14 +108,16 @@ namespace DebugGui
                     continue; // ignore
                 }
 
-                float x = unitIter.Pos.X - playArea.P0.X;
-                float y = CompensateY(unitIter.Pos.Y - playArea.P0.Y);
-                
-                FormGraphics.FillRectangle(unitBrush, (RenderScale * x) + BaseX, (RenderScale * y) + BaseY, RenderScale, RenderScale);
+                float x = unitIter.Pos.X;
+                float y = CompensateY(unitIter.Pos.Y);
+
+                surface.FillRectangle(unitBrush, (RenderScale * x), (RenderScale * y), RenderScale, RenderScale);
             }
+
+            return bmp;
         }
 
-        private void DrawPathingPixel(byte pixelValue, int x, int y, RectangleI playArea)
+        private void DrawPathingPixel(byte pixelValue, int x, int y, Graphics surface)
         {
             SolidBrush pixelBrush;
             if (pixelValue == 0)
@@ -131,17 +129,11 @@ namespace DebugGui
                 pixelBrush = pathColor;
             }
 
-            float posX = x - playArea.P0.X;
-            float posY = y - playArea.P0.Y;
-
-            if (posX > (playArea.P1.X - playArea.P0.X))
-                return;
-            if (posY > playArea.P1.Y - playArea.P0.Y)
-                return;
+            float posX = x;
+            float posY = y;
 
             posY = CompensateY(posY);
-
-            FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
+            surface.FillRectangle(pixelBrush, (RenderScale * posX), (RenderScale * posY), RenderScale, RenderScale);
         }
     }
 }

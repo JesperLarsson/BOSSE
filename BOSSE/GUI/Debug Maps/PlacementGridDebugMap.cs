@@ -23,7 +23,6 @@ namespace DebugGui
     using System.Data;
     using System.Drawing;
     using System.Linq;
-    using System.Numerics;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
@@ -32,21 +31,22 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Building placement grid minimap
+    /// Debug map - Building placement grid
     /// </summary>
-    public class PlacementGridMap : BaseMap
+    public class PlacementGridDebugMap : BaseDebugMap
     {
-        protected static int xSize;
-        protected static int ySize;
-
-        public PlacementGridMap(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
+        public PlacementGridDebugMap()
         {
+            this.MapName = "Building placement grid";
         }
 
-        public override void Tick()
+        protected override Image RenderMap()
         {
+            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Graphics surface = Graphics.FromImage(bmp);
+            surface.Clear(System.Drawing.Color.Black);
+
             SolidBrush pixelBrush;
-            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
             ImageData gridMap = CurrentGameState.GameInformation.StartRaw.PlacementGrid;
             for (int y = 0; y < gridMap.Size.Y; y++)
             {
@@ -59,12 +59,14 @@ namespace DebugGui
                     else
                         pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, 0, 0, 0));
 
-                    float posX = x - playArea.P0.X;
-                    float posY = CompensateY(y - playArea.P0.Y);
+                    float posX = x;
+                    float posY = CompensateY(y);
 
-                    FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
+                    surface.FillRectangle(pixelBrush, (RenderScale * posX), (RenderScale * posY), RenderScale, RenderScale);
                 }
             }
+
+            return bmp;
         }
     }
 }
