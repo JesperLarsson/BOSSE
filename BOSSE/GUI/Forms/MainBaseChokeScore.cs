@@ -44,7 +44,7 @@ namespace DebugGui
             }
 
             var formGraphics = this.CreateGraphics();
-            BOSSE.TileMap<byte> map = BOSSE.BOSSE.MapAnalysisHandlerRef.Map.MainBaseChokeScore;
+            BOSSE.TileMap<byte> map = BOSSE.BOSSE.MapAnalysisRef.Map.MainBaseChokeScore;
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)

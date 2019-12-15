@@ -60,6 +60,7 @@
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
+    <Compile Include="Entities\AnalysedMap.cs" />
     <Compile Include="Entities\Manager.cs" />
     <Compile Include="Entities\Squad.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\ScoutingWorkerController.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
     <Compile Include="Entities\GameObject.cs" />
+    <Compile Include="Entities\TileMap.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Game Input\StarCraft Constants\AbilityConstants.cs" />
     <Compile Include="Game Input\CurrentGameState.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="BOSSE\Sensor Layer\Sensors\Sensor.cs" />
+    <Compile Include="Map Analysis\MapAnalysisWrapper.cs" />
     <Compile Include="Misc\Extensions\ImageDataExtensions.cs" />
     <Compile Include="Map Analysis\Path Finding\AStar\AStar.cs" />
     <Compile Include="Map Analysis\Path Finding\AStar\BossePathNode.cs" />

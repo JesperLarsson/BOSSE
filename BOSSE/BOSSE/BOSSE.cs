@@ -65,7 +65,7 @@ namespace BOSSE
         public static BackgroundWorkerThread BackgroundWorkerThreadRef = new BackgroundWorkerThread();
 
         // Map handling
-        public static MapAnalysisHandler MapAnalysisHandlerRef = new MapAnalysisHandler();
+        public static MapAnalysisWrapper MapAnalysisRef = new MapAnalysisWrapper();
         public static PathFinder PathFinderRef = new PathFinder();
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace BOSSE
 
             // General map analysis
             PathFinderRef.Initialize();
-            MapAnalysisHandlerRef.Initialize();
+            MapAnalysisRef.Initialize();
 
             // Initialize sub-managers
             foreach (Manager managerIter in AllManagers)

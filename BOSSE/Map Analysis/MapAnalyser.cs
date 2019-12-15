@@ -15,49 +15,7 @@ namespace BOSSE
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static UnitConstants;    
-
-#warning TODO: Save results to file and load it. Use folder ./data
-
-    /// <summary>
-    /// Stores information about each tile of the ingame map
-    /// </summary>
-    public class TileMap<TileType>
-    {
-        public readonly int Width;
-        public readonly int Height;
-        private readonly TileType[,] Map;
-
-        public TileMap(int xSize, int ySize)
-        {
-            this.Width = xSize;
-            this.Height = ySize;
-            this.Map = new TileType[xSize, ySize];
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public TileType GetTile(int x, int y)
-        {
-            return this.Map[x, y];
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void SetTile(int x, int y, TileType value)
-        {
-            this.Map[x, y] = value;
-        }
-    }
-
-    /// <summary>
-    /// Contains various static metrics about the map that doesn't change between runs (chokepoints etc)
-    /// </summary>
-    public class AnalysedMap
-    {
-        /// <summary>
-        /// Higher values indicate chokepoints between ours and the enemy main base
-        /// </summary>
-        public TileMap<byte> MainBaseChokeScore;
-    }
+    using static UnitConstants;
 
     /// <summary>
     /// Analyses the current map and generates a result object
@@ -70,7 +28,10 @@ namespace BOSSE
             sw.Start();
 
             AnalysedMap mapObject = new AnalysedMap();
-            CalculateMainBaseChokeScore(mapObject);
+
+            Point2D ourBase = Globals.MainBaseLocation;
+            Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
+            mapObject.MainBaseChokeScore = CalculateChokeScoreBetweenPoints(ourBase, enemyBase);
 
             sw.Stop();
             Log.Info("Completed map analysis in " + sw.Elapsed.TotalMilliseconds + " ms");
@@ -79,30 +40,28 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Calculates a score for each map tile based on how much of a chokepoint it is, between our main bases
-        /// Traces a radius around each spawn location to each other location around the enemy base
+        /// Calculates a score for each map tile based on how much of a chokepoint it is when going between the given points
         /// </summary>
-        private static void CalculateMainBaseChokeScore(AnalysedMap mapObject)
+        private static TileMap<byte> CalculateChokeScoreBetweenPoints(Point2D fromPoint, Point2D toPoint)
         {
             const int tileSkipCount = 2;
             const int selfXRadius = 4 * tileSkipCount;
             const int selfYRadius = 0;
             const int enemyXRadius = 1 * tileSkipCount;
             const int enemyYRadius = 0;
-            Point2D ourBase = Globals.MainBaseLocation;
-            Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
+
             Size2DI mapSize = CurrentGameState.GameInformation.StartRaw.MapSize;
 
-            int selfStartX = (int)ourBase.X - selfXRadius;
-            int selfStartY = (int)ourBase.Y - selfYRadius;
-            int selfEndX = (int)ourBase.X + selfXRadius;
-            int selfEndY = (int)ourBase.Y + selfYRadius;
-            int enemyStartX = (int)enemyBase.X - enemyXRadius;
-            int enemyStartY = (int)enemyBase.Y - enemyYRadius;
-            int enemyEndX = (int)enemyBase.X + enemyXRadius;
-            int enemyEndY = (int)enemyBase.Y + enemyYRadius;
+            int selfStartX = (int)fromPoint.X - selfXRadius;
+            int selfStartY = (int)fromPoint.Y - selfYRadius;
+            int selfEndX = (int)fromPoint.X + selfXRadius;
+            int selfEndY = (int)fromPoint.Y + selfYRadius;
+            int enemyStartX = (int)toPoint.X - enemyXRadius;
+            int enemyStartY = (int)toPoint.Y - enemyYRadius;
+            int enemyEndX = (int)toPoint.X + enemyXRadius;
+            int enemyEndY = (int)toPoint.Y + enemyYRadius;
 
-            mapObject.MainBaseChokeScore = new TileMap<byte>(mapSize.X, mapSize.Y);
+            TileMap<byte> returnObj = new TileMap<byte>(mapSize.X, mapSize.Y);
             for (int selfX = selfStartX; selfX <= selfEndX; selfX += tileSkipCount)
             {
                 for (int selfY = selfStartY; selfY <= selfEndY; selfY += tileSkipCount)
@@ -123,31 +82,19 @@ namespace BOSSE
                             // Add upp the points of the path
                             foreach (BossePathNode pathIter in path)
                             {
-                                byte existingTileValue = mapObject.MainBaseChokeScore.GetTile(pathIter.X, pathIter.Y);
+                                byte existingTileValue = returnObj.GetTile(pathIter.X, pathIter.Y);
 
                                 if (existingTileValue == byte.MaxValue)
                                     continue; // Already reached ceiling
 
-                                mapObject.MainBaseChokeScore.SetTile(pathIter.X, pathIter.Y, (byte)(existingTileValue + 1));
+                                returnObj.SetTile(pathIter.X, pathIter.Y, (byte)(existingTileValue + 1));
                             }
                         }
                     }
                 }
             }
-        }
-    }
 
-    /// <summary>
-    /// Container which holds the reference to the current analysed map
-    /// Results can be saved between sessions for performance reasons
-    /// </summary>
-    public class MapAnalysisHandler
-    {
-        public AnalysedMap Map = null;
-
-        public void Initialize()
-        {
-            this.Map = MapAnalyser.GenerateNewAnalysis();
+            return returnObj;
         }
     }
 }
