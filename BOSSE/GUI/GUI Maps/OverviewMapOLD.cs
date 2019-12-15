@@ -33,7 +33,7 @@ namespace DebugGui
     /// <summary>
     /// Standard minimap, only with the real coordinates as seen through the API
     /// </summary>
-    public class OverviewMap : BaseMap
+    public class OverviewMapOLD : BaseMap
     {
         static readonly SolidBrush BackgroundColor = new SolidBrush(System.Drawing.Color.Black);
         static readonly SolidBrush SelfColor = new SolidBrush(System.Drawing.Color.Blue);
@@ -43,13 +43,13 @@ namespace DebugGui
         SolidBrush noPathColor = new SolidBrush(System.Drawing.Color.Black);
         SolidBrush pathColor = new SolidBrush(System.Drawing.Color.DarkGray);
 
-        public OverviewMap(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
+        public OverviewMapOLD(Graphics _formGraphics, int _baseX, int _baseY, int renderScale) : base(_formGraphics, _baseX, _baseY, renderScale)
         {
         }
 
         public override void Tick()
         {
-            RectangleI playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
+            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
 
             // Background - Note that a border around the map is not usable (so we ignore it)
             //int bgX = BaseX;
@@ -59,7 +59,7 @@ namespace DebugGui
             //FormGraphics.FillRectangle(BackgroundColor, bgX, bgY, bgWidth * RenderScale, bgHeight * RenderScale);
 
             // Pathing overlay - input data contains 1 bit per pixel
-            ImageData pathingMap = BosseGui.GameInformation.StartRaw.PathingGrid;
+            ImageData pathingMap = CurrentGameState.GameInformation.StartRaw.PathingGrid;
             for (int y = 0; y < pathingMap.Size.Y; y++)
             {
                 for (int x = 0; x < (pathingMap.Size.X / 8); x++)
@@ -92,7 +92,7 @@ namespace DebugGui
             }
 
             // Units
-            foreach (SC2APIProtocol.Unit unitIter in BosseGui.ObservationState.Observation.RawData.Units)
+            foreach (SC2APIProtocol.Unit unitIter in CurrentGameState.ObservationState.Observation.RawData.Units)
             {
                 SolidBrush unitBrush;
                 if (unitIter.Alliance == Alliance.Self)

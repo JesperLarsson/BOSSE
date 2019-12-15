@@ -119,8 +119,6 @@ namespace BOSSE
 
             CurrentGameState.GameInformation = gameInfoResponse.GameInfo;
             CurrentGameState.GameData = dataResponse.Data;
-            DebugGui.BosseGui.GameInformation = gameInfoResponse.GameInfo;
-            DebugGui.BosseGui.GameData = dataResponse.Data;
         }
 
         /// <summary>
@@ -134,7 +132,6 @@ namespace BOSSE
 
             // Update global state
             CurrentGameState.ObservationState = response.Observation;
-            DebugGui.BosseGui.ObservationState = response.Observation;
 
             // Check for errors
             foreach (ActionError errorIter in CurrentGameState.ObservationState.ActionErrors)

@@ -45,27 +45,26 @@ namespace DebugGui
 
         public override void Tick()
         {
-            throw new NotImplementedException();
-
             SolidBrush pixelBrush;
-            RectangleI playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
-            ImageData gridMap = BosseGui.GameInformation.StartRaw.PlacementGrid;
-            //for (int y = 0; y < gridMap.Size.Y; y++)
-            //{
-            //    for (int x = 0; x < gridMap.Size.X; x++)
-            //    {
-            //        byte heightValue = gridMap.Data[x + (y * gridMap.Size.X)];
-            //        if (heightValue == 0)
-            //            continue;
+            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
+            ImageData gridMap = CurrentGameState.GameInformation.StartRaw.PlacementGrid;
+            for (int y = 0; y < gridMap.Size.Y; y++)
+            {
+                for (int x = 0; x < gridMap.Size.X; x++)
+                {
+                    bool canBePlaced = gridMap.GetBit(x, y) != 0;
 
-            //        pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, heightValue, heightValue, heightValue));
+                    if (canBePlaced)
+                        pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, 255, 255, 255));
+                    else
+                        pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, 0, 0, 0));
 
-            //        float posX = x - playArea.P0.X;
-            //        float posY = CompensateY(y - playArea.P0.Y);
+                    float posX = x - playArea.P0.X;
+                    float posY = CompensateY(y - playArea.P0.Y);
 
-            //        FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
-            //    }
-            //}
+                    FormGraphics.FillRectangle(pixelBrush, (RenderScale * posX) + BaseX, (RenderScale * posY) + BaseY, RenderScale, RenderScale);
+                }
+            }
         }
     }
 }

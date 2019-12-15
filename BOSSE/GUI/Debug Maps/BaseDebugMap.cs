@@ -24,6 +24,7 @@ namespace DebugGui
     using System.Drawing;
     using System.Linq;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
@@ -31,37 +32,60 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Base class for drawable minimaps
+    /// Base class for GUI maps
+    /// Each map is rendered in a seperate thread to keep GUI responsive
     /// </summary>
-    public abstract class BaseMap
+    public abstract class BaseDebugMap
     {
-        protected int RenderScale;
-        protected Graphics FormGraphics;
-        protected int BaseX;
-        protected int BaseY;
+        public string MapName = "N/A";
 
-        public BaseMap(Graphics _formGraphics, int _baseX, int _baseY, int _renderScale)
+        protected TimeSpan RenderInterval = TimeSpan.FromSeconds(1);
+        protected int RenderScale = 8;
+        protected Image CurrentOutputtedMap = null;
+
+        /// <summary>
+        /// Called for GUI thread periodically
+        /// </summary>
+        public Image GetMap()
         {
-            FormGraphics = _formGraphics;
-            BaseX = _baseX;
-            BaseY = _baseY + 10;
-            RenderScale = _renderScale;
+            return CurrentOutputtedMap;
         }
+
+        public void Start()
+        {
+            Thread th = new Thread(new ThreadStart(MainLoop));
+            th.Name = "GuiMapRenderer";
+            th.Start();
+        }
+
+        private void MainLoop()
+        {
+            while (true)
+            {
+                try
+                {
+                    CurrentOutputtedMap = RenderMap();
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning("Gui exception: " + ex);
+                }
+
+                Thread.Sleep(RenderInterval);
+            }
+        }
+
+        protected abstract Image RenderMap();
 
         /// <summary>
         /// We need to compensate Y coordinates, game uses from the bottom left, and GUI from the top left
         /// </summary>
-        public static float CompensateY(float y)
+        protected float CompensateY(float y)
         {
             var playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
 
             float temp = playArea.P1.Y - y - playArea.P0.Y;
             return temp;
-        }
-
-        public virtual void Tick()
-        {
-
         }
     }
 }

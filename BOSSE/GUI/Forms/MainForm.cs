@@ -30,107 +30,47 @@ namespace DebugGui
 
     public partial class MainForm : Form
     {
-        const int standardScale = 2;
-        const int bigScale = 8;
-        private const int RefreshIntervalMs = 1000;
-        private Graphics FormGraphics;
+        private const int MainformRefreshIntervalMs = 1000;
 
-        private BaseMap BigMapRef;
+        /// <summary>
+        /// List of all map instances
+        /// </summary>
+        private readonly List<BaseDebugMap> Maps = new List<BaseDebugMap>()
+        {
+            new OverviewMap(),
 
-        private OverviewMap StandardMapRef;
-        private TerrainMap TerraindMapRef;
-        private InfluenceMapGui InfluenceMapRef;
-        private TensionMapGui TensionMapRef;
-        private VulnerabilityMapGui VulnerabilityMapRef;
-        //private PlacementGridMap PlacementGridMapRef;
-
-        MainBaseChokeScore chokeForm = new MainBaseChokeScore();
+        };
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Refreshes incoming GUI data from bot
-        /// </summary>
-        private void UpdateIncomingData(object sender, EventArgs e)
+        private void UpdateMainForm(object sender, EventArgs e)
         {
-            if (BosseGui.GameInformation == null)
-                return; // Wait for data
-            if (BosseGui.GameData == null)
-                return; // Wait for data
-            if (BosseGui.ObservationState == null)
-                return; // Wait for data
+            int index = DropdownMapChoice.SelectedIndex;
 
-            // Draw maps
-            StandardMapRef.Tick();
-            TerraindMapRef.Tick();
-            InfluenceMapRef.Tick();
-            TensionMapRef.Tick();
-            VulnerabilityMapRef.Tick();
-            //PlacementGridMapRef.Tick();
-
-            BigMapRef.Tick();
-
-            Application.DoEvents();
+            this.PictureMain.Image = Maps[index].GetMap();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.DoubleBuffered = true;
-            this.WindowState = FormWindowState.Maximized;
 
-            // Init maps
-            FormGraphics = this.CreateGraphics();
-            StandardMapRef = new OverviewMap(FormGraphics, this.LabelStandardMap.Location.X, this.LabelStandardMap.Location.Y + this.LabelStandardMap.Size.Height, standardScale);
-            TerraindMapRef = new TerrainMap(FormGraphics, this.LabelTerrainMap.Location.X, this.LabelTerrainMap.Location.Y + this.LabelTerrainMap.Size.Height, standardScale);
-            InfluenceMapRef = new InfluenceMapGui(FormGraphics, this.LabelInfluenceMap.Location.X, this.LabelInfluenceMap.Location.Y + this.LabelInfluenceMap.Size.Height, standardScale);
-            TensionMapRef = new TensionMapGui(FormGraphics, this.LabelTensionMap.Location.X, this.LabelTensionMap.Location.Y + this.LabelTensionMap.Size.Height, standardScale);
-            VulnerabilityMapRef = new VulnerabilityMapGui(FormGraphics, this.LabelVulnerabilityMap.Location.X, this.LabelVulnerabilityMap.Location.Y + this.LabelVulnerabilityMap.Size.Height, standardScale);
-            //PlacementGridMapRef = new PlacementGridMap(FormGraphics, this.LabelPlacementGrid.Location.X, this.LabelPlacementGrid.Location.Y + this.LabelPlacementGrid.Size.Height, standardScale);            
-
-            BigMapRef = new OverviewMap(FormGraphics, 0, 0, bigScale);
+            // Add maps to dropdown and start their respective threads
+            foreach (BaseDebugMap iter in Maps)
+            {
+                DropdownMapChoice.Items.Add(iter.MapName);
+                iter.Start();
+            }
+            DropdownMapChoice.SelectedIndex = 0;
 
             // Update maps periodically in GUI thread
             Timer timer = new Timer();
-            timer.Interval = RefreshIntervalMs;
-            timer.Tick += new EventHandler(UpdateIncomingData);
+            timer.Interval = MainformRefreshIntervalMs;
+            timer.Tick += new EventHandler(UpdateMainForm);
             timer.Start();
-            UpdateIncomingData(null, null);
-
-            // Show other forms
-            chokeForm.Show(this);
-        }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-        private void LabelTerrainMap_Click(object sender, EventArgs e)
-        {
-            BigMapRef = new TerrainMap(FormGraphics, 0, 0, bigScale);
-        }
-
-        private void LabelStandardMap_Click(object sender, EventArgs e)
-        {
-            BigMapRef = new OverviewMap(FormGraphics, 0, 0, bigScale);
-        }
-
-        private void LabelInfluenceMap_Click(object sender, EventArgs e)
-        {
-            BigMapRef = new InfluenceMapGui(FormGraphics, 0, 0, bigScale);
-        }
-
-        private void LabelTensionMap_Click(object sender, EventArgs e)
-        {
-            BigMapRef = new TensionMapGui(FormGraphics, 0, 0, bigScale);
-        }
-
-        private void LabelVulnerabilityMap_Click(object sender, EventArgs e)
-        {
-            BigMapRef = new VulnerabilityMapGui(FormGraphics, 0, 0, bigScale);
+            UpdateMainForm(null, null);
         }
     }
 }

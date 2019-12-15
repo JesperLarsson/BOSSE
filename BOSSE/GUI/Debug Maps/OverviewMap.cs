@@ -30,38 +30,21 @@ namespace DebugGui
     using BOSSE;
     using SC2APIProtocol;
 
-    /// <summary>
-    /// Base class for drawable minimaps
-    /// </summary>
-    public abstract class BaseMap
+    public class OverviewMap : BaseDebugMap
     {
-        protected int RenderScale;
-        protected Graphics FormGraphics;
-        protected int BaseX;
-        protected int BaseY;
-
-        public BaseMap(Graphics _formGraphics, int _baseX, int _baseY, int _renderScale)
+        public OverviewMap()
         {
-            FormGraphics = _formGraphics;
-            BaseX = _baseX;
-            BaseY = _baseY + 10;
-            RenderScale = _renderScale;
+            this.MapName = "General Overview";
         }
 
-        /// <summary>
-        /// We need to compensate Y coordinates, game uses from the bottom left, and GUI from the top left
-        /// </summary>
-        public static float CompensateY(float y)
+        protected override Image RenderMap()
         {
-            var playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
+            Image bmp = new Bitmap(100, 100);
 
-            float temp = playArea.P1.Y - y - playArea.P0.Y;
-            return temp;
-        }
+            var g = Graphics.FromImage(bmp);
+            g.Clear(System.Drawing.Color.Pink);
 
-        public virtual void Tick()
-        {
-
+            return bmp;
         }
     }
 }

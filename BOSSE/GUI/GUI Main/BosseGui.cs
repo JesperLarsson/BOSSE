@@ -29,20 +29,20 @@ namespace DebugGui
 
     public static class BosseGui
     {
-        /// <summary>
-        /// Set once during initialization
-        /// </summary>
-        public static ResponseGameInfo GameInformation;
+        ///// <summary>
+        ///// Set once during initialization
+        ///// </summary>
+        //public static ResponseGameInfo GameInformation;
 
-        /// <summary>
-        /// Set once during initialization
-        /// </summary>
-        public static ResponseData GameData;
+        ///// <summary>
+        ///// Set once during initialization
+        ///// </summary>
+        //public static ResponseData GameData;
 
-        /// <summary>
-        /// Set each frame
-        /// </summary>
-        public static ResponseObservation ObservationState;
+        ///// <summary>
+        ///// Set each frame
+        ///// </summary>
+        //public static ResponseObservation ObservationState;
 
         private static Thread ThreadMainForm;
 

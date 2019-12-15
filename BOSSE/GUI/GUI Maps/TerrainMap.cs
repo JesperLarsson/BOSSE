@@ -49,10 +49,10 @@ namespace DebugGui
             if (renderedOnce)
                 return; // Does not change
 
-            RectangleI playArea = BosseGui.GameInformation.StartRaw.PlayableArea;
+            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
 
             // Terrain height
-            ImageData terrainMap = BosseGui.GameInformation.StartRaw.TerrainHeight;
+            ImageData terrainMap = CurrentGameState.GameInformation.StartRaw.TerrainHeight;
             for (int y = 0; y < terrainMap.Size.Y; y++)
             {
                 for (int x = 0; x < terrainMap.Size.X; x++)

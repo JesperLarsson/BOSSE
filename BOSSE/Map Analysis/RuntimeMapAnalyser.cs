@@ -53,7 +53,8 @@ namespace BOSSE
 
         private static Dictionary<int, BaseLocation> FindBaseLocations()
         {
-
+            //CurrentGameState.GameInformation.StartRaw.StartLocations;
+            return null;
 
 
 

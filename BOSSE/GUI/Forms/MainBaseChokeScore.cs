@@ -80,10 +80,6 @@ namespace DebugGui
                     formGraphics.FillRectangle(pixelBrush, (RenderScale * x), (RenderScale * yPos), RenderScale, RenderScale);
                 }
             }
-
-            var font = new Font("Arial", 12);
-            formGraphics.DrawString("Slask plask task", font, Brushes.Black, new PointF(10, 10));
-
         }
     }
 }
