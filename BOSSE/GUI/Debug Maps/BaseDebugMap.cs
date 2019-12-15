@@ -39,8 +39,8 @@ namespace DebugGui
     {
         public string MapName = "N/A";
 
-        protected TimeSpan RenderInterval = TimeSpan.FromSeconds(1);
-        protected int RenderScale = 8;
+        protected TimeSpan RenderInterval = TimeSpan.FromMilliseconds(500);
+        protected int RenderScale = 6;
         protected Image CurrentOutputtedMap = null;
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace DebugGui
         public void Start()
         {
             Thread th = new Thread(new ThreadStart(MainLoop));
-            th.Name = "GuiMapRenderer";
+            th.Name = "BosseGuiMapRenderer";
             th.Start();
         }
 

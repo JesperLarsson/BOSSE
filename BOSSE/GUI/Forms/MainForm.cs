@@ -17,7 +17,6 @@
 */
 namespace DebugGui
 {
-    using SC2APIProtocol;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -28,9 +27,12 @@ namespace DebugGui
     using System.Threading.Tasks;
     using System.Windows.Forms;
 
+    using BOSSE;
+    using SC2APIProtocol;
+
     public partial class MainForm : Form
     {
-        private const int MainformRefreshIntervalMs = 1000;
+        private const int MainformRefreshIntervalMs = 100;
 
         /// <summary>
         /// List of all map instances
@@ -49,12 +51,14 @@ namespace DebugGui
         private void UpdateMainForm(object sender, EventArgs e)
         {
             int index = DropdownMapChoice.SelectedIndex;
-
             this.PictureMain.Image = Maps[index].GetMap();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            while (!BOSSE.HasCompletedFirstFrameInit)
+                System.Threading.Thread.Sleep(10); // Wait for bot init
+
             this.DoubleBuffered = true;
 
             // Add maps to dropdown and start their respective threads

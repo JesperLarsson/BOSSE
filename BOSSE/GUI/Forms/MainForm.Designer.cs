@@ -37,9 +37,10 @@
             // 
             // PictureMain
             // 
-            this.PictureMain.Location = new System.Drawing.Point(3, 0);
+            this.PictureMain.Location = new System.Drawing.Point(-44, -5);
             this.PictureMain.Name = "PictureMain";
             this.PictureMain.Size = new System.Drawing.Size(1240, 1044);
+            this.PictureMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PictureMain.TabIndex = 0;
             this.PictureMain.TabStop = false;
             // 
@@ -47,7 +48,7 @@
             // 
             this.DropdownMapChoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DropdownMapChoice.FormattingEnabled = true;
-            this.DropdownMapChoice.Location = new System.Drawing.Point(1419, 15);
+            this.DropdownMapChoice.Location = new System.Drawing.Point(1419, 12);
             this.DropdownMapChoice.MaxDropDownItems = 32;
             this.DropdownMapChoice.Name = "DropdownMapChoice";
             this.DropdownMapChoice.Size = new System.Drawing.Size(473, 29);
@@ -56,7 +57,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1335, 15);
+            this.label1.Location = new System.Drawing.Point(1335, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 21);
             this.label1.TabIndex = 2;
