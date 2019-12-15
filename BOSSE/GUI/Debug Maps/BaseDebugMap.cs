@@ -64,7 +64,9 @@ namespace DebugGui
             {
                 try
                 {
-                    CurrentOutputtedMap = RenderMap();
+                    Image map = RenderMap();
+                    map = CropMapToPlayArea(map);
+                    this.CurrentOutputtedMap = map;
                 }
                 catch (Exception ex)
                 {
@@ -75,17 +77,45 @@ namespace DebugGui
             }
         }
 
+        private Image CropMapToPlayArea(Image prevImage)
+        {
+            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
+
+            int x = playArea.P0.X;
+            int y = (int)CompensateY(playArea.P0.Y);
+            int width = prevImage.Width - x;
+            int height = prevImage.Height - y;
+
+            Rectangle cropMask = new Rectangle(x, y, width, height);
+            Image newImage = CropImage(prevImage, cropMask);
+
+            return newImage;
+        }
+
+        private static Image CropImage(Image img, Rectangle cropArea)
+        {
+            // From https://stackoverflow.com/a/734938
+            Bitmap target = new Bitmap(cropArea.Width, cropArea.Height);
+
+            using (Graphics g = Graphics.FromImage(target))
+            {
+                g.DrawImage(img, new Rectangle(0, 0, target.Width, target.Height),
+                                 cropArea,
+                                 GraphicsUnit.Pixel);
+            }
+
+            return target;
+        }
+
         protected abstract Image RenderMap();
 
         /// <summary>
-        /// We need to compensate Y coordinates, game uses from the bottom left, and GUI from the top left
+        /// Game starts Y from the bottom left, and GUI from the top left. So we compensate
         /// </summary>
         protected float CompensateY(float y)
         {
-            var playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
-
-            float temp = playArea.P1.Y - y - playArea.P0.Y;
-            return temp;
+            float yBase = CurrentGameState.GameInformation.StartRaw.MapSize.Y;
+            return yBase - y;
         }
     }
 }
