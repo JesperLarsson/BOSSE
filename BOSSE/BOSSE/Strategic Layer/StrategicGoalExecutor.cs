@@ -34,7 +34,7 @@ namespace BOSSE
         const int MinSupplyMargin = 4;
         const int TargetWorkerPerBase = 24;
 
-        int marineCount = 0;
+        int unitCount = 0;
 
         /// <summary>
         /// Called once during start
@@ -46,8 +46,8 @@ namespace BOSSE
 
             // Subscribe to all built marines and add them to main squad
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnMilitaryUnitWasCompletedSensor)).AddHandler(
-                ReceiveEventRecruitedMarine,
-                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.MARINE))
+                ReceiveEventFinishedMilitaryUnit,
+                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.MARINE || unitIter.UnitType == UnitId.SIEGE_TANK))
             );
 
             // Subscribe to finished buildings
@@ -56,22 +56,18 @@ namespace BOSSE
             BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
         }
 
-        private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)
+        private void ReceiveEventFinishedMilitaryUnit(HashSet<Unit> newUnits)
         {
-            foreach (Unit iter in newMarines)
+            foreach (Unit iter in newUnits)
             {
-                if (iter.UnitType != UnitId.MARINE)
-                    continue;
-
                 Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
                 squad.AddUnit(iter);
-                Log.Info("  Added marine to main squad: " + iter.Tag);
-                marineCount++;
+                Log.Info("  Added unit to main squad: " + iter.Tag + " (" + iter.UnitType + ")");
+                unitCount++;
             }
 
-            if (marineCount > 10)
+            if (unitCount > 10)
             {
-                //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(0);
                 BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
             }
         }
@@ -134,10 +130,9 @@ namespace BOSSE
             const int FactoriesWanted = 1;
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
-            UnitTypeData techInfo = GetUnitInfo(UnitId.FACTORY_TECHLAB);
             UnitTypeData factoryInfo = GetUnitInfo(UnitId.FACTORY);
-            uint raxCount = GetUnitCountTotal(UnitId.BARRACKS);
-            uint factoryCount = GetUnitCountTotal(UnitId.FACTORY);
+            uint raxCount = GetUnitCountTotal(UnitId.BARRACKS, includeEquivalents: true);
+            uint factoryCount = GetUnitCountTotal(UnitId.FACTORY, includeEquivalents: true);
 
             if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
             {

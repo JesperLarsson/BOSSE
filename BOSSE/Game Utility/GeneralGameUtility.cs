@@ -155,10 +155,13 @@ namespace BOSSE
         public static bool CanAfford(UnitId unitType)
         {
             UnitTypeData unitData = GameData.Units[(int)unitType];
+            int foodConsumed = (int)(unitData.FoodProvided - unitData.FoodRequired);
 
+            bool enoughFood = FreeSupply >= foodConsumed;
             bool enoughMinerals = CurrentMinerals >= unitData.MineralCost;
             bool enoughGas = CurrentVespene >= unitData.VespeneCost;
-            return enoughMinerals && enoughGas;
+
+            return enoughMinerals && enoughGas && enoughFood;
         }
 
         /// <summary>
@@ -167,8 +170,11 @@ namespace BOSSE
         public static void SubtractCosts(UnitId unitType)
         {
             UnitTypeData unitData = GameData.Units[(int)unitType];
+            int foodConsumed = (int)(unitData.FoodProvided - unitData.FoodRequired);
+
             CurrentMinerals -= unitData.MineralCost;
             CurrentVespene -= unitData.VespeneCost;
+            UsedSupply = (uint)(UsedSupply - foodConsumed);
         }
 
         /// <summary>
@@ -218,14 +224,27 @@ namespace BOSSE
             return units;
         }
 
-        public static uint GetUnitCountTotal(UnitId unitTypeToFind, bool includePending = true, bool onlyCompleted = false, HashSet<ulong> excludeUnitTags = null)
+        public static uint GetUnitCountTotal(UnitId unitTypeToFind, bool includePending = true, bool onlyCompleted = false, HashSet<ulong> excludeUnitTags = null, bool includeEquivalents = false)
         {
             var temp = new HashSet<UnitId>() { unitTypeToFind };
-            return GetUnitCountTotal(temp, includePending, onlyCompleted, excludeUnitTags);
+            return GetUnitCountTotal(temp, includePending, onlyCompleted, excludeUnitTags, includeEquivalents);
         }
 
-        public static uint GetUnitCountTotal(HashSet<UnitId> unitTypesToFind, bool includePending = true, bool onlyCompleted = false, HashSet<ulong> excludeUnitTags = null)
+        public static uint GetUnitCountTotal(HashSet<UnitId> unitTypesToFind, bool includePending = true, bool onlyCompleted = false, HashSet<ulong> excludeUnitTags = null, bool includeEquivalents = false)
         {
+            // Add equivalents to list 
+            if (includeEquivalents)
+            {
+                foreach (UnitId typeToFindOriginal in unitTypesToFind)
+                {
+                    HashSet<UnitId> equivalentIter = GetEquivalentTech(typeToFindOriginal);
+                    foreach (UnitId equivalentUnitId in equivalentIter)
+                    {
+                        unitTypesToFind.Add(equivalentUnitId);
+                    }
+                }
+            }
+
             List<Unit> activeUnits = GetUnits(unitTypesToFind, onlyCompleted: onlyCompleted);
             uint count = (uint)activeUnits.Count;
 
