@@ -47,11 +47,12 @@ namespace BOSSE
         public override void Initialize()
         {
             // Subscribe to extractors being destroyed
-            BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
-            {
-                extractorCount--;
-                Log.Info("Extractor destroyed, updated count = " + extractorCount);
-            }), unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.REFINERY)));
+#warning LP_TODO: Needs OwnStructureWasDestroyedSensor
+            //BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasDestroyedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+            //{
+            //    extractorCount--;
+            //    Log.Info("Extractor destroyed, updated count = " + extractorCount);
+            //}), unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.REFINERY)));
         }
 
         public void SetWorkerTrainingAllowed(bool isAllowed)
