@@ -53,7 +53,7 @@ namespace BOSSE
             // Subscribe to finished buildings
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
 
-            //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(6);
+            BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
         }
 
         private void ReceiveEventRecruitedMarine(HashSet<Unit> newMarines)
@@ -116,7 +116,7 @@ namespace BOSSE
             // Build depots as we need them
             UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
             uint currentAndPendingFood = GetCurrentAndPendingSupply();
-            uint supplyDiff =  currentAndPendingFood - CurrentGameState.UsedSupply;
+            uint supplyDiff = currentAndPendingFood - CurrentGameState.UsedSupply;
             while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
                 ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
@@ -130,17 +130,26 @@ namespace BOSSE
         /// </summary>
         private void ExecuteBuildMilitary()
         {
-            const int RaxesWanted = 3;
+            const int RaxesWanted = 1;
+            const int FactoriesWanted = 1;
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
+            UnitTypeData techInfo = GetUnitInfo(UnitId.FACTORY_TECHLAB);
+            UnitTypeData factoryInfo = GetUnitInfo(UnitId.FACTORY);
             uint raxCount = GetUnitCountTotal(UnitId.BARRACKS);
+            uint factoryCount = GetUnitCountTotal(UnitId.FACTORY);
 
-            if (raxCount < RaxesWanted && CurrentMinerals >= raxInfo.MineralCost && HaveTechRequirementsToBuild(UnitId.BARRACKS))
+            if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
+            {
+                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.FACTORY);
+                SubtractCosts(UnitId.FACTORY);
+            }
+
+            if (raxCount < RaxesWanted && CanAfford(UnitId.BARRACKS) && HaveTechRequirementsToBuild(UnitId.BARRACKS))
             {
                 // Build barracks
-                Log.Debug("Calling build barracks at tick " + Globals.CurrentFrameIndex);
                 ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.BARRACKS);
-                CurrentMinerals -= raxInfo.MineralCost;
+                SubtractCosts(UnitId.BARRACKS);
             }
             else
             {

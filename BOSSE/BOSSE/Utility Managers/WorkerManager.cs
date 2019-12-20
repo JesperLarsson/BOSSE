@@ -247,8 +247,13 @@ namespace BOSSE
                         workersToPutOnExtractor = workersNeeded;
                     }
                     workersNeeded -= workersToPutOnExtractor;
+                    if (workersToPutOnExtractor == 0)
+                        continue;
 
                     List<Unit> workersToExtractor = RequestWorkersForJobCloseToPointOrNull(extractor.Position, workersToPutOnExtractor);
+                    if (workersToExtractor == null)
+                        continue;
+
                     Queue(CommandBuilder.MineMineralsAction(workersToExtractor, extractor));
                     Log.Info($"Workermanager - Put {workersToExtractor.Count} workers on gas " + extractor.Tag);
                 }

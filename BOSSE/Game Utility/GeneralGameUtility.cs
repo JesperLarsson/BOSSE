@@ -58,11 +58,50 @@ namespace BOSSE
         public static bool HaveTechRequirementsToBuild(UnitId unitType)
         {
             UnitTypeData data = GetUnitInfo(unitType);
+            UnitId requirement = (UnitId)data.TechRequirement;
 
-            List<Unit> activeUnitsOftype = GetUnits((UnitId)data.TechRequirement, onlyCompleted: true);
+            List<Unit> activeUnitsOftype = GetUnits(requirement, onlyCompleted: true);
             if (activeUnitsOftype.Count == 0)
+            {
+                // Check for equivalent units
+                HashSet<UnitId> equivalentTech = GetEquivalentTech(requirement);
+                foreach (UnitId equivalentIter in equivalentTech)
+                {
+                    List<Unit> activeUnitsOfEquivalent = GetUnits(equivalentIter, onlyCompleted: true);
+                    if (activeUnitsOfEquivalent.Count > 0)
+                        return true;
+                }
+
                 return false;
+            }
             return true;
+        }
+
+        /// <summary>
+        /// Returns a list of units that are the same as the given unit in terms of satisfying tech requirements
+        /// Example: Lowered supply depot is a separate unit from supply depots, but are treated the same
+        /// </summary>
+        public static HashSet<UnitId> GetEquivalentTech(UnitId requiredTech)
+        {
+#warning Optimization: This reverse mapping could be cached
+            uint techId = (uint)requiredTech;
+            HashSet<UnitId> resultList = new HashSet<UnitId>();
+
+            foreach (UnitTypeData unitDataIter in CurrentGameState.GameData.Units)
+            {
+                if (unitDataIter.TechAlias == null)
+                    continue;
+
+                foreach (uint alias in unitDataIter.TechAlias)
+                {
+                    if (alias == techId)
+                    {
+                        resultList.Add((UnitId)alias);
+                    }
+                }
+            }
+
+            return resultList;
         }
 
         /// <summary>
@@ -116,7 +155,20 @@ namespace BOSSE
         public static bool CanAfford(UnitId unitType)
         {
             UnitTypeData unitData = GameData.Units[(int)unitType];
-            return (CurrentMinerals >= unitData.MineralCost) && (CurrentVespene >= unitData.VespeneCost);
+
+            bool enoughMinerals = CurrentMinerals >= unitData.MineralCost;
+            bool enoughGas = CurrentVespene >= unitData.VespeneCost;
+            return enoughMinerals && enoughGas;
+        }
+
+        /// <summary>
+        /// Subtracts the costs for the unit from our current total. Called after queuing an order to buy/construct
+        /// </summary>
+        public static void SubtractCosts(UnitId unitType)
+        {
+            UnitTypeData unitData = GameData.Units[(int)unitType];
+            CurrentMinerals -= unitData.MineralCost;
+            CurrentVespene -= unitData.VespeneCost;
         }
 
         /// <summary>
