@@ -35,47 +35,26 @@ namespace BOSSE
     /// Stores information about each tile of the ingame map
     /// </summary>
     [Serializable]
-    public class TileMapULong
-    {
-        public readonly int Width;
-        public readonly int Height;
-        private readonly ulong[,] Map;
-
-        public TileMapULong(int xSize, int ySize)
-        {
-            this.Width = xSize;
-            this.Height = ySize;
-            this.Map = new ulong[xSize, ySize];
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public ulong GetTile(int x, int y)
-        {
-            return this.Map[x, y];
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void SetTile(int x, int y, ulong value)
-        {
-            this.Map[x, y] = value;
-        }
-    }
-
-    /// <summary>
-    /// Stores information about each tile of the ingame map
-    /// </summary>
-    [Serializable]
     public class TileMap<TileType>
     {
         public readonly int Width;
         public readonly int Height;
         private readonly TileType[,] Map;
 
+        public TileMap()
+        {
+            Size2DI size = CurrentGameState.GameInformation.StartRaw.MapSize;
+
+            this.Width = size.X;
+            this.Height = size.Y;
+            this.Map = new TileType[this.Width, this.Height];
+        }
+
         public TileMap(int xSize, int ySize)
         {
             this.Width = xSize;
             this.Height = ySize;
-            this.Map = new TileType[xSize, ySize];
+            this.Map = new TileType[this.Width, this.Height];
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

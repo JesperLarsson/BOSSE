@@ -73,26 +73,43 @@ namespace BOSSE
             Globals.CurrentFrameIndex = 0;
             while (true)
             {
-                // Remove previous frame actions
-                GameOutput.QueuedActions.Clear();
-
-                // Read from sc2
-                ReadPerFrameState().Wait();
-
-                // Update bot
-                if (Globals.CurrentFrameIndex == 0)
+                try
                 {
-                    Globals.BotRef.FirstFrame();
+                    // Remove previous frame actions
+                    GameOutput.QueuedActions.Clear();
+
+                    // Read from sc2
+                    ReadPerFrameState().Wait();
+
+                    // Update bot
+                    if (Globals.CurrentFrameIndex == 0)
+                    {
+                        Globals.BotRef.FirstFrame();
+                    }
+                    Globals.BotRef.OnFrameTick();
+
+                    // Send actions to sc2
+                    SendQueuedActions().Wait();
+
+                    Globals.CurrentFrameIndex++;
+                    if (BotConstants.TickLockMode)
+                    {
+                        Thread.Sleep(BotConstants.TickLockSleep);
+                    }
                 }
-                Globals.BotRef.OnFrameTick();
-
-                // Send actions to sc2
-                SendQueuedActions().Wait();
-
-                Globals.CurrentFrameIndex++;
-                if (BotConstants.TickLockMode)
+                catch (BosseFatalException ex)
                 {
-                    Thread.Sleep(BotConstants.TickLockSleep);
+                    Log.SanityCheckFailed("FATAL EXCEPTION: " + ex);
+                    Thread.Sleep(2000); // Let log flush
+                    Environment.Exit(99);
+                }
+                catch (BosseRecoverableException ex)
+                {
+                    Log.SanityCheckFailed("Cought top level bot exception: " + ex);
+                }
+                catch (Exception ex)
+                {
+                    Log.SanityCheckFailed("Cought top level exception: " + ex);
                 }
             }
         }

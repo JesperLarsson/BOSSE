@@ -47,7 +47,8 @@ namespace DebugGui
             new VulnerabilityDebugMap(),
             new TensionDebugMap(),
 
-            new MainBasesChokeScore(),
+            new GeneralChokepoints(),
+            new MainBasesChokeScoreDebugMap(),
 
         };
 
@@ -89,6 +90,11 @@ namespace DebugGui
             timer.Tick += new EventHandler(UpdateMainForm);
             timer.Start();
             UpdateMainForm(null, null);
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

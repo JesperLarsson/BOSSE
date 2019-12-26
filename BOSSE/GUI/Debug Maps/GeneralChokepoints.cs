@@ -31,13 +31,13 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Chokepoint score
+    /// Chokepoint score, map wide
     /// </summary>
-    public class MainBasesChokeScoreDebugMap : BaseDebugMap
+    public class GeneralChokepoints : BaseDebugMap
     {
-        public MainBasesChokeScoreDebugMap()
+        public GeneralChokepoints()
         {
-            this.MapName = "Chokepoints - Main bases";
+            this.MapName = "Chokepoints - General";
         }
 
         protected override Image RenderMap()
@@ -50,21 +50,12 @@ namespace DebugGui
             Graphics surface = Graphics.FromImage(bmp);
             surface.Clear(System.Drawing.Color.Black);
 
-            TileMap<byte> map = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.MainBaseChokeScore;
+            TileMap<byte> map = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.GeneralChokeScore;
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)
                 {
                     byte value = map.GetTile(x, y);
-                    int sqValue = value * value;
-                    if (sqValue > 255)
-                    {
-                        value = 255;
-                    }
-                    else
-                    {
-                        value = (byte)sqValue;
-                    }
 
                     var pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, value, 0, 0));
                     int yPos = map.Height - y;

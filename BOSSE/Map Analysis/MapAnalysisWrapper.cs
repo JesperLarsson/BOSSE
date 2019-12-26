@@ -34,8 +34,6 @@ namespace BOSSE
     using static CurrentGameState;
     using static UnitConstants;
 
-#warning TODO: Save static results to file and load it. Use folder ./data
-
     /// <summary>
     /// Container which holds the reference to the current analysed map
     /// Results can be saved between sessions for performance reasons
@@ -47,11 +45,11 @@ namespace BOSSE
 
         public void Initialize()
         {
-            // Perform runtime analysis
+            // Perform runtime analysis on each startup
             Log.Info("Performing runtime map analysis");
             this.AnalysedRuntimeMapRef = RuntimeMapAnalyser.AnalyseCurrentMap();
 
-            // Load static analysis
+            // Load static analysis if available
             if (!LoadStaticAnalysisFromFile())
             {
                 CreateMapFolder();
@@ -98,7 +96,7 @@ namespace BOSSE
             }
             catch (SerializationException)
             {
-                Log.SanityCheckFailed("Unable to load map data from file");
+                Log.Warning("Error reading map data from file (likely outdated)");
                 return false;
             }
             finally
@@ -119,10 +117,10 @@ namespace BOSSE
 
         private string GetMapFilePath()
         {
-            const string MapFolder = "Data";
+            const string mapFolder = "Data";
 
             string mapName = CurrentGameState.GameInformation.MapName;
-            mapName = Path.Combine(MapFolder, mapName);
+            mapName = Path.Combine(mapFolder, mapName);
             mapName = Path.ChangeExtension(mapName, ".bossemap");
 
             return mapName;

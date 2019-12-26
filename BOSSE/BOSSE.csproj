@@ -66,6 +66,8 @@
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
+    <Compile Include="Entities\Exception\BosseFatalException.cs" />
+    <Compile Include="Entities\Exception\BosseRecoverableException.cs" />
     <Compile Include="Entities\Map\AnalysedRuntimeMap.cs" />
     <Compile Include="Entities\Map\AnalysedStaticMap.cs" />
     <Compile Include="Entities\Internal\Manager.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Game Utility\WallBuilderUtility.cs" />
     <Compile Include="GUI\Debug Maps\BaseDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\InfluenceDebugMap.cs" />
+    <Compile Include="GUI\Debug Maps\GeneralChokepoints.cs" />
     <Compile Include="GUI\Debug Maps\MainBasesChokeScore.cs" />
     <Compile Include="GUI\Debug Maps\OverviewDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\PlacementGridDebugMap.cs" />

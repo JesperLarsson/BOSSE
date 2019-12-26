@@ -45,7 +45,7 @@ namespace BOSSE
             PopulateMapData(mapObject);
 
             sw.Stop();
-            Log.Info("Completed static map analysis in " + sw.Elapsed.TotalMilliseconds/1000 + " s");
+            Log.Info("Completed static map analysis in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
 
             return mapObject;
         }
@@ -56,6 +56,93 @@ namespace BOSSE
             Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
 
             mapObject.MainBaseChokeScore = CalculateChokeScoreBetweenPoints(ourBase, enemyBase);
+            mapObject.GeneralChokeScore = CalculateGeneralChokeScore();
+        }
+
+        private static TileMap<byte> CalculateGeneralChokeScore()
+        {
+            Size2DI size = CurrentGameState.GameInformation.StartRaw.MapSize;
+            TileMap<ulong> longMap = new TileMap<ulong>(size.X, size.Y);
+
+            // Calculate score
+            //for (int fromX = 0; fromX < size.X; fromX++)
+            //{
+            //    for (int fromY = 0; fromY < size.Y; fromY++)
+            //    {
+            //        for (int innerX = 0; innerX < size.X; innerX++)
+            //        {
+            //            for (int innerY = 0; innerY < size.Y; innerY++)
+            //            {
+            //                Point2D innerPos = new Point2D(innerX, innerY);
+            //                Point2D fromPos = new Point2D(fromX, fromY);
+            //                if (innerPos == fromPos)
+            //                    continue;
+
+            //                LinkedList<BossePathNode> path = BOSSE.PathFinderRef.FindPath(fromPos, innerPos);
+            //                if (path == null)
+            //                    continue;
+
+            //                foreach (BossePathNode tileOnPath in path)
+            //                {
+            //                    ulong oldVal = longMap.GetTile(tileOnPath.X, tileOnPath.Y);
+            //                    if (oldVal == ulong.MaxValue)
+            //                        continue;
+            //                    longMap.SetTile(tileOnPath.X, tileOnPath.Y, oldVal + 1);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            Log.Info("General choke: Completed main analysis");
+
+            // Find minimum non-zero tile value + maxvalue
+            ulong minValue = ulong.MaxValue;
+            ulong maxValue = ulong.MinValue;
+            for (int x = 0; x < size.X; x++)
+            {
+                for (int y = 0; y < size.Y; y++)
+                {
+                    ulong iterVal = longMap.GetTile(x, y);
+                    if (iterVal == 0)
+                        continue;
+
+                    minValue = Math.Min(iterVal, minValue);
+                    maxValue = Math.Max(iterVal, maxValue);
+                }
+            }
+            Log.Info("General choke: MinValue = " + minValue);
+            if (minValue == ulong.MaxValue)
+            {
+                Log.SanityCheckFailed("No min value found");
+                throw new BosseFatalException("No max value found");
+            }
+            if (maxValue == ulong.MinValue)
+            {
+                Log.SanityCheckFailed("No max value found");
+                throw new BosseFatalException("No max value found");
+            }
+
+            // Squash to byte values - MinValue becomes 1, MaxValue becomes 255, 0 = not pathable
+            ulong valueDiff = maxValue - minValue;
+            double longsPerByte = valueDiff / (byte.MaxValue - 1);
+            TileMap<byte> byteMap = new TileMap<byte>();
+            for (int x = 0; x < size.X; x++)
+            {
+                for (int y = 0; y < size.Y; y++)
+                {
+                    ulong longVal = longMap.GetTile(x, y);
+                    if (longVal == 0)
+                        continue; // not pathable
+
+                    ulong workingLong = (ulong)((longVal - minValue) / longsPerByte);
+                    workingLong += 1;
+
+                    byte workingByte = (byte)workingLong;
+                    byteMap.SetTile(x, y, workingByte);
+                }
+            }
+
+            return byteMap;
         }
 
         /// <summary>
@@ -69,8 +156,6 @@ namespace BOSSE
             const int enemyXRadius = 1 * tileSkipCount;
             const int enemyYRadius = 0;
 
-            Size2DI mapSize = CurrentGameState.GameInformation.StartRaw.MapSize;
-
             int selfStartX = (int)fromPoint.X - selfXRadius;
             int selfStartY = (int)fromPoint.Y - selfYRadius;
             int selfEndX = (int)fromPoint.X + selfXRadius;
@@ -80,7 +165,7 @@ namespace BOSSE
             int enemyEndX = (int)toPoint.X + enemyXRadius;
             int enemyEndY = (int)toPoint.Y + enemyYRadius;
 
-            TileMap<byte> returnObj = new TileMap<byte>(mapSize.X, mapSize.Y);
+            TileMap<byte> returnObj = new TileMap<byte>();
             for (int selfX = selfStartX; selfX <= selfEndX; selfX += tileSkipCount)
             {
                 for (int selfY = selfStartY; selfY <= selfEndY; selfY += tileSkipCount)
