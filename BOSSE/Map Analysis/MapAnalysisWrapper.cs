@@ -25,6 +25,9 @@ namespace BOSSE
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
+    using System.Runtime.Serialization.Formatters.Binary;
+    using System.IO;
+    using System.Runtime.Serialization;
 
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
@@ -45,10 +48,93 @@ namespace BOSSE
         public void Initialize()
         {
             // Perform runtime analysis
+            Log.Info("Performing runtime map analysis");
             this.AnalysedRuntimeMapRef = RuntimeMapAnalyser.AnalyseCurrentMap();
 
             // Load static analysis
-            this.AnalysedStaticMapRef = StaticMapAnalyser.GenerateNewAnalysis();
+            if (!LoadStaticAnalysisFromFile())
+            {
+                CreateMapFolder();
+
+                Log.Info("Generating new map analysis (this will take a while)...");
+                this.AnalysedStaticMapRef = StaticMapAnalyser.GenerateNewAnalysis();
+
+                Log.Info("Map analysis generated, saving to file");
+                SaveStaticAnalysisToFile();
+            }
+        }
+
+        private void SaveStaticAnalysisToFile()
+        {
+            string filePath = GetMapFilePath();
+            FileStream fs = new FileStream(filePath, FileMode.Create);
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(fs, AnalysedStaticMapRef);
+            }
+            catch (SerializationException ex)
+            {
+                Log.SanityCheckFailed("Unable to save map data: " + ex);
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+
+        private bool LoadStaticAnalysisFromFile()
+        {
+            string filePath = GetMapFilePath();
+            if (!File.Exists(filePath))
+                return false;
+
+            FileStream fs = new FileStream(filePath, FileMode.Open);
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                AnalysedStaticMapRef = (AnalysedStaticMap)formatter.Deserialize(fs);
+            }
+            catch (SerializationException)
+            {
+                Log.SanityCheckFailed("Unable to load map data from file");
+                return false;
+            }
+            finally
+            {
+                fs.Close();
+            }
+
+            // Validate version
+            if (AnalysedStaticMapRef.FileFormatVersion != AnalysedStaticMap.LatestFileFormatVersion)
+            {
+                Log.Warning("Saved map data is outdated (version " + AnalysedStaticMapRef.FileFormatVersion + ", expected " + AnalysedStaticMap.LatestFileFormatVersion + ")");
+                return false;
+            }
+
+            Log.Info("Loaded static map data for current map (" + CurrentGameState.GameInformation.MapName + ")");
+            return true;
+        }
+
+        private string GetMapFilePath()
+        {
+            const string MapFolder = "Data";
+
+            string mapName = CurrentGameState.GameInformation.MapName;
+            mapName = Path.Combine(MapFolder, mapName);
+            mapName = Path.ChangeExtension(mapName, ".bossemap");
+
+            return mapName;
+        }
+
+        /// <summary>
+        /// Creates map folder if it doesn't exist
+        /// </summary>
+        private void CreateMapFolder()
+        {
+            FileInfo file = new FileInfo(GetMapFilePath());
+            file.Directory.Create();
         }
     }
 }

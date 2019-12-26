@@ -23,6 +23,7 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Runtime.Serialization;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
@@ -33,11 +34,18 @@ namespace BOSSE
     /// <summary>
     /// Contains various static metrics about the map that doesn't change between runs (chokepoints etc)
     /// </summary>
+    [Serializable]
     public class AnalysedStaticMap
     {
+        public const int LatestFileFormatVersion = 1;
+        public int FileFormatVersion = LatestFileFormatVersion;
+
         /// <summary>
         /// Higher values indicate chokepoints between ours and the enemy main base
         /// </summary>
         public TileMap<byte> MainBaseChokeScore;
+
+        public TileMapULong TileMapTest = new TileMapULong(100, 400);
+
     }
 }

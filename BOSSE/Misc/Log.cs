@@ -31,10 +31,10 @@ namespace BOSSE
     /// </summary>
     public static class Log
     {
-        private static string FilePath;
+        private static string LogPathAbsolute;
         private static Thread ThreadInstance = null;
-        private static ConcurrentQueue<string> TraceQueue = new ConcurrentQueue<string>();
-        private static ConcurrentQueue<string> FileQueue = new ConcurrentQueue<string>();
+        private static readonly ConcurrentQueue<string> TraceQueue = new ConcurrentQueue<string>();
+        private static readonly ConcurrentQueue<string> FileQueue = new ConcurrentQueue<string>();
 
         /// <summary>
         /// Log file only, not to console
@@ -91,12 +91,14 @@ namespace BOSSE
 
         public static void Start()
         {
-            FilePath = "Logs/" + "BOSSE " + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";
-            Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
+            LogPathAbsolute = "Logs/" + "BOSSE " + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";
+            Directory.CreateDirectory(Path.GetDirectoryName(LogPathAbsolute));
 
-            ThreadInstance = new Thread(new ThreadStart(LoggingMainLoop));
-            ThreadInstance.Name = "BosseLogger";
-            ThreadInstance.Priority = ThreadPriority.BelowNormal;
+            ThreadInstance = new Thread(new ThreadStart(LoggingMainLoop))
+            {
+                Name = "BosseLogger",
+                Priority = ThreadPriority.BelowNormal
+            };
             ThreadInstance.Start();
         }
 
@@ -119,12 +121,12 @@ namespace BOSSE
 
         private static void LoggingMainTick()
         {
-            if (FilePath == null)
+            if (LogPathAbsolute == null)
                 return;
 
             while (FileQueue.TryDequeue(out string msg))
             {
-                var fileStream = new StreamWriter(FilePath, true);
+                var fileStream = new StreamWriter(LogPathAbsolute, true);
                 fileStream.WriteLine(msg);
                 fileStream.Close();
             }

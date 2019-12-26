@@ -45,7 +45,7 @@ namespace BOSSE
             PopulateMapData(mapObject);
 
             sw.Stop();
-            Log.Info("Completed map analysis in " + sw.Elapsed.TotalMilliseconds + " ms");
+            Log.Info("Completed static map analysis in " + sw.Elapsed.TotalMilliseconds/1000 + " s");
 
             return mapObject;
         }
