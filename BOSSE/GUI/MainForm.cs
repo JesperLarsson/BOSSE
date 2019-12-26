@@ -62,6 +62,12 @@ namespace DebugGui
             this.PictureMain.Image = Maps[index].GetMap();
         }
 
+        protected override bool ShowWithoutActivation
+        {
+            // Prevents form from taking focus when starting. From: https://stackoverflow.com/a/157843/645155
+            get { return true; }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             while (!BOSSE.HasCompletedFirstFrameInit)

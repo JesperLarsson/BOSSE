@@ -24,22 +24,24 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Collections.Concurrent;
 
     /// <summary>
-    /// Writes logging information to file/console/visual studio
+    /// Writes logging information to file/console/visual studio output
     /// </summary>
     public static class Log
     {
         private static string FilePath;
-        private static bool StdoutClosed;
-        private static object LogLock = new object();
+        private static Thread ThreadInstance = null;
+        private static ConcurrentQueue<string> TraceQueue = new ConcurrentQueue<string>();
+        private static ConcurrentQueue<string> FileQueue = new ConcurrentQueue<string>();
 
         /// <summary>
         /// Log file only, not to console
         /// </summary>
         public static void Bulk(string line)
         {
-            WriteLine("BULK", line, false);
+            FormatAndQueue("BULK", line, false);
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace BOSSE
         /// </summary>
         public static void Info(string line)
         {
-            WriteLine("INFO", line, true);
+            FormatAndQueue("INFO", line, true);
         }
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace BOSSE
         /// </summary>
         public static void Debug(string line)
         {
-            WriteLine("DEBUG", line, true);
+            FormatAndQueue("DEBUG", line, true);
         }
 
         /// <summary>
@@ -63,7 +65,7 @@ namespace BOSSE
         /// </summary>
         public static void Warning(string line)
         {
-            WriteLine("WARNING", line, true);
+            FormatAndQueue("WARNING", line, true);
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace BOSSE
         /// </summary>
         public static void Error(string line)
         {
-            WriteLine("ERROR", line, true);
+            FormatAndQueue("ERROR", line, true);
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace BOSSE
         /// </summary>
         public static void SanityCheckFailed(string line, bool breakExe = true)
         {
-            WriteLine("SANITY CHECK FAILED", line, true);
+            FormatAndQueue("SANITY CHECK FAILED", line, true);
 
             if (breakExe && System.Diagnostics.Debugger.IsAttached)
             {
@@ -87,45 +89,61 @@ namespace BOSSE
             }
         }
 
-        private static void Initialize()
+        public static void Start()
         {
-            FilePath = "Logs/" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";
+            FilePath = "Logs/" + "BOSSE " + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";
             Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
+
+            ThreadInstance = new Thread(new ThreadStart(LoggingMainLoop));
+            ThreadInstance.Name = "BosseLogger";
+            ThreadInstance.Priority = ThreadPriority.BelowNormal;
+            ThreadInstance.Start();
         }
 
-        private static void WriteLine(string prefix, string line, bool trace)
+        private static void LoggingMainLoop()
         {
-            lock (LogLock)
+            while (true)
             {
-                if (FilePath == null)
+                try
                 {
-                    Initialize();
+                    LoggingMainTick();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("EXCEPTION IN LOGGER: " + ex);
                 }
 
-                var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + line;
+                Thread.Sleep(1000);
+            }
+        }
 
+        private static void LoggingMainTick()
+        {
+            if (FilePath == null)
+                return;
+
+            while (FileQueue.TryDequeue(out string msg))
+            {
                 var fileStream = new StreamWriter(FilePath, true);
                 fileStream.WriteLine(msg);
                 fileStream.Close();
-
-                if (!StdoutClosed && trace)
-                {
-                    try
-                    {
-                        Console.WriteLine(msg);
-                    }
-                    catch
-                    {
-                        StdoutClosed = true;
-                    }
-                }
-
-                // To VS output
-                if (trace)
-                {
-                    System.Diagnostics.Debug.WriteLine(msg);
-                }
             }
+
+            while (TraceQueue.TryDequeue(out string msg))
+            {
+                System.Diagnostics.Debug.WriteLine(msg);
+                Console.WriteLine(msg);
+            }
+        }
+
+        private static void FormatAndQueue(string prefix, string line, bool trace)
+        {
+            var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + line;
+
+            FileQueue.Enqueue(msg);
+
+            if (trace)
+                TraceQueue.Enqueue(msg);
         }
     }
 }
