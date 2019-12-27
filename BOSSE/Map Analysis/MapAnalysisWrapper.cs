@@ -54,7 +54,7 @@ namespace BOSSE
             {
                 CreateMapFolder();
 
-                Log.Info("Generating new map analysis (this will take a while)...");
+                Log.Info("Generating new map analysis (this will take multiple hours)...");
                 this.AnalysedStaticMapRef = StaticMapAnalyser.GenerateNewAnalysis();
 
                 Log.Info("Map analysis generated, saving to file");

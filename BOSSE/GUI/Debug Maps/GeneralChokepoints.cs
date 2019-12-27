@@ -51,6 +51,9 @@ namespace DebugGui
             surface.Clear(System.Drawing.Color.Black);
 
             TileMap<byte> map = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.GeneralChokeScore;
+            if (map == null)
+                return bmp;
+
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)

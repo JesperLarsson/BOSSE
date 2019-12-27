@@ -37,22 +37,25 @@ namespace BOSSE
     {
         public static AnalysedRuntimeMap AnalyseCurrentMap()
         {
-            var resourceClusters = FindBaseLocations();
+            var resourceClusters = FindBaseLocations(out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef);
 
             AnalysedRuntimeMap completedMap = new AnalysedRuntimeMap(
                 allClusters: resourceClusters,
-                mainBase: null,
+                mainBase: ourMainRef,
                 naturalExpansion: null,
                 thirdExpansion: null,
-                enemyMainBase: null,
+                enemyMainBase: enemyMainRef,
                 enemyNaturalExpansion: null,
                 enemyThirdExpansion: null
                 );
             return completedMap;
         }
 
-        private static Dictionary<int, ResourceCluster> FindBaseLocations()
+        private static Dictionary<int, ResourceCluster> FindBaseLocations(out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef)
         {
+            enemyMainRef = null;
+            ourMainRef = null;
+
             const int clusteringDistance = 14;
             List<ResourceCluster> clusters = new List<ResourceCluster>();
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, alliance: Alliance.Neutral);
@@ -175,9 +178,43 @@ namespace BOSSE
                 }
             }
 
+            // Find important areas
+#warning TODO: Get natural etc (closest resource center?)
+            Point2D enemyLoc = GuessEnemyBaseLocation();
+            foreach (ResourceCluster clusterIter in clusters)
+            {
+                bool containsMain = clusterIter.GetBoundingBox().Contains(Globals.MainBaseLocation.X, Globals.MainBaseLocation.Y);
+                if (containsMain)
+                {
+                    ourMainRef = clusterIter;
+                }
 
+                bool containsEnemyMain = clusterIter.GetBoundingBox().Contains(enemyLoc.X, enemyLoc.Y);
+                if (containsEnemyMain)
+                {
+                    enemyMainRef = clusterIter;
+                }
+            }
+            if (ourMainRef == null)
+            {
+                Log.SanityCheckFailed("No resource cluster at our CC location");
+            }
+            if (enemyMainRef == null)
+            {
+                Log.SanityCheckFailed("Unable to find resource cluster for enemy main");
+            }
+            if (enemyMainRef == ourMainRef)
+            {
+                Log.SanityCheckFailed("Resource cluster contains both our and enemy mains");
+            }
 
-            return null;
+            // Done
+            Dictionary<int, ResourceCluster> resultDict = new Dictionary<int, ResourceCluster>();
+            foreach (ResourceCluster iter in clusters)
+            {
+                resultDict[iter.UniqueId] = iter;
+            }
+            return resultDict;
         }
     }
 }

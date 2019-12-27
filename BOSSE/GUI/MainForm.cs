@@ -39,16 +39,23 @@ namespace DebugGui
         /// </summary>
         private readonly List<BaseDebugMap> Maps = new List<BaseDebugMap>()
         {
+            new ResourceClusterDebugMap(),
+
+            // General
             new OverviewDebugMap(),
             new TerrainDebugMap(),
             new PlacementGridDebugMap(),
 
+            // Strategic
             new InfluenceDebugMap(),
             new VulnerabilityDebugMap(),
             new TensionDebugMap(),
 
+            // Map analysis data
             new GeneralChokepoints(),
             new MainBasesChokeScoreDebugMap(),
+
+            
 
         };
 

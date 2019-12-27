@@ -23,6 +23,7 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Drawing;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
@@ -36,16 +37,55 @@ namespace BOSSE
     [Serializable]
     public class ResourceCluster
     {
-        //public Point2D Location;
-
         public HashSet<Unit> MineralFields = new HashSet<Unit>();
         public HashSet<Unit> GasGeysers = new HashSet<Unit>();
+
+        /// <summary>
+        /// Calculates an area for this cluster
+        /// </summary>
+        public RectangleF GetBoundingBox()
+        {
+            HashSet<Unit> temp = new HashSet<Unit>();
+            temp.AddRange(MineralFields);
+            temp.AddRange(GasGeysers);
+            if (temp.Count == 0)
+                throw new BosseFatalException("Can't calculate bounding box without units at cluster");
+
+            float minX = float.MaxValue;
+            float minY = float.MaxValue;
+            float maxX = 0;
+            float maxY = 0;
+            foreach (Unit iter in temp)
+            {
+                float x = iter.Position.X;
+                float y = iter.Position.Y;
+
+                minX = Math.Min(minX, x);
+                minY = Math.Min(minY, y);
+                maxX = Math.Max(maxX, x);
+                maxY = Math.Max(maxY, y);
+            }
+
+            if (minX == float.MaxValue || minY == float.MaxValue || maxX == 0 || maxY == 0)
+            {
+                Log.SanityCheckFailed("Unexpected results in bounding box calculation");
+            }
+
+            float rectX = minX;
+            float rectY = minY;
+            float rectWidth = maxX - minX;
+            float rectHeight = maxY - minY;
+            return new RectangleF(rectX, rectY, rectWidth, rectHeight);
+        }
 
         /// <summary>
         /// Calculates the center point of the minerals in this cluster
         /// </summary>
         public Point2D GetMineralCenter()
         {
+            if (this.MineralFields.Count == 0)
+                throw new BosseFatalException("Can't calculate mineral center without units at cluster");
+
             float xTotal = 0;
             float yTotal = 0;
 
@@ -70,6 +110,6 @@ namespace BOSSE
         /// <summary>
         /// Returns a unique ID for this base location. Guaranteed to be unique for this map, even between runs (input order from sc2 is otherwise random)
         /// </summary>
-        //public int BaseId { get => SpookilySharp.SpookyHasher.SpookyHash32(this.Location.X + "__" + this.Location.Y); }
+        public int UniqueId { get => SpookilySharp.SpookyHasher.SpookyHash32(this.GetMineralCenter().X + "__" + this.GetMineralCenter().Y); }
     }
 }

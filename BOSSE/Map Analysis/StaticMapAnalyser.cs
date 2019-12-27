@@ -67,6 +67,8 @@ namespace BOSSE
         /// </summary>
         private static TileMap<byte> CalculateGeneralChokeScore()
         {
+            return null;
+
             Size2DI size = CurrentGameState.GameInformation.StartRaw.MapSize;
             TileMap<ulong> longMap = new TileMap<ulong>(size.X, size.Y);
 
