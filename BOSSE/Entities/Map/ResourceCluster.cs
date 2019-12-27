@@ -43,7 +43,7 @@ namespace BOSSE
         /// <summary>
         /// Calculates an area for this cluster
         /// </summary>
-        public RectangleF GetBoundingBox()
+        public Rectangle GetBoundingBox()
         {
             HashSet<Unit> temp = new HashSet<Unit>();
             temp.AddRange(MineralFields);
@@ -70,12 +70,12 @@ namespace BOSSE
             {
                 Log.SanityCheckFailed("Unexpected results in bounding box calculation");
             }
-
-            float rectX = minX;
-            float rectY = minY;
-            float rectWidth = maxX - minX;
-            float rectHeight = maxY - minY;
-            return new RectangleF(rectX, rectY, rectWidth, rectHeight);
+            
+            int rectX = (int)Math.Floor(minX);
+            int rectY = (int)Math.Floor(minY);
+            int rectWidth = (int)Math.Ceiling(maxX - minX);
+            int rectHeight = (int)Math.Ceiling(maxY - minY);
+            return new Rectangle(rectX, rectY, rectWidth, rectHeight);
         }
 
         /// <summary>

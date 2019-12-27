@@ -92,7 +92,7 @@ namespace DebugGui
                 RectangleF rect = clusterIter.GetBoundingBox();
 
                 float x = rect.X * RenderScale;
-                float y = CompensateY(rect.Y) * RenderScale;
+                float y = CompensateY(rect.Y + rect.Height) * RenderScale;
                 float w = rect.Width * RenderScale;
                 float h = rect.Height * RenderScale;
 

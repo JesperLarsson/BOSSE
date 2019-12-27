@@ -33,9 +33,9 @@ namespace DebugGui
     /// <summary>
     /// Chokepoint score, map wide
     /// </summary>
-    public class GeneralChokepoints : BaseDebugMap
+    public class GeneralChokepointDebugMap : BaseDebugMap
     {
-        public GeneralChokepoints()
+        public GeneralChokepointDebugMap()
         {
             this.MapName = "Chokepoints - General";
         }

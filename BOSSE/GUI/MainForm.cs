@@ -52,7 +52,7 @@ namespace DebugGui
             new TensionDebugMap(),
 
             // Map analysis data
-            new GeneralChokepoints(),
+            new GeneralChokepointDebugMap(),
             new MainBasesChokeScoreDebugMap(),
 
             

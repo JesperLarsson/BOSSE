@@ -94,7 +94,7 @@ namespace BOSSE
         {
             Log.Start();
         }
-        
+
         /// <summary>
         /// Initializes bot layer - Game loop has read static data at this point, but has not gathered any observations
         /// </summary>

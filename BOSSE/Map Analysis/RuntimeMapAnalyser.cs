@@ -183,13 +183,13 @@ namespace BOSSE
             Point2D enemyLoc = GuessEnemyBaseLocation();
             foreach (ResourceCluster clusterIter in clusters)
             {
-                bool containsMain = clusterIter.GetBoundingBox().Contains(Globals.MainBaseLocation.X, Globals.MainBaseLocation.Y);
+                bool containsMain = clusterIter.GetBoundingBox().Contains((int)Globals.MainBaseLocation.X, (int)Globals.MainBaseLocation.Y);
                 if (containsMain)
                 {
                     ourMainRef = clusterIter;
                 }
 
-                bool containsEnemyMain = clusterIter.GetBoundingBox().Contains(enemyLoc.X, enemyLoc.Y);
+                bool containsEnemyMain = clusterIter.GetBoundingBox().Contains((int)enemyLoc.X, (int)enemyLoc.Y);
                 if (containsEnemyMain)
                 {
                     enemyMainRef = clusterIter;
