@@ -38,7 +38,7 @@ namespace BOSSE
         /// <summary>
         /// All resource clusters on the map. Id => instance mapping
         /// </summary>
-        public Dictionary<int, ResourceCluster> ResourceClusters = new Dictionary<int, ResourceCluster>();
+        public Dictionary<long, ResourceCluster> ResourceClusters = new Dictionary<long, ResourceCluster>();
 
         public ResourceCluster MainBase;
         public ResourceCluster NaturalExpansion;
@@ -49,7 +49,7 @@ namespace BOSSE
         public ResourceCluster EnemyThirdExpansion;
 
         public AnalysedRuntimeMap(
-            Dictionary<int, ResourceCluster> allClusters,
+            Dictionary<long, ResourceCluster> allClusters,
             ResourceCluster mainBase, ResourceCluster naturalExpansion, ResourceCluster thirdExpansion,
             ResourceCluster enemyMainBase, ResourceCluster enemyNaturalExpansion, ResourceCluster enemyThirdExpansion)
         {

@@ -39,8 +39,6 @@ namespace DebugGui
         /// </summary>
         private readonly List<BaseDebugMap> Maps = new List<BaseDebugMap>()
         {
-            new ResourceClusterDebugMap(),
-
             // General
             new OverviewDebugMap(),
             new TerrainDebugMap(),
@@ -52,11 +50,10 @@ namespace DebugGui
             new TensionDebugMap(),
 
             // Map analysis data
-            new GeneralChokepointDebugMap(),
-            new MainBasesChokeScoreDebugMap(),
+            //new GeneralChokepointDebugMap(),
+            new ResourceClusterDebugMap(),
 
-            
-
+            // Chokepoints are appended during runtime
         };
 
         public MainForm()
@@ -81,7 +78,13 @@ namespace DebugGui
             while (!BOSSE.HasCompletedFirstFrameInit)
                 System.Threading.Thread.Sleep(10); // Wait for bot init
 
+            // reduce flickering
             this.DoubleBuffered = true;
+
+            // Add chopkepoint maps
+            this.Maps.Add(new ChokepointDebugMap("Main bases", BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.MainBase, BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.EnemyMainBase));
+            this.Maps.Add(new ChokepointDebugMap("Natural to enemy", BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion, BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.EnemyMainBase));
+            this.Maps.Add(new ChokepointDebugMap("Third to enemy", BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.ThirdExpansion, BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.EnemyMainBase));
 
             // Add maps to dropdown and start their respective threads
             foreach (BaseDebugMap iter in Maps)
@@ -91,7 +94,7 @@ namespace DebugGui
             }
             DropdownMapChoice.SelectedIndex = 0;
 
-            // Update maps periodically in GUI thread
+            // Update maps periodically
             Timer timer = new Timer();
             timer.Interval = MainformRefreshIntervalMs;
             timer.Tick += new EventHandler(UpdateMainForm);

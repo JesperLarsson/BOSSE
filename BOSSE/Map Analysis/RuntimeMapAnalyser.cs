@@ -43,7 +43,7 @@ namespace BOSSE
                 out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
                 );
 
-            // Calculate CC position for all clusters so that it's precached for later use
+            // Calculate CC position for all clusters so that it's precached for later use (it also requests info from sc2, so we want to frontload the work if possible)
             foreach (var iter in resourceClusters.Values)
             {
                 iter.GetCommandCenterPosition();
@@ -61,7 +61,7 @@ namespace BOSSE
             return completedMap;
         }
 
-        private static Dictionary<int, ResourceCluster> FindBaseLocations(
+        private static Dictionary<long, ResourceCluster> FindBaseLocations(
             out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
             out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef,
             out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
@@ -326,10 +326,10 @@ namespace BOSSE
             }
 
             // OK - Done
-            Dictionary<int, ResourceCluster> resultDict = new Dictionary<int, ResourceCluster>();
+            Dictionary<long, ResourceCluster> resultDict = new Dictionary<long, ResourceCluster>();
             foreach (ResourceCluster iter in clusters)
             {
-                int id = iter.UniqueId;
+                long id = iter.UniqueId;
                 if (resultDict.ContainsKey(id))
                     Log.SanityCheckFailed("Duplicate resource clusters found " + iter + " and " + resultDict[id]);
 

@@ -32,18 +32,41 @@ namespace BOSSE
     using static GeneralGameUtility;
 
     /// <summary>
+    /// Contains a set of chokepoints between two points on the map. Part of the static map analysis
+    /// </summary>
+    [Serializable]
+    public class ChokepointCollectionBetweenPoints
+    {
+        public long FromResourceClusterId;
+        public long ToResourceClusterId;
+        public TileMap<byte> ChokeScore;
+
+        public ChokepointCollectionBetweenPoints()
+        {
+
+        }
+
+        public ChokepointCollectionBetweenPoints(long fromResourceClusterId, long toResourceClusterId, TileMap<byte> chokeScore)
+        {
+            FromResourceClusterId = fromResourceClusterId;
+            ToResourceClusterId = toResourceClusterId;
+            ChokeScore = chokeScore;
+        }
+    }
+
+    /// <summary>
     /// Contains various static metrics about the map that doesn't change between runs (chokepoints etc)
     /// </summary>
     [Serializable]
     public class AnalysedStaticMap
     {
-        public const int LatestFileFormatVersion = 1;
+        public const int LatestFileFormatVersion = 2;
         public int FileFormatVersion = LatestFileFormatVersion;
 
         /// <summary>
-        /// Higher values indicate chokepoints between ours and the enemy main base
+        /// Contains chokepoints between points. Outer key = from resource cluster id, inner key = to resource cluster id
         /// </summary>
-        public TileMap<byte> MainBaseChokeScore = null;
+        public Dictionary<long, Dictionary<long, ChokepointCollectionBetweenPoints>> ChokePointCollections = new Dictionary<long, Dictionary<long, ChokepointCollectionBetweenPoints>>();
 
         /// <summary>
         /// General "chokepoint" score for all tiles, 0 = not pathable, higher values means "more chokepointy"

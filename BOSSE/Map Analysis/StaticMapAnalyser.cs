@@ -55,8 +55,35 @@ namespace BOSSE
             Point2D ourBase = Globals.MainBaseLocation;
             Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
 
-            mapObject.MainBaseChokeScore = CalculateChokeScoreBetweenPoints(ourBase, enemyBase);
             mapObject.GeneralChokeScore = CalculateGeneralChokeScore();
+            mapObject.ChokePointCollections = CalculateChokepointCollection();
+        }
+
+        /// <summary>
+        /// Calculates chokepoints between all resource clusters on the map
+        /// </summary>
+        private static Dictionary<long, Dictionary<long, ChokepointCollectionBetweenPoints>> CalculateChokepointCollection()
+        {
+            var clusters = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.ResourceClusters.Values;
+            var resultDict = new Dictionary<long, Dictionary<long, ChokepointCollectionBetweenPoints>>();
+
+            foreach (ResourceCluster fromIter in clusters)
+            {
+                var innerDict = new Dictionary<long, ChokepointCollectionBetweenPoints>();
+                foreach (ResourceCluster toIter in clusters)
+                {
+                    if (toIter == fromIter)
+                        continue;
+
+                    TileMap<byte> chokeScore = CalculateChokeScoreBetweenPoints(fromIter.GetMineralCenter(), toIter.GetMineralCenter());
+                    ChokepointCollectionBetweenPoints chokeCollection = new ChokepointCollectionBetweenPoints(fromIter.UniqueId, toIter.UniqueId, chokeScore);
+                    innerDict[toIter.UniqueId] = chokeCollection;
+                }
+
+                resultDict[fromIter.UniqueId] = innerDict;
+            }
+
+            return resultDict;
         }
 
         /// <summary>

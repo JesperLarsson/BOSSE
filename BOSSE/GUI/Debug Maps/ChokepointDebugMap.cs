@@ -31,13 +31,18 @@ namespace DebugGui
     using SC2APIProtocol;
 
     /// <summary>
-    /// Chokepoint score
+    /// Chokepoint score between two points
     /// </summary>
-    public class MainBasesChokeScoreDebugMap : BaseDebugMap
+    public class ChokepointDebugMap : BaseDebugMap
     {
-        public MainBasesChokeScoreDebugMap()
+        private ResourceCluster FromCluster;
+        private ResourceCluster ToCluster;
+
+        public ChokepointDebugMap(string name, ResourceCluster fromCluster, ResourceCluster toCluster)
         {
-            this.MapName = "Chokepoints - Main bases";
+            this.MapName = "Chokepoints - " + name;
+            this.FromCluster = fromCluster;
+            this.ToCluster = toCluster;
         }
 
         protected override Image RenderMap()
@@ -50,7 +55,7 @@ namespace DebugGui
             Graphics surface = Graphics.FromImage(bmp);
             surface.Clear(System.Drawing.Color.Black);
 
-            TileMap<byte> map = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.MainBaseChokeScore;
+            TileMap<byte> map = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.ChokePointCollections[this.FromCluster.UniqueId][this.ToCluster.UniqueId].ChokeScore;
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)

@@ -98,7 +98,7 @@
     <Compile Include="GUI\Debug Maps\BaseDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\InfluenceDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\GeneralChokepointDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\MainBasesChokeScoreDebugMap.cs" />
+    <Compile Include="GUI\Debug Maps\ChokepointDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\ResourceClusterDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\OverviewDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\PlacementGridDebugMap.cs" />
