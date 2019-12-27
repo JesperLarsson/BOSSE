@@ -36,9 +36,13 @@ namespace DebugGui
     public class ResourceClusterDebugMap : BaseDebugMap
     {
         static readonly SolidBrush SelfMainColor = new SolidBrush(System.Drawing.Color.SkyBlue);
-        static readonly SolidBrush SelfNaturalColor = new SolidBrush(System.Drawing.Color.DarkBlue);
+        static readonly SolidBrush SelfNaturalColor = new SolidBrush(System.Drawing.Color.Blue);
+        static readonly SolidBrush SelfThirdColor = new SolidBrush(System.Drawing.Color.DarkBlue);
+
         static readonly SolidBrush EnemyMainColor = new SolidBrush(System.Drawing.Color.Red);
         static readonly SolidBrush EnemyNaturalColor = new SolidBrush(System.Drawing.Color.DarkRed);
+        static readonly SolidBrush EnemyThirdColor = new SolidBrush(System.Drawing.Color.MediumVioletRed);
+
         static readonly SolidBrush NeutralAreaColor = new SolidBrush(System.Drawing.Color.Green);
 
         SolidBrush noPathColor = new SolidBrush(System.Drawing.Color.Black);
@@ -116,6 +120,14 @@ namespace DebugGui
                 else if (clusterIter == runtimeMap.EnemyNaturalExpansion)
                 {
                     brush = EnemyNaturalColor;
+                }
+                else if (clusterIter == runtimeMap.EnemyThirdExpansion)
+                {
+                    brush = EnemyThirdColor;
+                }
+                else if (clusterIter == runtimeMap.ThirdExpansion)
+                {
+                    brush = SelfThirdColor;
                 }
 
                 surface.FillRectangle(brush, x, y, w, h);

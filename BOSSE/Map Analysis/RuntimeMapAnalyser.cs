@@ -39,30 +39,34 @@ namespace BOSSE
         {
             var resourceClusters = FindBaseLocations(
                 out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
-                out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef
+                out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef,
+                out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
                 );
 
             AnalysedRuntimeMap completedMap = new AnalysedRuntimeMap(
                 allClusters: resourceClusters,
                 mainBase: ourMainRef,
                 naturalExpansion: ourNaturalRef,
-                thirdExpansion: null,
+                thirdExpansion: enemyThirdRef,
                 enemyMainBase: enemyMainRef,
                 enemyNaturalExpansion: enemyNaturalRef,
-                enemyThirdExpansion: null
+                enemyThirdExpansion: ourThirdRef
                 );
             return completedMap;
         }
 
         private static Dictionary<int, ResourceCluster> FindBaseLocations(
             out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
-            out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef
+            out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef,
+            out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
             )
         {
             enemyMainRef = null;
             ourMainRef = null;
             enemyNaturalRef = null;
             ourNaturalRef = null;
+            enemyThirdRef = null;
+            ourThirdRef = null;
 
             const int clusteringDistance = 14;
             List<ResourceCluster> clusters = new List<ResourceCluster>();
@@ -259,7 +263,54 @@ namespace BOSSE
                 Log.SanityCheckFailed("Unable to find enemy natural expansion");
             }
 
-            // Done
+            // 6. Find third expansions
+            float thirdSelfDistance = float.MaxValue;
+            foreach (ResourceCluster clusterIter in clusters)
+            {
+                if (clusterIter == ourMainRef)
+                    continue;
+                if (clusterIter == ourNaturalRef)
+                    continue;
+
+                float? distance = clusterIter.GetMineralCenter().GroundDistanceAbsolute(workerRef.Position);
+                if (distance == null)
+                    continue;
+
+                if (distance < thirdSelfDistance)
+                {
+                    thirdSelfDistance = distance.Value;
+                    ourThirdRef = clusterIter;
+                }
+            }
+            if (ourThirdRef == null)
+            {
+                Log.SanityCheckFailed("Unable to find our third expansion");
+            }
+
+            float thirdEnemyDistance = float.MaxValue;
+            foreach (ResourceCluster clusterIter in clusters)
+            {
+                if (clusterIter == enemyMainRef)
+                    continue;
+                if (clusterIter == enemyNaturalRef)
+                    continue;
+
+                float? distance = clusterIter.GetMineralCenter().GroundDistanceAbsolute(enemyMainRef.GetMineralCenter());
+                if (distance == null)
+                    continue;
+
+                if (distance < thirdEnemyDistance)
+                {
+                    thirdEnemyDistance = distance.Value;
+                    enemyThirdRef = clusterIter;
+                }
+            }
+            if (enemyThirdRef == null)
+            {
+                Log.SanityCheckFailed("Unable to find enemy third expansion");
+            }
+
+            // OK - Done
             Dictionary<int, ResourceCluster> resultDict = new Dictionary<int, ResourceCluster>();
             foreach (ResourceCluster iter in clusters)
             {
