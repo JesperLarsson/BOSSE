@@ -35,8 +35,11 @@ namespace DebugGui
     /// </summary>
     public class ResourceClusterDebugMap : BaseDebugMap
     {
-        static readonly SolidBrush BackgroundColor = new SolidBrush(System.Drawing.Color.Black);
-        static readonly SolidBrush AreaColor = new SolidBrush(System.Drawing.Color.Green);
+        static readonly SolidBrush SelfMainColor = new SolidBrush(System.Drawing.Color.SkyBlue);
+        static readonly SolidBrush SelfNaturalColor = new SolidBrush(System.Drawing.Color.DarkBlue);
+        static readonly SolidBrush EnemyMainColor = new SolidBrush(System.Drawing.Color.Red);
+        static readonly SolidBrush EnemyNaturalColor = new SolidBrush(System.Drawing.Color.DarkRed);
+        static readonly SolidBrush NeutralAreaColor = new SolidBrush(System.Drawing.Color.Green);
 
         SolidBrush noPathColor = new SolidBrush(System.Drawing.Color.Black);
         SolidBrush pathColor = new SolidBrush(System.Drawing.Color.DarkGray);
@@ -87,7 +90,8 @@ namespace DebugGui
             if (BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef == null)
                 return bmp;
 
-            foreach (ResourceCluster clusterIter in BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.ResourceClusters.Values)
+            AnalysedRuntimeMap runtimeMap = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef;
+            foreach (ResourceCluster clusterIter in runtimeMap.ResourceClusters.Values)
             {
                 RectangleF rect = clusterIter.GetBoundingBox();
 
@@ -96,7 +100,25 @@ namespace DebugGui
                 float w = rect.Width * RenderScale;
                 float h = rect.Height * RenderScale;
 
-                surface.FillRectangle(AreaColor, x, y, w, h);
+                var brush = NeutralAreaColor;
+                if (clusterIter == runtimeMap.MainBase)
+                {
+                    brush = SelfMainColor;
+                }
+                else if (clusterIter == runtimeMap.NaturalExpansion)
+                {
+                    brush = SelfNaturalColor;
+                }
+                else if (clusterIter == runtimeMap.EnemyMainBase)
+                {
+                    brush = EnemyMainColor;
+                }
+                else if (clusterIter == runtimeMap.EnemyNaturalExpansion)
+                {
+                    brush = EnemyNaturalColor;
+                }
+
+                surface.FillRectangle(brush, x, y, w, h);
             }
 
             return bmp;

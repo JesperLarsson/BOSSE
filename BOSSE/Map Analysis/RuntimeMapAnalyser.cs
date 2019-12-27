@@ -37,24 +37,32 @@ namespace BOSSE
     {
         public static AnalysedRuntimeMap AnalyseCurrentMap()
         {
-            var resourceClusters = FindBaseLocations(out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef);
+            var resourceClusters = FindBaseLocations(
+                out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
+                out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef
+                );
 
             AnalysedRuntimeMap completedMap = new AnalysedRuntimeMap(
                 allClusters: resourceClusters,
                 mainBase: ourMainRef,
-                naturalExpansion: null,
+                naturalExpansion: ourNaturalRef,
                 thirdExpansion: null,
                 enemyMainBase: enemyMainRef,
-                enemyNaturalExpansion: null,
+                enemyNaturalExpansion: enemyNaturalRef,
                 enemyThirdExpansion: null
                 );
             return completedMap;
         }
 
-        private static Dictionary<int, ResourceCluster> FindBaseLocations(out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef)
+        private static Dictionary<int, ResourceCluster> FindBaseLocations(
+            out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
+            out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef
+            )
         {
             enemyMainRef = null;
             ourMainRef = null;
+            enemyNaturalRef = null;
+            ourNaturalRef = null;
 
             const int clusteringDistance = 14;
             List<ResourceCluster> clusters = new List<ResourceCluster>();
@@ -178,8 +186,7 @@ namespace BOSSE
                 }
             }
 
-            // Find important areas
-#warning TODO: Get natural etc (closest resource center?)
+            // 4. Find main bases
             Point2D enemyLoc = GuessEnemyBaseLocation();
             foreach (ResourceCluster clusterIter in clusters)
             {
@@ -208,11 +215,59 @@ namespace BOSSE
                 Log.SanityCheckFailed("Resource cluster contains both our and enemy mains");
             }
 
+            // 5. Find natural expansions
+            float closestSelf = float.MaxValue;
+            Unit workerRef = GetUnits(UnitConstants.Workers, onlyCompleted: true)[0]; // we use a worker since our CC location is not pathable
+            foreach (ResourceCluster clusterIter in clusters)
+            {
+                if (clusterIter == ourMainRef)
+                    continue;
+
+                float? distance = clusterIter.GetMineralCenter().GroundDistanceAbsolute(workerRef.Position);
+                if (distance == null)
+                    continue;
+
+                if (distance < closestSelf)
+                {
+                    closestSelf = distance.Value;
+                    ourNaturalRef = clusterIter;
+                }
+            }
+            if (ourNaturalRef == null)
+            {
+                Log.SanityCheckFailed("Unable to find our natural expansion");
+            }
+
+            float closestEnemy = float.MaxValue;
+            foreach (ResourceCluster clusterIter in clusters)
+            {
+                if (clusterIter == enemyMainRef)
+                    continue;
+
+                float? distance = clusterIter.GetMineralCenter().GroundDistanceAbsolute(enemyMainRef.GetMineralCenter());
+                if (distance == null)
+                    continue;
+
+                if (distance < closestEnemy)
+                {
+                    closestEnemy = distance.Value;
+                    enemyNaturalRef = clusterIter;
+                }
+            }
+            if (enemyNaturalRef == null)
+            {
+                Log.SanityCheckFailed("Unable to find enemy natural expansion");
+            }
+
             // Done
             Dictionary<int, ResourceCluster> resultDict = new Dictionary<int, ResourceCluster>();
             foreach (ResourceCluster iter in clusters)
             {
-                resultDict[iter.UniqueId] = iter;
+                int id = iter.UniqueId;
+                if (resultDict.ContainsKey(id))
+                    Log.SanityCheckFailed("Duplicate resource clusters found " + iter + " and " + resultDict[id]);
+
+                resultDict[id] = iter;
             }
             return resultDict;
         }
