@@ -77,15 +77,24 @@ namespace BOSSE
             {
                 for (int fromY = 0; fromY < size.Y; fromY++)
                 {
+                    // Optimization - Skip unpathable tiles
+                    if (CurrentGameState.GameInformation.StartRaw.PathingGrid.GetBit(fromX, fromY) == 0)
+                        continue;
+
                     for (int innerX = 0; innerX < size.X; innerX++)
                     {
                         for (int innerY = 0; innerY < size.Y; innerY++)
                         {
+                            // Optimization - Skip unpathable tiles
+                            if (CurrentGameState.GameInformation.StartRaw.PathingGrid.GetBit(innerX, innerY) == 0)
+                                continue;
+
                             Point2D innerPos = new Point2D(innerX, innerY);
                             Point2D fromPos = new Point2D(fromX, fromY);
                             if (innerPos == fromPos)
                                 continue;
 
+                            // Slow ground pathing
                             LinkedList<BossePathNode> path = BOSSE.PathFinderRef.FindPath(fromPos, innerPos);
                             if (path == null)
                                 continue;

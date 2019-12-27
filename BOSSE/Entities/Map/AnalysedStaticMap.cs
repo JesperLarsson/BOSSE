@@ -37,7 +37,7 @@ namespace BOSSE
     [Serializable]
     public class AnalysedStaticMap
     {
-        public const int LatestFileFormatVersion = 2;
+        public const int LatestFileFormatVersion = 1;
         public int FileFormatVersion = LatestFileFormatVersion;
 
         /// <summary>
