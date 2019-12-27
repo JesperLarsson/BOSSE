@@ -38,6 +38,8 @@ namespace DebugGui
         private ResourceCluster FromCluster;
         private ResourceCluster ToCluster;
 
+        static readonly SolidBrush ChokeAreaColor = new SolidBrush(System.Drawing.Color.Green);
+
         public ChokepointDebugMap(string name, ResourceCluster fromCluster, ResourceCluster toCluster)
         {
             this.MapName = "Chokepoints - " + name;
@@ -54,28 +56,32 @@ namespace DebugGui
             Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
             Graphics surface = Graphics.FromImage(bmp);
             surface.Clear(System.Drawing.Color.Black);
-
-            TileMap<byte> map = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.ChokePointCollections[this.FromCluster.UniqueId][this.ToCluster.UniqueId].ChokeScore;
+            var instance = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.ChokePointCollections[this.FromCluster.ClusterId][this.ToCluster.ClusterId];
+            
+            TileMap<byte> map = instance.ChokeScore;
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)
                 {
                     byte value = map.GetTile(x, y);
-                    int sqValue = value * value;
-                    if (sqValue > 255)
-                    {
-                        value = 255;
-                    }
-                    else
-                    {
-                        value = (byte)sqValue;
-                    }
 
                     var pixelBrush = new SolidBrush(System.Drawing.Color.FromArgb(255, value, 0, 0));
                     int yPos = map.Height - y;
 
                     surface.FillRectangle(pixelBrush, (RenderScale * x), (RenderScale * yPos), RenderScale, RenderScale);
                 }
+            }
+
+            foreach (var iter in instance.ChokePointGroups)
+            {
+                RectangleF rect = iter.GetBoundingBox();
+
+                float x = rect.X * RenderScale;
+                float y = CompensateY(rect.Y + rect.Height) * RenderScale;
+                float w = rect.Width * RenderScale;
+                float h = rect.Height * RenderScale;
+
+                surface.FillRectangle(ChokeAreaColor, x, y, w, h);
             }
 
             return bmp;

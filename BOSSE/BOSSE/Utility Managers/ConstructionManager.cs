@@ -17,38 +17,21 @@
 */
 namespace BOSSE
 {
-    using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Numerics;
-    using System.Security.Cryptography;
-    using System.Threading;
-    using System.Runtime.CompilerServices;
-    using System.Diagnostics;
-    using System.Runtime.Serialization.Formatters.Binary;
-    using System.IO;
-    using System.Runtime.Serialization;
-
-    using SC2APIProtocol;
-    using Action = SC2APIProtocol.Action;
-    using static CurrentGameState;
-    using static UnitConstants;
 
     /// <summary>
-    /// Signals a general bot exception where the game can continue
+    /// Responsible for building construction and placement
     /// </summary>
-    public class BosseRecoverableException : Exception
+    public class ConstructionManager : Manager
     {
-        public BosseRecoverableException()
+        public override void Initialize()
         {
-            if (Debugger.IsAttached)
-                Debugger.Break();
+            
         }
 
-        public BosseRecoverableException(string msg) : base(msg)
+        public override void OnFrameTick()
         {
-            if (Debugger.IsAttached)
-                Debugger.Break();
+
         }
     }
 }

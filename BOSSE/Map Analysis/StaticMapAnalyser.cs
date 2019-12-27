@@ -52,9 +52,6 @@ namespace BOSSE
 
         private static void PopulateMapData(AnalysedStaticMap mapObject)
         {
-            Point2D ourBase = Globals.MainBaseLocation;
-            Point2D enemyBase = GeneralGameUtility.GuessEnemyBaseLocation();
-
             mapObject.GeneralChokeScore = CalculateGeneralChokeScore();
             mapObject.ChokePointCollections = CalculateChokepointCollection();
         }
@@ -76,11 +73,11 @@ namespace BOSSE
                         continue;
 
                     TileMap<byte> chokeScore = CalculateChokeScoreBetweenPoints(fromIter.GetMineralCenter(), toIter.GetMineralCenter());
-                    ChokepointCollectionBetweenPoints chokeCollection = new ChokepointCollectionBetweenPoints(fromIter.UniqueId, toIter.UniqueId, chokeScore);
-                    innerDict[toIter.UniqueId] = chokeCollection;
+                    ChokepointCollectionBetweenPoints chokeCollection = new ChokepointCollectionBetweenPoints(fromIter.ClusterId, toIter.ClusterId, chokeScore);
+                    innerDict[toIter.ClusterId] = chokeCollection;
                 }
 
-                resultDict[fromIter.UniqueId] = innerDict;
+                resultDict[fromIter.ClusterId] = innerDict;
             }
 
             return resultDict;
@@ -241,6 +238,40 @@ namespace BOSSE
                             }
                         }
                     }
+                }
+            }
+
+            // Compensate values to make chokepoints brighter
+            const int preSubValue = 5;
+            for (int x = 0; x < returnObj.Width; x++)
+            {
+                for (int y = 0; y < returnObj.Height; y++)
+                {
+                    byte value = returnObj.GetTile(x, y);
+
+                    if (value < preSubValue)
+                    {
+                        value = byte.MinValue;
+                    }
+                    else
+                    {
+                        value = (byte)(value - preSubValue);
+                    }
+
+                    int expValue = value * value;
+                    if (expValue > byte.MaxValue)
+                    {
+                        value = byte.MaxValue;
+                    }
+                    else
+                    {
+                        value = (byte)expValue;
+                    }
+
+                    if (value > 100)
+                        Log.Debug("Choke val = " + value);
+
+                    returnObj.SetTile(x, y, value);
                 }
             }
 

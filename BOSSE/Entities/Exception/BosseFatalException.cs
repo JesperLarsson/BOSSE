@@ -41,12 +41,14 @@ namespace BOSSE
     {
         public BosseFatalException()
         {
-
+            if (Debugger.IsAttached)
+                Debugger.Break();
         }
 
         public BosseFatalException(string msg) : base (msg)
         {
-
+            if (Debugger.IsAttached)
+                Debugger.Break();
         }
     }
 }

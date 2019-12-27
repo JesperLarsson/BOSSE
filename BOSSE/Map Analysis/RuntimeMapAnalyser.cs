@@ -35,9 +35,9 @@ namespace BOSSE
     /// </summary>
     public static class RuntimeMapAnalyser
     {
-        public static AnalysedRuntimeMap AnalyseCurrentMap()
+        public static AnalysedRuntimeMap AnalyseCurrentMapInitial()
         {
-            var resourceClusters = FindBaseLocations(
+            var resourceClusters = FindResourceClusters(
                 out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
                 out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef,
                 out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
@@ -61,11 +61,73 @@ namespace BOSSE
             return completedMap;
         }
 
-        private static Dictionary<long, ResourceCluster> FindBaseLocations(
-            out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
-            out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef,
-            out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
-            )
+        public static void AnalyseCurrentMapPostStatic()
+        {
+            foreach (KeyValuePair<long, Dictionary<long, ChokepointCollectionBetweenPoints>> fromIter in BOSSE.MapAnalysisRef.AnalysedStaticMapRef.ChokePointCollections)
+            {
+                foreach (KeyValuePair<long, ChokepointCollectionBetweenPoints> toIter in fromIter.Value)
+                {
+                    ChokepointCollectionBetweenPoints chokepointCollection = toIter.Value;
+                    CalculateChokepointGroups(chokepointCollection);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Groups chokepoints on all paths
+        /// </summary>
+        private static void CalculateChokepointGroups(ChokepointCollectionBetweenPoints chokepointCollection)
+        {
+            const byte chokeMinValueThreshold = 240;
+            const int chokeDistanceThreshold = 15;
+            TileMap<byte> map = chokepointCollection.ChokeScore;
+
+            // 1. Create initial choke groups
+            List<ChokePointGroup> chokeGroups = new List<ChokePointGroup>();
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int y = 0; y < map.Height; y++)
+                {
+                    Point2D currentPos = new Point2D(x, y);
+                    byte value = map.GetTile(x, y);
+                    if (value < chokeMinValueThreshold)
+                        continue;
+
+                    // Check if tile belongs to an existing chokepoint
+                    bool belongsInExisting = false;
+                    foreach (ChokePointGroup chokeIter in chokeGroups)
+                    {
+                        Point2D centerPos = chokeIter.GetCenterOfChoke();
+                        if (centerPos.IsWithinRange(currentPos, chokeDistanceThreshold, true))
+                        {
+                            belongsInExisting = true;
+                            chokeIter.ChokeMap.Add(currentPos);
+                            break;
+                        }
+                    }
+
+                    // Create new choke group
+                    if (!belongsInExisting)
+                    {
+                        ChokePointGroup groupObj = new ChokePointGroup();
+                        groupObj.ChokeMap.Add(currentPos);
+                        chokeGroups.Add(groupObj);
+                    }
+                }
+            }
+
+#warning TODO: Post-process and join groups if necessary, same as resource clustering
+            chokepointCollection.ChokePointGroups = chokeGroups;
+        }
+
+        /// <summary>
+        /// Clusters resources into groups (ie possible base locations). Returns ClusterID=>Instance mapping
+        /// </summary>
+        private static Dictionary<long, ResourceCluster> FindResourceClusters(
+        out ResourceCluster enemyMainRef, out ResourceCluster ourMainRef,
+        out ResourceCluster enemyNaturalRef, out ResourceCluster ourNaturalRef,
+        out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
+        )
         {
             enemyMainRef = null;
             ourMainRef = null;
@@ -329,7 +391,7 @@ namespace BOSSE
             Dictionary<long, ResourceCluster> resultDict = new Dictionary<long, ResourceCluster>();
             foreach (ResourceCluster iter in clusters)
             {
-                long id = iter.UniqueId;
+                long id = iter.ClusterId;
                 if (resultDict.ContainsKey(id))
                     Log.SanityCheckFailed("Duplicate resource clusters found " + iter + " and " + resultDict[id]);
 

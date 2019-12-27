@@ -165,6 +165,6 @@ namespace BOSSE
         /// <summary>
         /// Returns a unique ID for this base location. Guaranteed to be unique for this map even between runs (input order from sc2 is otherwise random)
         /// </summary>
-        public long UniqueId { get => SpookilySharp.SpookyHasher.SpookyHash64(this.GetMineralCenter().X + "__" + this.GetMineralCenter().Y); }
+        public long ClusterId { get => SpookilySharp.SpookyHasher.SpookyHash64(this.GetMineralCenter().X + "__" + this.GetMineralCenter().Y); }
     }
 }

@@ -47,19 +47,22 @@ namespace BOSSE
         {
             // Perform runtime analysis on each startup
             Log.Info("Performing runtime map analysis");
-            this.AnalysedRuntimeMapRef = RuntimeMapAnalyser.AnalyseCurrentMap();
+            this.AnalysedRuntimeMapRef = RuntimeMapAnalyser.AnalyseCurrentMapInitial();
 
             // Load static analysis if available
             if (!LoadStaticAnalysisFromFile())
             {
                 CreateMapFolder();
 
-                Log.Info("Generating new map analysis (this will take multiple hours)...");
+                Log.Info("Generating new map analysis (this will take a while)...");
                 this.AnalysedStaticMapRef = StaticMapAnalyser.GenerateNewAnalysis();
 
                 Log.Info("Map analysis generated, saving to file");
                 SaveStaticAnalysisToFile();
             }
+
+            // Hack - Some parts of the runtime analysis needs the static data (but static data needs the initial runtime analysis)
+            RuntimeMapAnalyser.AnalyseCurrentMapPostStatic();
         }
 
         private void SaveStaticAnalysisToFile()

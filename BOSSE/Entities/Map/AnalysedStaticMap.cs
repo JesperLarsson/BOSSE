@@ -32,35 +32,12 @@ namespace BOSSE
     using static GeneralGameUtility;
 
     /// <summary>
-    /// Contains a set of chokepoints between two points on the map. Part of the static map analysis
-    /// </summary>
-    [Serializable]
-    public class ChokepointCollectionBetweenPoints
-    {
-        public long FromResourceClusterId;
-        public long ToResourceClusterId;
-        public TileMap<byte> ChokeScore;
-
-        public ChokepointCollectionBetweenPoints()
-        {
-
-        }
-
-        public ChokepointCollectionBetweenPoints(long fromResourceClusterId, long toResourceClusterId, TileMap<byte> chokeScore)
-        {
-            FromResourceClusterId = fromResourceClusterId;
-            ToResourceClusterId = toResourceClusterId;
-            ChokeScore = chokeScore;
-        }
-    }
-
-    /// <summary>
     /// Contains various static metrics about the map that doesn't change between runs (chokepoints etc)
     /// </summary>
     [Serializable]
     public class AnalysedStaticMap
     {
-        public const int LatestFileFormatVersion = 2;
+        public const int LatestFileFormatVersion = 1;
         public int FileFormatVersion = LatestFileFormatVersion;
 
         /// <summary>

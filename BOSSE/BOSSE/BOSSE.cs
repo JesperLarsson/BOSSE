@@ -48,31 +48,33 @@ namespace BOSSE
         public static readonly StrategicGoalManager StrategicGoalRef = new StrategicGoalManager();
         public static readonly StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
 
-        // Tactical managers
+        // Military / tactical managers
         public static readonly TacticalGoalManager TacticalGoalRef = new TacticalGoalManager();
         public static readonly SquadManager SquadManagerRef = new SquadManager();
 
         // Utility managers
         public static readonly WorkerManager WorkerManagerRef = new WorkerManager();
         public static readonly OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
+        public static readonly ConstructionManager ConstructionManagerRef = new ConstructionManager();
         public static readonly RampManager RampManagerRef = new RampManager();
 
-        // List of all active managers. NOTE: Order matters for which gets to update first
+        // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
         {
             SensorManagerRef, // should be first to generate events for other managers
 
             StrategicGoalRef,
-            DiscrepenceyDetectorRef,
-            GoalFormulatorRef,
-            GoalExecutorRef,
+            DiscrepenceyDetectorRef, // depends on StrategicGoalRef
+            GoalFormulatorRef, // depends on DiscrepenceyDetectorRef
+            GoalExecutorRef, // depends on GoalFormulatorRef
 
             TacticalGoalRef,
-            SquadManagerRef,
+            SquadManagerRef, // depends on TacticalGoalRef
 
-            WorkerManagerRef,
-            OrbitalCommandManagerRef,
+            OrbitalCommandManagerRef, // depends on strategy layer
+            ConstructionManagerRef,
             RampManagerRef,
+            WorkerManagerRef,
         };
 
         // Background thread
@@ -114,9 +116,6 @@ namespace BOSSE
 
             // Initialize Tyr (map analysis)
             Tyr.Tyr.Initialize();
-
-            // Build construction map
-            ConstructionUtility.Initialize();
 
             // General map analysis
             PathFinderRef.Initialize();
