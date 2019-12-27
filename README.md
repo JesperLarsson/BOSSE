@@ -34,7 +34,7 @@ In development, currently working on the fundementals.
 3. Extract the maps to your StarCraft 2 install directory under Maps (create the folder if it doesn't exist). Ex: C:\Program Files (x86)\StarCraft II\Maps\
 4. Open solution in Visual Studio and click 'Run', it will automatically open up the game with the correct settings
 
-Troubleshooting:
+### Troubleshooting:
 When starting a local debugging session BOSSE will use a hardcoded map name (currently ThunderbirdLE) to start, which you might not have.
 What map is used can be configured in Main.cs along with some other settings.
 Developed using Visual Studio 2019, but other versions will likely work.
