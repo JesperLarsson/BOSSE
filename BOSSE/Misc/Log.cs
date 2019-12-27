@@ -97,7 +97,7 @@ namespace BOSSE
             ThreadInstance = new Thread(new ThreadStart(LoggingMainLoop))
             {
                 Name = "BosseLogger",
-                Priority = ThreadPriority.BelowNormal
+                Priority = ThreadPriority.AboveNormal // We don't consme much resources, but we don't want to risk getting overrun
             };
             ThreadInstance.Start();
         }
@@ -124,12 +124,12 @@ namespace BOSSE
             if (LogPathAbsolute == null)
                 return;
 
+            var fileStream = new StreamWriter(LogPathAbsolute, true);
             while (FileQueue.TryDequeue(out string msg))
             {
-                var fileStream = new StreamWriter(LogPathAbsolute, true);
                 fileStream.WriteLine(msg);
-                fileStream.Close();
             }
+            fileStream.Close();
 
             while (TraceQueue.TryDequeue(out string msg))
             {

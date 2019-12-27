@@ -40,7 +40,7 @@ namespace BOSSE
         /// <summary>
         /// Calculates the manhattan distance to other point, not squared
         /// </summary>
-        public static float DistanceManhattan(this Point2D self, Point2D other)
+        public static float AirDistanceManhattan(this Point2D self, Point2D other)
         {
             return Math.Abs(self.X - other.X) + Math.Abs(self.Y - other.Y);
         }
@@ -48,7 +48,7 @@ namespace BOSSE
         /// <summary>
         /// Calculates the squared distance to other point
         /// </summary>
-        public static float DistanceSquared(this Point2D self, Point2D other)
+        public static float AirDistanceSquared(this Point2D self, Point2D other)
         {
             return (self.X - other.X) * (self.X - other.X) + (self.Y - other.Y) * (self.Y - other.Y);
         }
@@ -56,40 +56,48 @@ namespace BOSSE
         /// <summary>
         /// Calculates the absolute distance to other point, slower than using the squared method
         /// </summary>
-        public static float DistanceAbsolute(this Point2D self, Point2D other)
+        public static float AirDistanceAbsolute(this Point2D self, Point2D other)
         {
-            float sq = self.DistanceSquared(other);
+            float sq = self.AirDistanceSquared(other);
             float distance = (float)Math.Sqrt(sq);
 
             return distance;
         }
 
         /// <summary>
+        /// Calculates the ground distance to another point. null = no pathing possible
+        /// </summary>
+        public static float? GroundDistanceAbsolute(this Point2D self, Point2D other)
+        {
+            LinkedList<BossePathNode> path = BOSSE.PathFinderRef.FindPath(self, other);
+            if (path == null)
+                return null;
+
+#warning TODO: Calculate diagonals etc if necessary
+            return path.Count;
+        }
+
+        /// <summary>
         /// Determines if we are within the given range of another point
         /// </summary>
-        public static bool IsWithinRange(this Point2D self, Point2D other, float range)
+        public static bool IsWithinRange(this Point2D self, Point2D other, float range, bool checkGroundDistance = false)
         {
-            // Squaring the range is faster since we don't have to calculate the root
-            float sqDistance = self.DistanceSquared(other);
+            // Squaring the range is slightly faster since we don't have to calculate the root
+            float sqDistance = self.AirDistanceSquared(other);
             float sqRange = range * range;
 
-            return sqDistance <= sqRange;
-        }
+            bool inAirRange = sqDistance <= sqRange;
+            if ((!checkGroundDistance) || (!inAirRange))
+                return inAirRange;
 
-        /// <summary>
-        /// Determines if we are within the given range of another point
-        /// </summary>
-        public static bool IsWithinRange(this Point2D self, BossePathNode node, float range)
-        {
-            return self.IsWithinRange(new Point2D(node.X, node.Y), range);
-        }
+            // Optional - Check ground distance as well
+            float? groundDistance = GroundDistanceAbsolute(self, other);
+            if (groundDistance == null)
+                return false;
+            float groundSq = groundDistance.Value * groundDistance.Value;
+            bool inGroundRange = groundSq <= sqRange;
 
-        /// <summary>
-        /// Determines if we are within the given range of another point
-        /// </summary>
-        public static bool IsWithinRange(this Point2D self, int x, int y, float range)
-        {
-            return self.IsWithinRange(new Point2D(x, y), range);
+            return inGroundRange && inAirRange;
         }
 
         /// <summary>
@@ -107,14 +115,6 @@ namespace BOSSE
         {
             const float CloseThreshold = 1.0f;
             return self.IsWithinRange(other, CloseThreshold);
-        }
-
-        /// <summary>
-        /// Determines if we are close to the given point
-        /// </summary>
-        public static bool IsClose(this Point2D self, BossePathNode node)
-        {
-            return self.IsClose(new Point2D(node.X, node.Y));
         }
 
         /// <summary>

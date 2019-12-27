@@ -33,21 +33,43 @@ namespace BOSSE
     /// <summary>
     /// A single possible base location on the map (minerals etc), does not necessarily mean something is built there
     /// </summary>
+    [Serializable]
     public class ResourceCluster
     {
-        public Point2D Location;
-
-        /// <summary>
-        /// Ramp leading to this base, if any. Can be NULL
-        /// </summary>
-        //public Ramp RampToBase;
+        //public Point2D Location;
 
         public HashSet<Unit> MineralFields = new HashSet<Unit>();
         public HashSet<Unit> GasGeysers = new HashSet<Unit>();
 
         /// <summary>
+        /// Calculates the center point of the minerals in this cluster
+        /// </summary>
+        public Point2D GetMineralCenter()
+        {
+            float xTotal = 0;
+            float yTotal = 0;
+
+            foreach (Unit iter in this.MineralFields)
+            {
+                xTotal += iter.Position.X;
+                yTotal += iter.Position.Y;
+            }
+
+            float x = xTotal / this.MineralFields.Count;
+            float y = yTotal / this.MineralFields.Count;
+            Point2D resultPos = new Point2D(x, y);
+
+            return resultPos;
+        }
+
+        public override string ToString()
+        {
+            return "MinCenter=" + GetMineralCenter().ToString2();
+        }
+
+        /// <summary>
         /// Returns a unique ID for this base location. Guaranteed to be unique for this map, even between runs (input order from sc2 is otherwise random)
         /// </summary>
-        public int BaseId { get => SpookilySharp.SpookyHasher.SpookyHash32(this.Location.X + "__" + this.Location.Y); }
+        //public int BaseId { get => SpookilySharp.SpookyHasher.SpookyHash32(this.Location.X + "__" + this.Location.Y); }
     }
 }

@@ -84,7 +84,7 @@
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
     <Compile Include="Entities\Internal\GameObject.cs" />
-    <Compile Include="Entities\Map\BaseLocation.cs" />
+    <Compile Include="Entities\Map\ResourceCluster.cs" />
     <Compile Include="Entities\Map\Ramp.cs" />
     <Compile Include="Entities\Map\TileMap.cs" />
     <Compile Include="Entities\Internal\Unit.cs" />
@@ -125,6 +125,7 @@
     <Compile Include="Map Analysis\Path Finding\AStar\BossePathNode.cs" />
     <Compile Include="Map Analysis\Path Finding\AStar\BossePathSolver.cs" />
     <Compile Include="Misc\Extensions\Point2DExtensions.cs" />
+    <Compile Include="Misc\Extensions\HashSetExtensions.cs" />
     <Compile Include="Misc\JokeGenerator.cs" />
     <Compile Include="Misc\Log.cs" />
     <Compile Include="Map Analysis\Path Finding\PathFinder.cs" />

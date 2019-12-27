@@ -113,7 +113,7 @@ namespace BOSSE
             List<Unit> workers = GetUnits(UnitId.SCV);
 
             // Sort by distance to point
-            workers.Sort((a, b) => a.Position.DistanceSquared(point).CompareTo(b.Position.DistanceSquared(point)));
+            workers.Sort((a, b) => a.Position.AirDistanceSquared(point).CompareTo(b.Position.AirDistanceSquared(point)));
 
             List<Unit> matchedWorkers = new List<Unit>();
             foreach (Unit worker in workers)

@@ -23,31 +23,26 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
-    using System.Runtime.Serialization;
 
     using SC2APIProtocol;
-    using Google.Protobuf.Collections;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GeneralGameUtility;
+    using static UnitConstants;
 
     /// <summary>
-    /// Contains various static metrics about the map that doesn't change between runs (chokepoints etc)
+    /// Extends <see cref="HashSet{T}"/> class with helper functions
     /// </summary>
-    [Serializable]
-    public class AnalysedStaticMap
+    public static class HashSetExtensions
     {
-        public const int LatestFileFormatVersion = 2;
-        public int FileFormatVersion = LatestFileFormatVersion;
-
         /// <summary>
-        /// Higher values indicate chokepoints between ours and the enemy main base
+        /// Add all from other HashSet
         /// </summary>
-        public TileMap<byte> MainBaseChokeScore = null;
-
-        /// <summary>
-        /// General "chokepoint" score for all tiles, 0 = not pathable, higher values means "more chokepointy"
-        /// </summary>
-        public TileMap<byte> GeneralChokeScore = null;
+        public static void AddRange<Type>(this HashSet<Type> obj, HashSet<Type> other)
+        {
+            foreach (var iter in other)
+            {
+                obj.Add(iter);
+            }
+        }
     }
 }

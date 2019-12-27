@@ -24,6 +24,7 @@ namespace BOSSE
     using System.Security.Cryptography;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Diagnostics;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
