@@ -155,7 +155,7 @@ namespace BOSSE
         public static bool CanAfford(UnitId unitType)
         {
             UnitTypeData unitData = GameData.Units[(int)unitType];
-            int foodConsumed = (int)(unitData.FoodProvided - unitData.FoodRequired);
+            int foodConsumed = (int)(unitData.FoodRequired - unitData.FoodProvided);
 
             bool enoughFood = FreeSupply >= foodConsumed;
             bool enoughMinerals = CurrentMinerals >= unitData.MineralCost;

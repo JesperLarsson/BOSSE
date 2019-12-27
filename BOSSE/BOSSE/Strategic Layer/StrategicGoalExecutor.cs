@@ -131,15 +131,26 @@ namespace BOSSE
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
             UnitTypeData factoryInfo = GetUnitInfo(UnitId.FACTORY);
+            UnitTypeData ccInfo = GetUnitInfo(UnitId.COMMAND_CENTER);
             uint raxCount = GetUnitCountTotal(UnitId.BARRACKS, includeEquivalents: true);
             uint factoryCount = GetUnitCountTotal(UnitId.FACTORY, includeEquivalents: true);
 
+            // Expand
+            if (CanAfford(UnitId.COMMAND_CENTER))
+            {
+                Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
+                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
+                Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
+            }
+
+            // Factory
             if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
             {
                 ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.FACTORY);
                 SubtractCosts(UnitId.FACTORY);
             }
 
+            // Barracks
             if (raxCount < RaxesWanted && CanAfford(UnitId.BARRACKS) && HaveTechRequirementsToBuild(UnitId.BARRACKS))
             {
                 // Build barracks
