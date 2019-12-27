@@ -37,10 +37,10 @@ namespace BOSSE
     {
         public static AnalysedRuntimeMap AnalyseCurrentMap()
         {
-            var baseLocations = FindBaseLocations();
+            var resourceClusters = FindBaseLocations();
 
             AnalysedRuntimeMap completedMap = new AnalysedRuntimeMap(
-                baseLocations: baseLocations,
+                allClusters: resourceClusters,
                 mainBase: null,
                 naturalExpansion: null,
                 thirdExpansion: null,
@@ -51,13 +51,20 @@ namespace BOSSE
             return completedMap;
         }
 
-        private static Dictionary<int, BaseLocation> FindBaseLocations()
+        private static Dictionary<int, ResourceCluster> FindBaseLocations()
         {
+            Point2D baseLoc = Globals.MainBaseLocation;
+
+            var temp = GetUnits(UnitConstants.MineralFields, alliance: Alliance.Neutral);
+            Log.Debug("Our base = " + baseLoc.ToString2());
+            foreach (var iter in temp)
+            {
+                double dist = iter.Position.DistanceAbsolute(baseLoc);
+                Log.Debug("Geyser at " + iter.Position.ToString2() + " distSq=" + dist);
+            }
+
             //CurrentGameState.GameInformation.StartRaw.StartLocations;
             return null;
-
-
-
         }
     }
 }

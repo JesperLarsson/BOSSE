@@ -33,14 +33,14 @@ namespace BOSSE
     /// <summary>
     /// A single possible base location on the map (minerals etc), does not necessarily mean something is built there
     /// </summary>
-    public class BaseLocation
+    public class ResourceCluster
     {
         public Point2D Location;
 
         /// <summary>
         /// Ramp leading to this base, if any. Can be NULL
         /// </summary>
-        public Ramp RampToBase;
+        //public Ramp RampToBase;
 
         public HashSet<Unit> MineralFields = new HashSet<Unit>();
         public HashSet<Unit> GasGeysers = new HashSet<Unit>();

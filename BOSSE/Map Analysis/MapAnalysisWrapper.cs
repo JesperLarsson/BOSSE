@@ -117,7 +117,7 @@ namespace BOSSE
 
         private string GetMapFilePath()
         {
-            const string mapFolder = "Data";
+            const string mapFolder = "StaticMapData";
 
             string mapName = CurrentGameState.GameInformation.MapName;
             mapName = Path.Combine(mapFolder, mapName);

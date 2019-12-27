@@ -59,40 +59,46 @@ namespace BOSSE
             mapObject.GeneralChokeScore = CalculateGeneralChokeScore();
         }
 
+        /// <summary>
+        /// Calculates a general score of how "chokepointy" a point is
+        /// 0 = not pathable
+        /// 1 = not a chokepoint, pathable
+        /// Higher values = more chokepointy, ie less valuable to stand in. Increases linearly to 255 at the most chokepointy part of the map
+        /// </summary>
         private static TileMap<byte> CalculateGeneralChokeScore()
         {
             Size2DI size = CurrentGameState.GameInformation.StartRaw.MapSize;
             TileMap<ulong> longMap = new TileMap<ulong>(size.X, size.Y);
 
             // Calculate score
-            //for (int fromX = 0; fromX < size.X; fromX++)
-            //{
-            //    for (int fromY = 0; fromY < size.Y; fromY++)
-            //    {
-            //        for (int innerX = 0; innerX < size.X; innerX++)
-            //        {
-            //            for (int innerY = 0; innerY < size.Y; innerY++)
-            //            {
-            //                Point2D innerPos = new Point2D(innerX, innerY);
-            //                Point2D fromPos = new Point2D(fromX, fromY);
-            //                if (innerPos == fromPos)
-            //                    continue;
+            for (int fromX = 0; fromX < size.X; fromX++)
+            {
+                for (int fromY = 0; fromY < size.Y; fromY++)
+                {
+                    for (int innerX = 0; innerX < size.X; innerX++)
+                    {
+                        for (int innerY = 0; innerY < size.Y; innerY++)
+                        {
+                            Point2D innerPos = new Point2D(innerX, innerY);
+                            Point2D fromPos = new Point2D(fromX, fromY);
+                            if (innerPos == fromPos)
+                                continue;
 
-            //                LinkedList<BossePathNode> path = BOSSE.PathFinderRef.FindPath(fromPos, innerPos);
-            //                if (path == null)
-            //                    continue;
+                            LinkedList<BossePathNode> path = BOSSE.PathFinderRef.FindPath(fromPos, innerPos);
+                            if (path == null)
+                                continue;
 
-            //                foreach (BossePathNode tileOnPath in path)
-            //                {
-            //                    ulong oldVal = longMap.GetTile(tileOnPath.X, tileOnPath.Y);
-            //                    if (oldVal == ulong.MaxValue)
-            //                        continue;
-            //                    longMap.SetTile(tileOnPath.X, tileOnPath.Y, oldVal + 1);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+                            foreach (BossePathNode tileOnPath in path)
+                            {
+                                ulong oldVal = longMap.GetTile(tileOnPath.X, tileOnPath.Y);
+                                if (oldVal == ulong.MaxValue)
+                                    continue;
+                                longMap.SetTile(tileOnPath.X, tileOnPath.Y, oldVal + 1);
+                            }
+                        }
+                    }
+                }
+            }
             Log.Info("General choke: Completed main analysis");
 
             // Find minimum non-zero tile value + maxvalue
@@ -110,7 +116,7 @@ namespace BOSSE
                     maxValue = Math.Max(iterVal, maxValue);
                 }
             }
-            Log.Info("General choke: MinValue = " + minValue);
+            Log.Info("General choke: minValue = " + minValue + ", maxValue = " + maxValue);
             if (minValue == ulong.MaxValue)
             {
                 Log.SanityCheckFailed("No min value found");
@@ -122,7 +128,7 @@ namespace BOSSE
                 throw new BosseFatalException("No max value found");
             }
 
-            // Squash to byte values - MinValue becomes 1, MaxValue becomes 255, 0 = not pathable
+            // Squash to byte values
             ulong valueDiff = maxValue - minValue;
             double longsPerByte = valueDiff / (byte.MaxValue - 1);
             TileMap<byte> byteMap = new TileMap<byte>();
@@ -134,8 +140,10 @@ namespace BOSSE
                     if (longVal == 0)
                         continue; // not pathable
 
-                    ulong workingLong = (ulong)((longVal - minValue) / longsPerByte);
+                    ulong workingLong = (ulong)Math.Ceiling(((longVal - minValue) / longsPerByte));
                     workingLong += 1;
+                    if (workingLong > byte.MaxValue)
+                        workingLong = byte.MaxValue;
 
                     byte workingByte = (byte)workingLong;
                     byteMap.SetTile(x, y, workingByte);

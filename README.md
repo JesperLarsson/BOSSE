@@ -18,6 +18,7 @@ Supports local debugging sessions (against Blizzard AI), as well as online ladde
 
 ## TODO / Major limitations
 - Currently only supports 2-player maps
+- Can only play on pre-analysed maps (which takes a couple of hours)
 - Does not support multiple build orders
 - Prediction of enemy plans
 - Currently only plays as Terran

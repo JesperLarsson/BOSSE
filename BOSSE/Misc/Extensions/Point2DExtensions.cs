@@ -54,6 +54,17 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Calculates the absolute distance to other point, slower than using the squared method
+        /// </summary>
+        public static float DistanceAbsolute(this Point2D self, Point2D other)
+        {
+            float sq = self.DistanceSquared(other);
+            float distance = (float)Math.Sqrt(sq);
+
+            return distance;
+        }
+
+        /// <summary>
         /// Determines if we are within the given range of another point
         /// </summary>
         public static bool IsWithinRange(this Point2D self, Point2D other, float range)

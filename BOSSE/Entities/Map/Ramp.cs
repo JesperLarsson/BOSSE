@@ -33,10 +33,10 @@ namespace BOSSE
     /// <summary>
     /// A single ramp leading up to a base
     /// </summary>
-    public class Ramp
-    {
-        public Point2D Location;
-        public BaseLocation LeadsToBase;
+    //public class Ramp
+    //{
+    //    public Point2D Location;
+    //    public BaseLocation LeadsToBase;
 
-    }
+    //}
 }

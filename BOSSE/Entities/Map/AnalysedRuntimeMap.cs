@@ -36,21 +36,24 @@ namespace BOSSE
     public class AnalysedRuntimeMap
     {
         /// <summary>
-        /// All bases on the map. Base id => instance mapping
+        /// All resource clusters on the map. Id => instance mapping
         /// </summary>
-        public Dictionary<int, BaseLocation> BaseLocations = new Dictionary<int, BaseLocation>();
+        public Dictionary<int, ResourceCluster> ResourceClusters = new Dictionary<int, ResourceCluster>();
 
-        public BaseLocation MainBase;
-        public BaseLocation NaturalExpansion;
-        public BaseLocation ThirdExpansion;
+        public ResourceCluster MainBase;
+        public ResourceCluster NaturalExpansion;
+        public ResourceCluster ThirdExpansion;
 
-        public BaseLocation EnemyMainBase;
-        public BaseLocation EnemyNaturalExpansion;
-        public BaseLocation EnemyThirdExpansion;
+        public ResourceCluster EnemyMainBase;
+        public ResourceCluster EnemyNaturalExpansion;
+        public ResourceCluster EnemyThirdExpansion;
 
-        public AnalysedRuntimeMap(Dictionary<int, BaseLocation> baseLocations, BaseLocation mainBase, BaseLocation naturalExpansion, BaseLocation thirdExpansion, BaseLocation enemyMainBase, BaseLocation enemyNaturalExpansion, BaseLocation enemyThirdExpansion)
+        public AnalysedRuntimeMap(
+            Dictionary<int, ResourceCluster> allClusters,
+            ResourceCluster mainBase, ResourceCluster naturalExpansion, ResourceCluster thirdExpansion,
+            ResourceCluster enemyMainBase, ResourceCluster enemyNaturalExpansion, ResourceCluster enemyThirdExpansion)
         {
-            BaseLocations = baseLocations;
+            ResourceClusters = allClusters;
             MainBase = mainBase;
             NaturalExpansion = naturalExpansion;
             ThirdExpansion = thirdExpansion;
