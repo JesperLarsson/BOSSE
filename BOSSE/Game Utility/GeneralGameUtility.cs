@@ -131,6 +131,7 @@ namespace BOSSE
         /// </summary>
         public static Point2D GuessEnemyBaseLocation()
         {
+#warning TODO: Replace function with a better system
             foreach (var startLocation in CurrentGameState.GameInformation.StartRaw.StartLocations)
             {
                 Point2D enemyLocation = new Point2D(startLocation.X, startLocation.Y);
@@ -138,15 +139,8 @@ namespace BOSSE
                     return enemyLocation;
             }
 
+            Log.SanityCheckFailed("Unable to find enemy position");
             return null;
-        }
-
-        /// <summary>
-        /// Converts seconds to number of logical frames
-        /// </summary>
-        public static ulong SecsToFrames(int seconds)
-        {
-            return (ulong)(BotConstants.FRAMES_PER_SECOND * seconds);
         }
 
         /// <summary>
@@ -182,8 +176,10 @@ namespace BOSSE
         /// </summary>
         public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false)
         {
-            HashSet<UnitId> temp = new HashSet<UnitId>();
-            temp.Add(unitType);
+            HashSet<UnitId> temp = new HashSet<UnitId>
+            {
+                unitType
+            };
 
             return GetUnits(temp, alliance, onlyCompleted, onlyVisible);
         }
@@ -367,11 +363,12 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Check if the given building type can be placed at the given point
+        /// Check if the given building type can be placed at the given point by sending a request to sc2
         /// This is a BLOCKING call, ie very slow
         /// </summary>
-        public static bool CanPlace(UnitId unitType, Point2D targetPos)
+        public static bool CanPlaceRequest(UnitId unitType, Point2D targetPos)
         {
+#warning TODO Optimization: Replace?
             var abilityID = GetAbilityIdToBuildUnit(unitType);
 
             RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
@@ -393,6 +390,8 @@ namespace BOSSE
 
             if (result.Result.Placements.Count > 0)
                 return (result.Result.Placements[0].Result == ActionResult.Success);
+
+            Log.SanityCheckFailed("No response from sc2 in regards to placement of " + unitType);
             return false;
         }
 

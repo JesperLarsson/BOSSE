@@ -27,6 +27,7 @@ namespace BOSSE
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
+    using static UnitConstants;
 
     /// <summary>
     /// Bot constant values, set during development
@@ -57,11 +58,6 @@ namespace BOSSE
         public const int stepSize = 8;
 
         /// <summary>
-        /// Number of logical frames per second of real time
-        /// </summary>
-        public const double FRAMES_PER_SECOND = 22.4;
-
-        /// <summary>
         /// Bot will spawn as the given race
         /// </summary>
         public const Race SpawnAsRace = Race.Terran;
@@ -75,5 +71,8 @@ namespace BOSSE
         /// Number of workers to aim for at each base
         /// </summary>
         public const int TargetWorkerPerBase = 16;
+
+        public const UnitId WorkerUnit = UnitId.SCV;
+        public const UnitId CommandCenterUnit = UnitId.COMMAND_CENTER;
     }
 }

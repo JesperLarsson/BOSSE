@@ -124,7 +124,7 @@ namespace BOSSE
 
                     //check if the building fits
                     //Log.Bulk("Running canplace hack...");
-                    if (!CanPlace(unitType, constructionSpot)) continue;
+                    if (!CanPlaceRequest(unitType, constructionSpot)) continue;
 
                     //ok, we found a spot
                     break;

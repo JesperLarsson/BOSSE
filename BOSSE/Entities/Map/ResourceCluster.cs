@@ -81,10 +81,11 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Gets the centrla position where a command center/nexus/hatchery can be placed for this resource cluster
+        /// Gets the central position where a command center/nexus/hatchery can be placed for this resource cluster
         /// </summary>
         public Point2D GetCommandCenterPosition()
         {
+#warning LP_TODO: Doesn't seem to work for starting positions for some reason. Treat as special case?
             if (this.CachedCcPositiion != null)
                 return CachedCcPositiion;
 
@@ -98,7 +99,7 @@ namespace BOSSE
                 Point2D tilePos = tileIter.Key;
                 float tileDistanceSq = tileIter.Value;
 
-                bool canPlaceCC = CanPlace(UnitConstants.UnitId.COMMAND_CENTER, tilePos);
+                bool canPlaceCC = CanPlaceRequest(BotConstants.CommandCenterUnit, tilePos);
                 if (canPlaceCC)
                 {
                     finalLocation = tilePos;
@@ -113,7 +114,7 @@ namespace BOSSE
             }
             if (finalDistanceSq >= (30*30))
             {
-                Log.SanityCheckFailed("CC position is too far away in resource cluster " + this);
+                Log.SanityCheckFailed("CC position is too far away for resource cluster " + this);
             }
 
             this.CachedCcPositiion = finalLocation;
