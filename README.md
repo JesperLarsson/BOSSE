@@ -4,6 +4,9 @@
 BOSSE is a bot for the game StarCraft 2 written in C# as a hobby project.
 Supports local debugging sessions (against Blizzard AI), as well as online ladder play against other bots.
 
+## Status
+In development, currently working on the fundementals.
+
 ## Features
 - Precalculated map analysis (chokepoints, expansion locations, ramps, etc). Calculated once per map and stored to file
 - Runtime map analysis - Influence, tension, vulnerability, etc
@@ -31,7 +34,7 @@ Supports local debugging sessions (against Blizzard AI), as well as online ladde
 3. Extract the maps to your StarCraft 2 install directory under Maps (create the folder if it doesn't exist). Ex: C:\Program Files (x86)\StarCraft II\Maps\
 4. Open solution in Visual Studio and click 'Run', it will automatically open up the game with the correct settings
 
-## Troubleshooting
+Troubleshooting:
 When starting a local debugging session BOSSE will use a hardcoded map name (currently ThunderbirdLE) to start, which you might not have.
 What map is used can be configured in Main.cs along with some other settings.
 Developed using Visual Studio 2019, but other versions will likely work.
