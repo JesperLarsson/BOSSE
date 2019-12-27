@@ -40,6 +40,8 @@ namespace BOSSE
         public HashSet<Unit> MineralFields = new HashSet<Unit>();
         public HashSet<Unit> GasGeysers = new HashSet<Unit>();
 
+        private Point2D CachedCcPositiion = null;
+
         /// <summary>
         /// Calculates an area for this cluster
         /// </summary>
@@ -79,6 +81,46 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Gets the centrla position where a command center/nexus/hatchery can be placed for this resource cluster
+        /// </summary>
+        public Point2D GetCommandCenterPosition()
+        {
+            if (this.CachedCcPositiion != null)
+                return CachedCcPositiion;
+
+            Point2D resourceCenter = GetResourceCenter();
+            List<KeyValuePair<Point2D, float>> tilesSortedByDistance = resourceCenter.GetAirDistanceSqMap().GetSorted();
+
+            Point2D finalLocation = null;
+            float finalDistanceSq = 0;
+            foreach (var tileIter in tilesSortedByDistance)
+            {
+                Point2D tilePos = tileIter.Key;
+                float tileDistanceSq = tileIter.Value;
+
+                bool canPlaceCC = CanPlace(UnitConstants.UnitId.COMMAND_CENTER, tilePos);
+                if (canPlaceCC)
+                {
+                    finalLocation = tilePos;
+                    finalDistanceSq = tileDistanceSq;
+                    break;
+                }
+            }
+
+            if (finalLocation == null)
+            {
+                Log.SanityCheckFailed("Unable to find CC position for resource cluster " + this);
+            }
+            if (finalDistanceSq >= (30*30))
+            {
+                Log.SanityCheckFailed("CC position is too far away in resource cluster " + this);
+            }
+
+            this.CachedCcPositiion = finalLocation;
+            return finalLocation;
+        }
+
+        /// <summary>
         /// Calculates the center point of the minerals in this cluster
         /// </summary>
         public Point2D GetMineralCenter()
@@ -100,6 +142,18 @@ namespace BOSSE
             Point2D resultPos = new Point2D(x, y);
 
             return resultPos;
+        }
+
+        /// <summary>
+        /// Calculates the center point of all resources (including geysers)
+        /// </summary>
+        public Point2D GetResourceCenter()
+        {
+            var box = GetBoundingBox();
+
+            float x = box.X + (box.Width / 2);
+            float y = box.Y + (box.Height / 2);
+            return new Point2D(x, y);
         }
 
         public override string ToString()

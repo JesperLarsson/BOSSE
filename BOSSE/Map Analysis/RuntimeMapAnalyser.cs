@@ -43,6 +43,12 @@ namespace BOSSE
                 out ResourceCluster enemyThirdRef, out ResourceCluster ourThirdRef
                 );
 
+            // Calculate CC position for all clusters so that it's precached for later use
+            foreach (var iter in resourceClusters.Values)
+            {
+                iter.GetCommandCenterPosition();
+            }
+
             AnalysedRuntimeMap completedMap = new AnalysedRuntimeMap(
                 allClusters: resourceClusters,
                 mainBase: ourMainRef,
@@ -187,6 +193,15 @@ namespace BOSSE
                 if (!clusterMatch)
                 {
                     Log.SanityCheckFailed("Unable to add gas geyser " + gasIter + " to a resouce cluster");
+                }
+            }
+
+            // Sanity check - 2 gases per cluster
+            foreach (ResourceCluster clusterIter in clusters)
+            {
+                if (clusterIter.GasGeysers.Count != 2)
+                {
+                    Log.SanityCheckFailed("Unexpected gas count in resource cluster: " + clusterIter.GasGeysers.Count);
                 }
             }
 

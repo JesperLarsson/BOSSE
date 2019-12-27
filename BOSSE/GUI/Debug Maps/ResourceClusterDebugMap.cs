@@ -44,6 +44,7 @@ namespace DebugGui
         static readonly SolidBrush EnemyThirdColor = new SolidBrush(System.Drawing.Color.DarkRed);
 
         static readonly SolidBrush NeutralAreaColor = new SolidBrush(System.Drawing.Color.Green);
+        static readonly SolidBrush CcCenterColor = new SolidBrush(System.Drawing.Color.Purple);
 
         SolidBrush noPathColor = new SolidBrush(System.Drawing.Color.Black);
         SolidBrush pathColor = new SolidBrush(System.Drawing.Color.DarkGray);
@@ -131,6 +132,13 @@ namespace DebugGui
                 }
 
                 surface.FillRectangle(brush, x, y, w, h);
+            }
+
+            // CC position
+            foreach (ResourceCluster clusterIter in runtimeMap.ResourceClusters.Values)
+            {
+                Point2D ccPos = clusterIter.GetCommandCenterPosition();
+                surface.FillRectangle(CcCenterColor, ccPos.X * RenderScale, CompensateY(ccPos.Y) * RenderScale, RenderScale, RenderScale);
             }
 
             return bmp;

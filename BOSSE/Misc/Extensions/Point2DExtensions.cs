@@ -118,6 +118,26 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Builds a map of the air distance from this point to every other point on the map (distances are squared)
+        /// </summary>
+        public static TileMap<float> GetAirDistanceSqMap(this Point2D self)
+        {
+            TileMap<float> map = new TileMap<float>();
+
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int y = 0; y < map.Height; y++)
+                {
+                    Point2D targetPos = new Point2D(x, y);
+                    float distance = self.AirDistanceSquared(targetPos);
+                    map.SetTile(x, y, distance);
+                }
+            }
+
+            return map;
+        }
+
+        /// <summary>
         /// Finds a path to the given point
         /// </summary>
         public static LinkedList<BossePathNode> FindPath(this Point2D self, Point2D to)

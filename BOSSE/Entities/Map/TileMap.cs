@@ -35,7 +35,7 @@ namespace BOSSE
     /// Stores information about each tile of the ingame map
     /// </summary>
     [Serializable]
-    public class TileMap<TileType>
+    public class TileMap<TileType> where TileType : IComparable<TileType>
     {
         public readonly int Width;
         public readonly int Height;
@@ -67,6 +67,27 @@ namespace BOSSE
         public void SetTile(int x, int y, TileType value)
         {
             this.Map[x, y] = value;
+        }
+
+        /// <summary>
+        /// Returns a list where each tile is sorted by their value, and their position
+        /// </summary>
+        public List<KeyValuePair<Point2D, TileType>> GetSorted()
+        {
+            var resultList = new List<KeyValuePair<Point2D, TileType>>();
+
+            for (int x = 0; x < this.Width; x++)
+            {
+                for (int y = 0; y < this.Height; y++)
+                {
+                    TileType value = this.Map[x, y];
+                    var keyVal = new KeyValuePair<Point2D, TileType>(new Point2D(x, y), value);
+                    resultList.Add(keyVal);
+                }
+            }
+
+            resultList.Sort((a, b) => a.Value.CompareTo(b.Value));
+            return resultList;
         }
     }
 }
