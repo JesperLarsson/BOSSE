@@ -47,10 +47,10 @@ namespace BOSSE
                 allClusters: resourceClusters,
                 mainBase: ourMainRef,
                 naturalExpansion: ourNaturalRef,
-                thirdExpansion: enemyThirdRef,
+                thirdExpansion: ourThirdRef,
                 enemyMainBase: enemyMainRef,
                 enemyNaturalExpansion: enemyNaturalRef,
-                enemyThirdExpansion: ourThirdRef
+                enemyThirdExpansion: enemyThirdRef
                 );
             return completedMap;
         }

@@ -35,13 +35,13 @@ namespace DebugGui
     /// </summary>
     public class ResourceClusterDebugMap : BaseDebugMap
     {
-        static readonly SolidBrush SelfMainColor = new SolidBrush(System.Drawing.Color.SkyBlue);
-        static readonly SolidBrush SelfNaturalColor = new SolidBrush(System.Drawing.Color.Blue);
+        static readonly SolidBrush SelfMainColor = new SolidBrush(System.Drawing.Color.Blue);
+        static readonly SolidBrush SelfNaturalColor = new SolidBrush(System.Drawing.Color.DarkBlue);
         static readonly SolidBrush SelfThirdColor = new SolidBrush(System.Drawing.Color.DarkBlue);
 
         static readonly SolidBrush EnemyMainColor = new SolidBrush(System.Drawing.Color.Red);
         static readonly SolidBrush EnemyNaturalColor = new SolidBrush(System.Drawing.Color.DarkRed);
-        static readonly SolidBrush EnemyThirdColor = new SolidBrush(System.Drawing.Color.MediumVioletRed);
+        static readonly SolidBrush EnemyThirdColor = new SolidBrush(System.Drawing.Color.DarkRed);
 
         static readonly SolidBrush NeutralAreaColor = new SolidBrush(System.Drawing.Color.Green);
 
