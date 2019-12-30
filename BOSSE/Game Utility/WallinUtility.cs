@@ -48,10 +48,7 @@ namespace BOSSE
             new Size(2, 2),
         };
 
-        /// <summary>
-        /// Natural wall will try to fit inside of this box
-        /// </summary>
-        private static readonly Size NaturalFittingBox = new Size(9, 6);
+        private static Wall CachedNaturalWall = null;
 
         /// <summary>
         /// Returns a configuration for building a wall in front of our natural expansion
@@ -59,59 +56,105 @@ namespace BOSSE
         /// </summary>
         public static Wall GetNaturalWall()
         {
+            if (CachedNaturalWall == null)
+            {
+                CachedNaturalWall = CalculateNaturalWall();
+            }
+            return CachedNaturalWall;
+        }
+
+        private static Wall CalculateNaturalWall()
+        {
+            // 1. Estimate wall position
             Point2D estimatedLocation = GetNaturalWallEstimatedLocation();
             if (estimatedLocation == null)
             {
                 return null;
             }
+            int estimateX = (int)estimatedLocation.X;
+            int estimateY = (int)estimatedLocation.Y;
 
-            // Build a list of candidates
-#warning TODO: Invert box y if enemy spawning below us, x if to our left
-            List<Wall> candidates = GetWallCandidatesAtLocationUsingBox(estimatedLocation, NaturalFittingBox, NaturalWallinConfigNoGap);
-            if (candidates == null || candidates.Count == 0)
+            const int yTestRadius = 4;
+            for (int y = estimateY - yTestRadius; y < estimateY + yTestRadius; y++)
             {
-                Log.SanityCheckFailed("Unable to find a combination of buildings that builds a wall at our natural");
-                return null;
-            }
-
-            // Filter candidates
-            List<Wall> validCandidates = new List<Wall>();
-            Log.Warning("Build wall candidate list, searching for a valid blocking combination...");
-            foreach (Wall iter in candidates)
-            {
-                bool isOk = IsGivenWallConfigurationViable(iter);
-                if (isOk)
+                Wall wallObj = TryGetWallAtExactY(estimateX, y);
+                if (wallObj != null)
                 {
-                    //validCandidates.Add(iter);
-                    Log.Info($"Determined natural wall location (from {validCandidates.Count} candidates) to be at {iter.GetCenterPosition().ToString2()}");
-                    return iter;
+                    bool blocksPathinOk = true; // IsGivenWallConfigurationViable(wallObj);
+                    if (blocksPathinOk)
+                    {
+                        Log.Info("Found natural wall at " + wallObj.GetCenterPosition().ToString2());
+                        return wallObj;
+                    }
                 }
             }
 
-            Log.Warning("No wall combination found");
+            Log.SanityCheckFailed("Unable to find natural wall");
             return null;
-            //if (validCandidates.Count == 0)
-            //{
-            //    Log.SanityCheckFailed("Filtered out all natural wall candidates");
-            //    return null;
-            //}
+        }
 
-            //// Return the candidate with the closest distance to our natural
-            //float closestDistanceSq = float.MaxValue;
-            //Wall closestRef = null;
-            //Point2D naturalPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetMineralCenter();
-            //foreach (Wall iter in validCandidates)
-            //{
-            //    float distanceSq = iter.GetCenterPosition().AirDistanceSquared(naturalPos);
-            //    if (distanceSq < closestDistanceSq)
-            //    {
-            //        closestDistanceSq = distanceSq;
-            //        closestRef = iter;
-            //    }
-            //}
+        private static Wall TryGetWallAtExactY(int estimateX, int y)
+        {
+            var wallConfig = NaturalWallinConfigNoGap;
 
-            //Log.Info($"Determined natural wall location (from {validCandidates.Count} candidates) to be at {closestRef.GetCenterPosition().ToString2()}");
-            //return closestRef;
+            // 1. Search for starting position = first buildable tile
+            const int radiusSearchX = 5;
+            int buildingStartsAtLeftX = -1;
+            ImageData gridMap = new ImageData(CurrentGameState.GameInformation.StartRaw.PlacementGrid);
+            for (int x = estimateX - radiusSearchX; x < estimateX + radiusSearchX; x++)
+            {
+                // Is this location buildable?
+                bool canBePlaced = gridMap.GetBit(x, y) != 0;
+                if (canBePlaced)
+                {
+                    buildingStartsAtLeftX = x;
+                    break;
+                }
+            }
+            if (buildingStartsAtLeftX == -1)
+            {
+                Log.SanityCheckFailed("Unable to determine wall start X");
+                return null;
+            }
+
+            // 2. Make sure we can fit our buildings here
+            int exactWidthRequired = 0;
+            foreach (Size iter in wallConfig)
+            {
+                exactWidthRequired += iter.Width;
+            }
+
+            for (int x = buildingStartsAtLeftX; x < (buildingStartsAtLeftX + exactWidthRequired); x++)
+            {
+                bool canBePlaced = gridMap.GetBit(x, y) != 0;
+                if (!canBePlaced)
+                {
+                    Log.Info("Not possible to build a wall at test position");
+                    return null;
+                }
+            }
+
+            // 3. Next X should not be buildable in order to create a wall
+            bool nextTileBuildable = gridMap.GetBit(buildingStartsAtLeftX + exactWidthRequired + 1, y) != 0;
+            if (nextTileBuildable)
+            {
+                Log.Info("Gap too wide at y = " + y);
+                return null;
+            }
+
+            // 4. Place buildings
+            Wall wallObj = new Wall();
+            int nextBuildingLeftX = buildingStartsAtLeftX;
+            foreach (Size buildingSize in wallConfig)
+            {
+                int sizeDiffToCenter = (buildingSize.Width - 1) / 2;
+                Wall.BuildingInWall buildingDef = new Wall.BuildingInWall(buildingSize, new Point2D(nextBuildingLeftX + sizeDiffToCenter, y));
+                wallObj.Buildings.Add(buildingDef);
+
+                nextBuildingLeftX += (buildingSize.Width * 2);
+            }
+
+            return wallObj;
         }
 
         /// <summary>
@@ -120,8 +163,6 @@ namespace BOSSE
         /// </summary>
         private static bool IsGivenWallConfigurationViable(Wall wallObj)
         {
-            ImageData gridMap = CurrentGameState.GameInformation.StartRaw.PlacementGrid;
-
             // Build override that disables the given tiles for pathfinding
             List<KeyValuePair<Point2D, bool>> overrideValues = new List<KeyValuePair<Point2D, bool>>();
             foreach (Wall.BuildingInWall iter in wallObj.Buildings)
@@ -137,14 +178,7 @@ namespace BOSSE
                 {
                     for (int y = startY; y < endY; y++)
                     {
-                        // Optimization - Simply check building placement grid to start, this will filter away most calls
-                        bool canBePlaced = gridMap.GetBit(x, y) != 0;
-                        if (!canBePlaced)
-                        {
-                            return false;
-                        }
-
-                        var pair = new KeyValuePair<Point2D, bool>(new Point2D(x, y), false);
+                        var pair = new KeyValuePair<Point2D, bool>(new Point2D(x, y), true);
                         overrideValues.Add(pair);
                     }
                 }
@@ -281,21 +315,7 @@ namespace BOSSE
         /// </summary>
         private static Point2D GetNaturalWallEstimatedLocation()
         {
-            List<ChokePointGroup> naturalChokeGroups = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.ChokePointCollections[BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.ClusterId][BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.EnemyMainBase.ClusterId].ChokePointGroups;
-            if (naturalChokeGroups == null || naturalChokeGroups.Count == 0)
-            {
-                Log.SanityCheckFailed("No chokepoint around natural found");
-                return null;
-            }
-
-            ChokePointGroup naturalChokePoint = naturalChokeGroups[0];
-            if (!naturalChokePoint.GetCenterOfChoke().IsWithinRange(BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetMineralCenter(), 30))
-            {
-                Log.SanityCheckFailed("Natural chokepoint is too far away, or another chokepoint was detected");
-                return null;
-            }
-
-            return naturalChokePoint.GetCenterOfChoke();
+            return BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalDefensePos();
         }
     }
 }

@@ -149,7 +149,7 @@ namespace BOSSE
             }
             else
             {
-                Log.SanityCheckFailed("Building size not supported for " + buildingId);
+                Log.Bulk("Building size not supported for " + buildingId);
                 return new System.Drawing.Size(0, 0);
             }
         }

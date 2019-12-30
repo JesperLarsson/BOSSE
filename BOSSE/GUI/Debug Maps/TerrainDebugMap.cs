@@ -37,6 +37,7 @@ namespace DebugGui
     {
         SolidBrush pixelBrush;
         public static List<KeyValuePair<Point2D, string>> MarkedPoints = new List<KeyValuePair<Point2D, string>>();
+        static readonly SolidBrush NaturalDefenseWall = new SolidBrush(System.Drawing.Color.Green);
 
         public TerrainDebugMap()
         {
@@ -68,6 +69,13 @@ namespace DebugGui
                 }
             }
 
+            // Natural def
+            foreach (Wall.BuildingInWall iter in BOSSE.ConstructionManagerRef.GetNaturalWall().Buildings)
+            {
+                surface.FillRectangle(NaturalDefenseWall, (RenderScale * iter.BuildingPosition.X), (RenderScale * CompensateY(iter.BuildingPosition.Y)), RenderScale, RenderScale);
+            }
+
+            // Extra texts
             for (int index = 0; index < MarkedPoints.Count; index++)
             {
                 KeyValuePair<Point2D, string> iter = MarkedPoints[index];

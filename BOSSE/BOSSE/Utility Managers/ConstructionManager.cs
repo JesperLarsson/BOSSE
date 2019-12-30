@@ -45,20 +45,25 @@ namespace BOSSE
 
         public override void Initialize()
         {
-            //Stopwatch sw = new Stopwatch();
-            //sw.Start();
-            //this.naturalWall = WallinUtility.GetNaturalWall();
-            //sw.Stop();
-            //Log.Info("Found natural wall in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            this.naturalWall = WallinUtility.GetNaturalWall();
+            sw.Stop();
+            Log.Info("Found natural wall in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
 
-            //if (this.naturalWall == null)
-            //{
-            //    Log.SanityCheckFailed("Unable to find a config to build natural wall");
-            //}
-            //else
-            //{
-            //    Log.Info("OK - Found natural wall");
-            //}
+            if (this.naturalWall == null)
+            {
+                Log.SanityCheckFailed("Unable to find a config to build natural wall");
+            }
+            else
+            {
+                Log.Info("OK - Found natural wall");
+            }
+        }
+
+        public Wall GetNaturalWall()
+        {
+            return naturalWall;
         }
 
         public override void OnFrameTick()

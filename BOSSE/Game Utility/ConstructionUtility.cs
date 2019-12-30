@@ -44,6 +44,26 @@ namespace BOSSE
         {
             Point2D constructionSpot = null;
 
+            // Check if part of wall
+            System.Drawing.Size size = GetSizeOfBuilding(unitType);
+            if (size.Width != 0 && size.Height != 0)
+            {
+                Wall naturalWall = WallinUtility.GetNaturalWall();
+                foreach (Wall.BuildingInWall iter in naturalWall.Buildings)
+                {
+                    if (iter.BuildingType.HasValue)
+                        continue;
+
+                    if (iter.BuildingSize.Width == size.Width && iter.BuildingSize.Height == size.Height)
+                    {
+                        // Building is a match
+                        iter.BuildingType = unitType;
+                        constructionSpot = iter.BuildingPosition;
+                        Log.Info("Using construction spot as part of our wall for " + unitType + " at " + constructionSpot.ToString2());
+                    }
+                }
+            }
+
             // Find a valid spot, the slow way
             if (constructionSpot == null)
             {
