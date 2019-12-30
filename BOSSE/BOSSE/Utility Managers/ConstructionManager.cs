@@ -17,16 +17,48 @@
 */
 namespace BOSSE
 {
+    using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Numerics;
+    using System.Security.Cryptography;
+    using System.Threading;
+    using System.Linq;
+    using System.Drawing;
+    using System.Diagnostics;
 
+    using SC2APIProtocol;
+    using Google.Protobuf.Collections;
+
+    using Action = SC2APIProtocol.Action;
+    using static CurrentGameState;
+    using static GeneralGameUtility;
+    using static UnitConstants;
+    using static AbilityConstants;
+    
     /// <summary>
     /// Responsible for building construction and placement
     /// </summary>
     public class ConstructionManager : Manager
     {
+        private Wall naturalWall = null;
+
         public override void Initialize()
         {
-            
+            //Stopwatch sw = new Stopwatch();
+            //sw.Start();
+            //this.naturalWall = WallinUtility.GetNaturalWall();
+            //sw.Stop();
+            //Log.Info("Found natural wall in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
+
+            //if (this.naturalWall == null)
+            //{
+            //    Log.SanityCheckFailed("Unable to find a config to build natural wall");
+            //}
+            //else
+            //{
+            //    Log.Info("OK - Found natural wall");
+            //}
         }
 
         public override void OnFrameTick()

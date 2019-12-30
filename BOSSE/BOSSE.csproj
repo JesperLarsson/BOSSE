@@ -69,6 +69,7 @@
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
     <Compile Include="Entities\Exception\BosseFatalException.cs" />
     <Compile Include="Entities\Exception\BosseRecoverableException.cs" />
+    <Compile Include="Entities\Internal\Wall.cs" />
     <Compile Include="Entities\Map\AnalysedRuntimeMap.cs" />
     <Compile Include="Entities\Map\ChokepointCollectionBetweenPoints.cs" />
     <Compile Include="Entities\Map\AnalysedStaticMap.cs" />
@@ -95,10 +96,11 @@
     <Compile Include="Game Input\StarCraft Constants\UnitConstants.cs" />
     <Compile Include="Game Input\StarCraft Constants\UpgradeConstants.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
+    <Compile Include="Game Utility\WallinUtility.cs" />
     <Compile Include="Game Utility\ConstructionUtility.cs" />
     <Compile Include="GUI\Debug Maps\BaseDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\InfluenceDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\GeneralChokepointDebugMap.cs" />
+    <Compile Include="GUI\Debug Maps\_Legacy - GeneralChokepointDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\ChokepointDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\ResourceClusterDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\OverviewDebugMap.cs" />
@@ -131,10 +133,7 @@
     <Compile Include="Misc\JokeGenerator.cs" />
     <Compile Include="Misc\Log.cs" />
     <Compile Include="Map Analysis\Path Finding\PathFinder.cs" />
-    <Compile Include="Static Analysis %28Tyr%29 - Legacy\BaseManager.cs" />
-    <Compile Include="Static Analysis %28Tyr%29 - Legacy\MapAnalyzer.cs" />
     <Compile Include="Misc\GeneralUtility.cs" />
-    <Compile Include="Static Analysis %28Tyr%29 - Legacy\TargetManager.cs" />
     <Compile Include="Strategic Maps\StrategicMapSet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Program.cs" />

@@ -101,22 +101,16 @@ namespace BOSSE
 
         private void ScoutNatural(Unit worker)
         {
-            Tyr.BaseLocation location = Tyr.Tyr.MapAnalyzer.GetEnemyNatural();
-            if (location == null)
-            {
-                Log.Warning("Scout unable to locate enemy natural");
-                HasScoutedNatural = true;
-                return;
-            }
+            Point2D location = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.EnemyNaturalExpansion.GetMineralCenter();
 
-            if (worker.Position.IsWithinRange(location.Pos, 3))
+            if (worker.Position.IsWithinRange(location, 3))
             {
                 Log.Bulk("Scout completed natural scouting");
                 HasScoutedNatural = true;
                 return;
             }
 
-            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, location.Pos));
+            Queue(CommandBuilder.MoveAction(this.controlledSquad.AssignedUnits, location));
         }
 
         private void ScoutAroundEnemyBase(Unit worker, Unit enemyResourceCenter)

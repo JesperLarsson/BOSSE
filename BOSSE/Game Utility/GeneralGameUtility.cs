@@ -127,6 +127,34 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Returns the size of a building once placed
+        /// </summary>
+        public static System.Drawing.Size GetSizeOfBuilding(UnitId buildingId)
+        {
+            if (buildingId == UnitId.SUPPLY_DEPOT)
+            {
+                return new System.Drawing.Size(2, 2);
+            }
+            else if (buildingId == UnitId.BARRACKS)
+            {
+                return new System.Drawing.Size(3, 3);
+            }
+            else if (buildingId == UnitId.FACTORY)
+            {
+                return new System.Drawing.Size(3, 3);
+            }
+            else if (buildingId == UnitId.COMMAND_CENTER)
+            {
+                return new System.Drawing.Size(5, 5);
+            }
+            else
+            {
+                Log.SanityCheckFailed("Building size not supported for " + buildingId);
+                return new System.Drawing.Size(0, 0);
+            }
+        }
+
+        /// <summary>
         /// Guesstimates the enemy base location, null = no decent guess
         /// </summary>
         public static Point2D GuessEnemyBaseLocation()

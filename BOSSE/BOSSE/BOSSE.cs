@@ -113,10 +113,7 @@ namespace BOSSE
         {
             // Set main location
             Globals.MainBaseLocation = GetUnits(UnitId.COMMAND_CENTER)[0].Position;
-
-            // Initialize Tyr (map analysis)
-            Tyr.Tyr.Initialize();
-
+            
             // General map analysis
             PathFinderRef.Initialize();
             MapAnalysisRef.Initialize();

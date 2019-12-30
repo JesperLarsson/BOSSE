@@ -48,6 +48,8 @@ namespace BOSSE
         public ResourceCluster EnemyNaturalExpansion;
         public ResourceCluster EnemyThirdExpansion;
 
+        private Point2D CachedNaturalDefensePos = null;
+
         public AnalysedRuntimeMap(
             Dictionary<long, ResourceCluster> allClusters,
             ResourceCluster mainBase, ResourceCluster naturalExpansion, ResourceCluster thirdExpansion,
@@ -60,6 +62,41 @@ namespace BOSSE
             EnemyMainBase = enemyMainBase;
             EnemyNaturalExpansion = enemyNaturalExpansion;
             EnemyThirdExpansion = enemyThirdExpansion;
+        }
+
+        /// <summary>
+        /// Returns a good position to defend our natural expansion
+        /// </summary>
+        public Point2D GetNaturalDefensePos()
+        {
+            if (CachedNaturalDefensePos == null)
+            {
+                // Walk some steps away from our natural and use that as the defense position
+                const int numberOfTilesToForward = 12;
+                var path = BOSSE.PathFinderRef.FindPath(NaturalExpansion.GetCommandCenterPosition(), EnemyMainBase.GetMineralCenter());
+                if (path == null || path.Count == 0)
+                {
+                    Log.SanityCheckFailed("Unable to determine natural defense position");
+                }
+
+                int currentTile = 0;
+                BossePathNode nodeToUse = null;
+                foreach (BossePathNode iter in path)
+                {
+                    nodeToUse = iter;
+                    currentTile++;
+                    if (currentTile >= numberOfTilesToForward)
+                        break;
+                }
+
+                CachedNaturalDefensePos = new Point2D(nodeToUse.X, nodeToUse.Y);
+
+                // Add to debug GUI
+                KeyValuePair<Point2D, string> debugPoint = new KeyValuePair<Point2D, string>(CachedNaturalDefensePos, "NatDef");
+                DebugGui.TerrainDebugMap.MarkedPoints.Add(debugPoint);
+            }
+
+            return CachedNaturalDefensePos;
         }
     }
 }

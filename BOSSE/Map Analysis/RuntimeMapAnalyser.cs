@@ -78,12 +78,12 @@ namespace BOSSE
         /// </summary>
         private static void CalculateChokepointGroups(ChokepointCollectionBetweenPoints chokepointCollection)
         {
-            const byte chokeMinValueThreshold = 240;
+            byte chokeMinValueThreshold = 150;
             const int chokeDistanceThreshold = 15;
             TileMap<byte> map = chokepointCollection.ChokeScore;
 
-            // 1. Create initial choke groups
-            List<ChokePointGroup> chokeGroups = new List<ChokePointGroup>();
+            // Create initial choke groups
+            List<ChokePointGroup> chokeGroupsWorkingList = new List<ChokePointGroup>();
             for (int x = 0; x < map.Width; x++)
             {
                 for (int y = 0; y < map.Height; y++)
@@ -95,7 +95,7 @@ namespace BOSSE
 
                     // Check if tile belongs to an existing chokepoint
                     bool belongsInExisting = false;
-                    foreach (ChokePointGroup chokeIter in chokeGroups)
+                    foreach (ChokePointGroup chokeIter in chokeGroupsWorkingList)
                     {
                         Point2D centerPos = chokeIter.GetCenterOfChoke();
                         if (centerPos.IsWithinRange(currentPos, chokeDistanceThreshold, true))
@@ -111,13 +111,19 @@ namespace BOSSE
                     {
                         ChokePointGroup groupObj = new ChokePointGroup();
                         groupObj.ChokeMap.Add(currentPos);
-                        chokeGroups.Add(groupObj);
+                        chokeGroupsWorkingList.Add(groupObj);
                     }
                 }
             }
 
 #warning TODO: Post-process and join groups if necessary, same as resource clustering
-            chokepointCollection.ChokePointGroups = chokeGroups;
+
+            // Sort by distance to origin point
+            Point2D fromResourceClusterPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.ResourceClusters[chokepointCollection.FromResourceClusterId].GetMineralCenter();
+            chokeGroupsWorkingList.Sort((a, b) => a.GetCenterOfChoke().AirDistanceSquared(fromResourceClusterPos).CompareTo(b.GetCenterOfChoke().AirDistanceSquared(fromResourceClusterPos)));
+
+            // Done
+            chokepointCollection.ChokePointGroups = chokeGroupsWorkingList;
         }
 
         /// <summary>

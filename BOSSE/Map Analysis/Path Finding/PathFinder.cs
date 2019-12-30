@@ -43,7 +43,10 @@ namespace BOSSE
     {
         private BossePathSolver<BossePathNode, Object> PathGrid;
 
-        public void Initialize()
+        /// <summary>
+        /// <paramref name="overrideValues">Overrides the given points of our grid with new values, can be used to simulate behaviour other than the current game state</paramref>
+        /// </summary>
+        public void Initialize(List<KeyValuePair<Point2D, bool>> overrideValues = null)
         {
             // Initialize A star grid
 #warning TODO: Include buildings, mineral fields, etc in pathfinding
@@ -62,6 +65,16 @@ namespace BOSSE
                         X = x,
                         Y = y,
                     };
+                }
+            }
+
+            if (overrideValues != null)
+            {
+                foreach (var iter in overrideValues)
+                {
+                    Point2D pos = iter.Key;
+                    bool newValue = iter.Value;
+                    grid[(int)pos.X, (int)pos.Y].IsWall = newValue;
                 }
             }
 

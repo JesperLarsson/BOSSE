@@ -47,15 +47,9 @@ namespace BOSSE
             if (currentGlobalGoal == MilitaryGoal.DefendGeneral)
             {
                 // Move units to our ramp
-                Point2D ramp = Tyr.Tyr.MapAnalyzer.GetMainRamp();
+                Point2D natDef = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalDefensePos();
 
-                if (ramp == null)
-                {
-                    Log.Info("Unable to find ramp");
-                    return;
-                }
-
-                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, ramp));
+                Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, natDef));
             }
             else if (currentGlobalGoal == MilitaryGoal.DefendPoint)
             {
