@@ -151,7 +151,7 @@ namespace BOSSE
                 Wall.BuildingInWall buildingDef = new Wall.BuildingInWall(buildingSize, new Point2D(nextBuildingLeftX + sizeDiffToCenter, y));
                 wallObj.Buildings.Add(buildingDef);
 
-                nextBuildingLeftX += (buildingSize.Width * 2);
+                nextBuildingLeftX += buildingSize.Width;
             }
 
             return wallObj;

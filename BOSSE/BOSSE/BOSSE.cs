@@ -132,7 +132,7 @@ namespace BOSSE
             {
                 foreach (Unit iter in affectedUnits)
                 {
-                    Log.Info("Completed new building: " + iter);
+                    Log.Info("Completed new building: " + iter + " at " + iter.Position.ToString2());
 
                     // Add all depots to ramp manager for now
                     if (iter.UnitType == UnitId.SUPPLY_DEPOT)
