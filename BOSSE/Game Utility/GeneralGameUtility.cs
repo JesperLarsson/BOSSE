@@ -101,6 +101,10 @@ namespace BOSSE
                 }
             }
 
+            // Not in tech tree for some reason
+            if (requiredTech == UnitId.SUPPLY_DEPOT)
+                resultList.Add(UnitId.SUPPLY_DEPOT_LOWERED);
+
             return resultList;
         }
 

@@ -49,7 +49,8 @@ namespace BOSSE
             UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
             UnitTypeData ccInfo = GetUnitInfo(UnitId.COMMAND_CENTER);
 
-            uint depotFood = (uint)(GetUnitCountTotal(UnitId.SUPPLY_DEPOT) * houseInfo.FoodProvided);
+            
+            uint depotFood = (uint)(GetUnitCountTotal(new HashSet<UnitId>() { UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT_LOWERED }) * houseInfo.FoodProvided);
             uint ccFood = (uint)(GetUnitCountTotal(UnitId.COMMAND_CENTER) * ccInfo.FoodProvided);
 
             return depotFood + ccFood;

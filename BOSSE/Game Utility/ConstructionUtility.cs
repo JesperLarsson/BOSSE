@@ -58,8 +58,9 @@ namespace BOSSE
                     {
                         // Building is a match
                         iter.BuildingType = unitType;
-                        constructionSpot = iter.BuildingPosition;
+                        constructionSpot = new Point2D(((float)iter.BuildingPosition.X) + 0.5f, ((float)iter.BuildingPosition.Y) + 0.5f);
                         Log.Info("Using construction spot as part of our wall for " + unitType + " at " + constructionSpot.ToString2());
+                        break;
                     }
                 }
             }

@@ -53,7 +53,7 @@ namespace BOSSE
             // Subscribe to finished buildings
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
 
-            BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
+            //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
         }
 
         private void ReceiveEventFinishedMilitaryUnit(HashSet<Unit> newUnits)
@@ -126,7 +126,7 @@ namespace BOSSE
         /// </summary>
         private void ExecuteBuildMilitary()
         {
-            const int RaxesWanted = 1;
+            const int RaxesWanted = 2;
             const int FactoriesWanted = 1;
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
@@ -136,12 +136,12 @@ namespace BOSSE
             uint factoryCount = GetUnitCountTotal(UnitId.FACTORY, includeEquivalents: true);
 
             // Expand
-            if (CanAfford(UnitId.COMMAND_CENTER))
-            {
-                Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
-                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
-                Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
-            }
+            //if (CanAfford(UnitId.COMMAND_CENTER))
+            //{
+            //    Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
+            //    Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
+            //    Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
+            //}
 
             // Factory
             if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
