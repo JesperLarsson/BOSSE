@@ -41,6 +41,7 @@ Developed using Visual Studio 2019, but other versions will likely work.
 
 ## Credits
 Based on the following starting template: https://github.com/NikEyX/SC2-CSharpe-Starterkit
+
 Otherwise everything has been implemented from scratch.
 
 ## Links
