@@ -40,8 +40,8 @@ namespace DebugGui
         private readonly List<BaseDebugMap> Maps = new List<BaseDebugMap>()
         {
             // General
-            new OverviewDebugMap(),
             new TerrainDebugMap(),
+            new OverviewDebugMap(),            
             new PlacementGridDebugMap(),
 
             // Strategic

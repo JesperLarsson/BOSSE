@@ -40,12 +40,18 @@ namespace BOSSE
         /// <summary>
         /// Building sizes for natural wall
         /// </summary>
+        //private static readonly List<Size> NaturalWallinConfigNoGap = new List<Size>()
+        //{
+        //    new Size(3, 3),
+        //    new Size(3, 3),
+        //    new Size(2, 2),
+        //    new Size(2, 2),
+        //};
         private static readonly List<Size> NaturalWallinConfigNoGap = new List<Size>()
         {
             new Size(3, 3),
             new Size(3, 3),
-            new Size(2, 2),
-            new Size(2, 2),
+            new Size(3, 3),
         };
 
         private static Wall CachedNaturalWall = null;
@@ -73,18 +79,26 @@ namespace BOSSE
             }
             int estimateX = (int)estimatedLocation.X;
             int estimateY = (int)estimatedLocation.Y;
+            Log.Info("Estimate = " + estimateX + "/" + estimateY);
 
-            const int yTestRadius = 4;
-            for (int y = estimateY - yTestRadius; y < estimateY + yTestRadius; y++)
+            const int yTestRadius = 1;
+            for (int y = estimateY - yTestRadius; y <= estimateY + yTestRadius; y++)
             {
+                Log.Info("Testing Y = " + y);
                 Wall wallObj = TryGetWallAtExactY(estimateX, y);
                 if (wallObj != null)
                 {
-                    bool blocksPathinOk = true; // IsGivenWallConfigurationViable(wallObj);
+                    bool blocksPathinOk = y == 68;  // IsGivenWallConfigurationViable(wallObj);
+#warning TODO: Debug
+
                     if (blocksPathinOk)
                     {
                         Log.Info("Found natural wall at " + wallObj.GetCenterPosition().ToString2());
                         return wallObj;
+                    }
+                    else
+                    {
+                        Log.Info("Failed pathfinding test for Y=" + y);
                     }
                 }
             }
@@ -96,11 +110,11 @@ namespace BOSSE
         private static Wall TryGetWallAtExactY(int estimateX, int y)
         {
             var wallConfig = NaturalWallinConfigNoGap;
+            ImageData gridMap = CurrentGameState.GameInformation.StartRaw.PlacementGrid;
 
             // 1. Search for starting position = first buildable tile
-            const int radiusSearchX = 5;
+            const int radiusSearchX = 2;
             int buildingStartsAtLeftX = -1;
-            ImageData gridMap = new ImageData(CurrentGameState.GameInformation.StartRaw.PlacementGrid);
             for (int x = estimateX - radiusSearchX; x < estimateX + radiusSearchX; x++)
             {
                 // Is this location buildable?
@@ -113,9 +127,10 @@ namespace BOSSE
             }
             if (buildingStartsAtLeftX == -1)
             {
-                Log.SanityCheckFailed("Unable to determine wall start X");
+                Log.SanityCheckFailed("  Unable to determine wall start X");
                 return null;
             }
+            Log.Info("  Starting nat wall at x = " + buildingStartsAtLeftX + " (estimate was " + estimateX + ")");
 
             // 2. Make sure we can fit our buildings here
             int exactWidthRequired = 0;
@@ -129,18 +144,18 @@ namespace BOSSE
                 bool canBePlaced = gridMap.GetBit(x, y) != 0;
                 if (!canBePlaced)
                 {
-                    Log.Info("Not possible to build a wall at test position");
+                    Log.Info("  Not possible to build a wall at test position");
                     return null;
                 }
             }
 
             // 3. Next X should not be buildable in order to create a wall
-            bool nextTileBuildable = gridMap.GetBit(buildingStartsAtLeftX + exactWidthRequired + 1, y) != 0;
-            if (nextTileBuildable)
-            {
-                Log.Info("Gap too wide at y = " + y);
-                return null;
-            }
+            //bool nextTileBuildable = gridMap.GetBit(buildingStartsAtLeftX + exactWidthRequired + 1, y) != 0;
+            //if (nextTileBuildable)
+            //{
+            //    Log.Info("  Gap too wide at y = " + y);
+            //    return null;
+            //}
 
             // 4. Place buildings
             Wall wallObj = new Wall();
@@ -151,10 +166,42 @@ namespace BOSSE
                 Wall.BuildingInWall buildingDef = new Wall.BuildingInWall(buildingSize, new Point2D(nextBuildingLeftX + sizeDiffToCenter, y));
                 wallObj.Buildings.Add(buildingDef);
 
+                if (!BuildingFitsInPosition(buildingDef))
+                {
+                    Log.Info("  Builing too thick at " + buildingDef.BuildingPosition.ToString2());
+                    return null;
+                }
+
                 nextBuildingLeftX += buildingSize.Width;
             }
 
             return wallObj;
+        }
+
+        private static bool BuildingFitsInPosition(Wall.BuildingInWall building)
+        {
+            int sizeYDiffToCenter = (building.BuildingSize.Height - 1) / 2;
+            int sizeXDiffToCenter = (building.BuildingSize.Width - 1) / 2;
+
+            int fromX = (int)building.BuildingPosition.X - sizeXDiffToCenter;
+            int fromY = (int)building.BuildingPosition.Y - sizeYDiffToCenter;
+            int toX = fromX + building.BuildingSize.Width;
+            int toY = fromY + building.BuildingSize.Height;
+
+            ImageData gridMap = new ImageData(CurrentGameState.GameInformation.StartRaw.PlacementGrid);
+            for (int x = fromX; x < toX; x++)
+            {
+                for (int y = fromY; y < toY; y++)
+                {
+                    bool canBePlaced = gridMap.GetBit(x, y) != 0;
+                    if (!canBePlaced)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         /// <summary>

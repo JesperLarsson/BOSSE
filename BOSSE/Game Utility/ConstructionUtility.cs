@@ -49,18 +49,21 @@ namespace BOSSE
             if (size.Width != 0 && size.Height != 0)
             {
                 Wall naturalWall = WallinUtility.GetNaturalWall();
-                foreach (Wall.BuildingInWall iter in naturalWall.Buildings)
+                if (naturalWall != null)
                 {
-                    if (iter.BuildingType.HasValue)
-                        continue;
-
-                    if (iter.BuildingSize.Width == size.Width && iter.BuildingSize.Height == size.Height)
+                    foreach (Wall.BuildingInWall iter in naturalWall.Buildings)
                     {
-                        // Building is a match
-                        iter.BuildingType = unitType;
-                        constructionSpot = new Point2D(((float)iter.BuildingPosition.X) + 0.5f, ((float)iter.BuildingPosition.Y) + 0.5f);
-                        Log.Info("Using construction spot as part of our wall for " + unitType + " at " + constructionSpot.ToString2());
-                        break;
+                        if (iter.BuildingType.HasValue)
+                            continue;
+
+                        if (iter.BuildingSize.Width == size.Width && iter.BuildingSize.Height == size.Height)
+                        {
+                            // Building is a match
+                            iter.BuildingType = unitType;
+                            constructionSpot = iter.BuildingPosition; // new Point2D(((float)iter.BuildingPosition.X) + 0.5f, ((float)iter.BuildingPosition.Y) + 0.5f);
+                            Log.Info("Using construction spot as part of our wall for " + unitType + " at " + constructionSpot.ToString2());
+                            break;
+                        }
                     }
                 }
             }

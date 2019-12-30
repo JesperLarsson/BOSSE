@@ -126,7 +126,7 @@ namespace BOSSE
         /// </summary>
         private void ExecuteBuildMilitary()
         {
-            const int RaxesWanted = 2;
+            const int RaxesWanted = 3;
             const int FactoriesWanted = 1;
 
             UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);

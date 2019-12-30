@@ -37,6 +37,7 @@ namespace DebugGui
     {
         SolidBrush pixelBrush;
         public static List<KeyValuePair<Point2D, string>> MarkedPoints = new List<KeyValuePair<Point2D, string>>();
+        static readonly SolidBrush NaturalEstimateLocation = new SolidBrush(System.Drawing.Color.Red);
         static readonly SolidBrush NaturalDefenseWall = new SolidBrush(System.Drawing.Color.Green);
 
         public TerrainDebugMap()
@@ -69,10 +70,18 @@ namespace DebugGui
                 }
             }
 
-            // Natural def
-            foreach (Wall.BuildingInWall iter in BOSSE.ConstructionManagerRef.GetNaturalWall().Buildings)
+            // Natural def estimate spot 
+            Point2D natDefPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalDefensePos();
+            surface.FillRectangle(NaturalEstimateLocation, (RenderScale * natDefPos.X), (RenderScale * CompensateY(natDefPos.Y)), RenderScale, RenderScale);
+
+            // Natural def parts
+            var naturalWall = BOSSE.ConstructionManagerRef.GetNaturalWall();
+            if (naturalWall != null)
             {
-                surface.FillRectangle(NaturalDefenseWall, (RenderScale * iter.BuildingPosition.X), (RenderScale * CompensateY(iter.BuildingPosition.Y)), RenderScale, RenderScale);
+                foreach (Wall.BuildingInWall iter in naturalWall.Buildings)
+                {
+                    surface.FillRectangle(NaturalDefenseWall, (RenderScale * iter.BuildingPosition.X), (RenderScale * CompensateY(iter.BuildingPosition.Y)), RenderScale, RenderScale);
+                }
             }
 
             // Extra texts
