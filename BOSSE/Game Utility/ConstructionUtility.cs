@@ -59,9 +59,16 @@ namespace BOSSE
                         if (iter.BuildingSize.Width == size.Width && iter.BuildingSize.Height == size.Height)
                         {
                             // Building is a match
+                            if (!CanPlaceRequest(unitType, iter.BuildingPosition))
+                            {
+                                Log.SanityCheckFailed("Cannot place wall part as intended at " + iter.BuildingPosition);
+                                continue;
+                            }
+
                             iter.BuildingType = unitType;
                             constructionSpot = iter.BuildingPosition; // new Point2D(((float)iter.BuildingPosition.X) + 0.5f, ((float)iter.BuildingPosition.Y) + 0.5f);
-                            Log.Info("Using construction spot as part of our wall for " + unitType + " at " + constructionSpot.ToString2());
+                            Log.Info("Building wall part " + unitType + " at " + constructionSpot.ToString2());
+                            
                             break;
                         }
                     }

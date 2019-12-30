@@ -145,6 +145,7 @@ namespace BOSSE
             // Assign a random worker to scout
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
             Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
+            Log.Info("Assigning worker " + scoutingWorker.Tag + " as initial scout");
             scoutingWorker.IsReserved = true;
             BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
 

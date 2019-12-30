@@ -325,12 +325,12 @@ namespace BOSSE
                 return;
             }
 
-            List<Unit> workers = GetUnits(UnitId.SCV).Where(p => p.CurrentOrder == null && p.IsReserved == false).ToList();
+            List<Unit> workers = GetUnits(UnitId.SCV).Where(p => p.CurrentOrder == null && p.IsReserved == false && p.HasNewOrders == false).ToList();
             Queue(CommandBuilder.MineMineralsAction(workers, mineralToReturnTo));
 
             if (workers.Count > 0)
             {
-                Log.Info($"WorkerManager - Returned {workers.Count} workers to mining");
+                Log.Info($"WorkerManager - Returned {workers.Count} workers to mining: " + String.Join(",", workers));
             }
         }
     }

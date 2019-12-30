@@ -36,7 +36,8 @@ namespace BOSSE
     public class Unit : GameObject
     {
         /// <summary>
-        /// Contained for all available unit objects
+        /// Container for all unit objects
+        /// Tag => Instance mapping
         /// </summary>
         public static Dictionary<ulong, Unit> AllUnitInstances = new Dictionary<ulong, Unit>();
 
@@ -72,6 +73,12 @@ namespace BOSSE
         public Point2D Position { get => new Point2D(original.Pos.X, original.Pos.Y); }
 
         /// <summary>
+        /// Set if this unit was given new orders this tick
+        /// This prevents other parts of the code to issue duplicate orders
+        /// </summary>
+        public bool HasNewOrders = false;
+
+        /// <summary>
         /// Create a new instance from sc2 instance, we wrap around it and add some functionality
         /// </summary>
         public Unit(SC2APIProtocol.Unit unit) : base()
@@ -94,6 +101,7 @@ namespace BOSSE
         /// </summary>
         public void RefreshData(SC2APIProtocol.Unit newOriginal)
         {
+            this.HasNewOrders = false;
             this.original = newOriginal;
         }
 

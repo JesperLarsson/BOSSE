@@ -49,7 +49,7 @@ namespace BOSSE
         /// <summary>
         /// Number of milliseconds to sleep after each bot tick
         /// </summary>
-        public static TimeSpan TickLockSleep = TimeSpan.FromMilliseconds(0);
+        public static readonly TimeSpan TickLockSleep = TimeSpan.FromMilliseconds(1);
 
         /// <summary>
         /// Number of logical ingame steps to perform each bot tick
@@ -58,19 +58,14 @@ namespace BOSSE
         public const int stepSize = 8;
 
         /// <summary>
-        /// Bot will spawn as the given race
-        /// </summary>
-        public const Race SpawnAsRace = Race.Terran;
-
-        /// <summary>
-        /// We want at least this amount of supply as a margin before we reach the max
-        /// </summary>
-        public const int MinSupplyMargin = 4;
-
-        /// <summary>
         /// Number of workers to aim for at each base
         /// </summary>
         public const int TargetWorkerPerBase = 16;
+
+        /// <summary>
+        /// Bot will spawn as the given race
+        /// </summary>
+        public const Race SpawnAsRace = Race.Terran;
 
         public const UnitId WorkerUnit = UnitId.SCV;
         public const UnitId CommandCenterUnit = UnitId.COMMAND_CENTER;

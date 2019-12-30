@@ -123,7 +123,21 @@ namespace BOSSE
             {
                 foreach (ulong iter in action.ActionRaw.UnitCommand.UnitTags)
                 {
-                    Log.Bulk("Issued a command to unit " + iter);
+                    bool existed = Unit.AllUnitInstances.TryGetValue(iter, out Unit unitData);
+                    if (!existed)
+                    {
+                        Log.SanityCheckFailed("Queued an action for a unit that doesn't existing in our managed cache (" + iter + ")");
+                        continue;
+                    }
+
+                    if (unitData.HasNewOrders)
+                    {
+                        Log.Warning("NOTE: Queued duplicate orders for unit " + iter + ", they will be overriden");
+                        continue;
+                    }
+
+                    Log.Bulk("Issued a new command to unit " + iter);
+                    unitData.HasNewOrders = true;
                 }
             }
 

@@ -58,18 +58,19 @@ namespace BOSSE
 
         private void ReceiveEventFinishedMilitaryUnit(HashSet<Unit> newUnits)
         {
-            foreach (Unit iter in newUnits)
-            {
-                Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
-                squad.AddUnit(iter);
-                Log.Info("  Added unit to main squad: " + iter.Tag + " (" + iter.UnitType + ")");
-                unitCount++;
-            }
+#warning TODO: Re-enable
+            //foreach (Unit iter in newUnits)
+            //{
+            //    Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
+            //    squad.AddUnit(iter);
+            //    Log.Info("  Added unit to main squad: " + iter.Tag + " (" + iter.UnitType + ")");
+            //    unitCount++;
+            //}
 
-            if (unitCount > 10)
-            {
-                BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
-            }
+            //if (unitCount > 10)
+            //{
+            //    BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
+            //}
         }
 
         /// <summary>
@@ -109,11 +110,13 @@ namespace BOSSE
         /// </summary>
         private void AllStrategiesPostRun()
         {
+            const int MinSupplyMargin = 4;
+
             // Build depots as we need them
             UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
             uint currentAndPendingFood = GetCurrentAndPendingSupply();
             uint supplyDiff = currentAndPendingFood - CurrentGameState.UsedSupply;
-            while (supplyDiff < BotConstants.MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
+            while (supplyDiff < MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
                 ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
                 supplyDiff += (uint)houseInfo.FoodProvided;
