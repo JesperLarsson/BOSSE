@@ -33,7 +33,6 @@ namespace BOSSE
     {
         private static string LogPathAbsolute;
         private static Thread ThreadInstance = null;
-        private static readonly ConcurrentQueue<string> TraceQueue = new ConcurrentQueue<string>();
         private static readonly ConcurrentQueue<string> FileQueue = new ConcurrentQueue<string>();
 
         /// <summary>
@@ -130,12 +129,6 @@ namespace BOSSE
                 fileStream.WriteLine(msg);
             }
             fileStream.Close();
-
-            while (TraceQueue.TryDequeue(out string msg))
-            {
-                System.Diagnostics.Debug.WriteLine(msg);
-                Console.WriteLine(msg);
-            }
         }
 
         private static void FormatAndQueue(string prefix, string line, bool trace)
@@ -144,8 +137,12 @@ namespace BOSSE
 
             FileQueue.Enqueue(msg);
 
+            // Trace right away, it doesn't consume much resources and makes debugging easier
             if (trace)
-                TraceQueue.Enqueue(msg);
+            {
+                System.Diagnostics.Debug.WriteLine(msg);
+                Console.WriteLine(msg);
+            }
         }
     }
 }
