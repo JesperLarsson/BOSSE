@@ -99,5 +99,18 @@ namespace BOSSE
 
             return resultPos;
         }
+
+        public override string ToString()
+        {
+            string str = "[Wall ";
+
+            foreach (var iter in Buildings)
+            {
+                str += iter.BuildingPosition.ToString2();
+            }
+
+            str += "]";
+            return str;
+        }
     }
 }

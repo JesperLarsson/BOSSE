@@ -24,6 +24,7 @@ namespace BOSSE
     using System.Security.Cryptography;
     using System.Threading;
     using System.Drawing;
+    using System.Linq;
 
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
@@ -31,7 +32,7 @@ namespace BOSSE
     using static UnitConstants;
     using static GeneralGameUtility;
     using static AbilityConstants;
-
+    
     /// <summary>
     /// Utility functions for creating walls
     /// </summary>
@@ -81,30 +82,51 @@ namespace BOSSE
             int estimateY = (int)estimatedLocation.Y;
             Log.Info("Estimate = " + estimateX + "/" + estimateY);
 
+            // 2. Build wall configurations
             const int yTestRadius = 1;
+            var foundWallsAtY = new Dictionary<int, Wall>();
             for (int y = estimateY - yTestRadius; y <= estimateY + yTestRadius; y++)
             {
                 Log.Info("Testing Y = " + y);
                 Wall wallObj = TryGetWallAtExactY(estimateX, y);
                 if (wallObj != null)
                 {
-                    bool blocksPathinOk = y == 68;  // IsGivenWallConfigurationViable(wallObj);
-#warning TODO: Debug
+                    bool blocksPathinOk = IsGivenWallConfigurationViable(wallObj);
 
                     if (blocksPathinOk)
                     {
-                        Log.Info("Found natural wall at " + wallObj.GetCenterPosition().ToString2());
-                        return wallObj;
+                        Log.Info("Found natural wall " + wallObj);
+                        foundWallsAtY[y] = wallObj;
                     }
                     else
                     {
-                        Log.Info("Failed pathfinding test for Y=" + y);
+                        Log.Info("Failed wall pathfinding test for Y=" + y);
                     }
                 }
             }
 
-            Log.SanityCheckFailed("Unable to find natural wall");
-            return null;
+            if (foundWallsAtY.Count == 0)
+            {
+                Log.SanityCheckFailed("Unable to find natural wall");
+                return null;
+            }
+            if (foundWallsAtY.Count == 1)
+            {
+                Wall onlyWallObj = foundWallsAtY[0];
+                Log.Info("Using the only possible wall configuration: " + onlyWallObj);
+                return onlyWallObj;
+            }
+
+            // 3. Choose the option that is most "in the middle", this somewhat works around an issue with our pathfinding that it doesn't consider diagonals
+            var sortedY = foundWallsAtY.Keys.ToList();
+            Log.Info("Possible natural wall configurations: " + sortedY.Count);
+            sortedY.Sort();
+            int usedIndex = (int)(sortedY.Count / 2);
+            int usedY = sortedY[usedIndex];
+
+            Wall usedWall = foundWallsAtY[usedY];
+            Log.Info("Using median natural wall: " + usedWall);
+            return usedWall;
         }
 
         private static Wall TryGetWallAtExactY(int estimateX, int y)
@@ -219,13 +241,14 @@ namespace BOSSE
 
                 int startX = (int)buildingCenterPos.X - ((buildingSize.Width - 1) / 2);
                 int startY = (int)buildingCenterPos.Y - ((buildingSize.Height - 1) / 2);
-                int endX = (int)buildingCenterPos.X + ((buildingSize.Width - 1) / 2);
-                int endY = (int)buildingCenterPos.Y + ((buildingSize.Height - 1) / 2);
-                for (int x = startX; x < endX; x++)
+                int endX = startX + buildingSize.Width;
+                int endY = startY + buildingSize.Height;
+                for (int x = startX; x <= endX; x++)
                 {
-                    for (int y = startY; y < endY; y++)
+                    for (int y = startY; y <= endY; y++)
                     {
-                        var pair = new KeyValuePair<Point2D, bool>(new Point2D(x, y), true);
+                        bool isWall = true;
+                        var pair = new KeyValuePair<Point2D, bool>(new Point2D(x, y), isWall);
                         overrideValues.Add(pair);
                     }
                 }
