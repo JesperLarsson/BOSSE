@@ -100,7 +100,7 @@ namespace BOSSE
         /// <summary>
         /// Create placeholder instance, only used as a temporary placeholder during events
         /// </summary>
-        public Unit(uint tag) : base()
+        public Unit(ulong tag) : base()
         {
             this.original = new SC2APIProtocol.Unit();
             this.original.Tag = tag;

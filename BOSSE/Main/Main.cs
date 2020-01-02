@@ -103,8 +103,7 @@ namespace BOSSE
                 catch (BosseFatalException ex)
                 {
                     Log.SanityCheckFailed("FATAL EXCEPTION: " + ex);
-                    Thread.Sleep(2000); // Let log flush
-                    Environment.Exit(99);
+                    ExitBosse(99);
                 }
                 catch (BosseRecoverableException ex)
                 {
@@ -165,10 +164,19 @@ namespace BOSSE
                     if (result.PlayerId == Globals.PlayerId)
                     {
                         Log.Info("Match is over, result = " + result.Result);
-                        System.Environment.Exit(0);
+                        ExitBosse();
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Terminates BOSSE
+        /// </summary>
+        public static void ExitBosse(int exitCode = 0)
+        {
+            Thread.Sleep(2000); // Give logs time to flush
+            System.Environment.Exit(exitCode);
         }
 
         /// <summary>

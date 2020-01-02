@@ -45,7 +45,8 @@ namespace BOSSE
             List<Unit> currentUnits = GeneralGameUtility.GetUnits(UnitConstants.ArmyUnits);
             HashSet<Unit> killedUnits = new HashSet<Unit>();
 
-            foreach (uint prevIterTag in PreviousUnitTags)
+            // Check which don't exist any more
+            foreach (ulong prevIterTag in PreviousUnitTags)
             {
                 bool found = false;
                 foreach (Unit currentUnit in currentUnits)
@@ -72,13 +73,18 @@ namespace BOSSE
                         // Create placeholder with just the tag set
                         oldUnitInstance = new Unit(prevIterTag);
                     }
-
-
+                    
                     killedUnits.Add(oldUnitInstance);
-                    PreviousUnitTags.Remove(prevIterTag);
                 }
             }
 
+            // Delete units from cache
+            foreach (Unit iter in killedUnits)
+            {
+                PreviousUnitTags.Remove(iter.Tag);
+            }
+
+            // Add new units
             foreach (Unit currentUnitIter in currentUnits)
             {
                 if (!PreviousUnitTags.Contains(currentUnitIter.Tag))

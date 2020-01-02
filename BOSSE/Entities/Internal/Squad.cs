@@ -63,15 +63,17 @@ namespace BOSSE
             var ownedUnits = AssignedUnits.ToList();
             foreach (var killedIter in killedUnits)
             {
+                Log.Bulk($"Removed unit {killedIter.Tag} from squad {Name} (unit died)");
                 ownedUnits = ownedUnits.Where(x => x.Tag != killedIter.Tag).ToList();
             }
 
             HashSet<Unit> newUnitSet = new HashSet<Unit>();
             foreach (var iter in ownedUnits)
             {
-                Log.Bulk($"Removed unit {iter.Tag} from squad {Name} (unit died)");
                 newUnitSet.Add(iter);
             }
+
+            this.AssignedUnits = newUnitSet;
         }
 
         public virtual void IsBeingDeleted()
