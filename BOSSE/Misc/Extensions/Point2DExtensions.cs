@@ -118,6 +118,15 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Determines if we are at the given point
+        /// </summary>
+        public static bool IsAt(this Point2D self, Point2D other)
+        {
+            const float CloseThreshold = 0.1f;
+            return self.IsWithinRange(other, CloseThreshold);
+        }
+
+        /// <summary>
         /// Compares the values to another point
         /// </summary>
         public static bool IsSameCoordinates(this Point2D self, Point2D other)

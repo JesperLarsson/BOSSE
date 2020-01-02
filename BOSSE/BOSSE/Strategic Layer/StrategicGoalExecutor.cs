@@ -167,7 +167,64 @@ namespace BOSSE
                     Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.BarracksBuildTechLab, atRax));
                     SubtractCosts(UnitId.TECHLAB);
 
+                    // When techlab finishes, swap positions of the rax with a factory
+                    BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+                    {
+                        bool hasLifted = false;
+                        Unit factory = null;
+                        Point2D raxOrigin = atRax.Position;
+                        Point2D factoryOrigin = null;
 
+                        ContinuousUnitOrder swapOrder = new ContinuousUnitOrder(delegate ()
+                        {
+                            if (!hasLifted)
+                            {
+                                List<Unit> factories = GetUnits(UnitConstants.FactoryVariations, onlyCompleted: true);
+                                if (factories.Count == 0)
+                                    return false; // wait for factory
+                                if (atRax.CurrentOrder != null)
+                                    return false; // wait for rax to finish building
+
+                                factory = factories[0];
+                                factoryOrigin = factory.Position;
+
+                                Log.Info("Lifting buildings to swap addons");
+                                Queue(CommandBuilder.UseAbility(AbilityId.LIFT, atRax));
+                                Queue(CommandBuilder.UseAbility(AbilityId.LIFT, factory));
+                                hasLifted = true;
+                                return false;
+                            }
+                            else
+                            {
+                                Log.Info("Landing buildings to swap addons");
+                                Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, factory, raxOrigin));
+                                Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, atRax, factoryOrigin));
+
+                                return true;
+                                //if (factory.Position.IsAt(raxOrigin))
+                                //{
+                                //    Queue(CommandBuilder.UseAbility(AbilityId.LAND, factory));
+                                //}
+                                //else
+                                //{
+                                //    Queue(CommandBuilder.MoveAction(new List<Unit> { factory }, raxOrigin));
+                                //}
+
+                                //if (atRax.Position.IsAt(factoryOrigin))
+                                //{
+                                //    Queue(CommandBuilder.UseAbility(AbilityId.LAND, atRax));
+                                //}
+                                //else
+                                //{
+                                //    Queue(CommandBuilder.MoveAction(new List<Unit> { atRax }, factoryOrigin));
+                                //}
+                            }
+                        });
+
+                        BOSSE.OrderManagerRef.AddOrder(swapOrder);
+                    }),
+                    unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType.IsSame(UnitConstants.TechlabVariations))),
+                    isOneShot: true);
                 }
             }
 

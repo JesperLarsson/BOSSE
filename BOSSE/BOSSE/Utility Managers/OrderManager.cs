@@ -41,47 +41,52 @@ namespace BOSSE
     public delegate bool ContinuousUnitOrder();
 
     /// <summary>
-    /// Handles more complicated orders 
+    /// Handles all running instances of <see cref="ContinuousUnitOrder"/>
     /// </summary>
     public class OrderManager : Manager
     {
-        /// <summary>
-        /// List of queued continuous orders
-        /// </summary>
-        private readonly List<ContinuousUnitOrder> GivenContinuousOrders = new List<ContinuousUnitOrder>();
+        private readonly List<ContinuousUnitOrder> ActiveOrders = new List<ContinuousUnitOrder>();
 
         public override void OnFrameTick()
         {
-            foreach (ContinuousUnitOrder orderIter in GivenContinuousOrders)
+            List<ContinuousUnitOrder> completedOrders = new List<ContinuousUnitOrder>();
+            foreach (ContinuousUnitOrder orderIter in ActiveOrders)
             {
-                this.RunOrder(orderIter);
+                bool orderCompleted = this.RunOrder(orderIter);
+
+                if (orderCompleted)
+                {
+                    Log.Info("Completed a continuous order");
+                    completedOrders.Add(orderIter);
+                }
+            }
+
+            foreach (ContinuousUnitOrder removeIter in completedOrders)
+            {
+                ActiveOrders.Remove(removeIter);
             }
         }
 
         public void AddOrder(ContinuousUnitOrder newOrder)
         {
             Log.Info("Added new continuous order");
-            GivenContinuousOrders.Add(newOrder);
-            RunOrder(newOrder);
+
+            bool completed = RunOrder(newOrder);
+            if (!completed)
+                ActiveOrders.Add(newOrder);
         }
 
-        /// <summary>
-        /// Gives this unit new orders if any continious orders have been given
-        /// </summary>
-        private void RunOrder(ContinuousUnitOrder orderToRun)
+        private bool RunOrder(ContinuousUnitOrder orderToRun)
         {
             try
             {
                 bool orderCompleted = orderToRun();
-                if (orderCompleted)
-                {
-                    Log.Info("Completed a continuous order");
-                    this.GivenContinuousOrders.Remove(orderToRun);
-                }
+                return orderCompleted;
             }
             catch (Exception ex)
             {
                 Log.Error("Cought exception in order manager: " + Environment.NewLine + ex);
+                return false;
             }
         }
     }

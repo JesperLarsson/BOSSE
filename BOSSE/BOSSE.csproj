@@ -135,6 +135,7 @@
     <Compile Include="Map Analysis\Path Finding\AStar\BossePathSolver.cs" />
     <Compile Include="Misc\Extensions\Point2DExtensions.cs" />
     <Compile Include="Misc\Extensions\HashSetExtensions.cs" />
+    <Compile Include="Misc\Extensions\UnitIdExtensions.cs" />
     <Compile Include="Misc\Extensions\SizeExtensions.cs" />
     <Compile Include="Misc\JokeGenerator.cs" />
     <Compile Include="Misc\Log.cs" />
