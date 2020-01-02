@@ -165,7 +165,7 @@ namespace BOSSE
         /// </summary>
         public void OnFrameTick()
         {
-            Unit.RefreshAllUnitData();
+            Unit.OnTick();
 
             foreach (Manager managerIter in AllManagers)
             {

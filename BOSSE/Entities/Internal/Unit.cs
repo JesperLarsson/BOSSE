@@ -31,13 +31,18 @@ namespace BOSSE
     using static GeneralGameUtility;
 
     /// <summary>
+    /// Can be used to continue giving this unit a complex multi-part order over many frames
+    /// Returns true when the order has been completed and should no longer be run, false = will be run again next tick
+    /// </summary>
+    public delegate bool ContinuousUnitOrder();
+
+    /// <summary>
     /// A single StarCraft unit, this can be buildings etc as well
     /// </summary>
     public class Unit : GameObject
     {
         /// <summary>
-        /// Container for all unit objects
-        /// Tag => Instance mapping
+        /// Container for all unit objects Tag => Instance mapping
         /// </summary>
         public static Dictionary<ulong, Unit> AllUnitInstances = new Dictionary<ulong, Unit>();
 
@@ -56,7 +61,18 @@ namespace BOSSE
         /// </summary>
         public bool IsReserved = false;
 
-        // Property lookups
+        /// <summary>
+        /// Set if this unit was given new orders this tick
+        /// This prevents other parts of the code from issuing duplicate orders
+        /// </summary>
+        public bool HasNewOrders = false;
+
+        /// <summary>
+        /// List of queued complex orders, only the first order is run each frame
+        /// </summary>
+        private List<ContinuousUnitOrder> GivenContinuousOrders = new List<ContinuousUnitOrder>();
+
+        // Property lookup helper functions
         public string Name { get => unitInformation.Name; }
         public ulong Tag { get => original.Tag; }
         public UnitConstants.UnitId UnitType { get => (UnitConstants.UnitId)original.UnitType; }
@@ -72,12 +88,6 @@ namespace BOSSE
         public RepeatedField<UnitOrder> QueuedOrders { get => original.Orders; }
         public UnitOrder CurrentOrder { get => QueuedOrders.Count > 0 ? QueuedOrders[0] : null; }
         public Point2D Position { get => new Point2D(original.Pos.X, original.Pos.Y); }
-
-        /// <summary>
-        /// Set if this unit was given new orders this tick
-        /// This prevents other parts of the code to issue duplicate orders
-        /// </summary>
-        public bool HasNewOrders = false;
 
         /// <summary>
         /// Create a new instance from sc2 instance, we wrap around it and add some functionality
@@ -107,25 +117,48 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Refresh with latest observational data
+        /// Called on each new frame, refresh data etc
         /// </summary>
-        public void RefreshData(SC2APIProtocol.Unit newOriginal)
+        public void UpdateDataEachTick(SC2APIProtocol.Unit newOriginal)
         {
             this.HasNewOrders = false;
             this.original = newOriginal;
         }
 
         /// <summary>
-        /// Refreshes current position etc of all units
+        /// Gives this unit new orders if any continious orders have been given
         /// </summary>
-        public static void RefreshAllUnitData()
+        public void UpdateContinuousOrders()
         {
+            if (this.GivenContinuousOrders.Count == 0)
+                return;
+
+            ContinuousUnitOrder orderToRun = this.GivenContinuousOrders[0];
+            bool orderCompleted = orderToRun();
+            if (orderCompleted)
+            {
+                this.GivenContinuousOrders.Remove(orderToRun);
+            }
+        }
+
+        /// <summary>
+        /// Updates all units each tick
+        /// </summary>
+        public static void OnTick()
+        {
+            // Refresh unit data with new input
             foreach (SC2APIProtocol.Unit sc2UnitData in CurrentGameState.ObservationState.Observation.RawData.Units)
             {
                 if (!Unit.AllUnitInstances.ContainsKey(sc2UnitData.Tag))
                     continue;
 
-                Unit.AllUnitInstances[sc2UnitData.Tag].RefreshData(sc2UnitData);
+                Unit.AllUnitInstances[sc2UnitData.Tag].UpdateDataEachTick(sc2UnitData);
+            }
+
+            // Update continuous orders, if any
+            foreach (Unit unitIter in Unit.AllUnitInstances.Values)
+            {
+                unitIter.UpdateContinuousOrders();
             }
         }
 
