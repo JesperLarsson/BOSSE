@@ -97,7 +97,6 @@
     <Compile Include="Game Input\StarCraft Constants\UpgradeConstants.cs" />
     <Compile Include="Game Output\CommandBuilder.cs" />
     <Compile Include="Game Utility\WallinUtility.cs" />
-    <Compile Include="Game Utility\ConstructionUtility.cs" />
     <Compile Include="GUI\Debug Maps\BaseDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\InfluenceDebugMap.cs" />
     <Compile Include="GUI\Debug Maps\_Legacy - GeneralChokepointDebugMap.cs" />

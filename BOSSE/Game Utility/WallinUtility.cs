@@ -32,7 +32,7 @@ namespace BOSSE
     using static UnitConstants;
     using static GeneralGameUtility;
     using static AbilityConstants;
-    
+
     /// <summary>
     /// Utility functions for creating walls
     /// </summary>
@@ -47,6 +47,8 @@ namespace BOSSE
         //    new Size(3, 3),
         //    new Size(3, 3),
         //};
+
+        // Gap support could be added simply by inserting a 1x1 tile in the configuration
         private static readonly List<Size> NaturalWallinConfigNoGap = new List<Size>()
         {
             new Size(3, 3),
@@ -80,14 +82,14 @@ namespace BOSSE
             }
             int estimateX = (int)estimatedLocation.X;
             int estimateY = (int)estimatedLocation.Y;
-            Log.Info("Estimate = " + estimateX + "/" + estimateY);
+            Log.Bulk("Estimate = " + estimateX + "/" + estimateY);
 
             // 2. Build wall configurations
             const int yTestRadius = 5;
             var foundWallsAtY = new Dictionary<int, Wall>();
             for (int y = estimateY - yTestRadius; y <= estimateY + yTestRadius; y++)
             {
-                Log.Info("Testing Y = " + y);
+                Log.Bulk("Testing Y = " + y);
                 Wall wallObj = TryGetWallAtExactY(estimateX, y);
                 if (wallObj != null)
                 {
@@ -113,14 +115,14 @@ namespace BOSSE
             if (foundWallsAtY.Count == 1)
             {
                 Wall onlyWallObj = foundWallsAtY[0];
-                Log.Info("Using the only possible wall configuration: " + onlyWallObj);
+                Log.Bulk("Using the only possible wall configuration: " + onlyWallObj);
                 return onlyWallObj;
             }
 
             // 3. Choose the option that is most "in the middle"
             //   this somewhat works around an issue with our pathfinding that it doesn't consider diagonals
             var sortedY = foundWallsAtY.Keys.ToList();
-            Log.Info("Possible natural wall configurations: " + sortedY.Count);
+            Log.Bulk("Possible natural wall configurations: " + sortedY.Count);
             sortedY.Sort();
             int medianIndex = (int)(sortedY.Count / 2);
             int usedY = sortedY[medianIndex];
@@ -153,7 +155,7 @@ namespace BOSSE
                 Log.SanityCheckFailed("  Unable to determine wall start X");
                 return null;
             }
-            Log.Info("  Starting nat wall at x = " + buildingStartsAtLeftX + " (estimate was " + estimateX + ")");
+            Log.Bulk("  Starting nat wall at x = " + buildingStartsAtLeftX + " (estimate was " + estimateX + ")");
 
             // 2. Make sure we can fit our buildings here
             int exactWidthRequired = 0;
@@ -191,7 +193,7 @@ namespace BOSSE
 
                 if (!BuildingFitsInPosition(buildingDef))
                 {
-                    Log.Info("  Builing too thick at " + buildingDef.BuildingPosition.ToString2());
+                    Log.Bulk("  Builing too thick at " + buildingDef.BuildingPosition.ToString2());
                     return null;
                 }
 
@@ -264,121 +266,13 @@ namespace BOSSE
             LinkedList<BossePathNode> path = pathFinderObj.FindPath(natural.GetMineralCenter(), enemy.GetMineralCenter());
             if (path == null || path.Count == 0)
             {
-                Log.Info("Found a wall config that completely blocks natural access");
+                Log.Bulk("Found a wall config that completely blocks natural access");
                 return true;
             }
             else
             {
                 return false;
             }
-        }
-
-        ///// <summary>
-        ///// Gets a list of possible wall combinations that can be used in the given area
-        ///// </summary>
-        //private static List<Wall> GetWallCandidatesAtLocationUsingBox(Point2D estimatedLocation, Size boxingParameters, List<Size> buildingSizesToUse)
-        //{
-        //    List<Wall> workingList = new List<Wall>();
-
-        //    // 1. Create placeholder wall
-        //    workingList.Add(new Wall());
-        //    //for (int index = 0; index < (boxingParameters.Width * boxingParameters.Height); index++)
-        //    //{
-        //    //    workingList.Add(new Wall());
-        //    //}
-
-        //    // 2. Take each existing wall and add each building, in every possible combination
-        //    foreach (Size sizeIter in buildingSizesToUse)
-        //    {
-        //        List<Wall> newList = new List<Wall>();
-
-        //        foreach (Wall existingWalliter in workingList)
-        //        {
-        //            for (int baseXOffset = 0; baseXOffset < boxingParameters.Width; baseXOffset++)
-        //            {
-        //                for (int baseYOffset = 0; baseYOffset < boxingParameters.Height; baseYOffset++)
-        //                {
-        //                    Wall newWall = new Wall(existingWalliter);
-
-        //                    Wall.BuildingInWall buildingObj = new Wall.BuildingInWall(sizeIter, new Point2D(estimatedLocation.X + baseXOffset, estimatedLocation.Y + baseYOffset));
-        //                    newWall.Buildings.Add(buildingObj);
-
-        //                    if (IsThereBuildingOverlapInWallConfig(newWall))
-        //                        continue;
-
-        //                    newList.Add(newWall);
-        //                }
-        //            }
-        //        }
-
-        //        workingList = newList;
-        //    }
-
-        //    //// 3. Remove overlapping building
-        //    //FilterOverlappingBuildings(workingList);
-
-        //    // Done
-        //    Log.Info("Built wall initial candidate list of size " + workingList.Count);
-        //    return workingList;
-        //}
-
-        //private static void FilterOverlappingBuildings(List<Wall> list)
-        //{
-        //    // Check overlap and that all buildings were placed
-        //    List<Wall> wallsToRemove = new List<Wall>();
-        //    foreach (Wall iter in list)
-        //    {
-        //        if (IsThereBuildingOverlapInWallConfig(iter))
-        //        {
-        //            wallsToRemove.Add(iter);
-        //        }
-        //    }
-
-        //    foreach (Wall wallIter in wallsToRemove)
-        //    {
-        //        list.Remove(wallIter);
-        //    }
-        //    Log.Info("Removed " + wallsToRemove.Count + " invalid configurations from initial wall plan");
-        //}
-
-        private static bool IsThereBuildingOverlapInWallConfig(Wall config)
-        {
-            // outer = x, inner = y, if it exists something was built there
-            Dictionary<int, Dictionary<int, object>> takentiles = new Dictionary<int, Dictionary<int, object>>();
-            foreach (Wall.BuildingInWall iter in config.Buildings)
-            {
-                Point2D buildingCenterPos = iter.BuildingPosition;
-                Size buildingSize = iter.BuildingSize;
-
-                int startX = (int)buildingCenterPos.X - ((buildingSize.Width - 1) / 2);
-                int startY = (int)buildingCenterPos.Y - ((buildingSize.Height - 1) / 2);
-                int endX = (int)buildingCenterPos.X + ((buildingSize.Width - 1) / 2);
-                int endY = (int)buildingCenterPos.Y + ((buildingSize.Height - 1) / 2);
-
-                for (int x = startX; x < endX; x++)
-                {
-                    for (int y = startY; y < endY; y++)
-                    {
-                        if (!takentiles.ContainsKey(x))
-                        {
-                            takentiles[x] = new Dictionary<int, object>();
-                            takentiles[x][y] = true;
-                            continue; // ok, first x
-                        }
-
-                        if (!takentiles[x].ContainsKey(y))
-                        {
-                            takentiles[x][y] = true;
-                            continue; // ok, first y
-                        }
-
-                        // Another building used this coordiante
-                        return true;
-                    }
-                }
-            }
-
-            return false;
         }
 
         /// <summary>

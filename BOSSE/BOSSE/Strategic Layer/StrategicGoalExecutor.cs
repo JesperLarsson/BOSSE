@@ -117,7 +117,7 @@ namespace BOSSE
             uint supplyDiff = currentAndPendingFood - CurrentGameState.UsedSupply;
             while (supplyDiff < MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
             {
-                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
+                BOSSE.ConstructionManagerRef.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitConstants.UnitId.SUPPLY_DEPOT);
                 supplyDiff += (uint)houseInfo.FoodProvided;
                 CurrentMinerals -= houseInfo.MineralCost;
             }
@@ -148,7 +148,7 @@ namespace BOSSE
             // Factory
             if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
             {
-                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.FACTORY);
+                BOSSE.ConstructionManagerRef.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.FACTORY);
                 SubtractCosts(UnitId.FACTORY);
             }
 
@@ -156,7 +156,7 @@ namespace BOSSE
             if (raxCount < RaxesWanted && CanAfford(UnitId.BARRACKS) && HaveTechRequirementsToBuild(UnitId.BARRACKS))
             {
                 // Build barracks
-                ConstructionUtility.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.BARRACKS);
+                BOSSE.ConstructionManagerRef.BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId.BARRACKS);
                 SubtractCosts(UnitId.BARRACKS);
             }
             else
