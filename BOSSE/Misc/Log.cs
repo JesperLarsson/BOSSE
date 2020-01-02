@@ -134,6 +134,7 @@ namespace BOSSE
 
         private static void FormatAndQueue(string typePrefix, string lineToLog, bool traceToConsole)
         {
+            // Get name of the caller
             string callingClassName = "N/A";
             var st = new StackTrace();
             for (int i = 2; i < st.FrameCount; i++)
@@ -147,9 +148,11 @@ namespace BOSSE
                 break;
             }
             
+            // Format
             string fullPrefix = $"[{DateTime.Now.ToString("HH:mm:ss")} {typePrefix} {callingClassName}]";
-            string fullMessageRow = String.Format("{0, -40}", fullPrefix) + lineToLog;
+            string fullMessageRow = String.Format("{0, -45}", fullPrefix) + lineToLog;
 
+            // File operations is done in a separate thread for better performance
             FileQueue.Enqueue(fullMessageRow);
 
             // Trace right away, it doesn't consume much resources and makes debugging easier

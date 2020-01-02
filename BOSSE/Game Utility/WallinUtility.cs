@@ -186,7 +186,7 @@ namespace BOSSE
             foreach (Size buildingSize in wallConfig)
             {
                 int sizeDiffToCenter = (buildingSize.Width - 1) / 2;
-                Wall.BuildingInWall buildingDef = new Wall.BuildingInWall(buildingSize, new Point2D(nextBuildingLeftX + sizeDiffToCenter, y));
+                Wall.BuildingInWall buildingDef = new Wall.BuildingInWall(buildingSize, new Point2D(nextBuildingLeftX + sizeDiffToCenter + 0.5f, y));
                 wallObj.Buildings.Add(buildingDef);
 
                 if (!BuildingFitsInPosition(buildingDef))
