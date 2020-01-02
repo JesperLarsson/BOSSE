@@ -128,28 +128,46 @@ namespace BOSSE
         /// </summary>
         private void ExecuteBuildMilitary()
         {
-            const int RaxesWanted = 3;
+            const int RaxesWanted = 1;
             const int FactoriesWanted = 1;
+            const int TechLabsWanted = 1;
 
-            UnitTypeData raxInfo = GetUnitInfo(UnitId.BARRACKS);
-            UnitTypeData factoryInfo = GetUnitInfo(UnitId.FACTORY);
-            UnitTypeData ccInfo = GetUnitInfo(UnitId.COMMAND_CENTER);
-            uint raxCount = GetUnitCountTotal(UnitId.BARRACKS, includeEquivalents: true);
-            uint factoryCount = GetUnitCountTotal(UnitId.FACTORY, includeEquivalents: true);
+            uint raxCount = GetUnitCountTotal(UnitConstants.BarracksVariations, includeEquivalents: true);
+            uint techLabCount = GetUnitCountTotal(UnitConstants.TechlabVariations, includeEquivalents: true);
+            uint factoryCount = GetUnitCountTotal(UnitConstants.FactoryVariations, includeEquivalents: true);
 
             // Expand
-            if (CanAfford(UnitId.COMMAND_CENTER))
-            {
-                Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
-                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
-                Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
-            }
+            //if (CanAfford(UnitId.COMMAND_CENTER))
+            //{
+            //    Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
+            //    Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
+            //    Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
+            //}
 
             // Factory
             if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
             {
-                BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(UnitId.FACTORY);
-                SubtractCosts(UnitId.FACTORY);
+                List<Unit> raxList = GetUnits(UnitConstants.BarracksVariations);
+                if (raxList.Count > 0)
+                {
+                    Unit nearRax = raxList[0];
+                    BOSSE.ConstructionManagerRef.BuildAtApproximatePosition(UnitId.FACTORY, nearRax.Position, 4);
+                    SubtractCosts(UnitId.FACTORY);
+                }
+            }
+
+            // Addons - Tech lab
+            if (techLabCount < TechLabsWanted && CanAfford(UnitId.TECHLAB) && HaveTechRequirementsToBuild(UnitId.TECHLAB))
+            {
+                List<Unit> raxList = GetUnits(UnitConstants.BarracksVariations, onlyCompleted: true);
+                if (raxList.Count > 0)
+                {
+                    Unit atRax = raxList[0];
+                    Log.Info("Building tech lab at " + atRax);
+
+                    Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.BarracksBuildTechLab, atRax));
+                    SubtractCosts(UnitId.TECHLAB);
+                }
             }
 
             // Barracks

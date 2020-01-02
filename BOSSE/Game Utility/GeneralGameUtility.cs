@@ -58,8 +58,10 @@ namespace BOSSE
         public static bool HaveTechRequirementsToBuild(UnitId unitType)
         {
             UnitTypeData data = GetUnitInfo(unitType);
-            UnitId requirement = (UnitId)data.TechRequirement;
+            if (data.TechRequirement == 0)
+                return true; // no requirements
 
+            UnitId requirement = (UnitId)data.TechRequirement;
             List<Unit> activeUnitsOftype = GetUnits(requirement, onlyCompleted: true);
             if (activeUnitsOftype.Count == 0)
             {

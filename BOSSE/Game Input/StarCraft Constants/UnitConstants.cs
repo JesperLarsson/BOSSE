@@ -201,6 +201,32 @@ namespace BOSSE
             BATTLE_STATION_MINERAL_FIELD_750 = 887,
         }
 
+        public static readonly HashSet<UnitId> BarracksVariations = new HashSet<UnitId>
+        {
+            UnitId.BARRACKS,
+            UnitId.BARRACKS_FLYING,
+        };
+
+        public static readonly HashSet<UnitId> TechlabVariations = new HashSet<UnitId>
+        {
+            UnitId.TECHLAB,
+            UnitId.BARRACKS_TECHLAB,
+            UnitId.FACTORY_TECHLAB,
+        };
+
+        public static readonly HashSet<UnitId> ReactorVariations = new HashSet<UnitId>
+        {
+            UnitId.REACTOR,
+            UnitId.BARRACKS_REACTOR,
+            UnitId.FACTORY_REACTOR,
+        };
+
+        public static readonly HashSet<UnitId> FactoryVariations = new HashSet<UnitId>
+        {
+            UnitId.FACTORY,
+            UnitId.FACTORY_FLYING,
+        };
+
         public static readonly HashSet<UnitId> All = new HashSet<UnitId>
         {
             UnitId.HELLBAT,
@@ -429,7 +455,7 @@ namespace BOSSE
             UnitId.BROODLING_ESCORT,
             UnitId.LARVA
             };
-        
+
         public static readonly HashSet<UnitId> Terran = new HashSet<UnitId> {
             UnitId.HELLBAT,
             UnitId.LIBERATOR,
@@ -523,7 +549,7 @@ namespace BOSSE
             UnitId.ARCHON,
             UnitId.PROTOSS_VESPENE_GEYSER
             };
-        
+
         public static readonly HashSet<UnitId> Structures = new HashSet<UnitId> {
             UnitId.ARMORY,
             UnitId.ASSIMILATOR,

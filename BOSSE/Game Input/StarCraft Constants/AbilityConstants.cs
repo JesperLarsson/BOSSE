@@ -29,7 +29,7 @@ namespace BOSSE
 
     /// <summary>
     /// Constant values used to identify specific unit abilities
-    /// Latest values can be found in sc2 directory as stableid.json, rewritten using regexp
+    /// Latest values can be found in sc2 directory as stableid.json, ex: C:\Users\Username\Documents\StarCraft II
     /// </summary>
     public static class AbilityConstants
     {
@@ -81,6 +81,11 @@ namespace BOSSE
 
             SupplyDepotLower = 556,
             SupplyDepotRaise = 558,
+
+            BarracksBuildTechLab = 421,
+            BarracksBuildReactor = 422,
+            FactoryBuildTechLab = 454,
+            FactoryBuildReactor = 455,
         }
     }
 }

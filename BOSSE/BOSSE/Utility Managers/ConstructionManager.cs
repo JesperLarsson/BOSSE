@@ -69,6 +69,18 @@ namespace BOSSE
             Log.Info($"Constructing {unitType} at {exactCoordinate.ToString2()} using worker " + worker.Tag);
         }
 
+        public void BuildAtApproximatePosition(UnitId unitType, Point2D approximatePosition, int searchRadius = 12)
+        {
+            Point2D actualPosition = this.AutoPickPosition(unitType, approximatePosition, searchRadius);
+            if (actualPosition == null)
+            {
+                Log.SanityCheckFailed("Unable to find a valid position close to " + approximatePosition.ToString2());
+                return;
+            }
+
+            BuildAtExactPosition(unitType, actualPosition);
+        }
+
         /// <summary>
         /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
         /// </summary>
@@ -102,7 +114,7 @@ namespace BOSSE
             // Find a valid spot, the slow way
             if (constructionSpot == null)
             {
-                constructionSpot = PickBuildablePositionInMain(unitType);
+                constructionSpot = AutoPickPosition(unitType);
             }
 
             BuildAtExactPosition(unitType, constructionSpot);
@@ -112,22 +124,29 @@ namespace BOSSE
         {
         }
 
-        private Point2D PickBuildablePositionInMain(UnitId unitType)
+        private Point2D AutoPickPosition(UnitId unitType, Point2D argCloseToPosition = null, int searchRadius = 12)
         {
-            const int radius = 12;
-            Point2D startingSpot = Globals.MainBaseLocation;
+            Point2D startingSpot;
+            if (argCloseToPosition == null)
+            {
+                startingSpot = Globals.MainBaseLocation;
+            }
+            else
+            {
+                startingSpot = argCloseToPosition;
+            }
 
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
             for (int _ = 0; _ < 10000; _++)
             {
-                Point2D constructionSpot = new Point2D(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1));
+                Point2D constructionSpot = new Point2D(startingSpot.X + Globals.Random.Next(-searchRadius, searchRadius + 1), startingSpot.Y + Globals.Random.Next(-searchRadius, searchRadius + 1));
 
                 if (IsInRange(constructionSpot, mineralFields, 5)) continue;
                 if (!CanPlaceRequest(unitType, constructionSpot)) continue;
                 return constructionSpot;
             }
 
-            Log.SanityCheckFailed("Unable to auto-place building " + unitType);
+            Log.SanityCheckFailed("Unable to auto-place building " + unitType + " near " + startingSpot.ToString2());
             return null;
         }
 
