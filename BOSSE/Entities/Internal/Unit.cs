@@ -31,12 +31,6 @@ namespace BOSSE
     using static GeneralGameUtility;
 
     /// <summary>
-    /// Can be used to continue giving this unit a complex multi-part order over many frames
-    /// Returns true when the order has been completed and should no longer be run, false = will be run again next tick
-    /// </summary>
-    public delegate bool ContinuousUnitOrder();
-
-    /// <summary>
     /// A single StarCraft unit, this can be buildings etc as well
     /// </summary>
     public class Unit : GameObject
@@ -66,12 +60,7 @@ namespace BOSSE
         /// This prevents other parts of the code from issuing duplicate orders
         /// </summary>
         public bool HasNewOrders = false;
-
-        /// <summary>
-        /// List of queued complex orders, only the first order is run each frame
-        /// </summary>
-        private List<ContinuousUnitOrder> GivenContinuousOrders = new List<ContinuousUnitOrder>();
-
+        
         // Property lookup helper functions
         public string Name { get => unitInformation.Name; }
         public ulong Tag { get => original.Tag; }
@@ -126,22 +115,6 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Gives this unit new orders if any continious orders have been given
-        /// </summary>
-        public void UpdateContinuousOrders()
-        {
-            if (this.GivenContinuousOrders.Count == 0)
-                return;
-
-            ContinuousUnitOrder orderToRun = this.GivenContinuousOrders[0];
-            bool orderCompleted = orderToRun();
-            if (orderCompleted)
-            {
-                this.GivenContinuousOrders.Remove(orderToRun);
-            }
-        }
-
-        /// <summary>
         /// Updates all units each tick
         /// </summary>
         public static void OnTick()
@@ -153,12 +126,6 @@ namespace BOSSE
                     continue;
 
                 Unit.AllUnitInstances[sc2UnitData.Tag].UpdateDataEachTick(sc2UnitData);
-            }
-
-            // Update continuous orders, if any
-            foreach (Unit unitIter in Unit.AllUnitInstances.Values)
-            {
-                unitIter.UpdateContinuousOrders();
             }
         }
 

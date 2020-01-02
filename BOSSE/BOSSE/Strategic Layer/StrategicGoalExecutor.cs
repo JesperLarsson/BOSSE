@@ -164,9 +164,10 @@ namespace BOSSE
                 {
                     Unit atRax = raxList[0];
                     Log.Info("Building tech lab at " + atRax);
-
                     Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.BarracksBuildTechLab, atRax));
                     SubtractCosts(UnitId.TECHLAB);
+
+
                 }
             }
 

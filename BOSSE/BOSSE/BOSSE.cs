@@ -57,12 +57,14 @@ namespace BOSSE
         public static readonly OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
         public static readonly ConstructionManager ConstructionManagerRef = new ConstructionManager();
         public static readonly RampManager RampManagerRef = new RampManager();
-        public static readonly BaseManager BaseManagerRef = new BaseManager();        
+        public static readonly BaseManager BaseManagerRef = new BaseManager();
+        public static readonly OrderManager OrderManagerRef = new OrderManager();        
 
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
         {
             SensorManagerRef, // should be first to generate events for other managers
+            OrderManagerRef, // should be early as continuous orders override other generic behaviour
 
             StrategicGoalRef,
             DiscrepenceyDetectorRef, // depends on StrategicGoalRef
@@ -115,7 +117,7 @@ namespace BOSSE
         {
             // Set main location
             Globals.MainBaseLocation = GetUnits(UnitId.COMMAND_CENTER)[0].Position;
-            
+
             // General map analysis
             PathFinderRef.Initialize();
             MapAnalysisRef.Initialize();
