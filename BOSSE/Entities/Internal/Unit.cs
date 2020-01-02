@@ -98,6 +98,15 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Create placeholder instance, only used as a temporary placeholder during events
+        /// </summary>
+        public Unit(uint tag) : base()
+        {
+            this.original = new SC2APIProtocol.Unit();
+            this.original.Tag = tag;
+        }
+
+        /// <summary>
         /// Refresh with latest observational data
         /// </summary>
         public void RefreshData(SC2APIProtocol.Unit newOriginal)

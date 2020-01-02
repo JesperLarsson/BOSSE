@@ -115,7 +115,7 @@ namespace BOSSE
                     Console.WriteLine("EXCEPTION IN LOGGER: " + ex);
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
         }
 

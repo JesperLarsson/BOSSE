@@ -48,7 +48,6 @@ namespace BOSSE
             foreach (uint prevIterTag in PreviousUnitTags)
             {
                 bool found = false;
-                Unit refUnits = null;
                 foreach (Unit currentUnit in currentUnits)
                 {
                     if (currentUnit.Tag == prevIterTag)
@@ -60,8 +59,31 @@ namespace BOSSE
 
                 if (!found)
                 {
-                    killedUnits.Add(refUnits);
+                    Unit oldUnitInstance;
+
+                    if (Unit.AllUnitInstances.ContainsKey(prevIterTag))
+                    {
+                        // Use existing unit instance
+                        oldUnitInstance = Unit.AllUnitInstances[prevIterTag];
+                        Unit.AllUnitInstances.Remove(prevIterTag);
+                    }
+                    else
+                    {
+                        // Create placeholder with just the tag set
+                        oldUnitInstance = new Unit(prevIterTag);
+                    }
+
+
+                    killedUnits.Add(oldUnitInstance);
                     PreviousUnitTags.Remove(prevIterTag);
+                }
+            }
+
+            foreach (Unit currentUnitIter in currentUnits)
+            {
+                if (!PreviousUnitTags.Contains(currentUnitIter.Tag))
+                {
+                    PreviousUnitTags.Add(currentUnitIter.Tag);
                 }
             }
 

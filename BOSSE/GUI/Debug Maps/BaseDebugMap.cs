@@ -72,7 +72,6 @@ namespace DebugGui
                         map = CropMapToPlayArea(map);
                     }
 
-                    var oldImage = this.CurrentOutputtedMap;
                     this.CurrentOutputtedMap = map;
                 }
                 catch (InvalidOperationException)
