@@ -44,6 +44,23 @@ namespace BOSSE
     /// </summary>
     public abstract class Sensor
     {
+        /// <summary>
+        /// Holds a single subscriber to this sensor
+        /// </summary>
+        public class SubscribedCallback
+        {
+            public SensorEventHandler EventHandler;
+            public SensorFilterComparison Filter;
+            public bool IsOneShot = false;
+
+            public SubscribedCallback(SensorEventHandler eventHandler, SensorFilterComparison filter, bool isOneShot)
+            {
+                EventHandler = eventHandler;
+                Filter = filter;
+                IsOneShot = isOneShot;
+            }
+        }
+
         // Common type filters
         public SensorFilterComparison AcceptAllLambda = unfilteredList => unfilteredList;
         public SensorFilterComparison StructuresOnlyLambda = unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => UnitConstants.Structures.Contains((UnitId)unitIter.UnitType)));
@@ -51,8 +68,8 @@ namespace BOSSE
         /// <summary>
         /// Callback events which are trigged when the sensor detects whatever it's looking for
         /// </summary>
-        private readonly List<KeyValuePair<SensorEventHandler, SensorFilterComparison>> SensorTriggeredEventTest = new List<KeyValuePair<SensorEventHandler, SensorFilterComparison>>();
-
+        private readonly List<SubscribedCallback> SensorTriggeredEventTest = new List<SubscribedCallback>();
+        
         /// <summary>
         /// Updates sensor logic
         /// </summary>
@@ -63,12 +80,12 @@ namespace BOSSE
             AddHandler(handler, AcceptAllLambda);
         }
 
-        public void AddHandler(SensorEventHandler handler, SensorFilterComparison filterLambda)
+        public void AddHandler(SensorEventHandler handler, SensorFilterComparison filterLambda, bool isOneShot = false)
         {
             Log.Bulk("Sensor: New subscriber to " + this);
 
-            var pair = new KeyValuePair<SensorEventHandler, SensorFilterComparison>(handler, filterLambda);
-            SensorTriggeredEventTest.Add(pair);
+            var obj = new SubscribedCallback(handler, filterLambda, isOneShot);
+            SensorTriggeredEventTest.Add(obj);
         }
 
         public override string ToString()
@@ -81,14 +98,26 @@ namespace BOSSE
         /// </summary>
         protected void Trigger(HashSet<Unit> args)
         {
+            List<SubscribedCallback> subscribersToRemove = new List<SubscribedCallback>();
+
             // Call interested subscribers
-            foreach (var iter in SensorTriggeredEventTest)
+            foreach (SubscribedCallback iter in SensorTriggeredEventTest)
             {
-                HashSet<Unit> filteredSet = iter.Value(args);
+                HashSet<Unit> filteredSet = iter.Filter(args);
                 if (filteredSet != null && filteredSet.Count > 0)
                 {
-                    iter.Key(args);
+                    iter.EventHandler(args);
+
+                    if (iter.IsOneShot)
+                    {
+                        subscribersToRemove.Add(iter);
+                    }
                 }
+            }
+
+            foreach (SubscribedCallback removeIter in subscribersToRemove)
+            {
+                SensorTriggeredEventTest.Remove(removeIter);
             }
         }
     }

@@ -23,36 +23,32 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
-    using System.Linq;
+    using System.Drawing;
 
     using SC2APIProtocol;
-    using Google.Protobuf.Collections;
-
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GeneralGameUtility;
     using static UnitConstants;
-    using static AbilityConstants;
 
     /// <summary>
-    /// Manager base class, each manager will be updated each tick
+    /// Helper functions for <see cref="Size"/>
     /// </summary>
-    public class Manager
+    public static class SizeExtensions
     {
         /// <summary>
-        /// Called when the bot starts
+        /// Indicates if we have the same size as another
         /// </summary>
-        public virtual void Initialize()
+        public static bool IsSameAsSize(this Size self, Size other)
         {
+            if (other == null)
+                return false;
 
-        }
+            if (self.Width != other.Width)
+                return false;
+            if (self.Height != other.Height)
+                return false;
 
-        /// <summary>
-        /// Update each bot logical frame
-        /// </summary>
-        public virtual void OnFrameTick()
-        {
-
+            return true;
         }
     }
 }

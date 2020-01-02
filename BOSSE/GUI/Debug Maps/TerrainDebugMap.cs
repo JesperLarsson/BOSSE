@@ -75,7 +75,7 @@ namespace DebugGui
             surface.FillRectangle(NaturalEstimateLocation, (RenderScale * natDefPos.X), (RenderScale * CompensateY(natDefPos.Y)), RenderScale, RenderScale);
 
             // Natural def parts
-            var naturalWall = BOSSE.ConstructionManagerRef.GetNaturalWall();
+            var naturalWall = BOSSE.ConstructionManagerRef.NaturalWallRef;
             if (naturalWall != null)
             {
                 foreach (Wall.BuildingInWall iter in naturalWall.Buildings)

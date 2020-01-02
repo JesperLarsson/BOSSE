@@ -62,6 +62,7 @@
     <Compile Include="BOSSE\Sensor Layer\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnStructureWasPlacedSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalManager.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Map Analysis\Path Finding\AStar\BossePathSolver.cs" />
     <Compile Include="Misc\Extensions\Point2DExtensions.cs" />
     <Compile Include="Misc\Extensions\HashSetExtensions.cs" />
+    <Compile Include="Misc\Extensions\SizeExtensions.cs" />
     <Compile Include="Misc\JokeGenerator.cs" />
     <Compile Include="Misc\Log.cs" />
     <Compile Include="Map Analysis\Path Finding\PathFinder.cs" />
@@ -161,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sensor Layer\Sensors\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

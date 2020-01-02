@@ -66,6 +66,7 @@ namespace BOSSE
 
         /// <summary>
         /// Calculates the ground distance to another point. null = no pathing possible
+        /// Slightly overestimates the distance since it does not compute the diagonals
         /// </summary>
         public static float? GroundDistanceAbsolute(this Point2D self, Point2D other)
         {
@@ -73,7 +74,6 @@ namespace BOSSE
             if (path == null)
                 return null;
 
-#warning TODO: Calculate diagonals etc if necessary
             return path.Count;
         }
 
@@ -115,6 +115,22 @@ namespace BOSSE
         {
             const float CloseThreshold = 1.0f;
             return self.IsWithinRange(other, CloseThreshold);
+        }
+
+        /// <summary>
+        /// Compares the values to another point
+        /// </summary>
+        public static bool IsSameCoordinates(this Point2D self, Point2D other)
+        {
+            if (other == null)
+                return false;
+
+            if (self.X != other.X)
+                return false;
+            if (self.Y != other.Y)
+                return false;
+
+            return true;
         }
 
         /// <summary>

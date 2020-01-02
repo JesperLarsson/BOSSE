@@ -46,19 +46,19 @@ namespace BOSSE
             public Point2D BuildingCenterPosition;
 
             /// <summary>
-            /// Assigned as we build the wall, null = slot is unused
+            /// Slot is reserved for use with a specific building
             /// </summary>
-            public UnitId? BuildingType = null;
+            public bool IsReserved = false;
+
+            /// <summary>
+            /// Set whenever we place a building here
+            /// </summary>
+            public Unit PlacedBuilding = null;
 
             public BuildingInWall(Size buildingSize, Point2D buildingPosition)
             {
                 this.BuildingSize = buildingSize;
                 this.BuildingCenterPosition = buildingPosition;
-            }
-
-            public bool IsReserved()
-            {
-                return BuildingType.HasValue;
             }
         }
 

@@ -23,36 +23,51 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
-    using System.Linq;
 
     using SC2APIProtocol;
-    using Google.Protobuf.Collections;
-
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GeneralGameUtility;
     using static UnitConstants;
     using static AbilityConstants;
 
     /// <summary>
-    /// Manager base class, each manager will be updated each tick
+    /// Sensor - Triggers if one of our own structures was placed by a worker
     /// </summary>
-    public class Manager
+    public class OwnStructureWasPlacedSensor : Sensor
     {
-        /// <summary>
-        /// Called when the bot starts
-        /// </summary>
-        public virtual void Initialize()
-        {
-
-        }
+        private bool HasInitialized = false;
+        private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
 
         /// <summary>
-        /// Update each bot logical frame
+        /// Updates sensor
         /// </summary>
-        public virtual void OnFrameTick()
+        public override void OnFrameTick()
         {
+            List<Unit> currentStructures = GeneralGameUtility.GetUnits(UnitConstants.Structures, onlyCompleted: false);
 
+            HashSet<Unit> newStructures = new HashSet<Unit>();
+            foreach (Unit iter in currentStructures)
+            {
+                if (!PreviousUnitTags.Contains(iter.Tag))
+                {
+                    newStructures.Add(iter);
+                    PreviousUnitTags.Add(iter.Tag);
+                }
+            }
+
+            if (HasInitialized)
+            {
+                if (newStructures.Count == 0)
+                    return;
+
+                var details = new HashSet<Unit>(newStructures);
+                Trigger(details);
+            }
+            else
+            {
+                // The first iteration is a "dry run" to set the initial state
+                HasInitialized = true;
+            }
         }
     }
 }

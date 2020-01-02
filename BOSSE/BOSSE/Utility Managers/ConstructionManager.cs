@@ -41,117 +41,165 @@ namespace BOSSE
     /// </summary>
     public class ConstructionManager : Manager
     {
-        private Wall naturalWall = null;
+        /// <summary>
+        /// Pointer to our intended natural wall configuration, NULL = not possible to build a wall
+        /// </summary>
+        public Wall NaturalWallRef = null;
+
+        /// <summary>
+        /// First 2x2 tile in our wall is intended for use with a building addon
+        /// </summary>
+        private const bool First2x2IsReservedForAddon = true;
 
         public override void Initialize()
         {
-            // Find a configuration to build a wall at our natural
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            this.naturalWall = WallinUtility.GetNaturalWall();
-            sw.Stop();
-            Log.Bulk("Found natural wall in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
-
-            if (this.naturalWall == null)
-            {
-                Log.SanityCheckFailed("Unable to find a configuration to build natural wall");
-            }
-            else
-            {
-                Log.Info("OK - Found natural wall location");
-            }
+            InitializeNaturalWall();
         }
 
-        public Wall GetNaturalWall()
+        public void BuildAtExactPosition(UnitId unitType, Point2D exactCoordinate)
         {
-            return naturalWall;
-        }
-
-        /// <summary>
-        /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
-        /// </summary>
-        public void BuildAutoSelect(UnitId unitType)
-        {
-            Point2D constructionSpot = null;
-
-            // Check if part of wall
-            System.Drawing.Size size = GetSizeOfBuilding(unitType);
-            if (size.Width != 0 && size.Height != 0)
-            {
-                Wall naturalWall = WallinUtility.GetNaturalWall();
-                if (naturalWall != null)
-                {
-                    foreach (Wall.BuildingInWall iter in naturalWall.Buildings)
-                    {
-                        if (iter.BuildingType.HasValue)
-                            continue;
-
-                        if (iter.BuildingSize.Width == size.Width && iter.BuildingSize.Height == size.Height)
-                        {
-                            // Building is a match
-                            if (!CanPlaceRequest(unitType, iter.BuildingCenterPosition))
-                            {
-                                Log.SanityCheckFailed("Cannot place wall part as intended at " + iter.BuildingCenterPosition);
-                                continue;
-                            }
-
-                            iter.BuildingType = unitType;
-                            constructionSpot = iter.BuildingCenterPosition; // new Point2D(((float)iter.BuildingPosition.X) + 0.5f, ((float)iter.BuildingPosition.Y) + 0.5f);
-                            Log.Info("Building wall part " + unitType + " at " + constructionSpot.ToString2());
-
-                            break;
-                        }
-                    }
-                }
-            }
-
-            // Find a valid spot, the slow way
-            if (constructionSpot == null)
-            {
-                const int radius = 12;
-                Point2D startingSpot;
-
-                List<Unit> resourceCenters = GetUnits(UnitConstants.ResourceCenters);
-                if (resourceCenters.Count > 0)
-                {
-                    startingSpot = resourceCenters[0].Position;
-                }
-                else
-                {
-                    Log.Warning($"Unable to construct {unitType} - no resource center was found");
-                    return;
-                }
-
-                List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
-                while (true)
-                {
-                    constructionSpot = new Point2D(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1));
-
-                    //avoid building in the mineral line
-                    if (IsInRange(constructionSpot, mineralFields, 5)) continue;
-
-                    //check if the building fits
-                    if (!CanPlaceRequest(unitType, constructionSpot)) continue;
-
-                    //ok, we found a spot
-                    break;
-                }
-            }
-
-            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
+            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(exactCoordinate);
             if (worker == null)
             {
                 Log.Warning($"Unable to find a worker to construct {unitType}");
                 return;
             }
 
-            Queue(CommandBuilder.ConstructAction(unitType, worker, constructionSpot));
-            Log.Info($"Constructing {unitType} at {constructionSpot.ToString2()} using worker " + worker.Tag);
+            Queue(CommandBuilder.ConstructAction(unitType, worker, exactCoordinate));
+            Log.Info($"Constructing {unitType} at {exactCoordinate.ToString2()} using worker " + worker.Tag);
+        }
+
+        /// <summary>
+        /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
+        /// </summary>
+        public void BuildAutoSelectPosition(UnitId unitType)
+        {
+            Point2D constructionSpot = null;
+
+            // Check if part of wall
+            Wall.BuildingInWall partOfWall = FindAsPartOfWall(unitType);
+            if (partOfWall != null)
+            {
+                partOfWall.IsReserved = true;
+                constructionSpot = partOfWall.BuildingCenterPosition;
+                Log.Info("Building wall part " + unitType + " at " + constructionSpot.ToString2());
+
+                // Subscribe to it being placed so that we can update the unit reference
+                BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasPlacedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+                {
+                    if (affectedUnits.Count != 1)
+                    {
+                        Log.SanityCheckFailed("Could not assign back reference to wall part at " + constructionSpot.ToString2() + ", expected type = " + unitType);
+                        return;
+                    }
+
+                    Unit building = affectedUnits.First();
+                    partOfWall.PlacedBuilding = building;
+                    Log.Info("Updated wall back ref with placed building " + building);
+                }), unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.Position.IsSameCoordinates(constructionSpot))), true);
+            }
+
+            // Find a valid spot, the slow way
+            if (constructionSpot == null)
+            {
+                constructionSpot = PickBuildablePositionInMain(unitType);
+            }
+
+            BuildAtExactPosition(unitType, constructionSpot);
         }
 
         public override void OnFrameTick()
         {
-            // Not necessary
+        }
+
+        private Point2D PickBuildablePositionInMain(UnitId unitType)
+        {
+            const int radius = 12;
+            Point2D startingSpot = Globals.MainBaseLocation;
+
+            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+            for (int _ = 0; _ < 10000; _++)
+            {
+                Point2D constructionSpot = new Point2D(startingSpot.X + Globals.Random.Next(-radius, radius + 1), startingSpot.Y + Globals.Random.Next(-radius, radius + 1));
+
+                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
+                if (!CanPlaceRequest(unitType, constructionSpot)) continue;
+                return constructionSpot;
+            }
+
+            Log.SanityCheckFailed("Unable to auto-place building " + unitType);
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a position if the given building can be part of our wall, otherwise NULL
+        /// </summary>
+        private Wall.BuildingInWall FindAsPartOfWall(UnitId unitType)
+        {
+            Size size = GetSizeOfBuilding(unitType);
+            if (size.Width == 0 || size.Height == 0)
+            {
+                return null;
+            }
+
+            Wall naturalWall = WallinUtility.GetNaturalWall();
+            if (naturalWall == null)
+            {
+                return null;
+            }
+
+            foreach (Wall.BuildingInWall iter in naturalWall.Buildings)
+            {
+                if (iter.IsReserved)
+                    continue;
+
+                if (iter.BuildingSize.Width == size.Width && iter.BuildingSize.Height == size.Height)
+                {
+                    // Building is a match
+                    if (!CanPlaceRequest(unitType, iter.BuildingCenterPosition))
+                    {
+                        Log.SanityCheckFailed("Cannot place wall part as intended at " + iter.BuildingCenterPosition);
+                        continue;
+                    }
+
+                    return iter;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Finds a configuration to build a wall at our natural
+        /// </summary>
+        private void InitializeNaturalWall()
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            this.NaturalWallRef = WallinUtility.GetNaturalWall();
+            sw.Stop();
+            Log.Bulk("Found natural wall in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
+
+            if (this.NaturalWallRef == null)
+            {
+                Log.SanityCheckFailed("Unable to find a configuration to build natural wall");
+            }
+            else
+            {
+                Log.Info("OK - Found natural wall location");
+
+                if (First2x2IsReservedForAddon)
+                {
+                    foreach (var iter in this.NaturalWallRef.Buildings)
+                    {
+                        if (iter.BuildingSize.IsSameAsSize(new Size(2, 2)))
+                        {
+                            iter.IsReserved = true;
+                            Log.Info("Reserved natural part for an addon: " + iter);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }
