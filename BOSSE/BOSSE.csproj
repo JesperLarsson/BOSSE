@@ -60,15 +60,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOSSE\Sensor Layer\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
+    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalManager.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
     <Compile Include="BOSSE\Utility Managers\ConstructionManager.cs" />
+    <Compile Include="BOSSE\Utility Managers\BaseManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
     <Compile Include="Entities\Exception\BosseFatalException.cs" />
     <Compile Include="Entities\Exception\BosseRecoverableException.cs" />
+    <Compile Include="Entities\Game\BaseLocation.cs" />
     <Compile Include="Entities\Internal\Wall.cs" />
     <Compile Include="Entities\Map\AnalysedRuntimeMap.cs" />
     <Compile Include="Entities\Map\ChokepointCollectionBetweenPoints.cs" />

@@ -57,6 +57,7 @@ namespace BOSSE
         public static readonly OrbitalCommandManager OrbitalCommandManagerRef = new OrbitalCommandManager();
         public static readonly ConstructionManager ConstructionManagerRef = new ConstructionManager();
         public static readonly RampManager RampManagerRef = new RampManager();
+        public static readonly BaseManager BaseManagerRef = new BaseManager();        
 
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
@@ -71,8 +72,9 @@ namespace BOSSE
             TacticalGoalRef,
             SquadManagerRef, // depends on TacticalGoalRef
 
-            OrbitalCommandManagerRef, // depends on strategy layer
+            OrbitalCommandManagerRef, // depends on GoalExecutorRef
             ConstructionManagerRef,
+            BaseManagerRef,
             RampManagerRef,
             WorkerManagerRef,
         };

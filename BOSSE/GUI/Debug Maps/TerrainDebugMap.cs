@@ -80,7 +80,7 @@ namespace DebugGui
             {
                 foreach (Wall.BuildingInWall iter in naturalWall.Buildings)
                 {
-                    surface.FillRectangle(NaturalDefenseWall, (RenderScale * iter.BuildingPosition.X), (RenderScale * CompensateY(iter.BuildingPosition.Y)), RenderScale, RenderScale);
+                    surface.FillRectangle(NaturalDefenseWall, (RenderScale * iter.BuildingCenterPosition.X), (RenderScale * CompensateY(iter.BuildingCenterPosition.Y)), RenderScale, RenderScale);
                 }
             }
 

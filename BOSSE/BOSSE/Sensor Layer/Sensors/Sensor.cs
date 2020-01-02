@@ -31,16 +31,6 @@ namespace BOSSE
     using static UnitConstants;
     using static AbilityConstants;
 
-    //public class SensorEventArgs : EventArgs
-    //{
-    //    public HashSet<Unit> AffectedUnits = new HashSet<Unit>();
-
-    //    public SensorEventArgs(HashSet<Unit> affectedUnits)
-    //    {
-    //        AffectedUnits = affectedUnits;
-    //    }
-    //}
-
     public delegate void SensorEventHandler(HashSet<Unit> affectedUnits);
 
     /// <summary>
@@ -54,19 +44,6 @@ namespace BOSSE
     /// </summary>
     public abstract class Sensor
     {
-        //public enum SensorId
-        //{
-        //    NotSet = 0,
-        //    OwnStructureWasCompletedSensor,
-        //    OwnUnitChangedTypeSensor,
-        //    OwnMilitaryUnitWasCompletedSensor,
-        //    OwnMilitaryUnitDiedSensor,
-
-        //    EnemyArmyUnitDetectedFirstTimeSensor,
-        //}
-        //public SensorId Id = SensorId.NotSet;
-
-
         // Common type filters
         public SensorFilterComparison AcceptAllLambda = unfilteredList => unfilteredList;
         public SensorFilterComparison StructuresOnlyLambda = unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => UnitConstants.Structures.Contains((UnitId)unitIter.UnitType)));

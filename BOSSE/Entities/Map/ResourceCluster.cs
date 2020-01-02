@@ -94,7 +94,7 @@ namespace BOSSE
 
             Point2D finalLocation = null;
             float finalDistanceSq = 0;
-            foreach (var tileIter in tilesSortedByDistance)
+            foreach (KeyValuePair<Point2D, float> tileIter in tilesSortedByDistance)
             {
                 Point2D tilePos = tileIter.Key;
                 float tileDistanceSq = tileIter.Value;

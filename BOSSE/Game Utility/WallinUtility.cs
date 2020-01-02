@@ -97,12 +97,12 @@ namespace BOSSE
 
                     if (blocksPathinOk)
                     {
-                        Log.Info("Found natural wall " + wallObj);
+                        Log.Bulk("Found natural wall " + wallObj);
                         foundWallsAtY[y] = wallObj;
                     }
                     else
                     {
-                        Log.Info("Failed wall pathfinding test for Y=" + y);
+                        Log.Bulk("Failed wall pathfinding test for Y=" + y);
                     }
                 }
             }
@@ -169,7 +169,7 @@ namespace BOSSE
                 bool canBePlaced = gridMap.GetBit(x, y) != 0;
                 if (!canBePlaced)
                 {
-                    Log.Info("  Not possible to build a wall at test position");
+                    Log.Bulk("  Not possible to build a wall at test position");
                     return null;
                 }
             }
@@ -193,7 +193,7 @@ namespace BOSSE
 
                 if (!BuildingFitsInPosition(buildingDef))
                 {
-                    Log.Bulk("  Builing too thick at " + buildingDef.BuildingPosition.ToString2());
+                    Log.Bulk("  Builing too thick at " + buildingDef.BuildingCenterPosition.ToString2());
                     return null;
                 }
 
@@ -208,8 +208,8 @@ namespace BOSSE
             int sizeYDiffToCenter = (building.BuildingSize.Height - 1) / 2;
             int sizeXDiffToCenter = (building.BuildingSize.Width - 1) / 2;
 
-            int fromX = (int)building.BuildingPosition.X - sizeXDiffToCenter;
-            int fromY = (int)building.BuildingPosition.Y - sizeYDiffToCenter;
+            int fromX = (int)building.BuildingCenterPosition.X - sizeXDiffToCenter;
+            int fromY = (int)building.BuildingCenterPosition.Y - sizeYDiffToCenter;
             int toX = fromX + building.BuildingSize.Width;
             int toY = fromY + building.BuildingSize.Height;
 
@@ -239,7 +239,7 @@ namespace BOSSE
             List<KeyValuePair<Point2D, bool>> overrideValues = new List<KeyValuePair<Point2D, bool>>();
             foreach (Wall.BuildingInWall iter in wallObj.Buildings)
             {
-                Point2D buildingCenterPos = iter.BuildingPosition;
+                Point2D buildingCenterPos = iter.BuildingCenterPosition;
                 Size buildingSize = iter.BuildingSize;
 
                 int startX = (int)buildingCenterPos.X - ((buildingSize.Width - 1) / 2);

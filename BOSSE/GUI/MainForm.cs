@@ -41,7 +41,7 @@ namespace DebugGui
         {
             // General
             new TerrainDebugMap(),
-            new OverviewDebugMap(),            
+            new OverviewDebugMap(),
             new PlacementGridDebugMap(),
 
             // Strategic
@@ -63,8 +63,15 @@ namespace DebugGui
 
         private void UpdateMainForm(object sender, EventArgs e)
         {
-            int index = DropdownMapChoice.SelectedIndex;
-            this.PictureMain.Image = Maps[index].GetMap();
+            try
+            {
+                int index = DropdownMapChoice.SelectedIndex;
+                this.PictureMain.Image = Maps[index].GetMap();
+            }
+            catch (InvalidOperationException)
+            {
+                // This can happen because of threading, rare-ish, is fine to ignore
+            }
         }
 
         protected override bool ShowWithoutActivation

@@ -35,7 +35,7 @@ namespace BOSSE
     using static GeneralGameUtility;
     using static UnitConstants;
     using static AbilityConstants;
-    
+
     /// <summary>
     /// Responsible for building construction and placement
     /// </summary>
@@ -50,7 +50,7 @@ namespace BOSSE
             sw.Start();
             this.naturalWall = WallinUtility.GetNaturalWall();
             sw.Stop();
-            Log.Info("Found natural wall in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
+            Log.Bulk("Found natural wall in " + sw.Elapsed.TotalMilliseconds / 1000 + " s");
 
             if (this.naturalWall == null)
             {
@@ -58,7 +58,7 @@ namespace BOSSE
             }
             else
             {
-                Log.Info("OK - Found natural wall");
+                Log.Info("OK - Found natural wall location");
             }
         }
 
@@ -70,7 +70,7 @@ namespace BOSSE
         /// <summary>
         /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
         /// </summary>
-        public void BuildGivenStructureAnyWhere_TEMPSOLUTION(UnitId unitType)
+        public void BuildAutoSelect(UnitId unitType)
         {
             Point2D constructionSpot = null;
 
@@ -89,14 +89,14 @@ namespace BOSSE
                         if (iter.BuildingSize.Width == size.Width && iter.BuildingSize.Height == size.Height)
                         {
                             // Building is a match
-                            if (!CanPlaceRequest(unitType, iter.BuildingPosition))
+                            if (!CanPlaceRequest(unitType, iter.BuildingCenterPosition))
                             {
-                                Log.SanityCheckFailed("Cannot place wall part as intended at " + iter.BuildingPosition);
+                                Log.SanityCheckFailed("Cannot place wall part as intended at " + iter.BuildingCenterPosition);
                                 continue;
                             }
 
                             iter.BuildingType = unitType;
-                            constructionSpot = iter.BuildingPosition; // new Point2D(((float)iter.BuildingPosition.X) + 0.5f, ((float)iter.BuildingPosition.Y) + 0.5f);
+                            constructionSpot = iter.BuildingCenterPosition; // new Point2D(((float)iter.BuildingPosition.X) + 0.5f, ((float)iter.BuildingPosition.Y) + 0.5f);
                             Log.Info("Building wall part " + unitType + " at " + constructionSpot.ToString2());
 
                             break;

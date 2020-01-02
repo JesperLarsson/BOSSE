@@ -76,6 +76,8 @@ namespace BOSSE
             {
                 try
                 {
+                    Log.Bulk("--- Starting frame " + Globals.CurrentFrameIndex);
+
                     // Remove previous frame actions
                     GameOutput.QueuedActions.Clear();
 

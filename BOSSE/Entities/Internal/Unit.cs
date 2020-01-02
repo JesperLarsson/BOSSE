@@ -64,6 +64,7 @@ namespace BOSSE
         public bool IsVisible { get => original.DisplayType == DisplayType.Visible; }
         public int IdealWorkers { get => original.IdealHarvesters; }
         public int AssignedWorkers { get => original.AssignedHarvesters; }
+        public Alliance Alliance { get => original.Alliance; }
         public float BuildProgress { get => original.BuildProgress; }
         public float Energy { get => original.Energy; set => original.Energy = value; }
         public float MineralCost { get => unitInformation.MineralCost; }

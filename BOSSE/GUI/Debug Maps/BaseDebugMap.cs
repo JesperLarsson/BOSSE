@@ -72,11 +72,16 @@ namespace DebugGui
                         map = CropMapToPlayArea(map);
                     }
 
+                    var oldImage = this.CurrentOutputtedMap;
                     this.CurrentOutputtedMap = map;
+                }
+                catch (InvalidOperationException)
+                {
+                    // Happens because of threading, safe to ignore
                 }
                 catch (Exception ex)
                 {
-                    Log.Warning("Gui exception in " + MapName + Environment.NewLine + ex);
+                    Log.Warning("GUI exception in " + MapName + Environment.NewLine + ex);
                 }
 
                 Thread.Sleep(RenderInterval);

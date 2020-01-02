@@ -65,6 +65,24 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Finds a cluster close to the given point if possible, otherwise NULL
+        /// </summary>
+        public ResourceCluster FindClusterCloseTo(Point2D searchCoordinate)
+        {
+            const int searchRange = 20;
+
+            foreach (ResourceCluster iter in ResourceClusters.Values)
+            {
+                bool inRange = iter.GetMineralCenter().IsWithinRange(searchCoordinate, searchRange);
+                if (inRange)
+                    return iter;
+            }
+
+            Log.SanityCheckFailed("Searched for resource cluster that wasn't found at " + searchCoordinate.ToString2());
+            return null;
+        }
+
+        /// <summary>
         /// Returns a good position to defend our natural expansion
         /// </summary>
         public Point2D GetNaturalDefensePos()

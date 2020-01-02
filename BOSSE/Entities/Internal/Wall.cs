@@ -43,7 +43,7 @@ namespace BOSSE
         public class BuildingInWall
         {
             public Size BuildingSize;
-            public Point2D BuildingPosition;
+            public Point2D BuildingCenterPosition;
 
             /// <summary>
             /// Assigned as we build the wall, null = slot is unused
@@ -53,15 +53,12 @@ namespace BOSSE
             public BuildingInWall(Size buildingSize, Point2D buildingPosition)
             {
                 this.BuildingSize = buildingSize;
-                this.BuildingPosition = buildingPosition;
+                this.BuildingCenterPosition = buildingPosition;
             }
 
-            public bool DoesGivenTypeFit(UnitId unitType)
+            public bool IsReserved()
             {
-                UnitTypeData info = GetUnitInfo(unitType);
-                throw new Exception();
-                //info.
-                //// todo
+                return BuildingType.HasValue;
             }
         }
 
@@ -89,8 +86,8 @@ namespace BOSSE
 
             foreach (var iter in this.Buildings)
             {
-                xTotal += iter.BuildingPosition.X;
-                yTotal += iter.BuildingPosition.Y;
+                xTotal += iter.BuildingCenterPosition.X;
+                yTotal += iter.BuildingCenterPosition.Y;
             }
 
             float x = xTotal / this.Buildings.Count;
@@ -106,7 +103,7 @@ namespace BOSSE
 
             foreach (var iter in Buildings)
             {
-                str += iter.BuildingPosition.ToString2();
+                str += iter.BuildingCenterPosition.ToString2();
             }
 
             str += "]";

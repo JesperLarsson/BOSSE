@@ -31,10 +31,11 @@ namespace BOSSE
     using static AbilityConstants;
 
     /// <summary>
-    /// Sensor - Triggers if one of our own units died
+    /// Sensor - Triggers if we finished a resource center (command center)
     /// </summary>
-    public class OwnMilitaryUnitDiedSensor : Sensor
+    public class OwnResourceCenterCompletedSensor : Sensor
     {
+        private bool HasInitialized = false;
         private HashSet<ulong> PreviousUnitTags = new HashSet<ulong>();
 
         /// <summary>
@@ -42,34 +43,31 @@ namespace BOSSE
         /// </summary>
         public override void OnFrameTick()
         {
-            List<Unit> currentUnits = GeneralGameUtility.GetUnits(UnitConstants.ArmyUnits);
-            HashSet<Unit> killedUnits = new HashSet<Unit>();
+            List<Unit> currentUnits = GeneralGameUtility.GetUnits(UnitConstants.ResourceCenters, Alliance.Self, true, false);
 
-            foreach (uint prevIterTag in PreviousUnitTags)
+            HashSet<Unit> returnList = new HashSet<Unit>();
+            foreach (Unit iter in currentUnits)
             {
-                bool found = false;
-                Unit refUnits = null;
-                foreach (Unit currentUnit in currentUnits)
+                if (!PreviousUnitTags.Contains(iter.Tag))
                 {
-                    if (currentUnit.Tag == prevIterTag)
-                    {
-                        found = true;
-                        continue;
-                    }
-                }
-
-                if (!found)
-                {
-                    killedUnits.Add(refUnits);
-                    PreviousUnitTags.Remove(prevIterTag);
+                    returnList.Add(iter);
+                    PreviousUnitTags.Add(iter.Tag);
                 }
             }
 
-            if (killedUnits.Count == 0)
-                return;
+            if (HasInitialized)
+            {
+                if (returnList.Count == 0)
+                    return;
 
-            var details = new HashSet<Unit>(killedUnits);
-            Trigger(details);
+                var details = new HashSet<Unit>(returnList);
+                Trigger(details);
+            }
+            else
+            {
+                // The first iteration is a "dry run" to set the initial state
+                HasInitialized = true;
+            }
         }
     }
 }

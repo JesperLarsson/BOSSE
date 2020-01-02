@@ -132,6 +132,7 @@ namespace BOSSE
 
                     if (unitData.HasNewOrders)
                     {
+                        // This can also happen if the unit dies and we tried to give it a new order
                         Log.Warning("NOTE: Queued duplicate orders for unit " + iter + ", they will be overriden");
                         continue;
                     }
