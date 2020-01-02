@@ -25,6 +25,7 @@ namespace BOSSE
     using System.Security.Cryptography;
     using System.Threading;
     using System.Collections.Concurrent;
+    using System.Diagnostics;
 
     /// <summary>
     /// Writes logging information to file/console/visual studio output
@@ -131,17 +132,31 @@ namespace BOSSE
             fileStream.Close();
         }
 
-        private static void FormatAndQueue(string prefix, string line, bool trace)
+        private static void FormatAndQueue(string typePrefix, string lineToLog, bool traceToConsole)
         {
-            var msg = "[" + DateTime.Now.ToString("HH:mm:ss") + " " + prefix + "] " + line;
+            string callingClassName = "N/A";
+            var st = new StackTrace();
+            for (int i = 2; i < st.FrameCount; i++)
+            {
+                var method = st.GetFrame(i).GetMethod();
+                callingClassName = method.ReflectedType.Name;
 
-            FileQueue.Enqueue(msg);
+                if (callingClassName.StartsWith("<>"))
+                    continue; // Ignore anonymous names
+
+                break;
+            }
+            
+            string fullPrefix = $"[{DateTime.Now.ToString("HH:mm:ss")} {typePrefix} {callingClassName}]";
+            string fullMessageRow = String.Format("{0, -40}", fullPrefix) + lineToLog;
+
+            FileQueue.Enqueue(fullMessageRow);
 
             // Trace right away, it doesn't consume much resources and makes debugging easier
-            if (trace)
+            if (traceToConsole)
             {
-                System.Diagnostics.Debug.WriteLine(msg);
-                Console.WriteLine(msg);
+                System.Diagnostics.Debug.WriteLine(fullMessageRow);
+                Console.WriteLine(fullMessageRow);
             }
         }
     }

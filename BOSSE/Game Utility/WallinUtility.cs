@@ -45,14 +45,14 @@ namespace BOSSE
         //{
         //    new Size(3, 3),
         //    new Size(3, 3),
-        //    new Size(2, 2),
-        //    new Size(2, 2),
+        //    new Size(3, 3),
         //};
         private static readonly List<Size> NaturalWallinConfigNoGap = new List<Size>()
         {
             new Size(3, 3),
-            new Size(3, 3),
-            new Size(3, 3),
+            new Size(2, 2),
+            new Size(2, 2),
+            new Size(2, 2),
         };
 
         private static Wall CachedNaturalWall = null;
@@ -83,7 +83,7 @@ namespace BOSSE
             Log.Info("Estimate = " + estimateX + "/" + estimateY);
 
             // 2. Build wall configurations
-            const int yTestRadius = 1;
+            const int yTestRadius = 5;
             var foundWallsAtY = new Dictionary<int, Wall>();
             for (int y = estimateY - yTestRadius; y <= estimateY + yTestRadius; y++)
             {
@@ -117,12 +117,13 @@ namespace BOSSE
                 return onlyWallObj;
             }
 
-            // 3. Choose the option that is most "in the middle", this somewhat works around an issue with our pathfinding that it doesn't consider diagonals
+            // 3. Choose the option that is most "in the middle"
+            //   this somewhat works around an issue with our pathfinding that it doesn't consider diagonals
             var sortedY = foundWallsAtY.Keys.ToList();
             Log.Info("Possible natural wall configurations: " + sortedY.Count);
             sortedY.Sort();
-            int usedIndex = (int)(sortedY.Count / 2);
-            int usedY = sortedY[usedIndex];
+            int medianIndex = (int)(sortedY.Count / 2);
+            int usedY = sortedY[medianIndex];
 
             Wall usedWall = foundWallsAtY[usedY];
             Log.Info("Using median natural wall: " + usedWall);
@@ -135,7 +136,7 @@ namespace BOSSE
             ImageData gridMap = CurrentGameState.GameInformation.StartRaw.PlacementGrid;
 
             // 1. Search for starting position = first buildable tile
-            const int radiusSearchX = 2;
+            const int radiusSearchX = 5;
             int buildingStartsAtLeftX = -1;
             for (int x = estimateX - radiusSearchX; x < estimateX + radiusSearchX; x++)
             {
@@ -272,54 +273,54 @@ namespace BOSSE
             }
         }
 
-        /// <summary>
-        /// Gets a list of possible wall combinations that can be used in the given area
-        /// </summary>
-        private static List<Wall> GetWallCandidatesAtLocationUsingBox(Point2D estimatedLocation, Size boxingParameters, List<Size> buildingSizesToUse)
-        {
-            List<Wall> workingList = new List<Wall>();
+        ///// <summary>
+        ///// Gets a list of possible wall combinations that can be used in the given area
+        ///// </summary>
+        //private static List<Wall> GetWallCandidatesAtLocationUsingBox(Point2D estimatedLocation, Size boxingParameters, List<Size> buildingSizesToUse)
+        //{
+        //    List<Wall> workingList = new List<Wall>();
 
-            // 1. Create placeholder wall
-            workingList.Add(new Wall());
-            //for (int index = 0; index < (boxingParameters.Width * boxingParameters.Height); index++)
-            //{
-            //    workingList.Add(new Wall());
-            //}
+        //    // 1. Create placeholder wall
+        //    workingList.Add(new Wall());
+        //    //for (int index = 0; index < (boxingParameters.Width * boxingParameters.Height); index++)
+        //    //{
+        //    //    workingList.Add(new Wall());
+        //    //}
 
-            // 2. Take each existing wall and add each building, in every possible combination
-            foreach (Size sizeIter in buildingSizesToUse)
-            {
-                List<Wall> newList = new List<Wall>();
+        //    // 2. Take each existing wall and add each building, in every possible combination
+        //    foreach (Size sizeIter in buildingSizesToUse)
+        //    {
+        //        List<Wall> newList = new List<Wall>();
 
-                foreach (Wall existingWalliter in workingList)
-                {
-                    for (int baseXOffset = 0; baseXOffset < boxingParameters.Width; baseXOffset++)
-                    {
-                        for (int baseYOffset = 0; baseYOffset < boxingParameters.Height; baseYOffset++)
-                        {
-                            Wall newWall = new Wall(existingWalliter);
+        //        foreach (Wall existingWalliter in workingList)
+        //        {
+        //            for (int baseXOffset = 0; baseXOffset < boxingParameters.Width; baseXOffset++)
+        //            {
+        //                for (int baseYOffset = 0; baseYOffset < boxingParameters.Height; baseYOffset++)
+        //                {
+        //                    Wall newWall = new Wall(existingWalliter);
 
-                            Wall.BuildingInWall buildingObj = new Wall.BuildingInWall(sizeIter, new Point2D(estimatedLocation.X + baseXOffset, estimatedLocation.Y + baseYOffset));
-                            newWall.Buildings.Add(buildingObj);
+        //                    Wall.BuildingInWall buildingObj = new Wall.BuildingInWall(sizeIter, new Point2D(estimatedLocation.X + baseXOffset, estimatedLocation.Y + baseYOffset));
+        //                    newWall.Buildings.Add(buildingObj);
 
-                            if (IsThereBuildingOverlapInWallConfig(newWall))
-                                continue;
+        //                    if (IsThereBuildingOverlapInWallConfig(newWall))
+        //                        continue;
 
-                            newList.Add(newWall);
-                        }
-                    }
-                }
+        //                    newList.Add(newWall);
+        //                }
+        //            }
+        //        }
 
-                workingList = newList;
-            }
+        //        workingList = newList;
+        //    }
 
-            //// 3. Remove overlapping building
-            //FilterOverlappingBuildings(workingList);
+        //    //// 3. Remove overlapping building
+        //    //FilterOverlappingBuildings(workingList);
 
-            // Done
-            Log.Info("Built wall initial candidate list of size " + workingList.Count);
-            return workingList;
-        }
+        //    // Done
+        //    Log.Info("Built wall initial candidate list of size " + workingList.Count);
+        //    return workingList;
+        //}
 
         //private static void FilterOverlappingBuildings(List<Wall> list)
         //{
