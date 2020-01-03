@@ -128,7 +128,7 @@ namespace BOSSE
         /// </summary>
         private void ExecuteBuildMilitary()
         {
-            const int RaxesWanted = 1;
+            const int RaxesWanted = 3;
             const int FactoriesWanted = 1;
             const int TechLabsWanted = 1;
 
@@ -137,12 +137,12 @@ namespace BOSSE
             uint factoryCount = GetUnitCountTotal(UnitConstants.FactoryVariations, includeEquivalents: true);
 
             // Expand
-            //if (CanAfford(UnitId.COMMAND_CENTER))
-            //{
-            //    Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
-            //    Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
-            //    Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
-            //}
+            if (CanAfford(UnitId.COMMAND_CENTER))
+            {
+                Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
+                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
+                Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
+            }
 
             // Factory
             if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))

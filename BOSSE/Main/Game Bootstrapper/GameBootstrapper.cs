@@ -72,7 +72,7 @@ namespace BOSSE
         private async Task CreateGame(string mapName, Race opponentRace, Difficulty opponentDifficulty)
         {
             var createGame = new RequestCreateGame();
-            createGame.Realtime = !BotConstants.TickLockMode;
+            createGame.Realtime = !BotConstants.SinglestepMode;
 
             var mapPath = Path.Combine(starcraftMaps, mapName);
 
@@ -99,6 +99,10 @@ namespace BOSSE
             request.CreateGame = createGame;
             var response = CheckResponse(await proxy.SendRequest(request));
 
+            if (response.CreateGame == null)
+            {
+                throw new BosseFatalException();
+            }
             if (response.CreateGame.Error != ResponseCreateGame.Types.Error.Unset)
             {
                 Log.Error("CreateGame error: " + response.CreateGame.Error.ToString());

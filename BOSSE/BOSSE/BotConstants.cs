@@ -44,7 +44,7 @@ namespace BOSSE
         /// False = Game behaves as during normal play, aka realtime mode
         /// True = Game will wait for our output and runs as fast as possible
         /// </summary>
-        public const bool TickLockMode = true;
+        public const bool SinglestepMode = true;
 
         /// <summary>
         /// Number of milliseconds to sleep after each bot tick
