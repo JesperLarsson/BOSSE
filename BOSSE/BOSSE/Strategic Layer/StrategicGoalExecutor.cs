@@ -62,7 +62,7 @@ namespace BOSSE
             {
                 Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
                 squad.AddUnit(iter);
-                Log.Info("  Added unit to main squad: " + iter.Tag + " (" + iter.UnitType + ")");
+                Log.Info("Added unit to main squad: " + iter.Tag + " (" + iter.UnitType + ")");
                 unitCount++;
             }
 
@@ -252,9 +252,9 @@ namespace BOSSE
                     {
                         break;
                     }
-                    if (rax.CurrentOrder != null)
+                    if (rax.CurrentOrder != null || rax.HasNewOrders)
                     {
-                        continue; // Do not queue unit
+                        continue;
                     }
 
                     Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));

@@ -113,7 +113,7 @@ namespace BOSSE
         /// <summary>
         /// Queues the given action for output to sc2
         /// </summary>
-        public static void Queue(Action action)
+        public static void Queue(Action action, bool allowOrderOverride = false)
         {
             if (action == null)
             {
@@ -132,14 +132,14 @@ namespace BOSSE
                         continue;
                     }
 
-                    if (unitData.HasNewOrders)
+                    if (unitData.HasNewOrders && (!allowOrderOverride))
                     {
-                        // This can also happen if the unit dies and we tried to give it a new order
+                        // This indicates an issue with the code somewhere, everything should check the current order and the HasNewOrders field
                         Log.Warning("NOTE: Queued duplicate orders for unit " + iter + ", they will be overriden");
                         continue;
                     }
 
-                    Log.Bulk("Issued a new command to unit " + iter);
+                    //Log.Bulk("Issued a new command to unit " + iter);
                     unitData.HasNewOrders = true;
                 }
             }
