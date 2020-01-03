@@ -196,28 +196,25 @@ namespace BOSSE
                             }
                             else
                             {
-                                Log.Info("Landing buildings to swap addons");
-                                Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, factory, raxOrigin));
-                                Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, atRax, factoryOrigin));
+                                int landCount = 0;
+                                if (atRax.UnitType == UnitId.BARRACKS_FLYING)
+                                {
+                                    Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, atRax, factoryOrigin));
+                                }
+                                else
+                                {
+                                    landCount++;
+                                }
+                                if (factory.UnitType == UnitId.FACTORY_FLYING)
+                                {
+                                    Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, factory, raxOrigin));
+                                }
+                                else
+                                {
+                                    landCount++;
+                                }
 
-                                return true;
-                                //if (factory.Position.IsAt(raxOrigin))
-                                //{
-                                //    Queue(CommandBuilder.UseAbility(AbilityId.LAND, factory));
-                                //}
-                                //else
-                                //{
-                                //    Queue(CommandBuilder.MoveAction(new List<Unit> { factory }, raxOrigin));
-                                //}
-
-                                //if (atRax.Position.IsAt(factoryOrigin))
-                                //{
-                                //    Queue(CommandBuilder.UseAbility(AbilityId.LAND, atRax));
-                                //}
-                                //else
-                                //{
-                                //    Queue(CommandBuilder.MoveAction(new List<Unit> { atRax }, factoryOrigin));
-                                //}
+                                return landCount == 2;
                             }
                         });
 
