@@ -4414,7 +4414,7 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 1;
-        private readonly static global::SC2APIProtocol.ResponseCreateGame.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseCreateGame.Types.Error.MissingMap;
+        private readonly static global::SC2APIProtocol.ResponseCreateGame.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseCreateGame.Types.Error.Unset;
 
         private global::SC2APIProtocol.ResponseCreateGame.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4596,6 +4596,8 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
+                [pbr::OriginalName("Error_UNSET")] Unset = 0,
+
                 [pbr::OriginalName("MissingMap")] MissingMap = 1,
                 [pbr::OriginalName("InvalidMapPath")] InvalidMapPath = 2,
                 [pbr::OriginalName("InvalidMapData")] InvalidMapData = 3,
@@ -5476,7 +5478,7 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 2;
-        private readonly static global::SC2APIProtocol.ResponseJoinGame.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseJoinGame.Types.Error.MissingParticipation;
+        private readonly static global::SC2APIProtocol.ResponseJoinGame.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseJoinGame.Types.Error.Unset;
 
         private global::SC2APIProtocol.ResponseJoinGame.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5678,6 +5680,8 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
+                [pbr::OriginalName("Error_UNSET")] Unset = 0,
+
                 [pbr::OriginalName("MissingParticipation")] MissingParticipation = 1,
                 [pbr::OriginalName("InvalidObservedPlayerId")] InvalidObservedPlayerId = 2,
                 [pbr::OriginalName("MissingOptions")] MissingOptions = 3,
