@@ -58,8 +58,9 @@ namespace BOSSE
         public static readonly ConstructionManager ConstructionManagerRef = new ConstructionManager();
         public static readonly RampManager RampManagerRef = new RampManager();
         public static readonly BaseManager BaseManagerRef = new BaseManager();
-        public static readonly OrderManager OrderManagerRef = new OrderManager();        
-
+        public static readonly OrderManager OrderManagerRef = new OrderManager();
+        public static readonly SpaceMovementReservationManager SpaceMovementReservationManagerRef = new SpaceMovementReservationManager();
+        
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
         {
@@ -75,6 +76,7 @@ namespace BOSSE
             SquadManagerRef, // depends on TacticalGoalRef
 
             OrbitalCommandManagerRef, // depends on GoalExecutorRef
+            SpaceMovementReservationManagerRef,
             ConstructionManagerRef,
             BaseManagerRef,
             RampManagerRef,

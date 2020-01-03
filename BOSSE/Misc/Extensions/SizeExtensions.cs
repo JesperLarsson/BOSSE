@@ -50,5 +50,10 @@ namespace BOSSE
 
             return true;
         }
+
+        public static string ToString2(this Size self)
+        {
+            return self.Width + "x" + self.Height;
+        }
     }
 }

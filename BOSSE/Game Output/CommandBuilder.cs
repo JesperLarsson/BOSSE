@@ -55,18 +55,53 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to attack move to the given location
         /// </summary>
-        public static Action AttackMoveAction(IEnumerable<Unit> units, Point2D target)
+        public static Action AttackMoveAction(IEnumerable<Unit> units, Point2D targetPos, bool allowPositionCorrection = true)
         {
             Action action = RawCommand((int)AbilityConstants.AbilityId.ATTACK);
 
-            action.ActionRaw.UnitCommand.TargetWorldSpacePos = target;
+            // Find another nearby position if we need to
+            if (allowPositionCorrection && BOSSE.SpaceMovementReservationManagerRef.IsPointInsideReservedSpace(targetPos))
+            {
+                targetPos = FindPathableLocationCloseTo(targetPos);
+            }
 
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = targetPos;
             foreach (var unit in units)
             {
                 action.ActionRaw.UnitCommand.UnitTags.Add(unit.Tag);
             }
-
             return action;
+        }
+
+        private static Point2D FindPathableLocationCloseTo(Point2D closeToPos, bool checkReserveration = true, bool checkTilePathing = true)
+        {
+            if ((!checkReserveration) && (!checkTilePathing))
+                Log.SanityCheckFailed("Invalid arguments given to FindPathableLocationCloseTo");
+
+            const int SearchRadius = 6;
+            for (int xOffset = -SearchRadius; xOffset < SearchRadius; xOffset++)
+            {
+                for (int yOffset = -SearchRadius; yOffset < SearchRadius; yOffset++)
+                {
+                    float searchX = closeToPos.X + xOffset;
+                    float searchY = closeToPos.Y + yOffset;
+                    Point2D searchPos = new Point2D(searchX, searchY);
+
+                    if (checkTilePathing && (!searchPos.IsPathable()))
+                    {
+                        continue;
+                    }
+                    if (checkReserveration && BOSSE.SpaceMovementReservationManagerRef.IsPointInsideReservedSpace(searchPos))
+                    {
+                        continue;
+                    }
+
+                    // Done
+                    return searchPos;
+                }
+            }
+
+            throw new BosseFatalException("Unable to find a replacement position close to " + closeToPos);
         }
 
         /// <summary>

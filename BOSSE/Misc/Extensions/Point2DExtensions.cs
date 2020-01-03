@@ -171,6 +171,15 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Returns true if this tile can be walked on by ground units
+        /// </summary>
+        public static bool IsPathable(this Point2D self)
+        {
+            bool isPathable = CurrentGameState.GameInformation.StartRaw.PathingGrid.GetBit((int)self.X, (int)self.Y) != 0;
+            return isPathable;
+        }
+
+        /// <summary>
         /// XY string
         /// </summary>
         public static string ToString2(this Point2D obj)

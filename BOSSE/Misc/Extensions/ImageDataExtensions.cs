@@ -33,12 +33,12 @@ namespace BOSSE
     using static UnitConstants;
 
     /// <summary>
-    /// Provides helper functions for <see cref="ImageData"/> sc2 struct
+    /// Provides helper functions for <see cref="ImageData"/> sc2 struct. See sc2-provided bits_per_pixel for which function to use
     /// </summary>
     public static class ImageDataExtensions
     {
         /// <summary>
-        /// Returns a specific bit of the given image
+        /// Returns a specific bit of the given <see cref="ImageData"/>
         /// </summary>
         public static byte GetBit(this ImageData imageObj, int pixelXOffset, int pixelYOffset)
         {
@@ -50,7 +50,7 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Returns a specific byte of the given image
+        /// Returns a specific byte of the given <see cref="ImageData"/>
         /// </summary>
         public static int GetByte(this ImageData imageObj, int byteXOffset, int byteYOffset)
         {
