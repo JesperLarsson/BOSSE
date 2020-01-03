@@ -1081,9 +1081,9 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Point2D(float x, float y)
         {
-            x_ = x;
-            y_ = y;
             OnConstruction();
+            this.X = x;
+            this.Y = y;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1186,7 +1186,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
-            return pb::JsonFormatter.ToDiagnosticString(this);
+            return this.X + " " + this.Y;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
