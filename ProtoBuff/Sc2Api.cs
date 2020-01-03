@@ -35,7 +35,7 @@ namespace SC2APIProtocol
                   "dG9jb2wvcXVlcnkucHJvdG8aGnMyY2xpZW50cHJvdG9jb2wvcmF3LnByb3Rv",
                   "GhxzMmNsaWVudHByb3RvY29sL3Njb3JlLnByb3RvGh5zMmNsaWVudHByb3Rv",
                   "Y29sL3NwYXRpYWwucHJvdG8aGXMyY2xpZW50cHJvdG9jb2wvdWkucHJvdG8i",
-                  "/QgKB1JlcXVlc3QSOAoLY3JlYXRlX2dhbWUYASABKAsyIS5TQzJBUElQcm90",
+                  "wwkKB1JlcXVlc3QSOAoLY3JlYXRlX2dhbWUYASABKAsyIS5TQzJBUElQcm90",
                   "b2NvbC5SZXF1ZXN0Q3JlYXRlR2FtZUgAEjQKCWpvaW5fZ2FtZRgCIAEoCzIf",
                   "LlNDMkFQSVByb3RvY29sLlJlcXVlc3RKb2luR2FtZUgAEjoKDHJlc3RhcnRf",
                   "Z2FtZRgDIAEoCzIiLlNDMkFQSVByb3RvY29sLlJlcXVlc3RSZXN0YXJ0R2Ft",
@@ -54,274 +54,300 @@ namespace SC2APIProtocol
                   "ZXBIABIrCgRkYXRhGA0gASgLMhsuU0MyQVBJUHJvdG9jb2wuUmVxdWVzdERh",
                   "dGFIABItCgVxdWVyeRgOIAEoCzIcLlNDMkFQSVByb3RvY29sLlJlcXVlc3RR",
                   "dWVyeUgAEjgKC3NhdmVfcmVwbGF5GA8gASgLMiEuU0MyQVBJUHJvdG9jb2wu",
-                  "UmVxdWVzdFNhdmVSZXBsYXlIABI4CgtyZXBsYXlfaW5mbxgQIAEoCzIhLlND",
-                  "MkFQSVByb3RvY29sLlJlcXVlc3RSZXBsYXlJbmZvSAASPgoOYXZhaWxhYmxl",
-                  "X21hcHMYESABKAsyJC5TQzJBUElQcm90b2NvbC5SZXF1ZXN0QXZhaWxhYmxl",
-                  "TWFwc0gAEjIKCHNhdmVfbWFwGBIgASgLMh4uU0MyQVBJUHJvdG9jb2wuUmVx",
-                  "dWVzdFNhdmVNYXBIABIrCgRwaW5nGBMgASgLMhsuU0MyQVBJUHJvdG9jb2wu",
-                  "UmVxdWVzdFBpbmdIABItCgVkZWJ1ZxgUIAEoCzIcLlNDMkFQSVByb3RvY29s",
-                  "LlJlcXVlc3REZWJ1Z0gAQgkKB3JlcXVlc3QiywkKCFJlc3BvbnNlEjkKC2Ny",
-                  "ZWF0ZV9nYW1lGAEgASgLMiIuU0MyQVBJUHJvdG9jb2wuUmVzcG9uc2VDcmVh",
-                  "dGVHYW1lSAASNQoJam9pbl9nYW1lGAIgASgLMiAuU0MyQVBJUHJvdG9jb2wu",
-                  "UmVzcG9uc2VKb2luR2FtZUgAEjsKDHJlc3RhcnRfZ2FtZRgDIAEoCzIjLlND",
-                  "MkFQSVByb3RvY29sLlJlc3BvbnNlUmVzdGFydEdhbWVIABI7CgxzdGFydF9y",
-                  "ZXBsYXkYBCABKAsyIy5TQzJBUElQcm90b2NvbC5SZXNwb25zZVN0YXJ0UmVw",
-                  "bGF5SAASNwoKbGVhdmVfZ2FtZRgFIAEoCzIhLlNDMkFQSVByb3RvY29sLlJl",
-                  "c3BvbnNlTGVhdmVHYW1lSAASNwoKcXVpY2tfc2F2ZRgGIAEoCzIhLlNDMkFQ",
-                  "SVByb3RvY29sLlJlc3BvbnNlUXVpY2tTYXZlSAASNwoKcXVpY2tfbG9hZBgH",
-                  "IAEoCzIhLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlUXVpY2tMb2FkSAASLAoE",
-                  "cXVpdBgIIAEoCzIcLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlUXVpdEgAEjUK",
-                  "CWdhbWVfaW5mbxgJIAEoCzIgLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlR2Ft",
-                  "ZUluZm9IABI6CgtvYnNlcnZhdGlvbhgKIAEoCzIjLlNDMkFQSVByb3RvY29s",
-                  "LlJlc3BvbnNlT2JzZXJ2YXRpb25IABIwCgZhY3Rpb24YCyABKAsyHi5TQzJB",
-                  "UElQcm90b2NvbC5SZXNwb25zZUFjdGlvbkgAEjwKCm9ic19hY3Rpb24YFSAB",
-                  "KAsyJi5TQzJBUElQcm90b2NvbC5SZXNwb25zZU9ic2VydmVyQWN0aW9uSAAS",
-                  "LAoEc3RlcBgMIAEoCzIcLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlU3RlcEgA",
-                  "EiwKBGRhdGEYDSABKAsyHC5TQzJBUElQcm90b2NvbC5SZXNwb25zZURhdGFI",
-                  "ABIuCgVxdWVyeRgOIAEoCzIdLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlUXVl",
-                  "cnlIABI5CgtzYXZlX3JlcGxheRgPIAEoCzIiLlNDMkFQSVByb3RvY29sLlJl",
-                  "c3BvbnNlU2F2ZVJlcGxheUgAEjkKC3JlcGxheV9pbmZvGBAgASgLMiIuU0My",
-                  "QVBJUHJvdG9jb2wuUmVzcG9uc2VSZXBsYXlJbmZvSAASPwoOYXZhaWxhYmxl",
-                  "X21hcHMYESABKAsyJS5TQzJBUElQcm90b2NvbC5SZXNwb25zZUF2YWlsYWJs",
-                  "ZU1hcHNIABIzCghzYXZlX21hcBgSIAEoCzIfLlNDMkFQSVByb3RvY29sLlJl",
-                  "c3BvbnNlU2F2ZU1hcEgAEiwKBHBpbmcYEyABKAsyHC5TQzJBUElQcm90b2Nv",
-                  "bC5SZXNwb25zZVBpbmdIABIuCgVkZWJ1ZxgUIAEoCzIdLlNDMkFQSVByb3Rv",
-                  "Y29sLlJlc3BvbnNlRGVidWdIABINCgVlcnJvchhiIAMoCRImCgZzdGF0dXMY",
-                  "YyABKA4yFi5TQzJBUElQcm90b2NvbC5TdGF0dXNCCgoIcmVzcG9uc2Ui1gEK",
-                  "EVJlcXVlc3RDcmVhdGVHYW1lEi0KCWxvY2FsX21hcBgBIAEoCzIYLlNDMkFQ",
-                  "SVByb3RvY29sLkxvY2FsTWFwSAASHAoSYmF0dGxlbmV0X21hcF9uYW1lGAIg",
-                  "ASgJSAASMQoMcGxheWVyX3NldHVwGAMgAygLMhsuU0MyQVBJUHJvdG9jb2wu",
-                  "UGxheWVyU2V0dXASEwoLZGlzYWJsZV9mb2cYBCABKAgSEwoLcmFuZG9tX3Nl",
-                  "ZWQYBSABKA0SEAoIcmVhbHRpbWUYBiABKAhCBQoDTWFwIi4KCExvY2FsTWFw",
-                  "EhAKCG1hcF9wYXRoGAEgASgJEhAKCG1hcF9kYXRhGAcgASgMIq0CChJSZXNw",
-                  "b25zZUNyZWF0ZUdhbWUSNwoFZXJyb3IYASABKA4yKC5TQzJBUElQcm90b2Nv",
-                  "bC5SZXNwb25zZUNyZWF0ZUdhbWUuRXJyb3ISFQoNZXJyb3JfZGV0YWlscxgC",
-                  "IAEoCSLGAQoFRXJyb3ISDwoLRXJyb3JfVU5TRVQQABIOCgpNaXNzaW5nTWFw",
-                  "EAESEgoOSW52YWxpZE1hcFBhdGgQAhISCg5JbnZhbGlkTWFwRGF0YRADEhIK",
-                  "DkludmFsaWRNYXBOYW1lEAQSFAoQSW52YWxpZE1hcEhhbmRsZRAFEhYKEk1p",
-                  "c3NpbmdQbGF5ZXJTZXR1cBAGEhYKEkludmFsaWRQbGF5ZXJTZXR1cBAHEhoK",
-                  "Fk11bHRpcGxheWVyVW5zdXBwb3J0ZWQQCCKMAgoPUmVxdWVzdEpvaW5HYW1l",
-                  "EiQKBHJhY2UYASABKA4yFC5TQzJBUElQcm90b2NvbC5SYWNlSAASHAoSb2Jz",
-                  "ZXJ2ZWRfcGxheWVyX2lkGAIgASgNSAASMQoHb3B0aW9ucxgDIAEoCzIgLlND",
-                  "MkFQSVByb3RvY29sLkludGVyZmFjZU9wdGlvbnMSLQoMc2VydmVyX3BvcnRz",
-                  "GAQgASgLMhcuU0MyQVBJUHJvdG9jb2wuUG9ydFNldBItCgxjbGllbnRfcG9y",
-                  "dHMYBSADKAsyFy5TQzJBUElQcm90b2NvbC5Qb3J0U2V0EhMKC3NoYXJlZF9w",
-                  "b3J0GAYgASgFQg8KDXBhcnRpY2lwYXRpb24iLwoHUG9ydFNldBIRCglnYW1l",
-                  "X3BvcnQYASABKAUSEQoJYmFzZV9wb3J0GAIgASgFIpMDChBSZXNwb25zZUpv",
-                  "aW5HYW1lEhEKCXBsYXllcl9pZBgBIAEoDRI1CgVlcnJvchgCIAEoDjImLlND",
-                  "MkFQSVByb3RvY29sLlJlc3BvbnNlSm9pbkdhbWUuRXJyb3ISFQoNZXJyb3Jf",
-                  "ZGV0YWlscxgDIAEoCSKdAgoFRXJyb3ISDwoLRXJyb3JfVU5TRVQQABIYChRN",
-                  "aXNzaW5nUGFydGljaXBhdGlvbhABEhsKF0ludmFsaWRPYnNlcnZlZFBsYXll",
-                  "cklkEAISEgoOTWlzc2luZ09wdGlvbnMQAxIQCgxNaXNzaW5nUG9ydHMQBBIM",
-                  "CghHYW1lRnVsbBAFEg8KC0xhdW5jaEVycm9yEAYSFgoSRmVhdHVyZVVuc3Vw",
-                  "cG9ydGVkEAcSEgoOTm9TcGFjZUZvclVzZXIQCBITCg9NYXBEb2VzTm90RXhp",
-                  "c3QQCRIRCg1DYW5ub3RPcGVuTWFwEAoSEQoNQ2hlY2tzdW1FcnJvchALEhAK",
-                  "DE5ldHdvcmtFcnJvchAMEg4KCk90aGVyRXJyb3IQDSIUChJSZXF1ZXN0UmVz",
-                  "dGFydEdhbWUikQEKE1Jlc3BvbnNlUmVzdGFydEdhbWUSOAoFZXJyb3IYASAB",
-                  "KA4yKS5TQzJBUElQcm90b2NvbC5SZXNwb25zZVJlc3RhcnRHYW1lLkVycm9y",
-                  "EhUKDWVycm9yX2RldGFpbHMYAiABKAkiKQoFRXJyb3ISDwoLRXJyb3JfVU5T",
-                  "RVQQABIPCgtMYXVuY2hFcnJvchABItQBChJSZXF1ZXN0U3RhcnRSZXBsYXkS",
-                  "FQoLcmVwbGF5X3BhdGgYASABKAlIABIVCgtyZXBsYXlfZGF0YRgFIAEoDEgA",
-                  "EhAKCG1hcF9kYXRhGAYgASgMEhoKEm9ic2VydmVkX3BsYXllcl9pZBgCIAEo",
-                  "BRIxCgdvcHRpb25zGAMgASgLMiAuU0MyQVBJUHJvdG9jb2wuSW50ZXJmYWNl",
-                  "T3B0aW9ucxITCgtkaXNhYmxlX2ZvZxgEIAEoCBIQCghyZWFsdGltZRgHIAEo",
-                  "CEIICgZyZXBsYXkimAIKE1Jlc3BvbnNlU3RhcnRSZXBsYXkSOAoFZXJyb3IY",
-                  "ASABKA4yKS5TQzJBUElQcm90b2NvbC5SZXNwb25zZVN0YXJ0UmVwbGF5LkVy",
-                  "cm9yEhUKDWVycm9yX2RldGFpbHMYAiABKAkirwEKBUVycm9yEg8KC0Vycm9y",
-                  "X1VOU0VUEAASEQoNTWlzc2luZ1JlcGxheRABEhUKEUludmFsaWRSZXBsYXlQ",
-                  "YXRoEAISFQoRSW52YWxpZFJlcGxheURhdGEQAxISCg5JbnZhbGlkTWFwRGF0",
-                  "YRAEEhsKF0ludmFsaWRPYnNlcnZlZFBsYXllcklkEAUSEgoOTWlzc2luZ09w",
-                  "dGlvbnMQBhIPCgtMYXVuY2hFcnJvchAHIhIKEFJlcXVlc3RMZWF2ZUdhbWUi",
-                  "EwoRUmVzcG9uc2VMZWF2ZUdhbWUiEgoQUmVxdWVzdFF1aWNrU2F2ZSITChFS",
-                  "ZXNwb25zZVF1aWNrU2F2ZSISChBSZXF1ZXN0UXVpY2tMb2FkIhMKEVJlc3Bv",
-                  "bnNlUXVpY2tMb2FkIg0KC1JlcXVlc3RRdWl0Ig4KDFJlc3BvbnNlUXVpdCIR",
-                  "Cg9SZXF1ZXN0R2FtZUluZm8i4AEKEFJlc3BvbnNlR2FtZUluZm8SEAoIbWFw",
-                  "X25hbWUYASABKAkSEQoJbW9kX25hbWVzGAYgAygJEhYKDmxvY2FsX21hcF9w",
-                  "YXRoGAIgASgJEi8KC3BsYXllcl9pbmZvGAMgAygLMhouU0MyQVBJUHJvdG9j",
-                  "b2wuUGxheWVySW5mbxIrCglzdGFydF9yYXcYBCABKAsyGC5TQzJBUElQcm90",
-                  "b2NvbC5TdGFydFJhdxIxCgdvcHRpb25zGAUgASgLMiAuU0MyQVBJUHJvdG9j",
-                  "b2wuSW50ZXJmYWNlT3B0aW9ucyIpChJSZXF1ZXN0T2JzZXJ2YXRpb24SEwoL",
-                  "ZGlzYWJsZV9mb2cYASABKAgihQIKE1Jlc3BvbnNlT2JzZXJ2YXRpb24SJwoH",
-                  "YWN0aW9ucxgBIAMoCzIWLlNDMkFQSVByb3RvY29sLkFjdGlvbhIyCg1hY3Rp",
-                  "b25fZXJyb3JzGAIgAygLMhsuU0MyQVBJUHJvdG9jb2wuQWN0aW9uRXJyb3IS",
-                  "MAoLb2JzZXJ2YXRpb24YAyABKAsyGy5TQzJBUElQcm90b2NvbC5PYnNlcnZh",
-                  "dGlvbhIzCg1wbGF5ZXJfcmVzdWx0GAQgAygLMhwuU0MyQVBJUHJvdG9jb2wu",
-                  "UGxheWVyUmVzdWx0EioKBGNoYXQYBSADKAsyHC5TQzJBUElQcm90b2NvbC5D",
-                  "aGF0UmVjZWl2ZWQiMgoMQ2hhdFJlY2VpdmVkEhEKCXBsYXllcl9pZBgBIAEo",
-                  "DRIPCgdtZXNzYWdlGAIgASgJIjgKDVJlcXVlc3RBY3Rpb24SJwoHYWN0aW9u",
-                  "cxgBIAMoCzIWLlNDMkFQSVByb3RvY29sLkFjdGlvbiI+Cg5SZXNwb25zZUFj",
-                  "dGlvbhIsCgZyZXN1bHQYASADKA4yHC5TQzJBUElQcm90b2NvbC5BY3Rpb25S",
-                  "ZXN1bHQiSAoVUmVxdWVzdE9ic2VydmVyQWN0aW9uEi8KB2FjdGlvbnMYASAD",
-                  "KAsyHi5TQzJBUElQcm90b2NvbC5PYnNlcnZlckFjdGlvbiIYChZSZXNwb25z",
-                  "ZU9ic2VydmVyQWN0aW9uIhwKC1JlcXVlc3RTdGVwEg0KBWNvdW50GAEgASgN",
-                  "Ig4KDFJlc3BvbnNlU3RlcCJvCgtSZXF1ZXN0RGF0YRISCgphYmlsaXR5X2lk",
-                  "GAEgASgIEhQKDHVuaXRfdHlwZV9pZBgCIAEoCBISCgp1cGdyYWRlX2lkGAMg",
-                  "ASgIEg8KB2J1ZmZfaWQYBCABKAgSEQoJZWZmZWN0X2lkGAUgASgIIvABCgxS",
-                  "ZXNwb25zZURhdGESLgoJYWJpbGl0aWVzGAEgAygLMhsuU0MyQVBJUHJvdG9j",
-                  "b2wuQWJpbGl0eURhdGESKwoFdW5pdHMYAiADKAsyHC5TQzJBUElQcm90b2Nv",
-                  "bC5Vbml0VHlwZURhdGESLQoIdXBncmFkZXMYAyADKAsyGy5TQzJBUElQcm90",
-                  "b2NvbC5VcGdyYWRlRGF0YRInCgVidWZmcxgEIAMoCzIYLlNDMkFQSVByb3Rv",
-                  "Y29sLkJ1ZmZEYXRhEisKB2VmZmVjdHMYBSADKAsyGi5TQzJBUElQcm90b2Nv",
-                  "bC5FZmZlY3REYXRhIhMKEVJlcXVlc3RTYXZlUmVwbGF5IiIKElJlc3BvbnNl",
-                  "U2F2ZVJlcGxheRIMCgRkYXRhGAEgASgMImIKEVJlcXVlc3RSZXBsYXlJbmZv",
-                  "EhUKC3JlcGxheV9wYXRoGAEgASgJSAASFQoLcmVwbGF5X2RhdGEYAiABKAxI",
-                  "ABIVCg1kb3dubG9hZF9kYXRhGAMgASgIQggKBnJlcGxheSKfAQoPUGxheWVy",
-                  "SW5mb0V4dHJhEi8KC3BsYXllcl9pbmZvGAEgASgLMhouU0MyQVBJUHJvdG9j",
-                  "b2wuUGxheWVySW5mbxIzCg1wbGF5ZXJfcmVzdWx0GAIgASgLMhwuU0MyQVBJ",
-                  "UHJvdG9jb2wuUGxheWVyUmVzdWx0EhIKCnBsYXllcl9tbXIYAyABKAUSEgoK",
-                  "cGxheWVyX2FwbRgEIAEoBSLUAwoSUmVzcG9uc2VSZXBsYXlJbmZvEhAKCG1h",
-                  "cF9uYW1lGAEgASgJEhYKDmxvY2FsX21hcF9wYXRoGAIgASgJEjQKC3BsYXll",
-                  "cl9pbmZvGAMgAygLMh8uU0MyQVBJUHJvdG9jb2wuUGxheWVySW5mb0V4dHJh",
-                  "EhsKE2dhbWVfZHVyYXRpb25fbG9vcHMYBCABKA0SHQoVZ2FtZV9kdXJhdGlv",
-                  "bl9zZWNvbmRzGAUgASgCEhQKDGdhbWVfdmVyc2lvbhgGIAEoCRIUCgxkYXRh",
-                  "X3ZlcnNpb24YCyABKAkSEgoKZGF0YV9idWlsZBgHIAEoDRISCgpiYXNlX2J1",
-                  "aWxkGAggASgNEjcKBWVycm9yGAkgASgOMiguU0MyQVBJUHJvdG9jb2wuUmVz",
-                  "cG9uc2VSZXBsYXlJbmZvLkVycm9yEhUKDWVycm9yX2RldGFpbHMYCiABKAki",
-                  "fgoFRXJyb3ISDwoLRXJyb3JfVU5TRVQQABIRCg1NaXNzaW5nUmVwbGF5EAES",
+                  "UmVxdWVzdFNhdmVSZXBsYXlIABI4CgttYXBfY29tbWFuZBgWIAEoCzIhLlND",
+                  "MkFQSVByb3RvY29sLlJlcXVlc3RNYXBDb21tYW5kSAASOAoLcmVwbGF5X2lu",
+                  "Zm8YECABKAsyIS5TQzJBUElQcm90b2NvbC5SZXF1ZXN0UmVwbGF5SW5mb0gA",
+                  "Ej4KDmF2YWlsYWJsZV9tYXBzGBEgASgLMiQuU0MyQVBJUHJvdG9jb2wuUmVx",
+                  "dWVzdEF2YWlsYWJsZU1hcHNIABIyCghzYXZlX21hcBgSIAEoCzIeLlNDMkFQ",
+                  "SVByb3RvY29sLlJlcXVlc3RTYXZlTWFwSAASKwoEcGluZxgTIAEoCzIbLlND",
+                  "MkFQSVByb3RvY29sLlJlcXVlc3RQaW5nSAASLQoFZGVidWcYFCABKAsyHC5T",
+                  "QzJBUElQcm90b2NvbC5SZXF1ZXN0RGVidWdIABIKCgJpZBhhIAEoDUIJCgdy",
+                  "ZXF1ZXN0IpIKCghSZXNwb25zZRI5CgtjcmVhdGVfZ2FtZRgBIAEoCzIiLlND",
+                  "MkFQSVByb3RvY29sLlJlc3BvbnNlQ3JlYXRlR2FtZUgAEjUKCWpvaW5fZ2Ft",
+                  "ZRgCIAEoCzIgLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlSm9pbkdhbWVIABI7",
+                  "CgxyZXN0YXJ0X2dhbWUYAyABKAsyIy5TQzJBUElQcm90b2NvbC5SZXNwb25z",
+                  "ZVJlc3RhcnRHYW1lSAASOwoMc3RhcnRfcmVwbGF5GAQgASgLMiMuU0MyQVBJ",
+                  "UHJvdG9jb2wuUmVzcG9uc2VTdGFydFJlcGxheUgAEjcKCmxlYXZlX2dhbWUY",
+                  "BSABKAsyIS5TQzJBUElQcm90b2NvbC5SZXNwb25zZUxlYXZlR2FtZUgAEjcK",
+                  "CnF1aWNrX3NhdmUYBiABKAsyIS5TQzJBUElQcm90b2NvbC5SZXNwb25zZVF1",
+                  "aWNrU2F2ZUgAEjcKCnF1aWNrX2xvYWQYByABKAsyIS5TQzJBUElQcm90b2Nv",
+                  "bC5SZXNwb25zZVF1aWNrTG9hZEgAEiwKBHF1aXQYCCABKAsyHC5TQzJBUElQ",
+                  "cm90b2NvbC5SZXNwb25zZVF1aXRIABI1CglnYW1lX2luZm8YCSABKAsyIC5T",
+                  "QzJBUElQcm90b2NvbC5SZXNwb25zZUdhbWVJbmZvSAASOgoLb2JzZXJ2YXRp",
+                  "b24YCiABKAsyIy5TQzJBUElQcm90b2NvbC5SZXNwb25zZU9ic2VydmF0aW9u",
+                  "SAASMAoGYWN0aW9uGAsgASgLMh4uU0MyQVBJUHJvdG9jb2wuUmVzcG9uc2VB",
+                  "Y3Rpb25IABI8CgpvYnNfYWN0aW9uGBUgASgLMiYuU0MyQVBJUHJvdG9jb2wu",
+                  "UmVzcG9uc2VPYnNlcnZlckFjdGlvbkgAEiwKBHN0ZXAYDCABKAsyHC5TQzJB",
+                  "UElQcm90b2NvbC5SZXNwb25zZVN0ZXBIABIsCgRkYXRhGA0gASgLMhwuU0My",
+                  "QVBJUHJvdG9jb2wuUmVzcG9uc2VEYXRhSAASLgoFcXVlcnkYDiABKAsyHS5T",
+                  "QzJBUElQcm90b2NvbC5SZXNwb25zZVF1ZXJ5SAASOQoLc2F2ZV9yZXBsYXkY",
+                  "DyABKAsyIi5TQzJBUElQcm90b2NvbC5SZXNwb25zZVNhdmVSZXBsYXlIABI5",
+                  "CgtyZXBsYXlfaW5mbxgQIAEoCzIiLlNDMkFQSVByb3RvY29sLlJlc3BvbnNl",
+                  "UmVwbGF5SW5mb0gAEj8KDmF2YWlsYWJsZV9tYXBzGBEgASgLMiUuU0MyQVBJ",
+                  "UHJvdG9jb2wuUmVzcG9uc2VBdmFpbGFibGVNYXBzSAASMwoIc2F2ZV9tYXAY",
+                  "EiABKAsyHy5TQzJBUElQcm90b2NvbC5SZXNwb25zZVNhdmVNYXBIABI5Cgtt",
+                  "YXBfY29tbWFuZBgWIAEoCzIiLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlTWFw",
+                  "Q29tbWFuZEgAEiwKBHBpbmcYEyABKAsyHC5TQzJBUElQcm90b2NvbC5SZXNw",
+                  "b25zZVBpbmdIABIuCgVkZWJ1ZxgUIAEoCzIdLlNDMkFQSVByb3RvY29sLlJl",
+                  "c3BvbnNlRGVidWdIABIKCgJpZBhhIAEoDRINCgVlcnJvchhiIAMoCRImCgZz",
+                  "dGF0dXMYYyABKA4yFi5TQzJBUElQcm90b2NvbC5TdGF0dXNCCgoIcmVzcG9u",
+                  "c2Ui1gEKEVJlcXVlc3RDcmVhdGVHYW1lEi0KCWxvY2FsX21hcBgBIAEoCzIY",
+                  "LlNDMkFQSVByb3RvY29sLkxvY2FsTWFwSAASHAoSYmF0dGxlbmV0X21hcF9u",
+                  "YW1lGAIgASgJSAASMQoMcGxheWVyX3NldHVwGAMgAygLMhsuU0MyQVBJUHJv",
+                  "dG9jb2wuUGxheWVyU2V0dXASEwoLZGlzYWJsZV9mb2cYBCABKAgSEwoLcmFu",
+                  "ZG9tX3NlZWQYBSABKA0SEAoIcmVhbHRpbWUYBiABKAhCBQoDTWFwIi4KCExv",
+                  "Y2FsTWFwEhAKCG1hcF9wYXRoGAEgASgJEhAKCG1hcF9kYXRhGAcgASgMIpwC",
+                  "ChJSZXNwb25zZUNyZWF0ZUdhbWUSNwoFZXJyb3IYASABKA4yKC5TQzJBUElQ",
+                  "cm90b2NvbC5SZXNwb25zZUNyZWF0ZUdhbWUuRXJyb3ISFQoNZXJyb3JfZGV0",
+                  "YWlscxgCIAEoCSK1AQoFRXJyb3ISDgoKTWlzc2luZ01hcBABEhIKDkludmFs",
+                  "aWRNYXBQYXRoEAISEgoOSW52YWxpZE1hcERhdGEQAxISCg5JbnZhbGlkTWFw",
+                  "TmFtZRAEEhQKEEludmFsaWRNYXBIYW5kbGUQBRIWChJNaXNzaW5nUGxheWVy",
+                  "U2V0dXAQBhIWChJJbnZhbGlkUGxheWVyU2V0dXAQBxIaChZNdWx0aXBsYXll",
+                  "clVuc3VwcG9ydGVkEAgisgIKD1JlcXVlc3RKb2luR2FtZRIkCgRyYWNlGAEg",
+                  "ASgOMhQuU0MyQVBJUHJvdG9jb2wuUmFjZUgAEhwKEm9ic2VydmVkX3BsYXll",
+                  "cl9pZBgCIAEoDUgAEjEKB29wdGlvbnMYAyABKAsyIC5TQzJBUElQcm90b2Nv",
+                  "bC5JbnRlcmZhY2VPcHRpb25zEi0KDHNlcnZlcl9wb3J0cxgEIAEoCzIXLlND",
+                  "MkFQSVByb3RvY29sLlBvcnRTZXQSLQoMY2xpZW50X3BvcnRzGAUgAygLMhcu",
+                  "U0MyQVBJUHJvdG9jb2wuUG9ydFNldBITCgtzaGFyZWRfcG9ydBgGIAEoBRIT",
+                  "CgtwbGF5ZXJfbmFtZRgHIAEoCRIPCgdob3N0X2lwGAggASgJQg8KDXBhcnRp",
+                  "Y2lwYXRpb24iLwoHUG9ydFNldBIRCglnYW1lX3BvcnQYASABKAUSEQoJYmFz",
+                  "ZV9wb3J0GAIgASgFIoIDChBSZXNwb25zZUpvaW5HYW1lEhEKCXBsYXllcl9p",
+                  "ZBgBIAEoDRI1CgVlcnJvchgCIAEoDjImLlNDMkFQSVByb3RvY29sLlJlc3Bv",
+                  "bnNlSm9pbkdhbWUuRXJyb3ISFQoNZXJyb3JfZGV0YWlscxgDIAEoCSKMAgoF",
+                  "RXJyb3ISGAoUTWlzc2luZ1BhcnRpY2lwYXRpb24QARIbChdJbnZhbGlkT2Jz",
+                  "ZXJ2ZWRQbGF5ZXJJZBACEhIKDk1pc3NpbmdPcHRpb25zEAMSEAoMTWlzc2lu",
+                  "Z1BvcnRzEAQSDAoIR2FtZUZ1bGwQBRIPCgtMYXVuY2hFcnJvchAGEhYKEkZl",
+                  "YXR1cmVVbnN1cHBvcnRlZBAHEhIKDk5vU3BhY2VGb3JVc2VyEAgSEwoPTWFw",
+                  "RG9lc05vdEV4aXN0EAkSEQoNQ2Fubm90T3Blbk1hcBAKEhEKDUNoZWNrc3Vt",
+                  "RXJyb3IQCxIQCgxOZXR3b3JrRXJyb3IQDBIOCgpPdGhlckVycm9yEA0iFAoS",
+                  "UmVxdWVzdFJlc3RhcnRHYW1lIpkBChNSZXNwb25zZVJlc3RhcnRHYW1lEjgK",
+                  "BWVycm9yGAEgASgOMikuU0MyQVBJUHJvdG9jb2wuUmVzcG9uc2VSZXN0YXJ0",
+                  "R2FtZS5FcnJvchIVCg1lcnJvcl9kZXRhaWxzGAIgASgJEhcKD25lZWRfaGFy",
+                  "ZF9yZXNldBgDIAEoCCIYCgVFcnJvchIPCgtMYXVuY2hFcnJvchABIusBChJS",
+                  "ZXF1ZXN0U3RhcnRSZXBsYXkSFQoLcmVwbGF5X3BhdGgYASABKAlIABIVCgty",
+                  "ZXBsYXlfZGF0YRgFIAEoDEgAEhAKCG1hcF9kYXRhGAYgASgMEhoKEm9ic2Vy",
+                  "dmVkX3BsYXllcl9pZBgCIAEoBRIxCgdvcHRpb25zGAMgASgLMiAuU0MyQVBJ",
+                  "UHJvdG9jb2wuSW50ZXJmYWNlT3B0aW9ucxITCgtkaXNhYmxlX2ZvZxgEIAEo",
+                  "CBIQCghyZWFsdGltZRgHIAEoCBIVCg1yZWNvcmRfcmVwbGF5GAggASgIQggK",
+                  "BnJlcGxheSKHAgoTUmVzcG9uc2VTdGFydFJlcGxheRI4CgVlcnJvchgBIAEo",
+                  "DjIpLlNDMkFQSVByb3RvY29sLlJlc3BvbnNlU3RhcnRSZXBsYXkuRXJyb3IS",
+                  "FQoNZXJyb3JfZGV0YWlscxgCIAEoCSKeAQoFRXJyb3ISEQoNTWlzc2luZ1Jl",
+                  "cGxheRABEhUKEUludmFsaWRSZXBsYXlQYXRoEAISFQoRSW52YWxpZFJlcGxh",
+                  "eURhdGEQAxISCg5JbnZhbGlkTWFwRGF0YRAEEhsKF0ludmFsaWRPYnNlcnZl",
+                  "ZFBsYXllcklkEAUSEgoOTWlzc2luZ09wdGlvbnMQBhIPCgtMYXVuY2hFcnJv",
+                  "chAHIigKEVJlcXVlc3RNYXBDb21tYW5kEhMKC3RyaWdnZXJfY21kGAEgASgJ",
+                  "IoEBChJSZXNwb25zZU1hcENvbW1hbmQSNwoFZXJyb3IYASABKA4yKC5TQzJB",
+                  "UElQcm90b2NvbC5SZXNwb25zZU1hcENvbW1hbmQuRXJyb3ISFQoNZXJyb3Jf",
+                  "ZGV0YWlscxgCIAEoCSIbCgVFcnJvchISCg5Ob1RyaWdnZXJFcnJvchABIhIK",
+                  "EFJlcXVlc3RMZWF2ZUdhbWUiEwoRUmVzcG9uc2VMZWF2ZUdhbWUiEgoQUmVx",
+                  "dWVzdFF1aWNrU2F2ZSITChFSZXNwb25zZVF1aWNrU2F2ZSISChBSZXF1ZXN0",
+                  "UXVpY2tMb2FkIhMKEVJlc3BvbnNlUXVpY2tMb2FkIg0KC1JlcXVlc3RRdWl0",
+                  "Ig4KDFJlc3BvbnNlUXVpdCIRCg9SZXF1ZXN0R2FtZUluZm8i4AEKEFJlc3Bv",
+                  "bnNlR2FtZUluZm8SEAoIbWFwX25hbWUYASABKAkSEQoJbW9kX25hbWVzGAYg",
+                  "AygJEhYKDmxvY2FsX21hcF9wYXRoGAIgASgJEi8KC3BsYXllcl9pbmZvGAMg",
+                  "AygLMhouU0MyQVBJUHJvdG9jb2wuUGxheWVySW5mbxIrCglzdGFydF9yYXcY",
+                  "BCABKAsyGC5TQzJBUElQcm90b2NvbC5TdGFydFJhdxIxCgdvcHRpb25zGAUg",
+                  "ASgLMiAuU0MyQVBJUHJvdG9jb2wuSW50ZXJmYWNlT3B0aW9ucyI8ChJSZXF1",
+                  "ZXN0T2JzZXJ2YXRpb24SEwoLZGlzYWJsZV9mb2cYASABKAgSEQoJZ2FtZV9s",
+                  "b29wGAIgASgNIoUCChNSZXNwb25zZU9ic2VydmF0aW9uEicKB2FjdGlvbnMY",
+                  "ASADKAsyFi5TQzJBUElQcm90b2NvbC5BY3Rpb24SMgoNYWN0aW9uX2Vycm9y",
+                  "cxgCIAMoCzIbLlNDMkFQSVByb3RvY29sLkFjdGlvbkVycm9yEjAKC29ic2Vy",
+                  "dmF0aW9uGAMgASgLMhsuU0MyQVBJUHJvdG9jb2wuT2JzZXJ2YXRpb24SMwoN",
+                  "cGxheWVyX3Jlc3VsdBgEIAMoCzIcLlNDMkFQSVByb3RvY29sLlBsYXllclJl",
+                  "c3VsdBIqCgRjaGF0GAUgAygLMhwuU0MyQVBJUHJvdG9jb2wuQ2hhdFJlY2Vp",
+                  "dmVkIjIKDENoYXRSZWNlaXZlZBIRCglwbGF5ZXJfaWQYASABKA0SDwoHbWVz",
+                  "c2FnZRgCIAEoCSI4Cg1SZXF1ZXN0QWN0aW9uEicKB2FjdGlvbnMYASADKAsy",
+                  "Fi5TQzJBUElQcm90b2NvbC5BY3Rpb24iPgoOUmVzcG9uc2VBY3Rpb24SLAoG",
+                  "cmVzdWx0GAEgAygOMhwuU0MyQVBJUHJvdG9jb2wuQWN0aW9uUmVzdWx0IkgK",
+                  "FVJlcXVlc3RPYnNlcnZlckFjdGlvbhIvCgdhY3Rpb25zGAEgAygLMh4uU0My",
+                  "QVBJUHJvdG9jb2wuT2JzZXJ2ZXJBY3Rpb24iGAoWUmVzcG9uc2VPYnNlcnZl",
+                  "ckFjdGlvbiIcCgtSZXF1ZXN0U3RlcBINCgVjb3VudBgBIAEoDSInCgxSZXNw",
+                  "b25zZVN0ZXASFwoPc2ltdWxhdGlvbl9sb29wGAEgASgNIm8KC1JlcXVlc3RE",
+                  "YXRhEhIKCmFiaWxpdHlfaWQYASABKAgSFAoMdW5pdF90eXBlX2lkGAIgASgI",
+                  "EhIKCnVwZ3JhZGVfaWQYAyABKAgSDwoHYnVmZl9pZBgEIAEoCBIRCgllZmZl",
+                  "Y3RfaWQYBSABKAgi8AEKDFJlc3BvbnNlRGF0YRIuCglhYmlsaXRpZXMYASAD",
+                  "KAsyGy5TQzJBUElQcm90b2NvbC5BYmlsaXR5RGF0YRIrCgV1bml0cxgCIAMo",
+                  "CzIcLlNDMkFQSVByb3RvY29sLlVuaXRUeXBlRGF0YRItCgh1cGdyYWRlcxgD",
+                  "IAMoCzIbLlNDMkFQSVByb3RvY29sLlVwZ3JhZGVEYXRhEicKBWJ1ZmZzGAQg",
+                  "AygLMhguU0MyQVBJUHJvdG9jb2wuQnVmZkRhdGESKwoHZWZmZWN0cxgFIAMo",
+                  "CzIaLlNDMkFQSVByb3RvY29sLkVmZmVjdERhdGEiEwoRUmVxdWVzdFNhdmVS",
+                  "ZXBsYXkiIgoSUmVzcG9uc2VTYXZlUmVwbGF5EgwKBGRhdGEYASABKAwiYgoR",
+                  "UmVxdWVzdFJlcGxheUluZm8SFQoLcmVwbGF5X3BhdGgYASABKAlIABIVCgty",
+                  "ZXBsYXlfZGF0YRgCIAEoDEgAEhUKDWRvd25sb2FkX2RhdGEYAyABKAhCCAoG",
+                  "cmVwbGF5Ip8BCg9QbGF5ZXJJbmZvRXh0cmESLwoLcGxheWVyX2luZm8YASAB",
+                  "KAsyGi5TQzJBUElQcm90b2NvbC5QbGF5ZXJJbmZvEjMKDXBsYXllcl9yZXN1",
+                  "bHQYAiABKAsyHC5TQzJBUElQcm90b2NvbC5QbGF5ZXJSZXN1bHQSEgoKcGxh",
+                  "eWVyX21tchgDIAEoBRISCgpwbGF5ZXJfYXBtGAQgASgFIsMDChJSZXNwb25z",
+                  "ZVJlcGxheUluZm8SEAoIbWFwX25hbWUYASABKAkSFgoObG9jYWxfbWFwX3Bh",
+                  "dGgYAiABKAkSNAoLcGxheWVyX2luZm8YAyADKAsyHy5TQzJBUElQcm90b2Nv",
+                  "bC5QbGF5ZXJJbmZvRXh0cmESGwoTZ2FtZV9kdXJhdGlvbl9sb29wcxgEIAEo",
+                  "DRIdChVnYW1lX2R1cmF0aW9uX3NlY29uZHMYBSABKAISFAoMZ2FtZV92ZXJz",
+                  "aW9uGAYgASgJEhQKDGRhdGFfdmVyc2lvbhgLIAEoCRISCgpkYXRhX2J1aWxk",
+                  "GAcgASgNEhIKCmJhc2VfYnVpbGQYCCABKA0SNwoFZXJyb3IYCSABKA4yKC5T",
+                  "QzJBUElQcm90b2NvbC5SZXNwb25zZVJlcGxheUluZm8uRXJyb3ISFQoNZXJy",
+                  "b3JfZGV0YWlscxgKIAEoCSJtCgVFcnJvchIRCg1NaXNzaW5nUmVwbGF5EAES",
                   "FQoRSW52YWxpZFJlcGxheVBhdGgQAhIVChFJbnZhbGlkUmVwbGF5RGF0YRAD",
                   "EhAKDFBhcnNpbmdFcnJvchAEEhEKDURvd25sb2FkRXJyb3IQBSIWChRSZXF1",
                   "ZXN0QXZhaWxhYmxlTWFwcyJNChVSZXNwb25zZUF2YWlsYWJsZU1hcHMSFwoP",
                   "bG9jYWxfbWFwX3BhdGhzGAEgAygJEhsKE2JhdHRsZW5ldF9tYXBfbmFtZXMY",
                   "AiADKAkiNAoOUmVxdWVzdFNhdmVNYXASEAoIbWFwX3BhdGgYASABKAkSEAoI",
-                  "bWFwX2RhdGEYAiABKAwidQoPUmVzcG9uc2VTYXZlTWFwEjQKBWVycm9yGAEg",
-                  "ASgOMiUuU0MyQVBJUHJvdG9jb2wuUmVzcG9uc2VTYXZlTWFwLkVycm9yIiwK",
-                  "BUVycm9yEg8KC0Vycm9yX1VOU0VUEAASEgoOSW52YWxpZE1hcERhdGEQASIN",
-                  "CgtSZXF1ZXN0UGluZyJiCgxSZXNwb25zZVBpbmcSFAoMZ2FtZV92ZXJzaW9u",
-                  "GAEgASgJEhQKDGRhdGFfdmVyc2lvbhgCIAEoCRISCgpkYXRhX2J1aWxkGAMg",
-                  "ASgNEhIKCmJhc2VfYnVpbGQYBCABKA0iOwoMUmVxdWVzdERlYnVnEisKBWRl",
-                  "YnVnGAEgAygLMhwuU0MyQVBJUHJvdG9jb2wuRGVidWdDb21tYW5kIg8KDVJl",
-                  "c3BvbnNlRGVidWciiwEKC1BsYXllclNldHVwEigKBHR5cGUYASABKA4yGi5T",
-                  "QzJBUElQcm90b2NvbC5QbGF5ZXJUeXBlEiIKBHJhY2UYAiABKA4yFC5TQzJB",
-                  "UElQcm90b2NvbC5SYWNlEi4KCmRpZmZpY3VsdHkYAyABKA4yGi5TQzJBUElQ",
-                  "cm90b2NvbC5EaWZmaWN1bHR5IoUBChJTcGF0aWFsQ2FtZXJhU2V0dXASDQoF",
-                  "d2lkdGgYASABKAISKwoKcmVzb2x1dGlvbhgCIAEoCzIXLlNDMkFQSVByb3Rv",
-                  "Y29sLlNpemUyREkSMwoSbWluaW1hcF9yZXNvbHV0aW9uGAMgASgLMhcuU0My",
-                  "QVBJUHJvdG9jb2wuU2l6ZTJESSKdAQoQSW50ZXJmYWNlT3B0aW9ucxILCgNy",
-                  "YXcYASABKAgSDQoFc2NvcmUYAiABKAgSOQoNZmVhdHVyZV9sYXllchgDIAEo",
-                  "CzIiLlNDMkFQSVByb3RvY29sLlNwYXRpYWxDYW1lcmFTZXR1cBIyCgZyZW5k",
-                  "ZXIYBCABKAsyIi5TQzJBUElQcm90b2NvbC5TcGF0aWFsQ2FtZXJhU2V0dXAi",
-                  "0gEKClBsYXllckluZm8SEQoJcGxheWVyX2lkGAEgASgNEigKBHR5cGUYAiAB",
-                  "KA4yGi5TQzJBUElQcm90b2NvbC5QbGF5ZXJUeXBlEiwKDnJhY2VfcmVxdWVz",
-                  "dGVkGAMgASgOMhQuU0MyQVBJUHJvdG9jb2wuUmFjZRIpCgtyYWNlX2FjdHVh",
-                  "bBgEIAEoDjIULlNDMkFQSVByb3RvY29sLlJhY2USLgoKZGlmZmljdWx0eRgF",
-                  "IAEoDjIaLlNDMkFQSVByb3RvY29sLkRpZmZpY3VsdHki7wEKDFBsYXllckNv",
-                  "bW1vbhIRCglwbGF5ZXJfaWQYASABKA0SEAoIbWluZXJhbHMYAiABKA0SDwoH",
-                  "dmVzcGVuZRgDIAEoDRIQCghmb29kX2NhcBgEIAEoDRIRCglmb29kX3VzZWQY",
-                  "BSABKA0SEQoJZm9vZF9hcm15GAYgASgNEhQKDGZvb2Rfd29ya2VycxgHIAEo",
-                  "DRIZChFpZGxlX3dvcmtlcl9jb3VudBgIIAEoDRISCgphcm15X2NvdW50GAkg",
-                  "ASgNEhcKD3dhcnBfZ2F0ZV9jb3VudBgKIAEoDRITCgtsYXJ2YV9jb3VudBgL",
-                  "IAEoDSK2AwoLT2JzZXJ2YXRpb24SEQoJZ2FtZV9sb29wGAkgASgNEjMKDXBs",
-                  "YXllcl9jb21tb24YASABKAsyHC5TQzJBUElQcm90b2NvbC5QbGF5ZXJDb21t",
-                  "b24SJQoGYWxlcnRzGAogAygOMhUuU0MyQVBJUHJvdG9jb2wuQWxlcnQSMwoJ",
-                  "YWJpbGl0aWVzGAMgAygLMiAuU0MyQVBJUHJvdG9jb2wuQXZhaWxhYmxlQWJp",
-                  "bGl0eRIkCgVzY29yZRgEIAEoCzIVLlNDMkFQSVByb3RvY29sLlNjb3JlEjAK",
-                  "CHJhd19kYXRhGAUgASgLMh4uU0MyQVBJUHJvdG9jb2wuT2JzZXJ2YXRpb25S",
-                  "YXcSQwoSZmVhdHVyZV9sYXllcl9kYXRhGAYgASgLMicuU0MyQVBJUHJvdG9j",
-                  "b2wuT2JzZXJ2YXRpb25GZWF0dXJlTGF5ZXISNgoLcmVuZGVyX2RhdGEYByAB",
-                  "KAsyIS5TQzJBUElQcm90b2NvbC5PYnNlcnZhdGlvblJlbmRlchIuCgd1aV9k",
-                  "YXRhGAggASgLMh0uU0MyQVBJUHJvdG9jb2wuT2JzZXJ2YXRpb25VSSKIAgoG",
-                  "QWN0aW9uEi0KCmFjdGlvbl9yYXcYASABKAsyGS5TQzJBUElQcm90b2NvbC5B",
-                  "Y3Rpb25SYXcSOwoUYWN0aW9uX2ZlYXR1cmVfbGF5ZXIYAiABKAsyHS5TQzJB",
-                  "UElQcm90b2NvbC5BY3Rpb25TcGF0aWFsEjQKDWFjdGlvbl9yZW5kZXIYAyAB",
-                  "KAsyHS5TQzJBUElQcm90b2NvbC5BY3Rpb25TcGF0aWFsEisKCWFjdGlvbl91",
-                  "aRgEIAEoCzIYLlNDMkFQSVByb3RvY29sLkFjdGlvblVJEi8KC2FjdGlvbl9j",
-                  "aGF0GAYgASgLMhouU0MyQVBJUHJvdG9jb2wuQWN0aW9uQ2hhdCKJAQoKQWN0",
-                  "aW9uQ2hhdBIzCgdjaGFubmVsGAEgASgOMiIuU0MyQVBJUHJvdG9jb2wuQWN0",
-                  "aW9uQ2hhdC5DaGFubmVsEg8KB21lc3NhZ2UYAiABKAkiNQoHQ2hhbm5lbBIR",
-                  "Cg1DaGFubmVsX1VOU0VUEAASDQoJQnJvYWRjYXN0EAESCAoEVGVhbRACImEK",
-                  "C0FjdGlvbkVycm9yEhAKCHVuaXRfdGFnGAEgASgEEhIKCmFiaWxpdHlfaWQY",
-                  "AiABKAQSLAoGcmVzdWx0GAMgASgOMhwuU0MyQVBJUHJvdG9jb2wuQWN0aW9u",
-                  "UmVzdWx0IswCCg5PYnNlcnZlckFjdGlvbhJNChJwbGF5ZXJfcGVyc3BlY3Rp",
-                  "dmUYASABKAsyLy5TQzJBUElQcm90b2NvbC5BY3Rpb25PYnNlcnZlclBsYXll",
-                  "clBlcnNwZWN0aXZlSAASPwoLY2FtZXJhX21vdmUYAiABKAsyKC5TQzJBUElQ",
-                  "cm90b2NvbC5BY3Rpb25PYnNlcnZlckNhbWVyYU1vdmVIABJQChRjYW1lcmFf",
-                  "Zm9sbG93X3BsYXllchgDIAEoCzIwLlNDMkFQSVByb3RvY29sLkFjdGlvbk9i",
-                  "c2VydmVyQ2FtZXJhRm9sbG93UGxheWVySAASTgoTY2FtZXJhX2ZvbGxvd191",
-                  "bml0cxgEIAEoCzIvLlNDMkFQSVByb3RvY29sLkFjdGlvbk9ic2VydmVyQ2Ft",
-                  "ZXJhRm9sbG93VW5pdHNIAEIICgZhY3Rpb24iNAofQWN0aW9uT2JzZXJ2ZXJQ",
-                  "bGF5ZXJQZXJzcGVjdGl2ZRIRCglwbGF5ZXJfaWQYASABKA0iWAoYQWN0aW9u",
-                  "T2JzZXJ2ZXJDYW1lcmFNb3ZlEioKCXdvcmxkX3BvcxgBIAEoCzIXLlNDMkFQ",
-                  "SVByb3RvY29sLlBvaW50MkQSEAoIZGlzdGFuY2UYAiABKAIiNQogQWN0aW9u",
-                  "T2JzZXJ2ZXJDYW1lcmFGb2xsb3dQbGF5ZXISEQoJcGxheWVyX2lkGAEgASgN",
-                  "IjQKH0FjdGlvbk9ic2VydmVyQ2FtZXJhRm9sbG93VW5pdHMSEQoJdW5pdF90",
-                  "YWdzGAEgAygEIkkKDFBsYXllclJlc3VsdBIRCglwbGF5ZXJfaWQYASABKA0S",
-                  "JgoGcmVzdWx0GAIgASgOMhYuU0MyQVBJUHJvdG9jb2wuUmVzdWx0KnUKBlN0",
-                  "YXR1cxIQCgxTdGF0dXNfVU5TRVQQABIMCghsYXVuY2hlZBABEg0KCWluaXRf",
-                  "Z2FtZRACEgsKB2luX2dhbWUQAxINCglpbl9yZXBsYXkQBBIJCgVlbmRlZBAF",
-                  "EggKBHF1aXQQBhILCgd1bmtub3duEGMqrAEKCkRpZmZpY3VsdHkSFAoQRGlm",
-                  "ZmljdWx0eV9VTlNFVBAAEgwKCFZlcnlFYXN5EAESCAoERWFzeRACEgoKBk1l",
-                  "ZGl1bRADEg4KCk1lZGl1bUhhcmQQBBIICgRIYXJkEAUSCgoGSGFyZGVyEAYS",
-                  "DAoIVmVyeUhhcmQQBxIPCgtDaGVhdFZpc2lvbhAIEg4KCkNoZWF0TW9uZXkQ",
-                  "CRIPCgtDaGVhdEluc2FuZRAKKk8KClBsYXllclR5cGUSFAoQUGxheWVyVHlw",
-                  "ZV9VTlNFVBAAEg8KC1BhcnRpY2lwYW50EAESDAoIQ29tcHV0ZXIQAhIMCghP",
-                  "YnNlcnZlchADKkoKBUFsZXJ0Eg8KC0FsZXJ0X1VOU0VUEAASGQoVTnVjbGVh",
-                  "ckxhdW5jaERldGVjdGVkEAESFQoRTnlkdXNXb3JtRGV0ZWN0ZWQQAipLCgZS",
-                  "ZXN1bHQSEAoMUmVzdWx0X1VOU0VUEAASCwoHVmljdG9yeRABEgoKBkRlZmVh",
-                  "dBACEgcKA1RpZRADEg0KCVVuZGVjaWRlZBAEYgZwcm90bzM="));
+                  "bWFwX2RhdGEYAiABKAwiZAoPUmVzcG9uc2VTYXZlTWFwEjQKBWVycm9yGAEg",
+                  "ASgOMiUuU0MyQVBJUHJvdG9jb2wuUmVzcG9uc2VTYXZlTWFwLkVycm9yIhsK",
+                  "BUVycm9yEhIKDkludmFsaWRNYXBEYXRhEAEiDQoLUmVxdWVzdFBpbmciYgoM",
+                  "UmVzcG9uc2VQaW5nEhQKDGdhbWVfdmVyc2lvbhgBIAEoCRIUCgxkYXRhX3Zl",
+                  "cnNpb24YAiABKAkSEgoKZGF0YV9idWlsZBgDIAEoDRISCgpiYXNlX2J1aWxk",
+                  "GAQgASgNIjsKDFJlcXVlc3REZWJ1ZxIrCgVkZWJ1ZxgBIAMoCzIcLlNDMkFQ",
+                  "SVByb3RvY29sLkRlYnVnQ29tbWFuZCIPCg1SZXNwb25zZURlYnVnIssBCgtQ",
+                  "bGF5ZXJTZXR1cBIoCgR0eXBlGAEgASgOMhouU0MyQVBJUHJvdG9jb2wuUGxh",
+                  "eWVyVHlwZRIiCgRyYWNlGAIgASgOMhQuU0MyQVBJUHJvdG9jb2wuUmFjZRIu",
+                  "CgpkaWZmaWN1bHR5GAMgASgOMhouU0MyQVBJUHJvdG9jb2wuRGlmZmljdWx0",
+                  "eRITCgtwbGF5ZXJfbmFtZRgEIAEoCRIpCghhaV9idWlsZBgFIAEoDjIXLlND",
+                  "MkFQSVByb3RvY29sLkFJQnVpbGQiwwEKElNwYXRpYWxDYW1lcmFTZXR1cBIr",
+                  "CgpyZXNvbHV0aW9uGAIgASgLMhcuU0MyQVBJUHJvdG9jb2wuU2l6ZTJESRIz",
+                  "ChJtaW5pbWFwX3Jlc29sdXRpb24YAyABKAsyFy5TQzJBUElQcm90b2NvbC5T",
+                  "aXplMkRJEg0KBXdpZHRoGAEgASgCEh0KFWNyb3BfdG9fcGxheWFibGVfYXJl",
+                  "YRgEIAEoCBIdChVhbGxvd19jaGVhdGluZ19sYXllcnMYBSABKAgirwIKEElu",
+                  "dGVyZmFjZU9wdGlvbnMSCwoDcmF3GAEgASgIEg0KBXNjb3JlGAIgASgIEjkK",
+                  "DWZlYXR1cmVfbGF5ZXIYAyABKAsyIi5TQzJBUElQcm90b2NvbC5TcGF0aWFs",
+                  "Q2FtZXJhU2V0dXASMgoGcmVuZGVyGAQgASgLMiIuU0MyQVBJUHJvdG9jb2wu",
+                  "U3BhdGlhbENhbWVyYVNldHVwEhQKDHNob3dfY2xvYWtlZBgFIAEoCBIdChVz",
+                  "aG93X2J1cnJvd2VkX3NoYWRvd3MYCSABKAgSGQoRc2hvd19wbGFjZWhvbGRl",
+                  "cnMYCCABKAgSHQoVcmF3X2FmZmVjdHNfc2VsZWN0aW9uGAYgASgIEiEKGXJh",
+                  "d19jcm9wX3RvX3BsYXlhYmxlX2FyZWEYByABKAgikgIKClBsYXllckluZm8S",
+                  "EQoJcGxheWVyX2lkGAEgASgNEigKBHR5cGUYAiABKA4yGi5TQzJBUElQcm90",
+                  "b2NvbC5QbGF5ZXJUeXBlEiwKDnJhY2VfcmVxdWVzdGVkGAMgASgOMhQuU0My",
+                  "QVBJUHJvdG9jb2wuUmFjZRIpCgtyYWNlX2FjdHVhbBgEIAEoDjIULlNDMkFQ",
+                  "SVByb3RvY29sLlJhY2USLgoKZGlmZmljdWx0eRgFIAEoDjIaLlNDMkFQSVBy",
+                  "b3RvY29sLkRpZmZpY3VsdHkSKQoIYWlfYnVpbGQYByABKA4yFy5TQzJBUElQ",
+                  "cm90b2NvbC5BSUJ1aWxkEhMKC3BsYXllcl9uYW1lGAYgASgJIu8BCgxQbGF5",
+                  "ZXJDb21tb24SEQoJcGxheWVyX2lkGAEgASgNEhAKCG1pbmVyYWxzGAIgASgN",
+                  "Eg8KB3Zlc3BlbmUYAyABKA0SEAoIZm9vZF9jYXAYBCABKA0SEQoJZm9vZF91",
+                  "c2VkGAUgASgNEhEKCWZvb2RfYXJteRgGIAEoDRIUCgxmb29kX3dvcmtlcnMY",
+                  "ByABKA0SGQoRaWRsZV93b3JrZXJfY291bnQYCCABKA0SEgoKYXJteV9jb3Vu",
+                  "dBgJIAEoDRIXCg93YXJwX2dhdGVfY291bnQYCiABKA0SEwoLbGFydmFfY291",
+                  "bnQYCyABKA0itgMKC09ic2VydmF0aW9uEhEKCWdhbWVfbG9vcBgJIAEoDRIz",
+                  "Cg1wbGF5ZXJfY29tbW9uGAEgASgLMhwuU0MyQVBJUHJvdG9jb2wuUGxheWVy",
+                  "Q29tbW9uEiUKBmFsZXJ0cxgKIAMoDjIVLlNDMkFQSVByb3RvY29sLkFsZXJ0",
+                  "EjMKCWFiaWxpdGllcxgDIAMoCzIgLlNDMkFQSVByb3RvY29sLkF2YWlsYWJs",
+                  "ZUFiaWxpdHkSJAoFc2NvcmUYBCABKAsyFS5TQzJBUElQcm90b2NvbC5TY29y",
+                  "ZRIwCghyYXdfZGF0YRgFIAEoCzIeLlNDMkFQSVByb3RvY29sLk9ic2VydmF0",
+                  "aW9uUmF3EkMKEmZlYXR1cmVfbGF5ZXJfZGF0YRgGIAEoCzInLlNDMkFQSVBy",
+                  "b3RvY29sLk9ic2VydmF0aW9uRmVhdHVyZUxheWVyEjYKC3JlbmRlcl9kYXRh",
+                  "GAcgASgLMiEuU0MyQVBJUHJvdG9jb2wuT2JzZXJ2YXRpb25SZW5kZXISLgoH",
+                  "dWlfZGF0YRgIIAEoCzIdLlNDMkFQSVByb3RvY29sLk9ic2VydmF0aW9uVUki",
+                  "mwIKBkFjdGlvbhItCgphY3Rpb25fcmF3GAEgASgLMhkuU0MyQVBJUHJvdG9j",
+                  "b2wuQWN0aW9uUmF3EjsKFGFjdGlvbl9mZWF0dXJlX2xheWVyGAIgASgLMh0u",
+                  "U0MyQVBJUHJvdG9jb2wuQWN0aW9uU3BhdGlhbBI0Cg1hY3Rpb25fcmVuZGVy",
+                  "GAMgASgLMh0uU0MyQVBJUHJvdG9jb2wuQWN0aW9uU3BhdGlhbBIrCglhY3Rp",
+                  "b25fdWkYBCABKAsyGC5TQzJBUElQcm90b2NvbC5BY3Rpb25VSRIvCgthY3Rp",
+                  "b25fY2hhdBgGIAEoCzIaLlNDMkFQSVByb3RvY29sLkFjdGlvbkNoYXQSEQoJ",
+                  "Z2FtZV9sb29wGAcgASgNInYKCkFjdGlvbkNoYXQSMwoHY2hhbm5lbBgBIAEo",
+                  "DjIiLlNDMkFQSVByb3RvY29sLkFjdGlvbkNoYXQuQ2hhbm5lbBIPCgdtZXNz",
+                  "YWdlGAIgASgJIiIKB0NoYW5uZWwSDQoJQnJvYWRjYXN0EAESCAoEVGVhbRAC",
+                  "ImEKC0FjdGlvbkVycm9yEhAKCHVuaXRfdGFnGAEgASgEEhIKCmFiaWxpdHlf",
+                  "aWQYAiABKAQSLAoGcmVzdWx0GAMgASgOMhwuU0MyQVBJUHJvdG9jb2wuQWN0",
+                  "aW9uUmVzdWx0IswCCg5PYnNlcnZlckFjdGlvbhJNChJwbGF5ZXJfcGVyc3Bl",
+                  "Y3RpdmUYASABKAsyLy5TQzJBUElQcm90b2NvbC5BY3Rpb25PYnNlcnZlclBs",
+                  "YXllclBlcnNwZWN0aXZlSAASPwoLY2FtZXJhX21vdmUYAiABKAsyKC5TQzJB",
+                  "UElQcm90b2NvbC5BY3Rpb25PYnNlcnZlckNhbWVyYU1vdmVIABJQChRjYW1l",
+                  "cmFfZm9sbG93X3BsYXllchgDIAEoCzIwLlNDMkFQSVByb3RvY29sLkFjdGlv",
+                  "bk9ic2VydmVyQ2FtZXJhRm9sbG93UGxheWVySAASTgoTY2FtZXJhX2ZvbGxv",
+                  "d191bml0cxgEIAEoCzIvLlNDMkFQSVByb3RvY29sLkFjdGlvbk9ic2VydmVy",
+                  "Q2FtZXJhRm9sbG93VW5pdHNIAEIICgZhY3Rpb24iNAofQWN0aW9uT2JzZXJ2",
+                  "ZXJQbGF5ZXJQZXJzcGVjdGl2ZRIRCglwbGF5ZXJfaWQYASABKA0iWAoYQWN0",
+                  "aW9uT2JzZXJ2ZXJDYW1lcmFNb3ZlEioKCXdvcmxkX3BvcxgBIAEoCzIXLlND",
+                  "MkFQSVByb3RvY29sLlBvaW50MkQSEAoIZGlzdGFuY2UYAiABKAIiNQogQWN0",
+                  "aW9uT2JzZXJ2ZXJDYW1lcmFGb2xsb3dQbGF5ZXISEQoJcGxheWVyX2lkGAEg",
+                  "ASgNIjQKH0FjdGlvbk9ic2VydmVyQ2FtZXJhRm9sbG93VW5pdHMSEQoJdW5p",
+                  "dF90YWdzGAEgAygEIkkKDFBsYXllclJlc3VsdBIRCglwbGF5ZXJfaWQYASAB",
+                  "KA0SJgoGcmVzdWx0GAIgASgOMhYuU0MyQVBJUHJvdG9jb2wuUmVzdWx0KmMK",
+                  "BlN0YXR1cxIMCghsYXVuY2hlZBABEg0KCWluaXRfZ2FtZRACEgsKB2luX2dh",
+                  "bWUQAxINCglpbl9yZXBsYXkQBBIJCgVlbmRlZBAFEggKBHF1aXQQBhILCgd1",
+                  "bmtub3duEGMqlgEKCkRpZmZpY3VsdHkSDAoIVmVyeUVhc3kQARIICgRFYXN5",
+                  "EAISCgoGTWVkaXVtEAMSDgoKTWVkaXVtSGFyZBAEEggKBEhhcmQQBRIKCgZI",
+                  "YXJkZXIQBhIMCghWZXJ5SGFyZBAHEg8KC0NoZWF0VmlzaW9uEAgSDgoKQ2hl",
+                  "YXRNb25leRAJEg8KC0NoZWF0SW5zYW5lEAoqOQoKUGxheWVyVHlwZRIPCgtQ",
+                  "YXJ0aWNpcGFudBABEgwKCENvbXB1dGVyEAISDAoIT2JzZXJ2ZXIQAypPCgdB",
+                  "SUJ1aWxkEg8KC1JhbmRvbUJ1aWxkEAESCAoEUnVzaBACEgoKBlRpbWluZxAD",
+                  "EgkKBVBvd2VyEAQSCQoFTWFjcm8QBRIHCgNBaXIQBirbAwoFQWxlcnQSDgoK",
+                  "QWxlcnRFcnJvchADEhEKDUFkZE9uQ29tcGxldGUQBBIUChBCdWlsZGluZ0Nv",
+                  "bXBsZXRlEAUSFwoTQnVpbGRpbmdVbmRlckF0dGFjaxAGEhAKDExhcnZhSGF0",
+                  "Y2hlZBAHEhEKDU1lcmdlQ29tcGxldGUQCBIVChFNaW5lcmFsc0V4aGF1c3Rl",
+                  "ZBAJEhEKDU1vcnBoQ29tcGxldGUQChIWChJNb3RoZXJzaGlwQ29tcGxldGUQ",
+                  "CxIPCgtNVUxFRXhwaXJlZBAMEhkKFU51Y2xlYXJMYXVuY2hEZXRlY3RlZBAB",
+                  "EhAKDE51a2VDb21wbGV0ZRANEhUKEU55ZHVzV29ybURldGVjdGVkEAISFAoQ",
+                  "UmVzZWFyY2hDb21wbGV0ZRAOEg4KClRyYWluRXJyb3IQDxIVChFUcmFpblVu",
+                  "aXRDb21wbGV0ZRAQEhcKE1RyYWluV29ya2VyQ29tcGxldGUQERIaChZUcmFu",
+                  "c2Zvcm1hdGlvbkNvbXBsZXRlEBISEwoPVW5pdFVuZGVyQXR0YWNrEBMSEwoP",
+                  "VXBncmFkZUNvbXBsZXRlEBQSFAoQVmVzcGVuZUV4aGF1c3RlZBAVEhIKDldh",
+                  "cnBJbkNvbXBsZXRlEBYqOQoGUmVzdWx0EgsKB1ZpY3RvcnkQARIKCgZEZWZl",
+                  "YXQQAhIHCgNUaWUQAxINCglVbmRlY2lkZWQQBA=="));
             descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
                 new pbr::FileDescriptor[] { global::SC2APIProtocol.CommonReflection.Descriptor, global::SC2APIProtocol.DataReflection.Descriptor, global::SC2APIProtocol.DebugReflection.Descriptor, global::SC2APIProtocol.ErrorReflection.Descriptor, global::SC2APIProtocol.QueryReflection.Descriptor, global::SC2APIProtocol.RawReflection.Descriptor, global::SC2APIProtocol.ScoreReflection.Descriptor, global::SC2APIProtocol.SpatialReflection.Descriptor, global::SC2APIProtocol.UiReflection.Descriptor, },
-                new pbr::GeneratedClrTypeInfo(new[] { typeof(global::SC2APIProtocol.Status), typeof(global::SC2APIProtocol.Difficulty), typeof(global::SC2APIProtocol.PlayerType), typeof(global::SC2APIProtocol.Alert), typeof(global::SC2APIProtocol.Result), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Request), global::SC2APIProtocol.Request.Parser, new[]{ "CreateGame", "JoinGame", "RestartGame", "StartReplay", "LeaveGame", "QuickSave", "QuickLoad", "Quit", "GameInfo", "Observation", "Action", "ObsAction", "Step", "Data", "Query", "SaveReplay", "ReplayInfo", "AvailableMaps", "SaveMap", "Ping", "Debug" }, new[]{ "Request" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Response), global::SC2APIProtocol.Response.Parser, new[]{ "CreateGame", "JoinGame", "RestartGame", "StartReplay", "LeaveGame", "QuickSave", "QuickLoad", "Quit", "GameInfo", "Observation", "Action", "ObsAction", "Step", "Data", "Query", "SaveReplay", "ReplayInfo", "AvailableMaps", "SaveMap", "Ping", "Debug", "Error", "Status" }, new[]{ "Response" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestCreateGame), global::SC2APIProtocol.RequestCreateGame.Parser, new[]{ "LocalMap", "BattlenetMapName", "PlayerSetup", "DisableFog", "RandomSeed", "Realtime" }, new[]{ "Map" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.LocalMap), global::SC2APIProtocol.LocalMap.Parser, new[]{ "MapPath", "MapData" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseCreateGame), global::SC2APIProtocol.ResponseCreateGame.Parser, new[]{ "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseCreateGame.Types.Error) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestJoinGame), global::SC2APIProtocol.RequestJoinGame.Parser, new[]{ "Race", "ObservedPlayerId", "Options", "ServerPorts", "ClientPorts", "SharedPort" }, new[]{ "Participation" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PortSet), global::SC2APIProtocol.PortSet.Parser, new[]{ "GamePort", "BasePort" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseJoinGame), global::SC2APIProtocol.ResponseJoinGame.Parser, new[]{ "PlayerId", "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseJoinGame.Types.Error) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestRestartGame), global::SC2APIProtocol.RequestRestartGame.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseRestartGame), global::SC2APIProtocol.ResponseRestartGame.Parser, new[]{ "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseRestartGame.Types.Error) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestStartReplay), global::SC2APIProtocol.RequestStartReplay.Parser, new[]{ "ReplayPath", "ReplayData", "MapData", "ObservedPlayerId", "Options", "DisableFog", "Realtime" }, new[]{ "Replay" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseStartReplay), global::SC2APIProtocol.ResponseStartReplay.Parser, new[]{ "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseStartReplay.Types.Error) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestLeaveGame), global::SC2APIProtocol.RequestLeaveGame.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseLeaveGame), global::SC2APIProtocol.ResponseLeaveGame.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestQuickSave), global::SC2APIProtocol.RequestQuickSave.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseQuickSave), global::SC2APIProtocol.ResponseQuickSave.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestQuickLoad), global::SC2APIProtocol.RequestQuickLoad.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseQuickLoad), global::SC2APIProtocol.ResponseQuickLoad.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestQuit), global::SC2APIProtocol.RequestQuit.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseQuit), global::SC2APIProtocol.ResponseQuit.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestGameInfo), global::SC2APIProtocol.RequestGameInfo.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseGameInfo), global::SC2APIProtocol.ResponseGameInfo.Parser, new[]{ "MapName", "ModNames", "LocalMapPath", "PlayerInfo", "StartRaw", "Options" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestObservation), global::SC2APIProtocol.RequestObservation.Parser, new[]{ "DisableFog" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseObservation), global::SC2APIProtocol.ResponseObservation.Parser, new[]{ "Actions", "ActionErrors", "Observation", "PlayerResult", "Chat" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ChatReceived), global::SC2APIProtocol.ChatReceived.Parser, new[]{ "PlayerId", "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestAction), global::SC2APIProtocol.RequestAction.Parser, new[]{ "Actions" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseAction), global::SC2APIProtocol.ResponseAction.Parser, new[]{ "Result" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestObserverAction), global::SC2APIProtocol.RequestObserverAction.Parser, new[]{ "Actions" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseObserverAction), global::SC2APIProtocol.ResponseObserverAction.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestStep), global::SC2APIProtocol.RequestStep.Parser, new[]{ "Count" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseStep), global::SC2APIProtocol.ResponseStep.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestData), global::SC2APIProtocol.RequestData.Parser, new[]{ "AbilityId", "UnitTypeId", "UpgradeId", "BuffId", "EffectId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseData), global::SC2APIProtocol.ResponseData.Parser, new[]{ "Abilities", "Units", "Upgrades", "Buffs", "Effects" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestSaveReplay), global::SC2APIProtocol.RequestSaveReplay.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseSaveReplay), global::SC2APIProtocol.ResponseSaveReplay.Parser, new[]{ "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestReplayInfo), global::SC2APIProtocol.RequestReplayInfo.Parser, new[]{ "ReplayPath", "ReplayData", "DownloadData" }, new[]{ "Replay" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerInfoExtra), global::SC2APIProtocol.PlayerInfoExtra.Parser, new[]{ "PlayerInfo", "PlayerResult", "PlayerMmr", "PlayerApm" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseReplayInfo), global::SC2APIProtocol.ResponseReplayInfo.Parser, new[]{ "MapName", "LocalMapPath", "PlayerInfo", "GameDurationLoops", "GameDurationSeconds", "GameVersion", "DataVersion", "DataBuild", "BaseBuild", "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseReplayInfo.Types.Error) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestAvailableMaps), global::SC2APIProtocol.RequestAvailableMaps.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseAvailableMaps), global::SC2APIProtocol.ResponseAvailableMaps.Parser, new[]{ "LocalMapPaths", "BattlenetMapNames" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestSaveMap), global::SC2APIProtocol.RequestSaveMap.Parser, new[]{ "MapPath", "MapData" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseSaveMap), global::SC2APIProtocol.ResponseSaveMap.Parser, new[]{ "Error" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseSaveMap.Types.Error) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestPing), global::SC2APIProtocol.RequestPing.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponsePing), global::SC2APIProtocol.ResponsePing.Parser, new[]{ "GameVersion", "DataVersion", "DataBuild", "BaseBuild" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestDebug), global::SC2APIProtocol.RequestDebug.Parser, new[]{ "Debug" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseDebug), global::SC2APIProtocol.ResponseDebug.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerSetup), global::SC2APIProtocol.PlayerSetup.Parser, new[]{ "Type", "Race", "Difficulty" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.SpatialCameraSetup), global::SC2APIProtocol.SpatialCameraSetup.Parser, new[]{ "Width", "Resolution", "MinimapResolution" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.InterfaceOptions), global::SC2APIProtocol.InterfaceOptions.Parser, new[]{ "Raw", "Score", "FeatureLayer", "Render" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerInfo), global::SC2APIProtocol.PlayerInfo.Parser, new[]{ "PlayerId", "Type", "RaceRequested", "RaceActual", "Difficulty" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerCommon), global::SC2APIProtocol.PlayerCommon.Parser, new[]{ "PlayerId", "Minerals", "Vespene", "FoodCap", "FoodUsed", "FoodArmy", "FoodWorkers", "IdleWorkerCount", "ArmyCount", "WarpGateCount", "LarvaCount" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Observation), global::SC2APIProtocol.Observation.Parser, new[]{ "GameLoop", "PlayerCommon", "Alerts", "Abilities", "Score", "RawData", "FeatureLayerData", "RenderData", "UiData" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Action), global::SC2APIProtocol.Action.Parser, new[]{ "ActionRaw", "ActionFeatureLayer", "ActionRender", "ActionUi", "ActionChat" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionChat), global::SC2APIProtocol.ActionChat.Parser, new[]{ "Channel", "Message" }, null, new[]{ typeof(global::SC2APIProtocol.ActionChat.Types.Channel) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionError), global::SC2APIProtocol.ActionError.Parser, new[]{ "UnitTag", "AbilityId", "Result" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ObserverAction), global::SC2APIProtocol.ObserverAction.Parser, new[]{ "PlayerPerspective", "CameraMove", "CameraFollowPlayer", "CameraFollowUnits" }, new[]{ "Action" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverPlayerPerspective), global::SC2APIProtocol.ActionObserverPlayerPerspective.Parser, new[]{ "PlayerId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverCameraMove), global::SC2APIProtocol.ActionObserverCameraMove.Parser, new[]{ "WorldPos", "Distance" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverCameraFollowPlayer), global::SC2APIProtocol.ActionObserverCameraFollowPlayer.Parser, new[]{ "PlayerId" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverCameraFollowUnits), global::SC2APIProtocol.ActionObserverCameraFollowUnits.Parser, new[]{ "UnitTags" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerResult), global::SC2APIProtocol.PlayerResult.Parser, new[]{ "PlayerId", "Result" }, null, null, null)
+                new pbr::GeneratedClrTypeInfo(new[] { typeof(global::SC2APIProtocol.Status), typeof(global::SC2APIProtocol.Difficulty), typeof(global::SC2APIProtocol.PlayerType), typeof(global::SC2APIProtocol.AIBuild), typeof(global::SC2APIProtocol.Alert), typeof(global::SC2APIProtocol.Result), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Request), global::SC2APIProtocol.Request.Parser, new[]{ "CreateGame", "JoinGame", "RestartGame", "StartReplay", "LeaveGame", "QuickSave", "QuickLoad", "Quit", "GameInfo", "Observation", "Action", "ObsAction", "Step", "Data", "Query", "SaveReplay", "MapCommand", "ReplayInfo", "AvailableMaps", "SaveMap", "Ping", "Debug", "Id" }, new[]{ "Request" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Response), global::SC2APIProtocol.Response.Parser, new[]{ "CreateGame", "JoinGame", "RestartGame", "StartReplay", "LeaveGame", "QuickSave", "QuickLoad", "Quit", "GameInfo", "Observation", "Action", "ObsAction", "Step", "Data", "Query", "SaveReplay", "ReplayInfo", "AvailableMaps", "SaveMap", "MapCommand", "Ping", "Debug", "Id", "Error", "Status" }, new[]{ "Response" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestCreateGame), global::SC2APIProtocol.RequestCreateGame.Parser, new[]{ "LocalMap", "BattlenetMapName", "PlayerSetup", "DisableFog", "RandomSeed", "Realtime" }, new[]{ "Map" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.LocalMap), global::SC2APIProtocol.LocalMap.Parser, new[]{ "MapPath", "MapData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseCreateGame), global::SC2APIProtocol.ResponseCreateGame.Parser, new[]{ "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseCreateGame.Types.Error) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestJoinGame), global::SC2APIProtocol.RequestJoinGame.Parser, new[]{ "Race", "ObservedPlayerId", "Options", "ServerPorts", "ClientPorts", "SharedPort", "PlayerName", "HostIp" }, new[]{ "Participation" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PortSet), global::SC2APIProtocol.PortSet.Parser, new[]{ "GamePort", "BasePort" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseJoinGame), global::SC2APIProtocol.ResponseJoinGame.Parser, new[]{ "PlayerId", "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseJoinGame.Types.Error) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestRestartGame), global::SC2APIProtocol.RequestRestartGame.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseRestartGame), global::SC2APIProtocol.ResponseRestartGame.Parser, new[]{ "Error", "ErrorDetails", "NeedHardReset" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseRestartGame.Types.Error) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestStartReplay), global::SC2APIProtocol.RequestStartReplay.Parser, new[]{ "ReplayPath", "ReplayData", "MapData", "ObservedPlayerId", "Options", "DisableFog", "Realtime", "RecordReplay" }, new[]{ "Replay" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseStartReplay), global::SC2APIProtocol.ResponseStartReplay.Parser, new[]{ "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseStartReplay.Types.Error) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestMapCommand), global::SC2APIProtocol.RequestMapCommand.Parser, new[]{ "TriggerCmd" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseMapCommand), global::SC2APIProtocol.ResponseMapCommand.Parser, new[]{ "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseMapCommand.Types.Error) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestLeaveGame), global::SC2APIProtocol.RequestLeaveGame.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseLeaveGame), global::SC2APIProtocol.ResponseLeaveGame.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestQuickSave), global::SC2APIProtocol.RequestQuickSave.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseQuickSave), global::SC2APIProtocol.ResponseQuickSave.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestQuickLoad), global::SC2APIProtocol.RequestQuickLoad.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseQuickLoad), global::SC2APIProtocol.ResponseQuickLoad.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestQuit), global::SC2APIProtocol.RequestQuit.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseQuit), global::SC2APIProtocol.ResponseQuit.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestGameInfo), global::SC2APIProtocol.RequestGameInfo.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseGameInfo), global::SC2APIProtocol.ResponseGameInfo.Parser, new[]{ "MapName", "ModNames", "LocalMapPath", "PlayerInfo", "StartRaw", "Options" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestObservation), global::SC2APIProtocol.RequestObservation.Parser, new[]{ "DisableFog", "GameLoop" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseObservation), global::SC2APIProtocol.ResponseObservation.Parser, new[]{ "Actions", "ActionErrors", "Observation", "PlayerResult", "Chat" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ChatReceived), global::SC2APIProtocol.ChatReceived.Parser, new[]{ "PlayerId", "Message" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestAction), global::SC2APIProtocol.RequestAction.Parser, new[]{ "Actions" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseAction), global::SC2APIProtocol.ResponseAction.Parser, new[]{ "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestObserverAction), global::SC2APIProtocol.RequestObserverAction.Parser, new[]{ "Actions" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseObserverAction), global::SC2APIProtocol.ResponseObserverAction.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestStep), global::SC2APIProtocol.RequestStep.Parser, new[]{ "Count" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseStep), global::SC2APIProtocol.ResponseStep.Parser, new[]{ "SimulationLoop" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestData), global::SC2APIProtocol.RequestData.Parser, new[]{ "AbilityId", "UnitTypeId", "UpgradeId", "BuffId", "EffectId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseData), global::SC2APIProtocol.ResponseData.Parser, new[]{ "Abilities", "Units", "Upgrades", "Buffs", "Effects" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestSaveReplay), global::SC2APIProtocol.RequestSaveReplay.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseSaveReplay), global::SC2APIProtocol.ResponseSaveReplay.Parser, new[]{ "Data" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestReplayInfo), global::SC2APIProtocol.RequestReplayInfo.Parser, new[]{ "ReplayPath", "ReplayData", "DownloadData" }, new[]{ "Replay" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerInfoExtra), global::SC2APIProtocol.PlayerInfoExtra.Parser, new[]{ "PlayerInfo", "PlayerResult", "PlayerMmr", "PlayerApm" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseReplayInfo), global::SC2APIProtocol.ResponseReplayInfo.Parser, new[]{ "MapName", "LocalMapPath", "PlayerInfo", "GameDurationLoops", "GameDurationSeconds", "GameVersion", "DataVersion", "DataBuild", "BaseBuild", "Error", "ErrorDetails" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseReplayInfo.Types.Error) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestAvailableMaps), global::SC2APIProtocol.RequestAvailableMaps.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseAvailableMaps), global::SC2APIProtocol.ResponseAvailableMaps.Parser, new[]{ "LocalMapPaths", "BattlenetMapNames" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestSaveMap), global::SC2APIProtocol.RequestSaveMap.Parser, new[]{ "MapPath", "MapData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseSaveMap), global::SC2APIProtocol.ResponseSaveMap.Parser, new[]{ "Error" }, null, new[]{ typeof(global::SC2APIProtocol.ResponseSaveMap.Types.Error) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestPing), global::SC2APIProtocol.RequestPing.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponsePing), global::SC2APIProtocol.ResponsePing.Parser, new[]{ "GameVersion", "DataVersion", "DataBuild", "BaseBuild" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RequestDebug), global::SC2APIProtocol.RequestDebug.Parser, new[]{ "Debug" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ResponseDebug), global::SC2APIProtocol.ResponseDebug.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerSetup), global::SC2APIProtocol.PlayerSetup.Parser, new[]{ "Type", "Race", "Difficulty", "PlayerName", "AiBuild" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.SpatialCameraSetup), global::SC2APIProtocol.SpatialCameraSetup.Parser, new[]{ "Resolution", "MinimapResolution", "Width", "CropToPlayableArea", "AllowCheatingLayers" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.InterfaceOptions), global::SC2APIProtocol.InterfaceOptions.Parser, new[]{ "Raw", "Score", "FeatureLayer", "Render", "ShowCloaked", "ShowBurrowedShadows", "ShowPlaceholders", "RawAffectsSelection", "RawCropToPlayableArea" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerInfo), global::SC2APIProtocol.PlayerInfo.Parser, new[]{ "PlayerId", "Type", "RaceRequested", "RaceActual", "Difficulty", "AiBuild", "PlayerName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerCommon), global::SC2APIProtocol.PlayerCommon.Parser, new[]{ "PlayerId", "Minerals", "Vespene", "FoodCap", "FoodUsed", "FoodArmy", "FoodWorkers", "IdleWorkerCount", "ArmyCount", "WarpGateCount", "LarvaCount" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Observation), global::SC2APIProtocol.Observation.Parser, new[]{ "GameLoop", "PlayerCommon", "Alerts", "Abilities", "Score", "RawData", "FeatureLayerData", "RenderData", "UiData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Action), global::SC2APIProtocol.Action.Parser, new[]{ "ActionRaw", "ActionFeatureLayer", "ActionRender", "ActionUi", "ActionChat", "GameLoop" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionChat), global::SC2APIProtocol.ActionChat.Parser, new[]{ "Channel", "Message" }, null, new[]{ typeof(global::SC2APIProtocol.ActionChat.Types.Channel) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionError), global::SC2APIProtocol.ActionError.Parser, new[]{ "UnitTag", "AbilityId", "Result" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ObserverAction), global::SC2APIProtocol.ObserverAction.Parser, new[]{ "PlayerPerspective", "CameraMove", "CameraFollowPlayer", "CameraFollowUnits" }, new[]{ "Action" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverPlayerPerspective), global::SC2APIProtocol.ActionObserverPlayerPerspective.Parser, new[]{ "PlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverCameraMove), global::SC2APIProtocol.ActionObserverCameraMove.Parser, new[]{ "WorldPos", "Distance" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverCameraFollowPlayer), global::SC2APIProtocol.ActionObserverCameraFollowPlayer.Parser, new[]{ "PlayerId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ActionObserverCameraFollowUnits), global::SC2APIProtocol.ActionObserverCameraFollowUnits.Parser, new[]{ "UnitTags" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PlayerResult), global::SC2APIProtocol.PlayerResult.Parser, new[]{ "PlayerId", "Result" }, null, null, null, null)
                 }));
         }
         #endregion
@@ -330,7 +356,6 @@ namespace SC2APIProtocol
     #region Enums
     public enum Status
     {
-        [pbr::OriginalName("Status_UNSET")] Unset = 0,
         /// <summary>
         /// Game has been launch and is not yet doing anything.
         /// </summary>
@@ -363,7 +388,6 @@ namespace SC2APIProtocol
 
     public enum Difficulty
     {
-        [pbr::OriginalName("Difficulty_UNSET")] Unset = 0,
         [pbr::OriginalName("VeryEasy")] VeryEasy = 1,
         [pbr::OriginalName("Easy")] Easy = 2,
         [pbr::OriginalName("Medium")] Medium = 3,
@@ -378,22 +402,49 @@ namespace SC2APIProtocol
 
     public enum PlayerType
     {
-        [pbr::OriginalName("PlayerType_UNSET")] Unset = 0,
         [pbr::OriginalName("Participant")] Participant = 1,
         [pbr::OriginalName("Computer")] Computer = 2,
         [pbr::OriginalName("Observer")] Observer = 3,
     }
 
+    public enum AIBuild
+    {
+        [pbr::OriginalName("RandomBuild")] RandomBuild = 1,
+        [pbr::OriginalName("Rush")] Rush = 2,
+        [pbr::OriginalName("Timing")] Timing = 3,
+        [pbr::OriginalName("Power")] Power = 4,
+        [pbr::OriginalName("Macro")] Macro = 5,
+        [pbr::OriginalName("Air")] Air = 6,
+    }
+
     public enum Alert
     {
-        [pbr::OriginalName("Alert_UNSET")] Unset = 0,
+        [pbr::OriginalName("AlertError")] Error = 3,
+        [pbr::OriginalName("AddOnComplete")] AddOnComplete = 4,
+        [pbr::OriginalName("BuildingComplete")] BuildingComplete = 5,
+        [pbr::OriginalName("BuildingUnderAttack")] BuildingUnderAttack = 6,
+        [pbr::OriginalName("LarvaHatched")] LarvaHatched = 7,
+        [pbr::OriginalName("MergeComplete")] MergeComplete = 8,
+        [pbr::OriginalName("MineralsExhausted")] MineralsExhausted = 9,
+        [pbr::OriginalName("MorphComplete")] MorphComplete = 10,
+        [pbr::OriginalName("MothershipComplete")] MothershipComplete = 11,
+        [pbr::OriginalName("MULEExpired")] Muleexpired = 12,
         [pbr::OriginalName("NuclearLaunchDetected")] NuclearLaunchDetected = 1,
+        [pbr::OriginalName("NukeComplete")] NukeComplete = 13,
         [pbr::OriginalName("NydusWormDetected")] NydusWormDetected = 2,
+        [pbr::OriginalName("ResearchComplete")] ResearchComplete = 14,
+        [pbr::OriginalName("TrainError")] TrainError = 15,
+        [pbr::OriginalName("TrainUnitComplete")] TrainUnitComplete = 16,
+        [pbr::OriginalName("TrainWorkerComplete")] TrainWorkerComplete = 17,
+        [pbr::OriginalName("TransformationComplete")] TransformationComplete = 18,
+        [pbr::OriginalName("UnitUnderAttack")] UnitUnderAttack = 19,
+        [pbr::OriginalName("UpgradeComplete")] UpgradeComplete = 20,
+        [pbr::OriginalName("VespeneExhausted")] VespeneExhausted = 21,
+        [pbr::OriginalName("WarpInComplete")] WarpInComplete = 22,
     }
 
     public enum Result
     {
-        [pbr::OriginalName("Result_UNSET")] Unset = 0,
         [pbr::OriginalName("Victory")] Victory = 1,
         [pbr::OriginalName("Defeat")] Defeat = 2,
         [pbr::OriginalName("Tie")] Tie = 3,
@@ -407,6 +458,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<Request> _parser = new pb::MessageParser<Request>(() => new Request());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Request> Parser { get { return _parser; } }
 
@@ -433,6 +485,8 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Request(Request other) : this()
         {
+            _hasBits0 = other._hasBits0;
+            id_ = other.id_;
             switch (other.RequestCase)
             {
                 case RequestOneofCase.CreateGame:
@@ -483,6 +537,9 @@ namespace SC2APIProtocol
                 case RequestOneofCase.SaveReplay:
                     SaveReplay = other.SaveReplay.Clone();
                     break;
+                case RequestOneofCase.MapCommand:
+                    MapCommand = other.MapCommand.Clone();
+                    break;
                 case RequestOneofCase.ReplayInfo:
                     ReplayInfo = other.ReplayInfo.Clone();
                     break;
@@ -517,11 +574,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestCreateGame CreateGame
         {
-            get { return requestCase_ == RequestOneofCase.CreateGame ? (global::SC2APIProtocol.RequestCreateGame)request_ : null; }
+            get { return HasCreateGame ? (global::SC2APIProtocol.RequestCreateGame)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.CreateGame;
+            }
+        }
+        /// <summary>Gets whether the "create_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCreateGame
+        {
+            get { return requestCase_ == RequestOneofCase.CreateGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "create_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCreateGame()
+        {
+            if (HasCreateGame)
+            {
+                ClearRequest();
             }
         }
 
@@ -533,11 +605,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestJoinGame JoinGame
         {
-            get { return requestCase_ == RequestOneofCase.JoinGame ? (global::SC2APIProtocol.RequestJoinGame)request_ : null; }
+            get { return HasJoinGame ? (global::SC2APIProtocol.RequestJoinGame)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.JoinGame;
+            }
+        }
+        /// <summary>Gets whether the "join_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasJoinGame
+        {
+            get { return requestCase_ == RequestOneofCase.JoinGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "join_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearJoinGame()
+        {
+            if (HasJoinGame)
+            {
+                ClearRequest();
             }
         }
 
@@ -549,11 +636,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestRestartGame RestartGame
         {
-            get { return requestCase_ == RequestOneofCase.RestartGame ? (global::SC2APIProtocol.RequestRestartGame)request_ : null; }
+            get { return HasRestartGame ? (global::SC2APIProtocol.RequestRestartGame)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.RestartGame;
+            }
+        }
+        /// <summary>Gets whether the "restart_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRestartGame
+        {
+            get { return requestCase_ == RequestOneofCase.RestartGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "restart_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRestartGame()
+        {
+            if (HasRestartGame)
+            {
+                ClearRequest();
             }
         }
 
@@ -565,11 +667,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestStartReplay StartReplay
         {
-            get { return requestCase_ == RequestOneofCase.StartReplay ? (global::SC2APIProtocol.RequestStartReplay)request_ : null; }
+            get { return HasStartReplay ? (global::SC2APIProtocol.RequestStartReplay)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.StartReplay;
+            }
+        }
+        /// <summary>Gets whether the "start_replay" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasStartReplay
+        {
+            get { return requestCase_ == RequestOneofCase.StartReplay; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "start_replay" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearStartReplay()
+        {
+            if (HasStartReplay)
+            {
+                ClearRequest();
             }
         }
 
@@ -581,11 +698,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestLeaveGame LeaveGame
         {
-            get { return requestCase_ == RequestOneofCase.LeaveGame ? (global::SC2APIProtocol.RequestLeaveGame)request_ : null; }
+            get { return HasLeaveGame ? (global::SC2APIProtocol.RequestLeaveGame)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.LeaveGame;
+            }
+        }
+        /// <summary>Gets whether the "leave_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasLeaveGame
+        {
+            get { return requestCase_ == RequestOneofCase.LeaveGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "leave_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearLeaveGame()
+        {
+            if (HasLeaveGame)
+            {
+                ClearRequest();
             }
         }
 
@@ -597,11 +729,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestQuickSave QuickSave
         {
-            get { return requestCase_ == RequestOneofCase.QuickSave ? (global::SC2APIProtocol.RequestQuickSave)request_ : null; }
+            get { return HasQuickSave ? (global::SC2APIProtocol.RequestQuickSave)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.QuickSave;
+            }
+        }
+        /// <summary>Gets whether the "quick_save" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuickSave
+        {
+            get { return requestCase_ == RequestOneofCase.QuickSave; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "quick_save" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuickSave()
+        {
+            if (HasQuickSave)
+            {
+                ClearRequest();
             }
         }
 
@@ -613,11 +760,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestQuickLoad QuickLoad
         {
-            get { return requestCase_ == RequestOneofCase.QuickLoad ? (global::SC2APIProtocol.RequestQuickLoad)request_ : null; }
+            get { return HasQuickLoad ? (global::SC2APIProtocol.RequestQuickLoad)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.QuickLoad;
+            }
+        }
+        /// <summary>Gets whether the "quick_load" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuickLoad
+        {
+            get { return requestCase_ == RequestOneofCase.QuickLoad; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "quick_load" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuickLoad()
+        {
+            if (HasQuickLoad)
+            {
+                ClearRequest();
             }
         }
 
@@ -629,11 +791,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestQuit Quit
         {
-            get { return requestCase_ == RequestOneofCase.Quit ? (global::SC2APIProtocol.RequestQuit)request_ : null; }
+            get { return HasQuit ? (global::SC2APIProtocol.RequestQuit)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Quit;
+            }
+        }
+        /// <summary>Gets whether the "quit" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuit
+        {
+            get { return requestCase_ == RequestOneofCase.Quit; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "quit" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuit()
+        {
+            if (HasQuit)
+            {
+                ClearRequest();
             }
         }
 
@@ -645,11 +822,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestGameInfo GameInfo
         {
-            get { return requestCase_ == RequestOneofCase.GameInfo ? (global::SC2APIProtocol.RequestGameInfo)request_ : null; }
+            get { return HasGameInfo ? (global::SC2APIProtocol.RequestGameInfo)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.GameInfo;
+            }
+        }
+        /// <summary>Gets whether the "game_info" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameInfo
+        {
+            get { return requestCase_ == RequestOneofCase.GameInfo; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "game_info" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameInfo()
+        {
+            if (HasGameInfo)
+            {
+                ClearRequest();
             }
         }
 
@@ -661,11 +853,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestObservation Observation
         {
-            get { return requestCase_ == RequestOneofCase.Observation ? (global::SC2APIProtocol.RequestObservation)request_ : null; }
+            get { return HasObservation ? (global::SC2APIProtocol.RequestObservation)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Observation;
+            }
+        }
+        /// <summary>Gets whether the "observation" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasObservation
+        {
+            get { return requestCase_ == RequestOneofCase.Observation; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "observation" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearObservation()
+        {
+            if (HasObservation)
+            {
+                ClearRequest();
             }
         }
 
@@ -677,11 +884,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestAction Action
         {
-            get { return requestCase_ == RequestOneofCase.Action ? (global::SC2APIProtocol.RequestAction)request_ : null; }
+            get { return HasAction ? (global::SC2APIProtocol.RequestAction)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Action;
+            }
+        }
+        /// <summary>Gets whether the "action" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAction
+        {
+            get { return requestCase_ == RequestOneofCase.Action; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "action" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAction()
+        {
+            if (HasAction)
+            {
+                ClearRequest();
             }
         }
 
@@ -693,11 +915,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestObserverAction ObsAction
         {
-            get { return requestCase_ == RequestOneofCase.ObsAction ? (global::SC2APIProtocol.RequestObserverAction)request_ : null; }
+            get { return HasObsAction ? (global::SC2APIProtocol.RequestObserverAction)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.ObsAction;
+            }
+        }
+        /// <summary>Gets whether the "obs_action" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasObsAction
+        {
+            get { return requestCase_ == RequestOneofCase.ObsAction; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "obs_action" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearObsAction()
+        {
+            if (HasObsAction)
+            {
+                ClearRequest();
             }
         }
 
@@ -709,11 +946,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestStep Step
         {
-            get { return requestCase_ == RequestOneofCase.Step ? (global::SC2APIProtocol.RequestStep)request_ : null; }
+            get { return HasStep ? (global::SC2APIProtocol.RequestStep)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Step;
+            }
+        }
+        /// <summary>Gets whether the "step" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasStep
+        {
+            get { return requestCase_ == RequestOneofCase.Step; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "step" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearStep()
+        {
+            if (HasStep)
+            {
+                ClearRequest();
             }
         }
 
@@ -725,11 +977,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestData Data
         {
-            get { return requestCase_ == RequestOneofCase.Data ? (global::SC2APIProtocol.RequestData)request_ : null; }
+            get { return HasData ? (global::SC2APIProtocol.RequestData)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Data;
+            }
+        }
+        /// <summary>Gets whether the "data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasData
+        {
+            get { return requestCase_ == RequestOneofCase.Data; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "data" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearData()
+        {
+            if (HasData)
+            {
+                ClearRequest();
             }
         }
 
@@ -741,11 +1008,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestQuery Query
         {
-            get { return requestCase_ == RequestOneofCase.Query ? (global::SC2APIProtocol.RequestQuery)request_ : null; }
+            get { return HasQuery ? (global::SC2APIProtocol.RequestQuery)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Query;
+            }
+        }
+        /// <summary>Gets whether the "query" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuery
+        {
+            get { return requestCase_ == RequestOneofCase.Query; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "query" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuery()
+        {
+            if (HasQuery)
+            {
+                ClearRequest();
             }
         }
 
@@ -757,11 +1039,57 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestSaveReplay SaveReplay
         {
-            get { return requestCase_ == RequestOneofCase.SaveReplay ? (global::SC2APIProtocol.RequestSaveReplay)request_ : null; }
+            get { return HasSaveReplay ? (global::SC2APIProtocol.RequestSaveReplay)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.SaveReplay;
+            }
+        }
+        /// <summary>Gets whether the "save_replay" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSaveReplay
+        {
+            get { return requestCase_ == RequestOneofCase.SaveReplay; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "save_replay" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSaveReplay()
+        {
+            if (HasSaveReplay)
+            {
+                ClearRequest();
+            }
+        }
+
+        /// <summary>Field number for the "map_command" field.</summary>
+        public const int MapCommandFieldNumber = 22;
+        /// <summary>
+        /// Execute a particular trigger through a string interface
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.RequestMapCommand MapCommand
+        {
+            get { return HasMapCommand ? (global::SC2APIProtocol.RequestMapCommand)request_ : null; }
+            set
+            {
+                request_ = value;
+                requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.MapCommand;
+            }
+        }
+        /// <summary>Gets whether the "map_command" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapCommand
+        {
+            get { return requestCase_ == RequestOneofCase.MapCommand; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "map_command" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapCommand()
+        {
+            if (HasMapCommand)
+            {
+                ClearRequest();
             }
         }
 
@@ -773,11 +1101,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestReplayInfo ReplayInfo
         {
-            get { return requestCase_ == RequestOneofCase.ReplayInfo ? (global::SC2APIProtocol.RequestReplayInfo)request_ : null; }
+            get { return HasReplayInfo ? (global::SC2APIProtocol.RequestReplayInfo)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.ReplayInfo;
+            }
+        }
+        /// <summary>Gets whether the "replay_info" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasReplayInfo
+        {
+            get { return requestCase_ == RequestOneofCase.ReplayInfo; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "replay_info" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearReplayInfo()
+        {
+            if (HasReplayInfo)
+            {
+                ClearRequest();
             }
         }
 
@@ -789,11 +1132,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestAvailableMaps AvailableMaps
         {
-            get { return requestCase_ == RequestOneofCase.AvailableMaps ? (global::SC2APIProtocol.RequestAvailableMaps)request_ : null; }
+            get { return HasAvailableMaps ? (global::SC2APIProtocol.RequestAvailableMaps)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.AvailableMaps;
+            }
+        }
+        /// <summary>Gets whether the "available_maps" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAvailableMaps
+        {
+            get { return requestCase_ == RequestOneofCase.AvailableMaps; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "available_maps" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAvailableMaps()
+        {
+            if (HasAvailableMaps)
+            {
+                ClearRequest();
             }
         }
 
@@ -805,11 +1163,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestSaveMap SaveMap
         {
-            get { return requestCase_ == RequestOneofCase.SaveMap ? (global::SC2APIProtocol.RequestSaveMap)request_ : null; }
+            get { return HasSaveMap ? (global::SC2APIProtocol.RequestSaveMap)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.SaveMap;
+            }
+        }
+        /// <summary>Gets whether the "save_map" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSaveMap
+        {
+            get { return requestCase_ == RequestOneofCase.SaveMap; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "save_map" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSaveMap()
+        {
+            if (HasSaveMap)
+            {
+                ClearRequest();
             }
         }
 
@@ -821,11 +1194,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestPing Ping
         {
-            get { return requestCase_ == RequestOneofCase.Ping ? (global::SC2APIProtocol.RequestPing)request_ : null; }
+            get { return HasPing ? (global::SC2APIProtocol.RequestPing)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Ping;
+            }
+        }
+        /// <summary>Gets whether the "ping" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPing
+        {
+            get { return requestCase_ == RequestOneofCase.Ping; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "ping" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPing()
+        {
+            if (HasPing)
+            {
+                ClearRequest();
             }
         }
 
@@ -837,12 +1225,55 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.RequestDebug Debug
         {
-            get { return requestCase_ == RequestOneofCase.Debug ? (global::SC2APIProtocol.RequestDebug)request_ : null; }
+            get { return HasDebug ? (global::SC2APIProtocol.RequestDebug)request_ : null; }
             set
             {
                 request_ = value;
                 requestCase_ = value == null ? RequestOneofCase.None : RequestOneofCase.Debug;
             }
+        }
+        /// <summary>Gets whether the "debug" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDebug
+        {
+            get { return requestCase_ == RequestOneofCase.Debug; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "debug" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDebug()
+        {
+            if (HasDebug)
+            {
+                ClearRequest();
+            }
+        }
+
+        /// <summary>Field number for the "id" field.</summary>
+        public const int IdFieldNumber = 97;
+        private readonly static uint IdDefaultValue = 0;
+
+        private uint id_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint Id
+        {
+            get { if ((_hasBits0 & 1) != 0) { return id_; } else { return IdDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                id_ = value;
+            }
+        }
+        /// <summary>Gets whether the "id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearId()
+        {
+            _hasBits0 &= ~1;
         }
 
         private object request_;
@@ -866,6 +1297,7 @@ namespace SC2APIProtocol
             Data = 13,
             Query = 14,
             SaveReplay = 15,
+            MapCommand = 22,
             ReplayInfo = 16,
             AvailableMaps = 17,
             SaveMap = 18,
@@ -919,11 +1351,13 @@ namespace SC2APIProtocol
             if (!object.Equals(Data, other.Data)) return false;
             if (!object.Equals(Query, other.Query)) return false;
             if (!object.Equals(SaveReplay, other.SaveReplay)) return false;
+            if (!object.Equals(MapCommand, other.MapCommand)) return false;
             if (!object.Equals(ReplayInfo, other.ReplayInfo)) return false;
             if (!object.Equals(AvailableMaps, other.AvailableMaps)) return false;
             if (!object.Equals(SaveMap, other.SaveMap)) return false;
             if (!object.Equals(Ping, other.Ping)) return false;
             if (!object.Equals(Debug, other.Debug)) return false;
+            if (Id != other.Id) return false;
             if (RequestCase != other.RequestCase) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
@@ -932,27 +1366,29 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (requestCase_ == RequestOneofCase.CreateGame) hash ^= CreateGame.GetHashCode();
-            if (requestCase_ == RequestOneofCase.JoinGame) hash ^= JoinGame.GetHashCode();
-            if (requestCase_ == RequestOneofCase.RestartGame) hash ^= RestartGame.GetHashCode();
-            if (requestCase_ == RequestOneofCase.StartReplay) hash ^= StartReplay.GetHashCode();
-            if (requestCase_ == RequestOneofCase.LeaveGame) hash ^= LeaveGame.GetHashCode();
-            if (requestCase_ == RequestOneofCase.QuickSave) hash ^= QuickSave.GetHashCode();
-            if (requestCase_ == RequestOneofCase.QuickLoad) hash ^= QuickLoad.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Quit) hash ^= Quit.GetHashCode();
-            if (requestCase_ == RequestOneofCase.GameInfo) hash ^= GameInfo.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Observation) hash ^= Observation.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Action) hash ^= Action.GetHashCode();
-            if (requestCase_ == RequestOneofCase.ObsAction) hash ^= ObsAction.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Step) hash ^= Step.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Data) hash ^= Data.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Query) hash ^= Query.GetHashCode();
-            if (requestCase_ == RequestOneofCase.SaveReplay) hash ^= SaveReplay.GetHashCode();
-            if (requestCase_ == RequestOneofCase.ReplayInfo) hash ^= ReplayInfo.GetHashCode();
-            if (requestCase_ == RequestOneofCase.AvailableMaps) hash ^= AvailableMaps.GetHashCode();
-            if (requestCase_ == RequestOneofCase.SaveMap) hash ^= SaveMap.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Ping) hash ^= Ping.GetHashCode();
-            if (requestCase_ == RequestOneofCase.Debug) hash ^= Debug.GetHashCode();
+            if (HasCreateGame) hash ^= CreateGame.GetHashCode();
+            if (HasJoinGame) hash ^= JoinGame.GetHashCode();
+            if (HasRestartGame) hash ^= RestartGame.GetHashCode();
+            if (HasStartReplay) hash ^= StartReplay.GetHashCode();
+            if (HasLeaveGame) hash ^= LeaveGame.GetHashCode();
+            if (HasQuickSave) hash ^= QuickSave.GetHashCode();
+            if (HasQuickLoad) hash ^= QuickLoad.GetHashCode();
+            if (HasQuit) hash ^= Quit.GetHashCode();
+            if (HasGameInfo) hash ^= GameInfo.GetHashCode();
+            if (HasObservation) hash ^= Observation.GetHashCode();
+            if (HasAction) hash ^= Action.GetHashCode();
+            if (HasObsAction) hash ^= ObsAction.GetHashCode();
+            if (HasStep) hash ^= Step.GetHashCode();
+            if (HasData) hash ^= Data.GetHashCode();
+            if (HasQuery) hash ^= Query.GetHashCode();
+            if (HasSaveReplay) hash ^= SaveReplay.GetHashCode();
+            if (HasMapCommand) hash ^= MapCommand.GetHashCode();
+            if (HasReplayInfo) hash ^= ReplayInfo.GetHashCode();
+            if (HasAvailableMaps) hash ^= AvailableMaps.GetHashCode();
+            if (HasSaveMap) hash ^= SaveMap.GetHashCode();
+            if (HasPing) hash ^= Ping.GetHashCode();
+            if (HasDebug) hash ^= Debug.GetHashCode();
+            if (HasId) hash ^= Id.GetHashCode();
             hash ^= (int)requestCase_;
             if (_unknownFields != null)
             {
@@ -970,110 +1406,120 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (requestCase_ == RequestOneofCase.CreateGame)
+            if (HasCreateGame)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(CreateGame);
             }
-            if (requestCase_ == RequestOneofCase.JoinGame)
+            if (HasJoinGame)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(JoinGame);
             }
-            if (requestCase_ == RequestOneofCase.RestartGame)
+            if (HasRestartGame)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(RestartGame);
             }
-            if (requestCase_ == RequestOneofCase.StartReplay)
+            if (HasStartReplay)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(StartReplay);
             }
-            if (requestCase_ == RequestOneofCase.LeaveGame)
+            if (HasLeaveGame)
             {
                 output.WriteRawTag(42);
                 output.WriteMessage(LeaveGame);
             }
-            if (requestCase_ == RequestOneofCase.QuickSave)
+            if (HasQuickSave)
             {
                 output.WriteRawTag(50);
                 output.WriteMessage(QuickSave);
             }
-            if (requestCase_ == RequestOneofCase.QuickLoad)
+            if (HasQuickLoad)
             {
                 output.WriteRawTag(58);
                 output.WriteMessage(QuickLoad);
             }
-            if (requestCase_ == RequestOneofCase.Quit)
+            if (HasQuit)
             {
                 output.WriteRawTag(66);
                 output.WriteMessage(Quit);
             }
-            if (requestCase_ == RequestOneofCase.GameInfo)
+            if (HasGameInfo)
             {
                 output.WriteRawTag(74);
                 output.WriteMessage(GameInfo);
             }
-            if (requestCase_ == RequestOneofCase.Observation)
+            if (HasObservation)
             {
                 output.WriteRawTag(82);
                 output.WriteMessage(Observation);
             }
-            if (requestCase_ == RequestOneofCase.Action)
+            if (HasAction)
             {
                 output.WriteRawTag(90);
                 output.WriteMessage(Action);
             }
-            if (requestCase_ == RequestOneofCase.Step)
+            if (HasStep)
             {
                 output.WriteRawTag(98);
                 output.WriteMessage(Step);
             }
-            if (requestCase_ == RequestOneofCase.Data)
+            if (HasData)
             {
                 output.WriteRawTag(106);
                 output.WriteMessage(Data);
             }
-            if (requestCase_ == RequestOneofCase.Query)
+            if (HasQuery)
             {
                 output.WriteRawTag(114);
                 output.WriteMessage(Query);
             }
-            if (requestCase_ == RequestOneofCase.SaveReplay)
+            if (HasSaveReplay)
             {
                 output.WriteRawTag(122);
                 output.WriteMessage(SaveReplay);
             }
-            if (requestCase_ == RequestOneofCase.ReplayInfo)
+            if (HasReplayInfo)
             {
                 output.WriteRawTag(130, 1);
                 output.WriteMessage(ReplayInfo);
             }
-            if (requestCase_ == RequestOneofCase.AvailableMaps)
+            if (HasAvailableMaps)
             {
                 output.WriteRawTag(138, 1);
                 output.WriteMessage(AvailableMaps);
             }
-            if (requestCase_ == RequestOneofCase.SaveMap)
+            if (HasSaveMap)
             {
                 output.WriteRawTag(146, 1);
                 output.WriteMessage(SaveMap);
             }
-            if (requestCase_ == RequestOneofCase.Ping)
+            if (HasPing)
             {
                 output.WriteRawTag(154, 1);
                 output.WriteMessage(Ping);
             }
-            if (requestCase_ == RequestOneofCase.Debug)
+            if (HasDebug)
             {
                 output.WriteRawTag(162, 1);
                 output.WriteMessage(Debug);
             }
-            if (requestCase_ == RequestOneofCase.ObsAction)
+            if (HasObsAction)
             {
                 output.WriteRawTag(170, 1);
                 output.WriteMessage(ObsAction);
+            }
+            if (HasMapCommand)
+            {
+                output.WriteRawTag(178, 1);
+                output.WriteMessage(MapCommand);
+            }
+            if (HasId)
+            {
+                output.WriteRawTag(136, 6);
+                output.WriteUInt32(Id);
             }
             if (_unknownFields != null)
             {
@@ -1085,89 +1531,97 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (requestCase_ == RequestOneofCase.CreateGame)
+            if (HasCreateGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreateGame);
             }
-            if (requestCase_ == RequestOneofCase.JoinGame)
+            if (HasJoinGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(JoinGame);
             }
-            if (requestCase_ == RequestOneofCase.RestartGame)
+            if (HasRestartGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(RestartGame);
             }
-            if (requestCase_ == RequestOneofCase.StartReplay)
+            if (HasStartReplay)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(StartReplay);
             }
-            if (requestCase_ == RequestOneofCase.LeaveGame)
+            if (HasLeaveGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(LeaveGame);
             }
-            if (requestCase_ == RequestOneofCase.QuickSave)
+            if (HasQuickSave)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(QuickSave);
             }
-            if (requestCase_ == RequestOneofCase.QuickLoad)
+            if (HasQuickLoad)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(QuickLoad);
             }
-            if (requestCase_ == RequestOneofCase.Quit)
+            if (HasQuit)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Quit);
             }
-            if (requestCase_ == RequestOneofCase.GameInfo)
+            if (HasGameInfo)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(GameInfo);
             }
-            if (requestCase_ == RequestOneofCase.Observation)
+            if (HasObservation)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Observation);
             }
-            if (requestCase_ == RequestOneofCase.Action)
+            if (HasAction)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Action);
             }
-            if (requestCase_ == RequestOneofCase.ObsAction)
+            if (HasObsAction)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(ObsAction);
             }
-            if (requestCase_ == RequestOneofCase.Step)
+            if (HasStep)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Step);
             }
-            if (requestCase_ == RequestOneofCase.Data)
+            if (HasData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
             }
-            if (requestCase_ == RequestOneofCase.Query)
+            if (HasQuery)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Query);
             }
-            if (requestCase_ == RequestOneofCase.SaveReplay)
+            if (HasSaveReplay)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(SaveReplay);
             }
-            if (requestCase_ == RequestOneofCase.ReplayInfo)
+            if (HasMapCommand)
+            {
+                size += 2 + pb::CodedOutputStream.ComputeMessageSize(MapCommand);
+            }
+            if (HasReplayInfo)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(ReplayInfo);
             }
-            if (requestCase_ == RequestOneofCase.AvailableMaps)
+            if (HasAvailableMaps)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(AvailableMaps);
             }
-            if (requestCase_ == RequestOneofCase.SaveMap)
+            if (HasSaveMap)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(SaveMap);
             }
-            if (requestCase_ == RequestOneofCase.Ping)
+            if (HasPing)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(Ping);
             }
-            if (requestCase_ == RequestOneofCase.Debug)
+            if (HasDebug)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(Debug);
+            }
+            if (HasId)
+            {
+                size += 2 + pb::CodedOutputStream.ComputeUInt32Size(Id);
             }
             if (_unknownFields != null)
             {
@@ -1182,6 +1636,10 @@ namespace SC2APIProtocol
             if (other == null)
             {
                 return;
+            }
+            if (other.HasId)
+            {
+                Id = other.Id;
             }
             switch (other.RequestCase)
             {
@@ -1297,6 +1755,13 @@ namespace SC2APIProtocol
                     }
                     SaveReplay.MergeFrom(other.SaveReplay);
                     break;
+                case RequestOneofCase.MapCommand:
+                    if (MapCommand == null)
+                    {
+                        MapCommand = new global::SC2APIProtocol.RequestMapCommand();
+                    }
+                    MapCommand.MergeFrom(other.MapCommand);
+                    break;
                 case RequestOneofCase.ReplayInfo:
                     if (ReplayInfo == null)
                     {
@@ -1351,7 +1816,7 @@ namespace SC2APIProtocol
                     case 10:
                         {
                             global::SC2APIProtocol.RequestCreateGame subBuilder = new global::SC2APIProtocol.RequestCreateGame();
-                            if (requestCase_ == RequestOneofCase.CreateGame)
+                            if (HasCreateGame)
                             {
                                 subBuilder.MergeFrom(CreateGame);
                             }
@@ -1362,7 +1827,7 @@ namespace SC2APIProtocol
                     case 18:
                         {
                             global::SC2APIProtocol.RequestJoinGame subBuilder = new global::SC2APIProtocol.RequestJoinGame();
-                            if (requestCase_ == RequestOneofCase.JoinGame)
+                            if (HasJoinGame)
                             {
                                 subBuilder.MergeFrom(JoinGame);
                             }
@@ -1373,7 +1838,7 @@ namespace SC2APIProtocol
                     case 26:
                         {
                             global::SC2APIProtocol.RequestRestartGame subBuilder = new global::SC2APIProtocol.RequestRestartGame();
-                            if (requestCase_ == RequestOneofCase.RestartGame)
+                            if (HasRestartGame)
                             {
                                 subBuilder.MergeFrom(RestartGame);
                             }
@@ -1384,7 +1849,7 @@ namespace SC2APIProtocol
                     case 34:
                         {
                             global::SC2APIProtocol.RequestStartReplay subBuilder = new global::SC2APIProtocol.RequestStartReplay();
-                            if (requestCase_ == RequestOneofCase.StartReplay)
+                            if (HasStartReplay)
                             {
                                 subBuilder.MergeFrom(StartReplay);
                             }
@@ -1395,7 +1860,7 @@ namespace SC2APIProtocol
                     case 42:
                         {
                             global::SC2APIProtocol.RequestLeaveGame subBuilder = new global::SC2APIProtocol.RequestLeaveGame();
-                            if (requestCase_ == RequestOneofCase.LeaveGame)
+                            if (HasLeaveGame)
                             {
                                 subBuilder.MergeFrom(LeaveGame);
                             }
@@ -1406,7 +1871,7 @@ namespace SC2APIProtocol
                     case 50:
                         {
                             global::SC2APIProtocol.RequestQuickSave subBuilder = new global::SC2APIProtocol.RequestQuickSave();
-                            if (requestCase_ == RequestOneofCase.QuickSave)
+                            if (HasQuickSave)
                             {
                                 subBuilder.MergeFrom(QuickSave);
                             }
@@ -1417,7 +1882,7 @@ namespace SC2APIProtocol
                     case 58:
                         {
                             global::SC2APIProtocol.RequestQuickLoad subBuilder = new global::SC2APIProtocol.RequestQuickLoad();
-                            if (requestCase_ == RequestOneofCase.QuickLoad)
+                            if (HasQuickLoad)
                             {
                                 subBuilder.MergeFrom(QuickLoad);
                             }
@@ -1428,7 +1893,7 @@ namespace SC2APIProtocol
                     case 66:
                         {
                             global::SC2APIProtocol.RequestQuit subBuilder = new global::SC2APIProtocol.RequestQuit();
-                            if (requestCase_ == RequestOneofCase.Quit)
+                            if (HasQuit)
                             {
                                 subBuilder.MergeFrom(Quit);
                             }
@@ -1439,7 +1904,7 @@ namespace SC2APIProtocol
                     case 74:
                         {
                             global::SC2APIProtocol.RequestGameInfo subBuilder = new global::SC2APIProtocol.RequestGameInfo();
-                            if (requestCase_ == RequestOneofCase.GameInfo)
+                            if (HasGameInfo)
                             {
                                 subBuilder.MergeFrom(GameInfo);
                             }
@@ -1450,7 +1915,7 @@ namespace SC2APIProtocol
                     case 82:
                         {
                             global::SC2APIProtocol.RequestObservation subBuilder = new global::SC2APIProtocol.RequestObservation();
-                            if (requestCase_ == RequestOneofCase.Observation)
+                            if (HasObservation)
                             {
                                 subBuilder.MergeFrom(Observation);
                             }
@@ -1461,7 +1926,7 @@ namespace SC2APIProtocol
                     case 90:
                         {
                             global::SC2APIProtocol.RequestAction subBuilder = new global::SC2APIProtocol.RequestAction();
-                            if (requestCase_ == RequestOneofCase.Action)
+                            if (HasAction)
                             {
                                 subBuilder.MergeFrom(Action);
                             }
@@ -1472,7 +1937,7 @@ namespace SC2APIProtocol
                     case 98:
                         {
                             global::SC2APIProtocol.RequestStep subBuilder = new global::SC2APIProtocol.RequestStep();
-                            if (requestCase_ == RequestOneofCase.Step)
+                            if (HasStep)
                             {
                                 subBuilder.MergeFrom(Step);
                             }
@@ -1483,7 +1948,7 @@ namespace SC2APIProtocol
                     case 106:
                         {
                             global::SC2APIProtocol.RequestData subBuilder = new global::SC2APIProtocol.RequestData();
-                            if (requestCase_ == RequestOneofCase.Data)
+                            if (HasData)
                             {
                                 subBuilder.MergeFrom(Data);
                             }
@@ -1494,7 +1959,7 @@ namespace SC2APIProtocol
                     case 114:
                         {
                             global::SC2APIProtocol.RequestQuery subBuilder = new global::SC2APIProtocol.RequestQuery();
-                            if (requestCase_ == RequestOneofCase.Query)
+                            if (HasQuery)
                             {
                                 subBuilder.MergeFrom(Query);
                             }
@@ -1505,7 +1970,7 @@ namespace SC2APIProtocol
                     case 122:
                         {
                             global::SC2APIProtocol.RequestSaveReplay subBuilder = new global::SC2APIProtocol.RequestSaveReplay();
-                            if (requestCase_ == RequestOneofCase.SaveReplay)
+                            if (HasSaveReplay)
                             {
                                 subBuilder.MergeFrom(SaveReplay);
                             }
@@ -1516,7 +1981,7 @@ namespace SC2APIProtocol
                     case 130:
                         {
                             global::SC2APIProtocol.RequestReplayInfo subBuilder = new global::SC2APIProtocol.RequestReplayInfo();
-                            if (requestCase_ == RequestOneofCase.ReplayInfo)
+                            if (HasReplayInfo)
                             {
                                 subBuilder.MergeFrom(ReplayInfo);
                             }
@@ -1527,7 +1992,7 @@ namespace SC2APIProtocol
                     case 138:
                         {
                             global::SC2APIProtocol.RequestAvailableMaps subBuilder = new global::SC2APIProtocol.RequestAvailableMaps();
-                            if (requestCase_ == RequestOneofCase.AvailableMaps)
+                            if (HasAvailableMaps)
                             {
                                 subBuilder.MergeFrom(AvailableMaps);
                             }
@@ -1538,7 +2003,7 @@ namespace SC2APIProtocol
                     case 146:
                         {
                             global::SC2APIProtocol.RequestSaveMap subBuilder = new global::SC2APIProtocol.RequestSaveMap();
-                            if (requestCase_ == RequestOneofCase.SaveMap)
+                            if (HasSaveMap)
                             {
                                 subBuilder.MergeFrom(SaveMap);
                             }
@@ -1549,7 +2014,7 @@ namespace SC2APIProtocol
                     case 154:
                         {
                             global::SC2APIProtocol.RequestPing subBuilder = new global::SC2APIProtocol.RequestPing();
-                            if (requestCase_ == RequestOneofCase.Ping)
+                            if (HasPing)
                             {
                                 subBuilder.MergeFrom(Ping);
                             }
@@ -1560,7 +2025,7 @@ namespace SC2APIProtocol
                     case 162:
                         {
                             global::SC2APIProtocol.RequestDebug subBuilder = new global::SC2APIProtocol.RequestDebug();
-                            if (requestCase_ == RequestOneofCase.Debug)
+                            if (HasDebug)
                             {
                                 subBuilder.MergeFrom(Debug);
                             }
@@ -1571,12 +2036,28 @@ namespace SC2APIProtocol
                     case 170:
                         {
                             global::SC2APIProtocol.RequestObserverAction subBuilder = new global::SC2APIProtocol.RequestObserverAction();
-                            if (requestCase_ == RequestOneofCase.ObsAction)
+                            if (HasObsAction)
                             {
                                 subBuilder.MergeFrom(ObsAction);
                             }
                             input.ReadMessage(subBuilder);
                             ObsAction = subBuilder;
+                            break;
+                        }
+                    case 178:
+                        {
+                            global::SC2APIProtocol.RequestMapCommand subBuilder = new global::SC2APIProtocol.RequestMapCommand();
+                            if (HasMapCommand)
+                            {
+                                subBuilder.MergeFrom(MapCommand);
+                            }
+                            input.ReadMessage(subBuilder);
+                            MapCommand = subBuilder;
+                            break;
+                        }
+                    case 776:
+                        {
+                            Id = input.ReadUInt32();
                             break;
                         }
                 }
@@ -1589,6 +2070,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<Response> _parser = new pb::MessageParser<Response>(() => new Response());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Response> Parser { get { return _parser; } }
 
@@ -1615,6 +2097,8 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Response(Response other) : this()
         {
+            _hasBits0 = other._hasBits0;
+            id_ = other.id_;
             error_ = other.error_.Clone();
             status_ = other.status_;
             switch (other.ResponseCase)
@@ -1676,6 +2160,9 @@ namespace SC2APIProtocol
                 case ResponseOneofCase.SaveMap:
                     SaveMap = other.SaveMap.Clone();
                     break;
+                case ResponseOneofCase.MapCommand:
+                    MapCommand = other.MapCommand.Clone();
+                    break;
                 case ResponseOneofCase.Ping:
                     Ping = other.Ping.Clone();
                     break;
@@ -1698,11 +2185,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseCreateGame CreateGame
         {
-            get { return responseCase_ == ResponseOneofCase.CreateGame ? (global::SC2APIProtocol.ResponseCreateGame)response_ : null; }
+            get { return HasCreateGame ? (global::SC2APIProtocol.ResponseCreateGame)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.CreateGame;
+            }
+        }
+        /// <summary>Gets whether the "create_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCreateGame
+        {
+            get { return responseCase_ == ResponseOneofCase.CreateGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "create_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCreateGame()
+        {
+            if (HasCreateGame)
+            {
+                ClearResponse();
             }
         }
 
@@ -1711,11 +2213,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseJoinGame JoinGame
         {
-            get { return responseCase_ == ResponseOneofCase.JoinGame ? (global::SC2APIProtocol.ResponseJoinGame)response_ : null; }
+            get { return HasJoinGame ? (global::SC2APIProtocol.ResponseJoinGame)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.JoinGame;
+            }
+        }
+        /// <summary>Gets whether the "join_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasJoinGame
+        {
+            get { return responseCase_ == ResponseOneofCase.JoinGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "join_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearJoinGame()
+        {
+            if (HasJoinGame)
+            {
+                ClearResponse();
             }
         }
 
@@ -1724,11 +2241,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseRestartGame RestartGame
         {
-            get { return responseCase_ == ResponseOneofCase.RestartGame ? (global::SC2APIProtocol.ResponseRestartGame)response_ : null; }
+            get { return HasRestartGame ? (global::SC2APIProtocol.ResponseRestartGame)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.RestartGame;
+            }
+        }
+        /// <summary>Gets whether the "restart_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRestartGame
+        {
+            get { return responseCase_ == ResponseOneofCase.RestartGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "restart_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRestartGame()
+        {
+            if (HasRestartGame)
+            {
+                ClearResponse();
             }
         }
 
@@ -1737,11 +2269,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseStartReplay StartReplay
         {
-            get { return responseCase_ == ResponseOneofCase.StartReplay ? (global::SC2APIProtocol.ResponseStartReplay)response_ : null; }
+            get { return HasStartReplay ? (global::SC2APIProtocol.ResponseStartReplay)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.StartReplay;
+            }
+        }
+        /// <summary>Gets whether the "start_replay" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasStartReplay
+        {
+            get { return responseCase_ == ResponseOneofCase.StartReplay; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "start_replay" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearStartReplay()
+        {
+            if (HasStartReplay)
+            {
+                ClearResponse();
             }
         }
 
@@ -1750,11 +2297,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseLeaveGame LeaveGame
         {
-            get { return responseCase_ == ResponseOneofCase.LeaveGame ? (global::SC2APIProtocol.ResponseLeaveGame)response_ : null; }
+            get { return HasLeaveGame ? (global::SC2APIProtocol.ResponseLeaveGame)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.LeaveGame;
+            }
+        }
+        /// <summary>Gets whether the "leave_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasLeaveGame
+        {
+            get { return responseCase_ == ResponseOneofCase.LeaveGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "leave_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearLeaveGame()
+        {
+            if (HasLeaveGame)
+            {
+                ClearResponse();
             }
         }
 
@@ -1763,11 +2325,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseQuickSave QuickSave
         {
-            get { return responseCase_ == ResponseOneofCase.QuickSave ? (global::SC2APIProtocol.ResponseQuickSave)response_ : null; }
+            get { return HasQuickSave ? (global::SC2APIProtocol.ResponseQuickSave)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.QuickSave;
+            }
+        }
+        /// <summary>Gets whether the "quick_save" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuickSave
+        {
+            get { return responseCase_ == ResponseOneofCase.QuickSave; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "quick_save" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuickSave()
+        {
+            if (HasQuickSave)
+            {
+                ClearResponse();
             }
         }
 
@@ -1776,11 +2353,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseQuickLoad QuickLoad
         {
-            get { return responseCase_ == ResponseOneofCase.QuickLoad ? (global::SC2APIProtocol.ResponseQuickLoad)response_ : null; }
+            get { return HasQuickLoad ? (global::SC2APIProtocol.ResponseQuickLoad)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.QuickLoad;
+            }
+        }
+        /// <summary>Gets whether the "quick_load" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuickLoad
+        {
+            get { return responseCase_ == ResponseOneofCase.QuickLoad; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "quick_load" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuickLoad()
+        {
+            if (HasQuickLoad)
+            {
+                ClearResponse();
             }
         }
 
@@ -1789,11 +2381,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseQuit Quit
         {
-            get { return responseCase_ == ResponseOneofCase.Quit ? (global::SC2APIProtocol.ResponseQuit)response_ : null; }
+            get { return HasQuit ? (global::SC2APIProtocol.ResponseQuit)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Quit;
+            }
+        }
+        /// <summary>Gets whether the "quit" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuit
+        {
+            get { return responseCase_ == ResponseOneofCase.Quit; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "quit" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuit()
+        {
+            if (HasQuit)
+            {
+                ClearResponse();
             }
         }
 
@@ -1802,11 +2409,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseGameInfo GameInfo
         {
-            get { return responseCase_ == ResponseOneofCase.GameInfo ? (global::SC2APIProtocol.ResponseGameInfo)response_ : null; }
+            get { return HasGameInfo ? (global::SC2APIProtocol.ResponseGameInfo)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.GameInfo;
+            }
+        }
+        /// <summary>Gets whether the "game_info" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameInfo
+        {
+            get { return responseCase_ == ResponseOneofCase.GameInfo; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "game_info" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameInfo()
+        {
+            if (HasGameInfo)
+            {
+                ClearResponse();
             }
         }
 
@@ -1815,11 +2437,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseObservation Observation
         {
-            get { return responseCase_ == ResponseOneofCase.Observation ? (global::SC2APIProtocol.ResponseObservation)response_ : null; }
+            get { return HasObservation ? (global::SC2APIProtocol.ResponseObservation)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Observation;
+            }
+        }
+        /// <summary>Gets whether the "observation" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasObservation
+        {
+            get { return responseCase_ == ResponseOneofCase.Observation; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "observation" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearObservation()
+        {
+            if (HasObservation)
+            {
+                ClearResponse();
             }
         }
 
@@ -1828,11 +2465,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseAction Action
         {
-            get { return responseCase_ == ResponseOneofCase.Action ? (global::SC2APIProtocol.ResponseAction)response_ : null; }
+            get { return HasAction ? (global::SC2APIProtocol.ResponseAction)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Action;
+            }
+        }
+        /// <summary>Gets whether the "action" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAction
+        {
+            get { return responseCase_ == ResponseOneofCase.Action; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "action" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAction()
+        {
+            if (HasAction)
+            {
+                ClearResponse();
             }
         }
 
@@ -1841,11 +2493,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseObserverAction ObsAction
         {
-            get { return responseCase_ == ResponseOneofCase.ObsAction ? (global::SC2APIProtocol.ResponseObserverAction)response_ : null; }
+            get { return HasObsAction ? (global::SC2APIProtocol.ResponseObserverAction)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.ObsAction;
+            }
+        }
+        /// <summary>Gets whether the "obs_action" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasObsAction
+        {
+            get { return responseCase_ == ResponseOneofCase.ObsAction; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "obs_action" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearObsAction()
+        {
+            if (HasObsAction)
+            {
+                ClearResponse();
             }
         }
 
@@ -1854,11 +2521,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseStep Step
         {
-            get { return responseCase_ == ResponseOneofCase.Step ? (global::SC2APIProtocol.ResponseStep)response_ : null; }
+            get { return HasStep ? (global::SC2APIProtocol.ResponseStep)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Step;
+            }
+        }
+        /// <summary>Gets whether the "step" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasStep
+        {
+            get { return responseCase_ == ResponseOneofCase.Step; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "step" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearStep()
+        {
+            if (HasStep)
+            {
+                ClearResponse();
             }
         }
 
@@ -1867,11 +2549,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseData Data
         {
-            get { return responseCase_ == ResponseOneofCase.Data ? (global::SC2APIProtocol.ResponseData)response_ : null; }
+            get { return HasData ? (global::SC2APIProtocol.ResponseData)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Data;
+            }
+        }
+        /// <summary>Gets whether the "data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasData
+        {
+            get { return responseCase_ == ResponseOneofCase.Data; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "data" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearData()
+        {
+            if (HasData)
+            {
+                ClearResponse();
             }
         }
 
@@ -1880,11 +2577,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseQuery Query
         {
-            get { return responseCase_ == ResponseOneofCase.Query ? (global::SC2APIProtocol.ResponseQuery)response_ : null; }
+            get { return HasQuery ? (global::SC2APIProtocol.ResponseQuery)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Query;
+            }
+        }
+        /// <summary>Gets whether the "query" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuery
+        {
+            get { return responseCase_ == ResponseOneofCase.Query; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "query" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuery()
+        {
+            if (HasQuery)
+            {
+                ClearResponse();
             }
         }
 
@@ -1893,11 +2605,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseSaveReplay SaveReplay
         {
-            get { return responseCase_ == ResponseOneofCase.SaveReplay ? (global::SC2APIProtocol.ResponseSaveReplay)response_ : null; }
+            get { return HasSaveReplay ? (global::SC2APIProtocol.ResponseSaveReplay)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.SaveReplay;
+            }
+        }
+        /// <summary>Gets whether the "save_replay" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSaveReplay
+        {
+            get { return responseCase_ == ResponseOneofCase.SaveReplay; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "save_replay" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSaveReplay()
+        {
+            if (HasSaveReplay)
+            {
+                ClearResponse();
             }
         }
 
@@ -1906,11 +2633,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseReplayInfo ReplayInfo
         {
-            get { return responseCase_ == ResponseOneofCase.ReplayInfo ? (global::SC2APIProtocol.ResponseReplayInfo)response_ : null; }
+            get { return HasReplayInfo ? (global::SC2APIProtocol.ResponseReplayInfo)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.ReplayInfo;
+            }
+        }
+        /// <summary>Gets whether the "replay_info" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasReplayInfo
+        {
+            get { return responseCase_ == ResponseOneofCase.ReplayInfo; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "replay_info" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearReplayInfo()
+        {
+            if (HasReplayInfo)
+            {
+                ClearResponse();
             }
         }
 
@@ -1919,11 +2661,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseAvailableMaps AvailableMaps
         {
-            get { return responseCase_ == ResponseOneofCase.AvailableMaps ? (global::SC2APIProtocol.ResponseAvailableMaps)response_ : null; }
+            get { return HasAvailableMaps ? (global::SC2APIProtocol.ResponseAvailableMaps)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.AvailableMaps;
+            }
+        }
+        /// <summary>Gets whether the "available_maps" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAvailableMaps
+        {
+            get { return responseCase_ == ResponseOneofCase.AvailableMaps; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "available_maps" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAvailableMaps()
+        {
+            if (HasAvailableMaps)
+            {
+                ClearResponse();
             }
         }
 
@@ -1932,11 +2689,54 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseSaveMap SaveMap
         {
-            get { return responseCase_ == ResponseOneofCase.SaveMap ? (global::SC2APIProtocol.ResponseSaveMap)response_ : null; }
+            get { return HasSaveMap ? (global::SC2APIProtocol.ResponseSaveMap)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.SaveMap;
+            }
+        }
+        /// <summary>Gets whether the "save_map" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSaveMap
+        {
+            get { return responseCase_ == ResponseOneofCase.SaveMap; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "save_map" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSaveMap()
+        {
+            if (HasSaveMap)
+            {
+                ClearResponse();
+            }
+        }
+
+        /// <summary>Field number for the "map_command" field.</summary>
+        public const int MapCommandFieldNumber = 22;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.ResponseMapCommand MapCommand
+        {
+            get { return HasMapCommand ? (global::SC2APIProtocol.ResponseMapCommand)response_ : null; }
+            set
+            {
+                response_ = value;
+                responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.MapCommand;
+            }
+        }
+        /// <summary>Gets whether the "map_command" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapCommand
+        {
+            get { return responseCase_ == ResponseOneofCase.MapCommand; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "map_command" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapCommand()
+        {
+            if (HasMapCommand)
+            {
+                ClearResponse();
             }
         }
 
@@ -1948,11 +2748,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponsePing Ping
         {
-            get { return responseCase_ == ResponseOneofCase.Ping ? (global::SC2APIProtocol.ResponsePing)response_ : null; }
+            get { return HasPing ? (global::SC2APIProtocol.ResponsePing)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Ping;
+            }
+        }
+        /// <summary>Gets whether the "ping" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPing
+        {
+            get { return responseCase_ == ResponseOneofCase.Ping; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "ping" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPing()
+        {
+            if (HasPing)
+            {
+                ClearResponse();
             }
         }
 
@@ -1961,12 +2776,55 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseDebug Debug
         {
-            get { return responseCase_ == ResponseOneofCase.Debug ? (global::SC2APIProtocol.ResponseDebug)response_ : null; }
+            get { return HasDebug ? (global::SC2APIProtocol.ResponseDebug)response_ : null; }
             set
             {
                 response_ = value;
                 responseCase_ = value == null ? ResponseOneofCase.None : ResponseOneofCase.Debug;
             }
+        }
+        /// <summary>Gets whether the "debug" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDebug
+        {
+            get { return responseCase_ == ResponseOneofCase.Debug; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "debug" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDebug()
+        {
+            if (HasDebug)
+            {
+                ClearResponse();
+            }
+        }
+
+        /// <summary>Field number for the "id" field.</summary>
+        public const int IdFieldNumber = 97;
+        private readonly static uint IdDefaultValue = 0;
+
+        private uint id_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint Id
+        {
+            get { if ((_hasBits0 & 1) != 0) { return id_; } else { return IdDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                id_ = value;
+            }
+        }
+        /// <summary>Gets whether the "id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "error" field.</summary>
@@ -1985,18 +2843,33 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "status" field.</summary>
         public const int StatusFieldNumber = 99;
-        private global::SC2APIProtocol.Status status_ = 0;
+        private readonly static global::SC2APIProtocol.Status StatusDefaultValue = global::SC2APIProtocol.Status.Launched;
+
+        private global::SC2APIProtocol.Status status_;
         /// <summary>
         /// Should be sent back with all responses.
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Status Status
         {
-            get { return status_; }
+            get { if ((_hasBits0 & 2) != 0) { return status_; } else { return StatusDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 status_ = value;
             }
+        }
+        /// <summary>Gets whether the "status" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasStatus
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "status" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearStatus()
+        {
+            _hasBits0 &= ~2;
         }
 
         private object response_;
@@ -2023,6 +2896,7 @@ namespace SC2APIProtocol
             ReplayInfo = 16,
             AvailableMaps = 17,
             SaveMap = 18,
+            MapCommand = 22,
             Ping = 19,
             Debug = 20,
         }
@@ -2076,8 +2950,10 @@ namespace SC2APIProtocol
             if (!object.Equals(ReplayInfo, other.ReplayInfo)) return false;
             if (!object.Equals(AvailableMaps, other.AvailableMaps)) return false;
             if (!object.Equals(SaveMap, other.SaveMap)) return false;
+            if (!object.Equals(MapCommand, other.MapCommand)) return false;
             if (!object.Equals(Ping, other.Ping)) return false;
             if (!object.Equals(Debug, other.Debug)) return false;
+            if (Id != other.Id) return false;
             if (!error_.Equals(other.error_)) return false;
             if (Status != other.Status) return false;
             if (ResponseCase != other.ResponseCase) return false;
@@ -2088,29 +2964,31 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (responseCase_ == ResponseOneofCase.CreateGame) hash ^= CreateGame.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.JoinGame) hash ^= JoinGame.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.RestartGame) hash ^= RestartGame.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.StartReplay) hash ^= StartReplay.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.LeaveGame) hash ^= LeaveGame.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.QuickSave) hash ^= QuickSave.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.QuickLoad) hash ^= QuickLoad.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Quit) hash ^= Quit.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.GameInfo) hash ^= GameInfo.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Observation) hash ^= Observation.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Action) hash ^= Action.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.ObsAction) hash ^= ObsAction.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Step) hash ^= Step.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Data) hash ^= Data.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Query) hash ^= Query.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.SaveReplay) hash ^= SaveReplay.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.ReplayInfo) hash ^= ReplayInfo.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.AvailableMaps) hash ^= AvailableMaps.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.SaveMap) hash ^= SaveMap.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Ping) hash ^= Ping.GetHashCode();
-            if (responseCase_ == ResponseOneofCase.Debug) hash ^= Debug.GetHashCode();
+            if (HasCreateGame) hash ^= CreateGame.GetHashCode();
+            if (HasJoinGame) hash ^= JoinGame.GetHashCode();
+            if (HasRestartGame) hash ^= RestartGame.GetHashCode();
+            if (HasStartReplay) hash ^= StartReplay.GetHashCode();
+            if (HasLeaveGame) hash ^= LeaveGame.GetHashCode();
+            if (HasQuickSave) hash ^= QuickSave.GetHashCode();
+            if (HasQuickLoad) hash ^= QuickLoad.GetHashCode();
+            if (HasQuit) hash ^= Quit.GetHashCode();
+            if (HasGameInfo) hash ^= GameInfo.GetHashCode();
+            if (HasObservation) hash ^= Observation.GetHashCode();
+            if (HasAction) hash ^= Action.GetHashCode();
+            if (HasObsAction) hash ^= ObsAction.GetHashCode();
+            if (HasStep) hash ^= Step.GetHashCode();
+            if (HasData) hash ^= Data.GetHashCode();
+            if (HasQuery) hash ^= Query.GetHashCode();
+            if (HasSaveReplay) hash ^= SaveReplay.GetHashCode();
+            if (HasReplayInfo) hash ^= ReplayInfo.GetHashCode();
+            if (HasAvailableMaps) hash ^= AvailableMaps.GetHashCode();
+            if (HasSaveMap) hash ^= SaveMap.GetHashCode();
+            if (HasMapCommand) hash ^= MapCommand.GetHashCode();
+            if (HasPing) hash ^= Ping.GetHashCode();
+            if (HasDebug) hash ^= Debug.GetHashCode();
+            if (HasId) hash ^= Id.GetHashCode();
             hash ^= error_.GetHashCode();
-            if (Status != 0) hash ^= Status.GetHashCode();
+            if (HasStatus) hash ^= Status.GetHashCode();
             hash ^= (int)responseCase_;
             if (_unknownFields != null)
             {
@@ -2128,113 +3006,123 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (responseCase_ == ResponseOneofCase.CreateGame)
+            if (HasCreateGame)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(CreateGame);
             }
-            if (responseCase_ == ResponseOneofCase.JoinGame)
+            if (HasJoinGame)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(JoinGame);
             }
-            if (responseCase_ == ResponseOneofCase.RestartGame)
+            if (HasRestartGame)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(RestartGame);
             }
-            if (responseCase_ == ResponseOneofCase.StartReplay)
+            if (HasStartReplay)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(StartReplay);
             }
-            if (responseCase_ == ResponseOneofCase.LeaveGame)
+            if (HasLeaveGame)
             {
                 output.WriteRawTag(42);
                 output.WriteMessage(LeaveGame);
             }
-            if (responseCase_ == ResponseOneofCase.QuickSave)
+            if (HasQuickSave)
             {
                 output.WriteRawTag(50);
                 output.WriteMessage(QuickSave);
             }
-            if (responseCase_ == ResponseOneofCase.QuickLoad)
+            if (HasQuickLoad)
             {
                 output.WriteRawTag(58);
                 output.WriteMessage(QuickLoad);
             }
-            if (responseCase_ == ResponseOneofCase.Quit)
+            if (HasQuit)
             {
                 output.WriteRawTag(66);
                 output.WriteMessage(Quit);
             }
-            if (responseCase_ == ResponseOneofCase.GameInfo)
+            if (HasGameInfo)
             {
                 output.WriteRawTag(74);
                 output.WriteMessage(GameInfo);
             }
-            if (responseCase_ == ResponseOneofCase.Observation)
+            if (HasObservation)
             {
                 output.WriteRawTag(82);
                 output.WriteMessage(Observation);
             }
-            if (responseCase_ == ResponseOneofCase.Action)
+            if (HasAction)
             {
                 output.WriteRawTag(90);
                 output.WriteMessage(Action);
             }
-            if (responseCase_ == ResponseOneofCase.Step)
+            if (HasStep)
             {
                 output.WriteRawTag(98);
                 output.WriteMessage(Step);
             }
-            if (responseCase_ == ResponseOneofCase.Data)
+            if (HasData)
             {
                 output.WriteRawTag(106);
                 output.WriteMessage(Data);
             }
-            if (responseCase_ == ResponseOneofCase.Query)
+            if (HasQuery)
             {
                 output.WriteRawTag(114);
                 output.WriteMessage(Query);
             }
-            if (responseCase_ == ResponseOneofCase.SaveReplay)
+            if (HasSaveReplay)
             {
                 output.WriteRawTag(122);
                 output.WriteMessage(SaveReplay);
             }
-            if (responseCase_ == ResponseOneofCase.ReplayInfo)
+            if (HasReplayInfo)
             {
                 output.WriteRawTag(130, 1);
                 output.WriteMessage(ReplayInfo);
             }
-            if (responseCase_ == ResponseOneofCase.AvailableMaps)
+            if (HasAvailableMaps)
             {
                 output.WriteRawTag(138, 1);
                 output.WriteMessage(AvailableMaps);
             }
-            if (responseCase_ == ResponseOneofCase.SaveMap)
+            if (HasSaveMap)
             {
                 output.WriteRawTag(146, 1);
                 output.WriteMessage(SaveMap);
             }
-            if (responseCase_ == ResponseOneofCase.Ping)
+            if (HasPing)
             {
                 output.WriteRawTag(154, 1);
                 output.WriteMessage(Ping);
             }
-            if (responseCase_ == ResponseOneofCase.Debug)
+            if (HasDebug)
             {
                 output.WriteRawTag(162, 1);
                 output.WriteMessage(Debug);
             }
-            if (responseCase_ == ResponseOneofCase.ObsAction)
+            if (HasObsAction)
             {
                 output.WriteRawTag(170, 1);
                 output.WriteMessage(ObsAction);
             }
+            if (HasMapCommand)
+            {
+                output.WriteRawTag(178, 1);
+                output.WriteMessage(MapCommand);
+            }
+            if (HasId)
+            {
+                output.WriteRawTag(136, 6);
+                output.WriteUInt32(Id);
+            }
             error_.WriteTo(output, _repeated_error_codec);
-            if (Status != 0)
+            if (HasStatus)
             {
                 output.WriteRawTag(152, 6);
                 output.WriteEnum((int)Status);
@@ -2249,92 +3137,100 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (responseCase_ == ResponseOneofCase.CreateGame)
+            if (HasCreateGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreateGame);
             }
-            if (responseCase_ == ResponseOneofCase.JoinGame)
+            if (HasJoinGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(JoinGame);
             }
-            if (responseCase_ == ResponseOneofCase.RestartGame)
+            if (HasRestartGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(RestartGame);
             }
-            if (responseCase_ == ResponseOneofCase.StartReplay)
+            if (HasStartReplay)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(StartReplay);
             }
-            if (responseCase_ == ResponseOneofCase.LeaveGame)
+            if (HasLeaveGame)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(LeaveGame);
             }
-            if (responseCase_ == ResponseOneofCase.QuickSave)
+            if (HasQuickSave)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(QuickSave);
             }
-            if (responseCase_ == ResponseOneofCase.QuickLoad)
+            if (HasQuickLoad)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(QuickLoad);
             }
-            if (responseCase_ == ResponseOneofCase.Quit)
+            if (HasQuit)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Quit);
             }
-            if (responseCase_ == ResponseOneofCase.GameInfo)
+            if (HasGameInfo)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(GameInfo);
             }
-            if (responseCase_ == ResponseOneofCase.Observation)
+            if (HasObservation)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Observation);
             }
-            if (responseCase_ == ResponseOneofCase.Action)
+            if (HasAction)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Action);
             }
-            if (responseCase_ == ResponseOneofCase.ObsAction)
+            if (HasObsAction)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(ObsAction);
             }
-            if (responseCase_ == ResponseOneofCase.Step)
+            if (HasStep)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Step);
             }
-            if (responseCase_ == ResponseOneofCase.Data)
+            if (HasData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Data);
             }
-            if (responseCase_ == ResponseOneofCase.Query)
+            if (HasQuery)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Query);
             }
-            if (responseCase_ == ResponseOneofCase.SaveReplay)
+            if (HasSaveReplay)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(SaveReplay);
             }
-            if (responseCase_ == ResponseOneofCase.ReplayInfo)
+            if (HasReplayInfo)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(ReplayInfo);
             }
-            if (responseCase_ == ResponseOneofCase.AvailableMaps)
+            if (HasAvailableMaps)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(AvailableMaps);
             }
-            if (responseCase_ == ResponseOneofCase.SaveMap)
+            if (HasSaveMap)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(SaveMap);
             }
-            if (responseCase_ == ResponseOneofCase.Ping)
+            if (HasMapCommand)
+            {
+                size += 2 + pb::CodedOutputStream.ComputeMessageSize(MapCommand);
+            }
+            if (HasPing)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(Ping);
             }
-            if (responseCase_ == ResponseOneofCase.Debug)
+            if (HasDebug)
             {
                 size += 2 + pb::CodedOutputStream.ComputeMessageSize(Debug);
             }
+            if (HasId)
+            {
+                size += 2 + pb::CodedOutputStream.ComputeUInt32Size(Id);
+            }
             size += error_.CalculateSize(_repeated_error_codec);
-            if (Status != 0)
+            if (HasStatus)
             {
                 size += 2 + pb::CodedOutputStream.ComputeEnumSize((int)Status);
             }
@@ -2352,8 +3248,12 @@ namespace SC2APIProtocol
             {
                 return;
             }
+            if (other.HasId)
+            {
+                Id = other.Id;
+            }
             error_.Add(other.error_);
-            if (other.Status != 0)
+            if (other.HasStatus)
             {
                 Status = other.Status;
             }
@@ -2492,6 +3392,13 @@ namespace SC2APIProtocol
                     }
                     SaveMap.MergeFrom(other.SaveMap);
                     break;
+                case ResponseOneofCase.MapCommand:
+                    if (MapCommand == null)
+                    {
+                        MapCommand = new global::SC2APIProtocol.ResponseMapCommand();
+                    }
+                    MapCommand.MergeFrom(other.MapCommand);
+                    break;
                 case ResponseOneofCase.Ping:
                     if (Ping == null)
                     {
@@ -2525,7 +3432,7 @@ namespace SC2APIProtocol
                     case 10:
                         {
                             global::SC2APIProtocol.ResponseCreateGame subBuilder = new global::SC2APIProtocol.ResponseCreateGame();
-                            if (responseCase_ == ResponseOneofCase.CreateGame)
+                            if (HasCreateGame)
                             {
                                 subBuilder.MergeFrom(CreateGame);
                             }
@@ -2536,7 +3443,7 @@ namespace SC2APIProtocol
                     case 18:
                         {
                             global::SC2APIProtocol.ResponseJoinGame subBuilder = new global::SC2APIProtocol.ResponseJoinGame();
-                            if (responseCase_ == ResponseOneofCase.JoinGame)
+                            if (HasJoinGame)
                             {
                                 subBuilder.MergeFrom(JoinGame);
                             }
@@ -2547,7 +3454,7 @@ namespace SC2APIProtocol
                     case 26:
                         {
                             global::SC2APIProtocol.ResponseRestartGame subBuilder = new global::SC2APIProtocol.ResponseRestartGame();
-                            if (responseCase_ == ResponseOneofCase.RestartGame)
+                            if (HasRestartGame)
                             {
                                 subBuilder.MergeFrom(RestartGame);
                             }
@@ -2558,7 +3465,7 @@ namespace SC2APIProtocol
                     case 34:
                         {
                             global::SC2APIProtocol.ResponseStartReplay subBuilder = new global::SC2APIProtocol.ResponseStartReplay();
-                            if (responseCase_ == ResponseOneofCase.StartReplay)
+                            if (HasStartReplay)
                             {
                                 subBuilder.MergeFrom(StartReplay);
                             }
@@ -2569,7 +3476,7 @@ namespace SC2APIProtocol
                     case 42:
                         {
                             global::SC2APIProtocol.ResponseLeaveGame subBuilder = new global::SC2APIProtocol.ResponseLeaveGame();
-                            if (responseCase_ == ResponseOneofCase.LeaveGame)
+                            if (HasLeaveGame)
                             {
                                 subBuilder.MergeFrom(LeaveGame);
                             }
@@ -2580,7 +3487,7 @@ namespace SC2APIProtocol
                     case 50:
                         {
                             global::SC2APIProtocol.ResponseQuickSave subBuilder = new global::SC2APIProtocol.ResponseQuickSave();
-                            if (responseCase_ == ResponseOneofCase.QuickSave)
+                            if (HasQuickSave)
                             {
                                 subBuilder.MergeFrom(QuickSave);
                             }
@@ -2591,7 +3498,7 @@ namespace SC2APIProtocol
                     case 58:
                         {
                             global::SC2APIProtocol.ResponseQuickLoad subBuilder = new global::SC2APIProtocol.ResponseQuickLoad();
-                            if (responseCase_ == ResponseOneofCase.QuickLoad)
+                            if (HasQuickLoad)
                             {
                                 subBuilder.MergeFrom(QuickLoad);
                             }
@@ -2602,7 +3509,7 @@ namespace SC2APIProtocol
                     case 66:
                         {
                             global::SC2APIProtocol.ResponseQuit subBuilder = new global::SC2APIProtocol.ResponseQuit();
-                            if (responseCase_ == ResponseOneofCase.Quit)
+                            if (HasQuit)
                             {
                                 subBuilder.MergeFrom(Quit);
                             }
@@ -2613,7 +3520,7 @@ namespace SC2APIProtocol
                     case 74:
                         {
                             global::SC2APIProtocol.ResponseGameInfo subBuilder = new global::SC2APIProtocol.ResponseGameInfo();
-                            if (responseCase_ == ResponseOneofCase.GameInfo)
+                            if (HasGameInfo)
                             {
                                 subBuilder.MergeFrom(GameInfo);
                             }
@@ -2624,7 +3531,7 @@ namespace SC2APIProtocol
                     case 82:
                         {
                             global::SC2APIProtocol.ResponseObservation subBuilder = new global::SC2APIProtocol.ResponseObservation();
-                            if (responseCase_ == ResponseOneofCase.Observation)
+                            if (HasObservation)
                             {
                                 subBuilder.MergeFrom(Observation);
                             }
@@ -2635,7 +3542,7 @@ namespace SC2APIProtocol
                     case 90:
                         {
                             global::SC2APIProtocol.ResponseAction subBuilder = new global::SC2APIProtocol.ResponseAction();
-                            if (responseCase_ == ResponseOneofCase.Action)
+                            if (HasAction)
                             {
                                 subBuilder.MergeFrom(Action);
                             }
@@ -2646,7 +3553,7 @@ namespace SC2APIProtocol
                     case 98:
                         {
                             global::SC2APIProtocol.ResponseStep subBuilder = new global::SC2APIProtocol.ResponseStep();
-                            if (responseCase_ == ResponseOneofCase.Step)
+                            if (HasStep)
                             {
                                 subBuilder.MergeFrom(Step);
                             }
@@ -2657,7 +3564,7 @@ namespace SC2APIProtocol
                     case 106:
                         {
                             global::SC2APIProtocol.ResponseData subBuilder = new global::SC2APIProtocol.ResponseData();
-                            if (responseCase_ == ResponseOneofCase.Data)
+                            if (HasData)
                             {
                                 subBuilder.MergeFrom(Data);
                             }
@@ -2668,7 +3575,7 @@ namespace SC2APIProtocol
                     case 114:
                         {
                             global::SC2APIProtocol.ResponseQuery subBuilder = new global::SC2APIProtocol.ResponseQuery();
-                            if (responseCase_ == ResponseOneofCase.Query)
+                            if (HasQuery)
                             {
                                 subBuilder.MergeFrom(Query);
                             }
@@ -2679,7 +3586,7 @@ namespace SC2APIProtocol
                     case 122:
                         {
                             global::SC2APIProtocol.ResponseSaveReplay subBuilder = new global::SC2APIProtocol.ResponseSaveReplay();
-                            if (responseCase_ == ResponseOneofCase.SaveReplay)
+                            if (HasSaveReplay)
                             {
                                 subBuilder.MergeFrom(SaveReplay);
                             }
@@ -2690,7 +3597,7 @@ namespace SC2APIProtocol
                     case 130:
                         {
                             global::SC2APIProtocol.ResponseReplayInfo subBuilder = new global::SC2APIProtocol.ResponseReplayInfo();
-                            if (responseCase_ == ResponseOneofCase.ReplayInfo)
+                            if (HasReplayInfo)
                             {
                                 subBuilder.MergeFrom(ReplayInfo);
                             }
@@ -2701,7 +3608,7 @@ namespace SC2APIProtocol
                     case 138:
                         {
                             global::SC2APIProtocol.ResponseAvailableMaps subBuilder = new global::SC2APIProtocol.ResponseAvailableMaps();
-                            if (responseCase_ == ResponseOneofCase.AvailableMaps)
+                            if (HasAvailableMaps)
                             {
                                 subBuilder.MergeFrom(AvailableMaps);
                             }
@@ -2712,7 +3619,7 @@ namespace SC2APIProtocol
                     case 146:
                         {
                             global::SC2APIProtocol.ResponseSaveMap subBuilder = new global::SC2APIProtocol.ResponseSaveMap();
-                            if (responseCase_ == ResponseOneofCase.SaveMap)
+                            if (HasSaveMap)
                             {
                                 subBuilder.MergeFrom(SaveMap);
                             }
@@ -2723,7 +3630,7 @@ namespace SC2APIProtocol
                     case 154:
                         {
                             global::SC2APIProtocol.ResponsePing subBuilder = new global::SC2APIProtocol.ResponsePing();
-                            if (responseCase_ == ResponseOneofCase.Ping)
+                            if (HasPing)
                             {
                                 subBuilder.MergeFrom(Ping);
                             }
@@ -2734,7 +3641,7 @@ namespace SC2APIProtocol
                     case 162:
                         {
                             global::SC2APIProtocol.ResponseDebug subBuilder = new global::SC2APIProtocol.ResponseDebug();
-                            if (responseCase_ == ResponseOneofCase.Debug)
+                            if (HasDebug)
                             {
                                 subBuilder.MergeFrom(Debug);
                             }
@@ -2745,12 +3652,28 @@ namespace SC2APIProtocol
                     case 170:
                         {
                             global::SC2APIProtocol.ResponseObserverAction subBuilder = new global::SC2APIProtocol.ResponseObserverAction();
-                            if (responseCase_ == ResponseOneofCase.ObsAction)
+                            if (HasObsAction)
                             {
                                 subBuilder.MergeFrom(ObsAction);
                             }
                             input.ReadMessage(subBuilder);
                             ObsAction = subBuilder;
+                            break;
+                        }
+                    case 178:
+                        {
+                            global::SC2APIProtocol.ResponseMapCommand subBuilder = new global::SC2APIProtocol.ResponseMapCommand();
+                            if (HasMapCommand)
+                            {
+                                subBuilder.MergeFrom(MapCommand);
+                            }
+                            input.ReadMessage(subBuilder);
+                            MapCommand = subBuilder;
+                            break;
+                        }
+                    case 776:
+                        {
+                            Id = input.ReadUInt32();
                             break;
                         }
                     case 786:
@@ -2760,7 +3683,7 @@ namespace SC2APIProtocol
                         }
                     case 792:
                         {
-                            status_ = (global::SC2APIProtocol.Status)input.ReadEnum();
+                            Status = (global::SC2APIProtocol.Status)input.ReadEnum();
                             break;
                         }
                 }
@@ -2778,6 +3701,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<RequestCreateGame> _parser = new pb::MessageParser<RequestCreateGame>(() => new RequestCreateGame());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<RequestCreateGame> Parser { get { return _parser; } }
 
@@ -2804,6 +3728,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RequestCreateGame(RequestCreateGame other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerSetup_ = other.playerSetup_.Clone();
             disableFog_ = other.disableFog_;
             randomSeed_ = other.randomSeed_;
@@ -2835,11 +3760,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.LocalMap LocalMap
         {
-            get { return mapCase_ == MapOneofCase.LocalMap ? (global::SC2APIProtocol.LocalMap)map_ : null; }
+            get { return HasLocalMap ? (global::SC2APIProtocol.LocalMap)map_ : null; }
             set
             {
                 map_ = value;
                 mapCase_ = value == null ? MapOneofCase.None : MapOneofCase.LocalMap;
+            }
+        }
+        /// <summary>Gets whether the "local_map" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasLocalMap
+        {
+            get { return mapCase_ == MapOneofCase.LocalMap; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "local_map" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearLocalMap()
+        {
+            if (HasLocalMap)
+            {
+                ClearMap();
             }
         }
 
@@ -2851,11 +3791,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string BattlenetMapName
         {
-            get { return mapCase_ == MapOneofCase.BattlenetMapName ? (string)map_ : ""; }
+            get { return HasBattlenetMapName ? (string)map_ : ""; }
             set
             {
                 map_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
                 mapCase_ = MapOneofCase.BattlenetMapName;
+            }
+        }
+        /// <summary>Gets whether the "battlenet_map_name" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasBattlenetMapName
+        {
+            get { return mapCase_ == MapOneofCase.BattlenetMapName; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "battlenet_map_name" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearBattlenetMapName()
+        {
+            if (HasBattlenetMapName)
+            {
+                ClearMap();
             }
         }
 
@@ -2872,19 +3827,36 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "disable_fog" field.</summary>
         public const int DisableFogFieldNumber = 4;
+        private readonly static bool DisableFogDefaultValue = false;
+
         private bool disableFog_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool DisableFog
         {
-            get { return disableFog_; }
+            get { if ((_hasBits0 & 1) != 0) { return disableFog_; } else { return DisableFogDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 disableFog_ = value;
             }
+        }
+        /// <summary>Gets whether the "disable_fog" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDisableFog
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "disable_fog" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDisableFog()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "random_seed" field.</summary>
         public const int RandomSeedFieldNumber = 5;
+        private readonly static uint RandomSeedDefaultValue = 0;
+
         private uint randomSeed_;
         /// <summary>
         /// Sets the pseudo-random seed for the game.
@@ -2892,15 +3864,30 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint RandomSeed
         {
-            get { return randomSeed_; }
+            get { if ((_hasBits0 & 2) != 0) { return randomSeed_; } else { return RandomSeedDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 randomSeed_ = value;
             }
+        }
+        /// <summary>Gets whether the "random_seed" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRandomSeed
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "random_seed" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRandomSeed()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "realtime" field.</summary>
         public const int RealtimeFieldNumber = 6;
+        private readonly static bool RealtimeDefaultValue = false;
+
         private bool realtime_;
         /// <summary>
         /// If set, the game plays in real time.
@@ -2908,11 +3895,24 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Realtime
         {
-            get { return realtime_; }
+            get { if ((_hasBits0 & 4) != 0) { return realtime_; } else { return RealtimeDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 realtime_ = value;
             }
+        }
+        /// <summary>Gets whether the "realtime" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRealtime
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "realtime" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRealtime()
+        {
+            _hasBits0 &= ~4;
         }
 
         private object map_;
@@ -2968,12 +3968,12 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (mapCase_ == MapOneofCase.LocalMap) hash ^= LocalMap.GetHashCode();
-            if (mapCase_ == MapOneofCase.BattlenetMapName) hash ^= BattlenetMapName.GetHashCode();
+            if (HasLocalMap) hash ^= LocalMap.GetHashCode();
+            if (HasBattlenetMapName) hash ^= BattlenetMapName.GetHashCode();
             hash ^= playerSetup_.GetHashCode();
-            if (DisableFog != false) hash ^= DisableFog.GetHashCode();
-            if (RandomSeed != 0) hash ^= RandomSeed.GetHashCode();
-            if (Realtime != false) hash ^= Realtime.GetHashCode();
+            if (HasDisableFog) hash ^= DisableFog.GetHashCode();
+            if (HasRandomSeed) hash ^= RandomSeed.GetHashCode();
+            if (HasRealtime) hash ^= Realtime.GetHashCode();
             hash ^= (int)mapCase_;
             if (_unknownFields != null)
             {
@@ -2991,28 +3991,28 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (mapCase_ == MapOneofCase.LocalMap)
+            if (HasLocalMap)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(LocalMap);
             }
-            if (mapCase_ == MapOneofCase.BattlenetMapName)
+            if (HasBattlenetMapName)
             {
                 output.WriteRawTag(18);
                 output.WriteString(BattlenetMapName);
             }
             playerSetup_.WriteTo(output, _repeated_playerSetup_codec);
-            if (DisableFog != false)
+            if (HasDisableFog)
             {
                 output.WriteRawTag(32);
                 output.WriteBool(DisableFog);
             }
-            if (RandomSeed != 0)
+            if (HasRandomSeed)
             {
                 output.WriteRawTag(40);
                 output.WriteUInt32(RandomSeed);
             }
-            if (Realtime != false)
+            if (HasRealtime)
             {
                 output.WriteRawTag(48);
                 output.WriteBool(Realtime);
@@ -3027,24 +4027,24 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (mapCase_ == MapOneofCase.LocalMap)
+            if (HasLocalMap)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(LocalMap);
             }
-            if (mapCase_ == MapOneofCase.BattlenetMapName)
+            if (HasBattlenetMapName)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(BattlenetMapName);
             }
             size += playerSetup_.CalculateSize(_repeated_playerSetup_codec);
-            if (DisableFog != false)
+            if (HasDisableFog)
             {
                 size += 1 + 1;
             }
-            if (RandomSeed != 0)
+            if (HasRandomSeed)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(RandomSeed);
             }
-            if (Realtime != false)
+            if (HasRealtime)
             {
                 size += 1 + 1;
             }
@@ -3063,15 +4063,15 @@ namespace SC2APIProtocol
                 return;
             }
             playerSetup_.Add(other.playerSetup_);
-            if (other.DisableFog != false)
+            if (other.HasDisableFog)
             {
                 DisableFog = other.DisableFog;
             }
-            if (other.RandomSeed != 0)
+            if (other.HasRandomSeed)
             {
                 RandomSeed = other.RandomSeed;
             }
-            if (other.Realtime != false)
+            if (other.HasRealtime)
             {
                 Realtime = other.Realtime;
             }
@@ -3106,7 +4106,7 @@ namespace SC2APIProtocol
                     case 10:
                         {
                             global::SC2APIProtocol.LocalMap subBuilder = new global::SC2APIProtocol.LocalMap();
-                            if (mapCase_ == MapOneofCase.LocalMap)
+                            if (HasLocalMap)
                             {
                                 subBuilder.MergeFrom(LocalMap);
                             }
@@ -3188,7 +4188,9 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "map_path" field.</summary>
         public const int MapPathFieldNumber = 1;
-        private string mapPath_ = "";
+        private readonly static string MapPathDefaultValue = "";
+
+        private string mapPath_;
         /// <summary>
         /// A map can be specified either by a file path or the data of the .SC2Map file.
         /// If you provide both, it will play the game using map_data and store map_path
@@ -3197,24 +4199,50 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string MapPath
         {
-            get { return mapPath_; }
+            get { return mapPath_ ?? MapPathDefaultValue; }
             set
             {
                 mapPath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "map_path" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapPath
+        {
+            get { return mapPath_ != null; }
+        }
+        /// <summary>Clears the value of the "map_path" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapPath()
+        {
+            mapPath_ = null;
+        }
 
         /// <summary>Field number for the "map_data" field.</summary>
         public const int MapDataFieldNumber = 7;
-        private pb::ByteString mapData_ = pb::ByteString.Empty;
+        private readonly static pb::ByteString MapDataDefaultValue = pb::ByteString.Empty;
+
+        private pb::ByteString mapData_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString MapData
         {
-            get { return mapData_; }
+            get { return mapData_ ?? MapDataDefaultValue; }
             set
             {
                 mapData_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "map_data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapData
+        {
+            get { return mapData_ != null; }
+        }
+        /// <summary>Clears the value of the "map_data" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapData()
+        {
+            mapData_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3243,8 +4271,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (MapPath.Length != 0) hash ^= MapPath.GetHashCode();
-            if (MapData.Length != 0) hash ^= MapData.GetHashCode();
+            if (HasMapPath) hash ^= MapPath.GetHashCode();
+            if (HasMapData) hash ^= MapData.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -3261,12 +4289,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (MapPath.Length != 0)
+            if (HasMapPath)
             {
                 output.WriteRawTag(10);
                 output.WriteString(MapPath);
             }
-            if (MapData.Length != 0)
+            if (HasMapData)
             {
                 output.WriteRawTag(58);
                 output.WriteBytes(MapData);
@@ -3281,11 +4309,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (MapPath.Length != 0)
+            if (HasMapPath)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(MapPath);
             }
-            if (MapData.Length != 0)
+            if (HasMapData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeBytesSize(MapData);
             }
@@ -3303,11 +4331,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.MapPath.Length != 0)
+            if (other.HasMapPath)
             {
                 MapPath = other.MapPath;
             }
-            if (other.MapData.Length != 0)
+            if (other.HasMapData)
             {
                 MapData = other.MapData;
             }
@@ -3345,6 +4373,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ResponseCreateGame> _parser = new pb::MessageParser<ResponseCreateGame>(() => new ResponseCreateGame());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponseCreateGame> Parser { get { return _parser; } }
 
@@ -3371,6 +4400,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponseCreateGame(ResponseCreateGame other) : this()
         {
+            _hasBits0 = other._hasBits0;
             error_ = other.error_;
             errorDetails_ = other.errorDetails_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -3384,28 +4414,57 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 1;
-        private global::SC2APIProtocol.ResponseCreateGame.Types.Error error_ = 0;
+        private readonly static global::SC2APIProtocol.ResponseCreateGame.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseCreateGame.Types.Error.MissingMap;
+
+        private global::SC2APIProtocol.ResponseCreateGame.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseCreateGame.Types.Error Error
         {
-            get { return error_; }
+            get { if ((_hasBits0 & 1) != 0) { return error_; } else { return ErrorDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 error_ = value;
             }
+        }
+        /// <summary>Gets whether the "error" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasError
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "error" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearError()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "error_details" field.</summary>
         public const int ErrorDetailsFieldNumber = 2;
-        private string errorDetails_ = "";
+        private readonly static string ErrorDetailsDefaultValue = "";
+
+        private string errorDetails_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ErrorDetails
         {
-            get { return errorDetails_; }
+            get { return errorDetails_ ?? ErrorDetailsDefaultValue; }
             set
             {
                 errorDetails_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "error_details" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasErrorDetails
+        {
+            get { return errorDetails_ != null; }
+        }
+        /// <summary>Clears the value of the "error_details" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearErrorDetails()
+        {
+            errorDetails_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3434,8 +4493,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Error != 0) hash ^= Error.GetHashCode();
-            if (ErrorDetails.Length != 0) hash ^= ErrorDetails.GetHashCode();
+            if (HasError) hash ^= Error.GetHashCode();
+            if (HasErrorDetails) hash ^= ErrorDetails.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -3452,12 +4511,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Error != 0)
+            if (HasError)
             {
                 output.WriteRawTag(8);
                 output.WriteEnum((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 output.WriteRawTag(18);
                 output.WriteString(ErrorDetails);
@@ -3472,11 +4531,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Error != 0)
+            if (HasError)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ErrorDetails);
             }
@@ -3494,11 +4553,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Error != 0)
+            if (other.HasError)
             {
                 Error = other.Error;
             }
-            if (other.ErrorDetails.Length != 0)
+            if (other.HasErrorDetails)
             {
                 ErrorDetails = other.ErrorDetails;
             }
@@ -3518,7 +4577,7 @@ namespace SC2APIProtocol
                         break;
                     case 8:
                         {
-                            error_ = (global::SC2APIProtocol.ResponseCreateGame.Types.Error)input.ReadEnum();
+                            Error = (global::SC2APIProtocol.ResponseCreateGame.Types.Error)input.ReadEnum();
                             break;
                         }
                     case 18:
@@ -3537,7 +4596,6 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
-                [pbr::OriginalName("Error_UNSET")] Unset = 0,
                 [pbr::OriginalName("MissingMap")] MissingMap = 1,
                 [pbr::OriginalName("InvalidMapPath")] InvalidMapPath = 2,
                 [pbr::OriginalName("InvalidMapData")] InvalidMapData = 3,
@@ -3565,6 +4623,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<RequestJoinGame> _parser = new pb::MessageParser<RequestJoinGame>(() => new RequestJoinGame());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<RequestJoinGame> Parser { get { return _parser; } }
 
@@ -3591,10 +4650,13 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RequestJoinGame(RequestJoinGame other) : this()
         {
-            Options = other.options_ != null ? other.Options.Clone() : null;
-            ServerPorts = other.serverPorts_ != null ? other.ServerPorts.Clone() : null;
+            _hasBits0 = other._hasBits0;
+            options_ = other.HasOptions ? other.options_.Clone() : null;
+            serverPorts_ = other.HasServerPorts ? other.serverPorts_.Clone() : null;
             clientPorts_ = other.clientPorts_.Clone();
             sharedPort_ = other.sharedPort_;
+            playerName_ = other.playerName_;
+            hostIp_ = other.hostIp_;
             switch (other.ParticipationCase)
             {
                 case ParticipationOneofCase.Race:
@@ -3622,11 +4684,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Race Race
         {
-            get { return participationCase_ == ParticipationOneofCase.Race ? (global::SC2APIProtocol.Race)participation_ : 0; }
+            get { return HasRace ? (global::SC2APIProtocol.Race)participation_ : global::SC2APIProtocol.Race.NoRace; }
             set
             {
                 participation_ = value;
                 participationCase_ = ParticipationOneofCase.Race;
+            }
+        }
+        /// <summary>Gets whether the "race" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRace
+        {
+            get { return participationCase_ == ParticipationOneofCase.Race; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "race" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRace()
+        {
+            if (HasRace)
+            {
+                ClearParticipation();
             }
         }
 
@@ -3638,11 +4715,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint ObservedPlayerId
         {
-            get { return participationCase_ == ParticipationOneofCase.ObservedPlayerId ? (uint)participation_ : 0; }
+            get { return HasObservedPlayerId ? (uint)participation_ : 0; }
             set
             {
                 participation_ = value;
                 participationCase_ = ParticipationOneofCase.ObservedPlayerId;
+            }
+        }
+        /// <summary>Gets whether the "observed_player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasObservedPlayerId
+        {
+            get { return participationCase_ == ParticipationOneofCase.ObservedPlayerId; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "observed_player_id" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearObservedPlayerId()
+        {
+            if (HasObservedPlayerId)
+            {
+                ClearParticipation();
             }
         }
 
@@ -3661,6 +4753,18 @@ namespace SC2APIProtocol
                 options_ = value;
             }
         }
+        /// <summary>Gets whether the options field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasOptions
+        {
+            get { return options_ != null; }
+        }
+        /// <summary>Clears the value of the options field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearOptions()
+        {
+            options_ = null;
+        }
 
         /// <summary>Field number for the "server_ports" field.</summary>
         public const int ServerPortsFieldNumber = 4;
@@ -3676,6 +4780,18 @@ namespace SC2APIProtocol
             {
                 serverPorts_ = value;
             }
+        }
+        /// <summary>Gets whether the server_ports field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasServerPorts
+        {
+            get { return serverPorts_ != null; }
+        }
+        /// <summary>Clears the value of the server_ports field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearServerPorts()
+        {
+            serverPorts_ = null;
         }
 
         /// <summary>Field number for the "client_ports" field.</summary>
@@ -3694,6 +4810,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "shared_port" field.</summary>
         public const int SharedPortFieldNumber = 6;
+        private readonly static int SharedPortDefaultValue = 0;
+
         private int sharedPort_;
         /// <summary>
         /// Currently only a singe client is supported.
@@ -3701,11 +4819,84 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int SharedPort
         {
-            get { return sharedPort_; }
+            get { if ((_hasBits0 & 4) != 0) { return sharedPort_; } else { return SharedPortDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 sharedPort_ = value;
             }
+        }
+        /// <summary>Gets whether the "shared_port" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSharedPort
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "shared_port" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSharedPort()
+        {
+            _hasBits0 &= ~4;
+        }
+
+        /// <summary>Field number for the "player_name" field.</summary>
+        public const int PlayerNameFieldNumber = 7;
+        private readonly static string PlayerNameDefaultValue = "";
+
+        private string playerName_;
+        /// <summary>
+        /// Use this to set the player's name to something other than autogenerated name.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string PlayerName
+        {
+            get { return playerName_ ?? PlayerNameDefaultValue; }
+            set
+            {
+                playerName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
+        /// <summary>Gets whether the "player_name" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerName
+        {
+            get { return playerName_ != null; }
+        }
+        /// <summary>Clears the value of the "player_name" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerName()
+        {
+            playerName_ = null;
+        }
+
+        /// <summary>Field number for the "host_ip" field.</summary>
+        public const int HostIpFieldNumber = 8;
+        private readonly static string HostIpDefaultValue = "";
+
+        private string hostIp_;
+        /// <summary>
+        /// Both game creator and joiner should provide the ip address of the game creator in order to play remotely. Defaults to localhost.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string HostIp
+        {
+            get { return hostIp_ ?? HostIpDefaultValue; }
+            set
+            {
+                hostIp_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
+        /// <summary>Gets whether the "host_ip" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasHostIp
+        {
+            get { return hostIp_ != null; }
+        }
+        /// <summary>Clears the value of the "host_ip" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearHostIp()
+        {
+            hostIp_ = null;
         }
 
         private object participation_;
@@ -3753,6 +4944,8 @@ namespace SC2APIProtocol
             if (!object.Equals(ServerPorts, other.ServerPorts)) return false;
             if (!clientPorts_.Equals(other.clientPorts_)) return false;
             if (SharedPort != other.SharedPort) return false;
+            if (PlayerName != other.PlayerName) return false;
+            if (HostIp != other.HostIp) return false;
             if (ParticipationCase != other.ParticipationCase) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
@@ -3761,12 +4954,14 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (participationCase_ == ParticipationOneofCase.Race) hash ^= Race.GetHashCode();
-            if (participationCase_ == ParticipationOneofCase.ObservedPlayerId) hash ^= ObservedPlayerId.GetHashCode();
-            if (options_ != null) hash ^= Options.GetHashCode();
-            if (serverPorts_ != null) hash ^= ServerPorts.GetHashCode();
+            if (HasRace) hash ^= Race.GetHashCode();
+            if (HasObservedPlayerId) hash ^= ObservedPlayerId.GetHashCode();
+            if (HasOptions) hash ^= Options.GetHashCode();
+            if (HasServerPorts) hash ^= ServerPorts.GetHashCode();
             hash ^= clientPorts_.GetHashCode();
-            if (SharedPort != 0) hash ^= SharedPort.GetHashCode();
+            if (HasSharedPort) hash ^= SharedPort.GetHashCode();
+            if (HasPlayerName) hash ^= PlayerName.GetHashCode();
+            if (HasHostIp) hash ^= HostIp.GetHashCode();
             hash ^= (int)participationCase_;
             if (_unknownFields != null)
             {
@@ -3784,31 +4979,41 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (participationCase_ == ParticipationOneofCase.Race)
+            if (HasRace)
             {
                 output.WriteRawTag(8);
                 output.WriteEnum((int)Race);
             }
-            if (participationCase_ == ParticipationOneofCase.ObservedPlayerId)
+            if (HasObservedPlayerId)
             {
                 output.WriteRawTag(16);
                 output.WriteUInt32(ObservedPlayerId);
             }
-            if (options_ != null)
+            if (HasOptions)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(Options);
             }
-            if (serverPorts_ != null)
+            if (HasServerPorts)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(ServerPorts);
             }
             clientPorts_.WriteTo(output, _repeated_clientPorts_codec);
-            if (SharedPort != 0)
+            if (HasSharedPort)
             {
                 output.WriteRawTag(48);
                 output.WriteInt32(SharedPort);
+            }
+            if (HasPlayerName)
+            {
+                output.WriteRawTag(58);
+                output.WriteString(PlayerName);
+            }
+            if (HasHostIp)
+            {
+                output.WriteRawTag(66);
+                output.WriteString(HostIp);
             }
             if (_unknownFields != null)
             {
@@ -3820,26 +5025,34 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (participationCase_ == ParticipationOneofCase.Race)
+            if (HasRace)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Race);
             }
-            if (participationCase_ == ParticipationOneofCase.ObservedPlayerId)
+            if (HasObservedPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ObservedPlayerId);
             }
-            if (options_ != null)
+            if (HasOptions)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Options);
             }
-            if (serverPorts_ != null)
+            if (HasServerPorts)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(ServerPorts);
             }
             size += clientPorts_.CalculateSize(_repeated_clientPorts_codec);
-            if (SharedPort != 0)
+            if (HasSharedPort)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(SharedPort);
+            }
+            if (HasPlayerName)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerName);
+            }
+            if (HasHostIp)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(HostIp);
             }
             if (_unknownFields != null)
             {
@@ -3855,26 +5068,34 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.options_ != null)
+            if (other.HasOptions)
             {
-                if (options_ == null)
+                if (!HasOptions)
                 {
-                    options_ = new global::SC2APIProtocol.InterfaceOptions();
+                    Options = new global::SC2APIProtocol.InterfaceOptions();
                 }
                 Options.MergeFrom(other.Options);
             }
-            if (other.serverPorts_ != null)
+            if (other.HasServerPorts)
             {
-                if (serverPorts_ == null)
+                if (!HasServerPorts)
                 {
-                    serverPorts_ = new global::SC2APIProtocol.PortSet();
+                    ServerPorts = new global::SC2APIProtocol.PortSet();
                 }
                 ServerPorts.MergeFrom(other.ServerPorts);
             }
             clientPorts_.Add(other.clientPorts_);
-            if (other.SharedPort != 0)
+            if (other.HasSharedPort)
             {
                 SharedPort = other.SharedPort;
+            }
+            if (other.HasPlayerName)
+            {
+                PlayerName = other.PlayerName;
+            }
+            if (other.HasHostIp)
+            {
+                HostIp = other.HostIp;
             }
             switch (other.ParticipationCase)
             {
@@ -3913,20 +5134,20 @@ namespace SC2APIProtocol
                         }
                     case 26:
                         {
-                            if (options_ == null)
+                            if (!HasOptions)
                             {
-                                options_ = new global::SC2APIProtocol.InterfaceOptions();
+                                Options = new global::SC2APIProtocol.InterfaceOptions();
                             }
-                            input.ReadMessage(options_);
+                            input.ReadMessage(Options);
                             break;
                         }
                     case 34:
                         {
-                            if (serverPorts_ == null)
+                            if (!HasServerPorts)
                             {
-                                serverPorts_ = new global::SC2APIProtocol.PortSet();
+                                ServerPorts = new global::SC2APIProtocol.PortSet();
                             }
-                            input.ReadMessage(serverPorts_);
+                            input.ReadMessage(ServerPorts);
                             break;
                         }
                     case 42:
@@ -3939,6 +5160,16 @@ namespace SC2APIProtocol
                             SharedPort = input.ReadInt32();
                             break;
                         }
+                    case 58:
+                        {
+                            PlayerName = input.ReadString();
+                            break;
+                        }
+                    case 66:
+                        {
+                            HostIp = input.ReadString();
+                            break;
+                        }
                 }
             }
         }
@@ -3949,6 +5180,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<PortSet> _parser = new pb::MessageParser<PortSet>(() => new PortSet());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<PortSet> Parser { get { return _parser; } }
 
@@ -3975,6 +5207,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public PortSet(PortSet other) : this()
         {
+            _hasBits0 = other._hasBits0;
             gamePort_ = other.gamePort_;
             basePort_ = other.basePort_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -3988,6 +5221,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "game_port" field.</summary>
         public const int GamePortFieldNumber = 1;
+        private readonly static int GamePortDefaultValue = 0;
+
         private int gamePort_;
         /// <summary>
         /// Game right now needs two internal ports to establish a multiplay game on the local host.
@@ -3995,24 +5230,52 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int GamePort
         {
-            get { return gamePort_; }
+            get { if ((_hasBits0 & 1) != 0) { return gamePort_; } else { return GamePortDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 gamePort_ = value;
             }
+        }
+        /// <summary>Gets whether the "game_port" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGamePort
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "game_port" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGamePort()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "base_port" field.</summary>
         public const int BasePortFieldNumber = 2;
+        private readonly static int BasePortDefaultValue = 0;
+
         private int basePort_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int BasePort
         {
-            get { return basePort_; }
+            get { if ((_hasBits0 & 2) != 0) { return basePort_; } else { return BasePortDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 basePort_ = value;
             }
+        }
+        /// <summary>Gets whether the "base_port" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasBasePort
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "base_port" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearBasePort()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4041,8 +5304,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (GamePort != 0) hash ^= GamePort.GetHashCode();
-            if (BasePort != 0) hash ^= BasePort.GetHashCode();
+            if (HasGamePort) hash ^= GamePort.GetHashCode();
+            if (HasBasePort) hash ^= BasePort.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -4059,12 +5322,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (GamePort != 0)
+            if (HasGamePort)
             {
                 output.WriteRawTag(8);
                 output.WriteInt32(GamePort);
             }
-            if (BasePort != 0)
+            if (HasBasePort)
             {
                 output.WriteRawTag(16);
                 output.WriteInt32(BasePort);
@@ -4079,11 +5342,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (GamePort != 0)
+            if (HasGamePort)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(GamePort);
             }
-            if (BasePort != 0)
+            if (HasBasePort)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(BasePort);
             }
@@ -4101,11 +5364,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.GamePort != 0)
+            if (other.HasGamePort)
             {
                 GamePort = other.GamePort;
             }
-            if (other.BasePort != 0)
+            if (other.HasBasePort)
             {
                 BasePort = other.BasePort;
             }
@@ -4143,6 +5406,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ResponseJoinGame> _parser = new pb::MessageParser<ResponseJoinGame>(() => new ResponseJoinGame());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponseJoinGame> Parser { get { return _parser; } }
 
@@ -4169,6 +5433,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponseJoinGame(ResponseJoinGame other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerId_ = other.playerId_;
             error_ = other.error_;
             errorDetails_ = other.errorDetails_;
@@ -4183,41 +5448,85 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "player_id" field.</summary>
         public const int PlayerIdFieldNumber = 1;
+        private readonly static uint PlayerIdDefaultValue = 0;
+
         private uint playerId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint PlayerId
         {
-            get { return playerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 2;
-        private global::SC2APIProtocol.ResponseJoinGame.Types.Error error_ = 0;
+        private readonly static global::SC2APIProtocol.ResponseJoinGame.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseJoinGame.Types.Error.MissingParticipation;
+
+        private global::SC2APIProtocol.ResponseJoinGame.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseJoinGame.Types.Error Error
         {
-            get { return error_; }
+            get { if ((_hasBits0 & 2) != 0) { return error_; } else { return ErrorDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 error_ = value;
             }
+        }
+        /// <summary>Gets whether the "error" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasError
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "error" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearError()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "error_details" field.</summary>
         public const int ErrorDetailsFieldNumber = 3;
-        private string errorDetails_ = "";
+        private readonly static string ErrorDetailsDefaultValue = "";
+
+        private string errorDetails_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ErrorDetails
         {
-            get { return errorDetails_; }
+            get { return errorDetails_ ?? ErrorDetailsDefaultValue; }
             set
             {
                 errorDetails_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "error_details" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasErrorDetails
+        {
+            get { return errorDetails_ != null; }
+        }
+        /// <summary>Clears the value of the "error_details" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearErrorDetails()
+        {
+            errorDetails_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4247,9 +5556,9 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
-            if (Error != 0) hash ^= Error.GetHashCode();
-            if (ErrorDetails.Length != 0) hash ^= ErrorDetails.GetHashCode();
+            if (HasPlayerId) hash ^= PlayerId.GetHashCode();
+            if (HasError) hash ^= Error.GetHashCode();
+            if (HasErrorDetails) hash ^= ErrorDetails.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -4266,17 +5575,17 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(PlayerId);
             }
-            if (Error != 0)
+            if (HasError)
             {
                 output.WriteRawTag(16);
                 output.WriteEnum((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 output.WriteRawTag(26);
                 output.WriteString(ErrorDetails);
@@ -4291,15 +5600,15 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
             }
-            if (Error != 0)
+            if (HasError)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ErrorDetails);
             }
@@ -4317,15 +5626,15 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.PlayerId != 0)
+            if (other.HasPlayerId)
             {
                 PlayerId = other.PlayerId;
             }
-            if (other.Error != 0)
+            if (other.HasError)
             {
                 Error = other.Error;
             }
-            if (other.ErrorDetails.Length != 0)
+            if (other.HasErrorDetails)
             {
                 ErrorDetails = other.ErrorDetails;
             }
@@ -4350,7 +5659,7 @@ namespace SC2APIProtocol
                         }
                     case 16:
                         {
-                            error_ = (global::SC2APIProtocol.ResponseJoinGame.Types.Error)input.ReadEnum();
+                            Error = (global::SC2APIProtocol.ResponseJoinGame.Types.Error)input.ReadEnum();
                             break;
                         }
                     case 26:
@@ -4369,7 +5678,6 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
-                [pbr::OriginalName("Error_UNSET")] Unset = 0,
                 [pbr::OriginalName("MissingParticipation")] MissingParticipation = 1,
                 [pbr::OriginalName("InvalidObservedPlayerId")] InvalidObservedPlayerId = 2,
                 [pbr::OriginalName("MissingOptions")] MissingOptions = 3,
@@ -4519,10 +5827,14 @@ namespace SC2APIProtocol
 
     }
 
+    /// <summary>
+    /// The defaultRestartGameLoops is specified to be (1&lt;&lt;18) by default
+    /// </summary>
     public sealed partial class ResponseRestartGame : pb::IMessage<ResponseRestartGame>
     {
         private static readonly pb::MessageParser<ResponseRestartGame> _parser = new pb::MessageParser<ResponseRestartGame>(() => new ResponseRestartGame());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponseRestartGame> Parser { get { return _parser; } }
 
@@ -4549,8 +5861,10 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponseRestartGame(ResponseRestartGame other) : this()
         {
+            _hasBits0 = other._hasBits0;
             error_ = other.error_;
             errorDetails_ = other.errorDetails_;
+            needHardReset_ = other.needHardReset_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -4562,28 +5876,88 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 1;
-        private global::SC2APIProtocol.ResponseRestartGame.Types.Error error_ = 0;
+        private readonly static global::SC2APIProtocol.ResponseRestartGame.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseRestartGame.Types.Error.LaunchError;
+
+        private global::SC2APIProtocol.ResponseRestartGame.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseRestartGame.Types.Error Error
         {
-            get { return error_; }
+            get { if ((_hasBits0 & 1) != 0) { return error_; } else { return ErrorDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 error_ = value;
             }
+        }
+        /// <summary>Gets whether the "error" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasError
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "error" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearError()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "error_details" field.</summary>
         public const int ErrorDetailsFieldNumber = 2;
-        private string errorDetails_ = "";
+        private readonly static string ErrorDetailsDefaultValue = "";
+
+        private string errorDetails_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ErrorDetails
         {
-            get { return errorDetails_; }
+            get { return errorDetails_ ?? ErrorDetailsDefaultValue; }
             set
             {
                 errorDetails_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "error_details" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasErrorDetails
+        {
+            get { return errorDetails_ != null; }
+        }
+        /// <summary>Clears the value of the "error_details" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearErrorDetails()
+        {
+            errorDetails_ = null;
+        }
+
+        /// <summary>Field number for the "need_hard_reset" field.</summary>
+        public const int NeedHardResetFieldNumber = 3;
+        private readonly static bool NeedHardResetDefaultValue = false;
+
+        private bool needHardReset_;
+        /// <summary>
+        /// This will occur once the simulation_loop is greater then defaultRestartGameLoops
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool NeedHardReset
+        {
+            get { if ((_hasBits0 & 2) != 0) { return needHardReset_; } else { return NeedHardResetDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 2;
+                needHardReset_ = value;
+            }
+        }
+        /// <summary>Gets whether the "need_hard_reset" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasNeedHardReset
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "need_hard_reset" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearNeedHardReset()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4605,6 +5979,7 @@ namespace SC2APIProtocol
             }
             if (Error != other.Error) return false;
             if (ErrorDetails != other.ErrorDetails) return false;
+            if (NeedHardReset != other.NeedHardReset) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -4612,8 +5987,9 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Error != 0) hash ^= Error.GetHashCode();
-            if (ErrorDetails.Length != 0) hash ^= ErrorDetails.GetHashCode();
+            if (HasError) hash ^= Error.GetHashCode();
+            if (HasErrorDetails) hash ^= ErrorDetails.GetHashCode();
+            if (HasNeedHardReset) hash ^= NeedHardReset.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -4630,15 +6006,20 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Error != 0)
+            if (HasError)
             {
                 output.WriteRawTag(8);
                 output.WriteEnum((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 output.WriteRawTag(18);
                 output.WriteString(ErrorDetails);
+            }
+            if (HasNeedHardReset)
+            {
+                output.WriteRawTag(24);
+                output.WriteBool(NeedHardReset);
             }
             if (_unknownFields != null)
             {
@@ -4650,13 +6031,17 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Error != 0)
+            if (HasError)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ErrorDetails);
+            }
+            if (HasNeedHardReset)
+            {
+                size += 1 + 1;
             }
             if (_unknownFields != null)
             {
@@ -4672,13 +6057,17 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Error != 0)
+            if (other.HasError)
             {
                 Error = other.Error;
             }
-            if (other.ErrorDetails.Length != 0)
+            if (other.HasErrorDetails)
             {
                 ErrorDetails = other.ErrorDetails;
+            }
+            if (other.HasNeedHardReset)
+            {
+                NeedHardReset = other.NeedHardReset;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -4696,12 +6085,17 @@ namespace SC2APIProtocol
                         break;
                     case 8:
                         {
-                            error_ = (global::SC2APIProtocol.ResponseRestartGame.Types.Error)input.ReadEnum();
+                            Error = (global::SC2APIProtocol.ResponseRestartGame.Types.Error)input.ReadEnum();
                             break;
                         }
                     case 18:
                         {
                             ErrorDetails = input.ReadString();
+                            break;
+                        }
+                    case 24:
+                        {
+                            NeedHardReset = input.ReadBool();
                             break;
                         }
                 }
@@ -4715,7 +6109,6 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
-                [pbr::OriginalName("Error_UNSET")] Unset = 0,
                 [pbr::OriginalName("LaunchError")] LaunchError = 1,
             }
 
@@ -4731,6 +6124,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<RequestStartReplay> _parser = new pb::MessageParser<RequestStartReplay>(() => new RequestStartReplay());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<RequestStartReplay> Parser { get { return _parser; } }
 
@@ -4757,11 +6151,13 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RequestStartReplay(RequestStartReplay other) : this()
         {
+            _hasBits0 = other._hasBits0;
             mapData_ = other.mapData_;
             observedPlayerId_ = other.observedPlayerId_;
-            Options = other.options_ != null ? other.Options.Clone() : null;
+            options_ = other.HasOptions ? other.options_.Clone() : null;
             disableFog_ = other.disableFog_;
             realtime_ = other.realtime_;
+            recordReplay_ = other.recordReplay_;
             switch (other.ReplayCase)
             {
                 case ReplayOneofCase.ReplayPath:
@@ -4786,11 +6182,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ReplayPath
         {
-            get { return replayCase_ == ReplayOneofCase.ReplayPath ? (string)replay_ : ""; }
+            get { return HasReplayPath ? (string)replay_ : ""; }
             set
             {
                 replay_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
                 replayCase_ = ReplayOneofCase.ReplayPath;
+            }
+        }
+        /// <summary>Gets whether the "replay_path" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasReplayPath
+        {
+            get { return replayCase_ == ReplayOneofCase.ReplayPath; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "replay_path" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearReplayPath()
+        {
+            if (HasReplayPath)
+            {
+                ClearReplay();
             }
         }
 
@@ -4799,41 +6210,85 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString ReplayData
         {
-            get { return replayCase_ == ReplayOneofCase.ReplayData ? (pb::ByteString)replay_ : pb::ByteString.Empty; }
+            get { return HasReplayData ? (pb::ByteString)replay_ : pb::ByteString.Empty; }
             set
             {
                 replay_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
                 replayCase_ = ReplayOneofCase.ReplayData;
             }
         }
+        /// <summary>Gets whether the "replay_data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasReplayData
+        {
+            get { return replayCase_ == ReplayOneofCase.ReplayData; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "replay_data" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearReplayData()
+        {
+            if (HasReplayData)
+            {
+                ClearReplay();
+            }
+        }
 
         /// <summary>Field number for the "map_data" field.</summary>
         public const int MapDataFieldNumber = 6;
-        private pb::ByteString mapData_ = pb::ByteString.Empty;
+        private readonly static pb::ByteString MapDataDefaultValue = pb::ByteString.Empty;
+
+        private pb::ByteString mapData_;
         /// <summary>
         /// Overrides the map path stored in the replay.
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString MapData
         {
-            get { return mapData_; }
+            get { return mapData_ ?? MapDataDefaultValue; }
             set
             {
                 mapData_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "map_data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapData
+        {
+            get { return mapData_ != null; }
+        }
+        /// <summary>Clears the value of the "map_data" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapData()
+        {
+            mapData_ = null;
+        }
 
         /// <summary>Field number for the "observed_player_id" field.</summary>
         public const int ObservedPlayerIdFieldNumber = 2;
+        private readonly static int ObservedPlayerIdDefaultValue = 0;
+
         private int observedPlayerId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int ObservedPlayerId
         {
-            get { return observedPlayerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return observedPlayerId_; } else { return ObservedPlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 observedPlayerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "observed_player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasObservedPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "observed_player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearObservedPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "options" field.</summary>
@@ -4848,31 +6303,104 @@ namespace SC2APIProtocol
                 options_ = value;
             }
         }
+        /// <summary>Gets whether the options field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasOptions
+        {
+            get { return options_ != null; }
+        }
+        /// <summary>Clears the value of the options field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearOptions()
+        {
+            options_ = null;
+        }
 
         /// <summary>Field number for the "disable_fog" field.</summary>
         public const int DisableFogFieldNumber = 4;
+        private readonly static bool DisableFogDefaultValue = false;
+
         private bool disableFog_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool DisableFog
         {
-            get { return disableFog_; }
+            get { if ((_hasBits0 & 2) != 0) { return disableFog_; } else { return DisableFogDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 disableFog_ = value;
             }
+        }
+        /// <summary>Gets whether the "disable_fog" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDisableFog
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "disable_fog" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDisableFog()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "realtime" field.</summary>
         public const int RealtimeFieldNumber = 7;
+        private readonly static bool RealtimeDefaultValue = false;
+
         private bool realtime_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Realtime
         {
-            get { return realtime_; }
+            get { if ((_hasBits0 & 4) != 0) { return realtime_; } else { return RealtimeDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 realtime_ = value;
             }
+        }
+        /// <summary>Gets whether the "realtime" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRealtime
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "realtime" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRealtime()
+        {
+            _hasBits0 &= ~4;
+        }
+
+        /// <summary>Field number for the "record_replay" field.</summary>
+        public const int RecordReplayFieldNumber = 8;
+        private readonly static bool RecordReplayDefaultValue = false;
+
+        private bool recordReplay_;
+        /// <summary>
+        /// Allow RequestSaveReplay from a replay. Useful for truncating a replay, or restoring tracker.events.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool RecordReplay
+        {
+            get { if ((_hasBits0 & 8) != 0) { return recordReplay_; } else { return RecordReplayDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 8;
+                recordReplay_ = value;
+            }
+        }
+        /// <summary>Gets whether the "record_replay" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRecordReplay
+        {
+            get { return (_hasBits0 & 8) != 0; }
+        }
+        /// <summary>Clears the value of the "record_replay" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRecordReplay()
+        {
+            _hasBits0 &= ~8;
         }
 
         private object replay_;
@@ -4921,6 +6449,7 @@ namespace SC2APIProtocol
             if (!object.Equals(Options, other.Options)) return false;
             if (DisableFog != other.DisableFog) return false;
             if (Realtime != other.Realtime) return false;
+            if (RecordReplay != other.RecordReplay) return false;
             if (ReplayCase != other.ReplayCase) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
@@ -4929,13 +6458,14 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (replayCase_ == ReplayOneofCase.ReplayPath) hash ^= ReplayPath.GetHashCode();
-            if (replayCase_ == ReplayOneofCase.ReplayData) hash ^= ReplayData.GetHashCode();
-            if (MapData.Length != 0) hash ^= MapData.GetHashCode();
-            if (ObservedPlayerId != 0) hash ^= ObservedPlayerId.GetHashCode();
-            if (options_ != null) hash ^= Options.GetHashCode();
-            if (DisableFog != false) hash ^= DisableFog.GetHashCode();
-            if (Realtime != false) hash ^= Realtime.GetHashCode();
+            if (HasReplayPath) hash ^= ReplayPath.GetHashCode();
+            if (HasReplayData) hash ^= ReplayData.GetHashCode();
+            if (HasMapData) hash ^= MapData.GetHashCode();
+            if (HasObservedPlayerId) hash ^= ObservedPlayerId.GetHashCode();
+            if (HasOptions) hash ^= Options.GetHashCode();
+            if (HasDisableFog) hash ^= DisableFog.GetHashCode();
+            if (HasRealtime) hash ^= Realtime.GetHashCode();
+            if (HasRecordReplay) hash ^= RecordReplay.GetHashCode();
             hash ^= (int)replayCase_;
             if (_unknownFields != null)
             {
@@ -4953,40 +6483,45 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (replayCase_ == ReplayOneofCase.ReplayPath)
+            if (HasReplayPath)
             {
                 output.WriteRawTag(10);
                 output.WriteString(ReplayPath);
             }
-            if (ObservedPlayerId != 0)
+            if (HasObservedPlayerId)
             {
                 output.WriteRawTag(16);
                 output.WriteInt32(ObservedPlayerId);
             }
-            if (options_ != null)
+            if (HasOptions)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(Options);
             }
-            if (DisableFog != false)
+            if (HasDisableFog)
             {
                 output.WriteRawTag(32);
                 output.WriteBool(DisableFog);
             }
-            if (replayCase_ == ReplayOneofCase.ReplayData)
+            if (HasReplayData)
             {
                 output.WriteRawTag(42);
                 output.WriteBytes(ReplayData);
             }
-            if (MapData.Length != 0)
+            if (HasMapData)
             {
                 output.WriteRawTag(50);
                 output.WriteBytes(MapData);
             }
-            if (Realtime != false)
+            if (HasRealtime)
             {
                 output.WriteRawTag(56);
                 output.WriteBool(Realtime);
+            }
+            if (HasRecordReplay)
+            {
+                output.WriteRawTag(64);
+                output.WriteBool(RecordReplay);
             }
             if (_unknownFields != null)
             {
@@ -4998,31 +6533,35 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (replayCase_ == ReplayOneofCase.ReplayPath)
+            if (HasReplayPath)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ReplayPath);
             }
-            if (replayCase_ == ReplayOneofCase.ReplayData)
+            if (HasReplayData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeBytesSize(ReplayData);
             }
-            if (MapData.Length != 0)
+            if (HasMapData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeBytesSize(MapData);
             }
-            if (ObservedPlayerId != 0)
+            if (HasObservedPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(ObservedPlayerId);
             }
-            if (options_ != null)
+            if (HasOptions)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Options);
             }
-            if (DisableFog != false)
+            if (HasDisableFog)
             {
                 size += 1 + 1;
             }
-            if (Realtime != false)
+            if (HasRealtime)
+            {
+                size += 1 + 1;
+            }
+            if (HasRecordReplay)
             {
                 size += 1 + 1;
             }
@@ -5040,29 +6579,33 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.MapData.Length != 0)
+            if (other.HasMapData)
             {
                 MapData = other.MapData;
             }
-            if (other.ObservedPlayerId != 0)
+            if (other.HasObservedPlayerId)
             {
                 ObservedPlayerId = other.ObservedPlayerId;
             }
-            if (other.options_ != null)
+            if (other.HasOptions)
             {
-                if (options_ == null)
+                if (!HasOptions)
                 {
-                    options_ = new global::SC2APIProtocol.InterfaceOptions();
+                    Options = new global::SC2APIProtocol.InterfaceOptions();
                 }
                 Options.MergeFrom(other.Options);
             }
-            if (other.DisableFog != false)
+            if (other.HasDisableFog)
             {
                 DisableFog = other.DisableFog;
             }
-            if (other.Realtime != false)
+            if (other.HasRealtime)
             {
                 Realtime = other.Realtime;
+            }
+            if (other.HasRecordReplay)
+            {
+                RecordReplay = other.RecordReplay;
             }
             switch (other.ReplayCase)
             {
@@ -5100,11 +6643,11 @@ namespace SC2APIProtocol
                         }
                     case 26:
                         {
-                            if (options_ == null)
+                            if (!HasOptions)
                             {
-                                options_ = new global::SC2APIProtocol.InterfaceOptions();
+                                Options = new global::SC2APIProtocol.InterfaceOptions();
                             }
-                            input.ReadMessage(options_);
+                            input.ReadMessage(Options);
                             break;
                         }
                     case 32:
@@ -5127,6 +6670,11 @@ namespace SC2APIProtocol
                             Realtime = input.ReadBool();
                             break;
                         }
+                    case 64:
+                        {
+                            RecordReplay = input.ReadBool();
+                            break;
+                        }
                 }
             }
         }
@@ -5137,6 +6685,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ResponseStartReplay> _parser = new pb::MessageParser<ResponseStartReplay>(() => new ResponseStartReplay());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponseStartReplay> Parser { get { return _parser; } }
 
@@ -5163,6 +6712,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponseStartReplay(ResponseStartReplay other) : this()
         {
+            _hasBits0 = other._hasBits0;
             error_ = other.error_;
             errorDetails_ = other.errorDetails_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -5176,28 +6726,57 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 1;
-        private global::SC2APIProtocol.ResponseStartReplay.Types.Error error_ = 0;
+        private readonly static global::SC2APIProtocol.ResponseStartReplay.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseStartReplay.Types.Error.MissingReplay;
+
+        private global::SC2APIProtocol.ResponseStartReplay.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseStartReplay.Types.Error Error
         {
-            get { return error_; }
+            get { if ((_hasBits0 & 1) != 0) { return error_; } else { return ErrorDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 error_ = value;
             }
+        }
+        /// <summary>Gets whether the "error" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasError
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "error" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearError()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "error_details" field.</summary>
         public const int ErrorDetailsFieldNumber = 2;
-        private string errorDetails_ = "";
+        private readonly static string ErrorDetailsDefaultValue = "";
+
+        private string errorDetails_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ErrorDetails
         {
-            get { return errorDetails_; }
+            get { return errorDetails_ ?? ErrorDetailsDefaultValue; }
             set
             {
                 errorDetails_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "error_details" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasErrorDetails
+        {
+            get { return errorDetails_ != null; }
+        }
+        /// <summary>Clears the value of the "error_details" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearErrorDetails()
+        {
+            errorDetails_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5226,8 +6805,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Error != 0) hash ^= Error.GetHashCode();
-            if (ErrorDetails.Length != 0) hash ^= ErrorDetails.GetHashCode();
+            if (HasError) hash ^= Error.GetHashCode();
+            if (HasErrorDetails) hash ^= ErrorDetails.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -5244,12 +6823,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Error != 0)
+            if (HasError)
             {
                 output.WriteRawTag(8);
                 output.WriteEnum((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 output.WriteRawTag(18);
                 output.WriteString(ErrorDetails);
@@ -5264,11 +6843,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Error != 0)
+            if (HasError)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ErrorDetails);
             }
@@ -5286,11 +6865,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Error != 0)
+            if (other.HasError)
             {
                 Error = other.Error;
             }
-            if (other.ErrorDetails.Length != 0)
+            if (other.HasErrorDetails)
             {
                 ErrorDetails = other.ErrorDetails;
             }
@@ -5310,7 +6889,7 @@ namespace SC2APIProtocol
                         break;
                     case 8:
                         {
-                            error_ = (global::SC2APIProtocol.ResponseStartReplay.Types.Error)input.ReadEnum();
+                            Error = (global::SC2APIProtocol.ResponseStartReplay.Types.Error)input.ReadEnum();
                             break;
                         }
                     case 18:
@@ -5329,7 +6908,6 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
-                [pbr::OriginalName("Error_UNSET")] Unset = 0,
                 [pbr::OriginalName("MissingReplay")] MissingReplay = 1,
                 [pbr::OriginalName("InvalidReplayPath")] InvalidReplayPath = 2,
                 [pbr::OriginalName("InvalidReplayData")] InvalidReplayData = 3,
@@ -5337,6 +6915,415 @@ namespace SC2APIProtocol
                 [pbr::OriginalName("InvalidObservedPlayerId")] InvalidObservedPlayerId = 5,
                 [pbr::OriginalName("MissingOptions")] MissingOptions = 6,
                 [pbr::OriginalName("LaunchError")] LaunchError = 7,
+            }
+
+        }
+        #endregion
+
+    }
+
+    /// <summary>
+    ///-----------------------------------------------------------------------------
+    /// </summary>
+    public sealed partial class RequestMapCommand : pb::IMessage<RequestMapCommand>
+    {
+        private static readonly pb::MessageParser<RequestMapCommand> _parser = new pb::MessageParser<RequestMapCommand>(() => new RequestMapCommand());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<RequestMapCommand> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[12]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public RequestMapCommand()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public RequestMapCommand(RequestMapCommand other) : this()
+        {
+            triggerCmd_ = other.triggerCmd_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public RequestMapCommand Clone()
+        {
+            return new RequestMapCommand(this);
+        }
+
+        /// <summary>Field number for the "trigger_cmd" field.</summary>
+        public const int TriggerCmdFieldNumber = 1;
+        private readonly static string TriggerCmdDefaultValue = "";
+
+        private string triggerCmd_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string TriggerCmd
+        {
+            get { return triggerCmd_ ?? TriggerCmdDefaultValue; }
+            set
+            {
+                triggerCmd_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
+        /// <summary>Gets whether the "trigger_cmd" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasTriggerCmd
+        {
+            get { return triggerCmd_ != null; }
+        }
+        /// <summary>Clears the value of the "trigger_cmd" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearTriggerCmd()
+        {
+            triggerCmd_ = null;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as RequestMapCommand);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(RequestMapCommand other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (TriggerCmd != other.TriggerCmd) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasTriggerCmd) hash ^= TriggerCmd.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasTriggerCmd)
+            {
+                output.WriteRawTag(10);
+                output.WriteString(TriggerCmd);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasTriggerCmd)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(TriggerCmd);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(RequestMapCommand other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasTriggerCmd)
+            {
+                TriggerCmd = other.TriggerCmd;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            TriggerCmd = input.ReadString();
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    public sealed partial class ResponseMapCommand : pb::IMessage<ResponseMapCommand>
+    {
+        private static readonly pb::MessageParser<ResponseMapCommand> _parser = new pb::MessageParser<ResponseMapCommand>(() => new ResponseMapCommand());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<ResponseMapCommand> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[13]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public ResponseMapCommand()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public ResponseMapCommand(ResponseMapCommand other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            error_ = other.error_;
+            errorDetails_ = other.errorDetails_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public ResponseMapCommand Clone()
+        {
+            return new ResponseMapCommand(this);
+        }
+
+        /// <summary>Field number for the "error" field.</summary>
+        public const int ErrorFieldNumber = 1;
+        private readonly static global::SC2APIProtocol.ResponseMapCommand.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseMapCommand.Types.Error.NoTriggerError;
+
+        private global::SC2APIProtocol.ResponseMapCommand.Types.Error error_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.ResponseMapCommand.Types.Error Error
+        {
+            get { if ((_hasBits0 & 1) != 0) { return error_; } else { return ErrorDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                error_ = value;
+            }
+        }
+        /// <summary>Gets whether the "error" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasError
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "error" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearError()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        /// <summary>Field number for the "error_details" field.</summary>
+        public const int ErrorDetailsFieldNumber = 2;
+        private readonly static string ErrorDetailsDefaultValue = "";
+
+        private string errorDetails_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string ErrorDetails
+        {
+            get { return errorDetails_ ?? ErrorDetailsDefaultValue; }
+            set
+            {
+                errorDetails_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
+        /// <summary>Gets whether the "error_details" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasErrorDetails
+        {
+            get { return errorDetails_ != null; }
+        }
+        /// <summary>Clears the value of the "error_details" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearErrorDetails()
+        {
+            errorDetails_ = null;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as ResponseMapCommand);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(ResponseMapCommand other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (Error != other.Error) return false;
+            if (ErrorDetails != other.ErrorDetails) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasError) hash ^= Error.GetHashCode();
+            if (HasErrorDetails) hash ^= ErrorDetails.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasError)
+            {
+                output.WriteRawTag(8);
+                output.WriteEnum((int)Error);
+            }
+            if (HasErrorDetails)
+            {
+                output.WriteRawTag(18);
+                output.WriteString(ErrorDetails);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasError)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Error);
+            }
+            if (HasErrorDetails)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(ErrorDetails);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(ResponseMapCommand other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasError)
+            {
+                Error = other.Error;
+            }
+            if (other.HasErrorDetails)
+            {
+                ErrorDetails = other.ErrorDetails;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 8:
+                        {
+                            Error = (global::SC2APIProtocol.ResponseMapCommand.Types.Error)input.ReadEnum();
+                            break;
+                        }
+                    case 18:
+                        {
+                            ErrorDetails = input.ReadString();
+                            break;
+                        }
+                }
+            }
+        }
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the ResponseMapCommand message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static partial class Types
+        {
+            public enum Error
+            {
+                [pbr::OriginalName("NoTriggerError")] NoTriggerError = 1,
             }
 
         }
@@ -5357,7 +7344,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[12]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[14]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5480,7 +7467,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[13]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[15]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5606,7 +7593,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[14]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[16]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5732,7 +7719,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[15]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[17]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5858,7 +7845,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[16]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[18]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5984,7 +7971,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[17]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[19]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6110,7 +8097,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[18]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[20]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6233,7 +8220,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[19]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[21]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6359,7 +8346,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[20]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[22]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6482,7 +8469,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[21]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[23]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6506,8 +8493,8 @@ namespace SC2APIProtocol
             modNames_ = other.modNames_.Clone();
             localMapPath_ = other.localMapPath_;
             playerInfo_ = other.playerInfo_.Clone();
-            StartRaw = other.startRaw_ != null ? other.StartRaw.Clone() : null;
-            Options = other.options_ != null ? other.Options.Clone() : null;
+            startRaw_ = other.HasStartRaw ? other.startRaw_.Clone() : null;
+            options_ = other.HasOptions ? other.options_.Clone() : null;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -6519,15 +8506,29 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "map_name" field.</summary>
         public const int MapNameFieldNumber = 1;
-        private string mapName_ = "";
+        private readonly static string MapNameDefaultValue = "";
+
+        private string mapName_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string MapName
         {
-            get { return mapName_; }
+            get { return mapName_ ?? MapNameDefaultValue; }
             set
             {
                 mapName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "map_name" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapName
+        {
+            get { return mapName_ != null; }
+        }
+        /// <summary>Clears the value of the "map_name" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapName()
+        {
+            mapName_ = null;
         }
 
         /// <summary>Field number for the "mod_names" field.</summary>
@@ -6543,15 +8544,29 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "local_map_path" field.</summary>
         public const int LocalMapPathFieldNumber = 2;
-        private string localMapPath_ = "";
+        private readonly static string LocalMapPathDefaultValue = "";
+
+        private string localMapPath_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string LocalMapPath
         {
-            get { return localMapPath_; }
+            get { return localMapPath_ ?? LocalMapPathDefaultValue; }
             set
             {
                 localMapPath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "local_map_path" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasLocalMapPath
+        {
+            get { return localMapPath_ != null; }
+        }
+        /// <summary>Clears the value of the "local_map_path" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearLocalMapPath()
+        {
+            localMapPath_ = null;
         }
 
         /// <summary>Field number for the "player_info" field.</summary>
@@ -6580,6 +8595,18 @@ namespace SC2APIProtocol
                 startRaw_ = value;
             }
         }
+        /// <summary>Gets whether the start_raw field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasStartRaw
+        {
+            get { return startRaw_ != null; }
+        }
+        /// <summary>Clears the value of the start_raw field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearStartRaw()
+        {
+            startRaw_ = null;
+        }
 
         /// <summary>Field number for the "options" field.</summary>
         public const int OptionsFieldNumber = 5;
@@ -6592,6 +8619,18 @@ namespace SC2APIProtocol
             {
                 options_ = value;
             }
+        }
+        /// <summary>Gets whether the options field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasOptions
+        {
+            get { return options_ != null; }
+        }
+        /// <summary>Clears the value of the options field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearOptions()
+        {
+            options_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6624,12 +8663,12 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (MapName.Length != 0) hash ^= MapName.GetHashCode();
+            if (HasMapName) hash ^= MapName.GetHashCode();
             hash ^= modNames_.GetHashCode();
-            if (LocalMapPath.Length != 0) hash ^= LocalMapPath.GetHashCode();
+            if (HasLocalMapPath) hash ^= LocalMapPath.GetHashCode();
             hash ^= playerInfo_.GetHashCode();
-            if (startRaw_ != null) hash ^= StartRaw.GetHashCode();
-            if (options_ != null) hash ^= Options.GetHashCode();
+            if (HasStartRaw) hash ^= StartRaw.GetHashCode();
+            if (HasOptions) hash ^= Options.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -6646,23 +8685,23 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (MapName.Length != 0)
+            if (HasMapName)
             {
                 output.WriteRawTag(10);
                 output.WriteString(MapName);
             }
-            if (LocalMapPath.Length != 0)
+            if (HasLocalMapPath)
             {
                 output.WriteRawTag(18);
                 output.WriteString(LocalMapPath);
             }
             playerInfo_.WriteTo(output, _repeated_playerInfo_codec);
-            if (startRaw_ != null)
+            if (HasStartRaw)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(StartRaw);
             }
-            if (options_ != null)
+            if (HasOptions)
             {
                 output.WriteRawTag(42);
                 output.WriteMessage(Options);
@@ -6678,21 +8717,21 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (MapName.Length != 0)
+            if (HasMapName)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(MapName);
             }
             size += modNames_.CalculateSize(_repeated_modNames_codec);
-            if (LocalMapPath.Length != 0)
+            if (HasLocalMapPath)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(LocalMapPath);
             }
             size += playerInfo_.CalculateSize(_repeated_playerInfo_codec);
-            if (startRaw_ != null)
+            if (HasStartRaw)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(StartRaw);
             }
-            if (options_ != null)
+            if (HasOptions)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Options);
             }
@@ -6710,29 +8749,29 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.MapName.Length != 0)
+            if (other.HasMapName)
             {
                 MapName = other.MapName;
             }
             modNames_.Add(other.modNames_);
-            if (other.LocalMapPath.Length != 0)
+            if (other.HasLocalMapPath)
             {
                 LocalMapPath = other.LocalMapPath;
             }
             playerInfo_.Add(other.playerInfo_);
-            if (other.startRaw_ != null)
+            if (other.HasStartRaw)
             {
-                if (startRaw_ == null)
+                if (!HasStartRaw)
                 {
-                    startRaw_ = new global::SC2APIProtocol.StartRaw();
+                    StartRaw = new global::SC2APIProtocol.StartRaw();
                 }
                 StartRaw.MergeFrom(other.StartRaw);
             }
-            if (other.options_ != null)
+            if (other.HasOptions)
             {
-                if (options_ == null)
+                if (!HasOptions)
                 {
-                    options_ = new global::SC2APIProtocol.InterfaceOptions();
+                    Options = new global::SC2APIProtocol.InterfaceOptions();
                 }
                 Options.MergeFrom(other.Options);
             }
@@ -6767,20 +8806,20 @@ namespace SC2APIProtocol
                         }
                     case 34:
                         {
-                            if (startRaw_ == null)
+                            if (!HasStartRaw)
                             {
-                                startRaw_ = new global::SC2APIProtocol.StartRaw();
+                                StartRaw = new global::SC2APIProtocol.StartRaw();
                             }
-                            input.ReadMessage(startRaw_);
+                            input.ReadMessage(StartRaw);
                             break;
                         }
                     case 42:
                         {
-                            if (options_ == null)
+                            if (!HasOptions)
                             {
-                                options_ = new global::SC2APIProtocol.InterfaceOptions();
+                                Options = new global::SC2APIProtocol.InterfaceOptions();
                             }
-                            input.ReadMessage(options_);
+                            input.ReadMessage(Options);
                             break;
                         }
                     case 50:
@@ -6801,13 +8840,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<RequestObservation> _parser = new pb::MessageParser<RequestObservation>(() => new RequestObservation());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<RequestObservation> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[22]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[24]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6827,7 +8867,9 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RequestObservation(RequestObservation other) : this()
         {
+            _hasBits0 = other._hasBits0;
             disableFog_ = other.disableFog_;
+            gameLoop_ = other.gameLoop_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -6839,15 +8881,61 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "disable_fog" field.</summary>
         public const int DisableFogFieldNumber = 1;
+        private readonly static bool DisableFogDefaultValue = false;
+
         private bool disableFog_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool DisableFog
         {
-            get { return disableFog_; }
+            get { if ((_hasBits0 & 1) != 0) { return disableFog_; } else { return DisableFogDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 disableFog_ = value;
             }
+        }
+        /// <summary>Gets whether the "disable_fog" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDisableFog
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "disable_fog" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDisableFog()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        /// <summary>Field number for the "game_loop" field.</summary>
+        public const int GameLoopFieldNumber = 2;
+        private readonly static uint GameLoopDefaultValue = 0;
+
+        private uint gameLoop_;
+        /// <summary>
+        /// In realtime the request will only return once the simulation game loop has reached this value. When not realtime this value is ignored.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint GameLoop
+        {
+            get { if ((_hasBits0 & 2) != 0) { return gameLoop_; } else { return GameLoopDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 2;
+                gameLoop_ = value;
+            }
+        }
+        /// <summary>Gets whether the "game_loop" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameLoop
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "game_loop" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameLoop()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6868,6 +8956,7 @@ namespace SC2APIProtocol
                 return true;
             }
             if (DisableFog != other.DisableFog) return false;
+            if (GameLoop != other.GameLoop) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -6875,7 +8964,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (DisableFog != false) hash ^= DisableFog.GetHashCode();
+            if (HasDisableFog) hash ^= DisableFog.GetHashCode();
+            if (HasGameLoop) hash ^= GameLoop.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -6892,10 +8982,15 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (DisableFog != false)
+            if (HasDisableFog)
             {
                 output.WriteRawTag(8);
                 output.WriteBool(DisableFog);
+            }
+            if (HasGameLoop)
+            {
+                output.WriteRawTag(16);
+                output.WriteUInt32(GameLoop);
             }
             if (_unknownFields != null)
             {
@@ -6907,9 +9002,13 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (DisableFog != false)
+            if (HasDisableFog)
             {
                 size += 1 + 1;
+            }
+            if (HasGameLoop)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GameLoop);
             }
             if (_unknownFields != null)
             {
@@ -6925,9 +9024,13 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.DisableFog != false)
+            if (other.HasDisableFog)
             {
                 DisableFog = other.DisableFog;
+            }
+            if (other.HasGameLoop)
+            {
+                GameLoop = other.GameLoop;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -6948,6 +9051,11 @@ namespace SC2APIProtocol
                             DisableFog = input.ReadBool();
                             break;
                         }
+                    case 16:
+                        {
+                            GameLoop = input.ReadUInt32();
+                            break;
+                        }
                 }
             }
         }
@@ -6964,7 +9072,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[23]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[25]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6986,7 +9094,7 @@ namespace SC2APIProtocol
         {
             actions_ = other.actions_.Clone();
             actionErrors_ = other.actionErrors_.Clone();
-            Observation = other.observation_ != null ? other.Observation.Clone() : null;
+            observation_ = other.HasObservation ? other.observation_.Clone() : null;
             playerResult_ = other.playerResult_.Clone();
             chat_ = other.chat_.Clone();
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -7037,6 +9145,18 @@ namespace SC2APIProtocol
             {
                 observation_ = value;
             }
+        }
+        /// <summary>Gets whether the observation field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasObservation
+        {
+            get { return observation_ != null; }
+        }
+        /// <summary>Clears the value of the observation field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearObservation()
+        {
+            observation_ = null;
         }
 
         /// <summary>Field number for the "player_result" field.</summary>
@@ -7095,7 +9215,7 @@ namespace SC2APIProtocol
             int hash = 1;
             hash ^= actions_.GetHashCode();
             hash ^= actionErrors_.GetHashCode();
-            if (observation_ != null) hash ^= Observation.GetHashCode();
+            if (HasObservation) hash ^= Observation.GetHashCode();
             hash ^= playerResult_.GetHashCode();
             hash ^= chat_.GetHashCode();
             if (_unknownFields != null)
@@ -7116,7 +9236,7 @@ namespace SC2APIProtocol
         {
             actions_.WriteTo(output, _repeated_actions_codec);
             actionErrors_.WriteTo(output, _repeated_actionErrors_codec);
-            if (observation_ != null)
+            if (HasObservation)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(Observation);
@@ -7135,7 +9255,7 @@ namespace SC2APIProtocol
             int size = 0;
             size += actions_.CalculateSize(_repeated_actions_codec);
             size += actionErrors_.CalculateSize(_repeated_actionErrors_codec);
-            if (observation_ != null)
+            if (HasObservation)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Observation);
             }
@@ -7157,11 +9277,11 @@ namespace SC2APIProtocol
             }
             actions_.Add(other.actions_);
             actionErrors_.Add(other.actionErrors_);
-            if (other.observation_ != null)
+            if (other.HasObservation)
             {
-                if (observation_ == null)
+                if (!HasObservation)
                 {
-                    observation_ = new global::SC2APIProtocol.Observation();
+                    Observation = new global::SC2APIProtocol.Observation();
                 }
                 Observation.MergeFrom(other.Observation);
             }
@@ -7193,11 +9313,11 @@ namespace SC2APIProtocol
                         }
                     case 26:
                         {
-                            if (observation_ == null)
+                            if (!HasObservation)
                             {
-                                observation_ = new global::SC2APIProtocol.Observation();
+                                Observation = new global::SC2APIProtocol.Observation();
                             }
-                            input.ReadMessage(observation_);
+                            input.ReadMessage(Observation);
                             break;
                         }
                     case 34:
@@ -7220,13 +9340,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ChatReceived> _parser = new pb::MessageParser<ChatReceived>(() => new ChatReceived());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ChatReceived> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[24]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[26]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7246,6 +9367,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ChatReceived(ChatReceived other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerId_ = other.playerId_;
             message_ = other.message_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -7259,28 +9381,57 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "player_id" field.</summary>
         public const int PlayerIdFieldNumber = 1;
+        private readonly static uint PlayerIdDefaultValue = 0;
+
         private uint playerId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint PlayerId
         {
-            get { return playerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "message" field.</summary>
         public const int MessageFieldNumber = 2;
-        private string message_ = "";
+        private readonly static string MessageDefaultValue = "";
+
+        private string message_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Message
         {
-            get { return message_; }
+            get { return message_ ?? MessageDefaultValue; }
             set
             {
                 message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "message" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMessage
+        {
+            get { return message_ != null; }
+        }
+        /// <summary>Clears the value of the "message" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMessage()
+        {
+            message_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7309,8 +9460,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
-            if (Message.Length != 0) hash ^= Message.GetHashCode();
+            if (HasPlayerId) hash ^= PlayerId.GetHashCode();
+            if (HasMessage) hash ^= Message.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -7327,12 +9478,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(PlayerId);
             }
-            if (Message.Length != 0)
+            if (HasMessage)
             {
                 output.WriteRawTag(18);
                 output.WriteString(Message);
@@ -7347,11 +9498,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
             }
-            if (Message.Length != 0)
+            if (HasMessage)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
             }
@@ -7369,11 +9520,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.PlayerId != 0)
+            if (other.HasPlayerId)
             {
                 PlayerId = other.PlayerId;
             }
-            if (other.Message.Length != 0)
+            if (other.HasMessage)
             {
                 Message = other.Message;
             }
@@ -7420,7 +9571,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[25]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[27]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7565,7 +9716,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[26]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[28]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7598,7 +9749,7 @@ namespace SC2APIProtocol
         /// <summary>Field number for the "result" field.</summary>
         public const int ResultFieldNumber = 1;
         private static readonly pb::FieldCodec<global::SC2APIProtocol.ActionResult> _repeated_result_codec
-            = pb::FieldCodec.ForEnum(10, x => (int)x, x => (global::SC2APIProtocol.ActionResult)x);
+            = pb::FieldCodec.ForEnum(8, x => (int)x, x => (global::SC2APIProtocol.ActionResult)x);
         private readonly pbc::RepeatedField<global::SC2APIProtocol.ActionResult> result_ = new pbc::RepeatedField<global::SC2APIProtocol.ActionResult>();
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::SC2APIProtocol.ActionResult> Result
@@ -7714,7 +9865,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[27]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[29]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7859,7 +10010,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[28]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[30]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7979,13 +10130,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<RequestStep> _parser = new pb::MessageParser<RequestStep>(() => new RequestStep());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<RequestStep> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[29]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[31]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8005,6 +10157,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RequestStep(RequestStep other) : this()
         {
+            _hasBits0 = other._hasBits0;
             count_ = other.count_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
@@ -8017,6 +10170,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "count" field.</summary>
         public const int CountFieldNumber = 1;
+        private readonly static uint CountDefaultValue = 0;
+
         private uint count_;
         /// <summary>
         /// Number of game loops to simulate for the next frame.
@@ -8024,11 +10179,24 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint Count
         {
-            get { return count_; }
+            get { if ((_hasBits0 & 1) != 0) { return count_; } else { return CountDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 count_ = value;
             }
+        }
+        /// <summary>Gets whether the "count" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCount
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "count" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCount()
+        {
+            _hasBits0 &= ~1;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8056,7 +10224,7 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Count != 0) hash ^= Count.GetHashCode();
+            if (HasCount) hash ^= Count.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -8073,7 +10241,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Count != 0)
+            if (HasCount)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(Count);
@@ -8088,7 +10256,7 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Count != 0)
+            if (HasCount)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Count);
             }
@@ -8106,7 +10274,7 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Count != 0)
+            if (other.HasCount)
             {
                 Count = other.Count;
             }
@@ -8139,13 +10307,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ResponseStep> _parser = new pb::MessageParser<ResponseStep>(() => new ResponseStep());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponseStep> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[30]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[32]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8165,6 +10334,8 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponseStep(ResponseStep other) : this()
         {
+            _hasBits0 = other._hasBits0;
+            simulationLoop_ = other.simulationLoop_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -8172,6 +10343,40 @@ namespace SC2APIProtocol
         public ResponseStep Clone()
         {
             return new ResponseStep(this);
+        }
+
+        /// <summary>Field number for the "simulation_loop" field.</summary>
+        public const int SimulationLoopFieldNumber = 1;
+        private readonly static uint SimulationLoopDefaultValue = 0;
+
+        private uint simulationLoop_;
+        /// <summary>
+        ///  Max simulation_loop is (1&lt;&lt;19) before "end of time" will occur
+        ///  The "end of time" is classified as the maximum number of game loops or absolute game time
+        ///  representable as a positive fixed point number.
+        ///  When we reach the "end of time", permanently pause the game and end the game for all.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint SimulationLoop
+        {
+            get { if ((_hasBits0 & 1) != 0) { return simulationLoop_; } else { return SimulationLoopDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                simulationLoop_ = value;
+            }
+        }
+        /// <summary>Gets whether the "simulation_loop" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSimulationLoop
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "simulation_loop" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSimulationLoop()
+        {
+            _hasBits0 &= ~1;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8191,6 +10396,7 @@ namespace SC2APIProtocol
             {
                 return true;
             }
+            if (SimulationLoop != other.SimulationLoop) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -8198,6 +10404,7 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
+            if (HasSimulationLoop) hash ^= SimulationLoop.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -8214,6 +10421,11 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
+            if (HasSimulationLoop)
+            {
+                output.WriteRawTag(8);
+                output.WriteUInt32(SimulationLoop);
+            }
             if (_unknownFields != null)
             {
                 _unknownFields.WriteTo(output);
@@ -8224,6 +10436,10 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
+            if (HasSimulationLoop)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SimulationLoop);
+            }
             if (_unknownFields != null)
             {
                 size += _unknownFields.CalculateSize();
@@ -8237,6 +10453,10 @@ namespace SC2APIProtocol
             if (other == null)
             {
                 return;
+            }
+            if (other.HasSimulationLoop)
+            {
+                SimulationLoop = other.SimulationLoop;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -8252,6 +10472,11 @@ namespace SC2APIProtocol
                     default:
                         _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
                         break;
+                    case 8:
+                        {
+                            SimulationLoop = input.ReadUInt32();
+                            break;
+                        }
                 }
             }
         }
@@ -8265,13 +10490,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<RequestData> _parser = new pb::MessageParser<RequestData>(() => new RequestData());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<RequestData> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[31]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[33]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8291,6 +10517,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RequestData(RequestData other) : this()
         {
+            _hasBits0 = other._hasBits0;
             abilityId_ = other.abilityId_;
             unitTypeId_ = other.unitTypeId_;
             upgradeId_ = other.upgradeId_;
@@ -8307,67 +10534,142 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "ability_id" field.</summary>
         public const int AbilityIdFieldNumber = 1;
+        private readonly static bool AbilityIdDefaultValue = false;
+
         private bool abilityId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool AbilityId
         {
-            get { return abilityId_; }
+            get { if ((_hasBits0 & 1) != 0) { return abilityId_; } else { return AbilityIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 abilityId_ = value;
             }
+        }
+        /// <summary>Gets whether the "ability_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAbilityId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "ability_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAbilityId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "unit_type_id" field.</summary>
         public const int UnitTypeIdFieldNumber = 2;
+        private readonly static bool UnitTypeIdDefaultValue = false;
+
         private bool unitTypeId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool UnitTypeId
         {
-            get { return unitTypeId_; }
+            get { if ((_hasBits0 & 2) != 0) { return unitTypeId_; } else { return UnitTypeIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 unitTypeId_ = value;
             }
+        }
+        /// <summary>Gets whether the "unit_type_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUnitTypeId
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "unit_type_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUnitTypeId()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "upgrade_id" field.</summary>
         public const int UpgradeIdFieldNumber = 3;
+        private readonly static bool UpgradeIdDefaultValue = false;
+
         private bool upgradeId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool UpgradeId
         {
-            get { return upgradeId_; }
+            get { if ((_hasBits0 & 4) != 0) { return upgradeId_; } else { return UpgradeIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 upgradeId_ = value;
             }
+        }
+        /// <summary>Gets whether the "upgrade_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUpgradeId
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "upgrade_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUpgradeId()
+        {
+            _hasBits0 &= ~4;
         }
 
         /// <summary>Field number for the "buff_id" field.</summary>
         public const int BuffIdFieldNumber = 4;
+        private readonly static bool BuffIdDefaultValue = false;
+
         private bool buffId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool BuffId
         {
-            get { return buffId_; }
+            get { if ((_hasBits0 & 8) != 0) { return buffId_; } else { return BuffIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 8;
                 buffId_ = value;
             }
+        }
+        /// <summary>Gets whether the "buff_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasBuffId
+        {
+            get { return (_hasBits0 & 8) != 0; }
+        }
+        /// <summary>Clears the value of the "buff_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearBuffId()
+        {
+            _hasBits0 &= ~8;
         }
 
         /// <summary>Field number for the "effect_id" field.</summary>
         public const int EffectIdFieldNumber = 5;
+        private readonly static bool EffectIdDefaultValue = false;
+
         private bool effectId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool EffectId
         {
-            get { return effectId_; }
+            get { if ((_hasBits0 & 16) != 0) { return effectId_; } else { return EffectIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 16;
                 effectId_ = value;
             }
+        }
+        /// <summary>Gets whether the "effect_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasEffectId
+        {
+            get { return (_hasBits0 & 16) != 0; }
+        }
+        /// <summary>Clears the value of the "effect_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearEffectId()
+        {
+            _hasBits0 &= ~16;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8399,11 +10701,11 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (AbilityId != false) hash ^= AbilityId.GetHashCode();
-            if (UnitTypeId != false) hash ^= UnitTypeId.GetHashCode();
-            if (UpgradeId != false) hash ^= UpgradeId.GetHashCode();
-            if (BuffId != false) hash ^= BuffId.GetHashCode();
-            if (EffectId != false) hash ^= EffectId.GetHashCode();
+            if (HasAbilityId) hash ^= AbilityId.GetHashCode();
+            if (HasUnitTypeId) hash ^= UnitTypeId.GetHashCode();
+            if (HasUpgradeId) hash ^= UpgradeId.GetHashCode();
+            if (HasBuffId) hash ^= BuffId.GetHashCode();
+            if (HasEffectId) hash ^= EffectId.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -8420,27 +10722,27 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (AbilityId != false)
+            if (HasAbilityId)
             {
                 output.WriteRawTag(8);
                 output.WriteBool(AbilityId);
             }
-            if (UnitTypeId != false)
+            if (HasUnitTypeId)
             {
                 output.WriteRawTag(16);
                 output.WriteBool(UnitTypeId);
             }
-            if (UpgradeId != false)
+            if (HasUpgradeId)
             {
                 output.WriteRawTag(24);
                 output.WriteBool(UpgradeId);
             }
-            if (BuffId != false)
+            if (HasBuffId)
             {
                 output.WriteRawTag(32);
                 output.WriteBool(BuffId);
             }
-            if (EffectId != false)
+            if (HasEffectId)
             {
                 output.WriteRawTag(40);
                 output.WriteBool(EffectId);
@@ -8455,23 +10757,23 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (AbilityId != false)
+            if (HasAbilityId)
             {
                 size += 1 + 1;
             }
-            if (UnitTypeId != false)
+            if (HasUnitTypeId)
             {
                 size += 1 + 1;
             }
-            if (UpgradeId != false)
+            if (HasUpgradeId)
             {
                 size += 1 + 1;
             }
-            if (BuffId != false)
+            if (HasBuffId)
             {
                 size += 1 + 1;
             }
-            if (EffectId != false)
+            if (HasEffectId)
             {
                 size += 1 + 1;
             }
@@ -8489,23 +10791,23 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.AbilityId != false)
+            if (other.HasAbilityId)
             {
                 AbilityId = other.AbilityId;
             }
-            if (other.UnitTypeId != false)
+            if (other.HasUnitTypeId)
             {
                 UnitTypeId = other.UnitTypeId;
             }
-            if (other.UpgradeId != false)
+            if (other.HasUpgradeId)
             {
                 UpgradeId = other.UpgradeId;
             }
-            if (other.BuffId != false)
+            if (other.HasBuffId)
             {
                 BuffId = other.BuffId;
             }
-            if (other.EffectId != false)
+            if (other.HasEffectId)
             {
                 EffectId = other.EffectId;
             }
@@ -8564,7 +10866,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[32]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[34]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8800,7 +11102,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[33]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[35]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8923,7 +11225,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[34]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[36]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8955,15 +11257,29 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "data" field.</summary>
         public const int DataFieldNumber = 1;
-        private pb::ByteString data_ = pb::ByteString.Empty;
+        private readonly static pb::ByteString DataDefaultValue = pb::ByteString.Empty;
+
+        private pb::ByteString data_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString Data
         {
-            get { return data_; }
+            get { return data_ ?? DataDefaultValue; }
             set
             {
                 data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasData
+        {
+            get { return data_ != null; }
+        }
+        /// <summary>Clears the value of the "data" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearData()
+        {
+            data_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8991,7 +11307,7 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Data.Length != 0) hash ^= Data.GetHashCode();
+            if (HasData) hash ^= Data.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -9008,7 +11324,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Data.Length != 0)
+            if (HasData)
             {
                 output.WriteRawTag(10);
                 output.WriteBytes(Data);
@@ -9023,7 +11339,7 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Data.Length != 0)
+            if (HasData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
             }
@@ -9041,7 +11357,7 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Data.Length != 0)
+            if (other.HasData)
             {
                 Data = other.Data;
             }
@@ -9077,13 +11393,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<RequestReplayInfo> _parser = new pb::MessageParser<RequestReplayInfo>(() => new RequestReplayInfo());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<RequestReplayInfo> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[35]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[37]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9103,6 +11420,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RequestReplayInfo(RequestReplayInfo other) : this()
         {
+            _hasBits0 = other._hasBits0;
             downloadData_ = other.downloadData_;
             switch (other.ReplayCase)
             {
@@ -9131,11 +11449,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ReplayPath
         {
-            get { return replayCase_ == ReplayOneofCase.ReplayPath ? (string)replay_ : ""; }
+            get { return HasReplayPath ? (string)replay_ : ""; }
             set
             {
                 replay_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
                 replayCase_ = ReplayOneofCase.ReplayPath;
+            }
+        }
+        /// <summary>Gets whether the "replay_path" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasReplayPath
+        {
+            get { return replayCase_ == ReplayOneofCase.ReplayPath; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "replay_path" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearReplayPath()
+        {
+            if (HasReplayPath)
+            {
+                ClearReplay();
             }
         }
 
@@ -9144,16 +11477,33 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString ReplayData
         {
-            get { return replayCase_ == ReplayOneofCase.ReplayData ? (pb::ByteString)replay_ : pb::ByteString.Empty; }
+            get { return HasReplayData ? (pb::ByteString)replay_ : pb::ByteString.Empty; }
             set
             {
                 replay_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
                 replayCase_ = ReplayOneofCase.ReplayData;
             }
         }
+        /// <summary>Gets whether the "replay_data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasReplayData
+        {
+            get { return replayCase_ == ReplayOneofCase.ReplayData; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "replay_data" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearReplayData()
+        {
+            if (HasReplayData)
+            {
+                ClearReplay();
+            }
+        }
 
         /// <summary>Field number for the "download_data" field.</summary>
         public const int DownloadDataFieldNumber = 3;
+        private readonly static bool DownloadDataDefaultValue = false;
+
         private bool downloadData_;
         /// <summary>
         /// Ensure the data and binary are downloaded if this is an old version replay.
@@ -9161,11 +11511,24 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool DownloadData
         {
-            get { return downloadData_; }
+            get { if ((_hasBits0 & 1) != 0) { return downloadData_; } else { return DownloadDataDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 downloadData_ = value;
             }
+        }
+        /// <summary>Gets whether the "download_data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDownloadData
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "download_data" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDownloadData()
+        {
+            _hasBits0 &= ~1;
         }
 
         private object replay_;
@@ -9218,9 +11581,9 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (replayCase_ == ReplayOneofCase.ReplayPath) hash ^= ReplayPath.GetHashCode();
-            if (replayCase_ == ReplayOneofCase.ReplayData) hash ^= ReplayData.GetHashCode();
-            if (DownloadData != false) hash ^= DownloadData.GetHashCode();
+            if (HasReplayPath) hash ^= ReplayPath.GetHashCode();
+            if (HasReplayData) hash ^= ReplayData.GetHashCode();
+            if (HasDownloadData) hash ^= DownloadData.GetHashCode();
             hash ^= (int)replayCase_;
             if (_unknownFields != null)
             {
@@ -9238,17 +11601,17 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (replayCase_ == ReplayOneofCase.ReplayPath)
+            if (HasReplayPath)
             {
                 output.WriteRawTag(10);
                 output.WriteString(ReplayPath);
             }
-            if (replayCase_ == ReplayOneofCase.ReplayData)
+            if (HasReplayData)
             {
                 output.WriteRawTag(18);
                 output.WriteBytes(ReplayData);
             }
-            if (DownloadData != false)
+            if (HasDownloadData)
             {
                 output.WriteRawTag(24);
                 output.WriteBool(DownloadData);
@@ -9263,15 +11626,15 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (replayCase_ == ReplayOneofCase.ReplayPath)
+            if (HasReplayPath)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ReplayPath);
             }
-            if (replayCase_ == ReplayOneofCase.ReplayData)
+            if (HasReplayData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeBytesSize(ReplayData);
             }
-            if (DownloadData != false)
+            if (HasDownloadData)
             {
                 size += 1 + 1;
             }
@@ -9289,7 +11652,7 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.DownloadData != false)
+            if (other.HasDownloadData)
             {
                 DownloadData = other.DownloadData;
             }
@@ -9342,13 +11705,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<PlayerInfoExtra> _parser = new pb::MessageParser<PlayerInfoExtra>(() => new PlayerInfoExtra());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<PlayerInfoExtra> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[36]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[38]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9368,8 +11732,9 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public PlayerInfoExtra(PlayerInfoExtra other) : this()
         {
-            PlayerInfo = other.playerInfo_ != null ? other.PlayerInfo.Clone() : null;
-            PlayerResult = other.playerResult_ != null ? other.PlayerResult.Clone() : null;
+            _hasBits0 = other._hasBits0;
+            playerInfo_ = other.HasPlayerInfo ? other.playerInfo_.Clone() : null;
+            playerResult_ = other.HasPlayerResult ? other.playerResult_.Clone() : null;
             playerMmr_ = other.playerMmr_;
             playerApm_ = other.playerApm_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -9393,6 +11758,18 @@ namespace SC2APIProtocol
                 playerInfo_ = value;
             }
         }
+        /// <summary>Gets whether the player_info field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerInfo
+        {
+            get { return playerInfo_ != null; }
+        }
+        /// <summary>Clears the value of the player_info field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerInfo()
+        {
+            playerInfo_ = null;
+        }
 
         /// <summary>Field number for the "player_result" field.</summary>
         public const int PlayerResultFieldNumber = 2;
@@ -9406,31 +11783,73 @@ namespace SC2APIProtocol
                 playerResult_ = value;
             }
         }
+        /// <summary>Gets whether the player_result field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerResult
+        {
+            get { return playerResult_ != null; }
+        }
+        /// <summary>Clears the value of the player_result field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerResult()
+        {
+            playerResult_ = null;
+        }
 
         /// <summary>Field number for the "player_mmr" field.</summary>
         public const int PlayerMmrFieldNumber = 3;
+        private readonly static int PlayerMmrDefaultValue = 0;
+
         private int playerMmr_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int PlayerMmr
         {
-            get { return playerMmr_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerMmr_; } else { return PlayerMmrDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerMmr_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_mmr" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerMmr
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_mmr" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerMmr()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "player_apm" field.</summary>
         public const int PlayerApmFieldNumber = 4;
+        private readonly static int PlayerApmDefaultValue = 0;
+
         private int playerApm_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int PlayerApm
         {
-            get { return playerApm_; }
+            get { if ((_hasBits0 & 2) != 0) { return playerApm_; } else { return PlayerApmDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 playerApm_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_apm" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerApm
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "player_apm" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerApm()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9461,10 +11880,10 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (playerInfo_ != null) hash ^= PlayerInfo.GetHashCode();
-            if (playerResult_ != null) hash ^= PlayerResult.GetHashCode();
-            if (PlayerMmr != 0) hash ^= PlayerMmr.GetHashCode();
-            if (PlayerApm != 0) hash ^= PlayerApm.GetHashCode();
+            if (HasPlayerInfo) hash ^= PlayerInfo.GetHashCode();
+            if (HasPlayerResult) hash ^= PlayerResult.GetHashCode();
+            if (HasPlayerMmr) hash ^= PlayerMmr.GetHashCode();
+            if (HasPlayerApm) hash ^= PlayerApm.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -9481,22 +11900,22 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (playerInfo_ != null)
+            if (HasPlayerInfo)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(PlayerInfo);
             }
-            if (playerResult_ != null)
+            if (HasPlayerResult)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(PlayerResult);
             }
-            if (PlayerMmr != 0)
+            if (HasPlayerMmr)
             {
                 output.WriteRawTag(24);
                 output.WriteInt32(PlayerMmr);
             }
-            if (PlayerApm != 0)
+            if (HasPlayerApm)
             {
                 output.WriteRawTag(32);
                 output.WriteInt32(PlayerApm);
@@ -9511,19 +11930,19 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (playerInfo_ != null)
+            if (HasPlayerInfo)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerInfo);
             }
-            if (playerResult_ != null)
+            if (HasPlayerResult)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerResult);
             }
-            if (PlayerMmr != 0)
+            if (HasPlayerMmr)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerMmr);
             }
-            if (PlayerApm != 0)
+            if (HasPlayerApm)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(PlayerApm);
             }
@@ -9541,27 +11960,27 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.playerInfo_ != null)
+            if (other.HasPlayerInfo)
             {
-                if (playerInfo_ == null)
+                if (!HasPlayerInfo)
                 {
-                    playerInfo_ = new global::SC2APIProtocol.PlayerInfo();
+                    PlayerInfo = new global::SC2APIProtocol.PlayerInfo();
                 }
                 PlayerInfo.MergeFrom(other.PlayerInfo);
             }
-            if (other.playerResult_ != null)
+            if (other.HasPlayerResult)
             {
-                if (playerResult_ == null)
+                if (!HasPlayerResult)
                 {
-                    playerResult_ = new global::SC2APIProtocol.PlayerResult();
+                    PlayerResult = new global::SC2APIProtocol.PlayerResult();
                 }
                 PlayerResult.MergeFrom(other.PlayerResult);
             }
-            if (other.PlayerMmr != 0)
+            if (other.HasPlayerMmr)
             {
                 PlayerMmr = other.PlayerMmr;
             }
-            if (other.PlayerApm != 0)
+            if (other.HasPlayerApm)
             {
                 PlayerApm = other.PlayerApm;
             }
@@ -9581,20 +12000,20 @@ namespace SC2APIProtocol
                         break;
                     case 10:
                         {
-                            if (playerInfo_ == null)
+                            if (!HasPlayerInfo)
                             {
-                                playerInfo_ = new global::SC2APIProtocol.PlayerInfo();
+                                PlayerInfo = new global::SC2APIProtocol.PlayerInfo();
                             }
-                            input.ReadMessage(playerInfo_);
+                            input.ReadMessage(PlayerInfo);
                             break;
                         }
                     case 18:
                         {
-                            if (playerResult_ == null)
+                            if (!HasPlayerResult)
                             {
-                                playerResult_ = new global::SC2APIProtocol.PlayerResult();
+                                PlayerResult = new global::SC2APIProtocol.PlayerResult();
                             }
-                            input.ReadMessage(playerResult_);
+                            input.ReadMessage(PlayerResult);
                             break;
                         }
                     case 24:
@@ -9617,13 +12036,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ResponseReplayInfo> _parser = new pb::MessageParser<ResponseReplayInfo>(() => new ResponseReplayInfo());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponseReplayInfo> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[37]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[39]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9643,6 +12063,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponseReplayInfo(ResponseReplayInfo other) : this()
         {
+            _hasBits0 = other._hasBits0;
             mapName_ = other.mapName_;
             localMapPath_ = other.localMapPath_;
             playerInfo_ = other.playerInfo_.Clone();
@@ -9665,28 +12086,56 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "map_name" field.</summary>
         public const int MapNameFieldNumber = 1;
-        private string mapName_ = "";
+        private readonly static string MapNameDefaultValue = "";
+
+        private string mapName_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string MapName
         {
-            get { return mapName_; }
+            get { return mapName_ ?? MapNameDefaultValue; }
             set
             {
                 mapName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "map_name" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapName
+        {
+            get { return mapName_ != null; }
+        }
+        /// <summary>Clears the value of the "map_name" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapName()
+        {
+            mapName_ = null;
+        }
 
         /// <summary>Field number for the "local_map_path" field.</summary>
         public const int LocalMapPathFieldNumber = 2;
-        private string localMapPath_ = "";
+        private readonly static string LocalMapPathDefaultValue = "";
+
+        private string localMapPath_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string LocalMapPath
         {
-            get { return localMapPath_; }
+            get { return localMapPath_ ?? LocalMapPathDefaultValue; }
             set
             {
                 localMapPath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "local_map_path" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasLocalMapPath
+        {
+            get { return localMapPath_ != null; }
+        }
+        /// <summary>Clears the value of the "local_map_path" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearLocalMapPath()
+        {
+            localMapPath_ = null;
         }
 
         /// <summary>Field number for the "player_info" field.</summary>
@@ -9702,106 +12151,223 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "game_duration_loops" field.</summary>
         public const int GameDurationLoopsFieldNumber = 4;
+        private readonly static uint GameDurationLoopsDefaultValue = 0;
+
         private uint gameDurationLoops_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint GameDurationLoops
         {
-            get { return gameDurationLoops_; }
+            get { if ((_hasBits0 & 1) != 0) { return gameDurationLoops_; } else { return GameDurationLoopsDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 gameDurationLoops_ = value;
             }
+        }
+        /// <summary>Gets whether the "game_duration_loops" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameDurationLoops
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "game_duration_loops" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameDurationLoops()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "game_duration_seconds" field.</summary>
         public const int GameDurationSecondsFieldNumber = 5;
+        private readonly static float GameDurationSecondsDefaultValue = 0F;
+
         private float gameDurationSeconds_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float GameDurationSeconds
         {
-            get { return gameDurationSeconds_; }
+            get { if ((_hasBits0 & 2) != 0) { return gameDurationSeconds_; } else { return GameDurationSecondsDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 gameDurationSeconds_ = value;
             }
+        }
+        /// <summary>Gets whether the "game_duration_seconds" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameDurationSeconds
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "game_duration_seconds" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameDurationSeconds()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "game_version" field.</summary>
         public const int GameVersionFieldNumber = 6;
-        private string gameVersion_ = "";
+        private readonly static string GameVersionDefaultValue = "";
+
+        private string gameVersion_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string GameVersion
         {
-            get { return gameVersion_; }
+            get { return gameVersion_ ?? GameVersionDefaultValue; }
             set
             {
                 gameVersion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "game_version" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameVersion
+        {
+            get { return gameVersion_ != null; }
+        }
+        /// <summary>Clears the value of the "game_version" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameVersion()
+        {
+            gameVersion_ = null;
+        }
 
         /// <summary>Field number for the "data_version" field.</summary>
         public const int DataVersionFieldNumber = 11;
-        private string dataVersion_ = "";
+        private readonly static string DataVersionDefaultValue = "";
+
+        private string dataVersion_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DataVersion
         {
-            get { return dataVersion_; }
+            get { return dataVersion_ ?? DataVersionDefaultValue; }
             set
             {
                 dataVersion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "data_version" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDataVersion
+        {
+            get { return dataVersion_ != null; }
+        }
+        /// <summary>Clears the value of the "data_version" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDataVersion()
+        {
+            dataVersion_ = null;
+        }
 
         /// <summary>Field number for the "data_build" field.</summary>
         public const int DataBuildFieldNumber = 7;
+        private readonly static uint DataBuildDefaultValue = 0;
+
         private uint dataBuild_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint DataBuild
         {
-            get { return dataBuild_; }
+            get { if ((_hasBits0 & 4) != 0) { return dataBuild_; } else { return DataBuildDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 dataBuild_ = value;
             }
+        }
+        /// <summary>Gets whether the "data_build" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDataBuild
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "data_build" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDataBuild()
+        {
+            _hasBits0 &= ~4;
         }
 
         /// <summary>Field number for the "base_build" field.</summary>
         public const int BaseBuildFieldNumber = 8;
+        private readonly static uint BaseBuildDefaultValue = 0;
+
         private uint baseBuild_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint BaseBuild
         {
-            get { return baseBuild_; }
+            get { if ((_hasBits0 & 8) != 0) { return baseBuild_; } else { return BaseBuildDefaultValue; } }
             set
             {
+                _hasBits0 |= 8;
                 baseBuild_ = value;
             }
+        }
+        /// <summary>Gets whether the "base_build" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasBaseBuild
+        {
+            get { return (_hasBits0 & 8) != 0; }
+        }
+        /// <summary>Clears the value of the "base_build" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearBaseBuild()
+        {
+            _hasBits0 &= ~8;
         }
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 9;
-        private global::SC2APIProtocol.ResponseReplayInfo.Types.Error error_ = 0;
+        private readonly static global::SC2APIProtocol.ResponseReplayInfo.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseReplayInfo.Types.Error.MissingReplay;
+
+        private global::SC2APIProtocol.ResponseReplayInfo.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseReplayInfo.Types.Error Error
         {
-            get { return error_; }
+            get { if ((_hasBits0 & 16) != 0) { return error_; } else { return ErrorDefaultValue; } }
             set
             {
+                _hasBits0 |= 16;
                 error_ = value;
             }
+        }
+        /// <summary>Gets whether the "error" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasError
+        {
+            get { return (_hasBits0 & 16) != 0; }
+        }
+        /// <summary>Clears the value of the "error" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearError()
+        {
+            _hasBits0 &= ~16;
         }
 
         /// <summary>Field number for the "error_details" field.</summary>
         public const int ErrorDetailsFieldNumber = 10;
-        private string errorDetails_ = "";
+        private readonly static string ErrorDetailsDefaultValue = "";
+
+        private string errorDetails_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string ErrorDetails
         {
-            get { return errorDetails_; }
+            get { return errorDetails_ ?? ErrorDetailsDefaultValue; }
             set
             {
                 errorDetails_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "error_details" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasErrorDetails
+        {
+            get { return errorDetails_ != null; }
+        }
+        /// <summary>Clears the value of the "error_details" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearErrorDetails()
+        {
+            errorDetails_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9839,17 +12405,17 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (MapName.Length != 0) hash ^= MapName.GetHashCode();
-            if (LocalMapPath.Length != 0) hash ^= LocalMapPath.GetHashCode();
+            if (HasMapName) hash ^= MapName.GetHashCode();
+            if (HasLocalMapPath) hash ^= LocalMapPath.GetHashCode();
             hash ^= playerInfo_.GetHashCode();
-            if (GameDurationLoops != 0) hash ^= GameDurationLoops.GetHashCode();
-            if (GameDurationSeconds != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(GameDurationSeconds);
-            if (GameVersion.Length != 0) hash ^= GameVersion.GetHashCode();
-            if (DataVersion.Length != 0) hash ^= DataVersion.GetHashCode();
-            if (DataBuild != 0) hash ^= DataBuild.GetHashCode();
-            if (BaseBuild != 0) hash ^= BaseBuild.GetHashCode();
-            if (Error != 0) hash ^= Error.GetHashCode();
-            if (ErrorDetails.Length != 0) hash ^= ErrorDetails.GetHashCode();
+            if (HasGameDurationLoops) hash ^= GameDurationLoops.GetHashCode();
+            if (HasGameDurationSeconds) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(GameDurationSeconds);
+            if (HasGameVersion) hash ^= GameVersion.GetHashCode();
+            if (HasDataVersion) hash ^= DataVersion.GetHashCode();
+            if (HasDataBuild) hash ^= DataBuild.GetHashCode();
+            if (HasBaseBuild) hash ^= BaseBuild.GetHashCode();
+            if (HasError) hash ^= Error.GetHashCode();
+            if (HasErrorDetails) hash ^= ErrorDetails.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -9866,53 +12432,53 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (MapName.Length != 0)
+            if (HasMapName)
             {
                 output.WriteRawTag(10);
                 output.WriteString(MapName);
             }
-            if (LocalMapPath.Length != 0)
+            if (HasLocalMapPath)
             {
                 output.WriteRawTag(18);
                 output.WriteString(LocalMapPath);
             }
             playerInfo_.WriteTo(output, _repeated_playerInfo_codec);
-            if (GameDurationLoops != 0)
+            if (HasGameDurationLoops)
             {
                 output.WriteRawTag(32);
                 output.WriteUInt32(GameDurationLoops);
             }
-            if (GameDurationSeconds != 0F)
+            if (HasGameDurationSeconds)
             {
                 output.WriteRawTag(45);
                 output.WriteFloat(GameDurationSeconds);
             }
-            if (GameVersion.Length != 0)
+            if (HasGameVersion)
             {
                 output.WriteRawTag(50);
                 output.WriteString(GameVersion);
             }
-            if (DataBuild != 0)
+            if (HasDataBuild)
             {
                 output.WriteRawTag(56);
                 output.WriteUInt32(DataBuild);
             }
-            if (BaseBuild != 0)
+            if (HasBaseBuild)
             {
                 output.WriteRawTag(64);
                 output.WriteUInt32(BaseBuild);
             }
-            if (Error != 0)
+            if (HasError)
             {
                 output.WriteRawTag(72);
                 output.WriteEnum((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 output.WriteRawTag(82);
                 output.WriteString(ErrorDetails);
             }
-            if (DataVersion.Length != 0)
+            if (HasDataVersion)
             {
                 output.WriteRawTag(90);
                 output.WriteString(DataVersion);
@@ -9927,44 +12493,44 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (MapName.Length != 0)
+            if (HasMapName)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(MapName);
             }
-            if (LocalMapPath.Length != 0)
+            if (HasLocalMapPath)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(LocalMapPath);
             }
             size += playerInfo_.CalculateSize(_repeated_playerInfo_codec);
-            if (GameDurationLoops != 0)
+            if (HasGameDurationLoops)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GameDurationLoops);
             }
-            if (GameDurationSeconds != 0F)
+            if (HasGameDurationSeconds)
             {
                 size += 1 + 4;
             }
-            if (GameVersion.Length != 0)
+            if (HasGameVersion)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(GameVersion);
             }
-            if (DataVersion.Length != 0)
+            if (HasDataVersion)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(DataVersion);
             }
-            if (DataBuild != 0)
+            if (HasDataBuild)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DataBuild);
             }
-            if (BaseBuild != 0)
+            if (HasBaseBuild)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BaseBuild);
             }
-            if (Error != 0)
+            if (HasError)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Error);
             }
-            if (ErrorDetails.Length != 0)
+            if (HasErrorDetails)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(ErrorDetails);
             }
@@ -9982,44 +12548,44 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.MapName.Length != 0)
+            if (other.HasMapName)
             {
                 MapName = other.MapName;
             }
-            if (other.LocalMapPath.Length != 0)
+            if (other.HasLocalMapPath)
             {
                 LocalMapPath = other.LocalMapPath;
             }
             playerInfo_.Add(other.playerInfo_);
-            if (other.GameDurationLoops != 0)
+            if (other.HasGameDurationLoops)
             {
                 GameDurationLoops = other.GameDurationLoops;
             }
-            if (other.GameDurationSeconds != 0F)
+            if (other.HasGameDurationSeconds)
             {
                 GameDurationSeconds = other.GameDurationSeconds;
             }
-            if (other.GameVersion.Length != 0)
+            if (other.HasGameVersion)
             {
                 GameVersion = other.GameVersion;
             }
-            if (other.DataVersion.Length != 0)
+            if (other.HasDataVersion)
             {
                 DataVersion = other.DataVersion;
             }
-            if (other.DataBuild != 0)
+            if (other.HasDataBuild)
             {
                 DataBuild = other.DataBuild;
             }
-            if (other.BaseBuild != 0)
+            if (other.HasBaseBuild)
             {
                 BaseBuild = other.BaseBuild;
             }
-            if (other.Error != 0)
+            if (other.HasError)
             {
                 Error = other.Error;
             }
-            if (other.ErrorDetails.Length != 0)
+            if (other.HasErrorDetails)
             {
                 ErrorDetails = other.ErrorDetails;
             }
@@ -10079,7 +12645,7 @@ namespace SC2APIProtocol
                         }
                     case 72:
                         {
-                            error_ = (global::SC2APIProtocol.ResponseReplayInfo.Types.Error)input.ReadEnum();
+                            Error = (global::SC2APIProtocol.ResponseReplayInfo.Types.Error)input.ReadEnum();
                             break;
                         }
                     case 82:
@@ -10103,7 +12669,6 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
-                [pbr::OriginalName("Error_UNSET")] Unset = 0,
                 [pbr::OriginalName("MissingReplay")] MissingReplay = 1,
                 [pbr::OriginalName("InvalidReplayPath")] InvalidReplayPath = 2,
                 [pbr::OriginalName("InvalidReplayData")] InvalidReplayData = 3,
@@ -10129,7 +12694,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[38]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[40]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10257,7 +12822,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[39]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[41]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10434,7 +12999,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[40]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[42]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10467,34 +13032,62 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "map_path" field.</summary>
         public const int MapPathFieldNumber = 1;
-        private string mapPath_ = "";
+        private readonly static string MapPathDefaultValue = "";
+
+        private string mapPath_;
         /// <summary>
         /// Path the game process will write to, relative to the temp directory. (260 character max)
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string MapPath
         {
-            get { return mapPath_; }
+            get { return mapPath_ ?? MapPathDefaultValue; }
             set
             {
                 mapPath_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "map_path" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapPath
+        {
+            get { return mapPath_ != null; }
+        }
+        /// <summary>Clears the value of the "map_path" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapPath()
+        {
+            mapPath_ = null;
+        }
 
         /// <summary>Field number for the "map_data" field.</summary>
         public const int MapDataFieldNumber = 2;
-        private pb::ByteString mapData_ = pb::ByteString.Empty;
+        private readonly static pb::ByteString MapDataDefaultValue = pb::ByteString.Empty;
+
+        private pb::ByteString mapData_;
         /// <summary>
         /// Binary map data of a .SC2Map.
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString MapData
         {
-            get { return mapData_; }
+            get { return mapData_ ?? MapDataDefaultValue; }
             set
             {
                 mapData_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "map_data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMapData
+        {
+            get { return mapData_ != null; }
+        }
+        /// <summary>Clears the value of the "map_data" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMapData()
+        {
+            mapData_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10523,8 +13116,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (MapPath.Length != 0) hash ^= MapPath.GetHashCode();
-            if (MapData.Length != 0) hash ^= MapData.GetHashCode();
+            if (HasMapPath) hash ^= MapPath.GetHashCode();
+            if (HasMapData) hash ^= MapData.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -10541,12 +13134,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (MapPath.Length != 0)
+            if (HasMapPath)
             {
                 output.WriteRawTag(10);
                 output.WriteString(MapPath);
             }
-            if (MapData.Length != 0)
+            if (HasMapData)
             {
                 output.WriteRawTag(18);
                 output.WriteBytes(MapData);
@@ -10561,11 +13154,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (MapPath.Length != 0)
+            if (HasMapPath)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(MapPath);
             }
-            if (MapData.Length != 0)
+            if (HasMapData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeBytesSize(MapData);
             }
@@ -10583,11 +13176,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.MapPath.Length != 0)
+            if (other.HasMapPath)
             {
                 MapPath = other.MapPath;
             }
-            if (other.MapData.Length != 0)
+            if (other.HasMapData)
             {
                 MapData = other.MapData;
             }
@@ -10625,13 +13218,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ResponseSaveMap> _parser = new pb::MessageParser<ResponseSaveMap>(() => new ResponseSaveMap());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponseSaveMap> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[41]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[43]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10651,6 +13245,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponseSaveMap(ResponseSaveMap other) : this()
         {
+            _hasBits0 = other._hasBits0;
             error_ = other.error_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
@@ -10663,15 +13258,30 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "error" field.</summary>
         public const int ErrorFieldNumber = 1;
-        private global::SC2APIProtocol.ResponseSaveMap.Types.Error error_ = 0;
+        private readonly static global::SC2APIProtocol.ResponseSaveMap.Types.Error ErrorDefaultValue = global::SC2APIProtocol.ResponseSaveMap.Types.Error.InvalidMapData;
+
+        private global::SC2APIProtocol.ResponseSaveMap.Types.Error error_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ResponseSaveMap.Types.Error Error
         {
-            get { return error_; }
+            get { if ((_hasBits0 & 1) != 0) { return error_; } else { return ErrorDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 error_ = value;
             }
+        }
+        /// <summary>Gets whether the "error" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasError
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "error" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearError()
+        {
+            _hasBits0 &= ~1;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10699,7 +13309,7 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Error != 0) hash ^= Error.GetHashCode();
+            if (HasError) hash ^= Error.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -10716,7 +13326,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Error != 0)
+            if (HasError)
             {
                 output.WriteRawTag(8);
                 output.WriteEnum((int)Error);
@@ -10731,7 +13341,7 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Error != 0)
+            if (HasError)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Error);
             }
@@ -10749,7 +13359,7 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Error != 0)
+            if (other.HasError)
             {
                 Error = other.Error;
             }
@@ -10769,7 +13379,7 @@ namespace SC2APIProtocol
                         break;
                     case 8:
                         {
-                            error_ = (global::SC2APIProtocol.ResponseSaveMap.Types.Error)input.ReadEnum();
+                            Error = (global::SC2APIProtocol.ResponseSaveMap.Types.Error)input.ReadEnum();
                             break;
                         }
                 }
@@ -10783,7 +13393,6 @@ namespace SC2APIProtocol
         {
             public enum Error
             {
-                [pbr::OriginalName("Error_UNSET")] Unset = 0,
                 [pbr::OriginalName("InvalidMapData")] InvalidMapData = 1,
             }
 
@@ -10805,7 +13414,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[42]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[44]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10922,13 +13531,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ResponsePing> _parser = new pb::MessageParser<ResponsePing>(() => new ResponsePing());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ResponsePing> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[43]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[45]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10948,6 +13558,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ResponsePing(ResponsePing other) : this()
         {
+            _hasBits0 = other._hasBits0;
             gameVersion_ = other.gameVersion_;
             dataVersion_ = other.dataVersion_;
             dataBuild_ = other.dataBuild_;
@@ -10963,54 +13574,112 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "game_version" field.</summary>
         public const int GameVersionFieldNumber = 1;
-        private string gameVersion_ = "";
+        private readonly static string GameVersionDefaultValue = "";
+
+        private string gameVersion_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string GameVersion
         {
-            get { return gameVersion_; }
+            get { return gameVersion_ ?? GameVersionDefaultValue; }
             set
             {
                 gameVersion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "game_version" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameVersion
+        {
+            get { return gameVersion_ != null; }
+        }
+        /// <summary>Clears the value of the "game_version" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameVersion()
+        {
+            gameVersion_ = null;
+        }
 
         /// <summary>Field number for the "data_version" field.</summary>
         public const int DataVersionFieldNumber = 2;
-        private string dataVersion_ = "";
+        private readonly static string DataVersionDefaultValue = "";
+
+        private string dataVersion_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string DataVersion
         {
-            get { return dataVersion_; }
+            get { return dataVersion_ ?? DataVersionDefaultValue; }
             set
             {
                 dataVersion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
+        /// <summary>Gets whether the "data_version" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDataVersion
+        {
+            get { return dataVersion_ != null; }
+        }
+        /// <summary>Clears the value of the "data_version" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDataVersion()
+        {
+            dataVersion_ = null;
+        }
 
         /// <summary>Field number for the "data_build" field.</summary>
         public const int DataBuildFieldNumber = 3;
+        private readonly static uint DataBuildDefaultValue = 0;
+
         private uint dataBuild_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint DataBuild
         {
-            get { return dataBuild_; }
+            get { if ((_hasBits0 & 1) != 0) { return dataBuild_; } else { return DataBuildDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 dataBuild_ = value;
             }
+        }
+        /// <summary>Gets whether the "data_build" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDataBuild
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "data_build" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDataBuild()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "base_build" field.</summary>
         public const int BaseBuildFieldNumber = 4;
+        private readonly static uint BaseBuildDefaultValue = 0;
+
         private uint baseBuild_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint BaseBuild
         {
-            get { return baseBuild_; }
+            get { if ((_hasBits0 & 2) != 0) { return baseBuild_; } else { return BaseBuildDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 baseBuild_ = value;
             }
+        }
+        /// <summary>Gets whether the "base_build" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasBaseBuild
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "base_build" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearBaseBuild()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11041,10 +13710,10 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (GameVersion.Length != 0) hash ^= GameVersion.GetHashCode();
-            if (DataVersion.Length != 0) hash ^= DataVersion.GetHashCode();
-            if (DataBuild != 0) hash ^= DataBuild.GetHashCode();
-            if (BaseBuild != 0) hash ^= BaseBuild.GetHashCode();
+            if (HasGameVersion) hash ^= GameVersion.GetHashCode();
+            if (HasDataVersion) hash ^= DataVersion.GetHashCode();
+            if (HasDataBuild) hash ^= DataBuild.GetHashCode();
+            if (HasBaseBuild) hash ^= BaseBuild.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -11061,22 +13730,22 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (GameVersion.Length != 0)
+            if (HasGameVersion)
             {
                 output.WriteRawTag(10);
                 output.WriteString(GameVersion);
             }
-            if (DataVersion.Length != 0)
+            if (HasDataVersion)
             {
                 output.WriteRawTag(18);
                 output.WriteString(DataVersion);
             }
-            if (DataBuild != 0)
+            if (HasDataBuild)
             {
                 output.WriteRawTag(24);
                 output.WriteUInt32(DataBuild);
             }
-            if (BaseBuild != 0)
+            if (HasBaseBuild)
             {
                 output.WriteRawTag(32);
                 output.WriteUInt32(BaseBuild);
@@ -11091,19 +13760,19 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (GameVersion.Length != 0)
+            if (HasGameVersion)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(GameVersion);
             }
-            if (DataVersion.Length != 0)
+            if (HasDataVersion)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(DataVersion);
             }
-            if (DataBuild != 0)
+            if (HasDataBuild)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(DataBuild);
             }
-            if (BaseBuild != 0)
+            if (HasBaseBuild)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(BaseBuild);
             }
@@ -11121,19 +13790,19 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.GameVersion.Length != 0)
+            if (other.HasGameVersion)
             {
                 GameVersion = other.GameVersion;
             }
-            if (other.DataVersion.Length != 0)
+            if (other.HasDataVersion)
             {
                 DataVersion = other.DataVersion;
             }
-            if (other.DataBuild != 0)
+            if (other.HasDataBuild)
             {
                 DataBuild = other.DataBuild;
             }
-            if (other.BaseBuild != 0)
+            if (other.HasBaseBuild)
             {
                 BaseBuild = other.BaseBuild;
             }
@@ -11190,7 +13859,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[44]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[46]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11335,7 +14004,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[45]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[47]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11452,13 +14121,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<PlayerSetup> _parser = new pb::MessageParser<PlayerSetup>(() => new PlayerSetup());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<PlayerSetup> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[46]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[48]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11478,9 +14148,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public PlayerSetup(PlayerSetup other) : this()
         {
+            _hasBits0 = other._hasBits0;
             type_ = other.type_;
             race_ = other.race_;
             difficulty_ = other.difficulty_;
+            playerName_ = other.playerName_;
+            aiBuild_ = other.aiBuild_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -11492,44 +14165,144 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "type" field.</summary>
         public const int TypeFieldNumber = 1;
-        private global::SC2APIProtocol.PlayerType type_ = 0;
+        private readonly static global::SC2APIProtocol.PlayerType TypeDefaultValue = global::SC2APIProtocol.PlayerType.Participant;
+
+        private global::SC2APIProtocol.PlayerType type_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.PlayerType Type
         {
-            get { return type_; }
+            get { if ((_hasBits0 & 1) != 0) { return type_; } else { return TypeDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 type_ = value;
             }
+        }
+        /// <summary>Gets whether the "type" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasType
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "type" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearType()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "race" field.</summary>
         public const int RaceFieldNumber = 2;
-        private global::SC2APIProtocol.Race race_ = 0;
+        private readonly static global::SC2APIProtocol.Race RaceDefaultValue = global::SC2APIProtocol.Race.NoRace;
+
+        private global::SC2APIProtocol.Race race_;
         /// <summary>
         /// Only used for a computer player.
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Race Race
         {
-            get { return race_; }
+            get { if ((_hasBits0 & 2) != 0) { return race_; } else { return RaceDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 race_ = value;
             }
+        }
+        /// <summary>Gets whether the "race" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRace
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "race" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRace()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "difficulty" field.</summary>
         public const int DifficultyFieldNumber = 3;
-        private global::SC2APIProtocol.Difficulty difficulty_ = 0;
+        private readonly static global::SC2APIProtocol.Difficulty DifficultyDefaultValue = global::SC2APIProtocol.Difficulty.VeryEasy;
+
+        private global::SC2APIProtocol.Difficulty difficulty_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Difficulty Difficulty
         {
-            get { return difficulty_; }
+            get { if ((_hasBits0 & 4) != 0) { return difficulty_; } else { return DifficultyDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 difficulty_ = value;
             }
+        }
+        /// <summary>Gets whether the "difficulty" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDifficulty
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "difficulty" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDifficulty()
+        {
+            _hasBits0 &= ~4;
+        }
+
+        /// <summary>Field number for the "player_name" field.</summary>
+        public const int PlayerNameFieldNumber = 4;
+        private readonly static string PlayerNameDefaultValue = "";
+
+        private string playerName_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string PlayerName
+        {
+            get { return playerName_ ?? PlayerNameDefaultValue; }
+            set
+            {
+                playerName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
+        /// <summary>Gets whether the "player_name" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerName
+        {
+            get { return playerName_ != null; }
+        }
+        /// <summary>Clears the value of the "player_name" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerName()
+        {
+            playerName_ = null;
+        }
+
+        /// <summary>Field number for the "ai_build" field.</summary>
+        public const int AiBuildFieldNumber = 5;
+        private readonly static global::SC2APIProtocol.AIBuild AiBuildDefaultValue = global::SC2APIProtocol.AIBuild.RandomBuild;
+
+        private global::SC2APIProtocol.AIBuild aiBuild_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.AIBuild AiBuild
+        {
+            get { if ((_hasBits0 & 8) != 0) { return aiBuild_; } else { return AiBuildDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 8;
+                aiBuild_ = value;
+            }
+        }
+        /// <summary>Gets whether the "ai_build" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAiBuild
+        {
+            get { return (_hasBits0 & 8) != 0; }
+        }
+        /// <summary>Clears the value of the "ai_build" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAiBuild()
+        {
+            _hasBits0 &= ~8;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11552,6 +14325,8 @@ namespace SC2APIProtocol
             if (Type != other.Type) return false;
             if (Race != other.Race) return false;
             if (Difficulty != other.Difficulty) return false;
+            if (PlayerName != other.PlayerName) return false;
+            if (AiBuild != other.AiBuild) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -11559,9 +14334,11 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Type != 0) hash ^= Type.GetHashCode();
-            if (Race != 0) hash ^= Race.GetHashCode();
-            if (Difficulty != 0) hash ^= Difficulty.GetHashCode();
+            if (HasType) hash ^= Type.GetHashCode();
+            if (HasRace) hash ^= Race.GetHashCode();
+            if (HasDifficulty) hash ^= Difficulty.GetHashCode();
+            if (HasPlayerName) hash ^= PlayerName.GetHashCode();
+            if (HasAiBuild) hash ^= AiBuild.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -11578,20 +14355,30 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Type != 0)
+            if (HasType)
             {
                 output.WriteRawTag(8);
                 output.WriteEnum((int)Type);
             }
-            if (Race != 0)
+            if (HasRace)
             {
                 output.WriteRawTag(16);
                 output.WriteEnum((int)Race);
             }
-            if (Difficulty != 0)
+            if (HasDifficulty)
             {
                 output.WriteRawTag(24);
                 output.WriteEnum((int)Difficulty);
+            }
+            if (HasPlayerName)
+            {
+                output.WriteRawTag(34);
+                output.WriteString(PlayerName);
+            }
+            if (HasAiBuild)
+            {
+                output.WriteRawTag(40);
+                output.WriteEnum((int)AiBuild);
             }
             if (_unknownFields != null)
             {
@@ -11603,17 +14390,25 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Type != 0)
+            if (HasType)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Type);
             }
-            if (Race != 0)
+            if (HasRace)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Race);
             }
-            if (Difficulty != 0)
+            if (HasDifficulty)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Difficulty);
+            }
+            if (HasPlayerName)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerName);
+            }
+            if (HasAiBuild)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)AiBuild);
             }
             if (_unknownFields != null)
             {
@@ -11629,17 +14424,25 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Type != 0)
+            if (other.HasType)
             {
                 Type = other.Type;
             }
-            if (other.Race != 0)
+            if (other.HasRace)
             {
                 Race = other.Race;
             }
-            if (other.Difficulty != 0)
+            if (other.HasDifficulty)
             {
                 Difficulty = other.Difficulty;
+            }
+            if (other.HasPlayerName)
+            {
+                PlayerName = other.PlayerName;
+            }
+            if (other.HasAiBuild)
+            {
+                AiBuild = other.AiBuild;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -11657,17 +14460,27 @@ namespace SC2APIProtocol
                         break;
                     case 8:
                         {
-                            type_ = (global::SC2APIProtocol.PlayerType)input.ReadEnum();
+                            Type = (global::SC2APIProtocol.PlayerType)input.ReadEnum();
                             break;
                         }
                     case 16:
                         {
-                            race_ = (global::SC2APIProtocol.Race)input.ReadEnum();
+                            Race = (global::SC2APIProtocol.Race)input.ReadEnum();
                             break;
                         }
                     case 24:
                         {
-                            difficulty_ = (global::SC2APIProtocol.Difficulty)input.ReadEnum();
+                            Difficulty = (global::SC2APIProtocol.Difficulty)input.ReadEnum();
+                            break;
+                        }
+                    case 34:
+                        {
+                            PlayerName = input.ReadString();
+                            break;
+                        }
+                    case 40:
+                        {
+                            AiBuild = (global::SC2APIProtocol.AIBuild)input.ReadEnum();
                             break;
                         }
                 }
@@ -11680,13 +14493,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<SpatialCameraSetup> _parser = new pb::MessageParser<SpatialCameraSetup>(() => new SpatialCameraSetup());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<SpatialCameraSetup> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[47]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[49]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11706,9 +14520,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public SpatialCameraSetup(SpatialCameraSetup other) : this()
         {
+            _hasBits0 = other._hasBits0;
+            resolution_ = other.HasResolution ? other.resolution_.Clone() : null;
+            minimapResolution_ = other.HasMinimapResolution ? other.minimapResolution_.Clone() : null;
             width_ = other.width_;
-            Resolution = other.resolution_ != null ? other.Resolution.Clone() : null;
-            MinimapResolution = other.minimapResolution_ != null ? other.MinimapResolution.Clone() : null;
+            cropToPlayableArea_ = other.cropToPlayableArea_;
+            allowCheatingLayers_ = other.allowCheatingLayers_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -11716,19 +14533,6 @@ namespace SC2APIProtocol
         public SpatialCameraSetup Clone()
         {
             return new SpatialCameraSetup(this);
-        }
-
-        /// <summary>Field number for the "width" field.</summary>
-        public const int WidthFieldNumber = 1;
-        private float width_;
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public float Width
-        {
-            get { return width_; }
-            set
-            {
-                width_ = value;
-            }
         }
 
         /// <summary>Field number for the "resolution" field.</summary>
@@ -11743,6 +14547,18 @@ namespace SC2APIProtocol
                 resolution_ = value;
             }
         }
+        /// <summary>Gets whether the resolution field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasResolution
+        {
+            get { return resolution_ != null; }
+        }
+        /// <summary>Clears the value of the resolution field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearResolution()
+        {
+            resolution_ = null;
+        }
 
         /// <summary>Field number for the "minimap_resolution" field.</summary>
         public const int MinimapResolutionFieldNumber = 3;
@@ -11755,6 +14571,111 @@ namespace SC2APIProtocol
             {
                 minimapResolution_ = value;
             }
+        }
+        /// <summary>Gets whether the minimap_resolution field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMinimapResolution
+        {
+            get { return minimapResolution_ != null; }
+        }
+        /// <summary>Clears the value of the minimap_resolution field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMinimapResolution()
+        {
+            minimapResolution_ = null;
+        }
+
+        /// <summary>Field number for the "width" field.</summary>
+        public const int WidthFieldNumber = 1;
+        private readonly static float WidthDefaultValue = 0F;
+
+        private float width_;
+        /// <summary>
+        /// Below are only relevant for feature layers.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public float Width
+        {
+            get { if ((_hasBits0 & 1) != 0) { return width_; } else { return WidthDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                width_ = value;
+            }
+        }
+        /// <summary>Gets whether the "width" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasWidth
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "width" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearWidth()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        /// <summary>Field number for the "crop_to_playable_area" field.</summary>
+        public const int CropToPlayableAreaFieldNumber = 4;
+        private readonly static bool CropToPlayableAreaDefaultValue = false;
+
+        private bool cropToPlayableArea_;
+        /// <summary>
+        /// Crop minimap to the playable area.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool CropToPlayableArea
+        {
+            get { if ((_hasBits0 & 2) != 0) { return cropToPlayableArea_; } else { return CropToPlayableAreaDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 2;
+                cropToPlayableArea_ = value;
+            }
+        }
+        /// <summary>Gets whether the "crop_to_playable_area" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCropToPlayableArea
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "crop_to_playable_area" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCropToPlayableArea()
+        {
+            _hasBits0 &= ~2;
+        }
+
+        /// <summary>Field number for the "allow_cheating_layers" field.</summary>
+        public const int AllowCheatingLayersFieldNumber = 5;
+        private readonly static bool AllowCheatingLayersDefaultValue = false;
+
+        private bool allowCheatingLayers_;
+        /// <summary>
+        /// Return unit_type on the minimap, and potentially other cheating layers.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool AllowCheatingLayers
+        {
+            get { if ((_hasBits0 & 4) != 0) { return allowCheatingLayers_; } else { return AllowCheatingLayersDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 4;
+                allowCheatingLayers_ = value;
+            }
+        }
+        /// <summary>Gets whether the "allow_cheating_layers" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAllowCheatingLayers
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "allow_cheating_layers" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAllowCheatingLayers()
+        {
+            _hasBits0 &= ~4;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11774,9 +14695,11 @@ namespace SC2APIProtocol
             {
                 return true;
             }
-            if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Width, other.Width)) return false;
             if (!object.Equals(Resolution, other.Resolution)) return false;
             if (!object.Equals(MinimapResolution, other.MinimapResolution)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Width, other.Width)) return false;
+            if (CropToPlayableArea != other.CropToPlayableArea) return false;
+            if (AllowCheatingLayers != other.AllowCheatingLayers) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -11784,9 +14707,11 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Width != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Width);
-            if (resolution_ != null) hash ^= Resolution.GetHashCode();
-            if (minimapResolution_ != null) hash ^= MinimapResolution.GetHashCode();
+            if (HasResolution) hash ^= Resolution.GetHashCode();
+            if (HasMinimapResolution) hash ^= MinimapResolution.GetHashCode();
+            if (HasWidth) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Width);
+            if (HasCropToPlayableArea) hash ^= CropToPlayableArea.GetHashCode();
+            if (HasAllowCheatingLayers) hash ^= AllowCheatingLayers.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -11803,20 +14728,30 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Width != 0F)
+            if (HasWidth)
             {
                 output.WriteRawTag(13);
                 output.WriteFloat(Width);
             }
-            if (resolution_ != null)
+            if (HasResolution)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(Resolution);
             }
-            if (minimapResolution_ != null)
+            if (HasMinimapResolution)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(MinimapResolution);
+            }
+            if (HasCropToPlayableArea)
+            {
+                output.WriteRawTag(32);
+                output.WriteBool(CropToPlayableArea);
+            }
+            if (HasAllowCheatingLayers)
+            {
+                output.WriteRawTag(40);
+                output.WriteBool(AllowCheatingLayers);
             }
             if (_unknownFields != null)
             {
@@ -11828,17 +14763,25 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Width != 0F)
-            {
-                size += 1 + 4;
-            }
-            if (resolution_ != null)
+            if (HasResolution)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Resolution);
             }
-            if (minimapResolution_ != null)
+            if (HasMinimapResolution)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(MinimapResolution);
+            }
+            if (HasWidth)
+            {
+                size += 1 + 4;
+            }
+            if (HasCropToPlayableArea)
+            {
+                size += 1 + 1;
+            }
+            if (HasAllowCheatingLayers)
+            {
+                size += 1 + 1;
             }
             if (_unknownFields != null)
             {
@@ -11854,25 +14797,33 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Width != 0F)
+            if (other.HasResolution)
             {
-                Width = other.Width;
-            }
-            if (other.resolution_ != null)
-            {
-                if (resolution_ == null)
+                if (!HasResolution)
                 {
-                    resolution_ = new global::SC2APIProtocol.Size2DI();
+                    Resolution = new global::SC2APIProtocol.Size2DI();
                 }
                 Resolution.MergeFrom(other.Resolution);
             }
-            if (other.minimapResolution_ != null)
+            if (other.HasMinimapResolution)
             {
-                if (minimapResolution_ == null)
+                if (!HasMinimapResolution)
                 {
-                    minimapResolution_ = new global::SC2APIProtocol.Size2DI();
+                    MinimapResolution = new global::SC2APIProtocol.Size2DI();
                 }
                 MinimapResolution.MergeFrom(other.MinimapResolution);
+            }
+            if (other.HasWidth)
+            {
+                Width = other.Width;
+            }
+            if (other.HasCropToPlayableArea)
+            {
+                CropToPlayableArea = other.CropToPlayableArea;
+            }
+            if (other.HasAllowCheatingLayers)
+            {
+                AllowCheatingLayers = other.AllowCheatingLayers;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -11895,20 +14846,30 @@ namespace SC2APIProtocol
                         }
                     case 18:
                         {
-                            if (resolution_ == null)
+                            if (!HasResolution)
                             {
-                                resolution_ = new global::SC2APIProtocol.Size2DI();
+                                Resolution = new global::SC2APIProtocol.Size2DI();
                             }
-                            input.ReadMessage(resolution_);
+                            input.ReadMessage(Resolution);
                             break;
                         }
                     case 26:
                         {
-                            if (minimapResolution_ == null)
+                            if (!HasMinimapResolution)
                             {
-                                minimapResolution_ = new global::SC2APIProtocol.Size2DI();
+                                MinimapResolution = new global::SC2APIProtocol.Size2DI();
                             }
-                            input.ReadMessage(minimapResolution_);
+                            input.ReadMessage(MinimapResolution);
+                            break;
+                        }
+                    case 32:
+                        {
+                            CropToPlayableArea = input.ReadBool();
+                            break;
+                        }
+                    case 40:
+                        {
+                            AllowCheatingLayers = input.ReadBool();
                             break;
                         }
                 }
@@ -11921,13 +14882,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<InterfaceOptions> _parser = new pb::MessageParser<InterfaceOptions>(() => new InterfaceOptions());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<InterfaceOptions> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[48]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[50]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11947,10 +14909,16 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public InterfaceOptions(InterfaceOptions other) : this()
         {
+            _hasBits0 = other._hasBits0;
             raw_ = other.raw_;
             score_ = other.score_;
-            FeatureLayer = other.featureLayer_ != null ? other.FeatureLayer.Clone() : null;
-            Render = other.render_ != null ? other.Render.Clone() : null;
+            featureLayer_ = other.HasFeatureLayer ? other.featureLayer_.Clone() : null;
+            render_ = other.HasRender ? other.render_.Clone() : null;
+            showCloaked_ = other.showCloaked_;
+            showBurrowedShadows_ = other.showBurrowedShadows_;
+            showPlaceholders_ = other.showPlaceholders_;
+            rawAffectsSelection_ = other.rawAffectsSelection_;
+            rawCropToPlayableArea_ = other.rawCropToPlayableArea_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -11962,6 +14930,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "raw" field.</summary>
         public const int RawFieldNumber = 1;
+        private readonly static bool RawDefaultValue = false;
+
         private bool raw_;
         /// <summary>
         /// Interface options
@@ -11969,24 +14939,52 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Raw
         {
-            get { return raw_; }
+            get { if ((_hasBits0 & 1) != 0) { return raw_; } else { return RawDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 raw_ = value;
             }
+        }
+        /// <summary>Gets whether the "raw" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRaw
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "raw" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRaw()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "score" field.</summary>
         public const int ScoreFieldNumber = 2;
+        private readonly static bool ScoreDefaultValue = false;
+
         private bool score_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool Score
         {
-            get { return score_; }
+            get { if ((_hasBits0 & 2) != 0) { return score_; } else { return ScoreDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 score_ = value;
             }
+        }
+        /// <summary>Gets whether the "score" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasScore
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "score" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearScore()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "feature_layer" field.</summary>
@@ -12004,12 +15002,24 @@ namespace SC2APIProtocol
                 featureLayer_ = value;
             }
         }
+        /// <summary>Gets whether the feature_layer field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasFeatureLayer
+        {
+            get { return featureLayer_ != null; }
+        }
+        /// <summary>Clears the value of the feature_layer field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearFeatureLayer()
+        {
+            featureLayer_ = null;
+        }
 
         /// <summary>Field number for the "render" field.</summary>
         public const int RenderFieldNumber = 4;
         private global::SC2APIProtocol.SpatialCameraSetup render_;
         /// <summary>
-        /// Not implemented.
+        /// Omit to disable.
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.SpatialCameraSetup Render
@@ -12019,6 +15029,178 @@ namespace SC2APIProtocol
             {
                 render_ = value;
             }
+        }
+        /// <summary>Gets whether the render field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRender
+        {
+            get { return render_ != null; }
+        }
+        /// <summary>Clears the value of the render field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRender()
+        {
+            render_ = null;
+        }
+
+        /// <summary>Field number for the "show_cloaked" field.</summary>
+        public const int ShowCloakedFieldNumber = 5;
+        private readonly static bool ShowCloakedDefaultValue = false;
+
+        private bool showCloaked_;
+        /// <summary>
+        /// By default cloaked units are completely hidden. This shows some details.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool ShowCloaked
+        {
+            get { if ((_hasBits0 & 4) != 0) { return showCloaked_; } else { return ShowCloakedDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 4;
+                showCloaked_ = value;
+            }
+        }
+        /// <summary>Gets whether the "show_cloaked" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasShowCloaked
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "show_cloaked" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearShowCloaked()
+        {
+            _hasBits0 &= ~4;
+        }
+
+        /// <summary>Field number for the "show_burrowed_shadows" field.</summary>
+        public const int ShowBurrowedShadowsFieldNumber = 9;
+        private readonly static bool ShowBurrowedShadowsDefaultValue = false;
+
+        private bool showBurrowedShadows_;
+        /// <summary>
+        /// By default burrowed units are completely hidden. This shows some details for those that produce a shadow.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool ShowBurrowedShadows
+        {
+            get { if ((_hasBits0 & 64) != 0) { return showBurrowedShadows_; } else { return ShowBurrowedShadowsDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 64;
+                showBurrowedShadows_ = value;
+            }
+        }
+        /// <summary>Gets whether the "show_burrowed_shadows" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasShowBurrowedShadows
+        {
+            get { return (_hasBits0 & 64) != 0; }
+        }
+        /// <summary>Clears the value of the "show_burrowed_shadows" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearShowBurrowedShadows()
+        {
+            _hasBits0 &= ~64;
+        }
+
+        /// <summary>Field number for the "show_placeholders" field.</summary>
+        public const int ShowPlaceholdersFieldNumber = 8;
+        private readonly static bool ShowPlaceholdersDefaultValue = false;
+
+        private bool showPlaceholders_;
+        /// <summary>
+        /// Return placeholder units (buildings to be constructed), both for raw and feature layers.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool ShowPlaceholders
+        {
+            get { if ((_hasBits0 & 32) != 0) { return showPlaceholders_; } else { return ShowPlaceholdersDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 32;
+                showPlaceholders_ = value;
+            }
+        }
+        /// <summary>Gets whether the "show_placeholders" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasShowPlaceholders
+        {
+            get { return (_hasBits0 & 32) != 0; }
+        }
+        /// <summary>Clears the value of the "show_placeholders" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearShowPlaceholders()
+        {
+            _hasBits0 &= ~32;
+        }
+
+        /// <summary>Field number for the "raw_affects_selection" field.</summary>
+        public const int RawAffectsSelectionFieldNumber = 6;
+        private readonly static bool RawAffectsSelectionDefaultValue = false;
+
+        private bool rawAffectsSelection_;
+        /// <summary>
+        /// By default raw actions select, act and revert the selection. This is useful
+        /// if you're playing simultaneously with the agent so it doesn't steal your
+        /// selection. This inflates APM (due to deselect) and makes the actions hard
+        /// to follow in a replay. Setting this to true will cause raw actions to do
+        /// select, act, but not revert the selection.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool RawAffectsSelection
+        {
+            get { if ((_hasBits0 & 8) != 0) { return rawAffectsSelection_; } else { return RawAffectsSelectionDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 8;
+                rawAffectsSelection_ = value;
+            }
+        }
+        /// <summary>Gets whether the "raw_affects_selection" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRawAffectsSelection
+        {
+            get { return (_hasBits0 & 8) != 0; }
+        }
+        /// <summary>Clears the value of the "raw_affects_selection" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRawAffectsSelection()
+        {
+            _hasBits0 &= ~8;
+        }
+
+        /// <summary>Field number for the "raw_crop_to_playable_area" field.</summary>
+        public const int RawCropToPlayableAreaFieldNumber = 7;
+        private readonly static bool RawCropToPlayableAreaDefaultValue = false;
+
+        private bool rawCropToPlayableArea_;
+        /// <summary>
+        /// Changes the coordinates in raw.proto to be relative to the playable area.
+        /// The map_size and playable_area will be the diagonal of the real playable area.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool RawCropToPlayableArea
+        {
+            get { if ((_hasBits0 & 16) != 0) { return rawCropToPlayableArea_; } else { return RawCropToPlayableAreaDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 16;
+                rawCropToPlayableArea_ = value;
+            }
+        }
+        /// <summary>Gets whether the "raw_crop_to_playable_area" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRawCropToPlayableArea
+        {
+            get { return (_hasBits0 & 16) != 0; }
+        }
+        /// <summary>Clears the value of the "raw_crop_to_playable_area" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRawCropToPlayableArea()
+        {
+            _hasBits0 &= ~16;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12042,6 +15224,11 @@ namespace SC2APIProtocol
             if (Score != other.Score) return false;
             if (!object.Equals(FeatureLayer, other.FeatureLayer)) return false;
             if (!object.Equals(Render, other.Render)) return false;
+            if (ShowCloaked != other.ShowCloaked) return false;
+            if (ShowBurrowedShadows != other.ShowBurrowedShadows) return false;
+            if (ShowPlaceholders != other.ShowPlaceholders) return false;
+            if (RawAffectsSelection != other.RawAffectsSelection) return false;
+            if (RawCropToPlayableArea != other.RawCropToPlayableArea) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -12049,10 +15236,15 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Raw != false) hash ^= Raw.GetHashCode();
-            if (Score != false) hash ^= Score.GetHashCode();
-            if (featureLayer_ != null) hash ^= FeatureLayer.GetHashCode();
-            if (render_ != null) hash ^= Render.GetHashCode();
+            if (HasRaw) hash ^= Raw.GetHashCode();
+            if (HasScore) hash ^= Score.GetHashCode();
+            if (HasFeatureLayer) hash ^= FeatureLayer.GetHashCode();
+            if (HasRender) hash ^= Render.GetHashCode();
+            if (HasShowCloaked) hash ^= ShowCloaked.GetHashCode();
+            if (HasShowBurrowedShadows) hash ^= ShowBurrowedShadows.GetHashCode();
+            if (HasShowPlaceholders) hash ^= ShowPlaceholders.GetHashCode();
+            if (HasRawAffectsSelection) hash ^= RawAffectsSelection.GetHashCode();
+            if (HasRawCropToPlayableArea) hash ^= RawCropToPlayableArea.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -12069,25 +15261,50 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Raw != false)
+            if (HasRaw)
             {
                 output.WriteRawTag(8);
                 output.WriteBool(Raw);
             }
-            if (Score != false)
+            if (HasScore)
             {
                 output.WriteRawTag(16);
                 output.WriteBool(Score);
             }
-            if (featureLayer_ != null)
+            if (HasFeatureLayer)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(FeatureLayer);
             }
-            if (render_ != null)
+            if (HasRender)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(Render);
+            }
+            if (HasShowCloaked)
+            {
+                output.WriteRawTag(40);
+                output.WriteBool(ShowCloaked);
+            }
+            if (HasRawAffectsSelection)
+            {
+                output.WriteRawTag(48);
+                output.WriteBool(RawAffectsSelection);
+            }
+            if (HasRawCropToPlayableArea)
+            {
+                output.WriteRawTag(56);
+                output.WriteBool(RawCropToPlayableArea);
+            }
+            if (HasShowPlaceholders)
+            {
+                output.WriteRawTag(64);
+                output.WriteBool(ShowPlaceholders);
+            }
+            if (HasShowBurrowedShadows)
+            {
+                output.WriteRawTag(72);
+                output.WriteBool(ShowBurrowedShadows);
             }
             if (_unknownFields != null)
             {
@@ -12099,21 +15316,41 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Raw != false)
+            if (HasRaw)
             {
                 size += 1 + 1;
             }
-            if (Score != false)
+            if (HasScore)
             {
                 size += 1 + 1;
             }
-            if (featureLayer_ != null)
+            if (HasFeatureLayer)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(FeatureLayer);
             }
-            if (render_ != null)
+            if (HasRender)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Render);
+            }
+            if (HasShowCloaked)
+            {
+                size += 1 + 1;
+            }
+            if (HasShowBurrowedShadows)
+            {
+                size += 1 + 1;
+            }
+            if (HasShowPlaceholders)
+            {
+                size += 1 + 1;
+            }
+            if (HasRawAffectsSelection)
+            {
+                size += 1 + 1;
+            }
+            if (HasRawCropToPlayableArea)
+            {
+                size += 1 + 1;
             }
             if (_unknownFields != null)
             {
@@ -12129,29 +15366,49 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Raw != false)
+            if (other.HasRaw)
             {
                 Raw = other.Raw;
             }
-            if (other.Score != false)
+            if (other.HasScore)
             {
                 Score = other.Score;
             }
-            if (other.featureLayer_ != null)
+            if (other.HasFeatureLayer)
             {
-                if (featureLayer_ == null)
+                if (!HasFeatureLayer)
                 {
-                    featureLayer_ = new global::SC2APIProtocol.SpatialCameraSetup();
+                    FeatureLayer = new global::SC2APIProtocol.SpatialCameraSetup();
                 }
                 FeatureLayer.MergeFrom(other.FeatureLayer);
             }
-            if (other.render_ != null)
+            if (other.HasRender)
             {
-                if (render_ == null)
+                if (!HasRender)
                 {
-                    render_ = new global::SC2APIProtocol.SpatialCameraSetup();
+                    Render = new global::SC2APIProtocol.SpatialCameraSetup();
                 }
                 Render.MergeFrom(other.Render);
+            }
+            if (other.HasShowCloaked)
+            {
+                ShowCloaked = other.ShowCloaked;
+            }
+            if (other.HasShowBurrowedShadows)
+            {
+                ShowBurrowedShadows = other.ShowBurrowedShadows;
+            }
+            if (other.HasShowPlaceholders)
+            {
+                ShowPlaceholders = other.ShowPlaceholders;
+            }
+            if (other.HasRawAffectsSelection)
+            {
+                RawAffectsSelection = other.RawAffectsSelection;
+            }
+            if (other.HasRawCropToPlayableArea)
+            {
+                RawCropToPlayableArea = other.RawCropToPlayableArea;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -12179,20 +15436,45 @@ namespace SC2APIProtocol
                         }
                     case 26:
                         {
-                            if (featureLayer_ == null)
+                            if (!HasFeatureLayer)
                             {
-                                featureLayer_ = new global::SC2APIProtocol.SpatialCameraSetup();
+                                FeatureLayer = new global::SC2APIProtocol.SpatialCameraSetup();
                             }
-                            input.ReadMessage(featureLayer_);
+                            input.ReadMessage(FeatureLayer);
                             break;
                         }
                     case 34:
                         {
-                            if (render_ == null)
+                            if (!HasRender)
                             {
-                                render_ = new global::SC2APIProtocol.SpatialCameraSetup();
+                                Render = new global::SC2APIProtocol.SpatialCameraSetup();
                             }
-                            input.ReadMessage(render_);
+                            input.ReadMessage(Render);
+                            break;
+                        }
+                    case 40:
+                        {
+                            ShowCloaked = input.ReadBool();
+                            break;
+                        }
+                    case 48:
+                        {
+                            RawAffectsSelection = input.ReadBool();
+                            break;
+                        }
+                    case 56:
+                        {
+                            RawCropToPlayableArea = input.ReadBool();
+                            break;
+                        }
+                    case 64:
+                        {
+                            ShowPlaceholders = input.ReadBool();
+                            break;
+                        }
+                    case 72:
+                        {
+                            ShowBurrowedShadows = input.ReadBool();
                             break;
                         }
                 }
@@ -12205,13 +15487,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<PlayerInfo> _parser = new pb::MessageParser<PlayerInfo>(() => new PlayerInfo());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<PlayerInfo> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[49]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[51]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12231,11 +15514,14 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public PlayerInfo(PlayerInfo other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerId_ = other.playerId_;
             type_ = other.type_;
             raceRequested_ = other.raceRequested_;
             raceActual_ = other.raceActual_;
             difficulty_ = other.difficulty_;
+            aiBuild_ = other.aiBuild_;
+            playerName_ = other.playerName_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -12247,6 +15533,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "player_id" field.</summary>
         public const int PlayerIdFieldNumber = 1;
+        private readonly static uint PlayerIdDefaultValue = 0;
+
         private uint playerId_;
         /// <summary>
         /// Identifier that will be used to reference this player.
@@ -12255,66 +15543,194 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint PlayerId
         {
-            get { return playerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "type" field.</summary>
         public const int TypeFieldNumber = 2;
-        private global::SC2APIProtocol.PlayerType type_ = 0;
+        private readonly static global::SC2APIProtocol.PlayerType TypeDefaultValue = global::SC2APIProtocol.PlayerType.Participant;
+
+        private global::SC2APIProtocol.PlayerType type_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.PlayerType Type
         {
-            get { return type_; }
+            get { if ((_hasBits0 & 2) != 0) { return type_; } else { return TypeDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 type_ = value;
             }
+        }
+        /// <summary>Gets whether the "type" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasType
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "type" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearType()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "race_requested" field.</summary>
         public const int RaceRequestedFieldNumber = 3;
-        private global::SC2APIProtocol.Race raceRequested_ = 0;
+        private readonly static global::SC2APIProtocol.Race RaceRequestedDefaultValue = global::SC2APIProtocol.Race.NoRace;
+
+        private global::SC2APIProtocol.Race raceRequested_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Race RaceRequested
         {
-            get { return raceRequested_; }
+            get { if ((_hasBits0 & 4) != 0) { return raceRequested_; } else { return RaceRequestedDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 raceRequested_ = value;
             }
+        }
+        /// <summary>Gets whether the "race_requested" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRaceRequested
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "race_requested" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRaceRequested()
+        {
+            _hasBits0 &= ~4;
         }
 
         /// <summary>Field number for the "race_actual" field.</summary>
         public const int RaceActualFieldNumber = 4;
-        private global::SC2APIProtocol.Race raceActual_ = 0;
+        private readonly static global::SC2APIProtocol.Race RaceActualDefaultValue = global::SC2APIProtocol.Race.NoRace;
+
+        private global::SC2APIProtocol.Race raceActual_;
         /// <summary>
         /// Only populated for your player or when watching replay
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Race RaceActual
         {
-            get { return raceActual_; }
+            get { if ((_hasBits0 & 8) != 0) { return raceActual_; } else { return RaceActualDefaultValue; } }
             set
             {
+                _hasBits0 |= 8;
                 raceActual_ = value;
             }
+        }
+        /// <summary>Gets whether the "race_actual" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRaceActual
+        {
+            get { return (_hasBits0 & 8) != 0; }
+        }
+        /// <summary>Clears the value of the "race_actual" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRaceActual()
+        {
+            _hasBits0 &= ~8;
         }
 
         /// <summary>Field number for the "difficulty" field.</summary>
         public const int DifficultyFieldNumber = 5;
-        private global::SC2APIProtocol.Difficulty difficulty_ = 0;
+        private readonly static global::SC2APIProtocol.Difficulty DifficultyDefaultValue = global::SC2APIProtocol.Difficulty.VeryEasy;
+
+        private global::SC2APIProtocol.Difficulty difficulty_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Difficulty Difficulty
         {
-            get { return difficulty_; }
+            get { if ((_hasBits0 & 16) != 0) { return difficulty_; } else { return DifficultyDefaultValue; } }
             set
             {
+                _hasBits0 |= 16;
                 difficulty_ = value;
             }
+        }
+        /// <summary>Gets whether the "difficulty" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDifficulty
+        {
+            get { return (_hasBits0 & 16) != 0; }
+        }
+        /// <summary>Clears the value of the "difficulty" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDifficulty()
+        {
+            _hasBits0 &= ~16;
+        }
+
+        /// <summary>Field number for the "ai_build" field.</summary>
+        public const int AiBuildFieldNumber = 7;
+        private readonly static global::SC2APIProtocol.AIBuild AiBuildDefaultValue = global::SC2APIProtocol.AIBuild.RandomBuild;
+
+        private global::SC2APIProtocol.AIBuild aiBuild_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.AIBuild AiBuild
+        {
+            get { if ((_hasBits0 & 32) != 0) { return aiBuild_; } else { return AiBuildDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 32;
+                aiBuild_ = value;
+            }
+        }
+        /// <summary>Gets whether the "ai_build" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAiBuild
+        {
+            get { return (_hasBits0 & 32) != 0; }
+        }
+        /// <summary>Clears the value of the "ai_build" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAiBuild()
+        {
+            _hasBits0 &= ~32;
+        }
+
+        /// <summary>Field number for the "player_name" field.</summary>
+        public const int PlayerNameFieldNumber = 6;
+        private readonly static string PlayerNameDefaultValue = "";
+
+        private string playerName_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string PlayerName
+        {
+            get { return playerName_ ?? PlayerNameDefaultValue; }
+            set
+            {
+                playerName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
+        /// <summary>Gets whether the "player_name" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerName
+        {
+            get { return playerName_ != null; }
+        }
+        /// <summary>Clears the value of the "player_name" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerName()
+        {
+            playerName_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12339,6 +15755,8 @@ namespace SC2APIProtocol
             if (RaceRequested != other.RaceRequested) return false;
             if (RaceActual != other.RaceActual) return false;
             if (Difficulty != other.Difficulty) return false;
+            if (AiBuild != other.AiBuild) return false;
+            if (PlayerName != other.PlayerName) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -12346,11 +15764,13 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
-            if (Type != 0) hash ^= Type.GetHashCode();
-            if (RaceRequested != 0) hash ^= RaceRequested.GetHashCode();
-            if (RaceActual != 0) hash ^= RaceActual.GetHashCode();
-            if (Difficulty != 0) hash ^= Difficulty.GetHashCode();
+            if (HasPlayerId) hash ^= PlayerId.GetHashCode();
+            if (HasType) hash ^= Type.GetHashCode();
+            if (HasRaceRequested) hash ^= RaceRequested.GetHashCode();
+            if (HasRaceActual) hash ^= RaceActual.GetHashCode();
+            if (HasDifficulty) hash ^= Difficulty.GetHashCode();
+            if (HasAiBuild) hash ^= AiBuild.GetHashCode();
+            if (HasPlayerName) hash ^= PlayerName.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -12367,30 +15787,40 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(PlayerId);
             }
-            if (Type != 0)
+            if (HasType)
             {
                 output.WriteRawTag(16);
                 output.WriteEnum((int)Type);
             }
-            if (RaceRequested != 0)
+            if (HasRaceRequested)
             {
                 output.WriteRawTag(24);
                 output.WriteEnum((int)RaceRequested);
             }
-            if (RaceActual != 0)
+            if (HasRaceActual)
             {
                 output.WriteRawTag(32);
                 output.WriteEnum((int)RaceActual);
             }
-            if (Difficulty != 0)
+            if (HasDifficulty)
             {
                 output.WriteRawTag(40);
                 output.WriteEnum((int)Difficulty);
+            }
+            if (HasPlayerName)
+            {
+                output.WriteRawTag(50);
+                output.WriteString(PlayerName);
+            }
+            if (HasAiBuild)
+            {
+                output.WriteRawTag(56);
+                output.WriteEnum((int)AiBuild);
             }
             if (_unknownFields != null)
             {
@@ -12402,25 +15832,33 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
             }
-            if (Type != 0)
+            if (HasType)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Type);
             }
-            if (RaceRequested != 0)
+            if (HasRaceRequested)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)RaceRequested);
             }
-            if (RaceActual != 0)
+            if (HasRaceActual)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)RaceActual);
             }
-            if (Difficulty != 0)
+            if (HasDifficulty)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Difficulty);
+            }
+            if (HasAiBuild)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)AiBuild);
+            }
+            if (HasPlayerName)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerName);
             }
             if (_unknownFields != null)
             {
@@ -12436,25 +15874,33 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.PlayerId != 0)
+            if (other.HasPlayerId)
             {
                 PlayerId = other.PlayerId;
             }
-            if (other.Type != 0)
+            if (other.HasType)
             {
                 Type = other.Type;
             }
-            if (other.RaceRequested != 0)
+            if (other.HasRaceRequested)
             {
                 RaceRequested = other.RaceRequested;
             }
-            if (other.RaceActual != 0)
+            if (other.HasRaceActual)
             {
                 RaceActual = other.RaceActual;
             }
-            if (other.Difficulty != 0)
+            if (other.HasDifficulty)
             {
                 Difficulty = other.Difficulty;
+            }
+            if (other.HasAiBuild)
+            {
+                AiBuild = other.AiBuild;
+            }
+            if (other.HasPlayerName)
+            {
+                PlayerName = other.PlayerName;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -12477,22 +15923,32 @@ namespace SC2APIProtocol
                         }
                     case 16:
                         {
-                            type_ = (global::SC2APIProtocol.PlayerType)input.ReadEnum();
+                            Type = (global::SC2APIProtocol.PlayerType)input.ReadEnum();
                             break;
                         }
                     case 24:
                         {
-                            raceRequested_ = (global::SC2APIProtocol.Race)input.ReadEnum();
+                            RaceRequested = (global::SC2APIProtocol.Race)input.ReadEnum();
                             break;
                         }
                     case 32:
                         {
-                            raceActual_ = (global::SC2APIProtocol.Race)input.ReadEnum();
+                            RaceActual = (global::SC2APIProtocol.Race)input.ReadEnum();
                             break;
                         }
                     case 40:
                         {
-                            difficulty_ = (global::SC2APIProtocol.Difficulty)input.ReadEnum();
+                            Difficulty = (global::SC2APIProtocol.Difficulty)input.ReadEnum();
+                            break;
+                        }
+                    case 50:
+                        {
+                            PlayerName = input.ReadString();
+                            break;
+                        }
+                    case 56:
+                        {
+                            AiBuild = (global::SC2APIProtocol.AIBuild)input.ReadEnum();
                             break;
                         }
                 }
@@ -12505,13 +15961,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<PlayerCommon> _parser = new pb::MessageParser<PlayerCommon>(() => new PlayerCommon());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<PlayerCommon> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[50]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[52]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12531,6 +15988,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public PlayerCommon(PlayerCommon other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerId_ = other.playerId_;
             minerals_ = other.minerals_;
             vespene_ = other.vespene_;
@@ -12553,145 +16011,310 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "player_id" field.</summary>
         public const int PlayerIdFieldNumber = 1;
+        private readonly static uint PlayerIdDefaultValue = 0;
+
         private uint playerId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint PlayerId
         {
-            get { return playerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "minerals" field.</summary>
         public const int MineralsFieldNumber = 2;
+        private readonly static uint MineralsDefaultValue = 0;
+
         private uint minerals_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint Minerals
         {
-            get { return minerals_; }
+            get { if ((_hasBits0 & 2) != 0) { return minerals_; } else { return MineralsDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 minerals_ = value;
             }
+        }
+        /// <summary>Gets whether the "minerals" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMinerals
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "minerals" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMinerals()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "vespene" field.</summary>
         public const int VespeneFieldNumber = 3;
+        private readonly static uint VespeneDefaultValue = 0;
+
         private uint vespene_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint Vespene
         {
-            get { return vespene_; }
+            get { if ((_hasBits0 & 4) != 0) { return vespene_; } else { return VespeneDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 vespene_ = value;
             }
+        }
+        /// <summary>Gets whether the "vespene" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasVespene
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "vespene" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearVespene()
+        {
+            _hasBits0 &= ~4;
         }
 
         /// <summary>Field number for the "food_cap" field.</summary>
         public const int FoodCapFieldNumber = 4;
+        private readonly static uint FoodCapDefaultValue = 0;
+
         private uint foodCap_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint FoodCap
         {
-            get { return foodCap_; }
+            get { if ((_hasBits0 & 8) != 0) { return foodCap_; } else { return FoodCapDefaultValue; } }
             set
             {
+                _hasBits0 |= 8;
                 foodCap_ = value;
             }
+        }
+        /// <summary>Gets whether the "food_cap" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasFoodCap
+        {
+            get { return (_hasBits0 & 8) != 0; }
+        }
+        /// <summary>Clears the value of the "food_cap" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearFoodCap()
+        {
+            _hasBits0 &= ~8;
         }
 
         /// <summary>Field number for the "food_used" field.</summary>
         public const int FoodUsedFieldNumber = 5;
+        private readonly static uint FoodUsedDefaultValue = 0;
+
         private uint foodUsed_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint FoodUsed
         {
-            get { return foodUsed_; }
+            get { if ((_hasBits0 & 16) != 0) { return foodUsed_; } else { return FoodUsedDefaultValue; } }
             set
             {
+                _hasBits0 |= 16;
                 foodUsed_ = value;
             }
+        }
+        /// <summary>Gets whether the "food_used" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasFoodUsed
+        {
+            get { return (_hasBits0 & 16) != 0; }
+        }
+        /// <summary>Clears the value of the "food_used" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearFoodUsed()
+        {
+            _hasBits0 &= ~16;
         }
 
         /// <summary>Field number for the "food_army" field.</summary>
         public const int FoodArmyFieldNumber = 6;
+        private readonly static uint FoodArmyDefaultValue = 0;
+
         private uint foodArmy_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint FoodArmy
         {
-            get { return foodArmy_; }
+            get { if ((_hasBits0 & 32) != 0) { return foodArmy_; } else { return FoodArmyDefaultValue; } }
             set
             {
+                _hasBits0 |= 32;
                 foodArmy_ = value;
             }
+        }
+        /// <summary>Gets whether the "food_army" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasFoodArmy
+        {
+            get { return (_hasBits0 & 32) != 0; }
+        }
+        /// <summary>Clears the value of the "food_army" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearFoodArmy()
+        {
+            _hasBits0 &= ~32;
         }
 
         /// <summary>Field number for the "food_workers" field.</summary>
         public const int FoodWorkersFieldNumber = 7;
+        private readonly static uint FoodWorkersDefaultValue = 0;
+
         private uint foodWorkers_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint FoodWorkers
         {
-            get { return foodWorkers_; }
+            get { if ((_hasBits0 & 64) != 0) { return foodWorkers_; } else { return FoodWorkersDefaultValue; } }
             set
             {
+                _hasBits0 |= 64;
                 foodWorkers_ = value;
             }
+        }
+        /// <summary>Gets whether the "food_workers" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasFoodWorkers
+        {
+            get { return (_hasBits0 & 64) != 0; }
+        }
+        /// <summary>Clears the value of the "food_workers" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearFoodWorkers()
+        {
+            _hasBits0 &= ~64;
         }
 
         /// <summary>Field number for the "idle_worker_count" field.</summary>
         public const int IdleWorkerCountFieldNumber = 8;
+        private readonly static uint IdleWorkerCountDefaultValue = 0;
+
         private uint idleWorkerCount_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint IdleWorkerCount
         {
-            get { return idleWorkerCount_; }
+            get { if ((_hasBits0 & 128) != 0) { return idleWorkerCount_; } else { return IdleWorkerCountDefaultValue; } }
             set
             {
+                _hasBits0 |= 128;
                 idleWorkerCount_ = value;
             }
+        }
+        /// <summary>Gets whether the "idle_worker_count" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasIdleWorkerCount
+        {
+            get { return (_hasBits0 & 128) != 0; }
+        }
+        /// <summary>Clears the value of the "idle_worker_count" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearIdleWorkerCount()
+        {
+            _hasBits0 &= ~128;
         }
 
         /// <summary>Field number for the "army_count" field.</summary>
         public const int ArmyCountFieldNumber = 9;
+        private readonly static uint ArmyCountDefaultValue = 0;
+
         private uint armyCount_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint ArmyCount
         {
-            get { return armyCount_; }
+            get { if ((_hasBits0 & 256) != 0) { return armyCount_; } else { return ArmyCountDefaultValue; } }
             set
             {
+                _hasBits0 |= 256;
                 armyCount_ = value;
             }
+        }
+        /// <summary>Gets whether the "army_count" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasArmyCount
+        {
+            get { return (_hasBits0 & 256) != 0; }
+        }
+        /// <summary>Clears the value of the "army_count" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearArmyCount()
+        {
+            _hasBits0 &= ~256;
         }
 
         /// <summary>Field number for the "warp_gate_count" field.</summary>
         public const int WarpGateCountFieldNumber = 10;
+        private readonly static uint WarpGateCountDefaultValue = 0;
+
         private uint warpGateCount_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint WarpGateCount
         {
-            get { return warpGateCount_; }
+            get { if ((_hasBits0 & 512) != 0) { return warpGateCount_; } else { return WarpGateCountDefaultValue; } }
             set
             {
+                _hasBits0 |= 512;
                 warpGateCount_ = value;
             }
+        }
+        /// <summary>Gets whether the "warp_gate_count" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasWarpGateCount
+        {
+            get { return (_hasBits0 & 512) != 0; }
+        }
+        /// <summary>Clears the value of the "warp_gate_count" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearWarpGateCount()
+        {
+            _hasBits0 &= ~512;
         }
 
         /// <summary>Field number for the "larva_count" field.</summary>
         public const int LarvaCountFieldNumber = 11;
+        private readonly static uint LarvaCountDefaultValue = 0;
+
         private uint larvaCount_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint LarvaCount
         {
-            get { return larvaCount_; }
+            get { if ((_hasBits0 & 1024) != 0) { return larvaCount_; } else { return LarvaCountDefaultValue; } }
             set
             {
+                _hasBits0 |= 1024;
                 larvaCount_ = value;
             }
+        }
+        /// <summary>Gets whether the "larva_count" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasLarvaCount
+        {
+            get { return (_hasBits0 & 1024) != 0; }
+        }
+        /// <summary>Clears the value of the "larva_count" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearLarvaCount()
+        {
+            _hasBits0 &= ~1024;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12729,17 +16352,17 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
-            if (Minerals != 0) hash ^= Minerals.GetHashCode();
-            if (Vespene != 0) hash ^= Vespene.GetHashCode();
-            if (FoodCap != 0) hash ^= FoodCap.GetHashCode();
-            if (FoodUsed != 0) hash ^= FoodUsed.GetHashCode();
-            if (FoodArmy != 0) hash ^= FoodArmy.GetHashCode();
-            if (FoodWorkers != 0) hash ^= FoodWorkers.GetHashCode();
-            if (IdleWorkerCount != 0) hash ^= IdleWorkerCount.GetHashCode();
-            if (ArmyCount != 0) hash ^= ArmyCount.GetHashCode();
-            if (WarpGateCount != 0) hash ^= WarpGateCount.GetHashCode();
-            if (LarvaCount != 0) hash ^= LarvaCount.GetHashCode();
+            if (HasPlayerId) hash ^= PlayerId.GetHashCode();
+            if (HasMinerals) hash ^= Minerals.GetHashCode();
+            if (HasVespene) hash ^= Vespene.GetHashCode();
+            if (HasFoodCap) hash ^= FoodCap.GetHashCode();
+            if (HasFoodUsed) hash ^= FoodUsed.GetHashCode();
+            if (HasFoodArmy) hash ^= FoodArmy.GetHashCode();
+            if (HasFoodWorkers) hash ^= FoodWorkers.GetHashCode();
+            if (HasIdleWorkerCount) hash ^= IdleWorkerCount.GetHashCode();
+            if (HasArmyCount) hash ^= ArmyCount.GetHashCode();
+            if (HasWarpGateCount) hash ^= WarpGateCount.GetHashCode();
+            if (HasLarvaCount) hash ^= LarvaCount.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -12756,57 +16379,57 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(PlayerId);
             }
-            if (Minerals != 0)
+            if (HasMinerals)
             {
                 output.WriteRawTag(16);
                 output.WriteUInt32(Minerals);
             }
-            if (Vespene != 0)
+            if (HasVespene)
             {
                 output.WriteRawTag(24);
                 output.WriteUInt32(Vespene);
             }
-            if (FoodCap != 0)
+            if (HasFoodCap)
             {
                 output.WriteRawTag(32);
                 output.WriteUInt32(FoodCap);
             }
-            if (FoodUsed != 0)
+            if (HasFoodUsed)
             {
                 output.WriteRawTag(40);
                 output.WriteUInt32(FoodUsed);
             }
-            if (FoodArmy != 0)
+            if (HasFoodArmy)
             {
                 output.WriteRawTag(48);
                 output.WriteUInt32(FoodArmy);
             }
-            if (FoodWorkers != 0)
+            if (HasFoodWorkers)
             {
                 output.WriteRawTag(56);
                 output.WriteUInt32(FoodWorkers);
             }
-            if (IdleWorkerCount != 0)
+            if (HasIdleWorkerCount)
             {
                 output.WriteRawTag(64);
                 output.WriteUInt32(IdleWorkerCount);
             }
-            if (ArmyCount != 0)
+            if (HasArmyCount)
             {
                 output.WriteRawTag(72);
                 output.WriteUInt32(ArmyCount);
             }
-            if (WarpGateCount != 0)
+            if (HasWarpGateCount)
             {
                 output.WriteRawTag(80);
                 output.WriteUInt32(WarpGateCount);
             }
-            if (LarvaCount != 0)
+            if (HasLarvaCount)
             {
                 output.WriteRawTag(88);
                 output.WriteUInt32(LarvaCount);
@@ -12821,47 +16444,47 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
             }
-            if (Minerals != 0)
+            if (HasMinerals)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Minerals);
             }
-            if (Vespene != 0)
+            if (HasVespene)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Vespene);
             }
-            if (FoodCap != 0)
+            if (HasFoodCap)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FoodCap);
             }
-            if (FoodUsed != 0)
+            if (HasFoodUsed)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FoodUsed);
             }
-            if (FoodArmy != 0)
+            if (HasFoodArmy)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FoodArmy);
             }
-            if (FoodWorkers != 0)
+            if (HasFoodWorkers)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(FoodWorkers);
             }
-            if (IdleWorkerCount != 0)
+            if (HasIdleWorkerCount)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(IdleWorkerCount);
             }
-            if (ArmyCount != 0)
+            if (HasArmyCount)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(ArmyCount);
             }
-            if (WarpGateCount != 0)
+            if (HasWarpGateCount)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(WarpGateCount);
             }
-            if (LarvaCount != 0)
+            if (HasLarvaCount)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(LarvaCount);
             }
@@ -12879,47 +16502,47 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.PlayerId != 0)
+            if (other.HasPlayerId)
             {
                 PlayerId = other.PlayerId;
             }
-            if (other.Minerals != 0)
+            if (other.HasMinerals)
             {
                 Minerals = other.Minerals;
             }
-            if (other.Vespene != 0)
+            if (other.HasVespene)
             {
                 Vespene = other.Vespene;
             }
-            if (other.FoodCap != 0)
+            if (other.HasFoodCap)
             {
                 FoodCap = other.FoodCap;
             }
-            if (other.FoodUsed != 0)
+            if (other.HasFoodUsed)
             {
                 FoodUsed = other.FoodUsed;
             }
-            if (other.FoodArmy != 0)
+            if (other.HasFoodArmy)
             {
                 FoodArmy = other.FoodArmy;
             }
-            if (other.FoodWorkers != 0)
+            if (other.HasFoodWorkers)
             {
                 FoodWorkers = other.FoodWorkers;
             }
-            if (other.IdleWorkerCount != 0)
+            if (other.HasIdleWorkerCount)
             {
                 IdleWorkerCount = other.IdleWorkerCount;
             }
-            if (other.ArmyCount != 0)
+            if (other.HasArmyCount)
             {
                 ArmyCount = other.ArmyCount;
             }
-            if (other.WarpGateCount != 0)
+            if (other.HasWarpGateCount)
             {
                 WarpGateCount = other.WarpGateCount;
             }
-            if (other.LarvaCount != 0)
+            if (other.HasLarvaCount)
             {
                 LarvaCount = other.LarvaCount;
             }
@@ -13002,13 +16625,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<Observation> _parser = new pb::MessageParser<Observation>(() => new Observation());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Observation> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[51]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[53]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13028,15 +16652,16 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Observation(Observation other) : this()
         {
+            _hasBits0 = other._hasBits0;
             gameLoop_ = other.gameLoop_;
-            PlayerCommon = other.playerCommon_ != null ? other.PlayerCommon.Clone() : null;
+            playerCommon_ = other.HasPlayerCommon ? other.playerCommon_.Clone() : null;
             alerts_ = other.alerts_.Clone();
             abilities_ = other.abilities_.Clone();
-            Score = other.score_ != null ? other.Score.Clone() : null;
-            RawData = other.rawData_ != null ? other.RawData.Clone() : null;
-            FeatureLayerData = other.featureLayerData_ != null ? other.FeatureLayerData.Clone() : null;
-            RenderData = other.renderData_ != null ? other.RenderData.Clone() : null;
-            UiData = other.uiData_ != null ? other.UiData.Clone() : null;
+            score_ = other.HasScore ? other.score_.Clone() : null;
+            rawData_ = other.HasRawData ? other.rawData_.Clone() : null;
+            featureLayerData_ = other.HasFeatureLayerData ? other.featureLayerData_.Clone() : null;
+            renderData_ = other.HasRenderData ? other.renderData_.Clone() : null;
+            uiData_ = other.HasUiData ? other.uiData_.Clone() : null;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -13048,15 +16673,30 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "game_loop" field.</summary>
         public const int GameLoopFieldNumber = 9;
+        private readonly static uint GameLoopDefaultValue = 0;
+
         private uint gameLoop_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint GameLoop
         {
-            get { return gameLoop_; }
+            get { if ((_hasBits0 & 1) != 0) { return gameLoop_; } else { return GameLoopDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 gameLoop_ = value;
             }
+        }
+        /// <summary>Gets whether the "game_loop" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameLoop
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "game_loop" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameLoop()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "player_common" field.</summary>
@@ -13071,11 +16711,23 @@ namespace SC2APIProtocol
                 playerCommon_ = value;
             }
         }
+        /// <summary>Gets whether the player_common field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerCommon
+        {
+            get { return playerCommon_ != null; }
+        }
+        /// <summary>Clears the value of the player_common field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerCommon()
+        {
+            playerCommon_ = null;
+        }
 
         /// <summary>Field number for the "alerts" field.</summary>
         public const int AlertsFieldNumber = 10;
         private static readonly pb::FieldCodec<global::SC2APIProtocol.Alert> _repeated_alerts_codec
-            = pb::FieldCodec.ForEnum(82, x => (int)x, x => (global::SC2APIProtocol.Alert)x);
+            = pb::FieldCodec.ForEnum(80, x => (int)x, x => (global::SC2APIProtocol.Alert)x);
         private readonly pbc::RepeatedField<global::SC2APIProtocol.Alert> alerts_ = new pbc::RepeatedField<global::SC2APIProtocol.Alert>();
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<global::SC2APIProtocol.Alert> Alerts
@@ -13109,6 +16761,18 @@ namespace SC2APIProtocol
                 score_ = value;
             }
         }
+        /// <summary>Gets whether the score field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasScore
+        {
+            get { return score_ != null; }
+        }
+        /// <summary>Clears the value of the score field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearScore()
+        {
+            score_ = null;
+        }
 
         /// <summary>Field number for the "raw_data" field.</summary>
         public const int RawDataFieldNumber = 5;
@@ -13124,6 +16788,18 @@ namespace SC2APIProtocol
             {
                 rawData_ = value;
             }
+        }
+        /// <summary>Gets whether the raw_data field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRawData
+        {
+            get { return rawData_ != null; }
+        }
+        /// <summary>Clears the value of the raw_data field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRawData()
+        {
+            rawData_ = null;
         }
 
         /// <summary>Field number for the "feature_layer_data" field.</summary>
@@ -13141,6 +16817,18 @@ namespace SC2APIProtocol
                 featureLayerData_ = value;
             }
         }
+        /// <summary>Gets whether the feature_layer_data field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasFeatureLayerData
+        {
+            get { return featureLayerData_ != null; }
+        }
+        /// <summary>Clears the value of the feature_layer_data field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearFeatureLayerData()
+        {
+            featureLayerData_ = null;
+        }
 
         /// <summary>Field number for the "render_data" field.</summary>
         public const int RenderDataFieldNumber = 7;
@@ -13157,6 +16845,18 @@ namespace SC2APIProtocol
                 renderData_ = value;
             }
         }
+        /// <summary>Gets whether the render_data field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRenderData
+        {
+            get { return renderData_ != null; }
+        }
+        /// <summary>Clears the value of the render_data field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRenderData()
+        {
+            renderData_ = null;
+        }
 
         /// <summary>Field number for the "ui_data" field.</summary>
         public const int UiDataFieldNumber = 8;
@@ -13172,6 +16872,18 @@ namespace SC2APIProtocol
             {
                 uiData_ = value;
             }
+        }
+        /// <summary>Gets whether the ui_data field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUiData
+        {
+            get { return uiData_ != null; }
+        }
+        /// <summary>Clears the value of the ui_data field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUiData()
+        {
+            uiData_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13207,15 +16919,15 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (GameLoop != 0) hash ^= GameLoop.GetHashCode();
-            if (playerCommon_ != null) hash ^= PlayerCommon.GetHashCode();
+            if (HasGameLoop) hash ^= GameLoop.GetHashCode();
+            if (HasPlayerCommon) hash ^= PlayerCommon.GetHashCode();
             hash ^= alerts_.GetHashCode();
             hash ^= abilities_.GetHashCode();
-            if (score_ != null) hash ^= Score.GetHashCode();
-            if (rawData_ != null) hash ^= RawData.GetHashCode();
-            if (featureLayerData_ != null) hash ^= FeatureLayerData.GetHashCode();
-            if (renderData_ != null) hash ^= RenderData.GetHashCode();
-            if (uiData_ != null) hash ^= UiData.GetHashCode();
+            if (HasScore) hash ^= Score.GetHashCode();
+            if (HasRawData) hash ^= RawData.GetHashCode();
+            if (HasFeatureLayerData) hash ^= FeatureLayerData.GetHashCode();
+            if (HasRenderData) hash ^= RenderData.GetHashCode();
+            if (HasUiData) hash ^= UiData.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -13232,38 +16944,38 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (playerCommon_ != null)
+            if (HasPlayerCommon)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(PlayerCommon);
             }
             abilities_.WriteTo(output, _repeated_abilities_codec);
-            if (score_ != null)
+            if (HasScore)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(Score);
             }
-            if (rawData_ != null)
+            if (HasRawData)
             {
                 output.WriteRawTag(42);
                 output.WriteMessage(RawData);
             }
-            if (featureLayerData_ != null)
+            if (HasFeatureLayerData)
             {
                 output.WriteRawTag(50);
                 output.WriteMessage(FeatureLayerData);
             }
-            if (renderData_ != null)
+            if (HasRenderData)
             {
                 output.WriteRawTag(58);
                 output.WriteMessage(RenderData);
             }
-            if (uiData_ != null)
+            if (HasUiData)
             {
                 output.WriteRawTag(66);
                 output.WriteMessage(UiData);
             }
-            if (GameLoop != 0)
+            if (HasGameLoop)
             {
                 output.WriteRawTag(72);
                 output.WriteUInt32(GameLoop);
@@ -13279,33 +16991,33 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (GameLoop != 0)
+            if (HasGameLoop)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GameLoop);
             }
-            if (playerCommon_ != null)
+            if (HasPlayerCommon)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerCommon);
             }
             size += alerts_.CalculateSize(_repeated_alerts_codec);
             size += abilities_.CalculateSize(_repeated_abilities_codec);
-            if (score_ != null)
+            if (HasScore)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Score);
             }
-            if (rawData_ != null)
+            if (HasRawData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(RawData);
             }
-            if (featureLayerData_ != null)
+            if (HasFeatureLayerData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(FeatureLayerData);
             }
-            if (renderData_ != null)
+            if (HasRenderData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(RenderData);
             }
-            if (uiData_ != null)
+            if (HasUiData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(UiData);
             }
@@ -13323,57 +17035,57 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.GameLoop != 0)
+            if (other.HasGameLoop)
             {
                 GameLoop = other.GameLoop;
             }
-            if (other.playerCommon_ != null)
+            if (other.HasPlayerCommon)
             {
-                if (playerCommon_ == null)
+                if (!HasPlayerCommon)
                 {
-                    playerCommon_ = new global::SC2APIProtocol.PlayerCommon();
+                    PlayerCommon = new global::SC2APIProtocol.PlayerCommon();
                 }
                 PlayerCommon.MergeFrom(other.PlayerCommon);
             }
             alerts_.Add(other.alerts_);
             abilities_.Add(other.abilities_);
-            if (other.score_ != null)
+            if (other.HasScore)
             {
-                if (score_ == null)
+                if (!HasScore)
                 {
-                    score_ = new global::SC2APIProtocol.Score();
+                    Score = new global::SC2APIProtocol.Score();
                 }
                 Score.MergeFrom(other.Score);
             }
-            if (other.rawData_ != null)
+            if (other.HasRawData)
             {
-                if (rawData_ == null)
+                if (!HasRawData)
                 {
-                    rawData_ = new global::SC2APIProtocol.ObservationRaw();
+                    RawData = new global::SC2APIProtocol.ObservationRaw();
                 }
                 RawData.MergeFrom(other.RawData);
             }
-            if (other.featureLayerData_ != null)
+            if (other.HasFeatureLayerData)
             {
-                if (featureLayerData_ == null)
+                if (!HasFeatureLayerData)
                 {
-                    featureLayerData_ = new global::SC2APIProtocol.ObservationFeatureLayer();
+                    FeatureLayerData = new global::SC2APIProtocol.ObservationFeatureLayer();
                 }
                 FeatureLayerData.MergeFrom(other.FeatureLayerData);
             }
-            if (other.renderData_ != null)
+            if (other.HasRenderData)
             {
-                if (renderData_ == null)
+                if (!HasRenderData)
                 {
-                    renderData_ = new global::SC2APIProtocol.ObservationRender();
+                    RenderData = new global::SC2APIProtocol.ObservationRender();
                 }
                 RenderData.MergeFrom(other.RenderData);
             }
-            if (other.uiData_ != null)
+            if (other.HasUiData)
             {
-                if (uiData_ == null)
+                if (!HasUiData)
                 {
-                    uiData_ = new global::SC2APIProtocol.ObservationUI();
+                    UiData = new global::SC2APIProtocol.ObservationUI();
                 }
                 UiData.MergeFrom(other.UiData);
             }
@@ -13393,11 +17105,11 @@ namespace SC2APIProtocol
                         break;
                     case 10:
                         {
-                            if (playerCommon_ == null)
+                            if (!HasPlayerCommon)
                             {
-                                playerCommon_ = new global::SC2APIProtocol.PlayerCommon();
+                                PlayerCommon = new global::SC2APIProtocol.PlayerCommon();
                             }
-                            input.ReadMessage(playerCommon_);
+                            input.ReadMessage(PlayerCommon);
                             break;
                         }
                     case 26:
@@ -13407,47 +17119,47 @@ namespace SC2APIProtocol
                         }
                     case 34:
                         {
-                            if (score_ == null)
+                            if (!HasScore)
                             {
-                                score_ = new global::SC2APIProtocol.Score();
+                                Score = new global::SC2APIProtocol.Score();
                             }
-                            input.ReadMessage(score_);
+                            input.ReadMessage(Score);
                             break;
                         }
                     case 42:
                         {
-                            if (rawData_ == null)
+                            if (!HasRawData)
                             {
-                                rawData_ = new global::SC2APIProtocol.ObservationRaw();
+                                RawData = new global::SC2APIProtocol.ObservationRaw();
                             }
-                            input.ReadMessage(rawData_);
+                            input.ReadMessage(RawData);
                             break;
                         }
                     case 50:
                         {
-                            if (featureLayerData_ == null)
+                            if (!HasFeatureLayerData)
                             {
-                                featureLayerData_ = new global::SC2APIProtocol.ObservationFeatureLayer();
+                                FeatureLayerData = new global::SC2APIProtocol.ObservationFeatureLayer();
                             }
-                            input.ReadMessage(featureLayerData_);
+                            input.ReadMessage(FeatureLayerData);
                             break;
                         }
                     case 58:
                         {
-                            if (renderData_ == null)
+                            if (!HasRenderData)
                             {
-                                renderData_ = new global::SC2APIProtocol.ObservationRender();
+                                RenderData = new global::SC2APIProtocol.ObservationRender();
                             }
-                            input.ReadMessage(renderData_);
+                            input.ReadMessage(RenderData);
                             break;
                         }
                     case 66:
                         {
-                            if (uiData_ == null)
+                            if (!HasUiData)
                             {
-                                uiData_ = new global::SC2APIProtocol.ObservationUI();
+                                UiData = new global::SC2APIProtocol.ObservationUI();
                             }
-                            input.ReadMessage(uiData_);
+                            input.ReadMessage(UiData);
                             break;
                         }
                     case 72:
@@ -13471,13 +17183,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<Action> _parser = new pb::MessageParser<Action>(() => new Action());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Action> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[52]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[54]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13497,11 +17210,13 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Action(Action other) : this()
         {
-            ActionRaw = other.actionRaw_ != null ? other.ActionRaw.Clone() : null;
-            ActionFeatureLayer = other.actionFeatureLayer_ != null ? other.ActionFeatureLayer.Clone() : null;
-            ActionRender = other.actionRender_ != null ? other.ActionRender.Clone() : null;
-            ActionUi = other.actionUi_ != null ? other.ActionUi.Clone() : null;
-            ActionChat = other.actionChat_ != null ? other.ActionChat.Clone() : null;
+            _hasBits0 = other._hasBits0;
+            actionRaw_ = other.HasActionRaw ? other.actionRaw_.Clone() : null;
+            actionFeatureLayer_ = other.HasActionFeatureLayer ? other.actionFeatureLayer_.Clone() : null;
+            actionRender_ = other.HasActionRender ? other.actionRender_.Clone() : null;
+            actionUi_ = other.HasActionUi ? other.actionUi_.Clone() : null;
+            actionChat_ = other.HasActionChat ? other.actionChat_.Clone() : null;
+            gameLoop_ = other.gameLoop_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -13526,6 +17241,18 @@ namespace SC2APIProtocol
                 actionRaw_ = value;
             }
         }
+        /// <summary>Gets whether the action_raw field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasActionRaw
+        {
+            get { return actionRaw_ != null; }
+        }
+        /// <summary>Clears the value of the action_raw field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearActionRaw()
+        {
+            actionRaw_ = null;
+        }
 
         /// <summary>Field number for the "action_feature_layer" field.</summary>
         public const int ActionFeatureLayerFieldNumber = 2;
@@ -13541,6 +17268,18 @@ namespace SC2APIProtocol
             {
                 actionFeatureLayer_ = value;
             }
+        }
+        /// <summary>Gets whether the action_feature_layer field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasActionFeatureLayer
+        {
+            get { return actionFeatureLayer_ != null; }
+        }
+        /// <summary>Clears the value of the action_feature_layer field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearActionFeatureLayer()
+        {
+            actionFeatureLayer_ = null;
         }
 
         /// <summary>Field number for the "action_render" field.</summary>
@@ -13558,6 +17297,18 @@ namespace SC2APIProtocol
                 actionRender_ = value;
             }
         }
+        /// <summary>Gets whether the action_render field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasActionRender
+        {
+            get { return actionRender_ != null; }
+        }
+        /// <summary>Clears the value of the action_render field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearActionRender()
+        {
+            actionRender_ = null;
+        }
 
         /// <summary>Field number for the "action_ui" field.</summary>
         public const int ActionUiFieldNumber = 4;
@@ -13574,6 +17325,18 @@ namespace SC2APIProtocol
                 actionUi_ = value;
             }
         }
+        /// <summary>Gets whether the action_ui field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasActionUi
+        {
+            get { return actionUi_ != null; }
+        }
+        /// <summary>Clears the value of the action_ui field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearActionUi()
+        {
+            actionUi_ = null;
+        }
 
         /// <summary>Field number for the "action_chat" field.</summary>
         public const int ActionChatFieldNumber = 6;
@@ -13589,6 +17352,49 @@ namespace SC2APIProtocol
             {
                 actionChat_ = value;
             }
+        }
+        /// <summary>Gets whether the action_chat field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasActionChat
+        {
+            get { return actionChat_ != null; }
+        }
+        /// <summary>Clears the value of the action_chat field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearActionChat()
+        {
+            actionChat_ = null;
+        }
+
+        /// <summary>Field number for the "game_loop" field.</summary>
+        public const int GameLoopFieldNumber = 7;
+        private readonly static uint GameLoopDefaultValue = 0;
+
+        private uint gameLoop_;
+        /// <summary>
+        /// Populated for actions in ResponseObservation. The game loop on which the action was executed.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint GameLoop
+        {
+            get { if ((_hasBits0 & 1) != 0) { return gameLoop_; } else { return GameLoopDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                gameLoop_ = value;
+            }
+        }
+        /// <summary>Gets whether the "game_loop" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameLoop
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "game_loop" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameLoop()
+        {
+            _hasBits0 &= ~1;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13613,6 +17419,7 @@ namespace SC2APIProtocol
             if (!object.Equals(ActionRender, other.ActionRender)) return false;
             if (!object.Equals(ActionUi, other.ActionUi)) return false;
             if (!object.Equals(ActionChat, other.ActionChat)) return false;
+            if (GameLoop != other.GameLoop) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -13620,11 +17427,12 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (actionRaw_ != null) hash ^= ActionRaw.GetHashCode();
-            if (actionFeatureLayer_ != null) hash ^= ActionFeatureLayer.GetHashCode();
-            if (actionRender_ != null) hash ^= ActionRender.GetHashCode();
-            if (actionUi_ != null) hash ^= ActionUi.GetHashCode();
-            if (actionChat_ != null) hash ^= ActionChat.GetHashCode();
+            if (HasActionRaw) hash ^= ActionRaw.GetHashCode();
+            if (HasActionFeatureLayer) hash ^= ActionFeatureLayer.GetHashCode();
+            if (HasActionRender) hash ^= ActionRender.GetHashCode();
+            if (HasActionUi) hash ^= ActionUi.GetHashCode();
+            if (HasActionChat) hash ^= ActionChat.GetHashCode();
+            if (HasGameLoop) hash ^= GameLoop.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -13641,30 +17449,35 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (actionRaw_ != null)
+            if (HasActionRaw)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(ActionRaw);
             }
-            if (actionFeatureLayer_ != null)
+            if (HasActionFeatureLayer)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(ActionFeatureLayer);
             }
-            if (actionRender_ != null)
+            if (HasActionRender)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(ActionRender);
             }
-            if (actionUi_ != null)
+            if (HasActionUi)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(ActionUi);
             }
-            if (actionChat_ != null)
+            if (HasActionChat)
             {
                 output.WriteRawTag(50);
                 output.WriteMessage(ActionChat);
+            }
+            if (HasGameLoop)
+            {
+                output.WriteRawTag(56);
+                output.WriteUInt32(GameLoop);
             }
             if (_unknownFields != null)
             {
@@ -13676,25 +17489,29 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (actionRaw_ != null)
+            if (HasActionRaw)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActionRaw);
             }
-            if (actionFeatureLayer_ != null)
+            if (HasActionFeatureLayer)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActionFeatureLayer);
             }
-            if (actionRender_ != null)
+            if (HasActionRender)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActionRender);
             }
-            if (actionUi_ != null)
+            if (HasActionUi)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActionUi);
             }
-            if (actionChat_ != null)
+            if (HasActionChat)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActionChat);
+            }
+            if (HasGameLoop)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GameLoop);
             }
             if (_unknownFields != null)
             {
@@ -13710,45 +17527,49 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.actionRaw_ != null)
+            if (other.HasActionRaw)
             {
-                if (actionRaw_ == null)
+                if (!HasActionRaw)
                 {
-                    actionRaw_ = new global::SC2APIProtocol.ActionRaw();
+                    ActionRaw = new global::SC2APIProtocol.ActionRaw();
                 }
                 ActionRaw.MergeFrom(other.ActionRaw);
             }
-            if (other.actionFeatureLayer_ != null)
+            if (other.HasActionFeatureLayer)
             {
-                if (actionFeatureLayer_ == null)
+                if (!HasActionFeatureLayer)
                 {
-                    actionFeatureLayer_ = new global::SC2APIProtocol.ActionSpatial();
+                    ActionFeatureLayer = new global::SC2APIProtocol.ActionSpatial();
                 }
                 ActionFeatureLayer.MergeFrom(other.ActionFeatureLayer);
             }
-            if (other.actionRender_ != null)
+            if (other.HasActionRender)
             {
-                if (actionRender_ == null)
+                if (!HasActionRender)
                 {
-                    actionRender_ = new global::SC2APIProtocol.ActionSpatial();
+                    ActionRender = new global::SC2APIProtocol.ActionSpatial();
                 }
                 ActionRender.MergeFrom(other.ActionRender);
             }
-            if (other.actionUi_ != null)
+            if (other.HasActionUi)
             {
-                if (actionUi_ == null)
+                if (!HasActionUi)
                 {
-                    actionUi_ = new global::SC2APIProtocol.ActionUI();
+                    ActionUi = new global::SC2APIProtocol.ActionUI();
                 }
                 ActionUi.MergeFrom(other.ActionUi);
             }
-            if (other.actionChat_ != null)
+            if (other.HasActionChat)
             {
-                if (actionChat_ == null)
+                if (!HasActionChat)
                 {
-                    actionChat_ = new global::SC2APIProtocol.ActionChat();
+                    ActionChat = new global::SC2APIProtocol.ActionChat();
                 }
                 ActionChat.MergeFrom(other.ActionChat);
+            }
+            if (other.HasGameLoop)
+            {
+                GameLoop = other.GameLoop;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -13766,47 +17587,52 @@ namespace SC2APIProtocol
                         break;
                     case 10:
                         {
-                            if (actionRaw_ == null)
+                            if (!HasActionRaw)
                             {
-                                actionRaw_ = new global::SC2APIProtocol.ActionRaw();
+                                ActionRaw = new global::SC2APIProtocol.ActionRaw();
                             }
-                            input.ReadMessage(actionRaw_);
+                            input.ReadMessage(ActionRaw);
                             break;
                         }
                     case 18:
                         {
-                            if (actionFeatureLayer_ == null)
+                            if (!HasActionFeatureLayer)
                             {
-                                actionFeatureLayer_ = new global::SC2APIProtocol.ActionSpatial();
+                                ActionFeatureLayer = new global::SC2APIProtocol.ActionSpatial();
                             }
-                            input.ReadMessage(actionFeatureLayer_);
+                            input.ReadMessage(ActionFeatureLayer);
                             break;
                         }
                     case 26:
                         {
-                            if (actionRender_ == null)
+                            if (!HasActionRender)
                             {
-                                actionRender_ = new global::SC2APIProtocol.ActionSpatial();
+                                ActionRender = new global::SC2APIProtocol.ActionSpatial();
                             }
-                            input.ReadMessage(actionRender_);
+                            input.ReadMessage(ActionRender);
                             break;
                         }
                     case 34:
                         {
-                            if (actionUi_ == null)
+                            if (!HasActionUi)
                             {
-                                actionUi_ = new global::SC2APIProtocol.ActionUI();
+                                ActionUi = new global::SC2APIProtocol.ActionUI();
                             }
-                            input.ReadMessage(actionUi_);
+                            input.ReadMessage(ActionUi);
                             break;
                         }
                     case 50:
                         {
-                            if (actionChat_ == null)
+                            if (!HasActionChat)
                             {
-                                actionChat_ = new global::SC2APIProtocol.ActionChat();
+                                ActionChat = new global::SC2APIProtocol.ActionChat();
                             }
-                            input.ReadMessage(actionChat_);
+                            input.ReadMessage(ActionChat);
+                            break;
+                        }
+                    case 56:
+                        {
+                            GameLoop = input.ReadUInt32();
                             break;
                         }
                 }
@@ -13819,13 +17645,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ActionChat> _parser = new pb::MessageParser<ActionChat>(() => new ActionChat());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ActionChat> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[53]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[55]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13845,6 +17672,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ActionChat(ActionChat other) : this()
         {
+            _hasBits0 = other._hasBits0;
             channel_ = other.channel_;
             message_ = other.message_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -13858,28 +17686,57 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "channel" field.</summary>
         public const int ChannelFieldNumber = 1;
-        private global::SC2APIProtocol.ActionChat.Types.Channel channel_ = 0;
+        private readonly static global::SC2APIProtocol.ActionChat.Types.Channel ChannelDefaultValue = global::SC2APIProtocol.ActionChat.Types.Channel.Broadcast;
+
+        private global::SC2APIProtocol.ActionChat.Types.Channel channel_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ActionChat.Types.Channel Channel
         {
-            get { return channel_; }
+            get { if ((_hasBits0 & 1) != 0) { return channel_; } else { return ChannelDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 channel_ = value;
             }
+        }
+        /// <summary>Gets whether the "channel" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasChannel
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "channel" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearChannel()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "message" field.</summary>
         public const int MessageFieldNumber = 2;
-        private string message_ = "";
+        private readonly static string MessageDefaultValue = "";
+
+        private string message_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public string Message
         {
-            get { return message_; }
+            get { return message_ ?? MessageDefaultValue; }
             set
             {
                 message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "message" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMessage
+        {
+            get { return message_ != null; }
+        }
+        /// <summary>Clears the value of the "message" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMessage()
+        {
+            message_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13908,8 +17765,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (Channel != 0) hash ^= Channel.GetHashCode();
-            if (Message.Length != 0) hash ^= Message.GetHashCode();
+            if (HasChannel) hash ^= Channel.GetHashCode();
+            if (HasMessage) hash ^= Message.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -13926,12 +17783,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (Channel != 0)
+            if (HasChannel)
             {
                 output.WriteRawTag(8);
                 output.WriteEnum((int)Channel);
             }
-            if (Message.Length != 0)
+            if (HasMessage)
             {
                 output.WriteRawTag(18);
                 output.WriteString(Message);
@@ -13946,11 +17803,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (Channel != 0)
+            if (HasChannel)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Channel);
             }
-            if (Message.Length != 0)
+            if (HasMessage)
             {
                 size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
             }
@@ -13968,11 +17825,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.Channel != 0)
+            if (other.HasChannel)
             {
                 Channel = other.Channel;
             }
-            if (other.Message.Length != 0)
+            if (other.HasMessage)
             {
                 Message = other.Message;
             }
@@ -13992,7 +17849,7 @@ namespace SC2APIProtocol
                         break;
                     case 8:
                         {
-                            channel_ = (global::SC2APIProtocol.ActionChat.Types.Channel)input.ReadEnum();
+                            Channel = (global::SC2APIProtocol.ActionChat.Types.Channel)input.ReadEnum();
                             break;
                         }
                     case 18:
@@ -14011,7 +17868,6 @@ namespace SC2APIProtocol
         {
             public enum Channel
             {
-                [pbr::OriginalName("Channel_UNSET")] Unset = 0,
                 [pbr::OriginalName("Broadcast")] Broadcast = 1,
                 [pbr::OriginalName("Team")] Team = 2,
             }
@@ -14025,13 +17881,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ActionError> _parser = new pb::MessageParser<ActionError>(() => new ActionError());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ActionError> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[54]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[56]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14051,6 +17908,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ActionError(ActionError other) : this()
         {
+            _hasBits0 = other._hasBits0;
             unitTag_ = other.unitTag_;
             abilityId_ = other.abilityId_;
             result_ = other.result_;
@@ -14065,6 +17923,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "unit_tag" field.</summary>
         public const int UnitTagFieldNumber = 1;
+        private readonly static ulong UnitTagDefaultValue = 0UL;
+
         private ulong unitTag_;
         /// <summary>
         /// Only populated when using raw interface.
@@ -14072,37 +17932,80 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ulong UnitTag
         {
-            get { return unitTag_; }
+            get { if ((_hasBits0 & 1) != 0) { return unitTag_; } else { return UnitTagDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 unitTag_ = value;
             }
+        }
+        /// <summary>Gets whether the "unit_tag" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUnitTag
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "unit_tag" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUnitTag()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "ability_id" field.</summary>
         public const int AbilityIdFieldNumber = 2;
+        private readonly static ulong AbilityIdDefaultValue = 0UL;
+
         private ulong abilityId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ulong AbilityId
         {
-            get { return abilityId_; }
+            get { if ((_hasBits0 & 2) != 0) { return abilityId_; } else { return AbilityIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 abilityId_ = value;
             }
+        }
+        /// <summary>Gets whether the "ability_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAbilityId
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "ability_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAbilityId()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "result" field.</summary>
         public const int ResultFieldNumber = 3;
-        private global::SC2APIProtocol.ActionResult result_ = 0;
+        private readonly static global::SC2APIProtocol.ActionResult ResultDefaultValue = global::SC2APIProtocol.ActionResult.Success;
+
+        private global::SC2APIProtocol.ActionResult result_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ActionResult Result
         {
-            get { return result_; }
+            get { if ((_hasBits0 & 4) != 0) { return result_; } else { return ResultDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 result_ = value;
             }
+        }
+        /// <summary>Gets whether the "result" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasResult
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "result" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearResult()
+        {
+            _hasBits0 &= ~4;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14132,9 +18035,9 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (UnitTag != 0UL) hash ^= UnitTag.GetHashCode();
-            if (AbilityId != 0UL) hash ^= AbilityId.GetHashCode();
-            if (Result != 0) hash ^= Result.GetHashCode();
+            if (HasUnitTag) hash ^= UnitTag.GetHashCode();
+            if (HasAbilityId) hash ^= AbilityId.GetHashCode();
+            if (HasResult) hash ^= Result.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -14151,17 +18054,17 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (UnitTag != 0UL)
+            if (HasUnitTag)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt64(UnitTag);
             }
-            if (AbilityId != 0UL)
+            if (HasAbilityId)
             {
                 output.WriteRawTag(16);
                 output.WriteUInt64(AbilityId);
             }
-            if (Result != 0)
+            if (HasResult)
             {
                 output.WriteRawTag(24);
                 output.WriteEnum((int)Result);
@@ -14176,15 +18079,15 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (UnitTag != 0UL)
+            if (HasUnitTag)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UnitTag);
             }
-            if (AbilityId != 0UL)
+            if (HasAbilityId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt64Size(AbilityId);
             }
-            if (Result != 0)
+            if (HasResult)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Result);
             }
@@ -14202,15 +18105,15 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.UnitTag != 0UL)
+            if (other.HasUnitTag)
             {
                 UnitTag = other.UnitTag;
             }
-            if (other.AbilityId != 0UL)
+            if (other.HasAbilityId)
             {
                 AbilityId = other.AbilityId;
             }
-            if (other.Result != 0)
+            if (other.HasResult)
             {
                 Result = other.Result;
             }
@@ -14240,7 +18143,7 @@ namespace SC2APIProtocol
                         }
                     case 24:
                         {
-                            result_ = (global::SC2APIProtocol.ActionResult)input.ReadEnum();
+                            Result = (global::SC2APIProtocol.ActionResult)input.ReadEnum();
                             break;
                         }
                 }
@@ -14259,7 +18162,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[55]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[57]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14312,11 +18215,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ActionObserverPlayerPerspective PlayerPerspective
         {
-            get { return actionCase_ == ActionOneofCase.PlayerPerspective ? (global::SC2APIProtocol.ActionObserverPlayerPerspective)action_ : null; }
+            get { return HasPlayerPerspective ? (global::SC2APIProtocol.ActionObserverPlayerPerspective)action_ : null; }
             set
             {
                 action_ = value;
                 actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.PlayerPerspective;
+            }
+        }
+        /// <summary>Gets whether the "player_perspective" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerPerspective
+        {
+            get { return actionCase_ == ActionOneofCase.PlayerPerspective; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "player_perspective" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerPerspective()
+        {
+            if (HasPlayerPerspective)
+            {
+                ClearAction();
             }
         }
 
@@ -14325,11 +18243,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ActionObserverCameraMove CameraMove
         {
-            get { return actionCase_ == ActionOneofCase.CameraMove ? (global::SC2APIProtocol.ActionObserverCameraMove)action_ : null; }
+            get { return HasCameraMove ? (global::SC2APIProtocol.ActionObserverCameraMove)action_ : null; }
             set
             {
                 action_ = value;
                 actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.CameraMove;
+            }
+        }
+        /// <summary>Gets whether the "camera_move" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCameraMove
+        {
+            get { return actionCase_ == ActionOneofCase.CameraMove; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "camera_move" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCameraMove()
+        {
+            if (HasCameraMove)
+            {
+                ClearAction();
             }
         }
 
@@ -14338,11 +18271,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ActionObserverCameraFollowPlayer CameraFollowPlayer
         {
-            get { return actionCase_ == ActionOneofCase.CameraFollowPlayer ? (global::SC2APIProtocol.ActionObserverCameraFollowPlayer)action_ : null; }
+            get { return HasCameraFollowPlayer ? (global::SC2APIProtocol.ActionObserverCameraFollowPlayer)action_ : null; }
             set
             {
                 action_ = value;
                 actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.CameraFollowPlayer;
+            }
+        }
+        /// <summary>Gets whether the "camera_follow_player" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCameraFollowPlayer
+        {
+            get { return actionCase_ == ActionOneofCase.CameraFollowPlayer; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "camera_follow_player" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCameraFollowPlayer()
+        {
+            if (HasCameraFollowPlayer)
+            {
+                ClearAction();
             }
         }
 
@@ -14354,11 +18302,26 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.ActionObserverCameraFollowUnits CameraFollowUnits
         {
-            get { return actionCase_ == ActionOneofCase.CameraFollowUnits ? (global::SC2APIProtocol.ActionObserverCameraFollowUnits)action_ : null; }
+            get { return HasCameraFollowUnits ? (global::SC2APIProtocol.ActionObserverCameraFollowUnits)action_ : null; }
             set
             {
                 action_ = value;
                 actionCase_ = value == null ? ActionOneofCase.None : ActionOneofCase.CameraFollowUnits;
+            }
+        }
+        /// <summary>Gets whether the "camera_follow_units" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCameraFollowUnits
+        {
+            get { return actionCase_ == ActionOneofCase.CameraFollowUnits; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "camera_follow_units" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCameraFollowUnits()
+        {
+            if (HasCameraFollowUnits)
+            {
+                ClearAction();
             }
         }
 
@@ -14415,10 +18378,10 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (actionCase_ == ActionOneofCase.PlayerPerspective) hash ^= PlayerPerspective.GetHashCode();
-            if (actionCase_ == ActionOneofCase.CameraMove) hash ^= CameraMove.GetHashCode();
-            if (actionCase_ == ActionOneofCase.CameraFollowPlayer) hash ^= CameraFollowPlayer.GetHashCode();
-            if (actionCase_ == ActionOneofCase.CameraFollowUnits) hash ^= CameraFollowUnits.GetHashCode();
+            if (HasPlayerPerspective) hash ^= PlayerPerspective.GetHashCode();
+            if (HasCameraMove) hash ^= CameraMove.GetHashCode();
+            if (HasCameraFollowPlayer) hash ^= CameraFollowPlayer.GetHashCode();
+            if (HasCameraFollowUnits) hash ^= CameraFollowUnits.GetHashCode();
             hash ^= (int)actionCase_;
             if (_unknownFields != null)
             {
@@ -14436,22 +18399,22 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (actionCase_ == ActionOneofCase.PlayerPerspective)
+            if (HasPlayerPerspective)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(PlayerPerspective);
             }
-            if (actionCase_ == ActionOneofCase.CameraMove)
+            if (HasCameraMove)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(CameraMove);
             }
-            if (actionCase_ == ActionOneofCase.CameraFollowPlayer)
+            if (HasCameraFollowPlayer)
             {
                 output.WriteRawTag(26);
                 output.WriteMessage(CameraFollowPlayer);
             }
-            if (actionCase_ == ActionOneofCase.CameraFollowUnits)
+            if (HasCameraFollowUnits)
             {
                 output.WriteRawTag(34);
                 output.WriteMessage(CameraFollowUnits);
@@ -14466,19 +18429,19 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (actionCase_ == ActionOneofCase.PlayerPerspective)
+            if (HasPlayerPerspective)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerPerspective);
             }
-            if (actionCase_ == ActionOneofCase.CameraMove)
+            if (HasCameraMove)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(CameraMove);
             }
-            if (actionCase_ == ActionOneofCase.CameraFollowPlayer)
+            if (HasCameraFollowPlayer)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(CameraFollowPlayer);
             }
-            if (actionCase_ == ActionOneofCase.CameraFollowUnits)
+            if (HasCameraFollowUnits)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(CameraFollowUnits);
             }
@@ -14545,7 +18508,7 @@ namespace SC2APIProtocol
                     case 10:
                         {
                             global::SC2APIProtocol.ActionObserverPlayerPerspective subBuilder = new global::SC2APIProtocol.ActionObserverPlayerPerspective();
-                            if (actionCase_ == ActionOneofCase.PlayerPerspective)
+                            if (HasPlayerPerspective)
                             {
                                 subBuilder.MergeFrom(PlayerPerspective);
                             }
@@ -14556,7 +18519,7 @@ namespace SC2APIProtocol
                     case 18:
                         {
                             global::SC2APIProtocol.ActionObserverCameraMove subBuilder = new global::SC2APIProtocol.ActionObserverCameraMove();
-                            if (actionCase_ == ActionOneofCase.CameraMove)
+                            if (HasCameraMove)
                             {
                                 subBuilder.MergeFrom(CameraMove);
                             }
@@ -14567,7 +18530,7 @@ namespace SC2APIProtocol
                     case 26:
                         {
                             global::SC2APIProtocol.ActionObserverCameraFollowPlayer subBuilder = new global::SC2APIProtocol.ActionObserverCameraFollowPlayer();
-                            if (actionCase_ == ActionOneofCase.CameraFollowPlayer)
+                            if (HasCameraFollowPlayer)
                             {
                                 subBuilder.MergeFrom(CameraFollowPlayer);
                             }
@@ -14578,7 +18541,7 @@ namespace SC2APIProtocol
                     case 34:
                         {
                             global::SC2APIProtocol.ActionObserverCameraFollowUnits subBuilder = new global::SC2APIProtocol.ActionObserverCameraFollowUnits();
-                            if (actionCase_ == ActionOneofCase.CameraFollowUnits)
+                            if (HasCameraFollowUnits)
                             {
                                 subBuilder.MergeFrom(CameraFollowUnits);
                             }
@@ -14596,13 +18559,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ActionObserverPlayerPerspective> _parser = new pb::MessageParser<ActionObserverPlayerPerspective>(() => new ActionObserverPlayerPerspective());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ActionObserverPlayerPerspective> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[56]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[58]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14622,6 +18586,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ActionObserverPlayerPerspective(ActionObserverPlayerPerspective other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerId_ = other.playerId_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
@@ -14634,6 +18599,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "player_id" field.</summary>
         public const int PlayerIdFieldNumber = 1;
+        private readonly static uint PlayerIdDefaultValue = 0;
+
         private uint playerId_;
         /// <summary>
         /// 0 to observe "Everyone"
@@ -14641,11 +18608,24 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint PlayerId
         {
-            get { return playerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14673,7 +18653,7 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+            if (HasPlayerId) hash ^= PlayerId.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -14690,7 +18670,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(PlayerId);
@@ -14705,7 +18685,7 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
             }
@@ -14723,7 +18703,7 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.PlayerId != 0)
+            if (other.HasPlayerId)
             {
                 PlayerId = other.PlayerId;
             }
@@ -14756,13 +18736,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ActionObserverCameraMove> _parser = new pb::MessageParser<ActionObserverCameraMove>(() => new ActionObserverCameraMove());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ActionObserverCameraMove> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[57]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[59]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14782,7 +18763,8 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ActionObserverCameraMove(ActionObserverCameraMove other) : this()
         {
-            WorldPos = other.worldPos_ != null ? other.WorldPos.Clone() : null;
+            _hasBits0 = other._hasBits0;
+            worldPos_ = other.HasWorldPos ? other.worldPos_.Clone() : null;
             distance_ = other.distance_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
@@ -14805,9 +18787,23 @@ namespace SC2APIProtocol
                 worldPos_ = value;
             }
         }
+        /// <summary>Gets whether the world_pos field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasWorldPos
+        {
+            get { return worldPos_ != null; }
+        }
+        /// <summary>Clears the value of the world_pos field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearWorldPos()
+        {
+            worldPos_ = null;
+        }
 
         /// <summary>Field number for the "distance" field.</summary>
         public const int DistanceFieldNumber = 2;
+        private readonly static float DistanceDefaultValue = 0F;
+
         private float distance_;
         /// <summary>
         /// Distance between camera and terrain. Larger value zooms out camera.
@@ -14816,11 +18812,24 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float Distance
         {
-            get { return distance_; }
+            get { if ((_hasBits0 & 1) != 0) { return distance_; } else { return DistanceDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 distance_ = value;
             }
+        }
+        /// <summary>Gets whether the "distance" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDistance
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "distance" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDistance()
+        {
+            _hasBits0 &= ~1;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14849,8 +18858,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (worldPos_ != null) hash ^= WorldPos.GetHashCode();
-            if (Distance != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Distance);
+            if (HasWorldPos) hash ^= WorldPos.GetHashCode();
+            if (HasDistance) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Distance);
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -14867,12 +18876,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (worldPos_ != null)
+            if (HasWorldPos)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(WorldPos);
             }
-            if (Distance != 0F)
+            if (HasDistance)
             {
                 output.WriteRawTag(21);
                 output.WriteFloat(Distance);
@@ -14887,11 +18896,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (worldPos_ != null)
+            if (HasWorldPos)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(WorldPos);
             }
-            if (Distance != 0F)
+            if (HasDistance)
             {
                 size += 1 + 4;
             }
@@ -14909,15 +18918,15 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.worldPos_ != null)
+            if (other.HasWorldPos)
             {
-                if (worldPos_ == null)
+                if (!HasWorldPos)
                 {
-                    worldPos_ = new global::SC2APIProtocol.Point2D();
+                    WorldPos = new global::SC2APIProtocol.Point2D();
                 }
                 WorldPos.MergeFrom(other.WorldPos);
             }
-            if (other.Distance != 0F)
+            if (other.HasDistance)
             {
                 Distance = other.Distance;
             }
@@ -14937,11 +18946,11 @@ namespace SC2APIProtocol
                         break;
                     case 10:
                         {
-                            if (worldPos_ == null)
+                            if (!HasWorldPos)
                             {
-                                worldPos_ = new global::SC2APIProtocol.Point2D();
+                                WorldPos = new global::SC2APIProtocol.Point2D();
                             }
-                            input.ReadMessage(worldPos_);
+                            input.ReadMessage(WorldPos);
                             break;
                         }
                     case 21:
@@ -14959,13 +18968,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ActionObserverCameraFollowPlayer> _parser = new pb::MessageParser<ActionObserverCameraFollowPlayer>(() => new ActionObserverCameraFollowPlayer());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ActionObserverCameraFollowPlayer> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[58]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[60]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -14985,6 +18995,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ActionObserverCameraFollowPlayer(ActionObserverCameraFollowPlayer other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerId_ = other.playerId_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
@@ -14997,6 +19008,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "player_id" field.</summary>
         public const int PlayerIdFieldNumber = 1;
+        private readonly static uint PlayerIdDefaultValue = 0;
+
         private uint playerId_;
         /// <summary>
         /// Not implemented. Value must be [1, 15]
@@ -15004,11 +19017,24 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint PlayerId
         {
-            get { return playerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15036,7 +19062,7 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
+            if (HasPlayerId) hash ^= PlayerId.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -15053,7 +19079,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(PlayerId);
@@ -15068,7 +19094,7 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
             }
@@ -15086,7 +19112,7 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.PlayerId != 0)
+            if (other.HasPlayerId)
             {
                 PlayerId = other.PlayerId;
             }
@@ -15125,7 +19151,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[59]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[61]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15158,7 +19184,7 @@ namespace SC2APIProtocol
         /// <summary>Field number for the "unit_tags" field.</summary>
         public const int UnitTagsFieldNumber = 1;
         private static readonly pb::FieldCodec<ulong> _repeated_unitTags_codec
-            = pb::FieldCodec.ForUInt64(10);
+            = pb::FieldCodec.ForUInt64(8);
         private readonly pbc::RepeatedField<ulong> unitTags_ = new pbc::RepeatedField<ulong>();
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pbc::RepeatedField<ulong> UnitTags
@@ -15265,13 +19291,14 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<PlayerResult> _parser = new pb::MessageParser<PlayerResult>(() => new PlayerResult());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<PlayerResult> Parser { get { return _parser; } }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pbr::MessageDescriptor Descriptor
         {
-            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[60]; }
+            get { return global::SC2APIProtocol.Sc2ApiReflection.Descriptor.MessageTypes[62]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15291,6 +19318,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public PlayerResult(PlayerResult other) : this()
         {
+            _hasBits0 = other._hasBits0;
             playerId_ = other.playerId_;
             result_ = other.result_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -15304,28 +19332,58 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "player_id" field.</summary>
         public const int PlayerIdFieldNumber = 1;
+        private readonly static uint PlayerIdDefaultValue = 0;
+
         private uint playerId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public uint PlayerId
         {
-            get { return playerId_; }
+            get { if ((_hasBits0 & 1) != 0) { return playerId_; } else { return PlayerIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 playerId_ = value;
             }
+        }
+        /// <summary>Gets whether the "player_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPlayerId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "player_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPlayerId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "result" field.</summary>
         public const int ResultFieldNumber = 2;
-        private global::SC2APIProtocol.Result result_ = 0;
+        private readonly static global::SC2APIProtocol.Result ResultDefaultValue = global::SC2APIProtocol.Result.Victory;
+
+        private global::SC2APIProtocol.Result result_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public global::SC2APIProtocol.Result Result
         {
-            get { return result_; }
+            get { if ((_hasBits0 & 2) != 0) { return result_; } else { return ResultDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 result_ = value;
             }
+        }
+        /// <summary>Gets whether the "result" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasResult
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "result" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearResult()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -15354,8 +19412,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
-            if (Result != 0) hash ^= Result.GetHashCode();
+            if (HasPlayerId) hash ^= PlayerId.GetHashCode();
+            if (HasResult) hash ^= Result.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -15372,12 +19430,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 output.WriteRawTag(8);
                 output.WriteUInt32(PlayerId);
             }
-            if (Result != 0)
+            if (HasResult)
             {
                 output.WriteRawTag(16);
                 output.WriteEnum((int)Result);
@@ -15392,11 +19450,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (PlayerId != 0)
+            if (HasPlayerId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeUInt32Size(PlayerId);
             }
-            if (Result != 0)
+            if (HasResult)
             {
                 size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Result);
             }
@@ -15414,11 +19472,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.PlayerId != 0)
+            if (other.HasPlayerId)
             {
                 PlayerId = other.PlayerId;
             }
-            if (other.Result != 0)
+            if (other.HasResult)
             {
                 Result = other.Result;
             }
@@ -15443,7 +19501,7 @@ namespace SC2APIProtocol
                         }
                     case 16:
                         {
-                            result_ = (global::SC2APIProtocol.Result)input.ReadEnum();
+                            Result = (global::SC2APIProtocol.Result)input.ReadEnum();
                             break;
                         }
                 }
