@@ -199,8 +199,11 @@ namespace BOSSE
                                 int landCount = 0;
                                 if (atRax.UnitType == UnitId.BARRACKS_FLYING)
                                 {
-                                    BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(factoryOrigin, new System.Drawing.Size(3, 3), "BarracksLanding"));
-                                    Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, atRax, factoryOrigin));
+                                    if (atRax.CurrentOrder == null)
+                                    {
+                                        BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(factoryOrigin, new System.Drawing.Size(3, 3), "BarracksLanding"));
+                                        Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, atRax, factoryOrigin));
+                                    }
                                 }
                                 else
                                 {
@@ -208,8 +211,11 @@ namespace BOSSE
                                 }
                                 if (factory.UnitType == UnitId.FACTORY_FLYING)
                                 {
-                                    BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(raxOrigin, new System.Drawing.Size(3, 3), "FactoryLanding"));
-                                    Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, factory, raxOrigin));
+                                    if (factory.CurrentOrder == null)
+                                    {
+                                        BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(raxOrigin, new System.Drawing.Size(3, 3), "FactoryLanding"));
+                                        Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, factory, raxOrigin));
+                                    }
                                 }
                                 else
                                 {

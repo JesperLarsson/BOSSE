@@ -23,5 +23,10 @@
         {
             return !IsWall;
         }
+
+        public override string ToString()
+        {
+            return X + "," + Y;
+        }
     }
 }

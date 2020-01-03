@@ -60,7 +60,7 @@ namespace BOSSE
         /// This prevents other parts of the code from issuing duplicate orders
         /// </summary>
         public bool HasNewOrders = false;
-        
+
         // Property lookup helper functions
         public string Name { get => unitInformation.Name; }
         public ulong Tag { get => original.Tag; }
@@ -94,6 +94,8 @@ namespace BOSSE
 #endif
 
             AllUnitInstances.Add(this.Tag, this);
+
+            Log.Bulk("Created new unit: " + this);
         }
 
         /// <summary>
