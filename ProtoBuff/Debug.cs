@@ -9,2925 +9,4040 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace SC2APIProtocol {
+namespace SC2APIProtocol
+{
 
-  /// <summary>Holder for reflection information generated from s2clientprotocol/debug.proto</summary>
-  public static partial class DebugReflection {
+    /// <summary>Holder for reflection information generated from s2clientprotocol/debug.proto</summary>
+    public static partial class DebugReflection
+    {
 
-    #region Descriptor
-    /// <summary>File descriptor for s2clientprotocol/debug.proto</summary>
-    public static pbr::FileDescriptor Descriptor {
-      get { return descriptor; }
+        #region Descriptor
+        /// <summary>File descriptor for s2clientprotocol/debug.proto</summary>
+        public static pbr::FileDescriptor Descriptor
+        {
+            get { return descriptor; }
+        }
+        private static pbr::FileDescriptor descriptor;
+
+        static DebugReflection()
+        {
+            byte[] descriptorData = global::System.Convert.FromBase64String(
+                string.Concat(
+                  "ChxzMmNsaWVudHByb3RvY29sL2RlYnVnLnByb3RvEg5TQzJBUElQcm90b2Nv",
+                  "bBodczJjbGllbnRwcm90b2NvbC9jb21tb24ucHJvdG8iuwMKDERlYnVnQ29t",
+                  "bWFuZBIpCgRkcmF3GAEgASgLMhkuU0MyQVBJUHJvdG9jb2wuRGVidWdEcmF3",
+                  "SAASNAoKZ2FtZV9zdGF0ZRgCIAEoDjIeLlNDMkFQSVByb3RvY29sLkRlYnVn",
+                  "R2FtZVN0YXRlSAASNgoLY3JlYXRlX3VuaXQYAyABKAsyHy5TQzJBUElQcm90",
+                  "b2NvbC5EZWJ1Z0NyZWF0ZVVuaXRIABIyCglraWxsX3VuaXQYBCABKAsyHS5T",
+                  "QzJBUElQcm90b2NvbC5EZWJ1Z0tpbGxVbml0SAASOAoMdGVzdF9wcm9jZXNz",
+                  "GAUgASgLMiAuU0MyQVBJUHJvdG9jb2wuRGVidWdUZXN0UHJvY2Vzc0gAEi4K",
+                  "BXNjb3JlGAYgASgLMh0uU0MyQVBJUHJvdG9jb2wuRGVidWdTZXRTY29yZUgA",
+                  "EjAKCGVuZF9nYW1lGAcgASgLMhwuU0MyQVBJUHJvdG9jb2wuRGVidWdFbmRH",
+                  "YW1lSAASNwoKdW5pdF92YWx1ZRgIIAEoCzIhLlNDMkFQSVByb3RvY29sLkRl",
+                  "YnVnU2V0VW5pdFZhbHVlSABCCQoHY29tbWFuZCK1AQoJRGVidWdEcmF3EicK",
+                  "BHRleHQYASADKAsyGS5TQzJBUElQcm90b2NvbC5EZWJ1Z1RleHQSKAoFbGlu",
+                  "ZXMYAiADKAsyGS5TQzJBUElQcm90b2NvbC5EZWJ1Z0xpbmUSJwoFYm94ZXMY",
+                  "AyADKAsyGC5TQzJBUElQcm90b2NvbC5EZWJ1Z0JveBIsCgdzcGhlcmVzGAQg",
+                  "AygLMhsuU0MyQVBJUHJvdG9jb2wuRGVidWdTcGhlcmUiTAoETGluZRIhCgJw",
+                  "MBgBIAEoCzIVLlNDMkFQSVByb3RvY29sLlBvaW50EiEKAnAxGAIgASgLMhUu",
+                  "U0MyQVBJUHJvdG9jb2wuUG9pbnQiKAoFQ29sb3ISCQoBchgBIAEoDRIJCgFn",
+                  "GAIgASgNEgkKAWIYAyABKA0iowEKCURlYnVnVGV4dBIkCgVjb2xvchgBIAEo",
+                  "CzIVLlNDMkFQSVByb3RvY29sLkNvbG9yEgwKBHRleHQYAiABKAkSKgoLdmly",
+                  "dHVhbF9wb3MYAyABKAsyFS5TQzJBUElQcm90b2NvbC5Qb2ludBIoCgl3b3Js",
+                  "ZF9wb3MYBCABKAsyFS5TQzJBUElQcm90b2NvbC5Qb2ludBIMCgRzaXplGAUg",
+                  "ASgNIlUKCURlYnVnTGluZRIkCgVjb2xvchgBIAEoCzIVLlNDMkFQSVByb3Rv",
+                  "Y29sLkNvbG9yEiIKBGxpbmUYAiABKAsyFC5TQzJBUElQcm90b2NvbC5MaW5l",
+                  "IngKCERlYnVnQm94EiQKBWNvbG9yGAEgASgLMhUuU0MyQVBJUHJvdG9jb2wu",
+                  "Q29sb3ISIgoDbWluGAIgASgLMhUuU0MyQVBJUHJvdG9jb2wuUG9pbnQSIgoD",
+                  "bWF4GAMgASgLMhUuU0MyQVBJUHJvdG9jb2wuUG9pbnQiYAoLRGVidWdTcGhl",
+                  "cmUSJAoFY29sb3IYASABKAsyFS5TQzJBUElQcm90b2NvbC5Db2xvchIgCgFw",
+                  "GAIgASgLMhUuU0MyQVBJUHJvdG9jb2wuUG9pbnQSCQoBchgDIAEoAiJrCg9E",
+                  "ZWJ1Z0NyZWF0ZVVuaXQSEQoJdW5pdF90eXBlGAEgASgNEg0KBW93bmVyGAIg",
+                  "ASgFEiQKA3BvcxgDIAEoCzIXLlNDMkFQSVByb3RvY29sLlBvaW50MkQSEAoI",
+                  "cXVhbnRpdHkYBCABKA0iHAoNRGVidWdLaWxsVW5pdBILCgN0YWcYASADKAQi",
+                  "gAEKEERlYnVnVGVzdFByb2Nlc3MSMwoEdGVzdBgBIAEoDjIlLlNDMkFQSVBy",
+                  "b3RvY29sLkRlYnVnVGVzdFByb2Nlc3MuVGVzdBIQCghkZWxheV9tcxgCIAEo",
+                  "BSIlCgRUZXN0EggKBGhhbmcQARIJCgVjcmFzaBACEggKBGV4aXQQAyIeCg1E",
+                  "ZWJ1Z1NldFNjb3JlEg0KBXNjb3JlGAEgASgCInoKDERlYnVnRW5kR2FtZRI6",
+                  "CgplbmRfcmVzdWx0GAEgASgOMiYuU0MyQVBJUHJvdG9jb2wuRGVidWdFbmRH",
+                  "YW1lLkVuZFJlc3VsdCIuCglFbmRSZXN1bHQSDQoJU3VycmVuZGVyEAESEgoO",
+                  "RGVjbGFyZVZpY3RvcnkQAiKlAQoRRGVidWdTZXRVbml0VmFsdWUSPwoKdW5p",
+                  "dF92YWx1ZRgBIAEoDjIrLlNDMkFQSVByb3RvY29sLkRlYnVnU2V0VW5pdFZh",
+                  "bHVlLlVuaXRWYWx1ZRINCgV2YWx1ZRgCIAEoAhIQCgh1bml0X3RhZxgDIAEo",
+                  "BCIuCglVbml0VmFsdWUSCgoGRW5lcmd5EAESCAoETGlmZRACEgsKB1NoaWVs",
+                  "ZHMQAyqyAQoORGVidWdHYW1lU3RhdGUSDAoIc2hvd19tYXAQARIRCg1jb250",
+                  "cm9sX2VuZW15EAISCAoEZm9vZBADEggKBGZyZWUQBBIRCg1hbGxfcmVzb3Vy",
+                  "Y2VzEAUSBwoDZ29kEAYSDAoIbWluZXJhbHMQBxIHCgNnYXMQCBIMCghjb29s",
+                  "ZG93bhAJEg0KCXRlY2hfdHJlZRAKEgsKB3VwZ3JhZGUQCxIOCgpmYXN0X2J1",
+                  "aWxkEAw="));
+            descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
+                new pbr::FileDescriptor[] { global::SC2APIProtocol.CommonReflection.Descriptor, },
+                new pbr::GeneratedClrTypeInfo(new[] { typeof(global::SC2APIProtocol.DebugGameState), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugCommand), global::SC2APIProtocol.DebugCommand.Parser, new[]{ "Draw", "GameState", "CreateUnit", "KillUnit", "TestProcess", "Score", "EndGame", "UnitValue" }, new[]{ "Command" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugDraw), global::SC2APIProtocol.DebugDraw.Parser, new[]{ "Text", "Lines", "Boxes", "Spheres" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Line), global::SC2APIProtocol.Line.Parser, new[]{ "P0", "P1" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Color), global::SC2APIProtocol.Color.Parser, new[]{ "R", "G", "B" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugText), global::SC2APIProtocol.DebugText.Parser, new[]{ "Color", "Text", "VirtualPos", "WorldPos", "Size" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugLine), global::SC2APIProtocol.DebugLine.Parser, new[]{ "Color", "Line" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugBox), global::SC2APIProtocol.DebugBox.Parser, new[]{ "Color", "Min", "Max" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugSphere), global::SC2APIProtocol.DebugSphere.Parser, new[]{ "Color", "P", "R" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugCreateUnit), global::SC2APIProtocol.DebugCreateUnit.Parser, new[]{ "UnitType", "Owner", "Pos", "Quantity" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugKillUnit), global::SC2APIProtocol.DebugKillUnit.Parser, new[]{ "Tag" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugTestProcess), global::SC2APIProtocol.DebugTestProcess.Parser, new[]{ "Test", "DelayMs" }, null, new[]{ typeof(global::SC2APIProtocol.DebugTestProcess.Types.Test) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugSetScore), global::SC2APIProtocol.DebugSetScore.Parser, new[]{ "Score" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugEndGame), global::SC2APIProtocol.DebugEndGame.Parser, new[]{ "EndResult" }, null, new[]{ typeof(global::SC2APIProtocol.DebugEndGame.Types.EndResult) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugSetUnitValue), global::SC2APIProtocol.DebugSetUnitValue.Parser, new[]{ "UnitValue", "Value", "UnitTag" }, null, new[]{ typeof(global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue) }, null, null)
+                }));
+        }
+        #endregion
+
     }
-    private static pbr::FileDescriptor descriptor;
-
-    static DebugReflection() {
-      byte[] descriptorData = global::System.Convert.FromBase64String(
-          string.Concat(
-            "ChxzMmNsaWVudHByb3RvY29sL2RlYnVnLnByb3RvEg5TQzJBUElQcm90b2Nv",
-            "bBodczJjbGllbnRwcm90b2NvbC9jb21tb24ucHJvdG8iuwMKDERlYnVnQ29t",
-            "bWFuZBIpCgRkcmF3GAEgASgLMhkuU0MyQVBJUHJvdG9jb2wuRGVidWdEcmF3",
-            "SAASNAoKZ2FtZV9zdGF0ZRgCIAEoDjIeLlNDMkFQSVByb3RvY29sLkRlYnVn",
-            "R2FtZVN0YXRlSAASNgoLY3JlYXRlX3VuaXQYAyABKAsyHy5TQzJBUElQcm90",
-            "b2NvbC5EZWJ1Z0NyZWF0ZVVuaXRIABIyCglraWxsX3VuaXQYBCABKAsyHS5T",
-            "QzJBUElQcm90b2NvbC5EZWJ1Z0tpbGxVbml0SAASOAoMdGVzdF9wcm9jZXNz",
-            "GAUgASgLMiAuU0MyQVBJUHJvdG9jb2wuRGVidWdUZXN0UHJvY2Vzc0gAEi4K",
-            "BXNjb3JlGAYgASgLMh0uU0MyQVBJUHJvdG9jb2wuRGVidWdTZXRTY29yZUgA",
-            "EjAKCGVuZF9nYW1lGAcgASgLMhwuU0MyQVBJUHJvdG9jb2wuRGVidWdFbmRH",
-            "YW1lSAASNwoKdW5pdF92YWx1ZRgIIAEoCzIhLlNDMkFQSVByb3RvY29sLkRl",
-            "YnVnU2V0VW5pdFZhbHVlSABCCQoHY29tbWFuZCK1AQoJRGVidWdEcmF3EicK",
-            "BHRleHQYASADKAsyGS5TQzJBUElQcm90b2NvbC5EZWJ1Z1RleHQSKAoFbGlu",
-            "ZXMYAiADKAsyGS5TQzJBUElQcm90b2NvbC5EZWJ1Z0xpbmUSJwoFYm94ZXMY",
-            "AyADKAsyGC5TQzJBUElQcm90b2NvbC5EZWJ1Z0JveBIsCgdzcGhlcmVzGAQg",
-            "AygLMhsuU0MyQVBJUHJvdG9jb2wuRGVidWdTcGhlcmUiTAoETGluZRIhCgJw",
-            "MBgBIAEoCzIVLlNDMkFQSVByb3RvY29sLlBvaW50EiEKAnAxGAIgASgLMhUu",
-            "U0MyQVBJUHJvdG9jb2wuUG9pbnQiKAoFQ29sb3ISCQoBchgBIAEoDRIJCgFn",
-            "GAIgASgNEgkKAWIYAyABKA0iowEKCURlYnVnVGV4dBIkCgVjb2xvchgBIAEo",
-            "CzIVLlNDMkFQSVByb3RvY29sLkNvbG9yEgwKBHRleHQYAiABKAkSKgoLdmly",
-            "dHVhbF9wb3MYAyABKAsyFS5TQzJBUElQcm90b2NvbC5Qb2ludBIoCgl3b3Js",
-            "ZF9wb3MYBCABKAsyFS5TQzJBUElQcm90b2NvbC5Qb2ludBIMCgRzaXplGAUg",
-            "ASgNIlUKCURlYnVnTGluZRIkCgVjb2xvchgBIAEoCzIVLlNDMkFQSVByb3Rv",
-            "Y29sLkNvbG9yEiIKBGxpbmUYAiABKAsyFC5TQzJBUElQcm90b2NvbC5MaW5l",
-            "IngKCERlYnVnQm94EiQKBWNvbG9yGAEgASgLMhUuU0MyQVBJUHJvdG9jb2wu",
-            "Q29sb3ISIgoDbWluGAIgASgLMhUuU0MyQVBJUHJvdG9jb2wuUG9pbnQSIgoD",
-            "bWF4GAMgASgLMhUuU0MyQVBJUHJvdG9jb2wuUG9pbnQiYAoLRGVidWdTcGhl",
-            "cmUSJAoFY29sb3IYASABKAsyFS5TQzJBUElQcm90b2NvbC5Db2xvchIgCgFw",
-            "GAIgASgLMhUuU0MyQVBJUHJvdG9jb2wuUG9pbnQSCQoBchgDIAEoAiJrCg9E",
-            "ZWJ1Z0NyZWF0ZVVuaXQSEQoJdW5pdF90eXBlGAEgASgNEg0KBW93bmVyGAIg",
-            "ASgFEiQKA3BvcxgDIAEoCzIXLlNDMkFQSVByb3RvY29sLlBvaW50MkQSEAoI",
-            "cXVhbnRpdHkYBCABKA0iHAoNRGVidWdLaWxsVW5pdBILCgN0YWcYASADKAQi",
-            "kAEKEERlYnVnVGVzdFByb2Nlc3MSMwoEdGVzdBgBIAEoDjIlLlNDMkFQSVBy",
-            "b3RvY29sLkRlYnVnVGVzdFByb2Nlc3MuVGVzdBIQCghkZWxheV9tcxgCIAEo",
-            "BSI1CgRUZXN0Eg4KClRlc3RfVU5TRVQQABIICgRoYW5nEAESCQoFY3Jhc2gQ",
-            "AhIICgRleGl0EAMiHgoNRGVidWdTZXRTY29yZRINCgVzY29yZRgBIAEoAiKP",
-            "AQoMRGVidWdFbmRHYW1lEjoKCmVuZF9yZXN1bHQYASABKA4yJi5TQzJBUElQ",
-            "cm90b2NvbC5EZWJ1Z0VuZEdhbWUuRW5kUmVzdWx0IkMKCUVuZFJlc3VsdBIT",
-            "Cg9FbmRSZXN1bHRfVU5TRVQQABINCglTdXJyZW5kZXIQARISCg5EZWNsYXJl",
-            "VmljdG9yeRACIroBChFEZWJ1Z1NldFVuaXRWYWx1ZRI/Cgp1bml0X3ZhbHVl",
-            "GAEgASgOMisuU0MyQVBJUHJvdG9jb2wuRGVidWdTZXRVbml0VmFsdWUuVW5p",
-            "dFZhbHVlEg0KBXZhbHVlGAIgASgCEhAKCHVuaXRfdGFnGAMgASgEIkMKCVVu",
-            "aXRWYWx1ZRITCg9Vbml0VmFsdWVfVU5TRVQQABIKCgZFbmVyZ3kQARIICgRM",
-            "aWZlEAISCwoHU2hpZWxkcxADKswBCg5EZWJ1Z0dhbWVTdGF0ZRIYChREZWJ1",
-            "Z0dhbWVTdGF0ZV9VTlNFVBAAEgwKCHNob3dfbWFwEAESEQoNY29udHJvbF9l",
-            "bmVteRACEggKBGZvb2QQAxIICgRmcmVlEAQSEQoNYWxsX3Jlc291cmNlcxAF",
-            "EgcKA2dvZBAGEgwKCG1pbmVyYWxzEAcSBwoDZ2FzEAgSDAoIY29vbGRvd24Q",
-            "CRINCgl0ZWNoX3RyZWUQChILCgd1cGdyYWRlEAsSDgoKZmFzdF9idWlsZBAM",
-            "YgZwcm90bzM="));
-      descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::SC2APIProtocol.CommonReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::SC2APIProtocol.DebugGameState), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugCommand), global::SC2APIProtocol.DebugCommand.Parser, new[]{ "Draw", "GameState", "CreateUnit", "KillUnit", "TestProcess", "Score", "EndGame", "UnitValue" }, new[]{ "Command" }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugDraw), global::SC2APIProtocol.DebugDraw.Parser, new[]{ "Text", "Lines", "Boxes", "Spheres" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Line), global::SC2APIProtocol.Line.Parser, new[]{ "P0", "P1" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Color), global::SC2APIProtocol.Color.Parser, new[]{ "R", "G", "B" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugText), global::SC2APIProtocol.DebugText.Parser, new[]{ "Color", "Text", "VirtualPos", "WorldPos", "Size" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugLine), global::SC2APIProtocol.DebugLine.Parser, new[]{ "Color", "Line" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugBox), global::SC2APIProtocol.DebugBox.Parser, new[]{ "Color", "Min", "Max" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugSphere), global::SC2APIProtocol.DebugSphere.Parser, new[]{ "Color", "P", "R" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugCreateUnit), global::SC2APIProtocol.DebugCreateUnit.Parser, new[]{ "UnitType", "Owner", "Pos", "Quantity" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugKillUnit), global::SC2APIProtocol.DebugKillUnit.Parser, new[]{ "Tag" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugTestProcess), global::SC2APIProtocol.DebugTestProcess.Parser, new[]{ "Test", "DelayMs" }, null, new[]{ typeof(global::SC2APIProtocol.DebugTestProcess.Types.Test) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugSetScore), global::SC2APIProtocol.DebugSetScore.Parser, new[]{ "Score" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugEndGame), global::SC2APIProtocol.DebugEndGame.Parser, new[]{ "EndResult" }, null, new[]{ typeof(global::SC2APIProtocol.DebugEndGame.Types.EndResult) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.DebugSetUnitValue), global::SC2APIProtocol.DebugSetUnitValue.Parser, new[]{ "UnitValue", "Value", "UnitTag" }, null, new[]{ typeof(global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue) }, null)
-          }));
+    #region Enums
+    public enum DebugGameState
+    {
+        [pbr::OriginalName("show_map")] ShowMap = 1,
+        [pbr::OriginalName("control_enemy")] ControlEnemy = 2,
+        [pbr::OriginalName("food")] Food = 3,
+        [pbr::OriginalName("free")] Free = 4,
+        [pbr::OriginalName("all_resources")] AllResources = 5,
+        [pbr::OriginalName("god")] God = 6,
+        [pbr::OriginalName("minerals")] Minerals = 7,
+        [pbr::OriginalName("gas")] Gas = 8,
+        [pbr::OriginalName("cooldown")] Cooldown = 9,
+        [pbr::OriginalName("tech_tree")] TechTree = 10,
+        [pbr::OriginalName("upgrade")] Upgrade = 11,
+        [pbr::OriginalName("fast_build")] FastBuild = 12,
     }
+
     #endregion
 
-  }
-  #region Enums
-  public enum DebugGameState {
-    [pbr::OriginalName("DebugGameState_UNSET")] Unset = 0,
-    [pbr::OriginalName("show_map")] ShowMap = 1,
-    [pbr::OriginalName("control_enemy")] ControlEnemy = 2,
-    [pbr::OriginalName("food")] Food = 3,
-    [pbr::OriginalName("free")] Free = 4,
-    [pbr::OriginalName("all_resources")] AllResources = 5,
-    [pbr::OriginalName("god")] God = 6,
-    [pbr::OriginalName("minerals")] Minerals = 7,
-    [pbr::OriginalName("gas")] Gas = 8,
-    [pbr::OriginalName("cooldown")] Cooldown = 9,
-    [pbr::OriginalName("tech_tree")] TechTree = 10,
-    [pbr::OriginalName("upgrade")] Upgrade = 11,
-    [pbr::OriginalName("fast_build")] FastBuild = 12,
-  }
-
-  #endregion
-
-  #region Messages
-  /// <summary>
-  /// Issue various useful commands to the game engine.
-  /// </summary>
-  public sealed partial class DebugCommand : pb::IMessage<DebugCommand> {
-    private static readonly pb::MessageParser<DebugCommand> _parser = new pb::MessageParser<DebugCommand>(() => new DebugCommand());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugCommand> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[0]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugCommand() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugCommand(DebugCommand other) : this() {
-      switch (other.CommandCase) {
-        case CommandOneofCase.Draw:
-          Draw = other.Draw.Clone();
-          break;
-        case CommandOneofCase.GameState:
-          GameState = other.GameState;
-          break;
-        case CommandOneofCase.CreateUnit:
-          CreateUnit = other.CreateUnit.Clone();
-          break;
-        case CommandOneofCase.KillUnit:
-          KillUnit = other.KillUnit.Clone();
-          break;
-        case CommandOneofCase.TestProcess:
-          TestProcess = other.TestProcess.Clone();
-          break;
-        case CommandOneofCase.Score:
-          Score = other.Score.Clone();
-          break;
-        case CommandOneofCase.EndGame:
-          EndGame = other.EndGame.Clone();
-          break;
-        case CommandOneofCase.UnitValue:
-          UnitValue = other.UnitValue.Clone();
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugCommand Clone() {
-      return new DebugCommand(this);
-    }
-
-    /// <summary>Field number for the "draw" field.</summary>
-    public const int DrawFieldNumber = 1;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugDraw Draw {
-      get { return commandCase_ == CommandOneofCase.Draw ? (global::SC2APIProtocol.DebugDraw) command_ : null; }
-      set {
-        command_ = value;
-        commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.Draw;
-      }
-    }
-
-    /// <summary>Field number for the "game_state" field.</summary>
-    public const int GameStateFieldNumber = 2;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugGameState GameState {
-      get { return commandCase_ == CommandOneofCase.GameState ? (global::SC2APIProtocol.DebugGameState) command_ : 0; }
-      set {
-        command_ = value;
-        commandCase_ = CommandOneofCase.GameState;
-      }
-    }
-
-    /// <summary>Field number for the "create_unit" field.</summary>
-    public const int CreateUnitFieldNumber = 3;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugCreateUnit CreateUnit {
-      get { return commandCase_ == CommandOneofCase.CreateUnit ? (global::SC2APIProtocol.DebugCreateUnit) command_ : null; }
-      set {
-        command_ = value;
-        commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.CreateUnit;
-      }
-    }
-
-    /// <summary>Field number for the "kill_unit" field.</summary>
-    public const int KillUnitFieldNumber = 4;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugKillUnit KillUnit {
-      get { return commandCase_ == CommandOneofCase.KillUnit ? (global::SC2APIProtocol.DebugKillUnit) command_ : null; }
-      set {
-        command_ = value;
-        commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.KillUnit;
-      }
-    }
-
-    /// <summary>Field number for the "test_process" field.</summary>
-    public const int TestProcessFieldNumber = 5;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugTestProcess TestProcess {
-      get { return commandCase_ == CommandOneofCase.TestProcess ? (global::SC2APIProtocol.DebugTestProcess) command_ : null; }
-      set {
-        command_ = value;
-        commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.TestProcess;
-      }
-    }
-
-    /// <summary>Field number for the "score" field.</summary>
-    public const int ScoreFieldNumber = 6;
+    #region Messages
     /// <summary>
-    /// Useful only for single-player "curriculum" maps.
+    /// Issue various useful commands to the game engine.
     /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugSetScore Score {
-      get { return commandCase_ == CommandOneofCase.Score ? (global::SC2APIProtocol.DebugSetScore) command_ : null; }
-      set {
-        command_ = value;
-        commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.Score;
-      }
-    }
+    public sealed partial class DebugCommand : pb::IMessage<DebugCommand>
+    {
+        private static readonly pb::MessageParser<DebugCommand> _parser = new pb::MessageParser<DebugCommand>(() => new DebugCommand());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugCommand> Parser { get { return _parser; } }
 
-    /// <summary>Field number for the "end_game" field.</summary>
-    public const int EndGameFieldNumber = 7;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugEndGame EndGame {
-      get { return commandCase_ == CommandOneofCase.EndGame ? (global::SC2APIProtocol.DebugEndGame) command_ : null; }
-      set {
-        command_ = value;
-        commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.EndGame;
-      }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[0]; }
+        }
 
-    /// <summary>Field number for the "unit_value" field.</summary>
-    public const int UnitValueFieldNumber = 8;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugSetUnitValue UnitValue {
-      get { return commandCase_ == CommandOneofCase.UnitValue ? (global::SC2APIProtocol.DebugSetUnitValue) command_ : null; }
-      set {
-        command_ = value;
-        commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.UnitValue;
-      }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
 
-    private object command_;
-    /// <summary>Enum of possible cases for the "command" oneof.</summary>
-    public enum CommandOneofCase {
-      None = 0,
-      Draw = 1,
-      GameState = 2,
-      CreateUnit = 3,
-      KillUnit = 4,
-      TestProcess = 5,
-      Score = 6,
-      EndGame = 7,
-      UnitValue = 8,
-    }
-    private CommandOneofCase commandCase_ = CommandOneofCase.None;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CommandOneofCase CommandCase {
-      get { return commandCase_; }
-    }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugCommand()
+        {
+            OnConstruction();
+        }
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void ClearCommand() {
-      commandCase_ = CommandOneofCase.None;
-      command_ = null;
-    }
+        partial void OnConstruction();
 
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugCommand);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugCommand other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Draw, other.Draw)) return false;
-      if (GameState != other.GameState) return false;
-      if (!object.Equals(CreateUnit, other.CreateUnit)) return false;
-      if (!object.Equals(KillUnit, other.KillUnit)) return false;
-      if (!object.Equals(TestProcess, other.TestProcess)) return false;
-      if (!object.Equals(Score, other.Score)) return false;
-      if (!object.Equals(EndGame, other.EndGame)) return false;
-      if (!object.Equals(UnitValue, other.UnitValue)) return false;
-      if (CommandCase != other.CommandCase) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (commandCase_ == CommandOneofCase.Draw) hash ^= Draw.GetHashCode();
-      if (commandCase_ == CommandOneofCase.GameState) hash ^= GameState.GetHashCode();
-      if (commandCase_ == CommandOneofCase.CreateUnit) hash ^= CreateUnit.GetHashCode();
-      if (commandCase_ == CommandOneofCase.KillUnit) hash ^= KillUnit.GetHashCode();
-      if (commandCase_ == CommandOneofCase.TestProcess) hash ^= TestProcess.GetHashCode();
-      if (commandCase_ == CommandOneofCase.Score) hash ^= Score.GetHashCode();
-      if (commandCase_ == CommandOneofCase.EndGame) hash ^= EndGame.GetHashCode();
-      if (commandCase_ == CommandOneofCase.UnitValue) hash ^= UnitValue.GetHashCode();
-      hash ^= (int) commandCase_;
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (commandCase_ == CommandOneofCase.Draw) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Draw);
-      }
-      if (commandCase_ == CommandOneofCase.GameState) {
-        output.WriteRawTag(16);
-        output.WriteEnum((int) GameState);
-      }
-      if (commandCase_ == CommandOneofCase.CreateUnit) {
-        output.WriteRawTag(26);
-        output.WriteMessage(CreateUnit);
-      }
-      if (commandCase_ == CommandOneofCase.KillUnit) {
-        output.WriteRawTag(34);
-        output.WriteMessage(KillUnit);
-      }
-      if (commandCase_ == CommandOneofCase.TestProcess) {
-        output.WriteRawTag(42);
-        output.WriteMessage(TestProcess);
-      }
-      if (commandCase_ == CommandOneofCase.Score) {
-        output.WriteRawTag(50);
-        output.WriteMessage(Score);
-      }
-      if (commandCase_ == CommandOneofCase.EndGame) {
-        output.WriteRawTag(58);
-        output.WriteMessage(EndGame);
-      }
-      if (commandCase_ == CommandOneofCase.UnitValue) {
-        output.WriteRawTag(66);
-        output.WriteMessage(UnitValue);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (commandCase_ == CommandOneofCase.Draw) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Draw);
-      }
-      if (commandCase_ == CommandOneofCase.GameState) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) GameState);
-      }
-      if (commandCase_ == CommandOneofCase.CreateUnit) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreateUnit);
-      }
-      if (commandCase_ == CommandOneofCase.KillUnit) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(KillUnit);
-      }
-      if (commandCase_ == CommandOneofCase.TestProcess) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TestProcess);
-      }
-      if (commandCase_ == CommandOneofCase.Score) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Score);
-      }
-      if (commandCase_ == CommandOneofCase.EndGame) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EndGame);
-      }
-      if (commandCase_ == CommandOneofCase.UnitValue) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UnitValue);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugCommand other) {
-      if (other == null) {
-        return;
-      }
-      switch (other.CommandCase) {
-        case CommandOneofCase.Draw:
-          if (Draw == null) {
-            Draw = new global::SC2APIProtocol.DebugDraw();
-          }
-          Draw.MergeFrom(other.Draw);
-          break;
-        case CommandOneofCase.GameState:
-          GameState = other.GameState;
-          break;
-        case CommandOneofCase.CreateUnit:
-          if (CreateUnit == null) {
-            CreateUnit = new global::SC2APIProtocol.DebugCreateUnit();
-          }
-          CreateUnit.MergeFrom(other.CreateUnit);
-          break;
-        case CommandOneofCase.KillUnit:
-          if (KillUnit == null) {
-            KillUnit = new global::SC2APIProtocol.DebugKillUnit();
-          }
-          KillUnit.MergeFrom(other.KillUnit);
-          break;
-        case CommandOneofCase.TestProcess:
-          if (TestProcess == null) {
-            TestProcess = new global::SC2APIProtocol.DebugTestProcess();
-          }
-          TestProcess.MergeFrom(other.TestProcess);
-          break;
-        case CommandOneofCase.Score:
-          if (Score == null) {
-            Score = new global::SC2APIProtocol.DebugSetScore();
-          }
-          Score.MergeFrom(other.Score);
-          break;
-        case CommandOneofCase.EndGame:
-          if (EndGame == null) {
-            EndGame = new global::SC2APIProtocol.DebugEndGame();
-          }
-          EndGame.MergeFrom(other.EndGame);
-          break;
-        case CommandOneofCase.UnitValue:
-          if (UnitValue == null) {
-            UnitValue = new global::SC2APIProtocol.DebugSetUnitValue();
-          }
-          UnitValue.MergeFrom(other.UnitValue);
-          break;
-      }
-
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            global::SC2APIProtocol.DebugDraw subBuilder = new global::SC2APIProtocol.DebugDraw();
-            if (commandCase_ == CommandOneofCase.Draw) {
-              subBuilder.MergeFrom(Draw);
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugCommand(DebugCommand other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            switch (other.CommandCase)
+            {
+                case CommandOneofCase.Draw:
+                    Draw = other.Draw.Clone();
+                    break;
+                case CommandOneofCase.GameState:
+                    GameState = other.GameState;
+                    break;
+                case CommandOneofCase.CreateUnit:
+                    CreateUnit = other.CreateUnit.Clone();
+                    break;
+                case CommandOneofCase.KillUnit:
+                    KillUnit = other.KillUnit.Clone();
+                    break;
+                case CommandOneofCase.TestProcess:
+                    TestProcess = other.TestProcess.Clone();
+                    break;
+                case CommandOneofCase.Score:
+                    Score = other.Score.Clone();
+                    break;
+                case CommandOneofCase.EndGame:
+                    EndGame = other.EndGame.Clone();
+                    break;
+                case CommandOneofCase.UnitValue:
+                    UnitValue = other.UnitValue.Clone();
+                    break;
             }
-            input.ReadMessage(subBuilder);
-            Draw = subBuilder;
-            break;
-          }
-          case 16: {
-            command_ = input.ReadEnum();
-            commandCase_ = CommandOneofCase.GameState;
-            break;
-          }
-          case 26: {
-            global::SC2APIProtocol.DebugCreateUnit subBuilder = new global::SC2APIProtocol.DebugCreateUnit();
-            if (commandCase_ == CommandOneofCase.CreateUnit) {
-              subBuilder.MergeFrom(CreateUnit);
+
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugCommand Clone()
+        {
+            return new DebugCommand(this);
+        }
+
+        /// <summary>Field number for the "draw" field.</summary>
+        public const int DrawFieldNumber = 1;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugDraw Draw
+        {
+            get { return HasDraw ? (global::SC2APIProtocol.DebugDraw)command_ : null; }
+            set
+            {
+                command_ = value;
+                commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.Draw;
             }
-            input.ReadMessage(subBuilder);
-            CreateUnit = subBuilder;
-            break;
-          }
-          case 34: {
-            global::SC2APIProtocol.DebugKillUnit subBuilder = new global::SC2APIProtocol.DebugKillUnit();
-            if (commandCase_ == CommandOneofCase.KillUnit) {
-              subBuilder.MergeFrom(KillUnit);
+        }
+        /// <summary>Gets whether the "draw" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDraw
+        {
+            get { return commandCase_ == CommandOneofCase.Draw; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "draw" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDraw()
+        {
+            if (HasDraw)
+            {
+                ClearCommand();
             }
-            input.ReadMessage(subBuilder);
-            KillUnit = subBuilder;
-            break;
-          }
-          case 42: {
-            global::SC2APIProtocol.DebugTestProcess subBuilder = new global::SC2APIProtocol.DebugTestProcess();
-            if (commandCase_ == CommandOneofCase.TestProcess) {
-              subBuilder.MergeFrom(TestProcess);
+        }
+
+        /// <summary>Field number for the "game_state" field.</summary>
+        public const int GameStateFieldNumber = 2;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugGameState GameState
+        {
+            get { return HasGameState ? (global::SC2APIProtocol.DebugGameState)command_ : global::SC2APIProtocol.DebugGameState.ShowMap; }
+            set
+            {
+                command_ = value;
+                commandCase_ = CommandOneofCase.GameState;
             }
-            input.ReadMessage(subBuilder);
-            TestProcess = subBuilder;
-            break;
-          }
-          case 50: {
-            global::SC2APIProtocol.DebugSetScore subBuilder = new global::SC2APIProtocol.DebugSetScore();
-            if (commandCase_ == CommandOneofCase.Score) {
-              subBuilder.MergeFrom(Score);
+        }
+        /// <summary>Gets whether the "game_state" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasGameState
+        {
+            get { return commandCase_ == CommandOneofCase.GameState; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "game_state" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearGameState()
+        {
+            if (HasGameState)
+            {
+                ClearCommand();
             }
-            input.ReadMessage(subBuilder);
-            Score = subBuilder;
-            break;
-          }
-          case 58: {
-            global::SC2APIProtocol.DebugEndGame subBuilder = new global::SC2APIProtocol.DebugEndGame();
-            if (commandCase_ == CommandOneofCase.EndGame) {
-              subBuilder.MergeFrom(EndGame);
+        }
+
+        /// <summary>Field number for the "create_unit" field.</summary>
+        public const int CreateUnitFieldNumber = 3;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugCreateUnit CreateUnit
+        {
+            get { return HasCreateUnit ? (global::SC2APIProtocol.DebugCreateUnit)command_ : null; }
+            set
+            {
+                command_ = value;
+                commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.CreateUnit;
             }
-            input.ReadMessage(subBuilder);
-            EndGame = subBuilder;
-            break;
-          }
-          case 66: {
-            global::SC2APIProtocol.DebugSetUnitValue subBuilder = new global::SC2APIProtocol.DebugSetUnitValue();
-            if (commandCase_ == CommandOneofCase.UnitValue) {
-              subBuilder.MergeFrom(UnitValue);
+        }
+        /// <summary>Gets whether the "create_unit" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasCreateUnit
+        {
+            get { return commandCase_ == CommandOneofCase.CreateUnit; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "create_unit" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCreateUnit()
+        {
+            if (HasCreateUnit)
+            {
+                ClearCommand();
             }
-            input.ReadMessage(subBuilder);
-            UnitValue = subBuilder;
-            break;
-          }
         }
-      }
-    }
 
-  }
-
-  public sealed partial class DebugDraw : pb::IMessage<DebugDraw> {
-    private static readonly pb::MessageParser<DebugDraw> _parser = new pb::MessageParser<DebugDraw>(() => new DebugDraw());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugDraw> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[1]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugDraw() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugDraw(DebugDraw other) : this() {
-      text_ = other.text_.Clone();
-      lines_ = other.lines_.Clone();
-      boxes_ = other.boxes_.Clone();
-      spheres_ = other.spheres_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugDraw Clone() {
-      return new DebugDraw(this);
-    }
-
-    /// <summary>Field number for the "text" field.</summary>
-    public const int TextFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugText> _repeated_text_codec
-        = pb::FieldCodec.ForMessage(10, global::SC2APIProtocol.DebugText.Parser);
-    private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugText> text_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugText>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::SC2APIProtocol.DebugText> Text {
-      get { return text_; }
-    }
-
-    /// <summary>Field number for the "lines" field.</summary>
-    public const int LinesFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugLine> _repeated_lines_codec
-        = pb::FieldCodec.ForMessage(18, global::SC2APIProtocol.DebugLine.Parser);
-    private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugLine> lines_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugLine>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::SC2APIProtocol.DebugLine> Lines {
-      get { return lines_; }
-    }
-
-    /// <summary>Field number for the "boxes" field.</summary>
-    public const int BoxesFieldNumber = 3;
-    private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugBox> _repeated_boxes_codec
-        = pb::FieldCodec.ForMessage(26, global::SC2APIProtocol.DebugBox.Parser);
-    private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugBox> boxes_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugBox>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::SC2APIProtocol.DebugBox> Boxes {
-      get { return boxes_; }
-    }
-
-    /// <summary>Field number for the "spheres" field.</summary>
-    public const int SpheresFieldNumber = 4;
-    private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugSphere> _repeated_spheres_codec
-        = pb::FieldCodec.ForMessage(34, global::SC2APIProtocol.DebugSphere.Parser);
-    private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugSphere> spheres_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugSphere>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::SC2APIProtocol.DebugSphere> Spheres {
-      get { return spheres_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugDraw);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugDraw other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!text_.Equals(other.text_)) return false;
-      if(!lines_.Equals(other.lines_)) return false;
-      if(!boxes_.Equals(other.boxes_)) return false;
-      if(!spheres_.Equals(other.spheres_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= text_.GetHashCode();
-      hash ^= lines_.GetHashCode();
-      hash ^= boxes_.GetHashCode();
-      hash ^= spheres_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      text_.WriteTo(output, _repeated_text_codec);
-      lines_.WriteTo(output, _repeated_lines_codec);
-      boxes_.WriteTo(output, _repeated_boxes_codec);
-      spheres_.WriteTo(output, _repeated_spheres_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      size += text_.CalculateSize(_repeated_text_codec);
-      size += lines_.CalculateSize(_repeated_lines_codec);
-      size += boxes_.CalculateSize(_repeated_boxes_codec);
-      size += spheres_.CalculateSize(_repeated_spheres_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugDraw other) {
-      if (other == null) {
-        return;
-      }
-      text_.Add(other.text_);
-      lines_.Add(other.lines_);
-      boxes_.Add(other.boxes_);
-      spheres_.Add(other.spheres_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            text_.AddEntriesFrom(input, _repeated_text_codec);
-            break;
-          }
-          case 18: {
-            lines_.AddEntriesFrom(input, _repeated_lines_codec);
-            break;
-          }
-          case 26: {
-            boxes_.AddEntriesFrom(input, _repeated_boxes_codec);
-            break;
-          }
-          case 34: {
-            spheres_.AddEntriesFrom(input, _repeated_spheres_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class Line : pb::IMessage<Line> {
-    private static readonly pb::MessageParser<Line> _parser = new pb::MessageParser<Line>(() => new Line());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Line> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Line() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Line(Line other) : this() {
-      P0 = other.p0_ != null ? other.P0.Clone() : null;
-      P1 = other.p1_ != null ? other.P1.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Line Clone() {
-      return new Line(this);
-    }
-
-    /// <summary>Field number for the "p0" field.</summary>
-    public const int P0FieldNumber = 1;
-    private global::SC2APIProtocol.Point p0_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point P0 {
-      get { return p0_; }
-      set {
-        p0_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "p1" field.</summary>
-    public const int P1FieldNumber = 2;
-    private global::SC2APIProtocol.Point p1_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point P1 {
-      get { return p1_; }
-      set {
-        p1_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Line);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Line other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(P0, other.P0)) return false;
-      if (!object.Equals(P1, other.P1)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (p0_ != null) hash ^= P0.GetHashCode();
-      if (p1_ != null) hash ^= P1.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (p0_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(P0);
-      }
-      if (p1_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(P1);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (p0_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(P0);
-      }
-      if (p1_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(P1);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Line other) {
-      if (other == null) {
-        return;
-      }
-      if (other.p0_ != null) {
-        if (p0_ == null) {
-          p0_ = new global::SC2APIProtocol.Point();
-        }
-        P0.MergeFrom(other.P0);
-      }
-      if (other.p1_ != null) {
-        if (p1_ == null) {
-          p1_ = new global::SC2APIProtocol.Point();
-        }
-        P1.MergeFrom(other.P1);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (p0_ == null) {
-              p0_ = new global::SC2APIProtocol.Point();
+        /// <summary>Field number for the "kill_unit" field.</summary>
+        public const int KillUnitFieldNumber = 4;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugKillUnit KillUnit
+        {
+            get { return HasKillUnit ? (global::SC2APIProtocol.DebugKillUnit)command_ : null; }
+            set
+            {
+                command_ = value;
+                commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.KillUnit;
             }
-            input.ReadMessage(p0_);
-            break;
-          }
-          case 18: {
-            if (p1_ == null) {
-              p1_ = new global::SC2APIProtocol.Point();
+        }
+        /// <summary>Gets whether the "kill_unit" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasKillUnit
+        {
+            get { return commandCase_ == CommandOneofCase.KillUnit; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "kill_unit" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearKillUnit()
+        {
+            if (HasKillUnit)
+            {
+                ClearCommand();
             }
-            input.ReadMessage(p1_);
-            break;
-          }
         }
-      }
-    }
 
-  }
-
-  public sealed partial class Color : pb::IMessage<Color> {
-    private static readonly pb::MessageParser<Color> _parser = new pb::MessageParser<Color>(() => new Color());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Color> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[3]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Color() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Color(Color other) : this() {
-      r_ = other.r_;
-      g_ = other.g_;
-      b_ = other.b_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Color Clone() {
-      return new Color(this);
-    }
-
-    /// <summary>Field number for the "r" field.</summary>
-    public const int RFieldNumber = 1;
-    private uint r_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint R {
-      get { return r_; }
-      set {
-        r_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "g" field.</summary>
-    public const int GFieldNumber = 2;
-    private uint g_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint G {
-      get { return g_; }
-      set {
-        g_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "b" field.</summary>
-    public const int BFieldNumber = 3;
-    private uint b_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint B {
-      get { return b_; }
-      set {
-        b_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Color);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Color other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (R != other.R) return false;
-      if (G != other.G) return false;
-      if (B != other.B) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (R != 0) hash ^= R.GetHashCode();
-      if (G != 0) hash ^= G.GetHashCode();
-      if (B != 0) hash ^= B.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (R != 0) {
-        output.WriteRawTag(8);
-        output.WriteUInt32(R);
-      }
-      if (G != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(G);
-      }
-      if (B != 0) {
-        output.WriteRawTag(24);
-        output.WriteUInt32(B);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (R != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(R);
-      }
-      if (G != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(G);
-      }
-      if (B != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(B);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Color other) {
-      if (other == null) {
-        return;
-      }
-      if (other.R != 0) {
-        R = other.R;
-      }
-      if (other.G != 0) {
-        G = other.G;
-      }
-      if (other.B != 0) {
-        B = other.B;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            R = input.ReadUInt32();
-            break;
-          }
-          case 16: {
-            G = input.ReadUInt32();
-            break;
-          }
-          case 24: {
-            B = input.ReadUInt32();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
-  /// Display debug text on screen.
-  /// </summary>
-  public sealed partial class DebugText : pb::IMessage<DebugText> {
-    private static readonly pb::MessageParser<DebugText> _parser = new pb::MessageParser<DebugText>(() => new DebugText());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugText> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[4]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugText() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugText(DebugText other) : this() {
-      Color = other.color_ != null ? other.Color.Clone() : null;
-      text_ = other.text_;
-      VirtualPos = other.virtualPos_ != null ? other.VirtualPos.Clone() : null;
-      WorldPos = other.worldPos_ != null ? other.WorldPos.Clone() : null;
-      size_ = other.size_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugText Clone() {
-      return new DebugText(this);
-    }
-
-    /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 1;
-    private global::SC2APIProtocol.Color color_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Color Color {
-      get { return color_; }
-      set {
-        color_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "text" field.</summary>
-    public const int TextFieldNumber = 2;
-    private string text_ = "";
-    /// <summary>
-    /// Text to display.
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Text {
-      get { return text_; }
-      set {
-        text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "virtual_pos" field.</summary>
-    public const int VirtualPosFieldNumber = 3;
-    private global::SC2APIProtocol.Point virtualPos_;
-    /// <summary>
-    /// Virtualized position in 2D (the screen is 0..1, 0..1 for any resolution).
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point VirtualPos {
-      get { return virtualPos_; }
-      set {
-        virtualPos_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "world_pos" field.</summary>
-    public const int WorldPosFieldNumber = 4;
-    private global::SC2APIProtocol.Point worldPos_;
-    /// <summary>
-    /// Position in the world.
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point WorldPos {
-      get { return worldPos_; }
-      set {
-        worldPos_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "size" field.</summary>
-    public const int SizeFieldNumber = 5;
-    private uint size_;
-    /// <summary>
-    /// Pixel height of the text. Defaults to 8px.
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Size {
-      get { return size_; }
-      set {
-        size_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugText);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugText other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Color, other.Color)) return false;
-      if (Text != other.Text) return false;
-      if (!object.Equals(VirtualPos, other.VirtualPos)) return false;
-      if (!object.Equals(WorldPos, other.WorldPos)) return false;
-      if (Size != other.Size) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (Text.Length != 0) hash ^= Text.GetHashCode();
-      if (virtualPos_ != null) hash ^= VirtualPos.GetHashCode();
-      if (worldPos_ != null) hash ^= WorldPos.GetHashCode();
-      if (Size != 0) hash ^= Size.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (color_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Color);
-      }
-      if (Text.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(Text);
-      }
-      if (virtualPos_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(VirtualPos);
-      }
-      if (worldPos_ != null) {
-        output.WriteRawTag(34);
-        output.WriteMessage(WorldPos);
-      }
-      if (Size != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(Size);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (Text.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Text);
-      }
-      if (virtualPos_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(VirtualPos);
-      }
-      if (worldPos_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(WorldPos);
-      }
-      if (Size != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Size);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugText other) {
-      if (other == null) {
-        return;
-      }
-      if (other.color_ != null) {
-        if (color_ == null) {
-          color_ = new global::SC2APIProtocol.Color();
-        }
-        Color.MergeFrom(other.Color);
-      }
-      if (other.Text.Length != 0) {
-        Text = other.Text;
-      }
-      if (other.virtualPos_ != null) {
-        if (virtualPos_ == null) {
-          virtualPos_ = new global::SC2APIProtocol.Point();
-        }
-        VirtualPos.MergeFrom(other.VirtualPos);
-      }
-      if (other.worldPos_ != null) {
-        if (worldPos_ == null) {
-          worldPos_ = new global::SC2APIProtocol.Point();
-        }
-        WorldPos.MergeFrom(other.WorldPos);
-      }
-      if (other.Size != 0) {
-        Size = other.Size;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (color_ == null) {
-              color_ = new global::SC2APIProtocol.Color();
+        /// <summary>Field number for the "test_process" field.</summary>
+        public const int TestProcessFieldNumber = 5;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugTestProcess TestProcess
+        {
+            get { return HasTestProcess ? (global::SC2APIProtocol.DebugTestProcess)command_ : null; }
+            set
+            {
+                command_ = value;
+                commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.TestProcess;
             }
-            input.ReadMessage(color_);
-            break;
-          }
-          case 18: {
-            Text = input.ReadString();
-            break;
-          }
-          case 26: {
-            if (virtualPos_ == null) {
-              virtualPos_ = new global::SC2APIProtocol.Point();
+        }
+        /// <summary>Gets whether the "test_process" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasTestProcess
+        {
+            get { return commandCase_ == CommandOneofCase.TestProcess; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "test_process" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearTestProcess()
+        {
+            if (HasTestProcess)
+            {
+                ClearCommand();
             }
-            input.ReadMessage(virtualPos_);
-            break;
-          }
-          case 34: {
-            if (worldPos_ == null) {
-              worldPos_ = new global::SC2APIProtocol.Point();
-            }
-            input.ReadMessage(worldPos_);
-            break;
-          }
-          case 40: {
-            Size = input.ReadUInt32();
-            break;
-          }
         }
-      }
-    }
 
-  }
-
-  /// <summary>
-  /// Display debug lines on screen.
-  /// </summary>
-  public sealed partial class DebugLine : pb::IMessage<DebugLine> {
-    private static readonly pb::MessageParser<DebugLine> _parser = new pb::MessageParser<DebugLine>(() => new DebugLine());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugLine> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[5]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugLine() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugLine(DebugLine other) : this() {
-      Color = other.color_ != null ? other.Color.Clone() : null;
-      Line = other.line_ != null ? other.Line.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugLine Clone() {
-      return new DebugLine(this);
-    }
-
-    /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 1;
-    private global::SC2APIProtocol.Color color_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Color Color {
-      get { return color_; }
-      set {
-        color_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "line" field.</summary>
-    public const int LineFieldNumber = 2;
-    private global::SC2APIProtocol.Line line_;
-    /// <summary>
-    /// World space line.
-    /// </summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Line Line {
-      get { return line_; }
-      set {
-        line_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugLine);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugLine other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Color, other.Color)) return false;
-      if (!object.Equals(Line, other.Line)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (line_ != null) hash ^= Line.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (color_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Color);
-      }
-      if (line_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Line);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (line_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Line);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugLine other) {
-      if (other == null) {
-        return;
-      }
-      if (other.color_ != null) {
-        if (color_ == null) {
-          color_ = new global::SC2APIProtocol.Color();
-        }
-        Color.MergeFrom(other.Color);
-      }
-      if (other.line_ != null) {
-        if (line_ == null) {
-          line_ = new global::SC2APIProtocol.Line();
-        }
-        Line.MergeFrom(other.Line);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (color_ == null) {
-              color_ = new global::SC2APIProtocol.Color();
-            }
-            input.ReadMessage(color_);
-            break;
-          }
-          case 18: {
-            if (line_ == null) {
-              line_ = new global::SC2APIProtocol.Line();
-            }
-            input.ReadMessage(line_);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
-  /// Display debug boxes on screen.
-  /// </summary>
-  public sealed partial class DebugBox : pb::IMessage<DebugBox> {
-    private static readonly pb::MessageParser<DebugBox> _parser = new pb::MessageParser<DebugBox>(() => new DebugBox());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugBox> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugBox() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugBox(DebugBox other) : this() {
-      Color = other.color_ != null ? other.Color.Clone() : null;
-      Min = other.min_ != null ? other.Min.Clone() : null;
-      Max = other.max_ != null ? other.Max.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugBox Clone() {
-      return new DebugBox(this);
-    }
-
-    /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 1;
-    private global::SC2APIProtocol.Color color_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Color Color {
-      get { return color_; }
-      set {
-        color_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "min" field.</summary>
-    public const int MinFieldNumber = 2;
-    private global::SC2APIProtocol.Point min_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point Min {
-      get { return min_; }
-      set {
-        min_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "max" field.</summary>
-    public const int MaxFieldNumber = 3;
-    private global::SC2APIProtocol.Point max_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point Max {
-      get { return max_; }
-      set {
-        max_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugBox);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugBox other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Color, other.Color)) return false;
-      if (!object.Equals(Min, other.Min)) return false;
-      if (!object.Equals(Max, other.Max)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (min_ != null) hash ^= Min.GetHashCode();
-      if (max_ != null) hash ^= Max.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (color_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Color);
-      }
-      if (min_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Min);
-      }
-      if (max_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Max);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (min_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Min);
-      }
-      if (max_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Max);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugBox other) {
-      if (other == null) {
-        return;
-      }
-      if (other.color_ != null) {
-        if (color_ == null) {
-          color_ = new global::SC2APIProtocol.Color();
-        }
-        Color.MergeFrom(other.Color);
-      }
-      if (other.min_ != null) {
-        if (min_ == null) {
-          min_ = new global::SC2APIProtocol.Point();
-        }
-        Min.MergeFrom(other.Min);
-      }
-      if (other.max_ != null) {
-        if (max_ == null) {
-          max_ = new global::SC2APIProtocol.Point();
-        }
-        Max.MergeFrom(other.Max);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (color_ == null) {
-              color_ = new global::SC2APIProtocol.Color();
-            }
-            input.ReadMessage(color_);
-            break;
-          }
-          case 18: {
-            if (min_ == null) {
-              min_ = new global::SC2APIProtocol.Point();
-            }
-            input.ReadMessage(min_);
-            break;
-          }
-          case 26: {
-            if (max_ == null) {
-              max_ = new global::SC2APIProtocol.Point();
-            }
-            input.ReadMessage(max_);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  /// <summary>
-  /// Display debug spheres on screen.
-  /// </summary>
-  public sealed partial class DebugSphere : pb::IMessage<DebugSphere> {
-    private static readonly pb::MessageParser<DebugSphere> _parser = new pb::MessageParser<DebugSphere>(() => new DebugSphere());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugSphere> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[7]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSphere() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSphere(DebugSphere other) : this() {
-      Color = other.color_ != null ? other.Color.Clone() : null;
-      P = other.p_ != null ? other.P.Clone() : null;
-      r_ = other.r_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSphere Clone() {
-      return new DebugSphere(this);
-    }
-
-    /// <summary>Field number for the "color" field.</summary>
-    public const int ColorFieldNumber = 1;
-    private global::SC2APIProtocol.Color color_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Color Color {
-      get { return color_; }
-      set {
-        color_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "p" field.</summary>
-    public const int PFieldNumber = 2;
-    private global::SC2APIProtocol.Point p_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point P {
-      get { return p_; }
-      set {
-        p_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "r" field.</summary>
-    public const int RFieldNumber = 3;
-    private float r_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float R {
-      get { return r_; }
-      set {
-        r_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugSphere);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugSphere other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!object.Equals(Color, other.Color)) return false;
-      if (!object.Equals(P, other.P)) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(R, other.R)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (color_ != null) hash ^= Color.GetHashCode();
-      if (p_ != null) hash ^= P.GetHashCode();
-      if (R != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(R);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (color_ != null) {
-        output.WriteRawTag(10);
-        output.WriteMessage(Color);
-      }
-      if (p_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(P);
-      }
-      if (R != 0F) {
-        output.WriteRawTag(29);
-        output.WriteFloat(R);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (color_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
-      }
-      if (p_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(P);
-      }
-      if (R != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugSphere other) {
-      if (other == null) {
-        return;
-      }
-      if (other.color_ != null) {
-        if (color_ == null) {
-          color_ = new global::SC2APIProtocol.Color();
-        }
-        Color.MergeFrom(other.Color);
-      }
-      if (other.p_ != null) {
-        if (p_ == null) {
-          p_ = new global::SC2APIProtocol.Point();
-        }
-        P.MergeFrom(other.P);
-      }
-      if (other.R != 0F) {
-        R = other.R;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            if (color_ == null) {
-              color_ = new global::SC2APIProtocol.Color();
-            }
-            input.ReadMessage(color_);
-            break;
-          }
-          case 18: {
-            if (p_ == null) {
-              p_ = new global::SC2APIProtocol.Point();
-            }
-            input.ReadMessage(p_);
-            break;
-          }
-          case 29: {
-            R = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class DebugCreateUnit : pb::IMessage<DebugCreateUnit> {
-    private static readonly pb::MessageParser<DebugCreateUnit> _parser = new pb::MessageParser<DebugCreateUnit>(() => new DebugCreateUnit());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugCreateUnit> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[8]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugCreateUnit() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugCreateUnit(DebugCreateUnit other) : this() {
-      unitType_ = other.unitType_;
-      owner_ = other.owner_;
-      Pos = other.pos_ != null ? other.Pos.Clone() : null;
-      quantity_ = other.quantity_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugCreateUnit Clone() {
-      return new DebugCreateUnit(this);
-    }
-
-    /// <summary>Field number for the "unit_type" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private uint unitType_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint UnitType {
-      get { return unitType_; }
-      set {
-        unitType_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "owner" field.</summary>
-    public const int OwnerFieldNumber = 2;
-    private int owner_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Owner {
-      get { return owner_; }
-      set {
-        owner_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "pos" field.</summary>
-    public const int PosFieldNumber = 3;
-    private global::SC2APIProtocol.Point2D pos_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.Point2D Pos {
-      get { return pos_; }
-      set {
-        pos_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "quantity" field.</summary>
-    public const int QuantityFieldNumber = 4;
-    private uint quantity_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Quantity {
-      get { return quantity_; }
-      set {
-        quantity_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugCreateUnit);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugCreateUnit other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (UnitType != other.UnitType) return false;
-      if (Owner != other.Owner) return false;
-      if (!object.Equals(Pos, other.Pos)) return false;
-      if (Quantity != other.Quantity) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
-      if (Owner != 0) hash ^= Owner.GetHashCode();
-      if (pos_ != null) hash ^= Pos.GetHashCode();
-      if (Quantity != 0) hash ^= Quantity.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (UnitType != 0) {
-        output.WriteRawTag(8);
-        output.WriteUInt32(UnitType);
-      }
-      if (Owner != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Owner);
-      }
-      if (pos_ != null) {
-        output.WriteRawTag(26);
-        output.WriteMessage(Pos);
-      }
-      if (Quantity != 0) {
-        output.WriteRawTag(32);
-        output.WriteUInt32(Quantity);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitType);
-      }
-      if (Owner != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Owner);
-      }
-      if (pos_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pos);
-      }
-      if (Quantity != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Quantity);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugCreateUnit other) {
-      if (other == null) {
-        return;
-      }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
-      }
-      if (other.Owner != 0) {
-        Owner = other.Owner;
-      }
-      if (other.pos_ != null) {
-        if (pos_ == null) {
-          pos_ = new global::SC2APIProtocol.Point2D();
-        }
-        Pos.MergeFrom(other.Pos);
-      }
-      if (other.Quantity != 0) {
-        Quantity = other.Quantity;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            UnitType = input.ReadUInt32();
-            break;
-          }
-          case 16: {
-            Owner = input.ReadInt32();
-            break;
-          }
-          case 26: {
-            if (pos_ == null) {
-              pos_ = new global::SC2APIProtocol.Point2D();
-            }
-            input.ReadMessage(pos_);
-            break;
-          }
-          case 32: {
-            Quantity = input.ReadUInt32();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class DebugKillUnit : pb::IMessage<DebugKillUnit> {
-    private static readonly pb::MessageParser<DebugKillUnit> _parser = new pb::MessageParser<DebugKillUnit>(() => new DebugKillUnit());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugKillUnit> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[9]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugKillUnit() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugKillUnit(DebugKillUnit other) : this() {
-      tag_ = other.tag_.Clone();
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugKillUnit Clone() {
-      return new DebugKillUnit(this);
-    }
-
-    /// <summary>Field number for the "tag" field.</summary>
-    public const int TagFieldNumber = 1;
-    private static readonly pb::FieldCodec<ulong> _repeated_tag_codec
-        = pb::FieldCodec.ForUInt64(10);
-    private readonly pbc::RepeatedField<ulong> tag_ = new pbc::RepeatedField<ulong>();
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<ulong> Tag {
-      get { return tag_; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugKillUnit);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugKillUnit other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if(!tag_.Equals(other.tag_)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      hash ^= tag_.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      tag_.WriteTo(output, _repeated_tag_codec);
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      size += tag_.CalculateSize(_repeated_tag_codec);
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugKillUnit other) {
-      if (other == null) {
-        return;
-      }
-      tag_.Add(other.tag_);
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10:
-          case 8: {
-            tag_.AddEntriesFrom(input, _repeated_tag_codec);
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class DebugTestProcess : pb::IMessage<DebugTestProcess> {
-    private static readonly pb::MessageParser<DebugTestProcess> _parser = new pb::MessageParser<DebugTestProcess>(() => new DebugTestProcess());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugTestProcess> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[10]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugTestProcess() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugTestProcess(DebugTestProcess other) : this() {
-      test_ = other.test_;
-      delayMs_ = other.delayMs_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugTestProcess Clone() {
-      return new DebugTestProcess(this);
-    }
-
-    /// <summary>Field number for the "test" field.</summary>
-    public const int TestFieldNumber = 1;
-    private global::SC2APIProtocol.DebugTestProcess.Types.Test test_ = 0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugTestProcess.Types.Test Test {
-      get { return test_; }
-      set {
-        test_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "delay_ms" field.</summary>
-    public const int DelayMsFieldNumber = 2;
-    private int delayMs_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int DelayMs {
-      get { return delayMs_; }
-      set {
-        delayMs_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugTestProcess);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugTestProcess other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (Test != other.Test) return false;
-      if (DelayMs != other.DelayMs) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Test != 0) hash ^= Test.GetHashCode();
-      if (DelayMs != 0) hash ^= DelayMs.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (Test != 0) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) Test);
-      }
-      if (DelayMs != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(DelayMs);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (Test != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Test);
-      }
-      if (DelayMs != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DelayMs);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugTestProcess other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Test != 0) {
-        Test = other.Test;
-      }
-      if (other.DelayMs != 0) {
-        DelayMs = other.DelayMs;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            test_ = (global::SC2APIProtocol.DebugTestProcess.Types.Test) input.ReadEnum();
-            break;
-          }
-          case 16: {
-            DelayMs = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    }
-
-    #region Nested types
-    /// <summary>Container for nested types declared in the DebugTestProcess message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static partial class Types {
-      public enum Test {
-        [pbr::OriginalName("Test_UNSET")] Unset = 0,
-        [pbr::OriginalName("hang")] Hang = 1,
-        [pbr::OriginalName("crash")] Crash = 2,
-        [pbr::OriginalName("exit")] Exit = 3,
-      }
-
-    }
-    #endregion
-
-  }
-
-  public sealed partial class DebugSetScore : pb::IMessage<DebugSetScore> {
-    private static readonly pb::MessageParser<DebugSetScore> _parser = new pb::MessageParser<DebugSetScore>(() => new DebugSetScore());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugSetScore> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[11]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSetScore() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSetScore(DebugSetScore other) : this() {
-      score_ = other.score_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSetScore Clone() {
-      return new DebugSetScore(this);
-    }
-
-    /// <summary>Field number for the "score" field.</summary>
-    public const int ScoreFieldNumber = 1;
-    private float score_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float Score {
-      get { return score_; }
-      set {
-        score_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugSetScore);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugSetScore other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Score, other.Score)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (Score != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Score);
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (Score != 0F) {
-        output.WriteRawTag(13);
-        output.WriteFloat(Score);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (Score != 0F) {
-        size += 1 + 4;
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugSetScore other) {
-      if (other == null) {
-        return;
-      }
-      if (other.Score != 0F) {
-        Score = other.Score;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 13: {
-            Score = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-
-  }
-
-  public sealed partial class DebugEndGame : pb::IMessage<DebugEndGame> {
-    private static readonly pb::MessageParser<DebugEndGame> _parser = new pb::MessageParser<DebugEndGame>(() => new DebugEndGame());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugEndGame> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[12]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugEndGame() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugEndGame(DebugEndGame other) : this() {
-      endResult_ = other.endResult_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugEndGame Clone() {
-      return new DebugEndGame(this);
-    }
-
-    /// <summary>Field number for the "end_result" field.</summary>
-    public const int EndResultFieldNumber = 1;
-    private global::SC2APIProtocol.DebugEndGame.Types.EndResult endResult_ = 0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugEndGame.Types.EndResult EndResult {
-      get { return endResult_; }
-      set {
-        endResult_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugEndGame);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugEndGame other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (EndResult != other.EndResult) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (EndResult != 0) hash ^= EndResult.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (EndResult != 0) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) EndResult);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (EndResult != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) EndResult);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugEndGame other) {
-      if (other == null) {
-        return;
-      }
-      if (other.EndResult != 0) {
-        EndResult = other.EndResult;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            endResult_ = (global::SC2APIProtocol.DebugEndGame.Types.EndResult) input.ReadEnum();
-            break;
-          }
-        }
-      }
-    }
-
-    #region Nested types
-    /// <summary>Container for nested types declared in the DebugEndGame message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static partial class Types {
-      public enum EndResult {
-        [pbr::OriginalName("EndResult_UNSET")] Unset = 0,
+        /// <summary>Field number for the "score" field.</summary>
+        public const int ScoreFieldNumber = 6;
         /// <summary>
-        /// Default if nothing is set. The current player admits defeat.
+        /// Useful only for single-player "curriculum" maps.
         /// </summary>
-        [pbr::OriginalName("Surrender")] Surrender = 1,
-        [pbr::OriginalName("DeclareVictory")] DeclareVictory = 2,
-      }
-
-    }
-    #endregion
-
-  }
-
-  public sealed partial class DebugSetUnitValue : pb::IMessage<DebugSetUnitValue> {
-    private static readonly pb::MessageParser<DebugSetUnitValue> _parser = new pb::MessageParser<DebugSetUnitValue>(() => new DebugSetUnitValue());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<DebugSetUnitValue> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[13]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSetUnitValue() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSetUnitValue(DebugSetUnitValue other) : this() {
-      unitValue_ = other.unitValue_;
-      value_ = other.value_;
-      unitTag_ = other.unitTag_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public DebugSetUnitValue Clone() {
-      return new DebugSetUnitValue(this);
-    }
-
-    /// <summary>Field number for the "unit_value" field.</summary>
-    public const int UnitValueFieldNumber = 1;
-    private global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue unitValue_ = 0;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue UnitValue {
-      get { return unitValue_; }
-      set {
-        unitValue_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "value" field.</summary>
-    public const int ValueFieldNumber = 2;
-    private float value_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public float Value {
-      get { return value_; }
-      set {
-        value_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "unit_tag" field.</summary>
-    public const int UnitTagFieldNumber = 3;
-    private ulong unitTag_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ulong UnitTag {
-      get { return unitTag_; }
-      set {
-        unitTag_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as DebugSetUnitValue);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(DebugSetUnitValue other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (UnitValue != other.UnitValue) return false;
-      if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Value, other.Value)) return false;
-      if (UnitTag != other.UnitTag) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (UnitValue != 0) hash ^= UnitValue.GetHashCode();
-      if (Value != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Value);
-      if (UnitTag != 0UL) hash ^= UnitTag.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-      if (UnitValue != 0) {
-        output.WriteRawTag(8);
-        output.WriteEnum((int) UnitValue);
-      }
-      if (Value != 0F) {
-        output.WriteRawTag(21);
-        output.WriteFloat(Value);
-      }
-      if (UnitTag != 0UL) {
-        output.WriteRawTag(24);
-        output.WriteUInt64(UnitTag);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (UnitValue != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) UnitValue);
-      }
-      if (Value != 0F) {
-        size += 1 + 4;
-      }
-      if (UnitTag != 0UL) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UnitTag);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(DebugSetUnitValue other) {
-      if (other == null) {
-        return;
-      }
-      if (other.UnitValue != 0) {
-        UnitValue = other.UnitValue;
-      }
-      if (other.Value != 0F) {
-        Value = other.Value;
-      }
-      if (other.UnitTag != 0UL) {
-        UnitTag = other.UnitTag;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            unitValue_ = (global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue) input.ReadEnum();
-            break;
-          }
-          case 21: {
-            Value = input.ReadFloat();
-            break;
-          }
-          case 24: {
-            UnitTag = input.ReadUInt64();
-            break;
-          }
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugSetScore Score
+        {
+            get { return HasScore ? (global::SC2APIProtocol.DebugSetScore)command_ : null; }
+            set
+            {
+                command_ = value;
+                commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.Score;
+            }
         }
-      }
+        /// <summary>Gets whether the "score" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasScore
+        {
+            get { return commandCase_ == CommandOneofCase.Score; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "score" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearScore()
+        {
+            if (HasScore)
+            {
+                ClearCommand();
+            }
+        }
+
+        /// <summary>Field number for the "end_game" field.</summary>
+        public const int EndGameFieldNumber = 7;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugEndGame EndGame
+        {
+            get { return HasEndGame ? (global::SC2APIProtocol.DebugEndGame)command_ : null; }
+            set
+            {
+                command_ = value;
+                commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.EndGame;
+            }
+        }
+        /// <summary>Gets whether the "end_game" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasEndGame
+        {
+            get { return commandCase_ == CommandOneofCase.EndGame; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "end_game" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearEndGame()
+        {
+            if (HasEndGame)
+            {
+                ClearCommand();
+            }
+        }
+
+        /// <summary>Field number for the "unit_value" field.</summary>
+        public const int UnitValueFieldNumber = 8;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugSetUnitValue UnitValue
+        {
+            get { return HasUnitValue ? (global::SC2APIProtocol.DebugSetUnitValue)command_ : null; }
+            set
+            {
+                command_ = value;
+                commandCase_ = value == null ? CommandOneofCase.None : CommandOneofCase.UnitValue;
+            }
+        }
+        /// <summary>Gets whether the "unit_value" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUnitValue
+        {
+            get { return commandCase_ == CommandOneofCase.UnitValue; }
+        }
+        /// <summary> Clears the value of the oneof if it's currently set to "unit_value" </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUnitValue()
+        {
+            if (HasUnitValue)
+            {
+                ClearCommand();
+            }
+        }
+
+        private object command_;
+        /// <summary>Enum of possible cases for the "command" oneof.</summary>
+        public enum CommandOneofCase
+        {
+            None = 0,
+            Draw = 1,
+            GameState = 2,
+            CreateUnit = 3,
+            KillUnit = 4,
+            TestProcess = 5,
+            Score = 6,
+            EndGame = 7,
+            UnitValue = 8,
+        }
+        private CommandOneofCase commandCase_ = CommandOneofCase.None;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public CommandOneofCase CommandCase
+        {
+            get { return commandCase_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearCommand()
+        {
+            commandCase_ = CommandOneofCase.None;
+            command_ = null;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugCommand);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugCommand other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(Draw, other.Draw)) return false;
+            if (GameState != other.GameState) return false;
+            if (!object.Equals(CreateUnit, other.CreateUnit)) return false;
+            if (!object.Equals(KillUnit, other.KillUnit)) return false;
+            if (!object.Equals(TestProcess, other.TestProcess)) return false;
+            if (!object.Equals(Score, other.Score)) return false;
+            if (!object.Equals(EndGame, other.EndGame)) return false;
+            if (!object.Equals(UnitValue, other.UnitValue)) return false;
+            if (CommandCase != other.CommandCase) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasDraw) hash ^= Draw.GetHashCode();
+            if (HasGameState) hash ^= GameState.GetHashCode();
+            if (HasCreateUnit) hash ^= CreateUnit.GetHashCode();
+            if (HasKillUnit) hash ^= KillUnit.GetHashCode();
+            if (HasTestProcess) hash ^= TestProcess.GetHashCode();
+            if (HasScore) hash ^= Score.GetHashCode();
+            if (HasEndGame) hash ^= EndGame.GetHashCode();
+            if (HasUnitValue) hash ^= UnitValue.GetHashCode();
+            hash ^= (int)commandCase_;
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasDraw)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(Draw);
+            }
+            if (HasGameState)
+            {
+                output.WriteRawTag(16);
+                output.WriteEnum((int)GameState);
+            }
+            if (HasCreateUnit)
+            {
+                output.WriteRawTag(26);
+                output.WriteMessage(CreateUnit);
+            }
+            if (HasKillUnit)
+            {
+                output.WriteRawTag(34);
+                output.WriteMessage(KillUnit);
+            }
+            if (HasTestProcess)
+            {
+                output.WriteRawTag(42);
+                output.WriteMessage(TestProcess);
+            }
+            if (HasScore)
+            {
+                output.WriteRawTag(50);
+                output.WriteMessage(Score);
+            }
+            if (HasEndGame)
+            {
+                output.WriteRawTag(58);
+                output.WriteMessage(EndGame);
+            }
+            if (HasUnitValue)
+            {
+                output.WriteRawTag(66);
+                output.WriteMessage(UnitValue);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasDraw)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Draw);
+            }
+            if (HasGameState)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)GameState);
+            }
+            if (HasCreateUnit)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(CreateUnit);
+            }
+            if (HasKillUnit)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(KillUnit);
+            }
+            if (HasTestProcess)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(TestProcess);
+            }
+            if (HasScore)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Score);
+            }
+            if (HasEndGame)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(EndGame);
+            }
+            if (HasUnitValue)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(UnitValue);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugCommand other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            switch (other.CommandCase)
+            {
+                case CommandOneofCase.Draw:
+                    if (Draw == null)
+                    {
+                        Draw = new global::SC2APIProtocol.DebugDraw();
+                    }
+                    Draw.MergeFrom(other.Draw);
+                    break;
+                case CommandOneofCase.GameState:
+                    GameState = other.GameState;
+                    break;
+                case CommandOneofCase.CreateUnit:
+                    if (CreateUnit == null)
+                    {
+                        CreateUnit = new global::SC2APIProtocol.DebugCreateUnit();
+                    }
+                    CreateUnit.MergeFrom(other.CreateUnit);
+                    break;
+                case CommandOneofCase.KillUnit:
+                    if (KillUnit == null)
+                    {
+                        KillUnit = new global::SC2APIProtocol.DebugKillUnit();
+                    }
+                    KillUnit.MergeFrom(other.KillUnit);
+                    break;
+                case CommandOneofCase.TestProcess:
+                    if (TestProcess == null)
+                    {
+                        TestProcess = new global::SC2APIProtocol.DebugTestProcess();
+                    }
+                    TestProcess.MergeFrom(other.TestProcess);
+                    break;
+                case CommandOneofCase.Score:
+                    if (Score == null)
+                    {
+                        Score = new global::SC2APIProtocol.DebugSetScore();
+                    }
+                    Score.MergeFrom(other.Score);
+                    break;
+                case CommandOneofCase.EndGame:
+                    if (EndGame == null)
+                    {
+                        EndGame = new global::SC2APIProtocol.DebugEndGame();
+                    }
+                    EndGame.MergeFrom(other.EndGame);
+                    break;
+                case CommandOneofCase.UnitValue:
+                    if (UnitValue == null)
+                    {
+                        UnitValue = new global::SC2APIProtocol.DebugSetUnitValue();
+                    }
+                    UnitValue.MergeFrom(other.UnitValue);
+                    break;
+            }
+
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            global::SC2APIProtocol.DebugDraw subBuilder = new global::SC2APIProtocol.DebugDraw();
+                            if (HasDraw)
+                            {
+                                subBuilder.MergeFrom(Draw);
+                            }
+                            input.ReadMessage(subBuilder);
+                            Draw = subBuilder;
+                            break;
+                        }
+                    case 16:
+                        {
+                            command_ = input.ReadEnum();
+                            commandCase_ = CommandOneofCase.GameState;
+                            break;
+                        }
+                    case 26:
+                        {
+                            global::SC2APIProtocol.DebugCreateUnit subBuilder = new global::SC2APIProtocol.DebugCreateUnit();
+                            if (HasCreateUnit)
+                            {
+                                subBuilder.MergeFrom(CreateUnit);
+                            }
+                            input.ReadMessage(subBuilder);
+                            CreateUnit = subBuilder;
+                            break;
+                        }
+                    case 34:
+                        {
+                            global::SC2APIProtocol.DebugKillUnit subBuilder = new global::SC2APIProtocol.DebugKillUnit();
+                            if (HasKillUnit)
+                            {
+                                subBuilder.MergeFrom(KillUnit);
+                            }
+                            input.ReadMessage(subBuilder);
+                            KillUnit = subBuilder;
+                            break;
+                        }
+                    case 42:
+                        {
+                            global::SC2APIProtocol.DebugTestProcess subBuilder = new global::SC2APIProtocol.DebugTestProcess();
+                            if (HasTestProcess)
+                            {
+                                subBuilder.MergeFrom(TestProcess);
+                            }
+                            input.ReadMessage(subBuilder);
+                            TestProcess = subBuilder;
+                            break;
+                        }
+                    case 50:
+                        {
+                            global::SC2APIProtocol.DebugSetScore subBuilder = new global::SC2APIProtocol.DebugSetScore();
+                            if (HasScore)
+                            {
+                                subBuilder.MergeFrom(Score);
+                            }
+                            input.ReadMessage(subBuilder);
+                            Score = subBuilder;
+                            break;
+                        }
+                    case 58:
+                        {
+                            global::SC2APIProtocol.DebugEndGame subBuilder = new global::SC2APIProtocol.DebugEndGame();
+                            if (HasEndGame)
+                            {
+                                subBuilder.MergeFrom(EndGame);
+                            }
+                            input.ReadMessage(subBuilder);
+                            EndGame = subBuilder;
+                            break;
+                        }
+                    case 66:
+                        {
+                            global::SC2APIProtocol.DebugSetUnitValue subBuilder = new global::SC2APIProtocol.DebugSetUnitValue();
+                            if (HasUnitValue)
+                            {
+                                subBuilder.MergeFrom(UnitValue);
+                            }
+                            input.ReadMessage(subBuilder);
+                            UnitValue = subBuilder;
+                            break;
+                        }
+                }
+            }
+        }
+
     }
 
-    #region Nested types
-    /// <summary>Container for nested types declared in the DebugSetUnitValue message type.</summary>
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static partial class Types {
-      public enum UnitValue {
-        [pbr::OriginalName("UnitValue_UNSET")] Unset = 0,
-        [pbr::OriginalName("Energy")] Energy = 1,
-        [pbr::OriginalName("Life")] Life = 2,
-        [pbr::OriginalName("Shields")] Shields = 3,
-      }
+    public sealed partial class DebugDraw : pb::IMessage<DebugDraw>
+    {
+        private static readonly pb::MessageParser<DebugDraw> _parser = new pb::MessageParser<DebugDraw>(() => new DebugDraw());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugDraw> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[1]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugDraw()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugDraw(DebugDraw other) : this()
+        {
+            text_ = other.text_.Clone();
+            lines_ = other.lines_.Clone();
+            boxes_ = other.boxes_.Clone();
+            spheres_ = other.spheres_.Clone();
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugDraw Clone()
+        {
+            return new DebugDraw(this);
+        }
+
+        /// <summary>Field number for the "text" field.</summary>
+        public const int TextFieldNumber = 1;
+        private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugText> _repeated_text_codec
+            = pb::FieldCodec.ForMessage(10, global::SC2APIProtocol.DebugText.Parser);
+        private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugText> text_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugText>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pbc::RepeatedField<global::SC2APIProtocol.DebugText> Text
+        {
+            get { return text_; }
+        }
+
+        /// <summary>Field number for the "lines" field.</summary>
+        public const int LinesFieldNumber = 2;
+        private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugLine> _repeated_lines_codec
+            = pb::FieldCodec.ForMessage(18, global::SC2APIProtocol.DebugLine.Parser);
+        private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugLine> lines_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugLine>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pbc::RepeatedField<global::SC2APIProtocol.DebugLine> Lines
+        {
+            get { return lines_; }
+        }
+
+        /// <summary>Field number for the "boxes" field.</summary>
+        public const int BoxesFieldNumber = 3;
+        private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugBox> _repeated_boxes_codec
+            = pb::FieldCodec.ForMessage(26, global::SC2APIProtocol.DebugBox.Parser);
+        private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugBox> boxes_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugBox>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pbc::RepeatedField<global::SC2APIProtocol.DebugBox> Boxes
+        {
+            get { return boxes_; }
+        }
+
+        /// <summary>Field number for the "spheres" field.</summary>
+        public const int SpheresFieldNumber = 4;
+        private static readonly pb::FieldCodec<global::SC2APIProtocol.DebugSphere> _repeated_spheres_codec
+            = pb::FieldCodec.ForMessage(34, global::SC2APIProtocol.DebugSphere.Parser);
+        private readonly pbc::RepeatedField<global::SC2APIProtocol.DebugSphere> spheres_ = new pbc::RepeatedField<global::SC2APIProtocol.DebugSphere>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pbc::RepeatedField<global::SC2APIProtocol.DebugSphere> Spheres
+        {
+            get { return spheres_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugDraw);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugDraw other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!text_.Equals(other.text_)) return false;
+            if (!lines_.Equals(other.lines_)) return false;
+            if (!boxes_.Equals(other.boxes_)) return false;
+            if (!spheres_.Equals(other.spheres_)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            hash ^= text_.GetHashCode();
+            hash ^= lines_.GetHashCode();
+            hash ^= boxes_.GetHashCode();
+            hash ^= spheres_.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            text_.WriteTo(output, _repeated_text_codec);
+            lines_.WriteTo(output, _repeated_lines_codec);
+            boxes_.WriteTo(output, _repeated_boxes_codec);
+            spheres_.WriteTo(output, _repeated_spheres_codec);
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            size += text_.CalculateSize(_repeated_text_codec);
+            size += lines_.CalculateSize(_repeated_lines_codec);
+            size += boxes_.CalculateSize(_repeated_boxes_codec);
+            size += spheres_.CalculateSize(_repeated_spheres_codec);
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugDraw other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            text_.Add(other.text_);
+            lines_.Add(other.lines_);
+            boxes_.Add(other.boxes_);
+            spheres_.Add(other.spheres_);
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            text_.AddEntriesFrom(input, _repeated_text_codec);
+                            break;
+                        }
+                    case 18:
+                        {
+                            lines_.AddEntriesFrom(input, _repeated_lines_codec);
+                            break;
+                        }
+                    case 26:
+                        {
+                            boxes_.AddEntriesFrom(input, _repeated_boxes_codec);
+                            break;
+                        }
+                    case 34:
+                        {
+                            spheres_.AddEntriesFrom(input, _repeated_spheres_codec);
+                            break;
+                        }
+                }
+            }
+        }
 
     }
+
+    public sealed partial class Line : pb::IMessage<Line>
+    {
+        private static readonly pb::MessageParser<Line> _parser = new pb::MessageParser<Line>(() => new Line());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<Line> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[2]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Line()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Line(Line other) : this()
+        {
+            p0_ = other.HasP0 ? other.p0_.Clone() : null;
+            p1_ = other.HasP1 ? other.p1_.Clone() : null;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Line Clone()
+        {
+            return new Line(this);
+        }
+
+        /// <summary>Field number for the "p0" field.</summary>
+        public const int P0FieldNumber = 1;
+        private global::SC2APIProtocol.Point p0_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point P0
+        {
+            get { return p0_; }
+            set
+            {
+                p0_ = value;
+            }
+        }
+        /// <summary>Gets whether the p0 field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasP0
+        {
+            get { return p0_ != null; }
+        }
+        /// <summary>Clears the value of the p0 field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearP0()
+        {
+            p0_ = null;
+        }
+
+        /// <summary>Field number for the "p1" field.</summary>
+        public const int P1FieldNumber = 2;
+        private global::SC2APIProtocol.Point p1_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point P1
+        {
+            get { return p1_; }
+            set
+            {
+                p1_ = value;
+            }
+        }
+        /// <summary>Gets whether the p1 field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasP1
+        {
+            get { return p1_ != null; }
+        }
+        /// <summary>Clears the value of the p1 field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearP1()
+        {
+            p1_ = null;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as Line);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(Line other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(P0, other.P0)) return false;
+            if (!object.Equals(P1, other.P1)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasP0) hash ^= P0.GetHashCode();
+            if (HasP1) hash ^= P1.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasP0)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(P0);
+            }
+            if (HasP1)
+            {
+                output.WriteRawTag(18);
+                output.WriteMessage(P1);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasP0)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(P0);
+            }
+            if (HasP1)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(P1);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(Line other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasP0)
+            {
+                if (!HasP0)
+                {
+                    P0 = new global::SC2APIProtocol.Point();
+                }
+                P0.MergeFrom(other.P0);
+            }
+            if (other.HasP1)
+            {
+                if (!HasP1)
+                {
+                    P1 = new global::SC2APIProtocol.Point();
+                }
+                P1.MergeFrom(other.P1);
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            if (!HasP0)
+                            {
+                                P0 = new global::SC2APIProtocol.Point();
+                            }
+                            input.ReadMessage(P0);
+                            break;
+                        }
+                    case 18:
+                        {
+                            if (!HasP1)
+                            {
+                                P1 = new global::SC2APIProtocol.Point();
+                            }
+                            input.ReadMessage(P1);
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    public sealed partial class Color : pb::IMessage<Color>
+    {
+        private static readonly pb::MessageParser<Color> _parser = new pb::MessageParser<Color>(() => new Color());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<Color> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[3]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Color()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Color(Color other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            r_ = other.r_;
+            g_ = other.g_;
+            b_ = other.b_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Color Clone()
+        {
+            return new Color(this);
+        }
+
+        /// <summary>Field number for the "r" field.</summary>
+        public const int RFieldNumber = 1;
+        private readonly static uint RDefaultValue = 0;
+
+        private uint r_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint R
+        {
+            get { if ((_hasBits0 & 1) != 0) { return r_; } else { return RDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                r_ = value;
+            }
+        }
+        /// <summary>Gets whether the "r" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasR
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "r" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearR()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        /// <summary>Field number for the "g" field.</summary>
+        public const int GFieldNumber = 2;
+        private readonly static uint GDefaultValue = 0;
+
+        private uint g_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint G
+        {
+            get { if ((_hasBits0 & 2) != 0) { return g_; } else { return GDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 2;
+                g_ = value;
+            }
+        }
+        /// <summary>Gets whether the "g" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasG
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "g" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearG()
+        {
+            _hasBits0 &= ~2;
+        }
+
+        /// <summary>Field number for the "b" field.</summary>
+        public const int BFieldNumber = 3;
+        private readonly static uint BDefaultValue = 0;
+
+        private uint b_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint B
+        {
+            get { if ((_hasBits0 & 4) != 0) { return b_; } else { return BDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 4;
+                b_ = value;
+            }
+        }
+        /// <summary>Gets whether the "b" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasB
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "b" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearB()
+        {
+            _hasBits0 &= ~4;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as Color);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(Color other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (R != other.R) return false;
+            if (G != other.G) return false;
+            if (B != other.B) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasR) hash ^= R.GetHashCode();
+            if (HasG) hash ^= G.GetHashCode();
+            if (HasB) hash ^= B.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasR)
+            {
+                output.WriteRawTag(8);
+                output.WriteUInt32(R);
+            }
+            if (HasG)
+            {
+                output.WriteRawTag(16);
+                output.WriteUInt32(G);
+            }
+            if (HasB)
+            {
+                output.WriteRawTag(24);
+                output.WriteUInt32(B);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasR)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(R);
+            }
+            if (HasG)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(G);
+            }
+            if (HasB)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(B);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(Color other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasR)
+            {
+                R = other.R;
+            }
+            if (other.HasG)
+            {
+                G = other.G;
+            }
+            if (other.HasB)
+            {
+                B = other.B;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 8:
+                        {
+                            R = input.ReadUInt32();
+                            break;
+                        }
+                    case 16:
+                        {
+                            G = input.ReadUInt32();
+                            break;
+                        }
+                    case 24:
+                        {
+                            B = input.ReadUInt32();
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Display debug text on screen.
+    /// </summary>
+    public sealed partial class DebugText : pb::IMessage<DebugText>
+    {
+        private static readonly pb::MessageParser<DebugText> _parser = new pb::MessageParser<DebugText>(() => new DebugText());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugText> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[4]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugText()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugText(DebugText other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            color_ = other.HasColor ? other.color_.Clone() : null;
+            text_ = other.text_;
+            virtualPos_ = other.HasVirtualPos ? other.virtualPos_.Clone() : null;
+            worldPos_ = other.HasWorldPos ? other.worldPos_.Clone() : null;
+            size_ = other.size_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugText Clone()
+        {
+            return new DebugText(this);
+        }
+
+        /// <summary>Field number for the "color" field.</summary>
+        public const int ColorFieldNumber = 1;
+        private global::SC2APIProtocol.Color color_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Color Color
+        {
+            get { return color_; }
+            set
+            {
+                color_ = value;
+            }
+        }
+        /// <summary>Gets whether the color field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasColor
+        {
+            get { return color_ != null; }
+        }
+        /// <summary>Clears the value of the color field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearColor()
+        {
+            color_ = null;
+        }
+
+        /// <summary>Field number for the "text" field.</summary>
+        public const int TextFieldNumber = 2;
+        private readonly static string TextDefaultValue = "";
+
+        private string text_;
+        /// <summary>
+        /// Text to display.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public string Text
+        {
+            get { return text_ ?? TextDefaultValue; }
+            set
+            {
+                text_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+            }
+        }
+        /// <summary>Gets whether the "text" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasText
+        {
+            get { return text_ != null; }
+        }
+        /// <summary>Clears the value of the "text" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearText()
+        {
+            text_ = null;
+        }
+
+        /// <summary>Field number for the "virtual_pos" field.</summary>
+        public const int VirtualPosFieldNumber = 3;
+        private global::SC2APIProtocol.Point virtualPos_;
+        /// <summary>
+        /// Virtualized position in 2D (the screen is 0..1, 0..1 for any resolution).
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point VirtualPos
+        {
+            get { return virtualPos_; }
+            set
+            {
+                virtualPos_ = value;
+            }
+        }
+        /// <summary>Gets whether the virtual_pos field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasVirtualPos
+        {
+            get { return virtualPos_ != null; }
+        }
+        /// <summary>Clears the value of the virtual_pos field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearVirtualPos()
+        {
+            virtualPos_ = null;
+        }
+
+        /// <summary>Field number for the "world_pos" field.</summary>
+        public const int WorldPosFieldNumber = 4;
+        private global::SC2APIProtocol.Point worldPos_;
+        /// <summary>
+        /// Position in the world.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point WorldPos
+        {
+            get { return worldPos_; }
+            set
+            {
+                worldPos_ = value;
+            }
+        }
+        /// <summary>Gets whether the world_pos field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasWorldPos
+        {
+            get { return worldPos_ != null; }
+        }
+        /// <summary>Clears the value of the world_pos field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearWorldPos()
+        {
+            worldPos_ = null;
+        }
+
+        /// <summary>Field number for the "size" field.</summary>
+        public const int SizeFieldNumber = 5;
+        private readonly static uint SizeDefaultValue = 0;
+
+        private uint size_;
+        /// <summary>
+        /// Pixel height of the text. Defaults to 8px.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint Size
+        {
+            get { if ((_hasBits0 & 1) != 0) { return size_; } else { return SizeDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                size_ = value;
+            }
+        }
+        /// <summary>Gets whether the "size" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSize
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "size" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSize()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugText);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugText other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(Color, other.Color)) return false;
+            if (Text != other.Text) return false;
+            if (!object.Equals(VirtualPos, other.VirtualPos)) return false;
+            if (!object.Equals(WorldPos, other.WorldPos)) return false;
+            if (Size != other.Size) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasColor) hash ^= Color.GetHashCode();
+            if (HasText) hash ^= Text.GetHashCode();
+            if (HasVirtualPos) hash ^= VirtualPos.GetHashCode();
+            if (HasWorldPos) hash ^= WorldPos.GetHashCode();
+            if (HasSize) hash ^= Size.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasColor)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(Color);
+            }
+            if (HasText)
+            {
+                output.WriteRawTag(18);
+                output.WriteString(Text);
+            }
+            if (HasVirtualPos)
+            {
+                output.WriteRawTag(26);
+                output.WriteMessage(VirtualPos);
+            }
+            if (HasWorldPos)
+            {
+                output.WriteRawTag(34);
+                output.WriteMessage(WorldPos);
+            }
+            if (HasSize)
+            {
+                output.WriteRawTag(40);
+                output.WriteUInt32(Size);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasColor)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+            }
+            if (HasText)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(Text);
+            }
+            if (HasVirtualPos)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(VirtualPos);
+            }
+            if (HasWorldPos)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(WorldPos);
+            }
+            if (HasSize)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Size);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugText other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasColor)
+            {
+                if (!HasColor)
+                {
+                    Color = new global::SC2APIProtocol.Color();
+                }
+                Color.MergeFrom(other.Color);
+            }
+            if (other.HasText)
+            {
+                Text = other.Text;
+            }
+            if (other.HasVirtualPos)
+            {
+                if (!HasVirtualPos)
+                {
+                    VirtualPos = new global::SC2APIProtocol.Point();
+                }
+                VirtualPos.MergeFrom(other.VirtualPos);
+            }
+            if (other.HasWorldPos)
+            {
+                if (!HasWorldPos)
+                {
+                    WorldPos = new global::SC2APIProtocol.Point();
+                }
+                WorldPos.MergeFrom(other.WorldPos);
+            }
+            if (other.HasSize)
+            {
+                Size = other.Size;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            if (!HasColor)
+                            {
+                                Color = new global::SC2APIProtocol.Color();
+                            }
+                            input.ReadMessage(Color);
+                            break;
+                        }
+                    case 18:
+                        {
+                            Text = input.ReadString();
+                            break;
+                        }
+                    case 26:
+                        {
+                            if (!HasVirtualPos)
+                            {
+                                VirtualPos = new global::SC2APIProtocol.Point();
+                            }
+                            input.ReadMessage(VirtualPos);
+                            break;
+                        }
+                    case 34:
+                        {
+                            if (!HasWorldPos)
+                            {
+                                WorldPos = new global::SC2APIProtocol.Point();
+                            }
+                            input.ReadMessage(WorldPos);
+                            break;
+                        }
+                    case 40:
+                        {
+                            Size = input.ReadUInt32();
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Display debug lines on screen.
+    /// </summary>
+    public sealed partial class DebugLine : pb::IMessage<DebugLine>
+    {
+        private static readonly pb::MessageParser<DebugLine> _parser = new pb::MessageParser<DebugLine>(() => new DebugLine());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugLine> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[5]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugLine()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugLine(DebugLine other) : this()
+        {
+            color_ = other.HasColor ? other.color_.Clone() : null;
+            line_ = other.HasLine ? other.line_.Clone() : null;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugLine Clone()
+        {
+            return new DebugLine(this);
+        }
+
+        /// <summary>Field number for the "color" field.</summary>
+        public const int ColorFieldNumber = 1;
+        private global::SC2APIProtocol.Color color_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Color Color
+        {
+            get { return color_; }
+            set
+            {
+                color_ = value;
+            }
+        }
+        /// <summary>Gets whether the color field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasColor
+        {
+            get { return color_ != null; }
+        }
+        /// <summary>Clears the value of the color field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearColor()
+        {
+            color_ = null;
+        }
+
+        /// <summary>Field number for the "line" field.</summary>
+        public const int LineFieldNumber = 2;
+        private global::SC2APIProtocol.Line line_;
+        /// <summary>
+        /// World space line.
+        /// </summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Line Line
+        {
+            get { return line_; }
+            set
+            {
+                line_ = value;
+            }
+        }
+        /// <summary>Gets whether the line field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasLine
+        {
+            get { return line_ != null; }
+        }
+        /// <summary>Clears the value of the line field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearLine()
+        {
+            line_ = null;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugLine);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugLine other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(Color, other.Color)) return false;
+            if (!object.Equals(Line, other.Line)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasColor) hash ^= Color.GetHashCode();
+            if (HasLine) hash ^= Line.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasColor)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(Color);
+            }
+            if (HasLine)
+            {
+                output.WriteRawTag(18);
+                output.WriteMessage(Line);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasColor)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+            }
+            if (HasLine)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Line);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugLine other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasColor)
+            {
+                if (!HasColor)
+                {
+                    Color = new global::SC2APIProtocol.Color();
+                }
+                Color.MergeFrom(other.Color);
+            }
+            if (other.HasLine)
+            {
+                if (!HasLine)
+                {
+                    Line = new global::SC2APIProtocol.Line();
+                }
+                Line.MergeFrom(other.Line);
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            if (!HasColor)
+                            {
+                                Color = new global::SC2APIProtocol.Color();
+                            }
+                            input.ReadMessage(Color);
+                            break;
+                        }
+                    case 18:
+                        {
+                            if (!HasLine)
+                            {
+                                Line = new global::SC2APIProtocol.Line();
+                            }
+                            input.ReadMessage(Line);
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Display debug boxes on screen.
+    /// </summary>
+    public sealed partial class DebugBox : pb::IMessage<DebugBox>
+    {
+        private static readonly pb::MessageParser<DebugBox> _parser = new pb::MessageParser<DebugBox>(() => new DebugBox());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugBox> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[6]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugBox()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugBox(DebugBox other) : this()
+        {
+            color_ = other.HasColor ? other.color_.Clone() : null;
+            min_ = other.HasMin ? other.min_.Clone() : null;
+            max_ = other.HasMax ? other.max_.Clone() : null;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugBox Clone()
+        {
+            return new DebugBox(this);
+        }
+
+        /// <summary>Field number for the "color" field.</summary>
+        public const int ColorFieldNumber = 1;
+        private global::SC2APIProtocol.Color color_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Color Color
+        {
+            get { return color_; }
+            set
+            {
+                color_ = value;
+            }
+        }
+        /// <summary>Gets whether the color field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasColor
+        {
+            get { return color_ != null; }
+        }
+        /// <summary>Clears the value of the color field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearColor()
+        {
+            color_ = null;
+        }
+
+        /// <summary>Field number for the "min" field.</summary>
+        public const int MinFieldNumber = 2;
+        private global::SC2APIProtocol.Point min_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point Min
+        {
+            get { return min_; }
+            set
+            {
+                min_ = value;
+            }
+        }
+        /// <summary>Gets whether the min field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMin
+        {
+            get { return min_ != null; }
+        }
+        /// <summary>Clears the value of the min field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMin()
+        {
+            min_ = null;
+        }
+
+        /// <summary>Field number for the "max" field.</summary>
+        public const int MaxFieldNumber = 3;
+        private global::SC2APIProtocol.Point max_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point Max
+        {
+            get { return max_; }
+            set
+            {
+                max_ = value;
+            }
+        }
+        /// <summary>Gets whether the max field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasMax
+        {
+            get { return max_ != null; }
+        }
+        /// <summary>Clears the value of the max field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearMax()
+        {
+            max_ = null;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugBox);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugBox other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(Color, other.Color)) return false;
+            if (!object.Equals(Min, other.Min)) return false;
+            if (!object.Equals(Max, other.Max)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasColor) hash ^= Color.GetHashCode();
+            if (HasMin) hash ^= Min.GetHashCode();
+            if (HasMax) hash ^= Max.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasColor)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(Color);
+            }
+            if (HasMin)
+            {
+                output.WriteRawTag(18);
+                output.WriteMessage(Min);
+            }
+            if (HasMax)
+            {
+                output.WriteRawTag(26);
+                output.WriteMessage(Max);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasColor)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+            }
+            if (HasMin)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Min);
+            }
+            if (HasMax)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Max);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugBox other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasColor)
+            {
+                if (!HasColor)
+                {
+                    Color = new global::SC2APIProtocol.Color();
+                }
+                Color.MergeFrom(other.Color);
+            }
+            if (other.HasMin)
+            {
+                if (!HasMin)
+                {
+                    Min = new global::SC2APIProtocol.Point();
+                }
+                Min.MergeFrom(other.Min);
+            }
+            if (other.HasMax)
+            {
+                if (!HasMax)
+                {
+                    Max = new global::SC2APIProtocol.Point();
+                }
+                Max.MergeFrom(other.Max);
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            if (!HasColor)
+                            {
+                                Color = new global::SC2APIProtocol.Color();
+                            }
+                            input.ReadMessage(Color);
+                            break;
+                        }
+                    case 18:
+                        {
+                            if (!HasMin)
+                            {
+                                Min = new global::SC2APIProtocol.Point();
+                            }
+                            input.ReadMessage(Min);
+                            break;
+                        }
+                    case 26:
+                        {
+                            if (!HasMax)
+                            {
+                                Max = new global::SC2APIProtocol.Point();
+                            }
+                            input.ReadMessage(Max);
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// Display debug spheres on screen.
+    /// </summary>
+    public sealed partial class DebugSphere : pb::IMessage<DebugSphere>
+    {
+        private static readonly pb::MessageParser<DebugSphere> _parser = new pb::MessageParser<DebugSphere>(() => new DebugSphere());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugSphere> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[7]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSphere()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSphere(DebugSphere other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            color_ = other.HasColor ? other.color_.Clone() : null;
+            p_ = other.HasP ? other.p_.Clone() : null;
+            r_ = other.r_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSphere Clone()
+        {
+            return new DebugSphere(this);
+        }
+
+        /// <summary>Field number for the "color" field.</summary>
+        public const int ColorFieldNumber = 1;
+        private global::SC2APIProtocol.Color color_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Color Color
+        {
+            get { return color_; }
+            set
+            {
+                color_ = value;
+            }
+        }
+        /// <summary>Gets whether the color field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasColor
+        {
+            get { return color_ != null; }
+        }
+        /// <summary>Clears the value of the color field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearColor()
+        {
+            color_ = null;
+        }
+
+        /// <summary>Field number for the "p" field.</summary>
+        public const int PFieldNumber = 2;
+        private global::SC2APIProtocol.Point p_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point P
+        {
+            get { return p_; }
+            set
+            {
+                p_ = value;
+            }
+        }
+        /// <summary>Gets whether the p field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasP
+        {
+            get { return p_ != null; }
+        }
+        /// <summary>Clears the value of the p field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearP()
+        {
+            p_ = null;
+        }
+
+        /// <summary>Field number for the "r" field.</summary>
+        public const int RFieldNumber = 3;
+        private readonly static float RDefaultValue = 0F;
+
+        private float r_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public float R
+        {
+            get { if ((_hasBits0 & 1) != 0) { return r_; } else { return RDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                r_ = value;
+            }
+        }
+        /// <summary>Gets whether the "r" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasR
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "r" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearR()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugSphere);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugSphere other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!object.Equals(Color, other.Color)) return false;
+            if (!object.Equals(P, other.P)) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(R, other.R)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasColor) hash ^= Color.GetHashCode();
+            if (HasP) hash ^= P.GetHashCode();
+            if (HasR) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(R);
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasColor)
+            {
+                output.WriteRawTag(10);
+                output.WriteMessage(Color);
+            }
+            if (HasP)
+            {
+                output.WriteRawTag(18);
+                output.WriteMessage(P);
+            }
+            if (HasR)
+            {
+                output.WriteRawTag(29);
+                output.WriteFloat(R);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasColor)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Color);
+            }
+            if (HasP)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(P);
+            }
+            if (HasR)
+            {
+                size += 1 + 4;
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugSphere other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasColor)
+            {
+                if (!HasColor)
+                {
+                    Color = new global::SC2APIProtocol.Color();
+                }
+                Color.MergeFrom(other.Color);
+            }
+            if (other.HasP)
+            {
+                if (!HasP)
+                {
+                    P = new global::SC2APIProtocol.Point();
+                }
+                P.MergeFrom(other.P);
+            }
+            if (other.HasR)
+            {
+                R = other.R;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                        {
+                            if (!HasColor)
+                            {
+                                Color = new global::SC2APIProtocol.Color();
+                            }
+                            input.ReadMessage(Color);
+                            break;
+                        }
+                    case 18:
+                        {
+                            if (!HasP)
+                            {
+                                P = new global::SC2APIProtocol.Point();
+                            }
+                            input.ReadMessage(P);
+                            break;
+                        }
+                    case 29:
+                        {
+                            R = input.ReadFloat();
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    public sealed partial class DebugCreateUnit : pb::IMessage<DebugCreateUnit>
+    {
+        private static readonly pb::MessageParser<DebugCreateUnit> _parser = new pb::MessageParser<DebugCreateUnit>(() => new DebugCreateUnit());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugCreateUnit> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[8]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugCreateUnit()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugCreateUnit(DebugCreateUnit other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            unitType_ = other.unitType_;
+            owner_ = other.owner_;
+            pos_ = other.HasPos ? other.pos_.Clone() : null;
+            quantity_ = other.quantity_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugCreateUnit Clone()
+        {
+            return new DebugCreateUnit(this);
+        }
+
+        /// <summary>Field number for the "unit_type" field.</summary>
+        public const int UnitTypeFieldNumber = 1;
+        private readonly static uint UnitTypeDefaultValue = 0;
+
+        private uint unitType_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint UnitType
+        {
+            get { if ((_hasBits0 & 1) != 0) { return unitType_; } else { return UnitTypeDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                unitType_ = value;
+            }
+        }
+        /// <summary>Gets whether the "unit_type" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUnitType
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "unit_type" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUnitType()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        /// <summary>Field number for the "owner" field.</summary>
+        public const int OwnerFieldNumber = 2;
+        private readonly static int OwnerDefaultValue = 0;
+
+        private int owner_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int Owner
+        {
+            get { if ((_hasBits0 & 2) != 0) { return owner_; } else { return OwnerDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 2;
+                owner_ = value;
+            }
+        }
+        /// <summary>Gets whether the "owner" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasOwner
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "owner" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearOwner()
+        {
+            _hasBits0 &= ~2;
+        }
+
+        /// <summary>Field number for the "pos" field.</summary>
+        public const int PosFieldNumber = 3;
+        private global::SC2APIProtocol.Point2D pos_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.Point2D Pos
+        {
+            get { return pos_; }
+            set
+            {
+                pos_ = value;
+            }
+        }
+        /// <summary>Gets whether the pos field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasPos
+        {
+            get { return pos_ != null; }
+        }
+        /// <summary>Clears the value of the pos field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearPos()
+        {
+            pos_ = null;
+        }
+
+        /// <summary>Field number for the "quantity" field.</summary>
+        public const int QuantityFieldNumber = 4;
+        private readonly static uint QuantityDefaultValue = 0;
+
+        private uint quantity_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public uint Quantity
+        {
+            get { if ((_hasBits0 & 4) != 0) { return quantity_; } else { return QuantityDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 4;
+                quantity_ = value;
+            }
+        }
+        /// <summary>Gets whether the "quantity" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasQuantity
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "quantity" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearQuantity()
+        {
+            _hasBits0 &= ~4;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugCreateUnit);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugCreateUnit other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (UnitType != other.UnitType) return false;
+            if (Owner != other.Owner) return false;
+            if (!object.Equals(Pos, other.Pos)) return false;
+            if (Quantity != other.Quantity) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasUnitType) hash ^= UnitType.GetHashCode();
+            if (HasOwner) hash ^= Owner.GetHashCode();
+            if (HasPos) hash ^= Pos.GetHashCode();
+            if (HasQuantity) hash ^= Quantity.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasUnitType)
+            {
+                output.WriteRawTag(8);
+                output.WriteUInt32(UnitType);
+            }
+            if (HasOwner)
+            {
+                output.WriteRawTag(16);
+                output.WriteInt32(Owner);
+            }
+            if (HasPos)
+            {
+                output.WriteRawTag(26);
+                output.WriteMessage(Pos);
+            }
+            if (HasQuantity)
+            {
+                output.WriteRawTag(32);
+                output.WriteUInt32(Quantity);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasUnitType)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitType);
+            }
+            if (HasOwner)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeInt32Size(Owner);
+            }
+            if (HasPos)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Pos);
+            }
+            if (HasQuantity)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Quantity);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugCreateUnit other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasUnitType)
+            {
+                UnitType = other.UnitType;
+            }
+            if (other.HasOwner)
+            {
+                Owner = other.Owner;
+            }
+            if (other.HasPos)
+            {
+                if (!HasPos)
+                {
+                    Pos = new global::SC2APIProtocol.Point2D();
+                }
+                Pos.MergeFrom(other.Pos);
+            }
+            if (other.HasQuantity)
+            {
+                Quantity = other.Quantity;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 8:
+                        {
+                            UnitType = input.ReadUInt32();
+                            break;
+                        }
+                    case 16:
+                        {
+                            Owner = input.ReadInt32();
+                            break;
+                        }
+                    case 26:
+                        {
+                            if (!HasPos)
+                            {
+                                Pos = new global::SC2APIProtocol.Point2D();
+                            }
+                            input.ReadMessage(Pos);
+                            break;
+                        }
+                    case 32:
+                        {
+                            Quantity = input.ReadUInt32();
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    public sealed partial class DebugKillUnit : pb::IMessage<DebugKillUnit>
+    {
+        private static readonly pb::MessageParser<DebugKillUnit> _parser = new pb::MessageParser<DebugKillUnit>(() => new DebugKillUnit());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugKillUnit> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[9]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugKillUnit()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugKillUnit(DebugKillUnit other) : this()
+        {
+            tag_ = other.tag_.Clone();
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugKillUnit Clone()
+        {
+            return new DebugKillUnit(this);
+        }
+
+        /// <summary>Field number for the "tag" field.</summary>
+        public const int TagFieldNumber = 1;
+        private static readonly pb::FieldCodec<ulong> _repeated_tag_codec
+            = pb::FieldCodec.ForUInt64(8);
+        private readonly pbc::RepeatedField<ulong> tag_ = new pbc::RepeatedField<ulong>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public pbc::RepeatedField<ulong> Tag
+        {
+            get { return tag_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugKillUnit);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugKillUnit other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!tag_.Equals(other.tag_)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            hash ^= tag_.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            tag_.WriteTo(output, _repeated_tag_codec);
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            size += tag_.CalculateSize(_repeated_tag_codec);
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugKillUnit other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            tag_.Add(other.tag_);
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 10:
+                    case 8:
+                        {
+                            tag_.AddEntriesFrom(input, _repeated_tag_codec);
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    public sealed partial class DebugTestProcess : pb::IMessage<DebugTestProcess>
+    {
+        private static readonly pb::MessageParser<DebugTestProcess> _parser = new pb::MessageParser<DebugTestProcess>(() => new DebugTestProcess());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugTestProcess> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[10]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugTestProcess()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugTestProcess(DebugTestProcess other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            test_ = other.test_;
+            delayMs_ = other.delayMs_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugTestProcess Clone()
+        {
+            return new DebugTestProcess(this);
+        }
+
+        /// <summary>Field number for the "test" field.</summary>
+        public const int TestFieldNumber = 1;
+        private readonly static global::SC2APIProtocol.DebugTestProcess.Types.Test TestDefaultValue = global::SC2APIProtocol.DebugTestProcess.Types.Test.Hang;
+
+        private global::SC2APIProtocol.DebugTestProcess.Types.Test test_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugTestProcess.Types.Test Test
+        {
+            get { if ((_hasBits0 & 1) != 0) { return test_; } else { return TestDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                test_ = value;
+            }
+        }
+        /// <summary>Gets whether the "test" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasTest
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "test" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearTest()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        /// <summary>Field number for the "delay_ms" field.</summary>
+        public const int DelayMsFieldNumber = 2;
+        private readonly static int DelayMsDefaultValue = 0;
+
+        private int delayMs_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int DelayMs
+        {
+            get { if ((_hasBits0 & 2) != 0) { return delayMs_; } else { return DelayMsDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 2;
+                delayMs_ = value;
+            }
+        }
+        /// <summary>Gets whether the "delay_ms" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasDelayMs
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "delay_ms" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearDelayMs()
+        {
+            _hasBits0 &= ~2;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugTestProcess);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugTestProcess other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (Test != other.Test) return false;
+            if (DelayMs != other.DelayMs) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasTest) hash ^= Test.GetHashCode();
+            if (HasDelayMs) hash ^= DelayMs.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasTest)
+            {
+                output.WriteRawTag(8);
+                output.WriteEnum((int)Test);
+            }
+            if (HasDelayMs)
+            {
+                output.WriteRawTag(16);
+                output.WriteInt32(DelayMs);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasTest)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)Test);
+            }
+            if (HasDelayMs)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeInt32Size(DelayMs);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugTestProcess other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasTest)
+            {
+                Test = other.Test;
+            }
+            if (other.HasDelayMs)
+            {
+                DelayMs = other.DelayMs;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 8:
+                        {
+                            Test = (global::SC2APIProtocol.DebugTestProcess.Types.Test)input.ReadEnum();
+                            break;
+                        }
+                    case 16:
+                        {
+                            DelayMs = input.ReadInt32();
+                            break;
+                        }
+                }
+            }
+        }
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the DebugTestProcess message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static partial class Types
+        {
+            public enum Test
+            {
+                [pbr::OriginalName("hang")] Hang = 1,
+                [pbr::OriginalName("crash")] Crash = 2,
+                [pbr::OriginalName("exit")] Exit = 3,
+            }
+
+        }
+        #endregion
+
+    }
+
+    public sealed partial class DebugSetScore : pb::IMessage<DebugSetScore>
+    {
+        private static readonly pb::MessageParser<DebugSetScore> _parser = new pb::MessageParser<DebugSetScore>(() => new DebugSetScore());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugSetScore> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[11]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSetScore()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSetScore(DebugSetScore other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            score_ = other.score_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSetScore Clone()
+        {
+            return new DebugSetScore(this);
+        }
+
+        /// <summary>Field number for the "score" field.</summary>
+        public const int ScoreFieldNumber = 1;
+        private readonly static float ScoreDefaultValue = 0F;
+
+        private float score_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public float Score
+        {
+            get { if ((_hasBits0 & 1) != 0) { return score_; } else { return ScoreDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                score_ = value;
+            }
+        }
+        /// <summary>Gets whether the "score" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasScore
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "score" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearScore()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugSetScore);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugSetScore other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Score, other.Score)) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasScore) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Score);
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasScore)
+            {
+                output.WriteRawTag(13);
+                output.WriteFloat(Score);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasScore)
+            {
+                size += 1 + 4;
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugSetScore other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasScore)
+            {
+                Score = other.Score;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 13:
+                        {
+                            Score = input.ReadFloat();
+                            break;
+                        }
+                }
+            }
+        }
+
+    }
+
+    public sealed partial class DebugEndGame : pb::IMessage<DebugEndGame>
+    {
+        private static readonly pb::MessageParser<DebugEndGame> _parser = new pb::MessageParser<DebugEndGame>(() => new DebugEndGame());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugEndGame> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[12]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugEndGame()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugEndGame(DebugEndGame other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            endResult_ = other.endResult_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugEndGame Clone()
+        {
+            return new DebugEndGame(this);
+        }
+
+        /// <summary>Field number for the "end_result" field.</summary>
+        public const int EndResultFieldNumber = 1;
+        private readonly static global::SC2APIProtocol.DebugEndGame.Types.EndResult EndResultDefaultValue = global::SC2APIProtocol.DebugEndGame.Types.EndResult.Surrender;
+
+        private global::SC2APIProtocol.DebugEndGame.Types.EndResult endResult_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugEndGame.Types.EndResult EndResult
+        {
+            get { if ((_hasBits0 & 1) != 0) { return endResult_; } else { return EndResultDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                endResult_ = value;
+            }
+        }
+        /// <summary>Gets whether the "end_result" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasEndResult
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "end_result" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearEndResult()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugEndGame);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugEndGame other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (EndResult != other.EndResult) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasEndResult) hash ^= EndResult.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasEndResult)
+            {
+                output.WriteRawTag(8);
+                output.WriteEnum((int)EndResult);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasEndResult)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)EndResult);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugEndGame other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasEndResult)
+            {
+                EndResult = other.EndResult;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 8:
+                        {
+                            EndResult = (global::SC2APIProtocol.DebugEndGame.Types.EndResult)input.ReadEnum();
+                            break;
+                        }
+                }
+            }
+        }
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the DebugEndGame message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static partial class Types
+        {
+            public enum EndResult
+            {
+                /// <summary>
+                /// Default if nothing is set. The current player admits defeat.
+                /// </summary>
+                [pbr::OriginalName("Surrender")] Surrender = 1,
+                [pbr::OriginalName("DeclareVictory")] DeclareVictory = 2,
+            }
+
+        }
+        #endregion
+
+    }
+
+    public sealed partial class DebugSetUnitValue : pb::IMessage<DebugSetUnitValue>
+    {
+        private static readonly pb::MessageParser<DebugSetUnitValue> _parser = new pb::MessageParser<DebugSetUnitValue>(() => new DebugSetUnitValue());
+        private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pb::MessageParser<DebugSetUnitValue> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static pbr::MessageDescriptor Descriptor
+        {
+            get { return global::SC2APIProtocol.DebugReflection.Descriptor.MessageTypes[13]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        pbr::MessageDescriptor pb::IMessage.Descriptor
+        {
+            get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSetUnitValue()
+        {
+            OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSetUnitValue(DebugSetUnitValue other) : this()
+        {
+            _hasBits0 = other._hasBits0;
+            unitValue_ = other.unitValue_;
+            value_ = other.value_;
+            unitTag_ = other.unitTag_;
+            _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public DebugSetUnitValue Clone()
+        {
+            return new DebugSetUnitValue(this);
+        }
+
+        /// <summary>Field number for the "unit_value" field.</summary>
+        public const int UnitValueFieldNumber = 1;
+        private readonly static global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue UnitValueDefaultValue = global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue.Energy;
+
+        private global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue unitValue_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue UnitValue
+        {
+            get { if ((_hasBits0 & 1) != 0) { return unitValue_; } else { return UnitValueDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 1;
+                unitValue_ = value;
+            }
+        }
+        /// <summary>Gets whether the "unit_value" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUnitValue
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "unit_value" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUnitValue()
+        {
+            _hasBits0 &= ~1;
+        }
+
+        /// <summary>Field number for the "value" field.</summary>
+        public const int ValueFieldNumber = 2;
+        private readonly static float ValueDefaultValue = 0F;
+
+        private float value_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public float Value
+        {
+            get { if ((_hasBits0 & 2) != 0) { return value_; } else { return ValueDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 2;
+                value_ = value;
+            }
+        }
+        /// <summary>Gets whether the "value" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasValue
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "value" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearValue()
+        {
+            _hasBits0 &= ~2;
+        }
+
+        /// <summary>Field number for the "unit_tag" field.</summary>
+        public const int UnitTagFieldNumber = 3;
+        private readonly static ulong UnitTagDefaultValue = 0UL;
+
+        private ulong unitTag_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public ulong UnitTag
+        {
+            get { if ((_hasBits0 & 4) != 0) { return unitTag_; } else { return UnitTagDefaultValue; } }
+            set
+            {
+                _hasBits0 |= 4;
+                unitTag_ = value;
+            }
+        }
+        /// <summary>Gets whether the "unit_tag" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasUnitTag
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "unit_tag" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearUnitTag()
+        {
+            _hasBits0 &= ~4;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override bool Equals(object other)
+        {
+            return Equals(other as DebugSetUnitValue);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool Equals(DebugSetUnitValue other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(other, this))
+            {
+                return true;
+            }
+            if (UnitValue != other.UnitValue) return false;
+            if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Value, other.Value)) return false;
+            if (UnitTag != other.UnitTag) return false;
+            return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            if (HasUnitValue) hash ^= UnitValue.GetHashCode();
+            if (HasValue) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Value);
+            if (HasUnitTag) hash ^= UnitTag.GetHashCode();
+            if (_unknownFields != null)
+            {
+                hash ^= _unknownFields.GetHashCode();
+            }
+            return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public override string ToString()
+        {
+            return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void WriteTo(pb::CodedOutputStream output)
+        {
+            if (HasUnitValue)
+            {
+                output.WriteRawTag(8);
+                output.WriteEnum((int)UnitValue);
+            }
+            if (HasValue)
+            {
+                output.WriteRawTag(21);
+                output.WriteFloat(Value);
+            }
+            if (HasUnitTag)
+            {
+                output.WriteRawTag(24);
+                output.WriteUInt64(UnitTag);
+            }
+            if (_unknownFields != null)
+            {
+                _unknownFields.WriteTo(output);
+            }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public int CalculateSize()
+        {
+            int size = 0;
+            if (HasUnitValue)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeEnumSize((int)UnitValue);
+            }
+            if (HasValue)
+            {
+                size += 1 + 4;
+            }
+            if (HasUnitTag)
+            {
+                size += 1 + pb::CodedOutputStream.ComputeUInt64Size(UnitTag);
+            }
+            if (_unknownFields != null)
+            {
+                size += _unknownFields.CalculateSize();
+            }
+            return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(DebugSetUnitValue other)
+        {
+            if (other == null)
+            {
+                return;
+            }
+            if (other.HasUnitValue)
+            {
+                UnitValue = other.UnitValue;
+            }
+            if (other.HasValue)
+            {
+                Value = other.Value;
+            }
+            if (other.HasUnitTag)
+            {
+                UnitTag = other.UnitTag;
+            }
+            _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void MergeFrom(pb::CodedInputStream input)
+        {
+            uint tag;
+            while ((tag = input.ReadTag()) != 0)
+            {
+                switch (tag)
+                {
+                    default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                    case 8:
+                        {
+                            UnitValue = (global::SC2APIProtocol.DebugSetUnitValue.Types.UnitValue)input.ReadEnum();
+                            break;
+                        }
+                    case 21:
+                        {
+                            Value = input.ReadFloat();
+                            break;
+                        }
+                    case 24:
+                        {
+                            UnitTag = input.ReadUInt64();
+                            break;
+                        }
+                }
+            }
+        }
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the DebugSetUnitValue message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public static partial class Types
+        {
+            public enum UnitValue
+            {
+                [pbr::OriginalName("Energy")] Energy = 1,
+                [pbr::OriginalName("Life")] Life = 2,
+                [pbr::OriginalName("Shields")] Shields = 3,
+            }
+
+        }
+        #endregion
+
+    }
+
     #endregion
-
-  }
-
-  #endregion
 
 }
 

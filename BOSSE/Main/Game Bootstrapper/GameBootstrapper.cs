@@ -101,11 +101,11 @@ namespace BOSSE
 
             if (response.CreateGame == null)
             {
-                throw new BosseFatalException();
+                throw new BosseFatalException("Cannot start game, try restarting sc2");
             }
-            if (response.CreateGame.Error != ResponseCreateGame.Types.Error.Unset)
+            if (response.CreateGame.Error > 0)
             {
-                Log.Error("CreateGame error: " + response.CreateGame.Error.ToString());
+                Log.Error("CreateGame error: " + response.CreateGame.Error);
                 if (!String.IsNullOrEmpty(response.CreateGame.ErrorDetails))
                 {
                     Log.Error(response.CreateGame.ErrorDetails);
@@ -157,9 +157,9 @@ namespace BOSSE
             request.JoinGame = joinGame;
             var response = CheckResponse(await proxy.SendRequest(request));
 
-            if (response.JoinGame.Error != ResponseJoinGame.Types.Error.Unset)
+            if (response.JoinGame.Error > 0)
             {
-                Log.Error("JoinGame error:" + response.JoinGame.Error.ToString());
+                Log.Error("JoinGame error:" + response.JoinGame.Error);
                 if (!String.IsNullOrEmpty(response.JoinGame.ErrorDetails))
                 {
                     Log.Error(response.JoinGame.ErrorDetails);
@@ -192,9 +192,9 @@ namespace BOSSE
 
             var response = CheckResponse(await proxy.SendRequest(request));
 
-            if (response.JoinGame.Error != ResponseJoinGame.Types.Error.Unset)
+            if (response.JoinGame.Error > 0)
             {
-                Log.Error("JoinGame error: " + response.JoinGame.Error.ToString());
+                Log.Error("JoinGame error: " + response.JoinGame.Error);
                 if (!String.IsNullOrEmpty(response.JoinGame.ErrorDetails))
                 {
                     Log.Error(response.JoinGame.ErrorDetails);

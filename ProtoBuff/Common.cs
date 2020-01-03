@@ -9,9 +9,9 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
+
 namespace SC2APIProtocol
 {
-
     /// <summary>Holder for reflection information generated from s2clientprotocol/common.proto</summary>
     public static partial class CommonReflection
     {
@@ -38,18 +38,17 @@ namespace SC2APIProtocol
                   "aW50SSIfCgdQb2ludDJEEgkKAXgYASABKAISCQoBeRgCIAEoAiIoCgVQb2lu",
                   "dBIJCgF4GAEgASgCEgkKAXkYAiABKAISCQoBehgDIAEoAiIfCgdTaXplMkRJ",
                   "EgkKAXgYASABKAUSCQoBeRgCIAEoBSpBCgRSYWNlEgoKBk5vUmFjZRAAEgoK",
-                  "BlRlcnJhbhABEggKBFplcmcQAhILCgdQcm90b3NzEAMSCgoGUmFuZG9tEARi",
-                  "BnByb3RvMw=="));
+                  "BlRlcnJhbhABEggKBFplcmcQAhILCgdQcm90b3NzEAMSCgoGUmFuZG9tEAQ="));
             descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
                 new pbr::FileDescriptor[] { },
-                new pbr::GeneratedClrTypeInfo(new[] { typeof(global::SC2APIProtocol.Race), }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.AvailableAbility), global::SC2APIProtocol.AvailableAbility.Parser, new[]{ "AbilityId", "RequiresPoint" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ImageData), global::SC2APIProtocol.ImageData.Parser, new[]{ "BitsPerPixel", "Size", "Data" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PointI), global::SC2APIProtocol.PointI.Parser, new[]{ "X", "Y" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RectangleI), global::SC2APIProtocol.RectangleI.Parser, new[]{ "P0", "P1" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Point2D), global::SC2APIProtocol.Point2D.Parser, new[]{ "X", "Y" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Point), global::SC2APIProtocol.Point.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Size2DI), global::SC2APIProtocol.Size2DI.Parser, new[]{ "X", "Y" }, null, null, null)
+                new pbr::GeneratedClrTypeInfo(new[] { typeof(global::SC2APIProtocol.Race), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.AvailableAbility), global::SC2APIProtocol.AvailableAbility.Parser, new[]{ "AbilityId", "RequiresPoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.ImageData), global::SC2APIProtocol.ImageData.Parser, new[]{ "BitsPerPixel", "Size", "Data" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.PointI), global::SC2APIProtocol.PointI.Parser, new[]{ "X", "Y" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.RectangleI), global::SC2APIProtocol.RectangleI.Parser, new[]{ "P0", "P1" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Point2D), global::SC2APIProtocol.Point2D.Parser, new[]{ "X", "Y" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Point), global::SC2APIProtocol.Point.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::SC2APIProtocol.Size2DI), global::SC2APIProtocol.Size2DI.Parser, new[]{ "X", "Y" }, null, null, null, null)
                 }));
         }
         #endregion
@@ -72,6 +71,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<AvailableAbility> _parser = new pb::MessageParser<AvailableAbility>(() => new AvailableAbility());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<AvailableAbility> Parser { get { return _parser; } }
 
@@ -98,6 +98,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public AvailableAbility(AvailableAbility other) : this()
         {
+            _hasBits0 = other._hasBits0;
             abilityId_ = other.abilityId_;
             requiresPoint_ = other.requiresPoint_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -111,28 +112,58 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "ability_id" field.</summary>
         public const int AbilityIdFieldNumber = 1;
+        private readonly static int AbilityIdDefaultValue = 0;
+
         private int abilityId_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int AbilityId
         {
-            get { return abilityId_; }
+            get { if ((_hasBits0 & 1) != 0) { return abilityId_; } else { return AbilityIdDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 abilityId_ = value;
             }
+        }
+        /// <summary>Gets whether the "ability_id" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasAbilityId
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "ability_id" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearAbilityId()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "requires_point" field.</summary>
         public const int RequiresPointFieldNumber = 2;
+        private readonly static bool RequiresPointDefaultValue = false;
+
         private bool requiresPoint_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public bool RequiresPoint
         {
-            get { return requiresPoint_; }
+            get { if ((_hasBits0 & 2) != 0) { return requiresPoint_; } else { return RequiresPointDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 requiresPoint_ = value;
             }
+        }
+        /// <summary>Gets whether the "requires_point" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasRequiresPoint
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "requires_point" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearRequiresPoint()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -161,8 +192,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (AbilityId != 0) hash ^= AbilityId.GetHashCode();
-            if (RequiresPoint != false) hash ^= RequiresPoint.GetHashCode();
+            if (HasAbilityId) hash ^= AbilityId.GetHashCode();
+            if (HasRequiresPoint) hash ^= RequiresPoint.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -179,12 +210,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (AbilityId != 0)
+            if (HasAbilityId)
             {
                 output.WriteRawTag(8);
                 output.WriteInt32(AbilityId);
             }
-            if (RequiresPoint != false)
+            if (HasRequiresPoint)
             {
                 output.WriteRawTag(16);
                 output.WriteBool(RequiresPoint);
@@ -199,11 +230,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (AbilityId != 0)
+            if (HasAbilityId)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(AbilityId);
             }
-            if (RequiresPoint != false)
+            if (HasRequiresPoint)
             {
                 size += 1 + 1;
             }
@@ -221,11 +252,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.AbilityId != 0)
+            if (other.HasAbilityId)
             {
                 AbilityId = other.AbilityId;
             }
-            if (other.RequiresPoint != false)
+            if (other.HasRequiresPoint)
             {
                 RequiresPoint = other.RequiresPoint;
             }
@@ -263,6 +294,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<ImageData> _parser = new pb::MessageParser<ImageData>(() => new ImageData());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<ImageData> Parser { get { return _parser; } }
 
@@ -289,8 +321,9 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public ImageData(ImageData other) : this()
         {
+            _hasBits0 = other._hasBits0;
             bitsPerPixel_ = other.bitsPerPixel_;
-            Size = other.size_ != null ? other.Size.Clone() : null;
+            size_ = other.HasSize ? other.size_.Clone() : null;
             data_ = other.data_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
@@ -303,6 +336,8 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "bits_per_pixel" field.</summary>
         public const int BitsPerPixelFieldNumber = 1;
+        private readonly static int BitsPerPixelDefaultValue = 0;
+
         private int bitsPerPixel_;
         /// <summary>
         /// Number of bits per pixel; 8 bits for a byte etc.
@@ -310,11 +345,24 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int BitsPerPixel
         {
-            get { return bitsPerPixel_; }
+            get { if ((_hasBits0 & 1) != 0) { return bitsPerPixel_; } else { return BitsPerPixelDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 bitsPerPixel_ = value;
             }
+        }
+        /// <summary>Gets whether the "bits_per_pixel" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasBitsPerPixel
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "bits_per_pixel" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearBitsPerPixel()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "size" field.</summary>
@@ -332,21 +380,47 @@ namespace SC2APIProtocol
                 size_ = value;
             }
         }
+        /// <summary>Gets whether the size field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasSize
+        {
+            get { return size_ != null; }
+        }
+        /// <summary>Clears the value of the size field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearSize()
+        {
+            size_ = null;
+        }
 
         /// <summary>Field number for the "data" field.</summary>
         public const int DataFieldNumber = 3;
-        private pb::ByteString data_ = pb::ByteString.Empty;
+        private readonly static pb::ByteString DataDefaultValue = pb::ByteString.Empty;
+
+        private pb::ByteString data_;
         /// <summary>
         /// Binary data; the size of this buffer in bytes is width * height * bits_per_pixel / 8.
         /// </summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public pb::ByteString Data
         {
-            get { return data_; }
+            get { return data_ ?? DataDefaultValue; }
             set
             {
                 data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
+        }
+        /// <summary>Gets whether the "data" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasData
+        {
+            get { return data_ != null; }
+        }
+        /// <summary>Clears the value of the "data" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearData()
+        {
+            data_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -376,9 +450,9 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (BitsPerPixel != 0) hash ^= BitsPerPixel.GetHashCode();
-            if (size_ != null) hash ^= Size.GetHashCode();
-            if (Data.Length != 0) hash ^= Data.GetHashCode();
+            if (HasBitsPerPixel) hash ^= BitsPerPixel.GetHashCode();
+            if (HasSize) hash ^= Size.GetHashCode();
+            if (HasData) hash ^= Data.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -395,17 +469,17 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (BitsPerPixel != 0)
+            if (HasBitsPerPixel)
             {
                 output.WriteRawTag(8);
                 output.WriteInt32(BitsPerPixel);
             }
-            if (size_ != null)
+            if (HasSize)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(Size);
             }
-            if (Data.Length != 0)
+            if (HasData)
             {
                 output.WriteRawTag(26);
                 output.WriteBytes(Data);
@@ -420,15 +494,15 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (BitsPerPixel != 0)
+            if (HasBitsPerPixel)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(BitsPerPixel);
             }
-            if (size_ != null)
+            if (HasSize)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(Size);
             }
-            if (Data.Length != 0)
+            if (HasData)
             {
                 size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
             }
@@ -446,19 +520,19 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.BitsPerPixel != 0)
+            if (other.HasBitsPerPixel)
             {
                 BitsPerPixel = other.BitsPerPixel;
             }
-            if (other.size_ != null)
+            if (other.HasSize)
             {
-                if (size_ == null)
+                if (!HasSize)
                 {
-                    size_ = new global::SC2APIProtocol.Size2DI();
+                    Size = new global::SC2APIProtocol.Size2DI();
                 }
                 Size.MergeFrom(other.Size);
             }
-            if (other.Data.Length != 0)
+            if (other.HasData)
             {
                 Data = other.Data;
             }
@@ -483,11 +557,11 @@ namespace SC2APIProtocol
                         }
                     case 18:
                         {
-                            if (size_ == null)
+                            if (!HasSize)
                             {
-                                size_ = new global::SC2APIProtocol.Size2DI();
+                                Size = new global::SC2APIProtocol.Size2DI();
                             }
-                            input.ReadMessage(size_);
+                            input.ReadMessage(Size);
                             break;
                         }
                     case 26:
@@ -509,6 +583,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<PointI> _parser = new pb::MessageParser<PointI>(() => new PointI());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<PointI> Parser { get { return _parser; } }
 
@@ -535,6 +610,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public PointI(PointI other) : this()
         {
+            _hasBits0 = other._hasBits0;
             x_ = other.x_;
             y_ = other.y_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -548,28 +624,58 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "x" field.</summary>
         public const int XFieldNumber = 1;
+        private readonly static int XDefaultValue = 0;
+
         private int x_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int X
         {
-            get { return x_; }
+            get { if ((_hasBits0 & 1) != 0) { return x_; } else { return XDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 x_ = value;
             }
+        }
+        /// <summary>Gets whether the "x" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasX
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "x" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearX()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "y" field.</summary>
         public const int YFieldNumber = 2;
+        private readonly static int YDefaultValue = 0;
+
         private int y_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int Y
         {
-            get { return y_; }
+            get { if ((_hasBits0 & 2) != 0) { return y_; } else { return YDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 y_ = value;
             }
+        }
+        /// <summary>Gets whether the "y" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasY
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "y" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearY()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -598,8 +704,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (X != 0) hash ^= X.GetHashCode();
-            if (Y != 0) hash ^= Y.GetHashCode();
+            if (HasX) hash ^= X.GetHashCode();
+            if (HasY) hash ^= Y.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -616,12 +722,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (X != 0)
+            if (HasX)
             {
                 output.WriteRawTag(8);
                 output.WriteInt32(X);
             }
-            if (Y != 0)
+            if (HasY)
             {
                 output.WriteRawTag(16);
                 output.WriteInt32(Y);
@@ -636,11 +742,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (X != 0)
+            if (HasX)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
             }
-            if (Y != 0)
+            if (HasY)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(Y);
             }
@@ -658,11 +764,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.X != 0)
+            if (other.HasX)
             {
                 X = other.X;
             }
-            if (other.Y != 0)
+            if (other.HasY)
             {
                 Y = other.Y;
             }
@@ -729,8 +835,8 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RectangleI(RectangleI other) : this()
         {
-            P0 = other.p0_ != null ? other.P0.Clone() : null;
-            P1 = other.p1_ != null ? other.P1.Clone() : null;
+            p0_ = other.HasP0 ? other.p0_.Clone() : null;
+            p1_ = other.HasP1 ? other.p1_.Clone() : null;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -752,6 +858,18 @@ namespace SC2APIProtocol
                 p0_ = value;
             }
         }
+        /// <summary>Gets whether the p0 field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasP0
+        {
+            get { return p0_ != null; }
+        }
+        /// <summary>Clears the value of the p0 field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearP0()
+        {
+            p0_ = null;
+        }
 
         /// <summary>Field number for the "p1" field.</summary>
         public const int P1FieldNumber = 2;
@@ -764,6 +882,18 @@ namespace SC2APIProtocol
             {
                 p1_ = value;
             }
+        }
+        /// <summary>Gets whether the p1 field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasP1
+        {
+            get { return p1_ != null; }
+        }
+        /// <summary>Clears the value of the p1 field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearP1()
+        {
+            p1_ = null;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -792,8 +922,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (p0_ != null) hash ^= P0.GetHashCode();
-            if (p1_ != null) hash ^= P1.GetHashCode();
+            if (HasP0) hash ^= P0.GetHashCode();
+            if (HasP1) hash ^= P1.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -810,12 +940,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (p0_ != null)
+            if (HasP0)
             {
                 output.WriteRawTag(10);
                 output.WriteMessage(P0);
             }
-            if (p1_ != null)
+            if (HasP1)
             {
                 output.WriteRawTag(18);
                 output.WriteMessage(P1);
@@ -830,11 +960,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (p0_ != null)
+            if (HasP0)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(P0);
             }
-            if (p1_ != null)
+            if (HasP1)
             {
                 size += 1 + pb::CodedOutputStream.ComputeMessageSize(P1);
             }
@@ -852,19 +982,19 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.p0_ != null)
+            if (other.HasP0)
             {
-                if (p0_ == null)
+                if (!HasP0)
                 {
-                    p0_ = new global::SC2APIProtocol.PointI();
+                    P0 = new global::SC2APIProtocol.PointI();
                 }
                 P0.MergeFrom(other.P0);
             }
-            if (other.p1_ != null)
+            if (other.HasP1)
             {
-                if (p1_ == null)
+                if (!HasP1)
                 {
-                    p1_ = new global::SC2APIProtocol.PointI();
+                    P1 = new global::SC2APIProtocol.PointI();
                 }
                 P1.MergeFrom(other.P1);
             }
@@ -884,20 +1014,20 @@ namespace SC2APIProtocol
                         break;
                     case 10:
                         {
-                            if (p0_ == null)
+                            if (!HasP0)
                             {
-                                p0_ = new global::SC2APIProtocol.PointI();
+                                P0 = new global::SC2APIProtocol.PointI();
                             }
-                            input.ReadMessage(p0_);
+                            input.ReadMessage(P0);
                             break;
                         }
                     case 18:
                         {
-                            if (p1_ == null)
+                            if (!HasP1)
                             {
-                                p1_ = new global::SC2APIProtocol.PointI();
+                                P1 = new global::SC2APIProtocol.PointI();
                             }
-                            input.ReadMessage(p1_);
+                            input.ReadMessage(P1);
                             break;
                         }
                 }
@@ -914,6 +1044,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<Point2D> _parser = new pb::MessageParser<Point2D>(() => new Point2D());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Point2D> Parser { get { return _parser; } }
 
@@ -935,23 +1066,24 @@ namespace SC2APIProtocol
             OnConstruction();
         }
 
-        // Human added 2019-12-14
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public Point2D(float x, float y)
-        {
-            x_ = x;
-            y_ = y;
-            OnConstruction();
-        }
-
         partial void OnConstruction();
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Point2D(Point2D other) : this()
         {
+            _hasBits0 = other._hasBits0;
             x_ = other.x_;
             y_ = other.y_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        // Human added 2019-12-14
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public Point2D(float x, float y)
+        {
+            OnConstruction();
+            this.X = x;
+            this.Y = y;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -962,28 +1094,58 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "x" field.</summary>
         public const int XFieldNumber = 1;
+        private readonly static float XDefaultValue = 0F;
+
         private float x_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float X
         {
-            get { return x_; }
+            get { if ((_hasBits0 & 1) != 0) { return x_; } else { return XDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 x_ = value;
             }
+        }
+        /// <summary>Gets whether the "x" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasX
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "x" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearX()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "y" field.</summary>
         public const int YFieldNumber = 2;
+        private readonly static float YDefaultValue = 0F;
+
         private float y_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float Y
         {
-            get { return y_; }
+            get { if ((_hasBits0 & 2) != 0) { return y_; } else { return YDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 y_ = value;
             }
+        }
+        /// <summary>Gets whether the "y" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasY
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "y" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearY()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1012,8 +1174,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (X != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(X);
-            if (Y != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Y);
+            if (HasX) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(X);
+            if (HasY) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Y);
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -1024,18 +1186,18 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public override string ToString()
         {
-            return pb::JsonFormatter.ToDiagnosticString(this);
+            return this.X + " " + this.Y;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (X != 0F)
+            if (HasX)
             {
                 output.WriteRawTag(13);
                 output.WriteFloat(X);
             }
-            if (Y != 0F)
+            if (HasY)
             {
                 output.WriteRawTag(21);
                 output.WriteFloat(Y);
@@ -1050,11 +1212,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (X != 0F)
+            if (HasX)
             {
                 size += 1 + 4;
             }
-            if (Y != 0F)
+            if (HasY)
             {
                 size += 1 + 4;
             }
@@ -1072,11 +1234,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.X != 0F)
+            if (other.HasX)
             {
                 X = other.X;
             }
-            if (other.Y != 0F)
+            if (other.HasY)
             {
                 Y = other.Y;
             }
@@ -1118,6 +1280,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<Point> _parser = new pb::MessageParser<Point>(() => new Point());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Point> Parser { get { return _parser; } }
 
@@ -1144,6 +1307,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Point(Point other) : this()
         {
+            _hasBits0 = other._hasBits0;
             x_ = other.x_;
             y_ = other.y_;
             z_ = other.z_;
@@ -1158,41 +1322,86 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "x" field.</summary>
         public const int XFieldNumber = 1;
+        private readonly static float XDefaultValue = 0F;
+
         private float x_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float X
         {
-            get { return x_; }
+            get { if ((_hasBits0 & 1) != 0) { return x_; } else { return XDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 x_ = value;
             }
+        }
+        /// <summary>Gets whether the "x" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasX
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "x" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearX()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "y" field.</summary>
         public const int YFieldNumber = 2;
+        private readonly static float YDefaultValue = 0F;
+
         private float y_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float Y
         {
-            get { return y_; }
+            get { if ((_hasBits0 & 2) != 0) { return y_; } else { return YDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 y_ = value;
             }
+        }
+        /// <summary>Gets whether the "y" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasY
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "y" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearY()
+        {
+            _hasBits0 &= ~2;
         }
 
         /// <summary>Field number for the "z" field.</summary>
         public const int ZFieldNumber = 3;
+        private readonly static float ZDefaultValue = 0F;
+
         private float z_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public float Z
         {
-            get { return z_; }
+            get { if ((_hasBits0 & 4) != 0) { return z_; } else { return ZDefaultValue; } }
             set
             {
+                _hasBits0 |= 4;
                 z_ = value;
             }
+        }
+        /// <summary>Gets whether the "z" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasZ
+        {
+            get { return (_hasBits0 & 4) != 0; }
+        }
+        /// <summary>Clears the value of the "z" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearZ()
+        {
+            _hasBits0 &= ~4;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1222,9 +1431,9 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (X != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(X);
-            if (Y != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Y);
-            if (Z != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Z);
+            if (HasX) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(X);
+            if (HasY) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Y);
+            if (HasZ) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Z);
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -1241,17 +1450,17 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (X != 0F)
+            if (HasX)
             {
                 output.WriteRawTag(13);
                 output.WriteFloat(X);
             }
-            if (Y != 0F)
+            if (HasY)
             {
                 output.WriteRawTag(21);
                 output.WriteFloat(Y);
             }
-            if (Z != 0F)
+            if (HasZ)
             {
                 output.WriteRawTag(29);
                 output.WriteFloat(Z);
@@ -1266,15 +1475,15 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (X != 0F)
+            if (HasX)
             {
                 size += 1 + 4;
             }
-            if (Y != 0F)
+            if (HasY)
             {
                 size += 1 + 4;
             }
-            if (Z != 0F)
+            if (HasZ)
             {
                 size += 1 + 4;
             }
@@ -1292,15 +1501,15 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.X != 0F)
+            if (other.HasX)
             {
                 X = other.X;
             }
-            if (other.Y != 0F)
+            if (other.HasY)
             {
                 Y = other.Y;
             }
-            if (other.Z != 0F)
+            if (other.HasZ)
             {
                 Z = other.Z;
             }
@@ -1346,6 +1555,7 @@ namespace SC2APIProtocol
     {
         private static readonly pb::MessageParser<Size2DI> _parser = new pb::MessageParser<Size2DI>(() => new Size2DI());
         private pb::UnknownFieldSet _unknownFields;
+        private int _hasBits0;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public static pb::MessageParser<Size2DI> Parser { get { return _parser; } }
 
@@ -1372,6 +1582,7 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public Size2DI(Size2DI other) : this()
         {
+            _hasBits0 = other._hasBits0;
             x_ = other.x_;
             y_ = other.y_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -1385,28 +1596,58 @@ namespace SC2APIProtocol
 
         /// <summary>Field number for the "x" field.</summary>
         public const int XFieldNumber = 1;
+        private readonly static int XDefaultValue = 0;
+
         private int x_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int X
         {
-            get { return x_; }
+            get { if ((_hasBits0 & 1) != 0) { return x_; } else { return XDefaultValue; } }
             set
             {
+                _hasBits0 |= 1;
                 x_ = value;
             }
+        }
+        /// <summary>Gets whether the "x" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasX
+        {
+            get { return (_hasBits0 & 1) != 0; }
+        }
+        /// <summary>Clears the value of the "x" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearX()
+        {
+            _hasBits0 &= ~1;
         }
 
         /// <summary>Field number for the "y" field.</summary>
         public const int YFieldNumber = 2;
+        private readonly static int YDefaultValue = 0;
+
         private int y_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public int Y
         {
-            get { return y_; }
+            get { if ((_hasBits0 & 2) != 0) { return y_; } else { return YDefaultValue; } }
             set
             {
+                _hasBits0 |= 2;
                 y_ = value;
             }
+        }
+        /// <summary>Gets whether the "y" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public bool HasY
+        {
+            get { return (_hasBits0 & 2) != 0; }
+        }
+        /// <summary>Clears the value of the "y" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        public void ClearY()
+        {
+            _hasBits0 &= ~2;
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1435,8 +1676,8 @@ namespace SC2APIProtocol
         public override int GetHashCode()
         {
             int hash = 1;
-            if (X != 0) hash ^= X.GetHashCode();
-            if (Y != 0) hash ^= Y.GetHashCode();
+            if (HasX) hash ^= X.GetHashCode();
+            if (HasY) hash ^= Y.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -1453,12 +1694,12 @@ namespace SC2APIProtocol
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (X != 0)
+            if (HasX)
             {
                 output.WriteRawTag(8);
                 output.WriteInt32(X);
             }
-            if (Y != 0)
+            if (HasY)
             {
                 output.WriteRawTag(16);
                 output.WriteInt32(Y);
@@ -1473,11 +1714,11 @@ namespace SC2APIProtocol
         public int CalculateSize()
         {
             int size = 0;
-            if (X != 0)
+            if (HasX)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
             }
-            if (Y != 0)
+            if (HasY)
             {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(Y);
             }
@@ -1495,11 +1736,11 @@ namespace SC2APIProtocol
             {
                 return;
             }
-            if (other.X != 0)
+            if (other.HasX)
             {
                 X = other.X;
             }
-            if (other.Y != 0)
+            if (other.HasY)
             {
                 Y = other.Y;
             }
