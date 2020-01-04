@@ -165,7 +165,8 @@ namespace BOSSE
                 Queue(CommandBuilder.Chat(jokeLine));
             }
 
-            var buildOrder = BuildOrderGeneratorRef.GenerateBuildOrder(SecondsToFrames(120));
+            var buildOrder = BuildOrderGeneratorRef.GenerateBuildOrder(SecondsToFrames(180));
+            Log.Info("Finished build order: " + buildOrder);
 
             HasCompletedFirstFrameInit = true;
         }

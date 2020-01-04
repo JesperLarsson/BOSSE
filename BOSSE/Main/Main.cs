@@ -31,7 +31,6 @@ namespace BOSSE
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static GeneralGameUtility;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Top level object which bootstraps the engine and runs the main loop
