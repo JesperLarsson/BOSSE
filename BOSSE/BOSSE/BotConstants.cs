@@ -67,6 +67,9 @@ namespace BOSSE
         /// </summary>
         public const Race SpawnAsRace = Race.Terran;
 
+        public const int RandomSeed = 123456798;
+        public const bool UseRandomSeed = true;
+
         public const UnitId WorkerUnit = UnitId.SCV;
         public const UnitId CommandCenterUnit = UnitId.COMMAND_CENTER;
     }

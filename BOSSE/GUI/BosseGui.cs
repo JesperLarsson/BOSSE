@@ -27,23 +27,11 @@ namespace DebugGui
 
     using SC2APIProtocol;
 
+    /// <summary>
+    /// GUI initialization wrapper
+    /// </summary>
     public static class BosseGui
     {
-        ///// <summary>
-        ///// Set once during initialization
-        ///// </summary>
-        //public static ResponseGameInfo GameInformation;
-
-        ///// <summary>
-        ///// Set once during initialization
-        ///// </summary>
-        //public static ResponseData GameData;
-
-        ///// <summary>
-        ///// Set each frame
-        ///// </summary>
-        //public static ResponseObservation ObservationState;
-
         private static Thread ThreadMainForm;
 
         public static void StartGui()

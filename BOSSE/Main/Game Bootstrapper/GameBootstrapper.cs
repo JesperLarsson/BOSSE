@@ -85,6 +85,9 @@ namespace BOSSE
             createGame.LocalMap = new LocalMap();
             createGame.LocalMap.MapPath = mapPath;
 
+            if (BotConstants.UseRandomSeed)
+                createGame.RandomSeed = BotConstants.RandomSeed;
+
             var player1 = new PlayerSetup();
             createGame.PlayerSetup.Add(player1);
             player1.Type = PlayerType.Participant;
