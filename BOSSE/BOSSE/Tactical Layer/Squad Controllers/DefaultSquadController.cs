@@ -47,7 +47,7 @@ namespace BOSSE
             if (currentGlobalGoal == MilitaryGoal.DefendGeneral)
             {
                 // Move units to our ramp
-                Point2D natDef = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalDefensePos();
+                Point2D natDef = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalDefensePosition();
 
                 Queue(CommandBuilder.AttackMoveAction(this.controlledSquad.AssignedUnits, natDef));
             }

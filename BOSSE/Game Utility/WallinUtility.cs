@@ -280,7 +280,7 @@ namespace BOSSE
         /// </summary>
         private static Point2D GetNaturalWallEstimatedLocation()
         {
-            return BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalDefensePos();
+            return BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalWallPosition();
         }
     }
 }

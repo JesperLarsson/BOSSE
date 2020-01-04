@@ -49,6 +49,7 @@ namespace BOSSE
         public ResourceCluster EnemyThirdExpansion;
 
         private Point2D CachedNaturalDefensePos = null;
+        private Point2D CachedNaturalWallPos = null;
 
         public AnalysedRuntimeMap(
             Dictionary<long, ResourceCluster> allClusters,
@@ -85,36 +86,62 @@ namespace BOSSE
         /// <summary>
         /// Returns a good position to defend our natural expansion
         /// </summary>
-        public Point2D GetNaturalDefensePos()
+        public Point2D GetNaturalDefensePosition()
         {
             if (CachedNaturalDefensePos == null)
             {
                 // Walk some steps away from our natural and use that as the defense position
-                const int numberOfTilesToForward = 12;
-                var path = BOSSE.PathFinderRef.FindPath(NaturalExpansion.GetCommandCenterPosition(), EnemyMainBase.GetMineralCenter());
-                if (path == null || path.Count == 0)
-                {
-                    Log.SanityCheckFailed("Unable to determine natural defense position");
-                }
+                const int numberOfTilesToForward = 10;
 
-                int currentTile = 0;
-                BossePathNode nodeToUse = null;
-                foreach (BossePathNode iter in path)
-                {
-                    nodeToUse = iter;
-                    currentTile++;
-                    if (currentTile >= numberOfTilesToForward)
-                        break;
-                }
-
-                CachedNaturalDefensePos = new Point2D(nodeToUse.X, nodeToUse.Y);
+                this.CachedNaturalDefensePos = GetNaturalTileDistance(numberOfTilesToForward);
 
                 // Add to debug GUI
                 KeyValuePair<Point2D, string> debugPoint = new KeyValuePair<Point2D, string>(CachedNaturalDefensePos, "NatDef");
                 DebugGui.TerrainDebugMap.MarkedPoints.Add(debugPoint);
             }
 
-            return CachedNaturalDefensePos;
+            return this.CachedNaturalDefensePos;
+        }
+
+        public Point2D GetNaturalWallPosition()
+        {
+            if (CachedNaturalWallPos == null)
+            {
+                // Walk some steps away from our natural and use that as the defense position
+                const int numberOfTilesToForward = 12;
+
+                this.CachedNaturalWallPos = GetNaturalTileDistance(numberOfTilesToForward);
+
+                // Add to debug GUI
+                KeyValuePair<Point2D, string> debugPoint = new KeyValuePair<Point2D, string>(CachedNaturalWallPos, "NatWall");
+                DebugGui.TerrainDebugMap.MarkedPoints.Add(debugPoint);
+            }
+
+            return this.CachedNaturalWallPos;
+        }
+
+        /// <summary>
+        /// Gives point a certain number of tiles away from our natural
+        /// </summary>
+        private Point2D GetNaturalTileDistance(int numberOfTilesToForward)
+        {
+            var path = BOSSE.PathFinderRef.FindPath(NaturalExpansion.GetCommandCenterPosition(), EnemyMainBase.GetMineralCenter());
+            if (path == null || path.Count == 0)
+            {
+                Log.SanityCheckFailed("Unable to determine natural defense position");
+            }
+
+            int currentTile = 0;
+            BossePathNode nodeToUse = null;
+            foreach (BossePathNode iter in path)
+            {
+                nodeToUse = iter;
+                currentTile++;
+                if (currentTile >= numberOfTilesToForward)
+                    break;
+            }
+
+            return new Point2D(nodeToUse.X, nodeToUse.Y);
         }
     }
 }

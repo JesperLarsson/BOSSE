@@ -395,16 +395,16 @@ namespace BOSSE
             }
 
             // Order workers to move
-            foreach (BaseLocation baseIter in newMiningTargets.Keys)
+            foreach (BaseLocation targetBase in newMiningTargets.Keys)
             {
-                if (baseIter.CenteredAroundCluster == null || baseIter.CenteredAroundCluster.MineralFields == null || baseIter.CenteredAroundCluster.MineralFields.Count == 0)
+                if (targetBase.CenteredAroundCluster == null || targetBase.CenteredAroundCluster.MineralFields == null || targetBase.CenteredAroundCluster.MineralFields.Count == 0)
                 {
                     Log.SanityCheckFailed("Unable to move workers to new resource cluster");
                     continue;
                 }
 
-                List<Unit> workersToMoveHere = newMiningTargets[baseIter];
-                List<Unit> targetMinerals = baseIter.CenteredAroundCluster.MineralFields.ToList();
+                List<Unit> workersToMoveHere = newMiningTargets[targetBase];
+                List<Unit> targetMinerals = targetBase.CenteredAroundCluster.MineralFields.ToList();
 
                 Unit mineralPatch = targetMinerals.First();
                 for (int i = 0; i < workersToMoveHere.Count; i++)
@@ -450,7 +450,7 @@ namespace BOSSE
                     else if (Globals.CurrentFrameIndex - workerTransferCompletedStartFrame > WorkerTransferHystFrameCount)
                     {
                         Log.Info("Worker transfer completed");
-                        baseIter.WorkerTransferInProgress = false;
+                        targetBase.WorkerTransferInProgress = false;
                         return true;
                     }
                     else
@@ -458,109 +458,21 @@ namespace BOSSE
                         return false;
                     }
                 });
+                Log.Bulk("Transferring " + workersToMoveHere.Count + " workers to base " + targetBase);
                 BOSSE.OrderManagerRef.AddOrder(transferFinishedOrder);
 
-                baseIter.WorkerTransferInProgress = true;
+                targetBase.WorkerTransferInProgress = true;
             }
 
             if (newMiningTargets.Count > 0)
             {
-                Log.Info("Updated worker balance for " + newMiningTargets.Count + " bases");
+                Log.Bulk("Updated worker balance for " + newMiningTargets.Count + " bases");
                 return true;
             }
             else
             {
                 return false;
             }
-
-
-
-
-
-            //// Calculate needs and workers available on each base
-            ////   Positive value => Has more workers than necessary, negative value => wants more workers, 0 = perfect
-            //Dictionary<BaseLocation, int> workerRequest = new Dictionary<BaseLocation, int>();
-            //int extraWorkersAvailable = 0;
-            //int additionalWorkersRequested = 0;
-            //foreach (BaseLocation baseIter in basesToMine)
-            //{
-            //    if (baseIter.CommandCenter == null)
-            //    {
-            //        Log.SanityCheckFailed("CC ref not set in base location");
-            //        continue;
-            //    }
-
-            //    int idealCount = baseIter.CommandCenter.IdealWorkers;
-            //    int assignedCount = baseIter.CommandCenter.AssignedWorkers;
-            //    int workerDiff = assignedCount - idealCount;
-            //    workerRequest[baseIter] = workerDiff;
-
-            //    if (workerDiff > 0)
-            //    {
-            //        extraWorkersAvailable += workerDiff;
-            //    }
-            //    else if (workerDiff < 0)
-            //    {
-            //        additionalWorkersRequested += workerDiff;
-            //    }
-            //}
-            //if (additionalWorkersRequested == 0)
-            //{
-            //    // TODO: Reset each rally point to their own mineral line
-            //    return;
-            //}
-            //if (extraWorkersAvailable == 0)
-            //{
-            //    // TODO: Still set rally point to those in need, those who need them pick themselves, otherwise pick another if their requested workers > 2 ish
-            //    return;
-            //}
-
-            //// Find which bases to transfer workers between
-            //KeyValuePair<BaseLocation, int>? transferFrom = null;
-            //KeyValuePair<BaseLocation, int>? transferTo = null;
-            //foreach (KeyValuePair<BaseLocation, int> iter in workerRequest)
-            //{
-            //    BaseLocation baseObj = iter.Key;
-            //    int workerRequestCount = iter.Value;
-
-            //    if (workerRequestCount > 0)
-            //    {
-            //        transferFrom = iter;
-            //    }
-            //    else if (workerRequestCount < 0)
-            //    {
-            //        transferTo = iter;
-            //    }
-            //}
-            //if (transferFrom == null || transferTo == null)
-            //{
-            //    // Should not be possible
-            //    Log.SanityCheckFailed("Can't find intended bases for transfer");
-            //    return;
-            //}
-
-            //// Find which workers to transfer
-            //HashSet<Unit> fromMinerals = transferFrom.Value.Key.CenteredAroundCluster.MineralFields;
-            //HashSet<Unit> toMinerals = transferTo.Value.Key.CenteredAroundCluster.MineralFields;
-            //if (fromMinerals.Count == 0 || toMinerals.Count == 0)
-            //{
-            //    // Can't target without mineral patches in to base, and from mining out should be handle by idle worker logic
-            //    Log.SanityCheckFailed("Can't transfer workers without minerals");
-            //    return;
-            //}
-
-            //List<Unit> workersOnFromBase = miningWorkersGlobal.Where(worker => fromMinerals.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])).ToList();
-            //int transferCount = transferFrom.Value.Value;
-            //Log.Info($"Transferring {transferCount} workers from base {transferFrom.Value.Key} to base {transferTo.Value.Key}");
-            //for (int i = 0; i < transferCount; i++)
-            //{
-            //    Unit workerToTransfer = workersOnFromBase[i];
-            //    Unit targetMineralPatch = toMinerals.First();
-
-            //    Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { workerToTransfer }, targetMineralPatch));
-            //}
-
-            //// TODO: Set rally point of each CC...
         }
 
         private bool ReturnIdleWorkers()

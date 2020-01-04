@@ -71,7 +71,7 @@ namespace DebugGui
             }
 
             // Natural def estimate spot 
-            Point2D natDefPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalDefensePos();
+            Point2D natDefPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalWallPosition();
             surface.FillRectangle(NaturalEstimateLocation, (RenderScale * natDefPos.X), (RenderScale * CompensateY(natDefPos.Y)), RenderScale, RenderScale);
 
             // Natural def parts
