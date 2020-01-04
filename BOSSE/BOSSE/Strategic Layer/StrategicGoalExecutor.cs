@@ -131,13 +131,14 @@ namespace BOSSE
             const int RaxesWanted = 1;
             const int FactoriesWanted = 1;
             const int TechLabsWanted = 1;
+            const int ExpansionsWanted = 1;
 
             uint raxCount = GetUnitCountTotal(UnitConstants.BarracksVariations, includeEquivalents: true);
             uint techLabCount = GetUnitCountTotal(UnitConstants.TechlabVariations, includeEquivalents: true);
             uint factoryCount = GetUnitCountTotal(UnitConstants.FactoryVariations, includeEquivalents: true);
 
             // Expand
-            if (CanAfford(UnitId.COMMAND_CENTER))
+            if (CanAfford(UnitId.COMMAND_CENTER) && BOSSE.BaseManagerRef.GetOwnBases().Count < (ExpansionsWanted + 1))
             {
                 Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
                 Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);

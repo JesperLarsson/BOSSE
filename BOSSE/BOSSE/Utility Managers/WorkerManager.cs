@@ -338,7 +338,7 @@ namespace BOSSE
             }
 
             List<Unit> miningWorkersGlobal = GetUnits(BotConstants.WorkerUnit, onlyCompleted: true).Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS).ToList();
-            List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.IsHiddenBase) && obj.CommandCenter.Integrity > 0.95f).ToList();
+            List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
             if (basesToMineMainFirst.Count == 0)
             {
                 //Log.Warning("Can't balance workers without a base that wants workers"); // comented out to avoid log spam when losing
@@ -357,7 +357,7 @@ namespace BOSSE
             foreach (BaseLocation baseIter in basesToMineReverse)
             {
                 List<Unit> workersMiningThisBase = miningWorkersGlobal.Where(worker => baseIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])).ToList();
-                workerRequest[baseIter] = baseIter.CommandCenter.IdealWorkers - workersMiningThisBase.Count;
+                workerRequest[baseIter] = baseIter.CommandCenterRef.IdealWorkers - workersMiningThisBase.Count;
             }
 
             Dictionary<BaseLocation, List<Unit>> newMiningTargets = new Dictionary<BaseLocation, List<Unit>>(); // target base => units to move there
@@ -400,15 +400,16 @@ namespace BOSSE
                 }
 
                 List<Unit> workersToMoveHere = newMiningTargets[baseIter];
-                Unit targetMineral = baseIter.CenteredAroundCluster.MineralFields.First();
+                List<Unit> targetMinerals = baseIter.CenteredAroundCluster.MineralFields.ToList();
 
-                foreach (Unit iter in workersToMoveHere)
+                for (int i = 0; i < workersToMoveHere.Count; i++)
                 {
-                    Queue(CommandBuilder.MineMineralsAction(new List<Unit> { iter }, targetMineral));
-                }
+                    Unit worker = workersToMoveHere[i];
+                    Unit mineralPatch = targetMinerals[i % targetMinerals.Count];
 
-                //Queue(CommandBuilder.MoveAction(workersToMoveHere, targetMineral.Position));
-                //Queue(CommandBuilder.MineMineralsAction(workersToMoveHere, targetMineral));
+                    Queue(CommandBuilder.MoveAction(new List<Unit>() { worker }, mineralPatch.Position));
+                    Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, mineralPatch), true);
+                }
             }
 
             if (newMiningTargets.Count > 0)

@@ -36,7 +36,15 @@ namespace BOSSE
     /// </summary>
     public class BaseLocation
     {
-        public Unit CommandCenter;
+        private static int SelfCount = 1;
+        private static int EnemyCount = 1;
+
+        /// <summary>
+        /// Main = 1, first expansion = 1, etc
+        /// </summary>
+        public int Number = 0;
+
+        public Unit CommandCenterRef;
         public ResourceCluster CenteredAroundCluster;
         public Alliance BelongsTo;
 
@@ -52,14 +60,25 @@ namespace BOSSE
 
         public BaseLocation(Unit commandCenter, ResourceCluster centeredAroundCluster, Alliance belongsTo)
         {
-            this.CommandCenter = commandCenter;
+            this.CommandCenterRef = commandCenter;
             this.CenteredAroundCluster = centeredAroundCluster;
             this.BelongsTo = belongsTo;
+
+            if (belongsTo == Alliance.Self)
+            {
+                this.Number = SelfCount;
+                SelfCount += 1;
+            }
+            else if (belongsTo == Alliance.Enemy)
+            {
+                this.Number = EnemyCount;
+                EnemyCount += 1;
+            }
         }
 
         public override string ToString()
         {
-            return "Base " + CenteredAroundCluster;
+            return $"Base nr{this.Number} {CenteredAroundCluster}";
         }
     }
 }

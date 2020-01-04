@@ -82,6 +82,7 @@ namespace BOSSE
             Log.Bulk($"MineMinerals {mineralPatch.ToString()} {units.ToString2()}");
             Action action = RawCommand((int)AbilityConstants.AbilityId.GATHER_MINERALS);
             action.ActionRaw.UnitCommand.TargetUnitTag = mineralPatch.Tag;
+            //action.ActionRaw.UnitCommand.TargetWorldSpacePos = mineralPatch.Position;
 
             foreach (var unit in units)
             {

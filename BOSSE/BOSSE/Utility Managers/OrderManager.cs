@@ -56,7 +56,7 @@ namespace BOSSE
 
                 if (orderCompleted)
                 {
-                    Log.Info("Completed a continuous order");
+                    Log.Bulk("Completed a continuous order");
                     completedOrders.Add(orderIter);
                 }
             }
@@ -69,7 +69,7 @@ namespace BOSSE
 
         public void AddOrder(ContinuousUnitOrder newOrder)
         {
-            Log.Info("Added new continuous order");
+            Log.Bulk("Added new continuous order");
 
             bool completed = RunOrder(newOrder);
             if (!completed)
