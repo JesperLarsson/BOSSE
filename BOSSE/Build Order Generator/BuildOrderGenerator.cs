@@ -37,6 +37,7 @@ namespace BOSSE.BuildOrderGenerator
     public static class BuiltOrderConfig
     {
         public const float WorkerMineralsPerFrame = 40.0f / 60.0f / 22.4f;
+        public const float FramesPerSecond = 22.4f;
     }
 
 #warning TODO: This should also take a list of optional weights for each unit, ie we need more air right now etc
@@ -155,7 +156,7 @@ namespace BOSSE.BuildOrderGenerator
         /// Returns true if we can take this action
         /// </summary>
         public abstract bool CanTake(VirtualWorldState worldState);
-        public abstract ulong EstimateWhenActionIsAvailable(VirtualWorldState worldState);
+        public abstract ulong EstimateWhenActionIsAvailable(VirtualWorldState worldState, ulong currentFrame);
 
         /// <summary>
         /// Queue action
@@ -221,17 +222,17 @@ namespace BOSSE.BuildOrderGenerator
             //UsedSupply = (uint)(UsedSupply - foodConsumed);
         }
 
-        protected ulong EstimateFramesUntilCanBeAfford(UnitTypeData unitData, VirtualWorldState worldState)
+        protected ulong EstimateWhenWeCanAfford(UnitTypeData unitData, VirtualWorldState worldState, ulong currentFrame)
         {
-            int mineralsNeeded = (int)(unitData.MineralCost - worldState.Minerals);
+            int mineralsNeeded = (int)(Math.Ceiling(unitData.MineralCost - worldState.Minerals));
             if (mineralsNeeded < 0)
             {
                 Log.SanityCheckFailed("Unexepcted call to EstimateFramesUntilCanBeAfford " + worldState.Minerals);
-                return 200;
+                return 200 + currentFrame;
             }
 
-            double frames = Math.Ceiling(mineralsNeeded / BuiltOrderConfig.WorkerMineralsPerFrame);
-            return (ulong)frames;
+            double frames = Math.Ceiling(mineralsNeeded / worldState.EstimateMineralIncomePerFrame());
+            return (ulong)frames + currentFrame;
         }
     }
 
@@ -257,20 +258,24 @@ namespace BOSSE.BuildOrderGenerator
             return havePreReq;
         }
 
-        public override ulong EstimateWhenActionIsAvailable(VirtualWorldState worldState)
+        public override ulong EstimateWhenActionIsAvailable(VirtualWorldState worldState, ulong currentFrame)
         {
             if (!this.CanAfford(UnitData, worldState))
-                return EstimateFramesUntilCanBeAfford(UnitData, worldState);
+                return EstimateWhenWeCanAfford(UnitData, worldState, currentFrame);
 
             var temp = worldState.GetUnitsOfType(UnitConstants.ResourceCenters).MinBy(obj => obj.BecomesAvailableAtTick);
-            VirtualUnit soonestCenter = temp.First();
-            if (soonestCenter.BecomesAvailableAtTick == 0)
+            VirtualUnit soonestDependency = temp.FirstOrDefault();
+            if (soonestDependency == null)
+            {
+                return (ulong)(BuiltOrderConfig.FramesPerSecond * 4) + currentFrame;
+            }
+            if (soonestDependency.BecomesAvailableAtTick == 0)
             {
                 Log.SanityCheckFailed("Bug found, this should have a value (was 0)");
-                return 200;
+                return 200 + currentFrame;
             }
 
-            return soonestCenter.BecomesAvailableAtTick;
+            return soonestDependency.BecomesAvailableAtTick;
         }
 
         public override void TakeAction(VirtualWorldState worldState, ulong currentFrame)
@@ -297,94 +302,135 @@ namespace BOSSE.BuildOrderGenerator
         }
     }
 
-    ///// <summary>
-    ///// Action to build a barracks
-    ///// </summary>
-    //public class BuildBarracks : PlannedAction
-    //{
-    //    private readonly TimeSpan RaxBuildTime = TimeSpan.FromSeconds(46);
-    //    private UnitTypeData UnitData = GetUnitInfo(UnitId.BARRACKS);
+    /// <summary>
+    /// Action to build a barracks
+    /// </summary>
+    public class BuildBarracks : PlannedAction
+    {
+        private readonly TimeSpan RaxBuildTime = TimeSpan.FromSeconds(46);
+        private UnitTypeData UnitData = GetUnitInfo(UnitId.BARRACKS);
 
-    //    public BuildBarracks()
-    //    {
-    //        this.Name = this.GetType().Name;
-    //    }
+        public BuildBarracks()
+        {
+            this.Name = this.GetType().Name;
+        }
 
-    //    public override bool CanTake(VirtualWorldState worldState)
-    //    {
-    //        if (!this.CanAfford(UnitData, worldState))
-    //            return false;
+        public override bool CanTake(VirtualWorldState worldState)
+        {
+            if (!this.CanAfford(UnitData, worldState))
+                return false;
 
-    //        return worldState.GetUnitsOfType(BotConstants.WorkerUnit).Where(unit => unit.IsBusy == false).ToList().Count > 0;
-    //    }
+            return worldState.GetUnitsOfType(BotConstants.WorkerUnit).Where(unit => unit.IsBusy == false).ToList().Count > 0;
+        }
 
-    //    public override void TakeAction(VirtualWorldState worldState, ulong currentFrame)
-    //    {
-    //        this.SubractCosts(UnitData, worldState);
+        public override void TakeAction(VirtualWorldState worldState, ulong currentFrame)
+        {
+            this.SubractCosts(UnitData, worldState);
 
-    //        ulong buildTimeFrames = SecondsToFrames((float)RaxBuildTime.TotalSeconds);
-    //        this.Occupies = worldState.GetUnitsOfType(BotConstants.WorkerUnit).Where(unit => unit.IsBusy == false).ToList()[0];
-    //        this.Occupies.IsBusy = true;
+            ulong buildTimeFrames = SecondsToFrames((float)RaxBuildTime.TotalSeconds);
+            this.Occupies = worldState.GetUnitsOfType(BotConstants.WorkerUnit).Where(unit => unit.IsBusy == false).ToList()[0];
+            this.Occupies.IsBusy = true;
 
-    //        this.TakenOnFrame = currentFrame;
-    //        this.TakesAffectOnFrame = buildTimeFrames + TakenOnFrame;
-    //    }
+            this.TakenOnFrame = currentFrame;
+            this.TakesAffectOnFrame = buildTimeFrames + TakenOnFrame;
+        }
 
-    //    public override void StartedEffect(VirtualWorldState worldState, ulong currentFrame)
-    //    {
-    //        VirtualUnit newUnit = new VirtualUnit(UnitId.BARRACKS);
-    //        worldState.Units.Add(newUnit);
-    //    }
+        public override ulong EstimateWhenActionIsAvailable(VirtualWorldState worldState, ulong currentFrame)
+        {
+            if (!this.CanAfford(UnitData, worldState))
+                return EstimateWhenWeCanAfford(UnitData, worldState, currentFrame);
 
-    //    public override PlannedAction Clone()
-    //    {
-    //        return (PlannedAction)this.MemberwiseClone();
-    //    }
-    //}
+            var temp = worldState.GetUnitsOfType(BotConstants.WorkerUnit).MinBy(obj => obj.BecomesAvailableAtTick);
+            VirtualUnit soonestDependency = temp.FirstOrDefault();
+            if (soonestDependency == null)
+            {
+                return (ulong)(BuiltOrderConfig.FramesPerSecond * 4) + currentFrame;
+            }
+            if (soonestDependency.BecomesAvailableAtTick == 0)
+            {
+                Log.SanityCheckFailed("Bug found, this should have a value (was 0)");
+                return 200 + currentFrame;
+            }
+
+            return soonestDependency.BecomesAvailableAtTick;
+        }
+
+        public override void StartedEffect(VirtualWorldState worldState, ulong currentFrame)
+        {
+            VirtualUnit newUnit = new VirtualUnit(UnitId.BARRACKS);
+            worldState.Units.Add(newUnit);
+        }
+
+        public override PlannedAction Clone()
+        {
+            return (PlannedAction)this.MemberwiseClone();
+        }
+    }
 
 
 
-    //public class BuildMarine : PlannedAction
-    //{
-    //    private readonly TimeSpan BuildTime = TimeSpan.FromSeconds(18);
-    //    private UnitTypeData UnitData = GetUnitInfo(UnitId.MARINE);
+    public class BuildMarine : PlannedAction
+    {
+        private readonly TimeSpan BuildTime = TimeSpan.FromSeconds(18);
+        private UnitTypeData UnitData = GetUnitInfo(UnitId.MARINE);
 
-    //    public BuildMarine()
-    //    {
-    //        this.Name = this.GetType().Name;
-    //    }
+        public BuildMarine()
+        {
+            this.Name = this.GetType().Name;
+        }
 
-    //    public override bool CanTake(VirtualWorldState worldState)
-    //    {
-    //        if (!this.CanAfford(UnitData, worldState))
-    //            return false;
+        public override bool CanTake(VirtualWorldState worldState)
+        {
+            if (!this.CanAfford(UnitData, worldState))
+                return false;
 
-    //        return worldState.GetUnitsOfType(UnitId.BARRACKS).Where(unit => unit.IsBusy == false).ToList().Count > 0;
-    //    }
+            return worldState.GetUnitsOfType(UnitId.BARRACKS).Where(unit => unit.IsBusy == false).ToList().Count > 0;
+        }
 
-    //    public override void TakeAction(VirtualWorldState worldState, ulong currentFrame)
-    //    {
-    //        this.SubractCosts(UnitData, worldState);
+        public override void TakeAction(VirtualWorldState worldState, ulong currentFrame)
+        {
+            this.SubractCosts(UnitData, worldState);
 
-    //        ulong buildTimeFrames = SecondsToFrames((float)BuildTime.TotalSeconds);
-    //        this.Occupies = worldState.GetUnitsOfType(UnitId.BARRACKS).Where(unit => unit.IsBusy == false).ToList()[0];
-    //        this.Occupies.IsBusy = true;
+            ulong buildTimeFrames = SecondsToFrames((float)BuildTime.TotalSeconds);
+            this.Occupies = worldState.GetUnitsOfType(UnitId.BARRACKS).Where(unit => unit.IsBusy == false).ToList()[0];
+            this.Occupies.IsBusy = true;
 
-    //        this.TakenOnFrame = currentFrame;
-    //        this.TakesAffectOnFrame = buildTimeFrames + TakenOnFrame;
-    //    }
+            this.TakenOnFrame = currentFrame;
+            this.TakesAffectOnFrame = buildTimeFrames + TakenOnFrame;
+        }
 
-    //    public override void StartedEffect(VirtualWorldState worldState, ulong currentFrame)
-    //    {
-    //        VirtualUnit newUnit = new VirtualUnit(UnitId.MARINE);
-    //        worldState.Units.Add(newUnit);
-    //    }
+        public override ulong EstimateWhenActionIsAvailable(VirtualWorldState worldState, ulong currentFrame)
+        {
+            if (!this.CanAfford(UnitData, worldState))
+                return EstimateWhenWeCanAfford(UnitData, worldState, currentFrame);
 
-    //    public override PlannedAction Clone()
-    //    {
-    //        return (PlannedAction)this.MemberwiseClone();
-    //    }
-    //}
+            var temp = worldState.GetUnitsOfType(UnitId.BARRACKS).MinBy(obj => obj.BecomesAvailableAtTick);
+            VirtualUnit soonestDependency = temp.FirstOrDefault();
+            if (soonestDependency == null)
+            {
+                return (ulong)(BuiltOrderConfig.FramesPerSecond * 4) + currentFrame;
+            }
+
+            if (soonestDependency.BecomesAvailableAtTick == 0)
+            {
+                Log.SanityCheckFailed("Bug found, this should have a value (was 0)");
+                return 200 + currentFrame;
+            }
+
+            return soonestDependency.BecomesAvailableAtTick;
+        }
+
+        public override void StartedEffect(VirtualWorldState worldState, ulong currentFrame)
+        {
+            VirtualUnit newUnit = new VirtualUnit(UnitId.MARINE);
+            worldState.Units.Add(newUnit);
+        }
+
+        public override PlannedAction Clone()
+        {
+            return (PlannedAction)this.MemberwiseClone();
+        }
+    }
 
 
 
@@ -513,6 +559,12 @@ namespace BOSSE.BuildOrderGenerator
 
         private void RecursiveSearch(BuildOrder buildOrderIter, VirtualWorldState worldState, ulong currentFrame, ulong currentDeltaFrames)
         {
+            if (currentDeltaFrames <= 0)
+            {
+                Log.SanityCheckFailed("Invalid delta frame value");
+                return;
+            }
+
             buildOrderIter.SimulateAll(worldState, currentFrame, currentDeltaFrames);
             ulong currentEval = buildOrderIter.Evaluate(worldState);
             if (currentEval > this.BestEval)
@@ -543,7 +595,13 @@ namespace BOSSE.BuildOrderGenerator
                 }
                 else
                 {
-                    ulong actionNextPossible = actionIter.EstimateWhenActionIsAvailable(workingWorldState);
+                    ulong actionNextPossible = actionIter.EstimateWhenActionIsAvailable(workingWorldState, currentFrame);
+                    if (actionNextPossible <= currentFrame)
+                    {
+                        // Likely because some function returned a static estimate instead of adding to the current frame counter
+                        Log.SanityCheckFailed("Unexpected frame availability, it should not be available for some time: " + actionNextPossible);
+                    }
+
                     anyActionNextPossibleAt = Math.Min(anyActionNextPossibleAt, actionNextPossible);
                 }
             }
@@ -570,7 +628,7 @@ namespace BOSSE.BuildOrderGenerator
                     // Normal case
                     deltaFrames = anyActionNextPossibleAt - currentFrame;
                 }
-                
+
                 VirtualWorldState noActionWorldState = worldState.Clone();
                 BuildOrder noActionBuildOrder = buildOrderIter.Clone();
                 RecursiveSearch(noActionBuildOrder, noActionWorldState, currentFrame + deltaFrames, deltaFrames);
