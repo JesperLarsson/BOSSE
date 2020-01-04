@@ -176,6 +176,31 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Get an estimated amount of frames for the given amount of time to elapse
+        /// </summary>
+        public static ulong SecondsToFrames(float seconds)
+        {
+            double frames = seconds * 22.4f;
+            frames = Math.Ceiling(frames);
+            return (ulong)frames;
+        }
+
+        /// <summary>
+        /// Gets an estimated amount of seconds that have elapsed in game real time for the given frame
+        /// </summary>
+        public static float FramesToTime(ulong frame)
+        {
+            float seconds = frame / 22.4f;
+            return (float)seconds;
+        }
+
+        public static float FramesToTime(float frame)
+        {
+            float seconds = frame / 22.4f;
+            return (float)seconds;
+        }
+
+        /// <summary>
         /// Guesstimates the enemy base location, null = no decent guess
         /// </summary>
         public static Point2D GuessEnemyBaseLocation()
