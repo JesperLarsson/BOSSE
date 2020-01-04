@@ -55,6 +55,21 @@ namespace BOSSE
             BOSSE.SensorManagerRef.GetSensor(typeof(OwnResourceCenterCompletedSensor)).AddHandler(OwnCommandCenterCompleted);
         }
 
+        public List<BaseLocation> GetOwnBases()
+        {
+            List<BaseLocation> list = new List<BaseLocation>();
+
+            foreach (var iter in KnownBases.Values)
+            {
+                if (iter.BelongsTo == Alliance.Self)
+                {
+                    list.Add(iter);
+                }
+            }
+
+            return list;
+        }
+
         private void OwnCommandCenterCompleted(HashSet<Unit> detectedUnits)
         {
             foreach (Unit ownCC in detectedUnits)

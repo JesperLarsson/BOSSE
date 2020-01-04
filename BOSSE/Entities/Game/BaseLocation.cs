@@ -40,6 +40,16 @@ namespace BOSSE
         public ResourceCluster CenteredAroundCluster;
         public Alliance BelongsTo;
 
+        /// <summary>
+        /// If false, this base should not have workers assigned to it
+        /// </summary>
+        public bool OwnBaseReadyToAcceptWorkers = true;
+
+        /// <summary>
+        /// Set if this is a "hidden" base, ie we should not rally workers here
+        /// </summary>
+        public bool IsHiddenBase = false;
+
         public BaseLocation(Unit commandCenter, ResourceCluster centeredAroundCluster, Alliance belongsTo)
         {
             this.CommandCenter = commandCenter;

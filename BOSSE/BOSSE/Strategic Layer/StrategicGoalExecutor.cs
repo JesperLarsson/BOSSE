@@ -128,7 +128,7 @@ namespace BOSSE
         /// </summary>
         private void ExecuteBuildMilitary()
         {
-            const int RaxesWanted = 3;
+            const int RaxesWanted = 1;
             const int FactoriesWanted = 1;
             const int TechLabsWanted = 1;
 
