@@ -31,6 +31,7 @@ namespace BOSSE
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static GeneralGameUtility;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Top level object which bootstraps the engine and runs the main loop
@@ -148,7 +149,7 @@ namespace BOSSE
             observationRequest.Observation = new RequestObservation();
             Response response = await Globals.GameConnection.SendRequest(observationRequest);
 
-            // Update global state
+            // Update global state - We use a hack to convert it to our own class
             CurrentGameState.ObservationState = response.Observation;
 
             // Check for errors

@@ -2066,7 +2066,7 @@ namespace SC2APIProtocol
 
     }
 
-    public sealed partial class Response : pb::IMessage<Response>
+    public partial class Response : pb::IMessage<Response>
     {
         private static readonly pb::MessageParser<Response> _parser = new pb::MessageParser<Response>(() => new Response());
         private pb::UnknownFieldSet _unknownFields;
@@ -8463,7 +8463,7 @@ namespace SC2APIProtocol
 
     }
 
-    public sealed partial class ResponseGameInfo : pb::IMessage<ResponseGameInfo>
+    public partial class ResponseGameInfo : pb::IMessage<ResponseGameInfo>
     {
         private static readonly pb::MessageParser<ResponseGameInfo> _parser = new pb::MessageParser<ResponseGameInfo>(() => new ResponseGameInfo());
         private pb::UnknownFieldSet _unknownFields;
@@ -9066,7 +9066,7 @@ namespace SC2APIProtocol
 
     }
 
-    public sealed partial class ResponseObservation : pb::IMessage<ResponseObservation>
+    public partial class ResponseObservation : pb::IMessage<ResponseObservation>
     {
         private static readonly pb::MessageParser<ResponseObservation> _parser = new pb::MessageParser<ResponseObservation>(() => new ResponseObservation());
         private pb::UnknownFieldSet _unknownFields;
