@@ -23,6 +23,7 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Diagnostics;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
@@ -60,7 +61,7 @@ namespace BOSSE
         public static readonly BaseManager BaseManagerRef = new BaseManager();
         public static readonly OrderManager OrderManagerRef = new OrderManager();
         public static readonly SpaceMovementReservationManager SpaceMovementReservationManagerRef = new SpaceMovementReservationManager();
-        
+
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
         {

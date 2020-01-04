@@ -24,6 +24,7 @@ namespace BOSSE.BuildOrderGenerator
     using System.Threading;
     using System.Reflection;
     using System.Linq;
+    using System.Diagnostics;
 
     using SC2APIProtocol;
     using Google.Protobuf.Collections;
@@ -34,13 +35,11 @@ namespace BOSSE.BuildOrderGenerator
     using static AbilityConstants;
 
 #warning TODO: This should also take a list of optional weights for each unit, ie we need more air right now etc
-    // Based on ideas from resarch paper: http://www.cs.mun.ca/~dchurchill/pdf/cog19_buildorder.pdf
-
+#warning TODO: Also add a bias option which changes the evaluation algorithm, ex one only counts army units (agressive) while counts everything (balance focus) while another only counts workers+CC (economy focus)
+    // Based on ideas from this paper: http://www.cs.mun.ca/~dchurchill/pdf/cog19_buildorder.pdf
     public class VirtualUnit
     {
         public UnitId Type;
-        public bool IsActualUnit;
-        public ulong BuiltAtIndex;
         public bool IsBusy = false;
 
         /// <summary>
@@ -49,8 +48,6 @@ namespace BOSSE.BuildOrderGenerator
         public VirtualUnit(Unit importedActualUnit)
         {
             Type = (UnitId)importedActualUnit.UnitType;
-
-            IsActualUnit = true;
         }
 
         /// <summary>
@@ -58,8 +55,18 @@ namespace BOSSE.BuildOrderGenerator
         /// </summary>
         public VirtualUnit(UnitId Type)
         {
+        }
 
-            IsActualUnit = false;
+        public void PerformEffectsOnWorldState(VirtualWorldState worldState)
+        {
+            if (this.Type != BotConstants.WorkerUnit)
+            {
+                return;
+            }
+
+            const float WorkerMineralsPerMinute = 40.0f;
+            float workerMineralsPerFrame = FramesToTime(WorkerMineralsPerMinute / 60);
+            worldState.Minerals += workerMineralsPerFrame;
         }
     }
 
@@ -115,15 +122,46 @@ namespace BOSSE.BuildOrderGenerator
 
     public abstract class PlannedAction
     {
+        public ulong TakenOnFrame = 0;
+        protected ulong TakesAffectOnFrame = 0;
+        protected VirtualUnit Occupies = null;
+        protected string Name = "N/A";
+
         public abstract bool CanTake(VirtualWorldState worldState);
         public abstract void TakeAction(VirtualWorldState worldState, ulong currentFrame);
-        public abstract void SimulateActionEffects(VirtualWorldState worldState, ulong currentFrame);
+        public virtual void StartedEffect(VirtualWorldState worldState, ulong currentFrame)
+        {
+
+        }
+        public virtual void SimulateActionEffects(VirtualWorldState worldState, ulong currentFrame)
+        {
+            if (currentFrame < TakesAffectOnFrame)
+            {
+                return;
+            }
+
+            if (Occupies != null)
+            {
+                Occupies.IsBusy = false;
+                Occupies = null;
+                this.StartedEffect(worldState, currentFrame);
+            }
+        }
+
+        public abstract PlannedAction Clone();
+
+        public override string ToString()
+        {
+            return $"[Action {this.Name} {this.TakenOnFrame}-{this.TakesAffectOnFrame}]";
+        }
     }
 
     public class BuildWorker : PlannedAction
     {
-        public ulong TakenOnFrame = 0;
-        private ulong TakesAffectOnFrame = 0;
+        public BuildWorker()
+        {
+            this.Name = this.GetType().Name;
+        }
 
         public ulong TimeToTakeActionInFrames()
         {
@@ -138,23 +176,22 @@ namespace BOSSE.BuildOrderGenerator
 
         public override void TakeAction(VirtualWorldState worldState, ulong currentFrame)
         {
-            var builtFrom = worldState.GetUnitsOfType(UnitConstants.ResourceCenters).Where(cc => cc.IsBusy == false).ToList()[0];
-            builtFrom.IsBusy = true;
+            this.Occupies = worldState.GetUnitsOfType(UnitConstants.ResourceCenters).Where(cc => cc.IsBusy == false).ToList()[0];
+            this.Occupies.IsBusy = true;
 
-            TakenOnFrame = currentFrame;
-            TakesAffectOnFrame = TimeToTakeActionInFrames() + TakenOnFrame;
+            this.TakenOnFrame = currentFrame;
+            this.TakesAffectOnFrame = TimeToTakeActionInFrames() + TakenOnFrame;
         }
 
-        public override void SimulateActionEffects(VirtualWorldState worldState, ulong currentFrame)
+        public override void StartedEffect(VirtualWorldState worldState, ulong currentFrame)
         {
-            if (currentFrame < TakesAffectOnFrame)
-            {
-                return;
-            }
+            VirtualUnit newWorker = new VirtualUnit(BotConstants.WorkerUnit);
+            worldState.Units.Add(newWorker);
+        }
 
-            const float WorkerMineralsPerMinute = 40.0f;
-            float workerMineralsPerFrame = FramesToTime(WorkerMineralsPerMinute / 60);
-            worldState.Minerals += workerMineralsPerFrame;
+        public override PlannedAction Clone()
+        {
+            return (PlannedAction)this.MemberwiseClone();
         }
     }
 
@@ -163,7 +200,7 @@ namespace BOSSE.BuildOrderGenerator
 
     public class BuildOrder
     {
-        private readonly List<PlannedAction> ActionOrder = new List<PlannedAction>();
+        private List<PlannedAction> ActionOrder = new List<PlannedAction>();
 
         public bool IsEmpty()
         {
@@ -173,6 +210,21 @@ namespace BOSSE.BuildOrderGenerator
         public void Add(PlannedAction newAction)
         {
             ActionOrder.Add(newAction);
+        }
+
+        public void SimulateAll(VirtualWorldState onWorldState, ulong currentFrame)
+        {
+            // Take all actions
+            foreach (PlannedAction actioniter in ActionOrder)
+            {
+                actioniter.SimulateActionEffects(onWorldState, currentFrame);
+            }
+
+            // Simulate effects of existing units
+            foreach (VirtualUnit unitIter in onWorldState.Units)
+            {
+                unitIter.PerformEffectsOnWorldState(onWorldState);
+            }
         }
 
         //public void Pop()
@@ -188,7 +240,14 @@ namespace BOSSE.BuildOrderGenerator
 
         public BuildOrder Clone()
         {
-            return (BuildOrder)this.MemberwiseClone();
+            BuildOrder obj = (BuildOrder)this.MemberwiseClone();
+            obj.ActionOrder = new List<PlannedAction>();
+
+            foreach (var iter in this.ActionOrder)
+            {
+                obj.ActionOrder.Add(iter.Clone());
+            }
+            return obj;
         }
 
         /// <summary>
@@ -235,12 +294,15 @@ namespace BOSSE.BuildOrderGenerator
 
         public BuildOrder GenerateBuildOrder(ulong framesToSearch)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             this.PossibleActions = GetPossibleActions();
-            BestBuildOrder = new BuildOrder();
+            this.BestBuildOrder = new BuildOrder();
             this.OptimizeForFrameOffset = framesToSearch;
             VirtualWorldState currentGameState = new VirtualWorldState(CurrentGameState.ObservationState);
 
-            RecursiveSearch(BestBuildOrder, currentGameState, 0);
+            RecursiveSearch(BestBuildOrder.Clone(), currentGameState, 0);
 
             if (this.BestBuildOrder.IsEmpty())
             {
@@ -248,15 +310,21 @@ namespace BOSSE.BuildOrderGenerator
                 throw new BosseFatalException();
             }
 
+            sw.Stop();
+            Log.Info("Determined build order in " + sw.ElapsedMilliseconds + " ms");
             return BestBuildOrder;
         }
 
-        private void RecursiveSearch(BuildOrder previousBuildOrder, VirtualWorldState worldState, ulong currentFrame)
+        private void RecursiveSearch(BuildOrder buildOrderIter, VirtualWorldState worldState, ulong currentFrame)
         {
-            if (previousBuildOrder.Evaluate(worldState) > BestBuildOrder.Evaluate(worldState))
+            ulong bestEval = BestBuildOrder.Evaluate(worldState);
+
+            buildOrderIter.SimulateAll(worldState, currentFrame);
+            ulong currentEval = buildOrderIter.Evaluate(worldState);            
+            if (currentEval > bestEval)
             {
                 Log.Info("Found new best build order");
-                BestBuildOrder = previousBuildOrder;
+                BestBuildOrder = buildOrderIter.Clone();
             }
             if (currentFrame >= OptimizeForFrameOffset)
                 return;
@@ -264,14 +332,20 @@ namespace BOSSE.BuildOrderGenerator
             foreach (PlannedAction actionIter in PossibleActions)
             {
                 VirtualWorldState workingWorldState = worldState.Clone();
-                BuildOrder workingBuildOrder = previousBuildOrder.Clone();
+                BuildOrder workingBuildOrder = buildOrderIter.Clone();
 
-                if (!actionIter.CanTake(workingWorldState))
-                    continue;
-
-                actionIter.TakeAction(workingWorldState, currentFrame);
-                workingBuildOrder.Add(actionIter);
-                RecursiveSearch(workingBuildOrder, workingWorldState, currentFrame + 1);
+                if (actionIter.CanTake(workingWorldState))
+                {
+                    // Take the action and step forward
+                    actionIter.TakeAction(workingWorldState, currentFrame);
+                    workingBuildOrder.Add(actionIter);
+                    RecursiveSearch(workingBuildOrder, workingWorldState, currentFrame + 1);
+                }
+                else
+                {
+                    // Advance one frame without taking the action
+                    RecursiveSearch(workingBuildOrder, workingWorldState, currentFrame + 1);
+                }
             }
         }
 
