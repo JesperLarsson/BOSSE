@@ -338,7 +338,7 @@ namespace BOSSE
             }
 
             List<Unit> miningWorkersGlobal = GetUnits(BotConstants.WorkerUnit, onlyCompleted: true).Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS).ToList();
-            List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
+            List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.WorkerTransferInProgress) && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
             if (basesToMineMainFirst.Count == 0)
             {
                 //Log.Warning("Can't balance workers without a base that wants workers"); // comented out to avoid log spam when losing
@@ -353,11 +353,13 @@ namespace BOSSE
             // Fill bases from most recent built first in order to preserve minerals
             List<BaseLocation> basesToMineReverse = new List<BaseLocation>(basesToMineMainFirst);
             basesToMineReverse.Reverse();
-            Dictionary<BaseLocation, int> workerRequest = new Dictionary<BaseLocation, int>(); // Requested amount of workers, positive = need that amount, negative = has too many
+            Dictionary<BaseLocation, int> workerRequest = new Dictionary<BaseLocation, int>(); // Requested amount of workers, positive = need that amount
+            const int StaticWorkerDiff = 4; // the time it takes to transfer is also important, so we have the time to build workers at expansions etc 
             foreach (BaseLocation baseIter in basesToMineReverse)
             {
-                List<Unit> workersMiningThisBase = miningWorkersGlobal.Where(worker => baseIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])).ToList();
-                workerRequest[baseIter] = baseIter.CommandCenterRef.IdealWorkers - workersMiningThisBase.Count;
+                //List<Unit> workersMiningThisBase = miningWorkersGlobal.Where(worker => baseIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])).ToList();
+                int count = baseIter.CommandCenterRef.IdealWorkers - baseIter.CommandCenterRef.AssignedWorkers - StaticWorkerDiff;
+                workerRequest[baseIter] = count;
             }
 
             Dictionary<BaseLocation, List<Unit>> newMiningTargets = new Dictionary<BaseLocation, List<Unit>>(); // target base => units to move there
@@ -372,6 +374,8 @@ namespace BOSSE
                 {
                     if (workerCountRequest <= 0)
                         break;
+                    if (fromIter == toIter)
+                        continue;
 
                     List<Unit> workersMiningFromBase = miningWorkersGlobal.Where(worker => (!worker.HasNewOrders) && (!usedWorkers.Contains(worker.Tag)) && worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS && fromIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])).ToList();
 
@@ -402,14 +406,61 @@ namespace BOSSE
                 List<Unit> workersToMoveHere = newMiningTargets[baseIter];
                 List<Unit> targetMinerals = baseIter.CenteredAroundCluster.MineralFields.ToList();
 
+                Unit mineralPatch = targetMinerals.First();
                 for (int i = 0; i < workersToMoveHere.Count; i++)
                 {
                     Unit worker = workersToMoveHere[i];
-                    Unit mineralPatch = targetMinerals[i % targetMinerals.Count];
 
+#warning TODO Debug: For some reason the mine action doesn't work here
                     Queue(CommandBuilder.MoveAction(new List<Unit>() { worker }, mineralPatch.Position));
-                    Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, mineralPatch), true);
+                    //Queue(CommandBuilder.UseAbility(AbilityId.STOP, worker));
+                    //Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, mineralPatch), true);
                 }
+
+                // Set up a continuous check that checks for when the workers arrive
+                HashSet<Unit> arrivedWorkers = new HashSet<Unit>();
+                ulong workerTransferCompletedStartFrame = 0;
+                ContinuousUnitOrder transferFinishedOrder = new ContinuousUnitOrder(delegate ()
+                {
+                    // We need a small hysteresis to allow workers to actually be assigned to mining after they arrive
+                    const int WorkerTransferHystFrameCount = 100;
+                    foreach (Unit worker in workersToMoveHere)
+                    {
+                        if (arrivedWorkers.Contains(worker))
+                            continue;
+
+                        if (worker.Position.IsWithinRange(mineralPatch.Position, 4))
+                        {
+                            Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, mineralPatch), true);
+                            arrivedWorkers.Add(worker);
+                        }
+                        else if (worker.Integrity < 0.5)
+                        {
+                            continue; // skip dying workers, they might get sniped off so we don't want to wait for them
+                        }
+
+                        return false;
+                    }
+
+                    if (workerTransferCompletedStartFrame == 0)
+                    {
+                        workerTransferCompletedStartFrame = Globals.CurrentFrameIndex;
+                        return false;
+                    }
+                    else if (Globals.CurrentFrameIndex - workerTransferCompletedStartFrame > WorkerTransferHystFrameCount)
+                    {
+                        Log.Info("Worker transfer completed");
+                        baseIter.WorkerTransferInProgress = false;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                });
+                BOSSE.OrderManagerRef.AddOrder(transferFinishedOrder);
+
+                baseIter.WorkerTransferInProgress = true;
             }
 
             if (newMiningTargets.Count > 0)

@@ -41,7 +41,7 @@ namespace BOSSE
         /// </summary>
         public static void Bulk(string line)
         {
-            FormatAndQueue("BULK", line, false);
+            FormatAndQueue("BULK ", line, false);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BOSSE
         /// </summary>
         public static void Info(string line)
         {
-            FormatAndQueue("INFO", line, true);
+            FormatAndQueue("INFO ", line, true);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace BOSSE
         /// </summary>
         public static void Warning(string line)
         {
-            FormatAndQueue("WARNING", line, true);
+            FormatAndQueue("WARN ", line, true);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace BOSSE
         /// </summary>
         public static void Error(string line)
         {
-            FormatAndQueue("ERROR", line, true);
+            FormatAndQueue("ERR  ", line, true);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace BOSSE
         /// </summary>
         public static void SanityCheckFailed(string line, bool breakExe = true)
         {
-            FormatAndQueue("SANITY CHECK FAILED", line, true);
+            FormatAndQueue("SAN  ", line, true);
 
             if (breakExe && System.Diagnostics.Debugger.IsAttached)
             {
@@ -149,8 +149,8 @@ namespace BOSSE
             }
             
             // Format
-            string fullPrefix = $"[{DateTime.Now.ToString("HH:mm:ss")} {typePrefix} {callingClassName}]";
-            string fullMessageRow = String.Format("{0, -45}", fullPrefix) + lineToLog;
+            string fullPrefix = $"[{DateTime.Now.ToString("HH:mm:ss")} {typePrefix} {Globals.CurrentFrameIndex} {callingClassName}]";
+            string fullMessageRow = String.Format("{0, -55}", fullPrefix) + lineToLog;
 
             // File operations is done in a separate thread for better performance
             FileQueue.Enqueue(fullMessageRow);

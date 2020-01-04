@@ -48,6 +48,8 @@ namespace BOSSE
         public ResourceCluster CenteredAroundCluster;
         public Alliance BelongsTo;
 
+        #region Own base only
+
         /// <summary>
         /// If false, this base should not have workers assigned to it
         /// </summary>
@@ -57,6 +59,13 @@ namespace BOSSE
         /// Set if this is a "hidden" base, ie we should not rally workers here
         /// </summary>
         public bool IsHiddenBase = false;
+
+        /// <summary>
+        /// Set while we are currently transferring workers to this base
+        /// </summary>
+        public bool WorkerTransferInProgress = false;
+
+        #endregion
 
         public BaseLocation(Unit commandCenter, ResourceCluster centeredAroundCluster, Alliance belongsTo)
         {
