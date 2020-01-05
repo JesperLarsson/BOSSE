@@ -84,8 +84,9 @@ namespace BOSSE
             WorkerManagerRef,
         };
 
-        // Background thread
-        public static BackgroundWorkerThread BackgroundWorkerThreadRef = new BackgroundWorkerThread();
+        // Background threads
+        public static StrategicMapThread StrategicMapThreadRef = new StrategicMapThread();
+        public static BuildOrderGeneratorThread BuildOrderGeneratorThreadRef = new BuildOrderGeneratorThread();        
 
         // Map handling
         public static MapAnalysisWrapper MapAnalysisRef = new MapAnalysisWrapper();
@@ -134,8 +135,12 @@ namespace BOSSE
                 managerIter.Initialize();
             }
 
-            // Start background worker thread
-            BackgroundWorkerThreadRef.StartThread();
+            // Create an initial build order
+            BuildOrderGeneratorThread.BuildOrder();
+
+            // Start background threads
+            StrategicMapThreadRef.StartThread();
+            BuildOrderGeneratorThreadRef.StartThread();
 
             // Debug sensor - Log building completions
             SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
@@ -164,9 +169,6 @@ namespace BOSSE
             {
                 Queue(CommandBuilder.Chat(jokeLine));
             }
-
-            var buildOrder = BuildOrderGeneratorRef.GenerateBuildOrder(SecondsToFrames(180));
-            Log.Info("Finished build order: " + buildOrder);
 
             HasCompletedFirstFrameInit = true;
         }

@@ -15,49 +15,42 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-namespace BOSSE
+namespace BOSSE.BuildOrderGenerator
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Numerics;
-    using System.Security.Cryptography;
     using System.Threading;
+    using System.Reflection;
+    using System.Linq;
+    using System.Diagnostics;
 
     using SC2APIProtocol;
-    using Action = SC2APIProtocol.Action;
-    using static CurrentGameState;
+    using MoreLinq;
+    using Google.Protobuf.Collections;
+
+    using static GeneralGameUtility;
     using static UnitConstants;
+    using static AbilityConstants;
 
     /// <summary>
-    /// Runs background tasks while the main bot is running to offload the work on another CPU core
+    /// Relative priority for determining build orders
     /// </summary>
-    public class BackgroundWorkerThread
+    public class BuildOrderWeights
     {
-        private Thread ThreadInstance;
-        
-        public void StartThread()
-        {
-            ThreadInstance = new Thread(new ThreadStart(MainLoop));
-            ThreadInstance.Name = "BotBackgroundThread";
-            ThreadInstance.Start();
-        }
+        public float Worker = 1.0f;
+        public float CommandCenter = 1.0f;
+        public float Military = 1.0f;
+    }
 
-        private void MainLoop()
+    public class FocusMilitary : BuildOrderWeights
+    {
+        public FocusMilitary()
         {
-            while (true)
-            {
-                try
-                {
-                    StrategicMapSet.CalculateNewFromCurrentMapState();
-                }
-                catch (Exception ex)
-                {
-                    Log.Error("PERIODICAL THREAD EXCEPTION: " + ex);
-                }
-
-                Thread.Sleep(1000);
-            }
+            this.Worker = 0.1f;
+            this.CommandCenter = 0.1f;
+            this.Military = 1.0f;
         }
     }
 }

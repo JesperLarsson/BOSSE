@@ -88,7 +88,12 @@
     <Compile Include="BOSSE\Utility Managers\OrderManager.cs" />
     <Compile Include="BOSSE\Utility Managers\SpaceMovementReservationManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
+    <Compile Include="Build Order Generator\BuildOrder.cs" />
     <Compile Include="Build Order Generator\BuildOrderGenerator.cs" />
+    <Compile Include="Build Order Generator\BuildOrderWeights.cs" />
+    <Compile Include="Build Order Generator\PlannedAction.cs" />
+    <Compile Include="Build Order Generator\VirtualUnit.cs" />
+    <Compile Include="Build Order Generator\VirtualWorldState.cs" />
     <Compile Include="Entities\Exception\BosseFatalException.cs" />
     <Compile Include="Entities\Exception\BosseRecoverableException.cs" />
     <Compile Include="Entities\Game\BaseLocation.cs" />
@@ -137,7 +142,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\BosseGui.cs" />
-    <Compile Include="Main\BackgroundWorkerThread.cs" />
+    <Compile Include="Main\Background Threads\BuildOrderGeneratorThread.cs" />
+    <Compile Include="Main\Background Threads\StrategicMapThread.cs" />
     <Compile Include="Map Analysis\RuntimeMapAnalyser.cs" />
     <Compile Include="Map Analysis\StaticMapAnalyser.cs" />
     <Compile Include="BOSSE\BotConstants.cs" />
