@@ -34,61 +34,87 @@ namespace BOSSE.BuildOrderGenerator
     using static UnitConstants;
     using static AbilityConstants;
 
-    public class VirtualUnit
-    {
-        public UnitId Type;
-        public bool IsBusy = false;
+ 
 
-        /// <summary>
-        /// If busy, this unit becomes available on the given frame
-        /// </summary>
-        public ulong BecomesAvailableAtTick = 0;
+    //public class VirtualMineralWorker : VirtualUnit2
+    //{
 
-        /// <summary>
-        /// Import constructor
-        /// </summary>
-        public VirtualUnit(Unit importedActualUnit)
-        {
-            this.Type = (UnitId)importedActualUnit.UnitType;
-        }
+    //}
 
-        /// <summary>
-        /// Planned unit as part of our build order
-        /// </summary>
-        public VirtualUnit(UnitId type)
-        {
-            this.Type = type;
-        }
+    //public class VirtualBarracks : VirtualUnit2
+    //{
+    //}
 
-        public VirtualUnit Clone()
-        {
-            var obj = (VirtualUnit)this.MemberwiseClone();
-            return obj;
-        }
+    //public class VirtualCommandCenter : VirtualUnit2
+    //{
+    //}
 
-        public bool IsArmy()
-        {
-            return UnitConstants.ArmyUnits.Contains(this.Type);
-        }
+    //public abstract class VirtualUnit2
+    //{
+    //    public UnitId Type;
+    //    //public bool IsBusy = false;
 
-        public void PerformEffectsOnWorldState(VirtualWorldState worldState, ulong deltaFrames)
-        {
-            if (this.Type != BotConstants.WorkerUnit)
-            {
-                return;
-            }
+    //    /// <summary>
+    //    /// If busy, this unit becomes available on the given frame
+    //    /// </summary>
+    //    public ulong BecomesAvailableOnTick = 0;
 
-            if (this.IsBusy)
-            {
-                return; // busy workers don't mine
-            }
+    //    /// <summary>
+    //    /// Import constructor
+    //    /// </summary>
+    //    //public VirtualUnit(Unit importedActualUnit)
+    //    //{
+    //    //    this.Type = (UnitId)importedActualUnit.UnitType;
+    //    //}
 
-            worldState.Minerals += (BuiltOrderConfig.WorkerMineralsPerFrameEstimate * deltaFrames);
-        }
+    //    public bool IsAvailable(ulong currentFrame)
+    //    {
+    //        bool status = BecomesAvailableOnTick <= currentFrame;
+    //        return status;
+    //    }
 
-        public override string ToString()
-        {
-            return $"[VirtualUnit {this.Type} Busy={this.IsBusy}]";
-        }
-    }
+    //    public VirtualUnit Import(Unit importedActualUnit)
+    //    {
+    //        return new VirtualUnit((UnitId)importedActualUnit.UnitType);
+    //    }
+
+    //    /// <summary>
+    //    /// Planned unit as part of our build order
+    //    /// </summary>
+    //    public VirtualUnit(UnitId type)
+    //    {
+    //        this.Type = type;
+    //    }
+
+    //    //public VirtualUnit Clone()
+    //    //{
+    //    //    var obj = (VirtualUnit)this.MemberwiseClone();
+    //    //    return obj;
+    //    //}
+
+    //    public static bool IsArmy(UnitId inputId)
+    //    {
+    //        return UnitConstants.ArmyUnits.Contains(inputId);
+    //    }
+
+    //    //public void PerformEffectsOnWorldState(VirtualWorldState worldState, ulong deltaFrames)
+    //    //{
+    //    //    if (this.Type != BotConstants.WorkerUnit)
+    //    //    {
+    //    //        return;
+    //    //    }
+
+    //    //    if (this.IsBusy)
+    //    //    {
+    //    //        return; // busy workers don't mine
+    //    //    }
+
+    //    //    worldState.Minerals += (BuiltOrderConfig.WorkerMineralsPerFrameEstimate * deltaFrames);
+    //    //}
+
+    //    public override string ToString()
+    //    {
+    //        return $"[VirtualUnit {this.Type} Busy={this.IsBusy}]";
+    //    }
+    //}
 }

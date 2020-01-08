@@ -33,66 +33,66 @@ namespace BOSSE.BuildOrderGenerator
     using static GeneralGameUtility;
     using static UnitConstants;
     using static AbilityConstants;
+    
+    //public class VirtualWorldState
+    //{
+    //    public List<VirtualUnit> Units = new List<VirtualUnit>();
+    //    public float Minerals;
+    //    public float Gas;
+    //    //public uint Supply;
 
-    public class VirtualWorldState
-    {
-        public List<VirtualUnit> Units = new List<VirtualUnit>();
-        public float Minerals;
-        public float Gas;
-        //public uint Supply;
+    //    /// <summary>
+    //    /// From current sc2 state
+    //    /// </summary>
+    //    public VirtualWorldState(ResponseObservation actualCurrentGameState)
+    //    {
+    //        foreach (var unitIter in actualCurrentGameState.Observation.RawData.Units)
+    //        {
+    //            if (unitIter.Alliance != Alliance.Self)
+    //                continue;
 
-        /// <summary>
-        /// From current sc2 state
-        /// </summary>
-        public VirtualWorldState(ResponseObservation actualCurrentGameState)
-        {
-            foreach (var unitIter in actualCurrentGameState.Observation.RawData.Units)
-            {
-                if (unitIter.Alliance != Alliance.Self)
-                    continue;
+    //            VirtualUnit obj = new VirtualUnit(unitIter);
+    //            this.Units.Add(obj);
+    //        }
+    //        this.Minerals = actualCurrentGameState.Observation.PlayerCommon.Minerals;
+    //        this.Gas = actualCurrentGameState.Observation.PlayerCommon.Vespene;
+    //        //this.Supply = actualCurrentGameState.Observation.PlayerCommon.FoodCap; ;
+    //    }
 
-                VirtualUnit obj = new VirtualUnit(unitIter);
-                this.Units.Add(obj);
-            }
-            this.Minerals = actualCurrentGameState.Observation.PlayerCommon.Minerals;
-            this.Gas = actualCurrentGameState.Observation.PlayerCommon.Vespene;
-            //this.Supply = actualCurrentGameState.Observation.PlayerCommon.FoodCap; ;
-        }
+    //    public VirtualWorldState Clone()
+    //    {
+    //        var obj = (VirtualWorldState)this.MemberwiseClone();
+    //        obj.Units = new List<VirtualUnit>();
 
-        public VirtualWorldState Clone()
-        {
-            var obj = (VirtualWorldState)this.MemberwiseClone();
-            obj.Units = new List<VirtualUnit>();
+    //        foreach (var iter in this.Units)
+    //        {
+    //            obj.Units.Add(iter.Clone());
+    //        }
+    //        return obj;
+    //    }
 
-            foreach (var iter in this.Units)
-            {
-                obj.Units.Add(iter.Clone());
-            }
-            return obj;
-        }
+    //    public float EstimateMineralIncomePerFrame()
+    //    {
+    //        return GetUnitsOfType(BotConstants.WorkerUnit).Count * BuiltOrderConfig.WorkerMineralsPerFrameEstimate;
+    //    }
 
-        public float EstimateMineralIncomePerFrame()
-        {
-            return GetUnitsOfType(BotConstants.WorkerUnit).Count * BuiltOrderConfig.WorkerMineralsPerFrameEstimate;
-        }
+    //    public List<VirtualUnit> GetUnitsOfType(HashSet<UnitId> types)
+    //    {
+    //        List<VirtualUnit> list = new List<VirtualUnit>();
 
-        public List<VirtualUnit> GetUnitsOfType(HashSet<UnitId> types)
-        {
-            List<VirtualUnit> list = new List<VirtualUnit>();
+    //        foreach (var iter in Units)
+    //        {
+    //            if (types.Contains(iter.Type))
+    //            {
+    //                list.Add(iter);
+    //            }
+    //        }
 
-            foreach (var iter in Units)
-            {
-                if (types.Contains(iter.Type))
-                {
-                    list.Add(iter);
-                }
-            }
-
-            return list;
-        }
-        public List<VirtualUnit> GetUnitsOfType(UnitId type)
-        {
-            return GetUnitsOfType(new HashSet<UnitId>() { type });
-        }
-    }
+    //        return list;
+    //    }
+    //    public List<VirtualUnit> GetUnitsOfType(UnitId type)
+    //    {
+    //        return GetUnitsOfType(new HashSet<UnitId>() { type });
+    //    }
+    //}
 }

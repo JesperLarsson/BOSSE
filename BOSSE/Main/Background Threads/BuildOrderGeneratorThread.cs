@@ -51,7 +51,7 @@ namespace BOSSE
             ulong frameSimulationCount = SecondsToFrames(90);
             BuildOrderWeights weights = new FocusMilitary();
 
-            KeyValuePair<BuildOrder, VirtualWorldState> buildOrder = BOSSE.BuildOrderGeneratorRef.GenerateBuildOrder(frameSimulationCount, weights);
+            var buildOrder = BOSSE.BuildOrderGeneratorRef.GenerateBuildOrder(frameSimulationCount);
             Log.Info("Finished build order: " + buildOrder.Key);
         }
 
