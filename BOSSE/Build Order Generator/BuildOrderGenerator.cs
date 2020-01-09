@@ -44,41 +44,99 @@ namespace BOSSE.BuildOrderGenerator
         public const ulong StandardFrameDelta = 22;
     }
 
-    public class BuildOrderItem
-    {
-        public UnitId UnitType = 0;
-        public UpgradeConstants.UpgradeId UpgradeType = 0;
+    //public class BuildOrderItem
+    //{
+    //    public UnitId UnitType = 0;
+    //    public UpgradeConstants.UpgradeId UpgradeType = 0;
 
-        public BuildOrderItem(UnitId unitType)
+    //    public BuildOrderItem(UnitId unitType)
+    //    {
+    //        this.UnitType = unitType;
+    //    }
+    //    public BuildOrderItem(UpgradeConstants.UpgradeId upgradeType)
+    //    {
+    //        this.UpgradeType = upgradeType;
+    //    }
+    //}
+
+
+
+
+
+
+
+
+
+
+
+
+    public abstract class Precondition
+    {
+        public abstract bool IsFulfilled(VirtualWorldState worldState);
+    }
+
+    public class HaveUnitCondition : Precondition
+    {
+        private UnitId RequiredUnit = 0;
+
+        public HaveUnitCondition(UnitId requiredUnit)
         {
-            this.UnitType = unitType;
+            RequiredUnit = requiredUnit;
         }
-        public BuildOrderItem(UpgradeConstants.UpgradeId upgradeType)
+
+        public override bool IsFulfilled(VirtualWorldState worldState)
         {
-            this.UpgradeType = upgradeType;
+
         }
     }
 
-    public abstract class VirtualAction
+    public class MineralCondition : Precondition
     {
-        public abstract void OnActionTaken(VirtualWorldState worldState);
+        private int MineralsRequired = 0;
 
-        public virtual VirtualWorldState Clone()
+        public MineralCondition(int mineralsRequired)
+        {
+            MineralsRequired = mineralsRequired;
+        }
+
+        public override bool IsFulfilled(VirtualWorldState worldState)
         {
 
         }
+    }
 
 
+
+
+
+
+
+
+    public abstract class VirtualAction
+    {
+        /// <summary>
+        /// Duration of the action, in number of logical frames
+        /// </summary>
+        public int Duration = 0;
+
+        /// <summary>
+        /// Required conditions must have been completed before this action can be taken
+        /// </summary>
+        public HashSet<Precondition> RequiredPrecondition = new HashSet<Precondition>();
+
+        /// <summary>
+        /// Borrowed preconditions means that this action must exclusively occupy a resource while the action is performed
+        /// </summary>
+        public HashSet<Precondition> BorrowedPrecondition = new HashSet<Precondition>();
+
+        /// <summary>
+        /// Consumed preconditions are resource that are removed as we perform the action
+        /// </summary>
+        public HashSet<Precondition> ConsumedPrecondition = new HashSet<Precondition>();
     }
 
     public class BuildWorkerAction : VirtualAction
     {
-        public override VirtualWorldState Clone()
-        {
-
-        }
-
-
 
     }
 
@@ -93,72 +151,37 @@ namespace BOSSE.BuildOrderGenerator
 
 
 
-
-
-    public abstract class VirtualProductionBuilding
-    {
-    }
-
-    public class VirtualBarracks : VirtualProductionBuilding
+    public abstract class VirtualUnit
     {
 
     }
-
-    public class VirtualMilitaryUnit
-    {
-    }
-
-
 
 
 
 
     public class BuildOrder
     {
-        public void AddAction(VirtualAction newAction)
-        {
-
-        }
-
-        public ulong Evaluate(VirtualWorldState worldState)
-        {
-
-        }
-
         public BuildOrder Clone()
         {
 
         }
-
     }
 
 
 
     public class VirtualWorldState
     {
-        public List<VirtualProductionBuilding> ProductionBuildings = new List<VirtualProductionBuilding>();
+        /// <summary>
+        /// Current virtual game time, measured in logical frames
+        /// </summary>
+        public int Time = 0;
 
-        public uint WorkersOwned = 0;
-        public uint WorkersBusy = 0;
+        /// <summary>
+        /// Actions that have been taken, but have not been completed yet
+        /// </summary>
+        public List<VirtualAction> ActionsInProgress = new List<VirtualAction>();
 
-        // Units add their value to these
-        public uint MineralSum = 0;
-        public uint GasSum = 0;
-
-        // Resources available at this moment in time
-        public uint CurrentMinerals = 0;
-        public uint CurrentGas = 0;
-        public uint CurrentFood = 0;
-
-        public List<VirtualAction> GetPossibleActions()
-        {
-            
-        }
-
-        public VirtualWorldState Clone()
-        {
-            
-        }
+        public int WorkersMiningMinerals = 0;
     }
 
 
@@ -170,174 +193,14 @@ namespace BOSSE.BuildOrderGenerator
     /// </summary>
     public class BuildOrderGenerator
     {
-        private BuildOrder BestBuildOrder = null;
-        /private ulong BestEval = 0;
-        private ulong OptimizeForFrameOffset = 0;
-
-        //private List<PlannedAction> PossibleActions = null;
-        //private BuildOrderWeights BuildOrderWeights = null;
-
         public BuildOrder GenerateBuildOrder(ulong framesToSearch)
         {
-            //Stopwatch sw = new Stopwatch();
-            //sw.Start();
 
-            //// Set starting state, we need to reset everything since we re-use the same build order generator between runs
-            //this.PossibleActions = GetPossibleActions();
-            //this.BuildOrderWeights = weights;
-            this.OptimizeForFrameOffset = framesToSearch;
-            this.BestBuildOrder = new BuildOrder();
-            VirtualWorldState currentGameState = new VirtualWorldState(CurrentGameState.ObservationState);
-            this.BestEval = BestBuildOrder.Evaluate(currentGameState);
-
-            //// God
-            //RecursiveSearch(BestBuildOrder.Clone(), currentGameState, 0, 1);
-            //sw.Stop();
-            //Log.Info("Determined build order in " + sw.ElapsedMilliseconds + " ms");
-
-            //if (this.BestBuildOrder.IsEmpty())
-            //{
-            //    Log.SanityCheckFailed("Unable to search for a build order");
-            //    throw new BosseRecoverableException("No build order possible");
-            //}
-            //return new KeyValuePair<BuildOrder, VirtualWorldState>(BestBuildOrder, BestBuildOrderResultsInState);
-        }
-
-        /// <summary>
-        /// Applies the queued actions to the given world state
-        /// </summary>
-        private void AdvanceWorldXFrames(BuildOrder buildOrder, VirtualWorldState worldState, ulong currentFrame, ulong deltaFrameCount)
-        {
-            //buildOrderIter.SimulateAll(worldState, currentFrame, currentDeltaFrames);
-
-            ...; // todo
-        }
-
-        /// <summary>
-        /// Determines if we want to save this build order as a possible option or not
-        /// </summary>
-        private void EvaluateUpdatedBuildOrder(BuildOrder buildOrder, VirtualWorldState worldState, ulong currentFrame, ulong deltaFrameCount)
-        {
-            ...; // todo
-
-            //ulong currentEval = buildOrderIter.Evaluate(worldState, this.BuildOrderWeights);
-            //if (currentEval > this.BestEval)
-            //{
-            //    // Found a new best build order
-            //    if (buildOrderIter.IsEmpty() && (!this.BestBuildOrder.IsEmpty()))
-            //    {
-            //        Log.SanityCheckFailed("Unexpected assignment of empty build order");
-            //    }
-
-            //    if ((!buildOrderIter.ContainsActionOfType(typeof(BuildMarine))) && BestBuildOrder.ContainsActionOfType(typeof(BuildMarine)))
-            //    {
-            //        Log.Debug("=/ weights!!!");
-            //    }
-
-            //    this.BestBuildOrder = buildOrderIter.Clone();
-            //    this.BestEval = currentEval;
-            //    BestBuildOrderResultsInState = worldState;
-            //}
         }
 
         private void RecursiveSearch(BuildOrder buildOrder, VirtualWorldState worldState, ulong currentFrame, ulong deltaFrameCount)
         {
-            if (deltaFrameCount > 0)
-            {
-                AdvanceWorldXFrames(buildOrder, worldState, currentFrame, deltaFrameCount);
-                EvaluateUpdatedBuildOrder(buildOrder, worldState, currentFrame, deltaFrameCount);
-            }
-            if (currentFrame >= this.OptimizeForFrameOffset)
-                return;
 
-            List<VirtualAction> actionsAvailable = worldState.GetPossibleActions();
-            foreach (VirtualAction action in actionsAvailable)
-            {
-                VirtualWorldState subState = worldState.Clone();
-                BuildOrder subBuildOrder = buildOrder.Clone();
-
-                // Call recursively whenever there's a possible action
-                action.OnActionTaken(subState);
-                subBuildOrder.AddAction(action);
-                this.RecursiveSearch(subBuildOrder, subState, currentFrame, 0);
-            }
-
-            // Also try stepping without taking an action
-            this.RecursiveSearch(buildOrder, worldState, currentFrame, BuiltOrderConfig.StandardFrameDelta);
         }
-
-
-        //bool actionWasPossible = false;
-        //ulong anyActionNextPossibleAt = ulong.MaxValue;
-        //foreach (PlannedAction actionIter in this.PossibleActions)
-        //{
-        //    VirtualWorldState workingWorldState = worldState.Clone();
-        //    BuildOrder workingBuildOrder = buildOrderIter.Clone();
-
-        //    if (actionIter.CanTake(workingWorldState))
-        //    {
-        //        // Take the action and step forward
-        //        actionIter.TakeAction(workingWorldState, currentFrame);
-        //        actionIter.ActionWasTaken(workingWorldState, currentFrame);
-        //        workingBuildOrder.Add(actionIter);
-
-        //        ulong deltaFrames = StandardFrameDelta;
-        //        RecursiveSearch(workingBuildOrder, workingWorldState, currentFrame + deltaFrames, deltaFrames);
-        //        actionWasPossible = true;
-        //    }
-        //    else
-        //    {
-        //        ulong thisActionNextPossible = actionIter.EstimateWhenActionIsAvailable(workingWorldState, currentFrame);
-        //        if (thisActionNextPossible <= currentFrame)
-        //        {
-        //            // Likely because some function returned a static estimate instead of adding to the current frame counter
-        //            Log.SanityCheckFailed("Unexpected frame availability, it should not be available for some time since CanTake returned false: " + thisActionNextPossible);
-        //            thisActionNextPossible = currentFrame + 1;
-        //        }
-
-        //        // Normal case
-        //        anyActionNextPossibleAt = Math.Min(anyActionNextPossibleAt, thisActionNextPossible);
-        //    }
-        //}
-
-        //if (actionWasPossible)
-        //{
-        //    // Step a single frame without any of the actions taken as well
-        //    ulong deltaFrames = StandardFrameDelta;
-
-        //    VirtualWorldState noActionWorldState = worldState.Clone();
-        //    BuildOrder noActionBuildOrder = buildOrderIter.Clone();
-        //    RecursiveSearch(noActionBuildOrder, noActionWorldState, currentFrame + deltaFrames, deltaFrames);
-        //}
-        //else
-        //{
-        //    // No actions are possible, we have no choice but to wait. We can optimize by stepping multiple frames at once
-        //    ulong deltaFrames = StandardFrameDelta;
-        //    if (anyActionNextPossibleAt == ulong.MaxValue)
-        //    {
-        //        Log.SanityCheckFailed("Expected a frame offset for delta value");
-        //    }
-        //    else
-        //    {
-        //        // Normal case
-        //        deltaFrames = anyActionNextPossibleAt - currentFrame;
-        //    }
-
-        //    VirtualWorldState noActionWorldState = worldState.Clone();
-        //    BuildOrder noActionBuildOrder = buildOrderIter.Clone();
-        //    RecursiveSearch(noActionBuildOrder, noActionWorldState, currentFrame + deltaFrames, deltaFrames);
-        //}
-        //}
-
-        //private List<PlannedAction> GetPossibleActions()
-        //{
-        //    List<PlannedAction> possibleActions = new List<PlannedAction>();
-        //    foreach (Type type in Assembly.GetAssembly(typeof(Sensor)).GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(PlannedAction))))
-        //    {
-        //        PlannedAction action = (PlannedAction)Activator.CreateInstance(type);
-        //        possibleActions.Add(action);
-        //    }
-        //    return possibleActions;
-        //}
     }
 }
