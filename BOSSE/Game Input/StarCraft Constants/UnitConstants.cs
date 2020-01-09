@@ -34,6 +34,8 @@ namespace BOSSE
     {
         public enum UnitId
         {
+            UNASSIGNED = 0,
+
             COLOSSUS = 4,
             TECHLAB = 5,
             REACTOR = 6,
