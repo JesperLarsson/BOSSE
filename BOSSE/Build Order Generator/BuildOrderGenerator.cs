@@ -34,6 +34,7 @@ namespace BOSSE.BuildOrderGenerator
     using static UnitConstants;
     using static UpgradeConstants;
     using static AbilityConstants;
+    using System.Runtime.CompilerServices;
 
 #warning TODO: This should also take a list of optional weights for each unit, ie we need more air right now etc
 #warning TODO: Also add a bias option which changes the evaluation algorithm, ex one only counts army units (agressive) while counts everything (balance focus) while another only counts workers+CC (economy focus)
@@ -46,6 +47,12 @@ namespace BOSSE.BuildOrderGenerator
         public static ActionId GetWorkerActionId()
         {
             return ActionId.Get(BotConstants.WorkerUnit);
+        }
+
+        public static uint GetLowerBound(VirtualWorldState worldState, BuildOrderGoal goal)
+        {
+            // todo, hardish, Tools::GetLowerBound
+
         }
     }
 
@@ -230,21 +237,20 @@ namespace BOSSE.BuildOrderGenerator
     {
         public VirtualWorldState(ResponseObservation starcraftGameState)
         {
-            // todo
+            // todo, hard but straight forward
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Current virtual game time, measured in logical frames
-        /// </summary>
-        public int Time = 0;
+        public void DoAction(ActionId action)
+        {
+            // todo, important!, takes the given action right now
+            throw new NotImplementedException();
+        }
 
-        public ActionSet ActionsInProgress = new ActionSet();
-
-        /// <summary>
-        /// Number of workers currently assigned to mine minerals
-        /// </summary>
-        public int WorkersMiningMinerals = 0;
+        public uint GetLastActionFinishTime()
+        {
+            // todo
+        }
 
         /// <summary>
         /// Determines if the given action is legal in this context or not
@@ -252,6 +258,11 @@ namespace BOSSE.BuildOrderGenerator
         public bool IsLegal(ActionId action)
         {
             // todo
+        }
+
+        public uint GetCurrentFrame()
+        {
+            // todo easy
         }
 
         /// <summary>
@@ -295,6 +306,11 @@ namespace BOSSE.BuildOrderGenerator
         /// If enabled, we will always try to produce workers whenever possible
         /// </summary>
         public bool AlwaysBuildWorkers = true;
+
+        /// <summary>
+        /// Timeout in milliseconds, 0 = no timeout
+        /// </summary>
+        public uint TimeoutMilliseconds = 0;
 
         /// <summary>
         /// Returns the supply necessary to produce everything in GoalUnitCount
@@ -388,34 +404,66 @@ namespace BOSSE.BuildOrderGenerator
 
     public class BuildOrderResult
     {
-        public BuildOrder BuildOrderRef = null;
+        public BuildOrder SolutionBuildOrder = new BuildOrder();
         public BuildOrderGoal InputGoal = null;
-        public VirtualWorldState ResultingWorldState = null;
+        //public VirtualWorldState ResultingWorldState = null;
 
+        /// <summary>
+        /// Set if the search was completed, does not necessarily mean a solution was found
+        /// </summary>
         public bool WasSolved = false;
 
+        /// <summary>
+        /// Set if there is a valid build order found which achieves our goal
+        /// </summary>
+        public bool SolutionFound = false;
         public ulong NodesExpanded = 0;
 
         /// <summary>
         /// Upper bound of this search, in logical frames. MaxValue = no known bound
         /// </summary>
-        public int UpperBound = int.MaxValue;
+        public uint UpperBound = uint.MaxValue;
+
+        public BuildOrderResult(BuildOrderGoal goal)
+        {
+            this.InputGoal = goal;
+        }
     }
 
     public class BuildOrder
     {
+        // maybe use stack??
 
+        public BuildOrder Clone()
+        {
+
+        }
+
+        public void Add(ActionId action)
+        {
+            // todo easy
+            throw new NotImplementedException();
+        }
+
+        public void pop_back()
+        {
+            // todo easy, remove one
+            throw new NotImplementedException();
+        }
     }
 
 
 
     /// <summary>
-    /// Generates build orders for the current game state
+    /// Generates build orders
     /// </summary>
     public class BuildOrderGenerator
     {
         private readonly BuildOrderGoal Goal = null;
+
         private BuildOrderResult Result = null;
+        private Stopwatch SearchStartedTimer = null;
+        private BuildOrder BuildOrder = null;
 
         public BuildOrderGenerator(BuildOrderGoal argGoal)
         {
@@ -440,31 +488,120 @@ namespace BOSSE.BuildOrderGenerator
         }
 
         /// <summary>
-        /// Generates a build order for the search parameters given to the generator constructor
+        /// Generates a build order for the search parameters given to the generator constructor, uses the current game state as a base
         /// </summary>
-        public BuildOrderResult GenerateBuildOrder()
+        public void GenerateBuildOrder()
         {
+            this.SearchStartedTimer = new Stopwatch();
+            this.SearchStartedTimer.Start();
+
+            this.Result = new BuildOrderResult(this.Goal);
+            this.BuildOrder = new BuildOrder();
             VirtualWorldState initialWorldState = new VirtualWorldState(CurrentGameState.ObservationState);
 
-
-
-
-
+            bool searchSucess = RecursiveSearch(initialWorldState);
+            this.Result.WasSolved = searchSucess;
         }
 
-        private void RecursiveSearch()
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private bool IsTimeout()
+        {
+            uint threshold = this.Goal.TimeoutMilliseconds;
+            if (threshold == 0)
+                return false;
+
+            // Minor optimization, timing takes some time each tick
+            if (this.Result.NodesExpanded % 200 != 0)
+                return false;
+
+            return this.SearchStartedTimer.ElapsedMilliseconds >= threshold;
+        }
+
+        /// <summary>
+        /// Main build order search function, returns false if the search timed out
+        /// </summary>
+        private bool RecursiveSearch(VirtualWorldState worldState)
         {
             this.Result.NodesExpanded += 1;
 
+            // Check for search timeout
+            if (IsTimeout())
+            {
+                return false;
+            }
 
+            ActionSet legalActions = this.GenerateLegalActions(worldState);
+            foreach (ActionId actionIter in legalActions.GetActions())
+            {
+                uint actionFrameFinish = worldState.WhenCanWePerform(actionIter);
+                uint heuristicTime = worldState.GetCurrentFrame() + BuildOrderUtility.GetLowerBound(worldState, this.Goal);
+                uint maxHeuristic = Math.Max(actionFrameFinish, heuristicTime);
 
+                // Use heuristic to skip action if not viable
+                if (maxHeuristic > this.Result.UpperBound)
+                {
+                    continue;
+                }
 
+                // Perform this action on world state
+                VirtualWorldState childState = worldState;
+                uint actionRepeatCount = this.GetRepetitions(worldState, actionIter);
+                uint actionAddCount = 0;
+                for (int _ = 0; _ < actionRepeatCount; _++)
+                {
+                    if (!childState.IsLegal(actionIter))
+                        break;
+
+                    this.BuildOrder.Add(actionIter);
+                    actionAddCount++;
+                    childState.DoAction(actionIter);
+                }
+
+                // Call recursively unless we have achieved our goal
+                if (this.Goal.IsAchievedBy(childState))
+                {
+                    this.UpdateResults(childState);
+                }
+                else
+                {
+                    bool searchSuccess = this.RecursiveSearch(childState);
+                    if (!searchSuccess)
+                        return false;
+                }
+
+                // Remove added build order steps for next loop iteration
+                for (int _ = 0; _ < actionAddCount; _++)
+                {
+                    this.BuildOrder.pop_back();
+                }
+            }
+
+            return true;
         }
 
-        public ActionSet GenerateLegalActions(VirtualWorldState worldState)
+        private void UpdateResults(VirtualWorldState worldState)
         {
-            ActionSet relevantActions = Goal.GetRelevantActions();
+            uint lastActionFinishTime = worldState.GetLastActionFinishTime();
+
+            if (lastActionFinishTime < this.Result.UpperBound)
+            {
+                this.Result.UpperBound = lastActionFinishTime;
+                this.Result.SolutionFound = true;
+                //this.Result.ResultingWorldState = worldState.Clone();
+                this.Result.SolutionBuildOrder = this.BuildOrder.Clone();
+            }
+        }
+
+        private uint GetRepetitions(VirtualWorldState worldState, ActionId action)
+        {
+            // TODO: Support repetitions
+            return 1;
+        }
+
+        private ActionSet GenerateLegalActions(VirtualWorldState worldState)
+        {
             ActionSet legalActions = new ActionSet();
+            ActionSet relevantActions = Goal.GetRelevantActions();
             ActionId workerActionid = BuildOrderUtility.GetWorkerActionId();
 
             // Find legal actions
