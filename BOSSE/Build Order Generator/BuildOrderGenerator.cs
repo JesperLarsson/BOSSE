@@ -209,6 +209,12 @@ namespace BOSSE.BuildOrderGenerator
             throw new NotImplementedException();
         }
 
+        public void Remove(ActionId newAction)
+        {
+            // todo
+            throw new NotImplementedException();
+        }
+
         public HashSet<ActionId> GetActions()
         {
             return RegisteredActions;
@@ -254,6 +260,14 @@ namespace BOSSE.BuildOrderGenerator
         public uint GetNumberTotal(ActionId target)
         {
             // todo easy
+        }
+
+        /// <summary>
+        /// Returns when the given action will be possible, given that we perform no additional actions
+        /// </summary>
+        public uint WhenCanWePerform(ActionId action)
+        {
+            // todo, medium-ish, whenCanPerform
         }
     }
 
@@ -453,8 +467,9 @@ namespace BOSSE.BuildOrderGenerator
             ActionSet legalActions = new ActionSet();
             ActionId workerActionid = BuildOrderUtility.GetWorkerActionId();
 
+            // Find legal actions
             foreach (ActionId actionIdIter in relevantActions.GetActions())
-            {                
+            {
                 if (!worldState.IsLegal(actionIdIter))
                     continue;
 
@@ -476,12 +491,40 @@ namespace BOSSE.BuildOrderGenerator
                 legalActions.Add(actionIdIter);
             }
 
+            // Optional mode - Always build workers
             if (this.Goal.AlwaysBuildWorkers && legalActions.Contains(workerActionid))
             {
+                uint workerReadyFrame = worldState.WhenCanWePerform(workerActionid);
+                ActionSet legalEqualWorker = new ActionSet();
+                bool actionLegalBeforeWorker = false;
 
+                foreach (ActionId legaliter in legalActions.GetActions())
+                {
+                    uint iterReadyFrame = worldState.WhenCanWePerform(legaliter);
+
+                    if (iterReadyFrame < workerReadyFrame)
+                    {
+                        actionLegalBeforeWorker = true;
+                        break;
+                    }
+
+                    if ((iterReadyFrame == workerReadyFrame) && (legaliter.MineralPrice() == workerActionid.MineralPrice()))
+                    {
+                        legalEqualWorker.Add(legaliter);
+                    }
+                }
+
+                if (actionLegalBeforeWorker)
+                {
+                    legalActions.Remove(workerActionid);
+                }
+                else
+                {
+                    legalActions = legalEqualWorker;
+                }
             }
 
-
+            return legalActions;
         }
     }
 }
