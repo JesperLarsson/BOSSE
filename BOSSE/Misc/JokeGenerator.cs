@@ -29,12 +29,13 @@ namespace BOSSE
         /// </summary>
         private static List<List<string>> jokes = new List<List<string>>(){
             new List<String>() { "glhf" },
-            new List<String>() { "Good bot (；^＿^)ッ" },
-            new List<String>() { "What happens when you cross a werewolf with Santa?", "Santa Claws" },
-            //new List<String>() { "THIS IS NOT A DRILL!", "#====" },
-            new List<String>() { "A Mexican magician says he will disappear on the count of 3", "\"uno, dos...\" poof", "He disappeared without a tres" },
-            new List<String>() { "What's the difference between a good joke and a bad joke timing" },
-            new List<String>() { "How do you find Will Smith in the snow?", "You look for the fresh prints" },
+            //new List<String>() { "Good bot (；^＿^)ッ" },
+            //new List<String>() { "What happens when you cross a werewolf with Santa?", "Santa Claws" },
+            //new List<String>() { "A Mexican magician says he will disappear on the count of 3", "\"uno, dos...\" poof", "He disappeared without a tres" },
+            //new List<String>() { "What's the difference between a good joke and a bad joke timing" },
+            //new List<String>() { "How do you find Will Smith in the snow?", "You look for the fresh prints" },
+            new List<String>() { "I'd tell you a UDP joke", "But I'm not sure if you would get it" },
+            new List<String>() { "How did the three wise men find Jesus? ", "A*" },
         };
 
         public static List<string> GetJoke()
