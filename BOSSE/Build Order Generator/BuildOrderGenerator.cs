@@ -79,6 +79,17 @@ namespace BOSSE.BuildOrderGenerator
             this.UpgradeType = upgradeType;
         }
 
+        public static void InitAll()
+        {
+            foreach (UnitId iter in Enum.GetValues(typeof(UnitId)))
+            {
+                ActionId newObj = Get(iter);
+                Log.Bulk("Initialized build order with unit action " + newObj.GetName());
+            }
+
+            // Add upgrades here later when necessary
+        }
+
         public static HashSet<ActionId> GetAllActions()
         {
             // todo, figure our where to store, returns ALL globally available actions, no condition
@@ -293,14 +304,14 @@ namespace BOSSE.BuildOrderGenerator
         /// Key => ID of either the unit or the upgrade
         /// Value => The number requested of that unit, expected 1 for upgrades
         /// </summary>
-        public Dictionary<ActionId, uint> GoalUnitCount = new Dictionary<ActionId, uint>();
+        private Dictionary<ActionId, uint> GoalUnitCount = new Dictionary<ActionId, uint>();
 
         /// <summary>
         /// The maximum number of allowed units
         /// Key => ID of either the unit or the upgrade
         /// Value => The number requested of that unit, expected 1 for upgrades
         /// </summary>
-        public Dictionary<ActionId, uint> GoalUnitsMaximum = new Dictionary<ActionId, uint>();
+        private Dictionary<ActionId, uint> GoalUnitsMaximum = new Dictionary<ActionId, uint>();
 
         /// <summary>
         /// If enabled, we will always try to produce workers whenever possible
@@ -330,6 +341,16 @@ namespace BOSSE.BuildOrderGenerator
             // simple
 
 
+        }
+
+        public void SetGoal(UnitId unitType, uint count)
+        {
+            this.GoalUnitCount[ActionId.Get(unitType)] = count;
+        }
+
+        public void SetGoalMax(UnitId unitType, uint count)
+        {
+            this.GoalUnitsMaximum[ActionId.Get(unitType)] = count;
         }
 
         /// <summary>

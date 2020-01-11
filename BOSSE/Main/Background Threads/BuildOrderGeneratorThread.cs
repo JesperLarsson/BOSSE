@@ -37,7 +37,9 @@ namespace BOSSE
     /// </summary>
     public class BuildOrderGeneratorThread
     {
-        private Thread ThreadInstance;
+        private Thread ThreadInstance = null;
+        private static bool HasInitialized = false;
+        private static BuildOrderGenerator.BuildOrderGenerator BuildOrderGeneratorRef = null;
 
         public void StartThread()
         {
@@ -48,11 +50,29 @@ namespace BOSSE
 
         public static void BuildOrder()
         {
-            ulong frameSimulationCount = SecondsToFrames(90);
-            BuildOrderWeights weights = new FocusMilitary();
+            if (!HasInitialized)
+            {
+                ActionId.InitAll();
 
-            var buildOrder = BOSSE.BuildOrderGeneratorRef.GenerateBuildOrder(frameSimulationCount);
-            Log.Info("Finished build order: " + buildOrder.Key);
+                BuildOrderGoal goal = new BuildOrderGoal();
+                goal.AlwaysBuildWorkers = true;
+                goal.SetGoal(UnitId.MARINE, 10);
+
+                BuildOrderGeneratorRef = new BuildOrderGenerator.BuildOrderGenerator(goal);
+                HasInitialized = true;
+            }
+
+            BuildOrderGeneratorRef.GenerateBuildOrder();
+            BuildOrderResult result = BuildOrderGeneratorRef.GetResults();
+
+            if (result.WasSolved && result.SolutionFound)
+            {
+                Log.Info("Build order search success: " + result.SolutionBuildOrder);
+            }
+            else
+            {
+                Log.Info("Build order search failed");
+            }
         }
 
         private void MainLoop()

@@ -86,14 +86,11 @@ namespace BOSSE
 
         // Background threads
         public static StrategicMapThread StrategicMapThreadRef = new StrategicMapThread();
-        public static BuildOrderGeneratorThread BuildOrderGeneratorThreadRef = new BuildOrderGeneratorThread();        
+        public static BuildOrderGeneratorThread BuildOrderGeneratorThreadRef = new BuildOrderGeneratorThread();
 
         // Map handling
         public static MapAnalysisWrapper MapAnalysisRef = new MapAnalysisWrapper();
         public static PathFinder PathFinderRef = new PathFinder();
-
-        // Build order search
-        public static BuildOrderGenerator.BuildOrderGenerator BuildOrderGeneratorRef = new BuildOrderGenerator.BuildOrderGenerator();
 
         /// <summary>
         /// Set after the first frame initialization has been completed
