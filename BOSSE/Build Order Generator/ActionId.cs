@@ -36,6 +36,100 @@ namespace BOSSE.BuildOrderGenerator
     using static UpgradeConstants;
     using static AbilityConstants;
 
+
+    public class ActionPerformed
+    {
+        public ActionId ActionType;
+        public uint ActionQueuedOnFrame = 0;
+        public uint MineralsWhenQueued = 0;
+        public uint GasWhenQueued = 0;
+        
+        public ActionPerformed(ActionId actionType, uint actionQueuedOnFrame = 0, uint mineralsWhenQueued = 0, uint gasWhenQueued = 0)
+        {
+            ActionType = actionType;
+            ActionQueuedOnFrame = actionQueuedOnFrame;
+            MineralsWhenQueued = mineralsWhenQueued;
+            GasWhenQueued = gasWhenQueued;
+        }
+    }
+
+
+
+
+    public class ActionInProgress : IComparable<ActionInProgress>
+    {
+        private readonly ActionId Action = null;
+        private readonly uint Time = 0;
+
+        public ActionInProgress(ActionId action, uint time)
+        {
+            this.Action = action;
+            this.Time = time;
+        }
+
+        public uint GetFinishTime()
+        {
+
+        }
+
+        public ActionId GetActionId()
+        {
+            return this.Action;
+        }
+
+        public uint GetTime()
+        {
+            return this.Time;
+        }
+
+        public int CompareTo(ActionInProgress other)
+        {
+            return this.Time.CompareTo(other.GetTime());
+        }
+
+        public override string ToString()
+        {
+            return $"[ActionInProgress {this.Action} - {this.Time}]";
+        }
+    }
+
+    public class ActionsInProgress
+    {
+        //public void AddAction(ActionId action, uint timeFrameCount)
+        //{
+        //    // IMPORTANT, add to list in a sorted way
+        //    throw new NotImplementedException();
+        //}
+
+        public bool IsEmpty()
+        {
+
+        }
+
+        public ActionInProgress GetNextAction()
+        {
+            if (IsEmpty())
+                return null;
+
+            // todo, take the LAST one in the list, double check
+        }
+
+        public IEnumerable<ActionInProgress> GetAllInProgressDesc()
+        {
+            // IMPORTANT: Sort list in descending order
+        }
+
+        public uint WhenActionsFinished(PrerequisiteSet set)
+        {
+
+        }
+    }
+
+
+
+
+
+
     /// <summary>
     /// A single build order item, is either a unit (including structures) or an upgrade
     /// Uses singleton instances which are used for type checking, retrieve through the static Get-method
@@ -53,15 +147,11 @@ namespace BOSSE.BuildOrderGenerator
         {
             this.UnitType = unitType;
             this.UnitData = GetUnitInfo(unitType);
-
-            this.InitThis();
         }
 
         private ActionId(UpgradeId upgradeType)
         {
             this.UpgradeType = upgradeType;
-
-            this.InitThis();
         }
 
         public static void InitAll()
@@ -151,6 +241,19 @@ namespace BOSSE.BuildOrderGenerator
         {
             ActionId builtBy = GetWhatBuilds();
             return builtBy;
+        }
+
+        public Race GetRace()
+        {
+            if (this.IsUnit())
+            {
+                return UnitData.Race;
+            }
+            else
+            {
+                // TODO: Look up upgrade race data
+                throw new NotImplementedException();
+            }
         }
 
         public bool IsAddon()

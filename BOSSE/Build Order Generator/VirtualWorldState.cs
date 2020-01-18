@@ -36,50 +36,7 @@ namespace BOSSE.BuildOrderGenerator
     using static UpgradeConstants;
     using static AbilityConstants;
 
-    public class ActionInProgress : IComparable<ActionInProgress>
-    {
-        private readonly ActionId Action = null;
-        private readonly uint Time = 0;
 
-        public ActionInProgress(ActionId action, uint time)
-        {
-            this.Action = action;
-            this.Time = time;
-        }
-
-        public uint GetFinishTime()
-        {
-
-        }
-
-        public ActionId GetActionId()
-        {
-            return this.Action;
-        }
-
-        public uint GetTime()
-        {
-            return this.Time;
-        }
-
-        public int CompareTo(ActionInProgress other)
-        {
-            return this.Time.CompareTo(other.GetTime());
-        }
-    }
-
-    public class ActionsInProgress
-    {
-        public IEnumerable<ActionInProgress> GetAllInProgressDesc()
-        {
-            // IMPORTANT: Sort list in descending order
-        }
-
-        public uint WhenActionsFinished(PrerequisiteSet set)
-        {
-
-        }
-    }
 
     public class BuildingData
     {
@@ -159,6 +116,11 @@ namespace BOSSE.BuildOrderGenerator
             return this.BuildingWorkersCount;
         }
 
+        public void AddActionInProgress(ActionId action, uint completionFrame, bool queueAction = true)
+        {
+            throw new NotImplementedException();
+        }
+
         public ActionsInProgress GetInProgressActions()
         {
             return this.Progress;
@@ -174,6 +136,27 @@ namespace BOSSE.BuildOrderGenerator
 
         }
 
+        public uint SetBuildingFrame(uint frameCount)
+        {
+#warning LP_TODO: Refactor to be called fast forward?
+            if (frameCount <= 0)
+                Log.SanityCheckFailedThrow("Invalid frame count to fast forward " + frameCount);
+
+
+
+        }
+
+        /// <summary>
+        /// Move a single worker to building from minerals
+        /// </summary>
+        public uint SetBuildingWorker()
+        {
+            //BOSS_ASSERT(_mineralWorkers > 0, "Tried to build without a worker");
+
+            //_mineralWorkers--;
+            //_buildingWorkers++;
+        }
+
         public uint GetCurrentSupply()
         {
 
@@ -182,6 +165,11 @@ namespace BOSSE.BuildOrderGenerator
         public uint GetMaxSupply()
         {
 
+        }
+
+        public ActionId FinishActionInProgress(ActionInProgress actionInProgress)
+        {
+            // IMPORTANT TODO
         }
 
         public uint GetFinishTime(ActionId action)
@@ -210,10 +198,30 @@ namespace BOSSE.BuildOrderGenerator
     {
         private UnitData Units = new UnitData();
 
-        private uint MineralCount = 0;
-        private uint GasCount = 0;
+        /// <summary>
+        /// Actions that have been taken
+        /// </summary>
+        private List<ActionPerformed> ActionsPerformed = new List<ActionPerformed>();
 
+        /// <summary>
+        /// Frame that the last action was taken on
+        /// </summary>
+        private uint LastActionFrame = 0;
+
+        /// <summary>
+        /// The current frame of the virtual state
+        /// </summary>
         private uint CurrentFrame = 0;
+
+        /// <summary>
+        /// Number of minerals available
+        /// </summary>
+        private uint MineralCount = 0;
+
+        /// <summary>
+        /// Amount of gas available
+        /// </summary>
+        private uint GasCount = 0;
 
         public VirtualWorldState(ResponseObservation starcraftGameState)
         {
@@ -221,10 +229,124 @@ namespace BOSSE.BuildOrderGenerator
             throw new NotImplementedException();
         }
 
-        public void DoAction(ActionId action)
+        public IEnumerable<ActionId> DoAction(ActionId action)
         {
-            // todo, important!, takes the given action right now
-            throw new NotImplementedException();
+            if (action.GetRace() != BotConstants.SpawnAsRace)
+            {
+                Log.SanityCheckFailedThrow("Action race is " + action.GetRace() + ", which isn't what we play");
+            }
+
+            ActionPerformed actionPerformed = new ActionPerformed(actionType: action);
+            this.ActionsPerformed.Add(actionPerformed);
+
+            if (IsLegal(action))
+            {
+                Log.SanityCheckFailed("Tried to perform an illegal action " + action + " during state " + this);
+                return;
+            }
+
+            uint workerReadyTime = this.WhenWorkerReady(action);
+            uint fastForwardTime = WhenCanWePerform(action);
+
+            if (fastForwardTime >= 1000000)
+            {
+                Log.Warning("Fast forward time may have wrapped around: " + fastForwardTime);
+            }
+
+            // Fast forward time
+            var actionsFinished = FastForward(fastForwardTime);
+            this.ActionsPerformed.Last().ActionQueuedOnFrame = this.GetCurrentFrame();
+            this.ActionsPerformed.Last().GasWhenQueued = this.GetGas();
+            this.ActionsPerformed.Last().MineralsWhenQueued = this.GetMinerals();
+
+            uint elapsedTime = this.GetCurrentFrame() - this.LastActionFrame;
+            this.LastActionFrame = this.GetCurrentFrame();
+
+            if (!this.CanAffordMinerals(action))
+            {
+                Log.SanityCheckFailedThrow("Can not afford action (minerals): " + action);
+            }
+            if (!this.CanAffordGas(action))
+            {
+                Log.SanityCheckFailedThrow("Can not afford action (gas): " + action);
+            }
+
+            this.MineralCount -= action.MineralPrice();
+            this.GasCount -= action.GasPrice();
+
+            // Race-specific actions
+            if (this.GetRace() == Race.Protoss)
+            {
+                this.Units.AddActionInProgress(action, this.GetCurrentFrame() + action.BuildTime());
+            }
+            else if (this.GetRace() == Race.Terran)
+            {
+                if (action.IsBuilding() && !action.IsAddon())
+                {
+                    if (this.GetNumMineralWorkers() <= 0)
+                        Log.SanityCheckFailedThrow("Don't have any mineral workers to assign (terran)");
+
+                    this.Units.SetBuildingWorker();
+                }
+
+                this.Units.AddActionInProgress(action, this.GetCurrentFrame() + action.BuildTime());
+            }
+            else
+            {
+                throw new BosseFatalException("Unsupported race " + this.GetRace());
+            }
+
+            return actionsFinished;
+        }
+
+        /// <summary>
+        /// Fast-forwards the game state to the given frame. Returns which actions have finished
+        /// </summary>
+        public IEnumerable<ActionId> FastForward(uint toFrame)
+        {
+            uint previousFrame = this.GetCurrentFrame();
+            this.Units.SetBuildingFrame(toFrame - previousFrame);
+
+            uint lastActionFinished = this.GetCurrentFrame();
+            uint totalTime = 0;
+            uint moreGas = 0;
+            uint moreMinerals = 0;
+
+            List<ActionId> actionsFinished = new List<ActionId>();
+
+            // Fast forward until the next action is complete
+            while (true)
+            {
+                ActionsInProgress inProgress = this.Units.GetInProgressActions();
+                ActionInProgress nextAction = inProgress.GetNextAction();
+                if (nextAction == null)
+                    break; // out of actions
+                if (nextAction.GetFinishTime() <= toFrame)
+                    break; // done
+
+                // Fast forward until the action finishes
+                uint timeElapsed = nextAction.GetFinishTime() - lastActionFinished;
+                totalTime += timeElapsed;
+                moreMinerals += timeElapsed * GetMineralsPerFrame();
+                moreGas += timeElapsed * GetGasPerFrame();
+
+                lastActionFinished = nextAction.GetFinishTime();
+                ActionId actionFinished = this.Units.FinishActionInProgress(nextAction);
+                actionsFinished.Add(actionFinished);
+            }
+
+            // Fast forward until the requested frame (queued actions will probably not align exactly)
+            uint elapsed = toFrame - lastActionFinished;
+            moreMinerals += elapsed * GetMineralsPerFrame();
+            moreGas += elapsed * GetGasPerFrame();
+            totalTime += elapsed;
+
+            // Add to game state
+            this.MineralCount += moreMinerals;
+            this.GasCount += moreGas;
+            this.CurrentFrame = toFrame;
+
+            return actionsFinished;
         }
 
         public uint GetFinishTime(ActionId action)
@@ -269,11 +391,29 @@ namespace BOSSE.BuildOrderGenerator
 
         }
 
+        public bool CanAfford(ActionId action)
+        {
+            return this.CanAffordGas(action) && this.CanAffordMinerals(action);
+        }
+
+        public bool CanAffordMinerals(ActionId action)
+        {
+            return this.MineralCount >= action.MineralPrice();
+        }
+
+        public bool CanAffordGas(ActionId action)
+        {
+
+            return this.GasCount >= action.GasPrice();
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public uint GetMinerals()
         {
             return this.MineralCount;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public uint GetGas()
         {
             return this.GasCount;
@@ -666,6 +806,21 @@ namespace BOSSE.BuildOrderGenerator
         private Race GetRace()
         {
             return BotConstants.SpawnAsRace;
+        }
+
+        private uint GetMineralsPerFrame()
+        {
+            return BuildOrderUtility.GetPerFrameMinerals(this.Units.GetNumberMineralWorkers());
+        }
+
+        private uint GetGasPerFrame()
+        {
+            return BuildOrderUtility.GetPerFrameGas(this.Units.GetNumberGasWorkers());
+        }
+
+        public override string ToString()
+        {
+            return $"[GameState Frame={this.CurrentFrame} Min={this.MineralCount} Gas={this.GasCount} Actions={this.ActionsPerformed.Count}]";
         }
     }
 }
