@@ -53,26 +53,37 @@ namespace BOSSE.BuildOrderGenerator
         {
             this.UnitType = unitType;
             this.UnitData = GetUnitInfo(unitType);
+
+            this.InitThis();
         }
 
         private ActionId(UpgradeId upgradeType)
         {
             this.UpgradeType = upgradeType;
+
+            this.InitThis();
         }
 
         public static void InitAll()
         {
-            foreach (UnitId iter in Enum.GetValues(typeof(UnitId)))
+            foreach (UnitId iter in BotConstants.FactionUnitsAll)
             {
+                if (UnitConstants.ReactorVariations.Contains(iter) || UnitConstants.TechlabVariations.Contains(iter))
+                {
+#warning Build order TODO: Support addons
+                    continue;
+                }
+
                 ActionId newObj = Get(iter);
                 Log.Bulk("Initialized build order system with unit action " + newObj.GetName());
             }
 
-            foreach (UnitId iter in Enum.GetValues(typeof(UpgradeId)))
-            {
-                ActionId newObj = Get(iter);
-                Log.Bulk("Initialized build order system with upgrade action " + newObj.GetName());
-            }
+#warning Build order TODO: Support upgrades
+            //foreach (UnitId iter in Enum.GetValues(typeof(UpgradeId)))
+            //{
+            //    ActionId newObj = Get(iter);
+            //    Log.Bulk("Initialized build order system with upgrade action " + newObj.GetName());
+            //}
         }
 
         public static HashSet<ActionId> GetAllActions()
@@ -109,9 +120,37 @@ namespace BOSSE.BuildOrderGenerator
             return ExistingUpgradeTypes[type];
         }
 
+        private ActionId GetWhatBuilds()
+        {
+#warning Build order LP TODO: Optimization, cache
+            if (this.IsUnit())
+            {
+                UnitId buildBy = GeneralGameUtility.WhichUnitBuildsUnit(this.GetUnitId());
+                ActionId temp = Get(buildBy);
+                return temp;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public PrerequisiteSet GetPrerequisites()
         {
-            // todo, does not need to be recursive
+#warning Build order LP TODO: Optimization, cache
+            if (this.IsUnit())
+            {
+                PrerequisiteSet set = new PrerequisiteSet();
+                foreach (UnitId iter in GeneralGameUtility.GetPrerequisites(this.UnitType))
+                {
+                    set.AddUnique(Get(iter));
+                }
+                return set;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public bool WhatBuildsIsBuilding()

@@ -38,9 +38,41 @@ namespace BOSSE
         /// <summary>
         /// Returns which ability builds the given unit
         /// </summary>
-        public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unitType)
+        public static int GetAbilityIdToBuildUnit(UnitId unitType)
         {
             return (int)CurrentGameState.GameData.Units[(int)unitType].AbilityId;
+        }
+
+        /// <summary>
+        /// Returns which units are necessary for the given unit, not recursive
+        /// </summary>
+        public static HashSet<UnitId> GetPrerequisites(UnitId unitType)
+        {
+            return new HashSet<UnitId>() { (UnitId)CurrentGameState.GameData.Units[(int)unitType].TechRequirement };
+        }
+
+        /// <summary>
+        /// Returns which unit/building builds the given unit
+        /// </summary>
+        public static UnitId WhichUnitBuildsUnit(UnitId unitType)
+        {
+            if (IsBuilding(unitType))
+            {
+                return BotConstants.WorkerUnit;
+            }
+
+            // Unsure if this works for all cases, needs to be evaluated
+            return (UnitId)CurrentGameState.GameData.Units[(int)unitType].TechRequirement;
+        }
+
+        /// <summary>
+        /// Returns whether the given unit is a building, or not
+        /// </summary>
+        public static bool IsBuilding(UnitId unitType)
+        {
+            uint abilityId = CurrentGameState.GameData.Units[(int)unitType].AbilityId;
+            bool isBuilding = CurrentGameState.GameData.Abilities[(int)abilityId].IsBuilding;
+            return isBuilding;
         }
 
         /// <summary>
