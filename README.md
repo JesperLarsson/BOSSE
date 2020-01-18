@@ -39,11 +39,6 @@ When starting a local debugging session BOSSE will use a hardcoded map name (cur
 What map is used can be configured in Main.cs along with some other settings.
 Developed using Visual Studio 2019, but other versions will likely work.
 
-## Credits
-Based on the following starting template: https://github.com/NikEyX/SC2-CSharpe-Starterkit
-
-Otherwise everything has been implemented from scratch.
-
 ## Links
 - Interacts with StarCraft 2 using the official proto buff API by Blizzard: https://github.com/Blizzard/s2client-api
 - API documentation: https://blizzard.github.io/s2client-api/annotated.html
