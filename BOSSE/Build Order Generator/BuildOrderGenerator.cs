@@ -25,6 +25,7 @@ namespace BOSSE.BuildOrderGenerator
     using System.Reflection;
     using System.Linq;
     using System.Diagnostics;
+    using System.Runtime.CompilerServices;
 
     using SC2APIProtocol;
     using MoreLinq;
@@ -34,530 +35,8 @@ namespace BOSSE.BuildOrderGenerator
     using static UnitConstants;
     using static UpgradeConstants;
     using static AbilityConstants;
-    using System.Runtime.CompilerServices;
-
-    public static class BuildOrderUtility
-    {
-        public const float WorkerMineralsPerFrameEstimate = 40.0f / 60.0f / FramesPerSecond;
-        public const float FramesPerSecond = 22.4f;
-
-        public static ActionId GetWorkerActionId()
-        {
-            return ActionId.Get(BotConstants.WorkerUnit);
-        }
-
-        public static ActionId GetRefinaryActionId()
-        {
-            return ActionId.Get(BotConstants.RefinaryUnit);
-        }
-
-        /// <summary>
-        /// Calculates the lower bound for the given goal and world state, in number of logical frames
-        /// </summary>
-        public static uint GetLowerBound(VirtualWorldState worldState, BuildOrderGoal goal)
-        {
-            PrerequisiteSet wanted = new PrerequisiteSet();
-
-            foreach (ActionId actionIter in ActionId.GetAllActions())
-            {
-                uint completedCount = worldState.GetNumberTotal(actionIter);
-
-                if (goal.GetGoal(actionIter) > completedCount)
-                {
-                    wanted.AddUnique(actionIter);
-                }
-            }
-
-            PrerequisiteSet added = new PrerequisiteSet();
-            uint lowerBound = CalculatePrerequisitesLowerBound(worldState, wanted, 0, 0);
-            return lowerBound;
-        }
-
-        private static uint CalculatePrerequisitesLowerBound(VirtualWorldState worldState, PrerequisiteSet needed, uint timeSoFar, uint depth)
-        {
-            uint frameMax = 0;
-
-            foreach (ActionId iter in needed.GetAll())
-            {
-                uint thisActionTime = 0;
-
-                if (worldState.GetNumberCompleted(iter) > 0)
-                {
-                    // Done
-                    thisActionTime = timeSoFar;
-                }
-                else if (worldState.GetNumberInProgress(iter) > 0)
-                {
-                    // In progress
-                    thisActionTime = timeSoFar + worldState.GetFinishTime(iter) - worldState.GetCurrentFrame();
-                }
-                else
-                {
-                    // Find recursively by prerequisites
-                    thisActionTime = CalculatePrerequisitesLowerBound(worldState, iter.GetPrerequisites(), timeSoFar + iter.BuildTime(), depth + 1);
-                }
-
-                if (thisActionTime > frameMax)
-                {
-                    frameMax = thisActionTime;
-                }
-            }
-
-            return frameMax;
-        }
-
-        private static void CalculatePrerequisitesRequiredToBuild(VirtualWorldState worldState, PrerequisiteSet needed, PrerequisiteSet added)
-        {
-            PrerequisiteSet allNeeded = needed.Clone();
-
-            // Special case - If we need gas, add a gas extractor
-            ActionId refinaryAction = GetRefinaryActionId();
-            if ((!needed.Contains(refinaryAction)) && (!added.Contains(refinaryAction)) && worldState.GetNumberCompleted(refinaryAction) == 0)
-            {
-                foreach (ActionId needIter in needed.GetAll())
-                {
-                    if (needIter.GasPrice() > 0)
-                    {
-                        allNeeded.Add(refinaryAction);
-                        break;
-                    }
-                }
-            }
-
-            // Resolve dependencies
-            foreach (ActionId needIter in allNeeded.GetAll())
-            {
-                if (added.Contains(needIter) || worldState.GetNumberCompleted(needIter) > 0)
-                {
-                    continue;
-                }
-                if (worldState.GetNumberCompleted(needIter) > 0)
-                {
-                    continue;
-                }
-
-                // Needs not met, find recursive dependencies
-                added.Add(needIter);
-                CalculatePrerequisitesRequiredToBuild(worldState, needIter.GetPrerequisites(), added);
-            }
-        }
-    }
-
-    /// <summary>
-    /// A single build order item, is either a unit (including structures) or an upgrade
-    /// Uses singleton instances which are used for type checking, retrieve through the static Get-method
-    /// </summary>
-    public class ActionId : IComparable<ActionId>
-    {
-        private readonly UnitId UnitType = 0;
-        private readonly UnitTypeData UnitData = null;
-        private readonly UpgradeId UpgradeType = 0;
-
-        private static Dictionary<UnitId, ActionId> ExistingUnitTypes = new Dictionary<UnitId, ActionId>();
-        private static Dictionary<UpgradeId, ActionId> ExistingUpgradeTypes = new Dictionary<UpgradeId, ActionId>();
-
-        private ActionId(UnitId unitType)
-        {
-            this.UnitType = unitType;
-            this.UnitData = GetUnitInfo(unitType);
-        }
-        private ActionId(UpgradeId upgradeType)
-        {
-            this.UpgradeType = upgradeType;
-        }
-
-        public static void InitAll()
-        {
-            foreach (UnitId iter in Enum.GetValues(typeof(UnitId)))
-            {
-                ActionId newObj = Get(iter);
-                Log.Bulk("Initialized build order system with unit action " + newObj.GetName());
-            }
-
-            foreach (UnitId iter in Enum.GetValues(typeof(UpgradeId)))
-            {
-                ActionId newObj = Get(iter);
-                Log.Bulk("Initialized build order system with upgrade action " + newObj.GetName());
-            }
-        }
-
-        public static HashSet<ActionId> GetAllActions()
-        {
-            HashSet<ActionId> newSet = new HashSet<ActionId>();
-
-            foreach (ActionId iter in ExistingUnitTypes.Values)
-            {
-                newSet.Add(iter);
-            }
-            foreach (ActionId iter in ExistingUpgradeTypes.Values)
-            {
-                newSet.Add(iter);
-            }
-
-            return newSet;
-        }
-
-        public static ActionId Get(UnitId type)
-        {
-            if (!ExistingUnitTypes.ContainsKey(type))
-            {
-                ExistingUnitTypes[type] = new ActionId(type);
-            }
-            return ExistingUnitTypes[type];
-        }
-
-        public static ActionId Get(UpgradeId type)
-        {
-            if (!ExistingUpgradeTypes.ContainsKey(type))
-            {
-                ExistingUpgradeTypes[type] = new ActionId(type);
-            }
-            return ExistingUpgradeTypes[type];
-        }
-
-        public PrerequisiteSet GetPrerequisites()
-        {
-            // todo, does not need to be recursive
-        }
-
-        public bool WhatBuildsIsBuilding()
-        {
-            // todo, look up code
-        }
-
-        public uint GasPrice()
-        {
-            if (this.IsUnit())
-            {
-                return UnitData.VespeneCost;
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public uint MineralPrice()
-        {
-            if (this.IsUnit())
-            {
-                return UnitData.MineralCost;
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string GetName()
-        {
-            if (this.IsUnit())
-            {
-                return UnitData.Name;
-            }
-            else if (this.IsUpgrade())
-            {
-                return UpgradeType.ToString();
-            }
-            else
-            {
-                return "N/A";
-            }
-        }
-
-        public uint BuildTime()
-        {
-            return (uint)Math.Ceiling(UnitData.BuildTime);
-        }
-
-        public UnitId GetUnitId()
-        {
-            if (!IsUnit())
-            {
-                Log.SanityCheckFailed("Called without this item being a unit");
-                return 0;
-            }
-
-            return this.UnitType;
-        }
-
-        public UpgradeId GetUpgradeId()
-        {
-            if (!IsUpgrade())
-            {
-                Log.SanityCheckFailed("Called without this item being an upgrade");
-                return 0;
-            }
-
-            return this.UpgradeType;
-        }
-
-        public bool IsUnit()
-        {
-            return this.UnitType != 0;
-        }
-
-        public bool IsUpgrade()
-        {
-            return this.UpgradeType != 0;
-        }
-
-        public int CompareTo(ActionId other)
-        {
-            if (this.IsUnit())
-            {
-                return this.UnitType.CompareTo(other.UnitType);
-            }
-            else if (this.IsUpgrade())
-            {
-                return this.UpgradeType.CompareTo(other.UpgradeType);
-            }
-            else
-            {
-                throw new BosseFatalException("Unexpected ItemId, is neither unit not upgrade");
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public class ActionSet
-    {
-        private HashSet<ActionId> RegisteredActions = new HashSet<ActionId>();
-
-        public void Add(ActionId newAction)
-        {
-            // todo
-            throw new NotImplementedException();
-        }
-
-        public void Remove(ActionId newAction)
-        {
-            // todo
-            throw new NotImplementedException();
-        }
-
-        public HashSet<ActionId> GetActions()
-        {
-            return RegisteredActions;
-        }
-
-        public bool Contains(ActionId item)
-        {
-            // todo easy
-        }
-    }
-
-
-
-
-
-    public class ActionsInProgress
-    {
-        public uint WhenActionsFinished(PrerequisiteSet set)
-        {
-
-        }
-    }
-
-    public class BuildingData
-    {
-    }
-
-    public class UnitData
-    {
-        /// <summary>
-        /// Number of workers mining minerals
-        /// </summary>
-        private uint MineralWorkersCount = 0;
-
-        /// <summary>
-        /// Number of workers collecting gas
-        /// </summary>
-        private uint GasWorkersCount = 0;
-
-        /// <summary>
-        /// Number of workers constructing buildings
-        /// </summary>
-        private uint BuildingWorkersCount = 0;
-
-        /// <summary>
-        /// Maximum allowed supply
-        /// </summary>
-        private int MaxSupply = 0;
-
-        /// <summary>
-        /// Currently allocated supply
-        /// </summary>
-        private int CurrentSupply = 0;
-
-        /// <summary>
-        /// Number of each unit completed
-        /// </summary>
-        private Dictionary<ActionId, uint> NumUnits = new Dictionary<ActionId, uint>();
-
-        /// <summary>
-        /// Actions in progress
-        /// </summary>
-        private ActionsInProgress Progress = new ActionsInProgress();
-
-        /// <summary>
-        /// Available buildings
-        /// </summary>
-        private BuildingData Buildings = new BuildingData();
-
-        public uint GetFinishTime(PrerequisiteSet needed)
-        {
-            return this.Progress.WhenActionsFinished(needed);
-        }
-    }
-
-
-
-
-
-
-
-    public class VirtualWorldState
-    {
-        private UnitData Units = new UnitData();
-
-        public VirtualWorldState(ResponseObservation starcraftGameState)
-        {
-            // todo, hard but straight forward
-            throw new NotImplementedException();
-        }
-
-        public void DoAction(ActionId action)
-        {
-            // todo, important!, takes the given action right now
-            throw new NotImplementedException();
-        }
-
-        public uint GetFinishTime(ActionId action)
-        {
-            // todo
-        }
-
-        public uint GetLastActionFinishTime()
-        {
-            // todo
-        }
-
-        /// <summary>
-        /// Determines if the given action is legal in this context or not
-        /// </summary>
-        public bool IsLegal(ActionId action)
-        {
-            // todo
-        }
-
-        public uint GetCurrentFrame()
-        {
-            // todo easy
-        }
-
-        /// <summary>
-        /// Returns number of the currently available units/upgrades
-        /// </summary>
-        public uint GetNumberTotal(ActionId target)
-        {
-            // todo easy, also TODO check all usages if they should use another get num function
-        }
-
-        public uint GetNumberInProgress(ActionId target)
-        {
-
-        }
-
-        public uint GetNumberCompleted(ActionId target)
-        {
-
-        }
-
-        /// <summary>
-        /// Returns when the given action will be possible, given that we perform no additional actions
-        /// </summary>
-        public uint WhenCanWePerform(ActionId action)
-        {
-            uint prereqTime = WhenPrerequisitesReady(action);
-            uint mineralTime = WhenMineralsReady(action);
-            uint gasTime = WhenGasReady(action);
-            uint supplyTime = WhenSupplyReady(action);
-            uint workerTime = WhenWorkerReady(action);
-
-            uint max = this.GetCurrentFrame();
-            max = Math.Max(max, prereqTime);
-            max = Math.Max(max, mineralTime);
-            max = Math.Max(max, gasTime);
-            max = Math.Max(max, supplyTime);
-            max = Math.Max(max, workerTime);
-
-            return max;
-        }
-
-        private uint WhenBuildingPrereqReady(ActionId action)
-        {
-
-        }
-
-        private PrerequisiteSet GetPrerequistesInProgress(ActionId action)
-        {
-
-        }
-
-        private uint WhenPrerequisitesReady(ActionId action)
-        {
-            uint readyTime = this.GetCurrentFrame();
-
-            // If a building builds this action, get whenever the building will become available
-            if (action.WhatBuildsIsBuilding())
-            {
-                readyTime = WhenBuildingPrereqReady(action);
-            }
-            else
-            {
-                // Something else builds it. Use the in-progress time if available
-                PrerequisiteSet reqInProgress = GetPrerequistesInProgress(action);
-                if (!reqInProgress.IsEmpty())
-                {
-                    readyTime = this.Units.GetFinishTime(reqInProgress);
-                }
-            }
-
-            return readyTime;
-        }
-
-        private uint WhenMineralsReady(ActionId action)
-        {
-        }
-
-        private uint WhenGasReady(ActionId action)
-        {
-        }
-
-        private uint WhenSupplyReady(ActionId action)
-        {
-        }
-
-        private uint WhenWorkerReady(ActionId action)
-        {
-        }
-    }
-
-
-
-
+    
+    
 
 
     public class PrerequisiteSet
@@ -626,11 +105,10 @@ namespace BOSSE.BuildOrderGenerator
         /// <summary>
         /// Returns the supply necessary to produce everything in GoalUnitCount
         /// </summary>
-        public int GetNumberOfSupplyMinimum()
+        public uint GetNumberOfSupplyMinimum()
         {
-            // simple
-
-
+#warning Build order LP_TODO: Optimization, this can be cached during SetGoal
+            return CalculateSupplyRequired();
         }
 
         /// <summary>
@@ -638,9 +116,18 @@ namespace BOSSE.BuildOrderGenerator
         /// </summary>
         public bool IsAchievedBy(VirtualWorldState worldState)
         {
-            // simple
+            foreach (ActionId iter in ActionId.GetAllActions())
+            {
+                uint have = worldState.GetNumberTotal(iter);
+                uint want = GetGoal(iter);
 
+                if (have < want)
+                {
+                    return false;
+                }
+            }
 
+            return true;
         }
 
         public void SetGoal(UnitId unitType, uint count)
@@ -720,6 +207,16 @@ namespace BOSSE.BuildOrderGenerator
             str += "]";
 
             return str;
+        }
+
+        private uint CalculateSupplyRequired()
+        {
+            uint sum = 0;
+            foreach (ActionId iter in GoalUnitCount.Keys)
+            {
+                sum += iter.GetSupplyRequired();
+            }
+            return sum;
         }
     }
 
