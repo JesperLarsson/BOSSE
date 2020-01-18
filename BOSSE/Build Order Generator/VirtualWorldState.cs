@@ -164,6 +164,11 @@ namespace BOSSE.BuildOrderGenerator
             return this.Progress;
         }
 
+        public uint getNextBuildingFinishTime()
+        {
+            // Returns whenever the next building is finished, ie when a worker becomes available
+        }
+
         public uint GetNumberInProgress(ActionId action)
         {
 
@@ -262,6 +267,31 @@ namespace BOSSE.BuildOrderGenerator
         public uint GetNumberCompleted(ActionId target)
         {
 
+        }
+
+        public uint GetMinerals()
+        {
+            return this.MineralCount;
+        }
+
+        public uint GetGas()
+        {
+            return this.GasCount;
+        }
+
+        public uint GetNumMineralWorkers()
+        {
+            return this.Units.GetNumberMineralWorkers();
+        }
+
+        public uint GetNumGasWorkers()
+        {
+            return this.Units.GetNumberGasWorkers();
+        }
+
+        public uint GetNumBuildingWorkers()
+        {
+            return this.Units.GetNumberBuildingWorkers();
         }
 
         /// <summary>
@@ -588,6 +618,49 @@ namespace BOSSE.BuildOrderGenerator
 
         private uint WhenWorkerReady(ActionId action)
         {
+            if (!action.WhatBuildsThis().IsWorker())
+            {
+                return this.GetCurrentFrame();
+            }
+
+            // protoss doesn't tie up a worker to build, so they can build whenever a mineral worker is free
+            if (GetRace() == Race.Protoss && this.GetNumMineralWorkers() > 0)
+            {
+                return this.GetCurrentFrame();
+            }
+
+            // Some workers may be reserved to be put onto gas
+            uint refineriesInProgress = this.Units.GetNumberInProgress(ActionId.Get(BotConstants.RefineryUnit));
+            if (this.GetNumMineralWorkers() > (3 * refineriesInProgress))
+            {
+                return this.GetCurrentFrame();
+            }
+
+            // at this point we need to wait for the next worker to become free since existing workers
+            // are either all used, or they are reserved to be put into refineries
+            // so we must have either a worker in progress, or a building in progress
+            ActionId workerAction = ActionId.Get(BotConstants.WorkerUnit);
+            if (this.Units.GetNumberInProgress(workerAction) <= 0 && GetNumBuildingWorkers() <= 0)
+            {
+                Log.SanityCheckFailed("No worker will ever become available to build " + action);
+                return this.GetCurrentFrame() + 1000;
+            }
+
+            // Check workers in progress
+            uint whenWorkerInProgressFinished = uint.MaxValue;
+            if (this.Units.GetNumberInProgress(workerAction) > 0)
+            {
+                whenWorkerInProgressFinished = this.Units.GetFinishTime(workerAction);
+            }
+
+            uint whenBuildingWorkerFree = uint.MaxValue;
+            if (GetNumBuildingWorkers() > 0)
+            {
+                whenBuildingWorkerFree = this.Units.getNextBuildingFinishTime();
+            }
+
+            uint min = Math.Min(whenWorkerInProgressFinished, whenBuildingWorkerFree);
+            return min;
         }
 
         private Race GetRace()
