@@ -55,6 +55,38 @@ namespace BOSSE.BuildOrderGenerator
 
         public ActionId HasAddon = null;
 
+        public BuildingStatus(ActionId action, ActionId addon)
+        {
+            this.Type = action;
+            this.TimeRemaining = 0;
+            this.IsConstructingType = null;
+            this.HasAddon = addon;
+        }
+
+        public bool CanBuildEventually(ActionId action)
+        {
+            if (!this.Type.CanBuild(action))
+            {
+                return false;
+            }
+
+            // If it's an addon, make sure we don't have one already
+            if (action.IsAddon())
+            {
+                if (this.HasAddon != null)
+                    return false;
+                if (this.TimeRemaining > 0 && this.IsConstructingType.IsAddon())
+                    return false;
+            }
+
+            if (action.RequiresAddon() && this.HasAddon != action.RequiresAddonType() && this.IsConstructingType != action.RequiresAddonType())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public void FastForward(uint frameCount)
         {
             bool willComplete = this.TimeRemaining <= frameCount;
@@ -90,9 +122,24 @@ namespace BOSSE.BuildOrderGenerator
     {
         private List<BuildingStatus> Buildings = new List<BuildingStatus>();
 
+        /// <summary>
+        /// Calculates the number of frames until we can build the given action in any building
+        /// </summary>
         public uint GetTimeUntilCanBuild(ActionId action)
         {
+            uint min = uint.MaxValue;
 
+            foreach (BuildingStatus iter in this.Buildings)
+            {
+                if (iter.CanBuildEventually(action))
+                {
+                    min = Math.Min(iter.TimeRemaining, min);
+                }
+            }
+
+            if (min == uint.MaxValue)
+                Log.SanityCheckFailedThrow("Unable to find minimum time for " + action);
+            return min;
         }
 
         /// <summary>
@@ -108,12 +155,29 @@ namespace BOSSE.BuildOrderGenerator
 
         public void AddBuilding(ActionId action, ActionId addon)
         {
-            throw new NotImplementedException();
+            if (!action.IsBuilding())
+                Log.SanityCheckFailedThrow("Trying to add non-building as a building");
+
+            var obj = new BuildingStatus(action, addon);
+            this.Buildings.Add(obj);
         }
 
         public bool CanBuildEventually(ActionId action)
         {
+            foreach (BuildingStatus iter in this.Buildings)
+            {
+                if (iter.CanBuildEventually(action))
+                {
+                    return true;
+                }
+            }
 
+            return false;
+        }
+
+        public override string ToString()
+        {
+            return $"[BuildingCollection BuildingCount={this.Buildings.Count}]";
         }
     }
 

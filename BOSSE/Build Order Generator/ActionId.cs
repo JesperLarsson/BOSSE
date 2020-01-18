@@ -280,6 +280,16 @@ namespace BOSSE.BuildOrderGenerator
            
         }
 
+        public ActionId RequiresAddonType()
+        {
+
+        }
+
+        public bool RequiresAddon()
+        {
+            
+        }
+
         public bool IsBuilding()
         {
             if (!IsUnit())
@@ -345,6 +355,16 @@ namespace BOSSE.BuildOrderGenerator
         public uint GetNumProduced()
         {
             // todo, probably 1
+        }
+
+        /// <summary>
+        /// Indicates if this type can build the given type
+        /// </summary>
+        public bool CanBuild(ActionId action)
+        {
+            
+
+
         }
 
         public string GetName()
