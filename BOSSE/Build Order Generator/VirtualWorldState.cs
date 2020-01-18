@@ -169,6 +169,16 @@ namespace BOSSE.BuildOrderGenerator
 
         }
 
+        public uint GetCurrentSupply()
+        {
+
+        }
+
+        public uint GetMaxSupply()
+        {
+
+        }
+
         public uint GetFinishTime(ActionId action)
         {
 
@@ -545,6 +555,35 @@ namespace BOSSE.BuildOrderGenerator
 
         private uint WhenSupplyReady(ActionId action)
         {
+            int supplyNeeded = (int)action.GetSupplyRequired();
+            supplyNeeded += (int)this.Units.GetCurrentSupply();
+            supplyNeeded -= (int)this.Units.GetMaxSupply();
+
+            if (supplyNeeded <= 0)
+            {
+                return this.GetCurrentFrame();
+            }
+
+            uint whenSupplyReady = this.GetCurrentFrame();
+            if (supplyNeeded > 0)
+            {
+                uint min = 99999;
+
+                // Check when the next food unit completes
+                foreach (ActionInProgress iter in this.Units.GetInProgressActions().GetAllInProgressDesc())
+                {
+                    if (iter.GetActionId().GetSupplyProvided() > supplyNeeded)
+                    {
+                        uint finishTime = iter.GetFinishTime();
+                        min = Math.Min(finishTime, min);
+                    }
+
+                    whenSupplyReady = min;
+                }
+
+            }
+
+            return whenSupplyReady;
         }
 
         private uint WhenWorkerReady(ActionId action)

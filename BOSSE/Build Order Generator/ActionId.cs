@@ -188,15 +188,20 @@ namespace BOSSE.BuildOrderGenerator
             return GeneralGameUtility.IsBuilding(builtBy.GetUnitId());
         }
 
+        public uint GetSupplyProvided()
+        {
+            if (!this.IsUnit())
+                return 0;
+
+            return (uint)this.UnitData.FoodProvided;
+        }
+
         public uint GetSupplyRequired()
         {
             if (!this.IsUnit())
                 return 0;
 
-            int foodDiff = (int)(this.UnitData.FoodRequired - this.UnitData.FoodProvided);
-            if (foodDiff < 0)
-                return 0;
-            return (uint)foodDiff;
+            return (uint)this.UnitData.FoodRequired;
         }
 
         public uint GasPrice()
