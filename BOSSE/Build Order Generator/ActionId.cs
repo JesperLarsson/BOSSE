@@ -106,6 +106,12 @@ namespace BOSSE.BuildOrderGenerator
 
         }
 
+        public void PopNextAction()
+        {
+            // Just remove the "next" action, ie the last in the list
+            throw new NotImplementedException();
+        }
+
         public ActionInProgress GetNextAction()
         {
             if (IsEmpty())
@@ -269,6 +275,11 @@ namespace BOSSE.BuildOrderGenerator
             return false;
         }
 
+        public bool IsSupplyProvider()
+        {
+           
+        }
+
         public bool IsBuilding()
         {
             if (!IsUnit())
@@ -329,6 +340,11 @@ namespace BOSSE.BuildOrderGenerator
             {
                 throw new NotImplementedException();
             }
+        }
+
+        public uint GetNumProduced()
+        {
+            // todo, probably 1
         }
 
         public string GetName()

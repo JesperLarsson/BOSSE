@@ -36,13 +36,79 @@ namespace BOSSE.BuildOrderGenerator
     using static UpgradeConstants;
     using static AbilityConstants;
 
+    public class BuildingStatus
+    {
+        /// <summary>
+        /// Type of the building
+        /// </summary>
+        public ActionId Type = null;
 
+        /// <summary>
+        /// Time remaining until the unit is finished constructing
+        /// </summary>
+        public uint TimeRemaining = 0;
+
+        /// <summary>
+        /// The type of unit that the building is currently constructing
+        /// </summary>
+        public ActionId IsConstructingType = null;
+
+        public ActionId HasAddon = null;
+
+        public void FastForward(uint frameCount)
+        {
+            bool willComplete = this.TimeRemaining <= frameCount;
+
+            if (this.TimeRemaining > 0 && willComplete)
+            {
+                if (this.IsConstructingType == null)
+                    Log.SanityCheckFailedThrow("Building without a type set, bug - " + this);
+
+                this.TimeRemaining = 0;
+
+                // Building addon
+                if (this.IsConstructingType.IsAddon())
+                {
+                    this.HasAddon = this.IsConstructingType;
+                }
+
+                this.IsConstructingType = null;
+            }
+            else if (this.TimeRemaining > 0)
+            {
+                this.TimeRemaining -= frameCount;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"[Building {Type.GetName()} TimeRemaining={this.TimeRemaining}]";
+        }
+    }
 
     public class BuildingData
     {
+        private List<BuildingStatus> Buildings = new List<BuildingStatus>();
+
         public uint GetTimeUntilCanBuild(ActionId action)
         {
 
+        }
+
+        /// <summary>
+        /// Fast forwards all buildings by the given amount of frames
+        /// </summary>
+        public void FastForwardBuildings(uint frameCount)
+        {
+            foreach (BuildingStatus iter in this.Buildings)
+            {
+                iter.FastForward(frameCount);
+            }
+        }
+
+        public void AddBuilding(ActionId action, ActionId addon)
+        {
+            throw new NotImplementedException();
         }
 
         public bool CanBuildEventually(ActionId action)
@@ -98,7 +164,7 @@ namespace BOSSE.BuildOrderGenerator
 
         public BuildingData GetBuildingData()
         {
-            return Buildings;
+            return this.Buildings;
         }
 
         public uint GetNumberMineralWorkers()
@@ -136,25 +202,34 @@ namespace BOSSE.BuildOrderGenerator
 
         }
 
-        public uint SetBuildingFrame(uint frameCount)
+        public void SetBuildingFrame(uint frameCount)
         {
 #warning LP_TODO: Refactor to be called fast forward?
             if (frameCount <= 0)
                 Log.SanityCheckFailedThrow("Invalid frame count to fast forward " + frameCount);
 
-
-
+            this.Buildings.FastForwardBuildings(frameCount);
         }
 
         /// <summary>
         /// Move a single worker to building from minerals
         /// </summary>
-        public uint SetBuildingWorker()
+        public void SetBuildingWorker()
         {
-            //BOSS_ASSERT(_mineralWorkers > 0, "Tried to build without a worker");
+            if (this.MineralWorkersCount <= 0)
+                Log.SanityCheckFailedThrow("Tried to build without worker");
 
-            //_mineralWorkers--;
-            //_buildingWorkers++;
+            this.MineralWorkersCount -= 1;
+            this.BuildingWorkersCount += 1;
+        }
+
+        private void ReleaseBuildingWorker()
+        {
+            if (this.BuildingWorkersCount <= 0)
+                Log.SanityCheckFailedThrow("Tried to move worker from build duty without any available");
+
+            this.MineralWorkersCount += 1;
+            this.BuildingWorkersCount -= 1;
         }
 
         public uint GetCurrentSupply()
@@ -169,7 +244,68 @@ namespace BOSSE.BuildOrderGenerator
 
         public ActionId FinishActionInProgress(ActionInProgress actionInProgress)
         {
-            // IMPORTANT TODO
+            var actionId = actionInProgress.GetActionId();
+
+            // Add to state
+            AddCompletedAction(actionId);
+
+            // Remove from progress list
+            this.Progress.PopNextAction();
+
+            // Worker is now available again
+            if (actionId.GetRace() == Race.Terran)
+            {
+                if (actionId.IsBuilding() && (!actionId.IsAddon()))
+                {
+                    ReleaseBuildingWorker();
+                }
+            }
+
+            return actionId;
+        }
+
+        public void AddCompletedAction(ActionId action, bool wasBuilt = true)
+        {
+            // Add to unit count
+            if (!this.NumUnits.ContainsKey(action))
+            {
+                this.NumUnits[action] = 0;
+            }
+            if (wasBuilt)
+            {
+                this.NumUnits[action] += action.GetNumProduced();
+            }
+            else
+            {
+                this.NumUnits[action] += 1;
+            }
+
+            // Increase available supply
+            this.MaxSupply += (int)action.GetSupplyProvided();
+
+            // Perform some special cases depending on what was finished
+            if (action.IsWorker())
+            {
+                this.MineralWorkersCount += 1;
+            }
+
+            if (action.IsRefinery())
+            {
+                if (this.MineralWorkersCount >= 3)
+                {
+                    this.MineralWorkersCount -= 3;
+                    this.GasWorkersCount += 3;
+                }
+                else
+                {
+                    Log.SanityCheckFailed("WARNING: Unable to move workers from gas to minerals (after refinery was finished)");
+                }
+            }
+
+            if (action.IsBuilding() && !action.IsSupplyProvider())
+            {
+                this.Buildings.AddBuilding(action, null);
+            }
         }
 
         public uint GetFinishTime(ActionId action)
@@ -225,10 +361,13 @@ namespace BOSSE.BuildOrderGenerator
 
         public VirtualWorldState(ResponseObservation starcraftGameState)
         {
-            // todo, hard but straight forward
+            // todo, hard but straight forward. Do this one last
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Performs the given action on our current world state
+        /// </summary>
         public IEnumerable<ActionId> DoAction(ActionId action)
         {
             if (action.GetRace() != BotConstants.SpawnAsRace)
@@ -254,7 +393,7 @@ namespace BOSSE.BuildOrderGenerator
             }
 
             // Fast forward time
-            var actionsFinished = FastForward(fastForwardTime);
+            var actionsFinished = this.FastForward(fastForwardTime);
             this.ActionsPerformed.Last().ActionQueuedOnFrame = this.GetCurrentFrame();
             this.ActionsPerformed.Last().GasWhenQueued = this.GetGas();
             this.ActionsPerformed.Last().MineralsWhenQueued = this.GetMinerals();
@@ -262,6 +401,7 @@ namespace BOSSE.BuildOrderGenerator
             uint elapsedTime = this.GetCurrentFrame() - this.LastActionFrame;
             this.LastActionFrame = this.GetCurrentFrame();
 
+            // Sanity checks
             if (!this.CanAffordMinerals(action))
             {
                 Log.SanityCheckFailedThrow("Can not afford action (minerals): " + action);
