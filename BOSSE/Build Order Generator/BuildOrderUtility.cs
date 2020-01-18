@@ -41,7 +41,13 @@ namespace BOSSE.BuildOrderGenerator
     /// </summary>
     public static class BuildOrderUtility
     {
-        public const float WorkerMineralsPerFrameEstimate = 40.0f / 60.0f / FramesPerSecond;
+        /// <summary>
+        /// Estimated amount of minerals mined per worker, per logical frame
+        /// Multiplied by ResourceScale to avoid floating point rounding issues
+        /// </summary>
+        public const uint MineralsPerWorkerPerFrameEstimate = 30;
+        public const uint ResourceScale = 1000;
+
         public const float FramesPerSecond = 22.4f;
 
         public static ActionId GetWorkerActionId()
@@ -51,7 +57,16 @@ namespace BOSSE.BuildOrderGenerator
 
         public static ActionId GetRefinaryActionId()
         {
-            return ActionId.Get(BotConstants.RefinaryUnit);
+            return ActionId.Get(BotConstants.RefineryUnit);
+        }
+
+        /// <summary>
+        /// Returns the estimated income for X workers, per logical frame
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static uint GetPerFrameMinerals(uint workerCount)
+        {
+            return MineralsPerWorkerPerFrameEstimate * workerCount;
         }
 
         /// <summary>

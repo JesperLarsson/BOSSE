@@ -60,9 +60,16 @@ namespace BOSSE.BuildOrderGenerator
 
         }
 
+        public void Remove(ActionId action)
+        {
+            // todo
+            throw new NotImplementedException();
+        }
+
         public void Add(ActionId action)
         {
-
+            // todo
+            throw new NotImplementedException();
         }
 
         public void AddUnique(ActionId action)

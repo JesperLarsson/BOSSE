@@ -66,14 +66,8 @@ namespace BOSSE.BuildOrderGenerator
 
         public static void InitAll()
         {
-            foreach (UnitId iter in BotConstants.FactionUnitsAll)
+            foreach (UnitId iter in BotConstants.FactionUnitsBuildable)
             {
-                if (UnitConstants.ReactorVariations.Contains(iter) || UnitConstants.TechlabVariations.Contains(iter))
-                {
-#warning Build order TODO: Support addons
-                    continue;
-                }
-
                 ActionId newObj = Get(iter);
                 Log.Bulk("Initialized build order system with unit action " + newObj.GetName());
             }
@@ -153,9 +147,45 @@ namespace BOSSE.BuildOrderGenerator
             }
         }
 
+        public ActionId WhatBuildsThis()
+        {
+            ActionId builtBy = GetWhatBuilds();
+            return builtBy;
+        }
+
+        public bool IsAddon()
+        {
+            if (!IsUnit())
+                return false;
+
+            if (UnitConstants.TechlabVariations.Contains(UnitType))
+                return true;
+            if (UnitConstants.ReactorVariations.Contains(UnitType))
+                return true;
+
+            return false;
+        }
+
+        public bool IsBuilding()
+        {
+            if (!IsUnit())
+                return false;
+
+            bool isBuilding = GeneralGameUtility.IsBuilding(this.UnitType);
+            return isBuilding;
+        }
+
         public bool WhatBuildsIsBuilding()
         {
-            // todo, look up code
+#warning Build order LP TODO: Optimization, cache
+            ActionId builtBy = GetWhatBuilds();
+            if (!builtBy.IsUnit())
+            {
+                Log.SanityCheckFailed("Unexpected build type");
+                return false;
+            }
+
+            return GeneralGameUtility.IsBuilding(builtBy.GetUnitId());
         }
 
         public uint GetSupplyRequired()
@@ -241,9 +271,27 @@ namespace BOSSE.BuildOrderGenerator
             return this.UnitType != 0;
         }
 
+        public bool IsWorker()
+        {
+            if (!IsUnit())
+                return false;
+
+            bool isWorker = this.UnitType == BotConstants.WorkerUnit;
+            return isWorker;
+        }
+
         public bool IsUpgrade()
         {
             return this.UpgradeType != 0;
+        }
+
+        public bool IsRefinery()
+        {
+            if (!IsUnit())
+                return false;
+
+            bool isRef = this.UnitType == BotConstants.RefineryUnit;
+            return isRef;
         }
 
         public int CompareTo(ActionId other)
@@ -260,6 +308,11 @@ namespace BOSSE.BuildOrderGenerator
             {
                 throw new BosseFatalException("Unexpected ItemId, is neither unit not upgrade");
             }
+        }
+
+        public override string ToString()
+        {
+            return "[Action " + GetName() + "]";
         }
     }
 }

@@ -89,6 +89,15 @@ namespace BOSSE
             }
         }
 
+        /// <summary>
+        /// Will stop execution if called during a debugging session, then throw a <see cref="BosseFatalException"/>
+        /// </summary>
+        public static void SanityCheckFailedThrow(string line, bool breakExe = true)
+        {
+            SanityCheckFailed(line, breakExe);
+            throw new BosseFatalException("Fatal sanity check failure: " + line);
+        }
+
         public static void Start()
         {
             LogPathAbsolute = "Logs/" + "BOSSE " + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".log";

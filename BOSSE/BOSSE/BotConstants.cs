@@ -71,8 +71,9 @@ namespace BOSSE
         public const bool UseRandomSeed = true;
 
         public const UnitId WorkerUnit = UnitId.SCV;
-        public const UnitId RefinaryUnit = UnitId.REFINERY;
+        public const UnitId RefineryUnit = UnitId.REFINERY;
         public const UnitId CommandCenterUnit = UnitId.COMMAND_CENTER;
-        public static HashSet<UnitId> FactionUnitsAll = UnitConstants.Terran;
+        //public static HashSet<UnitId> FactionUnitsAll = UnitConstants.Terran;
+        public static HashSet<UnitId> FactionUnitsBuildable = UnitConstants.TerranBuildable;
     }
 }

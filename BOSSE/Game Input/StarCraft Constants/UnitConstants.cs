@@ -458,6 +458,41 @@ namespace BOSSE
             UnitId.LARVA
             };
 
+        public static readonly HashSet<UnitId> TerranBuildable = new HashSet<UnitId> {
+            UnitId.HELLBAT,
+            UnitId.LIBERATOR,
+            UnitId.WIDOW_MINE,
+            UnitId.CYCLONE,
+            UnitId.COMMAND_CENTER,
+            UnitId.SUPPLY_DEPOT,
+            UnitId.REFINERY,
+            UnitId.BARRACKS,
+            UnitId.ENGINEERING_BAY,
+            UnitId.MISSILE_TURRET,
+            UnitId.BUNKER,
+            UnitId.SENSOR_TOWER,
+            UnitId.GHOST_ACADEMY,
+            UnitId.FACTORY,
+            UnitId.STARPORT,
+            UnitId.ARMORY,
+            UnitId.FUSION_CORE,
+            UnitId.SIEGE_TANK,
+            //UnitId.VIKING_FIGHTER,
+            UnitId.SCV,
+            UnitId.MARINE,
+            UnitId.REAPER,
+            UnitId.GHOST,
+            UnitId.MARAUDER,
+            UnitId.THOR,
+            UnitId.HELLION,
+            UnitId.MEDIVAC,
+            UnitId.BANSHEE,
+            UnitId.RAVEN,
+            UnitId.BATTLECRUISER,
+            //UnitId.PLANETARY_FORTRESS,
+            //UnitId.ORBITAL_COMMAND,
+            };
+
         public static readonly HashSet<UnitId> Terran = new HashSet<UnitId> {
             UnitId.HELLBAT,
             UnitId.LIBERATOR,
