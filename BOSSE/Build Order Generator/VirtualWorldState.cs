@@ -451,13 +451,96 @@ namespace BOSSE.BuildOrderGenerator
             return this.GetCurrentFrame() + addedTime;
         }
 
-        private Race GetRace()
-        {
-            return BotConstants.SpawnAsRace;
-        }
-
         private uint WhenGasReady(ActionId action)
         {
+            if (this.GasCount >= action.GasPrice())
+            {
+                return this.GetCurrentFrame();
+            }
+
+            uint mineralWorkerCount = this.Units.GetNumberMineralWorkers();
+            uint gasWorkerCount = this.Units.GetNumberGasWorkers();
+            uint lastActionFinishFrame = this.GetCurrentFrame();
+            uint addedTime = 0;
+            uint addedGas = 0;
+            uint difference = action.GasPrice() - this.GasCount;
+
+            // loop through each action in progress, adding the minerals we would gather from each interval
+            foreach (ActionInProgress actionPerformed in this.Units.GetInProgressActions().GetAllInProgressDesc())
+            {
+                uint elapsed = actionPerformed.GetFinishTime() - lastActionFinishFrame;
+                uint tempAdd = (uint)(elapsed * BuildOrderUtility.GetPerFrameGas(gasWorkerCount));
+
+                // if this amount isn't enough, update the amount added for this interval
+                if (addedGas + tempAdd < difference)
+                {
+                    addedGas += tempAdd;
+                    addedTime += elapsed;
+                }
+                else
+                {
+                    // update at the end
+                    break;
+                }
+
+                ActionId performedId = actionPerformed.GetActionId();
+
+                // Finishing non-addon buildings as terran gives us a worker back
+                if (performedId.IsBuilding() && (!performedId.IsAddon()) && (GetRace() == Race.Terran))
+                {
+                    mineralWorkerCount += 1;
+                }
+
+                if (performedId.IsWorker())
+                {
+                    mineralWorkerCount += 1;
+                }
+                else if (performedId.IsRefinery())
+                {
+                    if (mineralWorkerCount < 3)
+                    {
+                        Log.SanityCheckFailedThrow("Not enough mineral workers to transfer to gas");
+                    }
+
+                    mineralWorkerCount -= 3;
+                    gasWorkerCount += 3;
+                }
+
+                lastActionFinishFrame = actionPerformed.GetFinishTime();
+            }
+
+            // if we still haven't added enough gas, add more time
+            if (addedGas < difference)
+            {
+                if (gasWorkerCount <= 0)
+                {
+                    // Could possible happen when losing the game, so we don't throw
+                    Log.SanityCheckFailed("Resource prediction error, shouldn't have 0 gas workers");
+                }
+
+                uint finalTimeToAdd = 1000000;
+                if (gasWorkerCount > 0)
+                {
+                    finalTimeToAdd = (difference - addedGas) / BuildOrderUtility.GetPerFrameGas(gasWorkerCount);
+                }
+
+                addedGas += finalTimeToAdd * BuildOrderUtility.GetPerFrameGas(gasWorkerCount);
+                addedTime += finalTimeToAdd;
+
+                // Compensate for integer division issue
+                if (addedGas < difference)
+                {
+                    addedTime += 1;
+                    addedGas += BuildOrderUtility.GetPerFrameGas(gasWorkerCount);
+                }
+            }
+
+            if (addedGas < difference)
+            {
+                Log.SanityCheckFailedThrow("Gas prediction issue " + addedGas + " vs " + difference);
+            }
+
+            return this.GetCurrentFrame() + addedTime;
         }
 
         private uint WhenSupplyReady(ActionId action)
@@ -466,6 +549,11 @@ namespace BOSSE.BuildOrderGenerator
 
         private uint WhenWorkerReady(ActionId action)
         {
+        }
+
+        private Race GetRace()
+        {
+            return BotConstants.SpawnAsRace;
         }
     }
 }

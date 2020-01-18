@@ -35,9 +35,10 @@ namespace BOSSE.BuildOrderGenerator
     using static UnitConstants;
     using static UpgradeConstants;
     using static AbilityConstants;
-    
+
     /// <summary>
     /// Various utility functions used internally by our build order generator
+    /// Income data: https://tl.net/forum/sc2-strategy/140055-scientifically-measuring-mining-speed
     /// </summary>
     public static class BuildOrderUtility
     {
@@ -45,10 +46,15 @@ namespace BOSSE.BuildOrderGenerator
         /// Estimated amount of minerals mined per worker, per logical frame
         /// Multiplied by ResourceScale to avoid floating point rounding issues
         /// </summary>
-        public const uint MineralsPerWorkerPerFrameEstimate = 30;
-        public const uint ResourceScale = 1000;
+        private const uint MineralsPerWorkerPerFrameEstimate = (uint)(((39 * ResourceScale) / 60.0f) / FramesPerSecond);
 
-        public const float FramesPerSecond = 22.4f;
+        /// <summary>
+        /// Estimated amount of gas mined per worker, per logical frame
+        /// Multiplied by ResourceScale to avoid floating point rounding issues
+        /// </summary>
+        private const uint GasPerWorkerPerFrameEstimate = (uint)(((36 * ResourceScale) / 60.0f) / FramesPerSecond);
+        public const uint ResourceScale = 1000;
+        private const float FramesPerSecond = 22.4f;
 
         public static ActionId GetWorkerActionId()
         {
@@ -61,12 +67,21 @@ namespace BOSSE.BuildOrderGenerator
         }
 
         /// <summary>
-        /// Returns the estimated income for X workers, per logical frame
+        /// Returns the estimated mineral income for X workers, per logical frame
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static uint GetPerFrameMinerals(uint workerCount)
         {
             return MineralsPerWorkerPerFrameEstimate * workerCount;
+        }
+
+        /// <summary>
+        /// Returns the estimated gas income for X workers, per logical frame
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static uint GetPerFrameGas(uint workerCount)
+        {
+            return GasPerWorkerPerFrameEstimate * workerCount;
         }
 
         /// <summary>
