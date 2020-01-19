@@ -112,6 +112,22 @@ namespace BOSSE.BuildOrderGenerator
             throw new NotImplementedException();
         }
 
+        public uint GetNextBuildingFinishTime()
+        {
+            foreach (ActionInProgress iter in this.GetAllInProgressDesc())
+            {
+                ActionId action = iter.GetActionId();
+
+                if (action.IsBuilding() && !action.IsAddon())
+                {
+                    return iter.GetTime();
+                }
+            }
+
+            Log.SanityCheckFailedThrow("No buildings in progress");
+            throw new BosseFatalException();
+        }
+
         public ActionInProgress GetNextAction()
         {
             if (IsEmpty())
@@ -277,17 +293,20 @@ namespace BOSSE.BuildOrderGenerator
 
         public bool IsSupplyProvider()
         {
-           
+            bool isSupplyProvider = this.GetSupplyProvided() > 0;
+            return isSupplyProvider;
         }
 
         public ActionId RequiresAddonType()
         {
-
+#warning TODO: Build order addon support
+            throw new NotImplementedException();
         }
 
         public bool RequiresAddon()
         {
-            
+#warning TODO: Build order addon support
+            return false;
         }
 
         public bool IsBuilding()
@@ -354,7 +373,8 @@ namespace BOSSE.BuildOrderGenerator
 
         public uint GetNumProduced()
         {
-            // todo, probably 1
+#warning TODO: Build order addon support (reactor builds 2x?)
+            return 1;
         }
 
         /// <summary>
@@ -362,9 +382,14 @@ namespace BOSSE.BuildOrderGenerator
         /// </summary>
         public bool CanBuild(ActionId action)
         {
-            
+            if (this.GetRace() != action.GetRace())
+                return false;
 
+            ActionId whatBuilds = action.WhatBuildsThis();
+            if (whatBuilds == this)
+                return true;
 
+            return false;
         }
 
         public string GetName()

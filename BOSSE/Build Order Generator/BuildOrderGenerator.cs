@@ -41,41 +41,49 @@ namespace BOSSE.BuildOrderGenerator
 
     public class PrerequisiteSet
     {
+        private HashSet<ActionId> ActionsInSet = new HashSet<ActionId>();
+
         public PrerequisiteSet Clone()
         {
-
+            PrerequisiteSet newSet = new PrerequisiteSet();
+            foreach (ActionId iter in this.ActionsInSet)
+            {
+                newSet.Add(iter);
+            }
+            return newSet;
         }
 
         public bool Contains(ActionId action)
         {
+            return this.ActionsInSet.Contains(action);
         }
 
         public bool IsEmpty()
         {
-
+            return this.ActionsInSet.Count == 0;
         }
 
-        public List<ActionId> GetAll()
+        public IEnumerable<ActionId> GetAll()
         {
-
+            return this.ActionsInSet;
         }
 
-        public void Remove(ActionId action)
+        public bool Remove(ActionId action)
         {
-            // todo
-            throw new NotImplementedException();
+            return this.ActionsInSet.Remove(action);
         }
 
         public void Add(ActionId action)
         {
-            // todo
-            throw new NotImplementedException();
+            this.ActionsInSet.Add(action);
         }
 
         public void AddUnique(ActionId action)
         {
-            // todo
-            throw new NotImplementedException();
+            if (this.Contains(action))
+                return;
+
+            this.Add(action);
         }
     }
 
@@ -257,23 +265,31 @@ namespace BOSSE.BuildOrderGenerator
 
     public class BuildOrder
     {
-        // maybe use stack??
+        private List<ActionId> ActionsQueued = new List<ActionId>();
 
         public BuildOrder Clone()
         {
+            BuildOrder newObj = new BuildOrder();
 
+            foreach (var iter in this.ActionsQueued)
+            {
+                newObj.Add(iter);
+            }
+
+            return newObj;
         }
 
         public void Add(ActionId action)
         {
-            // todo easy
-            throw new NotImplementedException();
+            this.ActionsQueued.Add(action);
         }
 
+        /// <summary>
+        /// Remove the last item of this collection
+        /// </summary>
         public void pop_back()
         {
-            // todo easy, remove one
-            throw new NotImplementedException();
+            this.ActionsQueued.RemoveAt(ActionsQueued.Count - 1);
         }
     }
 

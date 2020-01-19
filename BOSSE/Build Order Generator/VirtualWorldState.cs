@@ -256,9 +256,12 @@ namespace BOSSE.BuildOrderGenerator
             return this.Progress;
         }
 
+        /// <summary>
+        /// Returns whenever the next building is finished, ie when a worker becomes available
+        /// </summary>
         public uint getNextBuildingFinishTime()
         {
-            // Returns whenever the next building is finished, ie when a worker becomes available
+            return this.Progress.GetNextBuildingFinishTime();
         }
 
         public uint GetNumberInProgress(ActionId action)
@@ -298,12 +301,12 @@ namespace BOSSE.BuildOrderGenerator
 
         public uint GetCurrentSupply()
         {
-
+            return (uint)this.CurrentSupply;
         }
 
         public uint GetMaxSupply()
         {
-
+            return (uint)this.MaxSupply;
         }
 
         public ActionId FinishActionInProgress(ActionInProgress actionInProgress)
@@ -445,7 +448,7 @@ namespace BOSSE.BuildOrderGenerator
             if (IsLegal(action))
             {
                 Log.SanityCheckFailed("Tried to perform an illegal action " + action + " during state " + this);
-                return;
+                return new List<ActionId>();
             }
 
             uint workerReadyTime = this.WhenWorkerReady(action);
