@@ -122,7 +122,7 @@ namespace BOSSE.BuildOrderGenerator
                 else if (worldState.GetNumberInProgress(iter) > 0)
                 {
                     // In progress
-                    thisActionTime = timeSoFar + worldState.GetFinishTime(iter) - worldState.GetCurrentFrame();
+                    thisActionTime = timeSoFar + worldState.GetUnitData().GetFinishTime(iter) - worldState.GetCurrentFrame();
                 }
                 else
                 {

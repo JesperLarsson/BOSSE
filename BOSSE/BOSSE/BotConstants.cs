@@ -72,6 +72,7 @@ namespace BOSSE
 
         public const UnitId WorkerUnit = UnitId.SCV;
         public const UnitId RefineryUnit = UnitId.REFINERY;
+        public const UnitId DepotUnit = UnitId.SUPPLY_DEPOT;
         public const UnitId CommandCenterUnit = UnitId.COMMAND_CENTER;
         //public static HashSet<UnitId> FactionUnitsAll = UnitConstants.Terran;
         public static HashSet<UnitId> FactionUnitsBuildable = UnitConstants.TerranBuildable;

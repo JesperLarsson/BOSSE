@@ -246,6 +246,11 @@ namespace BOSSE.BuildOrderGenerator
             return this.BuildingWorkersCount;
         }
 
+        public uint GetLastActionFinishTime()
+        {
+            return this.Progress.GetLastFinishTime();
+        }
+
         public void AddActionInProgress(ActionId action, uint completionFrame, bool queueAction = true)
         {
             throw new NotImplementedException();
@@ -265,6 +270,25 @@ namespace BOSSE.BuildOrderGenerator
         }
 
         public uint GetNumberInProgress(ActionId action)
+        {
+            return this.Progress.GetNumberInProgress(action);
+        }
+
+        public uint GetNumberTotal(ActionId action)
+        {
+        }
+
+        public bool HasGasIncome()
+        {
+
+        }
+
+        public bool HasMineralIncome()
+        {
+
+        }
+
+        public bool HasPrerequisites(PrerequisiteSet required)
         {
 
         }
@@ -304,9 +328,19 @@ namespace BOSSE.BuildOrderGenerator
             return (uint)this.CurrentSupply;
         }
 
+        public uint GetSupplyInProgress()
+        {
+
+        }
+
         public uint GetMaxSupply()
         {
             return (uint)this.MaxSupply;
+        }
+
+        public uint GetLastFinishTime()
+        {
+
         }
 
         public ActionId FinishActionInProgress(ActionInProgress actionInProgress)
@@ -556,14 +590,14 @@ namespace BOSSE.BuildOrderGenerator
             return actionsFinished;
         }
 
-        public uint GetFinishTime(ActionId action)
+        public UnitData GetUnitData()
         {
-            // todo
+            return this.Units;
         }
 
         public uint GetLastActionFinishTime()
         {
-            // todo
+            return this.Units.GetLastActionFinishTime();
         }
 
         /// <summary>
@@ -571,7 +605,82 @@ namespace BOSSE.BuildOrderGenerator
         /// </summary>
         public bool IsLegal(ActionId action)
         {
-            // todo
+            uint mineralWorkers = this.GetNumMineralWorkers();
+            uint numRefineries = this.Units.GetNumberTotal(ActionId.Get(BotConstants.RefineryUnit));
+            uint numDepots = this.Units.GetNumberTotal(ActionId.Get(BotConstants.DepotUnit));
+            uint refineriesInProgress = this.Units.GetNumberInProgress(ActionId.Get(BotConstants.RefineryUnit));
+
+            // check if the tech requirements are met
+            if (!this.Units.HasPrerequisites(action.GetPrerequisites()))
+            {
+                return false;
+            }
+
+            // if it's a unit and we are out of supply and aren't making an overlord, it's not legal
+            bool reachedSupplyMax = this.Units.GetCurrentSupply() + action.GetSupplyRequired() > this.Units.GetMaxSupply() + this.Units.GetSupplyInProgress();
+            if (!action.IsSupplyProvider() && (reachedSupplyMax))
+            {
+                return false;
+            }
+
+            // TODO: require an extra for refineries byt not buildings
+            // rules for buildings which are built by workers
+            if (action.IsBuilding() && !action.IsAddon())
+            {
+                // be very strict about when we can make refineries to ensure we have enough workers to go in gas
+                if (action.IsRefinery() && (GetNumMineralWorkers() <= (4 + 3*refineriesInProgress)))
+                {
+                    return false;
+                }
+
+                const int workersPerRefinery = 3;
+                int workersRequiredToBuild = 1;
+                if (GetRace() == Race.Protoss)
+                    workersRequiredToBuild = 0;
+                int buildingIsRefinery = 0;
+                if (action.IsRefinery())
+                    buildingIsRefinery = 1;
+                uint candidateWorkers = GetNumMineralWorkers() + this.Units.GetNumberInProgress(ActionId.Get(BotConstants.WorkerUnit)) + GetNumBuildingWorkers();
+                long workersToBeUsed = workersRequiredToBuild + workersPerRefinery * (refineriesInProgress);
+
+                if (candidateWorkers < workersToBeUsed)
+                {
+                    return false;
+                }
+            }
+
+            // Check income / can afford
+            if (!CanAffordGas(action) && !this.Units.HasGasIncome())
+            {
+                return false;
+            }
+            if (!CanAffordMinerals(action) && !this.Units.HasMineralIncome())
+            {
+                return false;
+            }
+
+            // don't build more refineries than resource depots
+            if (action.IsRefinery() && (numRefineries >= numDepots))
+            {
+                return false;
+            }
+
+            // we don't need to go over the maximum supply limit with supply providers
+            if (action.IsSupplyProvider() && (this.Units.GetMaxSupply() + this.Units.GetSupplyInProgress() > 400))
+            {
+                return false;
+            }
+
+            // can only build one of a tech type
+            //if (action.IsTech)
+
+            // check to see if an addon can ever be built
+            //if (action.IsAddon())
+            //{
+
+            //}
+
+            return true;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

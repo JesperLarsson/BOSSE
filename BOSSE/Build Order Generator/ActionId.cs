@@ -69,7 +69,7 @@ namespace BOSSE.BuildOrderGenerator
 
         public uint GetFinishTime()
         {
-
+            return this.Time;   
         }
 
         public ActionId GetActionId()
@@ -126,6 +126,16 @@ namespace BOSSE.BuildOrderGenerator
 
             Log.SanityCheckFailedThrow("No buildings in progress");
             throw new BosseFatalException();
+        }
+
+        public uint GetLastFinishTime()
+        {
+
+        }
+
+        public uint GetNumberInProgress(ActionId action)
+        {
+
         }
 
         public ActionInProgress GetNextAction()
