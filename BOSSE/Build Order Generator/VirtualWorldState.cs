@@ -276,20 +276,29 @@ namespace BOSSE.BuildOrderGenerator
 
         public uint GetNumberTotal(ActionId action)
         {
+            return this.NumUnits[action] + this.GetNumberInProgress(action);
         }
 
         public bool HasGasIncome()
         {
-
+            return GasWorkersCount > 0 || GetNumberTotal(ActionId.Get(BotConstants.RefineryUnit)) > 0;
         }
 
         public bool HasMineralIncome()
         {
-
+            return GetNumberMineralWorkers() > 0 || GetNumberBuildingWorkers() > 0 || GetNumberInProgress(ActionId.Get(BotConstants.WorkerUnit)) > 0;
         }
 
         public bool HasPrerequisites(PrerequisiteSet required)
         {
+            foreach (ActionId iter in required.GetAll())
+            {
+
+
+
+            }
+
+
 
         }
 
@@ -637,9 +646,6 @@ namespace BOSSE.BuildOrderGenerator
                 int workersRequiredToBuild = 1;
                 if (GetRace() == Race.Protoss)
                     workersRequiredToBuild = 0;
-                int buildingIsRefinery = 0;
-                if (action.IsRefinery())
-                    buildingIsRefinery = 1;
                 uint candidateWorkers = GetNumMineralWorkers() + this.Units.GetNumberInProgress(ActionId.Get(BotConstants.WorkerUnit)) + GetNumBuildingWorkers();
                 long workersToBeUsed = workersRequiredToBuild + workersPerRefinery * (refineriesInProgress);
 
