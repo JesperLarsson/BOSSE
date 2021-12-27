@@ -5,7 +5,7 @@ BOSSE is a bot for the game StarCraft 2 written in C# as a hobby project.
 Supports local debugging sessions (against the official AI), as well as online ladder play against other bots.
 
 ## Status
-Development is mostly paused for now, but I will revisit every now and then as time allows.
+Development is mostly paused for now, but I will revisit the project every now and then as time allows :).
 
 ## Features
 - Precalculated map analysis (chokepoints, expansion locations, ramps, etc). Calculated once per map and stored to file
@@ -18,6 +18,9 @@ Development is mostly paused for now, but I will revisit every now and then as t
 - Capable of running in real time
 - Debug GUI. Draws various maps and other debugging data
 - More to come
+
+## Screenshot (Debug GUI)
+![Alt text](/docs/UI2021-12-27.png?raw=true "Debug GUI")
 
 ## TODO / Major Limitations
 - Currently only supports 2-player maps
