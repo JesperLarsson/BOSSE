@@ -2,7 +2,7 @@
 
 ## About
 BOSSE is a bot for the game StarCraft 2 written in C# as a hobby project.
-Supports local debugging sessions (against Blizzard AI), as well as online ladder play against other bots.
+Supports local debugging sessions (against the official AI), as well as online ladder play against other bots.
 
 ## Status
 Development is mostly paused for now, but I will revisit every now and then as time allows.
@@ -43,7 +43,7 @@ Developed using Visual Studio 2019, but other versions will likely work.
 The protobuff schema needs to be rebuilt after each new game release, using the following steps:
 1. Download latest schema from here by cloning the repo: https://github.com/Blizzard/s2client-proto
 2. Download latest protobuff compiler, ex protoc-3.11.2-win64.zip, from here: https://github.com/protocolbuffers/protobuf/releases
-3. Extract protoc.exe into the schema folder       
+3. Extract protoc.exe into the schema root folder
 4. Open cmd and run:
 protoc.exe --csharp_out=. s2clientprotocol/common.proto s2clientprotocol/data.proto s2clientprotocol/debug.proto s2clientprotocol/error.proto s2clientprotocol/query.proto s2clientprotocol/raw.proto s2clientprotocol/sc2api.proto s2clientprotocol/score.proto s2clientprotocol/spatial.proto s2clientprotocol/ui.proto
 5. Copy the output .cs files to the solution
@@ -56,5 +56,4 @@ Otherwise everything has been implemented from scratch.
 ## Links
 - Interacts with StarCraft 2 using the official proto buff API by Blizzard: https://github.com/Blizzard/s2client-api
 - API documentation: https://blizzard.github.io/s2client-api/annotated.html
-- If you're looking for a nearly empty C# project to get started, this should work as-is: https://github.com/JesperLarsson/BOSSE/releases/tag/BasicStartingTemplate
 - General info and wiki: http://wiki.sc2ai.net/Main_Page

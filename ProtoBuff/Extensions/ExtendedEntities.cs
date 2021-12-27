@@ -12,9 +12,9 @@
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public Point2D(float x, float y) : this()
         {
-            x_ = x;
-            y_ = y;
             OnConstruction();
+            X = x;
+            Y = y;
         }
     }
 }
