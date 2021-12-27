@@ -45,7 +45,7 @@ The protobuff schema needs to be rebuilt after each new game release, using the 
 2. Download latest protobuff compiler, ex protoc-3.11.2-win64.zip, from here: https://github.com/protocolbuffers/protobuf/releases
 3. Extract protoc.exe into the schema root folder
 4. Open cmd and run:
-protoc.exe --csharp_out=. s2clientprotocol/common.proto s2clientprotocol/data.proto s2clientprotocol/debug.proto s2clientprotocol/error.proto s2clientprotocol/query.proto s2clientprotocol/raw.proto s2clientprotocol/sc2api.proto s2clientprotocol/score.proto s2clientprotocol/spatial.proto s2clientprotocol/ui.proto
+<pre>protoc.exe --csharp_out=. s2clientprotocol/common.proto s2clientprotocol/data.proto s2clientprotocol/debug.proto s2clientprotocol/error.proto s2clientprotocol/query.proto s2clientprotocol/raw.proto s2clientprotocol/sc2api.proto s2clientprotocol/score.proto s2clientprotocol/spatial.proto s2clientprotocol/ui.proto</pre>
 5. Copy the output .cs files to the solution
 6. (Optional) Update the protobuff NuGet package in Visual studio, necessary if the schema contained any new protobuff features
 
