@@ -72,6 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BOSSE\Build Orders\Build Order Definitions\Terran\Base\TerranBaseBuildOrder.cs" />
+    <Compile Include="BOSSE\Build Orders\Build Order Definitions\Terran\MarineSpam.cs" />
+    <Compile Include="BOSSE\Build Orders\BuildOrderDeterminer.cs" />
     <Compile Include="BOSSE\Missions\Mission.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
@@ -87,9 +90,7 @@
     <Compile Include="BOSSE\Utility Managers\OrderManager.cs" />
     <Compile Include="BOSSE\Utility Managers\SpaceMovementReservationManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
-    <Compile Include="BOSSE\Build Orders\Build Definitions\Terran\DefaultBuild.cs" />
     <Compile Include="BOSSE\Build Orders\BuildOrderManager.cs" />
-    <Compile Include="BOSSE\Build Orders\Entities\BuildOrderStep.cs" />
     <Compile Include="Main\Entities\Exception\BosseFatalException.cs" />
     <Compile Include="Main\Entities\Exception\BosseRecoverableException.cs" />
     <Compile Include="Main\Entities\Game\BaseLocation.cs" />
@@ -187,6 +188,8 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BOSSE\Build Orders\Build Order Definitions\Protoss\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -60,13 +60,13 @@ namespace BOSSE
                     Globals.Random = new Random(BotConstants.FixedSeedValue);
 
                 DebugGui.BosseGui.StartGui();
-                Globals.GameConnection = bootStrapper.RunSinglePlayer(mapName, BotConstants.SpawnAsRace, opponentRace, opponentDifficulty).Result;
+                Globals.GameConnection = bootStrapper.RunSinglePlayer(mapName, BOSSE.UseRace, opponentRace, opponentDifficulty).Result;
             }
             else
             {
                 // Ladder play
                 Globals.IsSinglePlayer = false;
-                Globals.GameConnection = bootStrapper.RunLadder(BotConstants.SpawnAsRace, commandLineArguments).Result;
+                Globals.GameConnection = bootStrapper.RunLadder(BOSSE.UseRace, commandLineArguments).Result;
             }
 
             // Game has started, read initial state

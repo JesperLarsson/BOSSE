@@ -71,10 +71,5 @@ namespace BOSSE
         /// Value to be used for randomizing game behaviour when UseFixedGameSeed is set
         /// </summary>
         public const int FixedSeedValue = 123456798;
-
-#warning TODO: Move to build order: 
-        public const UnitId WorkerUnit = UnitId.SCV;
-        public const UnitId CommandCenterUnit = UnitId.COMMAND_CENTER;
-        public const Race SpawnAsRace = Race.Terran;
     }
 }

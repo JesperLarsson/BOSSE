@@ -1,7 +1,7 @@
 # BOSSE
 
 ## About
-BOSSE is a bot for the game StarCraft 2 written in C# as a hobby project.
+BOSSE is a bot for the game StarCraft 2 written in C# as a fun hobby project.
 Supports local debugging sessions (against the official AI), as well as online ladder play against other bots.
 
 ## Status
@@ -25,7 +25,6 @@ The bot uses a simple GUI for debugging, which updates in real time:
 
 ## TODO / Major Limitations
 - Currently only supports 2-player maps
-- Can only play on pre-analysed maps (which takes a couple of hours)
 - Does not support multiple build orders
 - Prediction of enemy plans
 - Currently only plays as Terran
@@ -58,6 +57,6 @@ Based on the following starting template which bootstraps the game session: http
 Otherwise everything has been implemented from scratch.
 
 ## Links
-- Interacts with StarCraft 2 using the official proto buff API by Blizzard: https://github.com/Blizzard/s2client-api
-- API documentation: https://blizzard.github.io/s2client-api/annotated.html
 - General info and wiki: http://wiki.sc2ai.net/Main_Page
+- Interacts with StarCraft 2 using the official proto buff API: https://github.com/Blizzard/s2client-api
+- API documentation: https://blizzard.github.io/s2client-api/annotated.html

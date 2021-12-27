@@ -34,6 +34,34 @@ namespace BOSSE
     /// </summary>
     public class BuildOrderManager : Manager
     {
-        
+        /// <summary>
+        /// The current build order that should be used
+        /// </summary>
+        private BuildOrder currentBuildOrder;
+        private BuildOrderDeterminer orderDeterminer = new BuildOrderDeterminer();
+
+        public BuildOrder GetCurrentBuildOrder()
+        {
+            if (this.currentBuildOrder == null)
+            {
+                this.CalculateAndSetBuildOrder();
+            }
+
+            return this.currentBuildOrder;
+        }
+
+        public override void OnFrameTick()
+        {
+#warning TODO: Re-evaluate which build order to use intermittently, possibly triggered by enemy events or at specific points in the current build order
+            if (this.currentBuildOrder == null)
+            {
+                this.CalculateAndSetBuildOrder();
+            }
+        }
+
+        private void CalculateAndSetBuildOrder()
+        {
+            this.currentBuildOrder = orderDeterminer.DetermineBestBuildOrder();
+        }
     }
 }

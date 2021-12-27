@@ -29,6 +29,7 @@ namespace BOSSE
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static GeneralGameUtility;
+    using static global::BOSSE.UnitConstants;
 
     /// <summary>
     /// A single step in a <see cref="BuildOrder"/>
@@ -77,5 +78,17 @@ namespace BOSSE
     /// </summary>
     public abstract class BuildOrder
     {
+        public string BuildName = "N/A";
+
+        public UnitId WorkerUnit;
+        public UnitId CommandCenterUnit;
+        public Race IsRace;
+
+        /// <summary>
+        /// Indicates whether this build order is viable or not in the current world state
+        /// 0 = Not viable
+        /// Higher values = viability score, value is relative to other build orders (highers is more viable)
+        /// </summary>
+        public abstract int EvaluateBuildOrderViability();
     }
 }

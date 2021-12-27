@@ -39,6 +39,9 @@ namespace BOSSE
     /// </summary>
     public class BOSSE
     {
+        // Set to configure which race to spawn as, and which set of build orders to allow
+        public static Race UseRace = Race.Terran;
+
         // Input managers
         public static readonly SensorManager SensorManagerRef = new SensorManager();
 
@@ -65,6 +68,8 @@ namespace BOSSE
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
         {
+            BuildOrderManagerRef, // should be first in for a build order to be set
+
             SensorManagerRef, // should be first to generate events for other managers
             OrderManagerRef, // should be early as continuous orders override other generic behaviour
 
@@ -82,7 +87,6 @@ namespace BOSSE
             BaseManagerRef,
             RampManagerRef,
             WorkerManagerRef,
-            BuildOrderManagerRef
         };
 
         // Background thread
@@ -152,16 +156,16 @@ namespace BOSSE
 
             // Assign a random worker to scout
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
-            Unit scoutingWorker = GetUnits(UnitId.SCV, onlyCompleted: true)[0];
+            Unit scoutingWorker = GetUnits(BOSSE.BuildOrderManagerRef.GetCurrentBuildOrder().WorkerUnit, onlyCompleted: true)[0];
             Log.Info("Assigning worker " + scoutingWorker.Tag + " as initial scout");
             scoutingWorker.IsReserved = true;
             BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
 
             // Insert a random joke in chat
-            foreach (string jokeLine in JokeGenerator.GetJoke())
-            {
-                Queue(CommandBuilder.Chat(jokeLine));
-            }
+            //foreach (string jokeLine in JokeGenerator.GetJoke())
+            //{
+            //    Queue(CommandBuilder.Chat(jokeLine));
+            //}
 
             HasCompletedFirstFrameInit = true;
         }
