@@ -71,11 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnStructureWasPlacedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
+    <Compile Include="BOSSE\Missions\Mission.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Self\OwnStructureWasPlacedSensor.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalManager.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
@@ -85,67 +86,71 @@
     <Compile Include="BOSSE\Utility Managers\OrderManager.cs" />
     <Compile Include="BOSSE\Utility Managers\SpaceMovementReservationManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
-    <Compile Include="Entities\Exception\BosseFatalException.cs" />
-    <Compile Include="Entities\Exception\BosseRecoverableException.cs" />
-    <Compile Include="Entities\Game\BaseLocation.cs" />
-    <Compile Include="Entities\Internal\Wall.cs" />
-    <Compile Include="Entities\Map\AnalysedRuntimeMap.cs" />
-    <Compile Include="Entities\Map\ChokepointCollectionBetweenPoints.cs" />
-    <Compile Include="Entities\Map\AnalysedStaticMap.cs" />
-    <Compile Include="Entities\Internal\Manager.cs" />
-    <Compile Include="Entities\Internal\Squad.cs" />
+    <Compile Include="BOSSE\Build Orders\Build Definitions\Terran\DefaultBuild.cs" />
+    <Compile Include="BOSSE\Build Orders\BuildOrderManager.cs" />
+    <Compile Include="BOSSE\Build Orders\Entities\BuildOrderStep.cs" />
+    <Compile Include="Main\Entities\Exception\BosseFatalException.cs" />
+    <Compile Include="Main\Entities\Exception\BosseRecoverableException.cs" />
+    <Compile Include="Main\Entities\Game\BaseLocation.cs" />
+    <Compile Include="BOSSE\Build Orders\Entities\BuildOrder.cs" />
+    <Compile Include="Main\Entities\Internal\Wall.cs" />
+    <Compile Include="Main\Entities\Map\AnalysedRuntimeMap.cs" />
+    <Compile Include="Main\Entities\Map\ChokepointCollectionBetweenPoints.cs" />
+    <Compile Include="Main\Entities\Map\AnalysedStaticMap.cs" />
+    <Compile Include="Main\Entities\Internal\Manager.cs" />
+    <Compile Include="Main\Entities\Internal\Squad.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\ScoutingWorkerController.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\DefaultSquadController.cs" />
     <Compile Include="BOSSE\Tactical Layer\SquadManager.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnMilitaryUnitDiedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnMilitaryUnitWasCompletedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Self\OwnStructureWasCompletedSensor.cs" />
-    <Compile Include="BOSSE\Sensor Layer\SensorManager.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Self\OwnMilitaryUnitDiedSensor.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Self\OwnMilitaryUnitWasCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Self\OwnStructureWasCompletedSensor.cs" />
+    <Compile Include="BOSSE\Sensors\SensorManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\DiscrepenceyDetector.cs" />
     <Compile Include="BOSSE\Strategic Layer\GoalFormulator.cs" />
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
-    <Compile Include="Entities\Internal\GameObject.cs" />
-    <Compile Include="Entities\Map\ResourceCluster.cs" />
-    <Compile Include="Entities\Map\Ramp.cs" />
-    <Compile Include="Entities\Map\TileMap.cs" />
-    <Compile Include="Entities\Internal\Unit.cs" />
-    <Compile Include="Game Input\StarCraft Constants\AbilityConstants.cs" />
-    <Compile Include="Game Input\CurrentGameState.cs" />
-    <Compile Include="Game Input\StarCraft Constants\UnitConstants.cs" />
-    <Compile Include="Game Input\StarCraft Constants\UpgradeConstants.cs" />
-    <Compile Include="Game Output\CommandBuilder.cs" />
-    <Compile Include="Game Utility\WallinUtility.cs" />
-    <Compile Include="GUI\Debug Maps\BaseDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\InfluenceDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\_Legacy - GeneralChokepointDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\ChokepointDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\ResourceClusterDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\OverviewDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\PlacementGridDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\TensionDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\TerrainDebugMap.cs" />
-    <Compile Include="GUI\Debug Maps\VulnerabilityDebugMap.cs" />
-    <Compile Include="GUI\MainForm.cs">
+    <Compile Include="Main\Entities\Internal\GameObject.cs" />
+    <Compile Include="Main\Entities\Map\ResourceCluster.cs" />
+    <Compile Include="Main\Entities\Map\Ramp.cs" />
+    <Compile Include="Main\Entities\Map\TileMap.cs" />
+    <Compile Include="Main\Entities\Internal\Unit.cs" />
+    <Compile Include="Game Connection\Game Input\StarCraft Constants\AbilityConstants.cs" />
+    <Compile Include="Game Connection\Game Input\CurrentGameState.cs" />
+    <Compile Include="Game Connection\Game Input\StarCraft Constants\UnitConstants.cs" />
+    <Compile Include="Game Connection\Game Input\StarCraft Constants\UpgradeConstants.cs" />
+    <Compile Include="Game Connection\Game Output\CommandBuilder.cs" />
+    <Compile Include="BOSSE\Game Utility\WallinUtility.cs" />
+    <Compile Include="Main\GUI\Debug Maps\BaseDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\InfluenceDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\_Legacy - GeneralChokepointDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\ChokepointDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\ResourceClusterDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\OverviewDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\PlacementGridDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\TensionDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\TerrainDebugMap.cs" />
+    <Compile Include="Main\GUI\Debug Maps\VulnerabilityDebugMap.cs" />
+    <Compile Include="Main\GUI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\MainForm.Designer.cs">
+    <Compile Include="Main\GUI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\BosseGui.cs" />
-    <Compile Include="Main\BackgroundWorkerThread.cs" />
-    <Compile Include="Map Analysis\RuntimeMapAnalyser.cs" />
-    <Compile Include="Map Analysis\StaticMapAnalyser.cs" />
+    <Compile Include="Main\GUI\BosseGui.cs" />
+    <Compile Include="Main\Threads\BackgroundWorkerThread.cs" />
+    <Compile Include="BOSSE\Game Utility\Map Analysis\RuntimeMapAnalyser.cs" />
+    <Compile Include="BOSSE\Game Utility\Map Analysis\StaticMapAnalyser.cs" />
     <Compile Include="BOSSE\BotConstants.cs" />
-    <Compile Include="Game Utility\GeneralGameUtility.cs" />
-    <Compile Include="Game Output\GameOutput.cs" />
+    <Compile Include="BOSSE\Game Utility\GeneralGameUtility.cs" />
+    <Compile Include="Game Connection\Game Output\GameOutput.cs" />
     <Compile Include="Main\Main.cs" />
-    <Compile Include="BOSSE\Sensor Layer\Sensors\Sensor.cs" />
-    <Compile Include="Map Analysis\MapAnalysisWrapper.cs" />
+    <Compile Include="BOSSE\Sensors\Sensors\Sensor.cs" />
+    <Compile Include="BOSSE\Game Utility\Map Analysis\MapAnalysisWrapper.cs" />
     <Compile Include="Misc\Extensions\ImageDataExtensions.cs" />
-    <Compile Include="Map Analysis\Path Finding\AStar\AStar.cs" />
-    <Compile Include="Map Analysis\Path Finding\AStar\BossePathNode.cs" />
-    <Compile Include="Map Analysis\Path Finding\AStar\BossePathSolver.cs" />
+    <Compile Include="BOSSE\Game Utility\Map Analysis\Path Finding\AStar\AStar.cs" />
+    <Compile Include="BOSSE\Game Utility\Map Analysis\Path Finding\AStar\BossePathNode.cs" />
+    <Compile Include="BOSSE\Game Utility\Map Analysis\Path Finding\AStar\BossePathSolver.cs" />
     <Compile Include="Misc\Extensions\Point2DExtensions.cs" />
     <Compile Include="Misc\Extensions\HashSetExtensions.cs" />
     <Compile Include="Misc\Extensions\UnitEnumerableExtensions.cs" />
@@ -153,16 +158,16 @@
     <Compile Include="Misc\Extensions\SizeExtensions.cs" />
     <Compile Include="Misc\JokeGenerator.cs" />
     <Compile Include="Misc\Log.cs" />
-    <Compile Include="Map Analysis\Path Finding\PathFinder.cs" />
+    <Compile Include="BOSSE\Game Utility\Map Analysis\Path Finding\PathFinder.cs" />
     <Compile Include="Misc\GeneralUtility.cs" />
-    <Compile Include="Strategic Maps\StrategicMapSet.cs" />
+    <Compile Include="BOSSE\Game Utility\Strategic Maps\StrategicMapSet.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="BOSSE\BOSSE.cs" />
-    <Compile Include="Main\Game Bootstrapper\Interface.cs" />
-    <Compile Include="Main\Game Bootstrapper\CommandLine.cs" />
-    <Compile Include="Main\Game Bootstrapper\GameBootstrapper.cs" />
-    <Compile Include="Main\Game Bootstrapper\ProtobufProxy.cs" />
+    <Compile Include="Game Connection\Game Bootstrapper\Interface.cs" />
+    <Compile Include="Game Connection\Game Bootstrapper\CommandLine.cs" />
+    <Compile Include="Game Connection\Game Bootstrapper\GameBootstrapper.cs" />
+    <Compile Include="Game Connection\Game Bootstrapper\ProtobufProxy.cs" />
     <Compile Include="Misc\Extensions\PrettyPrintExtensions.cs" />
     <Compile Include="Misc\Extensions\VectorExtensions.cs" />
   </ItemGroup>
@@ -173,7 +178,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\MainForm.resx">
+    <EmbeddedResource Include="Main\GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -181,8 +186,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sensor Layer\Sensors\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

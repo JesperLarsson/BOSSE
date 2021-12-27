@@ -30,7 +30,7 @@ namespace BOSSE
     using static UnitConstants;
 
     /// <summary>
-    /// Bot constant values, set during development
+    /// Bot constant values, set manually during development
     /// </summary>
     public static class BotConstants
     {
@@ -40,9 +40,9 @@ namespace BOSSE
         public const string ApplicationVersion = "0.1dev";
 
         /// <summary>
-        /// Singleplayer only, sc2 will simulate the game as fast as possible
+        /// Singleplayer only, configures sc2 time mode
         /// False = Game behaves as during normal play, aka realtime mode
-        /// True = Game will wait for our output and runs as fast as possible
+        /// True = Game will wait input and runs as fast as possible
         /// </summary>
         public const bool SinglestepMode = true;
 
@@ -63,14 +63,18 @@ namespace BOSSE
         public const int TargetWorkerPerBase = 16;
 
         /// <summary>
-        /// Bot will spawn as the given race
+        /// Inidicates that a fixed game seed should be used (meaning is match is exactly the same)
         /// </summary>
-        public const Race SpawnAsRace = Race.Terran;
+        public const bool UseFixedGameSeed = true;
 
-        public const int RandomSeed = 123456798;
-        public const bool UseRandomSeed = true;
+        /// <summary>
+        /// Value to be used for randomizing game behaviour when UseFixedGameSeed is set
+        /// </summary>
+        public const int FixedSeedValue = 123456798;
 
+#warning TODO: Move to build order: 
         public const UnitId WorkerUnit = UnitId.SCV;
         public const UnitId CommandCenterUnit = UnitId.COMMAND_CENTER;
+        public const Race SpawnAsRace = Race.Terran;
     }
 }

@@ -56,8 +56,8 @@ namespace BOSSE
                 // Single player development mode
                 Globals.IsSinglePlayer = true;
 
-                if (BotConstants.UseRandomSeed)
-                    Globals.Random = new Random(BotConstants.RandomSeed);
+                if (BotConstants.UseFixedGameSeed)
+                    Globals.Random = new Random(BotConstants.FixedSeedValue);
 
                 DebugGui.BosseGui.StartGui();
                 Globals.GameConnection = bootStrapper.RunSinglePlayer(mapName, BotConstants.SpawnAsRace, opponentRace, opponentDifficulty).Result;
