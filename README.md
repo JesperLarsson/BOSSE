@@ -20,6 +20,7 @@ Development is mostly paused for now, but I will revisit the project every now a
 - More to come
 
 ## Screenshot (Debug GUI)
+The bot uses a simple GUI for debugging, which updates in real time:
 ![Alt text](/docs/UI2021-12-27.png?raw=true "Debug GUI")
 
 ## TODO / Major Limitations
