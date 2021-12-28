@@ -35,33 +35,23 @@ namespace BOSSE
     public class CurrentBuildManager : Manager
     {
         /// <summary>
-        /// The current build order that should be used
+        /// Allowed build steps, set manually to indicate which build orders that the engine can choose from
+        /// Order does not matter as each step uses a relative priority, which is calculated each update tick
         /// </summary>
-        private BuildStep currentBuildOrder;
-        private BuildDeterminer orderDeterminer = new BuildDeterminer();
-
-        public BuildStep GetCurrentBuild()
+        private List<BuildStep> availableBuildOrders = new List<BuildStep>()
         {
-            if (this.currentBuildOrder == null)
-            {
-                this.CalculateAndSetBuildOrder();
-            }
+            // Protoss
+            new StalkerSpam(),
 
-            return this.currentBuildOrder;
-        }
+            // Terran
+            //typeof(MarineSpam),
+        };
+
 
         public override void OnFrameTick()
         {
-#warning TODO: Re-evaluate which build order to use intermittently, possibly triggered by enemy events or at specific points in the current build order
-            if (this.currentBuildOrder == null)
-            {
-                this.CalculateAndSetBuildOrder();
-            }
-        }
 
-        private void CalculateAndSetBuildOrder()
-        {
-            this.currentBuildOrder = orderDeterminer.DetermineNextStep();
+
         }
     }
 }

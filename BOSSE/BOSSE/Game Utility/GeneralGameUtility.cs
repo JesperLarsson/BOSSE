@@ -156,6 +156,14 @@ namespace BOSSE
             {
                 return new System.Drawing.Size(2, 2);
             }
+            else if (buildingId == UnitId.PYLON)
+            {
+                return new System.Drawing.Size(2, 2);
+            }
+            else if (buildingId == UnitId.CYBERNETICS_CORE || buildingId == UnitId.TWILIGHT_COUNSEL)
+            {
+                return new System.Drawing.Size(3, 3);
+            }
             else if (buildingId == UnitId.BARRACKS)
             {
                 return new System.Drawing.Size(3, 3);
@@ -164,7 +172,11 @@ namespace BOSSE
             {
                 return new System.Drawing.Size(3, 3);
             }
-            else if (buildingId == UnitId.COMMAND_CENTER)
+            else if (buildingId == UnitId.WARP_GATE || buildingId == UnitId.GATEWAY)
+            {
+                return new System.Drawing.Size(3, 3);
+            }
+            else if (buildingId == UnitId.COMMAND_CENTER || buildingId == UnitId.NEXUS)
             {
                 return new System.Drawing.Size(5, 5);
             }
@@ -495,6 +507,18 @@ namespace BOSSE
                 return UnitId.NEXUS;
             if (BOSSE.UseRace == Race.Zerg)
                 return UnitId.HATCHERY;
+
+            throw new Exception("Unable to determine command center type");
+        }
+
+        public static UnitId GetHouseType()
+        {
+            if (BOSSE.UseRace == Race.Terran)
+                return UnitId.SUPPLY_DEPOT;
+            if (BOSSE.UseRace == Race.Protoss)
+                return UnitId.PYLON;
+            if (BOSSE.UseRace == Race.Zerg)
+                return UnitId.OVERLORD;
 
             throw new Exception("Unable to determine command center type");
         }

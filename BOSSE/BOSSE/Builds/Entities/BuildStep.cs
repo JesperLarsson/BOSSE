@@ -31,64 +31,65 @@ namespace BOSSE
     using static GeneralGameUtility;
     using static global::BOSSE.UnitConstants;
 
-    /// <summary>
-    /// A single step in a <see cref="BuildStep"/>
-    /// </summary>
-    public abstract class BuildOrderStep
-    {
-        /// <summary>
-        /// Set after this step has been performed
-        /// </summary>
-        public bool Completed = false;
+    ///// <summary>
+    ///// A single step in a <see cref="BuildStep"/>
+    ///// </summary>
+    //public abstract class BuildOrderStep
+    //{
+    //    /// <summary>
+    //    /// Set after this step has been performed
+    //    /// </summary>
+    //    public bool Completed = false;
 
-        /// <summary>
-        /// Set if this step depends on another step to be completed first
-        /// </summary>
-        public BuildOrderStep DependsOnStepOrNull;
+    //    /// <summary>
+    //    /// Set if this step depends on another step to be completed first
+    //    /// </summary>
+    //    public BuildOrderStep DependsOnStepOrNull;
 
-        /// <summary>
-        /// If set, the next step of the build order is allowed to begin before this one has started
-        /// </summary>
-        public bool AllowPrematureProceed = false;
-    }
+    //    /// <summary>
+    //    /// If set, the next step of the build order is allowed to begin before this one has started
+    //    /// </summary>
+    //    public bool AllowPrematureProceed = false;
+    //}
 
-    public abstract class BuildOrderStepBuilding
-    {
-        /// <summary>
-        /// Type of building to place
-        /// </summary>
-        public UnitConstants.UnitId BuildingType;
+    //public abstract class BuildOrderStepBuilding
+    //{
+    //    /// <summary>
+    //    /// Type of building to place
+    //    /// </summary>
+    //    public UnitConstants.UnitId BuildingType;
 
-        /// <summary>
-        /// Indicates which base to build the building at, or null if it can be placed anywhere
-        /// </summary>
-        public BaseLocation BuildAtBaseOrNull;
-    }
+    //    /// <summary>
+    //    /// Indicates which base to build the building at, or null if it can be placed anywhere
+    //    /// </summary>
+    //    public BaseLocation BuildAtBaseOrNull;
+    //}
 
-    public enum BuildOrderState
-    {
-        Unknown,
-        NeedResources,
-        InProgress,
-        Completed
-    }
+    //public enum BuildOrderState
+    //{
+    //    Unknown,
+    //    NeedResources,
+    //    InProgress,
+    //    Completed
+    //}
 
     /// <summary>
     /// A single build order, indicates which units and structures to build
     /// </summary>
     public abstract class BuildStep
     {
-        public string BuildName = "N/A";
-
-        //public UnitId WorkerUnit;
-        //public UnitId CommandCenterUnit;
         public Race IsRace;
 
         /// <summary>
         /// Indicates whether this build order is viable or not in the current world state
-        /// 0 = Not viable
-        /// Higher values = viability score, value is relative to other build orders (highers is more viable)
+        /// 0 = Not viable / does not want to run
+        /// Higher values = viability score, value is relative to other build orders (higher is more important and will override other steps)
         /// </summary>
-        public abstract int EvaluateBuildOrderViability();
+        public abstract uint EvaluateBuildOrderViability();
+
+        /// <summary>
+        /// Performs this step right now
+        /// </summary>
+        public abstract void PerformAction();
     }
 }

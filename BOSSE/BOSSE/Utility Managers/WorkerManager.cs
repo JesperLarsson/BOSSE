@@ -103,7 +103,7 @@ namespace BOSSE
         /// </summary>
         public List<Unit> RequestWorkersForJobCloseToPointOrNull(Point2D point, int maxWorkerCount)
         {
-            List<Unit> workers = GetUnits(UnitId.SCV);
+            List<Unit> workers = GetUnits(GetWorkerUnitType());
 
             // Sort by distance to point
             workers.Sort((a, b) => a.Position.AirDistanceSquared(point).CompareTo(b.Position.AirDistanceSquared(point)));
@@ -192,7 +192,7 @@ namespace BOSSE
 
                     int nonIdealWorkerCount = extractor.IdealWorkers - extractor.AssignedWorkers;
 
-                    List<Unit> workers = GetUnits(UnitId.SCV, onlyCompleted: true);
+                    List<Unit> workers = GetUnits(GetWorkerUnitType(), onlyCompleted: true);
                     int movedWorkerCount = 0;
                     foreach (Unit workerIter in workers)
                     {
@@ -216,7 +216,7 @@ namespace BOSSE
                 {
                     foreach (Unit extractor in extractors)
                     {
-                        List<Unit> workers = GetUnits(UnitId.SCV, onlyCompleted: true);
+                        List<Unit> workers = GetUnits(GetWorkerUnitType(), onlyCompleted: true);
                         int movedWorkerCount = 0;
                         foreach (Unit workerIter in workers)
                         {
@@ -306,7 +306,7 @@ namespace BOSSE
                 return;
 
             List<Unit> commandCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
-            UnitTypeData workerInfo = GetUnitInfo(UnitId.SCV);
+            UnitTypeData workerInfo = GetUnitInfo(GetWorkerUnitType());
             foreach (Unit cc in commandCenters)
             {
                 if (cc.CurrentOrder != null)
@@ -321,7 +321,7 @@ namespace BOSSE
 
                 if (CurrentMinerals >= workerInfo.MineralCost && FreeSupply >= workerInfo.FoodRequired)
                 {
-                    Queue(CommandBuilder.TrainAction(cc, UnitConstants.UnitId.SCV));
+                    Queue(CommandBuilder.TrainAction(cc, GetWorkerUnitType()));
                 }
             }
         }

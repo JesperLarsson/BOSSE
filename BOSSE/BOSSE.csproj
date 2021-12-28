@@ -73,10 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOSSE\Builds\Build Definitions\Protoss\Base Class\ProtossBaseBuildOrder.cs" />
-    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\StalkerSpam.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\PylonProvider.cs" />
     <Compile Include="BOSSE\Builds\Build Definitions\Terran\Base Class\TerranBaseBuildOrder.cs" />
     <Compile Include="BOSSE\Builds\Build Definitions\Terran\MarineSpam.cs" />
-    <Compile Include="BOSSE\Builds\BuildDeterminer.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />

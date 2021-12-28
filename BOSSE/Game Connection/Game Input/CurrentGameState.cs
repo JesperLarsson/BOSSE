@@ -46,12 +46,12 @@ namespace BOSSE
 
         public static uint GetCurrentAndPendingSupply()
         {
-            UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
-            UnitTypeData ccInfo = GetUnitInfo(UnitId.COMMAND_CENTER);
+            UnitTypeData houseInfo = GetUnitInfo(GetHouseType());
+            UnitTypeData ccInfo = GetUnitInfo(GetCommandCenterUnitType());
 
             
-            uint depotFood = (uint)(GetUnitCountTotal(new HashSet<UnitId>() { UnitId.SUPPLY_DEPOT, UnitId.SUPPLY_DEPOT_LOWERED }) * houseInfo.FoodProvided);
-            uint ccFood = (uint)(GetUnitCountTotal(UnitId.COMMAND_CENTER) * ccInfo.FoodProvided);
+            uint depotFood = (uint)(GetUnitCountTotal(new HashSet<UnitId>() { GetHouseType(), UnitId.SUPPLY_DEPOT_LOWERED }) * houseInfo.FoodProvided);
+            uint ccFood = (uint)(GetUnitCountTotal(GetCommandCenterUnitType()) * ccInfo.FoodProvided);
 
             return depotFood + ccFood;
         }

@@ -32,29 +32,18 @@ namespace BOSSE
     using static global::BOSSE.UnitConstants;
 
     /// <summary>
-    /// Determines which build order to use, given a certain world state
+    /// Builds Pylons as necessary
     /// </summary>
-    public class BuildDeterminer
+    public class PylonProvider : ProtossBaseBuildOrder
     {
-        /// <summary>
-        /// Allowed build orders, set manually to indicate which build orders that the engine can choose from
-        /// </summary>
-        private List<BuildStep> availableBuildOrders = new List<BuildStep>()
+        public override uint EvaluateBuildOrderViability()
         {
-            // Protoss
-            new StalkerSpam(),
+            return 1;
+        }
 
-            // Terran
-            //typeof(MarineSpam),
-        };
-
-        /// <summary>
-        /// Calculates which build order is the most viable in the current world state
-        /// </summary>
-        public BuildStep DetermineNextStep()
+        public override void PerformAction()
         {
-
-
+            throw new NotImplementedException();
         }
     }
 }
