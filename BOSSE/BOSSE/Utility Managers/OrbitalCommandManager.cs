@@ -35,7 +35,7 @@ namespace BOSSE
     using static AbilityConstants;
 
     /// <summary>
-    /// Manages our orbital command resources (scan / mule / etc). Does not produce workers
+    /// Manages our orbital command resources (scan / mule / etc). Does not produce SCVs
     /// </summary>
     public class OrbitalCommandManager : Manager
     {
@@ -45,6 +45,9 @@ namespace BOSSE
 
         public override void Initialize()
         {
+            if (BOSSE.UseRace != Race.Terran)
+                return;
+
             BOSSE.SensorManagerRef.GetSensor(
                 typeof(OwnUnitChangedTypeSensor)).AddHandler(ReceiveEventNewOrbitalCommand,
                 unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.ORBITAL_COMMAND))

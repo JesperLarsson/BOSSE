@@ -1,0 +1,2 @@
+﻿
+See section in readme file for instructions on how to rebuild the schema for new game versions

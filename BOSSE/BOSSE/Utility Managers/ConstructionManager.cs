@@ -136,13 +136,26 @@ namespace BOSSE
                 startingSpot = argCloseToPosition;
             }
 
+            
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+            List<Unit> pylons = null;
+            if (BOSSE.UseRace == Race.Protoss)
+                pylons = GetUnits(UnitId.PYLON, onlyCompleted: true, onlyVisible: true, alliance: Alliance.Self);
+
             for (int _ = 0; _ < 10000; _++)
             {
                 Point2D constructionSpot = new Point2D(startingSpot.X + Globals.Random.Next(-searchRadius, searchRadius + 1), startingSpot.Y + Globals.Random.Next(-searchRadius, searchRadius + 1));
 
-                if (IsInRange(constructionSpot, mineralFields, 5)) continue;
+                // Do not build close to mineral fields
+                if (IsInRangeAny(constructionSpot, mineralFields, 5)) continue;
+
+                // Protoss must build close to Pylons
+                if (pylons != null && IsInRangeAny(constructionSpot, pylons, 3) == false)
+                    continue;
+
+                // Must be buildable (polls game)
                 if (!CanPlaceRequest(unitType, constructionSpot)) continue;
+
                 return constructionSpot;
             }
 

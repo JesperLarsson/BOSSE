@@ -14,6 +14,7 @@ Development is mostly paused for now, but I will revisit the project every now a
 - Squad unit management with overridable logic
 - Building placement planning
 - Path finding through A*
+- Plays as either Protoss (preferred) or Terran
 - Multithreading
 - Capable of running in real time
 - Debug GUI. Draws various maps and other debugging data
@@ -26,7 +27,6 @@ The bot uses a simple GUI for debugging, which updates in real time:
 - Currently only supports 2-player maps
 - Does not support multiple build orders
 - Prediction of enemy plans
-- Currently only plays as Terran
 - Cheese detection
 - Micro management
 

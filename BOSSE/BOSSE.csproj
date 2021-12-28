@@ -88,6 +88,7 @@
     <Compile Include="BOSSE\Utility Managers\ConstructionManager.cs" />
     <Compile Include="BOSSE\Utility Managers\BaseManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrderManager.cs" />
+    <Compile Include="BOSSE\Utility Managers\ProtossBuildAreaManager.cs" />
     <Compile Include="BOSSE\Utility Managers\SpaceMovementReservationManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
     <Compile Include="BOSSE\Builds\CurrentBuildManager.cs" />

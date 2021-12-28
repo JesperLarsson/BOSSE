@@ -390,7 +390,7 @@ namespace BOSSE
         /// <summary>
         /// Get if any unit in the given collection which is close to the given point
         /// </summary>
-        public static bool IsInRange(Point2D targetPosition, List<Unit> units, float maxDistance)
+        public static bool IsInRangeAny(Point2D targetPosition, List<Unit> units, float maxDistance)
         {
             return (GetFirstInRange(targetPosition, units, maxDistance) != null);
         }
