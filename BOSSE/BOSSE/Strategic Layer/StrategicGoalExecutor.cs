@@ -31,252 +31,252 @@ namespace BOSSE
     /// </summary>
     public class StrategicGoalExecutor : Manager
     {
-        const int MinSupplyMargin = 4;
-        const int TargetWorkerPerBase = 24;
+        //const int MinSupplyMargin = 4;
+        //const int TargetWorkerPerBase = 24;
 
-        int unitCount = 0;
+        //int unitCount = 0;
 
         /// <summary>
         /// Called once during start
         /// </summary>
         public override void Initialize()
         {
-            // Create main squad
-            BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
+            //// Create main squad
+            //BOSSE.SquadManagerRef.AddNewSquad(new Squad("MainSquad"));
 
-            // Subscribe to all built marines and add them to main squad
-            BOSSE.SensorManagerRef.GetSensor(typeof(OwnMilitaryUnitWasCompletedSensor)).AddHandler(
-                ReceiveEventFinishedMilitaryUnit,
-                unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.MARINE || unitIter.UnitType == UnitId.SIEGE_TANK))
-            );
+            //// Subscribe to all built marines and add them to main squad
+            //BOSSE.SensorManagerRef.GetSensor(typeof(OwnMilitaryUnitWasCompletedSensor)).AddHandler(
+            //    ReceiveEventFinishedMilitaryUnit,
+            //    unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType == UnitId.MARINE || unitIter.UnitType == UnitId.SIEGE_TANK))
+            //);
 
-            // Subscribe to finished buildings
-            BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
+            //// Subscribe to finished buildings
+            //BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(ReceiveEventBuildingFinished);
 
-            BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
+            //BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
         }
 
-        private void ReceiveEventFinishedMilitaryUnit(HashSet<Unit> newUnits)
-        {
-            foreach (Unit iter in newUnits)
-            {
-                Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
-                squad.AddUnit(iter);
-                Log.Info("Added unit to main squad: " + iter.Tag + " (" + iter.UnitType + ")");
-                unitCount++;
-            }
+        //private void ReceiveEventFinishedMilitaryUnit(HashSet<Unit> newUnits)
+        //{
+        //    foreach (Unit iter in newUnits)
+        //    {
+        //        Squad squad = BOSSE.SquadManagerRef.GetSquadOrNull("MainSquad");
+        //        squad.AddUnit(iter);
+        //        Log.Info("Added unit to main squad: " + iter.Tag + " (" + iter.UnitType + ")");
+        //        unitCount++;
+        //    }
 
-            if (unitCount > 10)
-            {
-                BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
-            }
-        }
+        //    if (unitCount > 10)
+        //    {
+        //        BOSSE.TacticalGoalRef.SetNewGoal(MilitaryGoal.AttackGeneral);
+        //    }
+        //}
 
         /// <summary>
         /// Main function for the goal executor
         /// </summary>
         public override void OnFrameTick()
         {
-            AllStrategiesPreRun();
+            //AllStrategiesPreRun();
 
-            StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
-            if (currentGoal == StrategicGoal.EconomyFocus)
-            {
-                ExecuteEconomyFocus();
-            }
-            else if (currentGoal == StrategicGoal.BuildMilitary)
-            {
-                ExecuteBuildMilitary();
-            }
-            else
-            {
-                throw new NotImplementedException("Unsupported " + currentGoal.ToString());
-            }
+            //StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
+            //if (currentGoal == StrategicGoal.EconomyFocus)
+            //{
+            //    ExecuteEconomyFocus();
+            //}
+            //else if (currentGoal == StrategicGoal.BuildMilitary)
+            //{
+            //    ExecuteBuildMilitary();
+            //}
+            //else
+            //{
+            //    throw new NotImplementedException("Unsupported " + currentGoal.ToString());
+            //}
 
-            AllStrategiesPostRun();
+            //AllStrategiesPostRun();
         }
 
-        /// <summary>
-        /// Called before all strategies are executed
-        /// </summary>
-        private void AllStrategiesPreRun()
-        {
+        ///// <summary>
+        ///// Called before all strategies are executed
+        ///// </summary>
+        //private void AllStrategiesPreRun()
+        //{
 
-        }
+        //}
 
-        /// <summary>
-        /// Called after all strategies are executed
-        /// </summary>
-        private void AllStrategiesPostRun()
-        {
-            const int MinSupplyMargin = 4;
+        ///// <summary>
+        ///// Called after all strategies are executed
+        ///// </summary>
+        //private void AllStrategiesPostRun()
+        //{
+        //    const int MinSupplyMargin = 4;
 
-            // Build depots as we need them
-            UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
-            uint currentAndPendingFood = GetCurrentAndPendingSupply();
-            uint supplyDiff = currentAndPendingFood - CurrentGameState.UsedSupply;
-            while (supplyDiff < MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
-            {
-                BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(UnitConstants.UnitId.SUPPLY_DEPOT);
-                supplyDiff += (uint)houseInfo.FoodProvided;
-                CurrentMinerals -= houseInfo.MineralCost;
-            }
-        }
+        //    // Build depots as we need them
+        //    UnitTypeData houseInfo = GetUnitInfo(UnitId.SUPPLY_DEPOT);
+        //    uint currentAndPendingFood = GetCurrentAndPendingSupply();
+        //    uint supplyDiff = currentAndPendingFood - CurrentGameState.UsedSupply;
+        //    while (supplyDiff < MinSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
+        //    {
+        //        BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(UnitConstants.UnitId.SUPPLY_DEPOT);
+        //        supplyDiff += (uint)houseInfo.FoodProvided;
+        //        CurrentMinerals -= houseInfo.MineralCost;
+        //    }
+        //}
 
-        /// <summary>
-        /// Execute specific strategy
-        /// </summary>
-        private void ExecuteBuildMilitary()
-        {
-            const int RaxesWanted = 1;
-            const int FactoriesWanted = 1;
-            const int TechLabsWanted = 1;
-            const int ExpansionsWanted = 1;
+        ///// <summary>
+        ///// Execute specific strategy
+        ///// </summary>
+        //private void ExecuteBuildMilitary()
+        //{
+        //    const int RaxesWanted = 1;
+        //    const int FactoriesWanted = 1;
+        //    const int TechLabsWanted = 1;
+        //    const int ExpansionsWanted = 1;
 
-            uint raxCount = GetUnitCountTotal(UnitConstants.BarracksVariations, includeEquivalents: true);
-            uint techLabCount = GetUnitCountTotal(UnitConstants.TechlabVariations, includeEquivalents: true);
-            uint factoryCount = GetUnitCountTotal(UnitConstants.FactoryVariations, includeEquivalents: true);
+        //    uint raxCount = GetUnitCountTotal(UnitConstants.BarracksVariations, includeEquivalents: true);
+        //    uint techLabCount = GetUnitCountTotal(UnitConstants.TechlabVariations, includeEquivalents: true);
+        //    uint factoryCount = GetUnitCountTotal(UnitConstants.FactoryVariations, includeEquivalents: true);
 
-            // Expand
-            if (CanAfford(UnitId.COMMAND_CENTER) && BOSSE.BaseManagerRef.GetOwnBases().Count < (ExpansionsWanted + 1))
-            {
-                Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
-                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
-                Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
-            }
+        //    // Expand
+        //    if (CanAfford(UnitId.COMMAND_CENTER) && BOSSE.BaseManagerRef.GetOwnBases().Count < (ExpansionsWanted + 1))
+        //    {
+        //        Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
+        //        Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot);
+        //        Queue(CommandBuilder.ConstructAction(UnitId.COMMAND_CENTER, worker, constructionSpot));
+        //    }
 
-            // Factory
-            if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
-            {
-                List<Unit> raxList = GetUnits(UnitConstants.BarracksVariations);
-                if (raxList.Count > 0)
-                {
-                    Unit nearRax = raxList[0];
-                    BOSSE.ConstructionManagerRef.BuildAtApproximatePosition(UnitId.FACTORY, nearRax.Position, 4);
-                    SubtractCosts(UnitId.FACTORY);
-                }
-            }
+        //    // Factory
+        //    if (factoryCount < FactoriesWanted && CanAfford(UnitId.FACTORY) && HaveTechRequirementsToBuild(UnitId.FACTORY))
+        //    {
+        //        List<Unit> raxList = GetUnits(UnitConstants.BarracksVariations);
+        //        if (raxList.Count > 0)
+        //        {
+        //            Unit nearRax = raxList[0];
+        //            BOSSE.ConstructionManagerRef.BuildAtApproximatePosition(UnitId.FACTORY, nearRax.Position, 4);
+        //            SubtractCosts(UnitId.FACTORY);
+        //        }
+        //    }
 
-            // Addons - Tech lab
-            if (techLabCount < TechLabsWanted && CanAfford(UnitId.TECHLAB) && HaveTechRequirementsToBuild(UnitId.TECHLAB))
-            {
-                List<Unit> raxList = GetUnits(UnitConstants.BarracksVariations, onlyCompleted: true);
-                if (raxList.Count > 0)
-                {
-                    Unit atRax = raxList[0];
-                    Log.Info("Building tech lab at " + atRax);
-                    Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.BarracksBuildTechLab, atRax));
-                    SubtractCosts(UnitId.TECHLAB);
+        //    // Addons - Tech lab
+        //    if (techLabCount < TechLabsWanted && CanAfford(UnitId.TECHLAB) && HaveTechRequirementsToBuild(UnitId.TECHLAB))
+        //    {
+        //        List<Unit> raxList = GetUnits(UnitConstants.BarracksVariations, onlyCompleted: true);
+        //        if (raxList.Count > 0)
+        //        {
+        //            Unit atRax = raxList[0];
+        //            Log.Info("Building tech lab at " + atRax);
+        //            Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.BarracksBuildTechLab, atRax));
+        //            SubtractCosts(UnitId.TECHLAB);
 
-                    // When techlab finishes, swap positions of the rax with a factory
-                    BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
-                    {
-                        bool hasLifted = false;
-                        Unit factory = null;
-                        Point2D raxOrigin = atRax.Position;
-                        Point2D factoryOrigin = null;
+        //            // When techlab finishes, swap positions of the rax with a factory
+        //            BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasCompletedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+        //            {
+        //                bool hasLifted = false;
+        //                Unit factory = null;
+        //                Point2D raxOrigin = atRax.Position;
+        //                Point2D factoryOrigin = null;
 
-                        ContinuousUnitOrder swapOrder = new ContinuousUnitOrder(delegate ()
-                        {
-                            if (!hasLifted)
-                            {
-                                List<Unit> factories = GetUnits(UnitConstants.FactoryVariations, onlyCompleted: true);
-                                if (factories.Count == 0)
-                                    return false; // wait for factory
-                                if (atRax.CurrentOrder != null)
-                                    return false; // wait for rax to finish building
+        //                ContinuousUnitOrder swapOrder = new ContinuousUnitOrder(delegate ()
+        //                {
+        //                    if (!hasLifted)
+        //                    {
+        //                        List<Unit> factories = GetUnits(UnitConstants.FactoryVariations, onlyCompleted: true);
+        //                        if (factories.Count == 0)
+        //                            return false; // wait for factory
+        //                        if (atRax.CurrentOrder != null)
+        //                            return false; // wait for rax to finish building
 
-                                factory = factories[0];
-                                factoryOrigin = factory.Position;
+        //                        factory = factories[0];
+        //                        factoryOrigin = factory.Position;
 
-                                Log.Info("Lifting buildings to swap addons");
-                                Queue(CommandBuilder.UseAbility(AbilityId.LIFT, atRax));
-                                Queue(CommandBuilder.UseAbility(AbilityId.LIFT, factory));
-                                hasLifted = true;
-                                return false;
-                            }
-                            else
-                            {
-                                int landCount = 0;
-                                if (atRax.UnitType == UnitId.BARRACKS_FLYING)
-                                {
-                                    if (atRax.CurrentOrder == null)
-                                    {
-                                        BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(factoryOrigin, new System.Drawing.Size(3, 3), "BarracksLanding"));
-                                        Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, atRax, factoryOrigin));
-                                    }
-                                }
-                                else
-                                {
-                                    landCount++;
-                                }
-                                if (factory.UnitType == UnitId.FACTORY_FLYING)
-                                {
-                                    if (factory.CurrentOrder == null)
-                                    {
-                                        BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(raxOrigin, new System.Drawing.Size(3, 3), "FactoryLanding"));
-                                        Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, factory, raxOrigin));
-                                    }
-                                }
-                                else
-                                {
-                                    landCount++;
-                                }
+        //                        Log.Info("Lifting buildings to swap addons");
+        //                        Queue(CommandBuilder.UseAbility(AbilityId.LIFT, atRax));
+        //                        Queue(CommandBuilder.UseAbility(AbilityId.LIFT, factory));
+        //                        hasLifted = true;
+        //                        return false;
+        //                    }
+        //                    else
+        //                    {
+        //                        int landCount = 0;
+        //                        if (atRax.UnitType == UnitId.BARRACKS_FLYING)
+        //                        {
+        //                            if (atRax.CurrentOrder == null)
+        //                            {
+        //                                BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(factoryOrigin, new System.Drawing.Size(3, 3), "BarracksLanding"));
+        //                                Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, atRax, factoryOrigin));
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            landCount++;
+        //                        }
+        //                        if (factory.UnitType == UnitId.FACTORY_FLYING)
+        //                        {
+        //                            if (factory.CurrentOrder == null)
+        //                            {
+        //                                BOSSE.SpaceMovementReservationManagerRef.AddIfNew(new ReservedSpace(raxOrigin, new System.Drawing.Size(3, 3), "FactoryLanding"));
+        //                                Queue(CommandBuilder.UseAbilityOnGround(AbilityId.LAND, factory, raxOrigin));
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            landCount++;
+        //                        }
 
-                                return landCount == 2;
-                            }
-                        });
+        //                        return landCount == 2;
+        //                    }
+        //                });
 
-                        BOSSE.OrderManagerRef.AddOrder(swapOrder);
-                    }),
-                    unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType.IsSame(UnitConstants.TechlabVariations))),
-                    isOneShot: true);
-                }
-            }
+        //                BOSSE.OrderManagerRef.AddOrder(swapOrder);
+        //            }),
+        //            unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.UnitType.IsSame(UnitConstants.TechlabVariations))),
+        //            isOneShot: true);
+        //        }
+        //    }
 
-            // Barracks
-            if (raxCount < RaxesWanted && CanAfford(UnitId.BARRACKS) && HaveTechRequirementsToBuild(UnitId.BARRACKS))
-            {
-                // Build barracks
-                BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(UnitId.BARRACKS);
-                SubtractCosts(UnitId.BARRACKS);
-            }
-            else
-            {
-                // Train marines
-                UnitTypeData marineInfo = GetUnitInfo(UnitId.MARINE);
-                List<Unit> activeSingleRaxes = GetUnits(UnitId.BARRACKS, onlyCompleted: true);
+        //    // Barracks
+        //    if (raxCount < RaxesWanted && CanAfford(UnitId.BARRACKS) && HaveTechRequirementsToBuild(UnitId.BARRACKS))
+        //    {
+        //        // Build barracks
+        //        BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(UnitId.BARRACKS);
+        //        SubtractCosts(UnitId.BARRACKS);
+        //    }
+        //    else
+        //    {
+        //        // Train marines
+        //        UnitTypeData marineInfo = GetUnitInfo(UnitId.MARINE);
+        //        List<Unit> activeSingleRaxes = GetUnits(UnitId.BARRACKS, onlyCompleted: true);
 
-                foreach (Unit rax in activeSingleRaxes)
-                {
-                    if (CurrentMinerals < marineInfo.MineralCost || FreeSupply < marineInfo.FoodRequired)
-                    {
-                        break;
-                    }
-                    if (rax.CurrentOrder != null || rax.HasNewOrders)
-                    {
-                        continue;
-                    }
+        //        foreach (Unit rax in activeSingleRaxes)
+        //        {
+        //            if (CurrentMinerals < marineInfo.MineralCost || FreeSupply < marineInfo.FoodRequired)
+        //            {
+        //                break;
+        //            }
+        //            if (rax.CurrentOrder != null || rax.HasNewOrders)
+        //            {
+        //                continue;
+        //            }
 
-                    Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));
-                }
-            }
-        }
+        //            Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));
+        //        }
+        //    }
+        //}
 
-        /// <summary>
-        /// Execute specific strategy
-        /// </summary>
-        private void ExecuteEconomyFocus()
-        {
-            List<Unit> commandCenters = GetUnits(UnitId.COMMAND_CENTER);
+        ///// <summary>
+        ///// Execute specific strategy
+        ///// </summary>
+        //private void ExecuteEconomyFocus()
+        //{
+        //    List<Unit> commandCenters = GetUnits(UnitId.COMMAND_CENTER);
 
-            // Check worker count
-            int workerCount = GetUnits(UnitId.SCV).Count;
-            if (workerCount >= 14)
-            {
-                BOSSE.StrategicGoalRef.SetNewGoal(StrategicGoal.BuildMilitary);
-            }
-        }
+        //    // Check worker count
+        //    int workerCount = GetUnits(UnitId.SCV).Count;
+        //    if (workerCount >= 14)
+        //    {
+        //        BOSSE.StrategicGoalRef.SetNewGoal(StrategicGoal.BuildMilitary);
+        //    }
+        //}
 
         private void ReceiveEventBuildingFinished(HashSet<Unit> buildings)
         {

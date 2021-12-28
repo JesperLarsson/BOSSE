@@ -146,7 +146,7 @@ namespace BOSSE
                 {
                     Log.Info("Completed new building: " + iter + " at " + iter.Position.ToString2());
 
-                    // Add all depots to ramp manager for now
+                    // Add all Terran depots to ramp manager
                     if (iter.UnitType == UnitId.SUPPLY_DEPOT)
                     {
                         RampManagerRef.AddSupplyDepot(iter);

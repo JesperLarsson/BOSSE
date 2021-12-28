@@ -17,7 +17,6 @@ Development is mostly paused for now, but I will revisit the project every now a
 - Multithreading
 - Capable of running in real time
 - Debug GUI. Draws various maps and other debugging data
-- More to come
 
 ## Screenshot (Debug GUI)
 The bot uses a simple GUI for debugging, which updates in real time:
