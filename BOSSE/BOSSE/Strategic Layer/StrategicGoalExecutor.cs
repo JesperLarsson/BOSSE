@@ -278,23 +278,23 @@ namespace BOSSE
         //    }
         //}
 
-        private void ReceiveEventBuildingFinished(HashSet<Unit> buildings)
-        {
-            // We can upgrade our CC after the barracks finish
-            StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
-            bool completedBarracks = buildings.Any(item => item.UnitType == UnitId.BARRACKS);
-            if (!completedBarracks)
-            {
-                return;
-            }
+        //private void ReceiveEventBuildingFinished(HashSet<Unit> buildings)
+        //{
+        //    // We can upgrade our CC after the barracks finish
+        //    StrategicGoal currentGoal = BOSSE.StrategicGoalRef.GetCurrentGoal();
+        //    bool completedBarracks = buildings.Any(item => item.UnitType == UnitId.BARRACKS);
+        //    if (!completedBarracks)
+        //    {
+        //        return;
+        //    }
 
-            // Upgrade to orbital commands
-            List<Unit> commandCenters = GetUnits(UnitId.COMMAND_CENTER, onlyCompleted: true);
-            foreach (Unit ccIter in commandCenters)
-            {
-                // We queue the upgrade action right away, even if building a worker, we will upgrade next after it's done building
-                Queue(CommandBuilder.UseAbility(AbilityId.UPGRADE_TO_ORBITAL, ccIter));
-            }
-        }
+        //    // Upgrade to orbital commands
+        //    List<Unit> commandCenters = GetUnits(UnitId.COMMAND_CENTER, onlyCompleted: true);
+        //    foreach (Unit ccIter in commandCenters)
+        //    {
+        //        // We queue the upgrade action right away, even if building a worker, we will upgrade next after it's done building
+        //        Queue(CommandBuilder.UseAbility(AbilityId.UPGRADE_TO_ORBITAL, ccIter));
+        //    }
+        //}
     }
 }

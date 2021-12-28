@@ -40,7 +40,7 @@ namespace BOSSE
     public class BOSSE
     {
         // Set to configure which race to spawn as, and which set of build orders to allow
-        public static Race UseRace = Race.Terran;
+        public static Race UseRace = Race.Protoss;
 
         // Input managers
         public static readonly SensorManager SensorManagerRef = new SensorManager();
@@ -60,7 +60,7 @@ namespace BOSSE
         public static readonly BaseManager BaseManagerRef = new BaseManager();
         public static readonly OrderManager OrderManagerRef = new OrderManager();
         public static readonly SpaceMovementReservationManager SpaceMovementReservationManagerRef = new SpaceMovementReservationManager();
-        public static readonly BuildOrderManager BuildOrderManagerRef = new BuildOrderManager();
+        public static readonly CurrentBuildManager BuildOrderManagerRef = new CurrentBuildManager();
 
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
@@ -121,7 +121,7 @@ namespace BOSSE
         public void FirstFrame()
         {
             // Set main location
-            Globals.MainBaseLocation = GetUnits(UnitId.COMMAND_CENTER)[0].Position;
+            Globals.MainBaseLocation = GetUnits(BuildOrderManagerRef.GetCurrentBuild().CommandCenterUnit)[0].Position;
 
             // General map analysis
             PathFinderRef.Initialize();
@@ -153,7 +153,7 @@ namespace BOSSE
 
             // Assign a random worker to scout
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
-            Unit scoutingWorker = GetUnits(BOSSE.BuildOrderManagerRef.GetCurrentBuildOrder().WorkerUnit, onlyCompleted: true)[0];
+            Unit scoutingWorker = GetUnits(BOSSE.BuildOrderManagerRef.GetCurrentBuild().WorkerUnit, onlyCompleted: true)[0];
             Log.Info("Assigning worker " + scoutingWorker.Tag + " as initial scout");
             scoutingWorker.IsReserved = true;
             BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);

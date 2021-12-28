@@ -72,9 +72,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE\Build Orders\Build Order Definitions\Terran\Base\TerranBaseBuildOrder.cs" />
-    <Compile Include="BOSSE\Build Orders\Build Order Definitions\Terran\MarineSpam.cs" />
-    <Compile Include="BOSSE\Build Orders\BuildOrderDeterminer.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\Base Class\ProtossBaseBuildOrder.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\StalkerSpam.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions\Terran\Base Class\TerranBaseBuildOrder.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions\Terran\MarineSpam.cs" />
+    <Compile Include="BOSSE\Builds\BuildDeterminer.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />
@@ -88,11 +90,11 @@
     <Compile Include="BOSSE\Utility Managers\OrderManager.cs" />
     <Compile Include="BOSSE\Utility Managers\SpaceMovementReservationManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
-    <Compile Include="BOSSE\Build Orders\BuildOrderManager.cs" />
+    <Compile Include="BOSSE\Builds\CurrentBuildManager.cs" />
     <Compile Include="Main\Entities\Exception\BosseFatalException.cs" />
     <Compile Include="Main\Entities\Exception\BosseRecoverableException.cs" />
     <Compile Include="Main\Entities\Game\BaseLocation.cs" />
-    <Compile Include="BOSSE\Build Orders\Entities\BuildOrder.cs" />
+    <Compile Include="BOSSE\Builds\Entities\BuildOrder.cs" />
     <Compile Include="Main\Entities\Internal\Wall.cs" />
     <Compile Include="Main\Entities\Map\AnalysedRuntimeMap.cs" />
     <Compile Include="Main\Entities\Map\ChokepointCollectionBetweenPoints.cs" />
@@ -184,8 +186,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BOSSE\Build Orders\Build Order Definitions\Protoss\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -34,21 +34,24 @@ namespace BOSSE
     /// <summary>
     /// Determines which build order to use, given a certain world state
     /// </summary>
-    public class BuildOrderDeterminer
+    public class BuildDeterminer
     {
         /// <summary>
         /// Allowed build orders, set manually to indicate which build orders that the engine can choose from
         /// </summary>
         private List<Type> availableBuildOrders = new List<Type>()
         {
+            // Protoss
+            typeof(StalkerSpam),
+
             // Terran
-            typeof(MarineSpam)
+            typeof(MarineSpam),
         };
 
         /// <summary>
         /// Calculates which build order is the most viable in the current world state
         /// </summary>
-        public BuildOrder DetermineBestBuildOrder()
+        public BuildOrder DetermineBestBuild()
         {
             int highestVal = -1;
             BuildOrder highestBuild = null;
