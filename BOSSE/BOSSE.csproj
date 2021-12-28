@@ -75,13 +75,11 @@
     <Compile Include="BOSSE\Build Orders\Build Order Definitions\Terran\Base\TerranBaseBuildOrder.cs" />
     <Compile Include="BOSSE\Build Orders\Build Order Definitions\Terran\MarineSpam.cs" />
     <Compile Include="BOSSE\Build Orders\BuildOrderDeterminer.cs" />
-    <Compile Include="BOSSE\Missions\Mission.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnStructureWasPlacedSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
-    <Compile Include="BOSSE\Strategic Layer\StrategicGoalManager.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
@@ -108,8 +106,6 @@
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnMilitaryUnitWasCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnStructureWasCompletedSensor.cs" />
     <Compile Include="BOSSE\Sensors\SensorManager.cs" />
-    <Compile Include="BOSSE\Strategic Layer\DiscrepenceyDetector.cs" />
-    <Compile Include="BOSSE\Strategic Layer\GoalFormulator.cs" />
     <Compile Include="BOSSE\Utility Managers\WorkerManager.cs" />
     <Compile Include="BOSSE\Strategic Layer\StrategicGoalExecutor.cs" />
     <Compile Include="Main\Entities\Internal\GameObject.cs" />

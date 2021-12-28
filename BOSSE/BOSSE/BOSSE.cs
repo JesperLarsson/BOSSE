@@ -46,10 +46,7 @@ namespace BOSSE
         public static readonly SensorManager SensorManagerRef = new SensorManager();
 
         // Strategic managers
-        public static readonly DiscrepenceyDetector DiscrepenceyDetectorRef = new DiscrepenceyDetector();
-        public static readonly GoalFormulator GoalFormulatorRef = new GoalFormulator();
-        public static readonly StrategicGoalManager StrategicGoalRef = new StrategicGoalManager();
-        public static readonly StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
+        //public static readonly StrategicGoalExecutor GoalExecutorRef = new StrategicGoalExecutor();
 
         // Military / tactical managers
         public static readonly TacticalGoalManager TacticalGoalRef = new TacticalGoalManager();
@@ -73,10 +70,10 @@ namespace BOSSE
             SensorManagerRef, // should be first to generate events for other managers
             OrderManagerRef, // should be early as continuous orders override other generic behaviour
 
-            StrategicGoalRef,
-            DiscrepenceyDetectorRef, // depends on StrategicGoalRef
-            GoalFormulatorRef, // depends on DiscrepenceyDetectorRef
-            GoalExecutorRef, // depends on GoalFormulatorRef
+            //StrategicGoalRef,
+            //DiscrepenceyDetectorRef, // depends on StrategicGoalRef
+            //GoalFormulatorRef, // depends on DiscrepenceyDetectorRef
+            //GoalExecutorRef, // depends on GoalFormulatorRef
 
             TacticalGoalRef,
             SquadManagerRef, // depends on TacticalGoalRef
@@ -114,7 +111,7 @@ namespace BOSSE
         /// </summary>
         public void Initialize()
         {
-            StrategicGoalRef.SetNewGoal(StrategicGoal.EconomyFocus);
+            //StrategicGoalRef.SetNewGoal(StrategicGoal.EconomyFocus);
             TacticalGoalRef.SetNewGoal(MilitaryGoal.DefendGeneral, null);
         }
 
