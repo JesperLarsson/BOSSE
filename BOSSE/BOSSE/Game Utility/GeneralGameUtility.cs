@@ -221,26 +221,26 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Get a list of active units for the given search parameter
+        /// Get a list of active units for the given search parameters
         /// </summary>
-        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false)
+        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeUnitsTaskedToBuildUnit = false)
         {
             HashSet<UnitId> temp = new HashSet<UnitId>
             {
                 unitType
             };
 
-            return GetUnits(temp, alliance, onlyCompleted, onlyVisible);
+            return GetUnits(temp, alliance, onlyCompleted, onlyVisible, includeUnitsTaskedToBuildUnit);
         }
 
         /// <summary>
-        /// Get a list of active units for the given search parameter
+        /// Get a list of active units for the given search parameters
         /// </summary>
-        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false)
+        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeUnitsTaskedToBuildUnit = false)
         {
             List<Unit> units = new List<Unit>();
 
-            foreach (var unit in CurrentGameState.ObservationState.Observation.RawData.Units)
+            foreach (SC2APIProtocol.Unit unit in CurrentGameState.ObservationState.Observation.RawData.Units)
             {
                 if (unitTypesToFind.Contains((UnitId)unit.UnitType) && unit.Alliance == alliance)
                 {
@@ -263,6 +263,20 @@ namespace BOSSE
                     }
 
                     units.Add(managedUnit);
+                }
+
+                if (includeUnitsTaskedToBuildUnit)
+                {
+                    List<Unit> worksBuildingUnit = GetAllWorkersTaskedToBuildType((UnitId)unit.UnitType);
+                    foreach (Unit workerIter in worksBuildingUnit)
+                    {
+                        if (workerIter.Alliance != alliance)
+                            continue;
+                        if (onlyVisible && (workerIter.IsVisible == false))
+                            continue;
+
+                        units.Add(workerIter);
+                    }
                 }
             }
 
@@ -330,7 +344,7 @@ namespace BOSSE
         private static List<Unit> GetAllWorkersTaskedToBuildType(UnitId unitType)
         {
             int abilityID = GetAbilityIdToBuildUnit(unitType);
-            List<Unit> allWorkers = GetUnits(UnitId.SCV, onlyCompleted: true);
+            List<Unit> allWorkers = GetUnits(GetWorkerUnitType(), onlyCompleted: true);
             List<Unit> returnList = new List<Unit>();
 
             foreach (Unit worker in allWorkers)
@@ -459,6 +473,30 @@ namespace BOSSE
             }
 
             return null;
+        }
+
+        public static UnitId GetWorkerUnitType()
+        {
+            if (BOSSE.UseRace == Race.Terran)
+                return UnitId.SCV;
+            if (BOSSE.UseRace == Race.Protoss)
+                return UnitId.PROBE;
+            if (BOSSE.UseRace == Race.Zerg)
+                return UnitId.DRONE;
+
+            throw new Exception("Unable to determine worker unit type");
+        }
+
+        public static UnitId GetCommandCenterUnitType()
+        {
+            if (BOSSE.UseRace == Race.Terran)
+                return UnitId.COMMAND_CENTER;
+            if (BOSSE.UseRace == Race.Protoss)
+                return UnitId.NEXUS;
+            if (BOSSE.UseRace == Race.Zerg)
+                return UnitId.HATCHERY;
+
+            throw new Exception("Unable to determine command center type");
         }
     }
 }

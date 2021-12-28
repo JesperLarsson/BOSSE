@@ -34,12 +34,10 @@ namespace BOSSE
     /// <summary>
     /// Base build order for Protoss, sets race-specific default parameters only
     /// </summary>
-    public abstract class ProtossBaseBuildOrder : BuildOrder
+    public abstract class ProtossBaseBuildOrder : BuildStep
     {
         public ProtossBaseBuildOrder()
         {
-            this.WorkerUnit = UnitId.PROBE;
-            this.CommandCenterUnit = UnitId.NEXUS;
             this.IsRace = Race.Protoss;
         }
     }

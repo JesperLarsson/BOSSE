@@ -337,7 +337,7 @@ namespace BOSSE
                 return true;
             }
 
-            List<Unit> miningWorkersGlobal = GetUnits(BOSSE.BuildOrderManagerRef.GetCurrentBuild().WorkerUnit, onlyCompleted: true).Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS).ToList();
+            List<Unit> miningWorkersGlobal = GetUnits(GetWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS).ToList();
             List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.WorkerTransferInProgress) && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
             if (basesToMineMainFirst.Count == 0)
             {
@@ -477,13 +477,13 @@ namespace BOSSE
 
         private bool ReturnIdleWorkers()
         {
-            List<Unit> idleWorkers = GetUnits(BOSSE.BuildOrderManagerRef.GetCurrentBuild().WorkerUnit, onlyCompleted: true).Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false).ToList();
+            List<Unit> idleWorkers = GetUnits(GetWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false).ToList();
             if (idleWorkers.Count == 0)
             {
                 return false;
             }
 
-            List<Unit> commandCenters = GetUnits(BOSSE.BuildOrderManagerRef.GetCurrentBuild().CommandCenterUnit, onlyCompleted: true);
+            List<Unit> commandCenters = GetUnits(GetCommandCenterUnitType(), onlyCompleted: true);
             if (commandCenters.Count == 0)
             {
                 Log.Warning("No cc found to return workers to");

@@ -37,10 +37,10 @@ namespace BOSSE
         /// <summary>
         /// The current build order that should be used
         /// </summary>
-        private BuildOrder currentBuildOrder;
+        private BuildStep currentBuildOrder;
         private BuildDeterminer orderDeterminer = new BuildDeterminer();
 
-        public BuildOrder GetCurrentBuild()
+        public BuildStep GetCurrentBuild()
         {
             if (this.currentBuildOrder == null)
             {
@@ -61,7 +61,7 @@ namespace BOSSE
 
         private void CalculateAndSetBuildOrder()
         {
-            this.currentBuildOrder = orderDeterminer.DetermineBestBuild();
+            this.currentBuildOrder = orderDeterminer.DetermineNextStep();
         }
     }
 }

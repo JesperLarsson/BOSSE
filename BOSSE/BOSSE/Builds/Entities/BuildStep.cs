@@ -32,7 +32,7 @@ namespace BOSSE
     using static global::BOSSE.UnitConstants;
 
     /// <summary>
-    /// A single step in a <see cref="BuildOrder"/>
+    /// A single step in a <see cref="BuildStep"/>
     /// </summary>
     public abstract class BuildOrderStep
     {
@@ -76,12 +76,12 @@ namespace BOSSE
     /// <summary>
     /// A single build order, indicates which units and structures to build
     /// </summary>
-    public abstract class BuildOrder
+    public abstract class BuildStep
     {
         public string BuildName = "N/A";
 
-        public UnitId WorkerUnit;
-        public UnitId CommandCenterUnit;
+        //public UnitId WorkerUnit;
+        //public UnitId CommandCenterUnit;
         public Race IsRace;
 
         /// <summary>

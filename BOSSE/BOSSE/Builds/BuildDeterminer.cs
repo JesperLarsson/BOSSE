@@ -39,45 +39,22 @@ namespace BOSSE
         /// <summary>
         /// Allowed build orders, set manually to indicate which build orders that the engine can choose from
         /// </summary>
-        private List<Type> availableBuildOrders = new List<Type>()
+        private List<BuildStep> availableBuildOrders = new List<BuildStep>()
         {
             // Protoss
-            typeof(StalkerSpam),
+            new StalkerSpam(),
 
             // Terran
-            typeof(MarineSpam),
+            //typeof(MarineSpam),
         };
 
         /// <summary>
         /// Calculates which build order is the most viable in the current world state
         /// </summary>
-        public BuildOrder DetermineBestBuild()
+        public BuildStep DetermineNextStep()
         {
-            int highestVal = -1;
-            BuildOrder highestBuild = null;
-            foreach (Type iter in availableBuildOrders)
-            {
-                BuildOrder createdObj = (BuildOrder)Activator.CreateInstance(iter);
-                if (createdObj == null)
-                    continue;
 
-                if (createdObj.IsRace != BOSSE.UseRace)
-                    continue;
 
-                int viabilityFactor = createdObj.EvaluateBuildOrderViability();
-                if (viabilityFactor > highestVal)
-                {
-                    highestBuild = createdObj;
-                    highestVal = viabilityFactor;
-                }
-            }
-
-            if (highestBuild == null)
-                Log.SanityCheckFailed($"No build order is available for configured race ({BOSSE.UseRace})");
-            else
-                Log.Info($"Switched to new build order - {highestBuild.BuildName}");
-
-            return highestBuild;
         }
     }
 }

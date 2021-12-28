@@ -34,12 +34,10 @@ namespace BOSSE
     /// <summary>
     /// Base build order for Terran, sets race-specific default parameters only
     /// </summary>
-    public abstract class TerranBaseBuildOrder : BuildOrder
+    public abstract class TerranBaseBuildOrder : BuildStep
     {
         public TerranBaseBuildOrder()
         {
-            this.WorkerUnit = UnitId.SCV;
-            this.CommandCenterUnit = UnitId.COMMAND_CENTER;
             this.IsRace = Race.Terran;
         }
     }

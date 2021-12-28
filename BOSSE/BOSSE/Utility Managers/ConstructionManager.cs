@@ -150,7 +150,7 @@ namespace BOSSE
                 if (IsInRangeAny(constructionSpot, mineralFields, 5)) continue;
 
                 // Protoss must build close to Pylons
-                if (pylons != null && IsInRangeAny(constructionSpot, pylons, 3) == false)
+                if (pylons != null && IsInRangeAny(constructionSpot, pylons, 2) == false)
                     continue;
 
                 // Must be buildable (polls game)
