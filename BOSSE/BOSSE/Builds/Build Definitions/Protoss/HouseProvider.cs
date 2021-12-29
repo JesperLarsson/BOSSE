@@ -52,18 +52,29 @@ namespace BOSSE
                 return null;
         }
 
-        public override void PerformAction()
+        public override BuildStatus PerformAction()
         {
+            BuildStatus status = BuildStatus.Failed;
+
             uint minSupplyMargin = GetSupplyMargin();
             uint supplyDiff = GetAvailableSupplyIncludingPending();
 
             UnitTypeData houseInfo = GetUnitInfo(RaceHouseType());
-            while (supplyDiff < minSupplyMargin && CurrentMinerals >= houseInfo.MineralCost)
+            while (supplyDiff < minSupplyMargin)
             {
+                if (CurrentMinerals < houseInfo.MineralCost)
+                    return BuildStatus.WaitingForResources;
+
+                Log.Info($"Building house (auto selecting position)...");
+
                 BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(RaceHouseType());
                 supplyDiff += (uint)houseInfo.FoodProvided;
                 CurrentMinerals -= houseInfo.MineralCost;
+
+                status = BuildStatus.Completed;
             }
+
+            return status;
         }
 
         private uint GetSupplyMargin()

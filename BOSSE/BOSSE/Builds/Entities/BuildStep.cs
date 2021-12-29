@@ -73,6 +73,12 @@ namespace BOSSE
     //    Completed
     //}
 
+    public enum BuildStatus
+    {
+        WaitingForResources = 1,
+        Completed = 2,
+        Failed = 3,
+    }
 
     /// <summary>
     /// A single build order, indicates which units and structures to build
@@ -91,7 +97,7 @@ namespace BOSSE
         /// <summary>
         /// Performs this step right now
         /// </summary>
-        public abstract void PerformAction();
+        public abstract BuildStatus PerformAction();
 
         public string GetName()
         {

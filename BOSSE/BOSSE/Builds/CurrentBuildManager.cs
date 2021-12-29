@@ -48,6 +48,8 @@ namespace BOSSE
             //typeof(MarineSpam),
         };
 
+        private BuildStep LastBuildStep;
+        private BuildStatus LastBuilStatus;
 
         public override void OnFrameTick()
         {
@@ -66,10 +68,24 @@ namespace BOSSE
                 }
             }
 
+            // Call build action, and log changes
             if (highestInstance != null)
             {
-                Log.Info($"Running build step {highestInstance.GetName()} with priority {highestScore}");
-                highestInstance.PerformAction();
+                BuildStatus status = highestInstance.PerformAction();
+
+                bool logOutput = false;
+                if (status == BuildStatus.Completed)
+                    logOutput = true;
+                else if (LastBuildStep != highestInstance)
+                    logOutput = true;
+                else if (status != LastBuilStatus)
+                    logOutput = true;
+
+                if (logOutput)
+                    Log.Info($"Build {highestInstance.GetName()} - {status}");
+
+                LastBuildStep = highestInstance;
+                LastBuilStatus = status;
             }
         }
     }

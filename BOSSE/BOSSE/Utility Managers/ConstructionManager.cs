@@ -58,6 +58,12 @@ namespace BOSSE
 
         public void BuildAtExactPosition(UnitId unitType, Point2D exactCoordinate)
         {
+            if (exactCoordinate == null || (exactCoordinate.X == 0 && exactCoordinate.Y == 0))
+            {
+                Log.Warning($"Tried to build unit {unitType} without any coordinates set");
+                return;
+            }
+
             Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(exactCoordinate);
             if (worker == null)
             {
