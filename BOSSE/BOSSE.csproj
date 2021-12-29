@@ -72,8 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE\Builds\Build Definitions\BlinkStalkers.cs" />
-    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\Base Class\ProtossBaseBuild.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions - Protoss\BlinkStalkers.cs" />
     <Compile Include="BOSSE\Builds\Entities\BuildOrder.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />

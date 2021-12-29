@@ -30,7 +30,7 @@ namespace BOSSE
     using static CurrentGameState;
     using static UnitConstants;
     using static AbilityConstants;
-    
+
     /// <summary>
     /// Various helper functions for interacting with StarCraft 2
     /// </summary>
@@ -622,28 +622,80 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Returns a set of buildings which can produce the given unit
+        /// </summary>
+        public static UnitId WhichBuildingsProductUnit(UnitId unitToProduce)
+        {
+            // Protoss
+            if (unitToProduce == UnitId.PROBE)
+                return UnitId.NEXUS;
+
+            else if (unitToProduce == UnitId.ZEALOT)
+                return UnitId.GATEWAY;
+            else if (unitToProduce == UnitId.SENTRY)
+                return UnitId.GATEWAY;
+            else if (unitToProduce == UnitId.STALKER)
+                return UnitId.GATEWAY;
+
+            else if (unitToProduce == UnitId.DARK_TEMPLAR)
+                return UnitId.DARK_SHRINE;
+            else if (unitToProduce == UnitId.HIGH_TEMPLAR)
+                return UnitId.TEMPLAR_ARCHIVE;
+
+            else if (unitToProduce == UnitId.IMMORTAL)
+                return UnitId.ROBOTICS_BAY;
+            else if (unitToProduce == UnitId.COLOSSUS)
+                return UnitId.ROBOTICS_BAY;
+            else if (unitToProduce == UnitId.WARP_PRISM || unitToProduce == UnitId.WARP_PRISM_PHASING)
+                return UnitId.ROBOTICS_BAY;
+            else if (unitToProduce == UnitId.OBSERVER)
+                return UnitId.ROBOTICS_BAY;
+
+            else if (unitToProduce == UnitId.PHOENIX)
+                return UnitId.STARGATE;
+            else if (unitToProduce == UnitId.VOID_RAY)
+                return UnitId.STARGATE;
+            else if (unitToProduce == UnitId.CARRIER)
+                return UnitId.STARGATE;
+
+            else if (unitToProduce == UnitId.MOTHERSHIP)
+                return UnitId.NEXUS;
+            else if (unitToProduce == UnitId.ARCHON)
+                throw new Exception("It's complicated, archons not supported"); // should not get here, is not built
+            else
+                throw new Exception($"Tried to build unsupported unit {unitToProduce}");
+        }
+
+        /// <summary>
         /// Tries to train the given unit inside an available production structure
         /// </summary>
         public static bool TryBuildUnit(UnitId unitToBuild, bool onlyFromFreeStructure, bool allowChronoBoost)
         {
-            ; ...;
+            if (CanAfford(unitToBuild) == false)
+                return false;
+            if (HaveTechRequirementsToBuild(unitToBuild) == false)
+                return false;
 
+            UnitId producedFrom = WhichBuildingsProductUnit(unitToBuild);
+            List<Unit> productionFacilities = GetUnits(producedFrom, onlyCompleted: true, onlyVisible: true);
 
-            List<Unit> activeSingleRaxes = GetUnits(UnitId.BARRACKS, onlyCompleted: true);
+            if (productionFacilities == null || productionFacilities.Count == 0)
+                return false;
 
-            foreach (Unit rax in activeSingleRaxes)
+            foreach (Unit buildingIter in productionFacilities)
             {
-                if (CurrentMinerals < marineInfo.MineralCost || FreeSupply < marineInfo.FoodRequired)
-                {
-                    break;
-                }
-                if (rax.CurrentOrder != null || rax.HasNewOrders)
-                {
+                if (buildingIter.HasNewOrders)
                     continue;
-                }
+                if (onlyFromFreeStructure && buildingIter.CurrentOrder != null)
+                    continue;
 
-                Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));
+                Queue(CommandBuilder.TrainAction(buildingIter, unitToBuild));
+                ApplyChronoBoostTo(buildingIter);
+
+                return true;
             }
+
+            return false;
         }
     }
 }
