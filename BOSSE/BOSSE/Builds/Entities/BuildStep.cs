@@ -41,6 +41,31 @@ namespace BOSSE
             BuildingType = buildingType;
             BuildingCount = buildingCount;
         }
+
+        public override bool ResolveStep()
+        {
+            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.BuildingType, onlyCompleted: true, onlyVisible: true, includeWorkersTaskedToBuildUnit: true);
+
+            if (matchedUnits.Count >= this.BuildingCount)
+                return true;
+            int missingBuildingCount = (int)this.BuildingCount - matchedUnits.Count;
+
+            bool success = true;
+            for (int i = 0; i < missingBuildingCount; i++)
+            {
+                if (CanAfford(this.BuildingType) && HaveTechRequirementsToBuild(this.BuildingType))
+                {
+                    BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(this.BuildingType);
+                    SubtractCosts(this.BuildingType);
+                }
+                else
+                {
+                    success = false;
+                }
+            }
+
+            return success;
+        }
     }
 
     public class RequireUnit : BuildStep
@@ -57,8 +82,20 @@ namespace BOSSE
 
         public override bool ResolveStep()
         {
-            GeneralGameUtility.ApplyChronoBoostTo(..);
-            //throw new NotImplementedException();
+            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.UnitType, onlyCompleted: true, onlyVisible: true, includeBuildingOrdersBuildingUnit: true);
+
+            if (matchedUnits.Count >= this.UnitCount)
+                return true;
+
+            int missingCount = (int)this.UnitCount - matchedUnits.Count;
+            for (int i = 0; i < missingCount; i++)
+            {
+                bool ok = GeneralGameUtility.TryBuildUnit(this.UnitType, true, this.AllowChronoBoost);
+                if (ok == false)
+                    return false;
+            }
+
+            return true;
         }
     }
 
@@ -75,10 +112,10 @@ namespace BOSSE
 
         public override bool ResolveStep()
         {
-            List<Unit> cyberCores = GeneralGameUtility.GetUnits(UnitId.CYBERNETICS_CORE, onlyCompleted: true, onlyVisible: true);
-            bool completedBuilding = cyberCores.Count;
+            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.UnitType, onlyCompleted: true, onlyVisible: true);
+            bool conditionOk = matchedUnits.Count >= this.UnitCount;
 
-            ..;
+            return conditionOk;
         }
     }
 
@@ -118,6 +155,9 @@ namespace BOSSE
     /// </summary>
     public abstract class BuildStep
     {
+        /// <summary>
+        /// Runs this step, return value indicates if it was successfully finished or not. If so, the step wil not be run again
+        /// </summary>
         public abstract bool ResolveStep();
     }
 }

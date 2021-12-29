@@ -31,7 +31,8 @@ namespace BOSSE
     using System.Linq;
 
     /// <summary>
-    /// Basic 2 base push focusing on blink stalkers
+    /// Basic 2 base build order, focusing on producing blink stalkers
+    /// Loosely based on https://www.youtube.com/watch?v=aPPHx7GAVUo
     /// </summary>
     public class BlinkStalkers : BuildOrder
     {
@@ -113,7 +114,6 @@ namespace BOSSE
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 4));
-
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 4));
             RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 3));
 

@@ -233,53 +233,78 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Get a list of active units for the given search parameters
+        /// Returns all game units matching certain criteria
         /// </summary>
-        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeUnitsTaskedToBuildUnit = false)
+        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildUnit = false, bool includeBuildingOrdersBuildingUnit = false)
         {
             HashSet<UnitId> temp = new HashSet<UnitId>
             {
                 unitType
             };
 
-            return GetUnits(temp, alliance, onlyCompleted, onlyVisible, includeUnitsTaskedToBuildUnit);
+            return GetUnits(temp, alliance, onlyCompleted, onlyVisible, includeWorkersTaskedToBuildUnit, includeBuildingOrdersBuildingUnit);
         }
 
         /// <summary>
-        /// Get a list of active units for the given search parameters
+        /// Returns all game units matching certain criteria
         /// </summary>
-        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeUnitsTaskedToBuildUnit = false)
+        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildUnit = false, bool includeBuildingOrdersBuildingUnit = false)
         {
             List<Unit> units = new List<Unit>();
 
-            foreach (SC2APIProtocol.Unit unit in CurrentGameState.State.ObservationState.Observation.RawData.Units)
+            foreach (SC2APIProtocol.Unit unitIter in CurrentGameState.State.ObservationState.Observation.RawData.Units)
             {
-                if (unitTypesToFind.Contains((UnitId)unit.UnitType) && unit.Alliance == alliance)
+                // Check building orders
+                bool addUnit = false;
+                if (includeBuildingOrdersBuildingUnit && unitIter.Orders != null)
                 {
-                    if (onlyCompleted && unit.BuildProgress < 1)
+                    foreach (UnitOrder orderIter in unitIter.Orders)
+                    {
+                        foreach (UnitId searchParamUnit in unitTypesToFind)
+                        {
+                            int abilityID = GetAbilityIdToBuildUnit(searchParamUnit);
+                            if (orderIter.AbilityId == abilityID)
+                            {
+                                addUnit = true;
+                                break;
+                            }
+                        }
+                        if (addUnit)
+                            break;
+                    }
+                }
+
+                // Check if this unit is what we're searching for
+                if (unitTypesToFind.Contains((UnitId)unitIter.UnitType) && unitIter.Alliance == alliance && addUnit == false)
+                {
+                    if (onlyCompleted && unitIter.BuildProgress < 1)
+                        continue;
+                    if (onlyVisible && (unitIter.DisplayType != DisplayType.Visible))
                         continue;
 
-                    if (onlyVisible && (unit.DisplayType != DisplayType.Visible))
-                        continue;
+                    addUnit = true;
+                }
 
+                if (addUnit)
+                {
                     // Get managed unit instance (adds things on top of sc2 api entity)
                     Unit managedUnit;
-                    if (Unit.AllUnitInstances.ContainsKey(unit.Tag))
+                    if (Unit.AllUnitInstances.ContainsKey(unitIter.Tag))
                     {
                         // Re-use existing instance
-                        managedUnit = Unit.AllUnitInstances[unit.Tag];
+                        managedUnit = Unit.AllUnitInstances[unitIter.Tag];
                     }
                     else
                     {
-                        managedUnit = new Unit(unit);
+                        managedUnit = new Unit(unitIter);
                     }
 
                     units.Add(managedUnit);
                 }
 
-                if (includeUnitsTaskedToBuildUnit)
+                if (includeWorkersTaskedToBuildUnit)
                 {
-                    List<Unit> worksBuildingUnit = GetAllWorkersTaskedToBuildType((UnitId)unit.UnitType);
+                    List<Unit> worksBuildingUnit = GetAllWorkersTaskedToBuildType((UnitId)unitIter.UnitType);
                     foreach (Unit workerIter in worksBuildingUnit)
                     {
                         if (workerIter.Alliance != alliance)
@@ -576,7 +601,32 @@ namespace BOSSE
 
         public static void ApplyChronoBoostTo(Unit targetUnit)
         {
-            ...;
+            ; ...;
+        }
+
+        /// <summary>
+        /// Tries to train the given unit inside an available production structure
+        /// </summary>
+        public static bool TryBuildUnit(UnitId unitToBuild, bool onlyFromFreeStructure, bool allowChronoBoost)
+        {
+            ; ...;
+
+
+            List<Unit> activeSingleRaxes = GetUnits(UnitId.BARRACKS, onlyCompleted: true);
+
+            foreach (Unit rax in activeSingleRaxes)
+            {
+                if (CurrentMinerals < marineInfo.MineralCost || FreeSupply < marineInfo.FoodRequired)
+                {
+                    break;
+                }
+                if (rax.CurrentOrder != null || rax.HasNewOrders)
+                {
+                    continue;
+                }
+
+                Queue(CommandBuilder.TrainAction(rax, UnitConstants.UnitId.MARINE));
+            }
         }
     }
 }

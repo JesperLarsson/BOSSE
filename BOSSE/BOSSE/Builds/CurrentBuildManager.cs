@@ -35,58 +35,29 @@ namespace BOSSE
     public class CurrentBuildManager : Manager
     {
         /// <summary>
-        /// Allowed build steps, set manually to indicate which build orders that the engine can choose from
-        /// Order does not matter as each step uses a relative priority, which is calculated each update tick
+        /// Allowed build orders
         /// </summary>
-        private List<BuildStep> buildsAvailable = new List<BuildStep>()
+        private List<BuildOrder> buildsAvailable = new List<BuildOrder>()
         {
             // Protoss
-            //new HouseProvider(),
-            //new StalkerSpam(),
+            new BlinkStalkers(),
 
             // Terran
-            //typeof(MarineSpam),
+            //new MarineSpam(),
         };
 
-        private BuildStep LastBuildStep;
-        private BuildStatus LastBuilStatus;
+        private BuildOrder CurrentBuildOrder;
+
+        public CurrentBuildManager()
+        {
+            // Choose a random build order for this session
+            this.buildsAvailable.Shuffle();
+            this.CurrentBuildOrder = buildsAvailable[0];
+        }
 
         public override void OnFrameTick()
         {
-            uint highestScore = 0;
-            BuildStep highestInstance = null;
-            foreach (BuildStep buildIter in this.buildsAvailable)
-            {
-                uint? viabilityScore = buildIter.EvaluateBuildOrderViability();
-                if (viabilityScore == null)
-                    continue;
-
-                if (viabilityScore.Value > highestScore)
-                {
-                    highestScore = viabilityScore.Value;
-                    highestInstance = buildIter;
-                }
-            }
-
-            // Call build action, and log changes
-            if (highestInstance != null)
-            {
-                BuildStatus status = highestInstance.PerformAction();
-
-                bool logOutput = false;
-                if (status == BuildStatus.Completed)
-                    logOutput = true;
-                else if (LastBuildStep != highestInstance)
-                    logOutput = true;
-                else if (status != LastBuilStatus)
-                    logOutput = true;
-
-                if (logOutput)
-                    Log.Info($"Build {highestInstance.GetName()} - {status}");
-
-                LastBuildStep = highestInstance;
-                LastBuilStatus = status;
-            }
+            this.CurrentBuildOrder.ResolveBuildOrder();
         }
     }
 }
