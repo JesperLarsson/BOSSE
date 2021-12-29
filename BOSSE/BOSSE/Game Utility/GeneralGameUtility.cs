@@ -522,6 +522,18 @@ namespace BOSSE
             throw new Exception("Unable to determine house type");
         }
 
+        public static AbilityId RaceMiningAction()
+        {
+            if (BOSSE.UseRace == Race.Terran)
+                return AbilityId.HARVEST_GATHER_SCV;
+            if (BOSSE.UseRace == Race.Protoss)
+                return AbilityId.HARVEST_GATHER_PROBE;
+            if (BOSSE.UseRace == Race.Zerg)
+                return AbilityId.HARVEST_GATHER_DRONE;
+
+            throw new Exception("Unable to determine mining type");
+        }
+
         /// <summary>
         /// Converts the given logical frame number into a timestamp, as if played at human speed
         /// </summary>

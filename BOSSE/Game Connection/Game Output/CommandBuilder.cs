@@ -80,7 +80,7 @@ namespace BOSSE
         public static Action MineMineralsAction(IEnumerable<Unit> units, Unit mineralPatch)
         {
             Log.Bulk($"MineMinerals {mineralPatch.ToString()} {units.ToString2()}");
-            Action action = RawCommand((int)AbilityConstants.AbilityId.GATHER_MINERALS);
+            Action action = RawCommand((int)RaceMiningAction());
             action.ActionRaw.UnitCommand.TargetUnitTag = mineralPatch.Tag;
             //action.ActionRaw.UnitCommand.TargetWorldSpacePos = mineralPatch.Position;
 

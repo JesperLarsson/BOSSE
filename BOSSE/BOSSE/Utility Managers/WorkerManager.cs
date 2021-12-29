@@ -120,7 +120,7 @@ namespace BOSSE
                 {
                     matchedWorkers.Add(worker);
                 }
-                else if (worker.CurrentOrder.AbilityId == (uint)AbilityId.GATHER_MINERALS)
+                else if (HarvestGatherAbilities.Contains((AbilityId)worker.CurrentOrder.AbilityId))
                 {
                     matchedWorkers.Add(worker);
                 }
@@ -337,7 +337,7 @@ namespace BOSSE
                 return true;
             }
 
-            List<Unit> miningWorkersGlobal = GetUnits(RaceWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS).ToList();
+            List<Unit> miningWorkersGlobal = GetUnits(RaceWorkerUnitType(), onlyCompleted: true, alliance: Alliance.Self).Where(unit => unit.CurrentOrder != null && HarvestAbilities.Contains((AbilityId)unit.CurrentOrder.AbilityId)).ToList();
             List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.WorkerTransferInProgress) && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
             if (basesToMineMainFirst.Count == 0)
             {
@@ -377,7 +377,13 @@ namespace BOSSE
                     if (fromIter == toIter)
                         continue;
 
-                    List<Unit> workersMiningFromBase = miningWorkersGlobal.Where(worker => (!worker.HasNewOrders) && (!usedWorkers.Contains(worker.Tag)) && worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS && fromIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])).ToList();
+                    List<Unit> workersMiningFromBase = miningWorkersGlobal.Where(
+                        worker => (!worker.HasNewOrders) && 
+                        (!usedWorkers.Contains(worker.Tag)) && 
+                        worker.CurrentOrder != null &&
+                        HarvestAbilities.Contains((AbilityId)worker.CurrentOrder.AbilityId) &&
+                        fromIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])
+                    ).ToList();
 
                     for (int i = 0; i < workerCountRequest && i < workersMiningFromBase.Count; i++)
                     {

@@ -25,6 +25,7 @@ namespace BOSSE
     using System.Threading;
 
     using SC2APIProtocol;
+
     using Action = SC2APIProtocol.Action;
 
     /// <summary>
@@ -73,11 +74,12 @@ namespace BOSSE
             UNLOAD_BUNKER = 408,
             SALVAGE_BUNKER = 32,
 
-            GATHER_RESOURCES = 295,
-            RETURN_RESOURCES = 296,
-
-            GATHER_MINERALS = 295,
-            RETURN_MINERALS = 296,
+            HARVEST_GATHER_SCV = 295,
+            HARVEST_RETURN_SCV = 296,
+            HARVEST_GATHER_PROBE = 298,
+            HARVEST_RETURN_PROBE = 299,
+            HARVEST_GATHER_DRONE = 1183,
+            HARVEST_RETURN_DRONE = 1184,
 
             SupplyDepotLower = 556,
             SupplyDepotRaise = 558,
@@ -87,5 +89,30 @@ namespace BOSSE
             FactoryBuildTechLab = 454,
             FactoryBuildReactor = 455,
         }
+
+        public static readonly HashSet<AbilityId> HarvestGatherAbilities = new HashSet<AbilityId>
+        {
+            AbilityId.HARVEST_GATHER_SCV,
+            AbilityId.HARVEST_GATHER_PROBE,
+            AbilityId.HARVEST_GATHER_DRONE,
+        };
+
+        public static readonly HashSet<AbilityId> HarvestReturnAbilities = new HashSet<AbilityId>
+        {
+            AbilityId.HARVEST_RETURN_SCV,
+            AbilityId.HARVEST_RETURN_PROBE,
+            AbilityId.HARVEST_RETURN_DRONE,
+        };
+
+        public static readonly HashSet<AbilityId> HarvestAbilities = new HashSet<AbilityId>
+        {
+            AbilityId.HARVEST_GATHER_SCV,
+            AbilityId.HARVEST_GATHER_PROBE,
+            AbilityId.HARVEST_GATHER_DRONE,
+
+            AbilityId.HARVEST_RETURN_SCV,
+            AbilityId.HARVEST_RETURN_PROBE,
+            AbilityId.HARVEST_RETURN_DRONE,
+        };
     }
 }
