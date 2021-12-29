@@ -71,7 +71,7 @@ namespace BOSSE
 #warning TODO: Re-enable walling
                 // Wallin seems to be unreliable sometimes, disabled for now
                 //; testa igen ;
-                BOSSE.ConstructionManagerRef.AllowNaturalWallinIn = false;
+                //BOSSE.ConstructionManagerRef.AllowNaturalWallinIn = false;
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 1));

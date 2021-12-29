@@ -161,6 +161,11 @@ namespace BOSSE
         /// </summary>
         public static System.Drawing.Size GetSizeOfBuilding(UnitId buildingId)
         {
+            if (GasGeysers.Contains(buildingId))
+            {
+                return new System.Drawing.Size(0, 0);
+            }
+
             if (buildingId == UnitId.SUPPLY_DEPOT)
             {
                 return new System.Drawing.Size(2, 2);

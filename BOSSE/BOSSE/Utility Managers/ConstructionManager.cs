@@ -131,10 +131,6 @@ namespace BOSSE
             BuildAtExactPosition(unitType, constructionSpot);
         }
 
-        public override void OnFrameTick()
-        {
-        }
-
         private Point2D AutoPickPosition(UnitId unitType, Point2D argCloseToPosition = null, int searchRadius = 12)
         {
             Point2D startingSpot;
@@ -146,7 +142,7 @@ namespace BOSSE
             {
                 startingSpot = argCloseToPosition;
             }
-            
+
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
             List<Unit> pylons = null;
             if (BOSSE.UseRace == Race.Protoss && unitType != UnitId.PYLON && unitType != UnitId.NEXUS && unitType != UnitId.ASSIMILATOR)
@@ -157,14 +153,17 @@ namespace BOSSE
                 Point2D constructionSpot = new Point2D(startingSpot.X + Globals.Random.Next(-searchRadius, searchRadius + 1), startingSpot.Y + Globals.Random.Next(-searchRadius, searchRadius + 1));
 
                 // Do not build close to mineral fields
-                if (IsInRangeAny(constructionSpot, mineralFields, 5)) continue;
+                if (IsInRangeAny(constructionSpot, mineralFields, 5))
+                    continue;
 
                 // Protoss must build close to Pylons
+                //   Game range is actually 6.5 units, but we model it as 6 which is close enough
                 if (pylons != null && IsInRangeAny(constructionSpot, pylons, 6) == false)
                     continue;
 
                 // Must be buildable (polls game)
-                if (!CanPlaceRequest(unitType, constructionSpot)) continue;
+                if (!CanPlaceRequest(unitType, constructionSpot))
+                    continue;
 
                 return constructionSpot;
             }
