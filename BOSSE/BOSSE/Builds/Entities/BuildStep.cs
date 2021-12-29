@@ -92,5 +92,10 @@ namespace BOSSE
         /// Performs this step right now
         /// </summary>
         public abstract void PerformAction();
+
+        public string GetName()
+        {
+            return this.GetType().Name;
+        }
     }
 }

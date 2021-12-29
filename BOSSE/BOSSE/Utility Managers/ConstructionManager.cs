@@ -139,7 +139,7 @@ namespace BOSSE
             
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
             List<Unit> pylons = null;
-            if (BOSSE.UseRace == Race.Protoss)
+            if (BOSSE.UseRace == Race.Protoss && unitType != UnitId.PYLON && unitType != UnitId.NEXUS && unitType != UnitId.ASSIMILATOR)
                 pylons = GetUnits(UnitId.PYLON, onlyCompleted: true, onlyVisible: true, alliance: Alliance.Self);
 
             for (int _ = 0; _ < 10000; _++)

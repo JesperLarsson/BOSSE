@@ -36,7 +36,7 @@ namespace BOSSE
         /// <summary>
         /// Raw world state, as read from game
         /// </summary>
-        public static WorldState State;
+        public static WorldState State = new WorldState();
 
         // Current supply, does not take into account pending supply
         public static uint FreeSupply { get => MaxSupply - UsedSupply;}

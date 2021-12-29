@@ -38,7 +38,7 @@ namespace BOSSE
         /// Allowed build steps, set manually to indicate which build orders that the engine can choose from
         /// Order does not matter as each step uses a relative priority, which is calculated each update tick
         /// </summary>
-        private List<BuildStep> availableBuildOrders = new List<BuildStep>()
+        private List<BuildStep> buildsAvailable = new List<BuildStep>()
         {
             // Protoss
             new HouseProvider(),
@@ -51,7 +51,26 @@ namespace BOSSE
 
         public override void OnFrameTick()
         {
-            
+            uint highestScore = 0;
+            BuildStep highestInstance = null;
+            foreach (BuildStep buildIter in this.buildsAvailable)
+            {
+                uint? viabilityScore = buildIter.EvaluateBuildOrderViability();
+                if (viabilityScore == null)
+                    continue;
+
+                if (viabilityScore.Value > highestScore)
+                {
+                    highestScore = viabilityScore.Value;
+                    highestInstance = buildIter;
+                }
+            }
+
+            if (highestInstance != null)
+            {
+                Log.Info($"Running build step {highestInstance.GetName()} with priority {highestScore}");
+                highestInstance.PerformAction();
+            }
         }
     }
 }

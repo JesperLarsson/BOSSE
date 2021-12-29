@@ -443,7 +443,6 @@ namespace BOSSE
         /// </summary>
         public static bool CanPlaceRequest(UnitId unitType, Point2D targetPos)
         {
-#warning TODO Optimization: Replace?
             var abilityID = GetAbilityIdToBuildUnit(unitType);
 
             RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
