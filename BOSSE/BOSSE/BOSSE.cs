@@ -178,6 +178,9 @@ namespace BOSSE
 
             foreach (Manager managerIter in AllManagers)
             {
+                if (managerIter.Enabled == false)
+                    continue;
+
                 managerIter.OnFrameTick();
             }
         }

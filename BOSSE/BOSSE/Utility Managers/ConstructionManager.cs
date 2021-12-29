@@ -41,6 +41,8 @@ namespace BOSSE
     /// </summary>
     public class ConstructionManager : Manager
     {
+        public volatile bool AllowNaturalWallinIn = true;
+
         /// <summary>
         /// Pointer to our intended natural wall configuration, NULL = not possible to build a wall
         /// </summary>
@@ -144,7 +146,6 @@ namespace BOSSE
             {
                 startingSpot = argCloseToPosition;
             }
-
             
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
             List<Unit> pylons = null;
@@ -159,7 +160,7 @@ namespace BOSSE
                 if (IsInRangeAny(constructionSpot, mineralFields, 5)) continue;
 
                 // Protoss must build close to Pylons
-                if (pylons != null && IsInRangeAny(constructionSpot, pylons, 2) == false)
+                if (pylons != null && IsInRangeAny(constructionSpot, pylons, 6) == false)
                     continue;
 
                 // Must be buildable (polls game)
@@ -177,6 +178,9 @@ namespace BOSSE
         /// </summary>
         private Wall.BuildingInWall FindAsPartOfWall(UnitId unitType)
         {
+            if (this.AllowNaturalWallinIn == false)
+                return null;
+
             Size size = GetSizeOfBuilding(unitType);
             if (size.Width == 0 || size.Height == 0)
             {

@@ -53,7 +53,8 @@ namespace BOSSE
             bool success = true;
             for (int i = 0; i < missingBuildingCount; i++)
             {
-                if (CanAfford(this.BuildingType) && HaveTechRequirementsToBuild(this.BuildingType))
+                if (CanAfford(this.BuildingType) 
+                    && HaveTechRequirementsToBuild(this.BuildingType))
                 {
                     BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(this.BuildingType);
                     SubtractCosts(this.BuildingType);

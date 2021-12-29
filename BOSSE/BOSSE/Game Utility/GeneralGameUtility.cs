@@ -77,6 +77,14 @@ namespace BOSSE
 
                 return false;
             }
+
+            // Additionally, the gateway requirement of a Pylon is not in the data files for some reason
+            if (unitType == UnitId.GATEWAY)
+            {
+                List<Unit> activePylons = GetUnits(UnitId.PYLON, onlyCompleted: true);
+                return activePylons.Count > 0;
+            }
+
             return true;
         }
 
@@ -249,7 +257,7 @@ namespace BOSSE
         /// <summary>
         /// Returns all game units matching certain criteria
         /// </summary>
-        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildUnit = false, bool includeBuildingOrdersBuildingUnit = false)
+        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildRequestedUnit = false, bool includeBuildingOrdersBuildingUnit = false)
         {
             List<Unit> units = new List<Unit>();
 
@@ -302,10 +310,13 @@ namespace BOSSE
 
                     units.Add(managedUnit);
                 }
+            }
 
-                if (includeWorkersTaskedToBuildUnit)
+            if (includeWorkersTaskedToBuildRequestedUnit)
+            {
+                foreach (UnitId unitTypeIter in unitTypesToFind)
                 {
-                    List<Unit> worksBuildingUnit = GetAllWorkersTaskedToBuildType((UnitId)unitIter.UnitType);
+                    List<Unit> worksBuildingUnit = GetAllWorkersTaskedToBuildType(unitTypeIter);
                     foreach (Unit workerIter in worksBuildingUnit)
                     {
                         if (workerIter.Alliance != alliance)

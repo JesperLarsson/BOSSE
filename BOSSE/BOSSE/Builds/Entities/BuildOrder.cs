@@ -38,17 +38,19 @@ namespace BOSSE
 
         public void ResolveBuildOrder()
         {
-            for (int i = 0; i < this.RemainingSteps.Count; i++)
-            {
-                BuildStep iter = RemainingSteps[i];
+            if (this.RemainingSteps.Count == 0)
+                return;
+            BuildStep nextStep = this.RemainingSteps[0];
 
-                bool resolvedOk = iter.ResolveStep();
-                if (resolvedOk == false)
-                    return;
+            bool resolvedOk = nextStep.ResolveStep();
+            if (resolvedOk == false)
+                return; // try again next frame
 
-                RemainingSteps.RemoveAt(i);
-                i--;
-            }
+            // Step finished successfully
+            this.RemainingSteps.RemoveAt(0);
+
+            // Go to next step
+            this.ResolveBuildOrder();
         }
     }
 }

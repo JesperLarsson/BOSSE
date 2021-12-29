@@ -140,6 +140,8 @@ namespace BOSSE
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos.X = targetPos.X;
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = targetPos.Y;
 
+            unitThatBuilds.HasNewOrders = true;
+
             return actionObj;
         }
 
