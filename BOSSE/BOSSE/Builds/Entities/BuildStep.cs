@@ -31,53 +31,86 @@ namespace BOSSE
     using static GeneralGameUtility;
     using static global::BOSSE.UnitConstants;
 
-    ///// <summary>
-    ///// A single step in a <see cref="BuildStep"/>
-    ///// </summary>
-    //public abstract class BuildOrderStep
-    //{
-    //    /// <summary>
-    //    /// Set after this step has been performed
-    //    /// </summary>
-    //    public bool Completed = false;
-
-    //    /// <summary>
-    //    /// Set if this step depends on another step to be completed first
-    //    /// </summary>
-    //    public BuildOrderStep DependsOnStepOrNull;
-
-    //    /// <summary>
-    //    /// If set, the next step of the build order is allowed to begin before this one has started
-    //    /// </summary>
-    //    public bool AllowPrematureProceed = false;
-    //}
-
-    //public abstract class BuildOrderStepBuilding
-    //{
-    //    /// <summary>
-    //    /// Type of building to place
-    //    /// </summary>
-    //    public UnitConstants.UnitId BuildingType;
-
-    //    /// <summary>
-    //    /// Indicates which base to build the building at, or null if it can be placed anywhere
-    //    /// </summary>
-    //    public BaseLocation BuildAtBaseOrNull;
-    //}
-
-    //public enum BuildOrderState
-    //{
-    //    Unknown,
-    //    NeedResources,
-    //    InProgress,
-    //    Completed
-    //}
-
-    public enum BuildStatus
+    public class RequireBuilding : BuildStep
     {
-        WaitingForResources = 1,
-        Completed = 2,
-        Failed = 3,
+        public UnitId BuildingType;
+        public uint BuildingCount;
+
+        public RequireBuilding(UnitId buildingType, uint buildingCount)
+        {
+            BuildingType = buildingType;
+            BuildingCount = buildingCount;
+        }
+    }
+
+    public class RequireUnit : BuildStep
+    {
+        public UnitId UnitType;
+        public uint UnitCount;
+        public bool AllowChronoBoost = false;
+
+        public RequireUnit(UnitId unitType, uint unitCount)
+        {
+            UnitType = unitType;
+            UnitCount = unitCount;
+        }
+
+        public override bool ResolveStep()
+        {
+            GeneralGameUtility.ApplyChronoBoostTo(..);
+            //throw new NotImplementedException();
+        }
+    }
+
+    public class WaitForCompletion : BuildStep
+    {
+        public UnitId UnitType;
+        public uint UnitCount;
+
+        public WaitForCompletion(UnitId unitType, uint unitCount)
+        {
+            UnitType = unitType;
+            UnitCount = unitCount;
+        }
+
+        public override bool ResolveStep()
+        {
+            List<Unit> cyberCores = GeneralGameUtility.GetUnits(UnitId.CYBERNETICS_CORE, onlyCompleted: true, onlyVisible: true);
+            bool completedBuilding = cyberCores.Count;
+
+            ..;
+        }
+    }
+
+    public class WaitForCondition : BuildStep
+    {
+        public Func<bool> Condition;
+
+        public WaitForCondition(Func<bool> condition)
+        {
+            Condition = condition;
+        }
+
+        public override bool ResolveStep()
+        {
+            return this.Condition();
+        }
+    }
+
+    public class CustomStep : BuildStep
+    {
+        public System.Action Function;
+
+        public CustomStep(System.Action function)
+        {
+            Function = function;
+        }
+
+        public override bool ResolveStep()
+        {
+            this.Function();
+            return true;
+        }
     }
 
     /// <summary>
@@ -85,23 +118,6 @@ namespace BOSSE
     /// </summary>
     public abstract class BuildStep
     {
-        public Race IsRace;
-
-        /// <summary>
-        /// Indicates whether this build order is viable or not in the current world state
-        /// Null = Not viable / does not want to run
-        /// Integer values = viability score, relative to other builds (higher is more important)
-        /// </summary>
-        public abstract uint? EvaluateBuildOrderViability();
-
-        /// <summary>
-        /// Performs this step right now
-        /// </summary>
-        public abstract BuildStatus PerformAction();
-
-        public string GetName()
-        {
-            return this.GetType().Name;
-        }
+        public abstract bool ResolveStep();
     }
 }

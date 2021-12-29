@@ -88,6 +88,9 @@ namespace BOSSE
             BarracksBuildReactor = 422,
             FactoryBuildTechLab = 454,
             FactoryBuildReactor = 455,
+
+            ResearchBlinkUpgrade = 1593,
+            CyberneticsCoreResearch_ResearchWarpGate = 1568
         }
 
         public static readonly HashSet<AbilityId> HarvestGatherAbilities = new HashSet<AbilityId>

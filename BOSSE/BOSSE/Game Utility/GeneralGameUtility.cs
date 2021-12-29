@@ -573,5 +573,10 @@ namespace BOSSE
             ulong frameDiff = Globals.OnCurrentFrame - frame;
             return TicksToHumanTime(frameDiff);
         }
+
+        public static void ApplyChronoBoostTo(Unit targetUnit)
+        {
+            ...;
+        }
     }
 }

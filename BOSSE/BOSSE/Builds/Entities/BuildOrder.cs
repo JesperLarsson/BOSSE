@@ -25,25 +25,30 @@ namespace BOSSE
     using System.Threading;
 
     using SC2APIProtocol;
-    using Google.Protobuf.Collections;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
-    using static GeneralGameUtility;
-    using static global::BOSSE.UnitConstants;
+    using static UnitConstants;
 
     /// <summary>
-    /// Basic build order for spamming marines
+    /// A set of instructions which together form an overall strategy
     /// </summary>
-    //public class MarineSpam : TerranBaseBuildOrder
-    //{
-    //    public MarineSpam()
-    //    {
-    //        this.BuildName = "Marine Spam";
-    //    }
+    public abstract class BuildOrder
+    {
+        public List<BuildStep> RemainingSteps = new List<BuildStep>();
 
-    //    public override int EvaluateBuildOrderViability()
-    //    {
-    //        return 1;
-    //    }
-    //}
+        public void ResolveBuildOrder()
+        {
+            for (int i = 0; i < this.RemainingSteps.Count; i++)
+            {
+                BuildStep iter = RemainingSteps[i];
+
+                bool resolvedOk = iter.ResolveStep();
+                if (resolvedOk == false)
+                    return;
+
+                RemainingSteps.RemoveAt(i);
+                i--;
+            }
+        }
+    }
 }
