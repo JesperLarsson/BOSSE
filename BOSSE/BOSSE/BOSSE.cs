@@ -61,6 +61,7 @@ namespace BOSSE
         public static readonly OrderManager OrderManagerRef = new OrderManager();
         public static readonly SpaceMovementReservationManager SpaceMovementReservationManagerRef = new SpaceMovementReservationManager();
         public static readonly CurrentBuildManager BuildOrderManagerRef = new CurrentBuildManager();
+        public static readonly HouseProviderManager HouseProviderManagerRef = new HouseProviderManager();
 
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
@@ -83,6 +84,7 @@ namespace BOSSE
             ConstructionManagerRef,
             BaseManagerRef,
             RampManagerRef,
+            HouseProviderManagerRef,
             WorkerManagerRef,
         };
 

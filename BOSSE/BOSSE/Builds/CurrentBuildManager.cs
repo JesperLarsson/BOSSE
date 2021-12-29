@@ -41,7 +41,7 @@ namespace BOSSE
         private List<BuildStep> buildsAvailable = new List<BuildStep>()
         {
             // Protoss
-            new HouseProvider(),
+            //new HouseProvider(),
             //new StalkerSpam(),
 
             // Terran

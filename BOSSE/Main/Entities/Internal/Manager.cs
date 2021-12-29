@@ -39,6 +39,26 @@ namespace BOSSE
     /// </summary>
     public class Manager
     {
+        public bool Enabled { get; private set; } = true;
+
+        public void Enable()
+        {
+            if (this.Enabled)
+                return;
+
+            Log.Info($"Enabled {this.GetType().Name}");
+            this.Enabled = true;
+        }
+
+        public void Disable()
+        {
+            if (this.Enabled == false)
+                return;
+
+            Log.Info($"Disabled {this.GetType().Name}");
+            this.Enabled = false;
+        }
+
         /// <summary>
         /// Called when the bot starts
         /// </summary>

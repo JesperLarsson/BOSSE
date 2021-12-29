@@ -32,40 +32,50 @@ namespace BOSSE
     using static global::BOSSE.UnitConstants;
 
     /// <summary>
-    /// Builds houses (pylons, supply depots, overlords) as necessary
+    /// Builds supply houses automatically
     /// </summary>
-    public class HouseProvider : ProtossBaseBuild
+    public class HouseProviderManager : Manager
     {
         private int buildCount = 0;
 
-        public override uint? EvaluateBuildOrderViability()
+        public void ForceBuildHouse()
+        {
+            this.BuildHouse();
+        }
+
+        public override void OnFrameTick()
+        {
+            if (this.NeedHouse())
+                this.BuildHouse();
+        }
+
+        private bool NeedHouse()
         {
             uint currentAndPending = GetCurrentAndPendingSupply();
             if (currentAndPending >= BotConstants.FoodCap)
-                return null;
+                return false;
 
             // This has a very high priority if we need more food
             uint minSupplyMargin = GetSupplyMargin();
             uint supplyDiff = GetAvailableSupplyIncludingPending();
 
             if (supplyDiff < minSupplyMargin)
-                return 999;
+                return true;
             else
-                return null;
+                return false;
         }
 
-        public override BuildStatus PerformAction()
+        private void BuildHouse()
         {
-            BuildStatus status = BuildStatus.Failed;
-
             uint minSupplyMargin = GetSupplyMargin();
-            uint supplyDiff = GetAvailableSupplyIncludingPending();
+            uint availableSupply = GetAvailableSupplyIncludingPending();
+            uint currentAndPending = GetCurrentAndPendingSupply();
 
             UnitTypeData houseInfo = GetUnitInfo(RaceHouseType());
-            while (supplyDiff < minSupplyMargin)
+            while (availableSupply < minSupplyMargin && currentAndPending < BotConstants.FoodCap)
             {
                 if (CurrentMinerals < houseInfo.MineralCost)
-                    return BuildStatus.WaitingForResources;
+                    return;
 
                 // We disallow the first house from being used as a wall so that we always have a Pylon in our home base for later use
                 bool allowAsWall = buildCount >= 1;
@@ -73,13 +83,18 @@ namespace BOSSE
 
                 BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(RaceHouseType(), allowAsWall);
 
-                supplyDiff += (uint)houseInfo.FoodProvided;
-                CurrentMinerals -= houseInfo.MineralCost;
-                status = BuildStatus.Completed;
-                buildCount++;
-            }
+                availableSupply += (uint)houseInfo.FoodProvided;
+                currentAndPending += (uint)houseInfo.FoodProvided;
 
-            return status;
+                CurrentMinerals -= houseInfo.MineralCost;
+                buildCount++;
+
+#warning TODO: Figure out a better way of setting how many workers should be set on gas
+                if (buildCount >= 4)
+                    BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(6);
+                else if (buildCount >= 2)
+                    BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
+            }
         }
 
         private uint GetSupplyMargin()
@@ -87,7 +102,9 @@ namespace BOSSE
 #warning TODO: Perhaps we could implement a way of "pre-reserving" supply depending on our current strategy, instead of relying on the game time as a heuristic
             TimeSpan uptime = GameUptime();
 
-            if (uptime.TotalMinutes > 8)
+            if (CurrentMinerals > 1000)
+                return 32;
+            else if (uptime.TotalMinutes > 8)
                 return 16;
             else if (uptime.TotalMinutes > 2)
                 return 8;

@@ -60,7 +60,7 @@ namespace BOSSE
         /// <summary>
         /// Number of workers to aim for at each base
         /// </summary>
-        public const int TargetWorkerPerBase = 16;
+        public const int TargetWorkerPerBase = 16 + 6;
 
         /// <summary>
         /// Inidicates that a fixed game seed should be used (meaning is match is exactly the same)

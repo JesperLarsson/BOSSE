@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOSSE\Builds\Build Definitions\Protoss\Base Class\ProtossBaseBuild.cs" />
-    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\HouseProvider.cs" />
     <Compile Include="BOSSE\Builds\Build Definitions\Terran\Base Class\TerranBaseBuildOrder.cs" />
     <Compile Include="BOSSE\Builds\Build Definitions\Terran\MarineSpam.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
@@ -83,6 +82,7 @@
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
+    <Compile Include="BOSSE\Utility Managers\HouseProviderManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
     <Compile Include="BOSSE\Utility Managers\ConstructionManager.cs" />
     <Compile Include="BOSSE\Utility Managers\BaseManager.cs" />
