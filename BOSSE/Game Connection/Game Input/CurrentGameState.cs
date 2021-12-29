@@ -24,6 +24,7 @@ namespace BOSSE
     using System.Threading.Tasks;
 
     using SC2APIProtocol;
+
     using static GeneralGameUtility;
     using static UnitConstants;
 
@@ -32,26 +33,26 @@ namespace BOSSE
     /// </summary>
     public static class CurrentGameState
     {
-        public static ResponseGameInfo GameInformation;
-        public static ResponseData GameData;
-        public static ResponseObservation ObservationState;
+        /// <summary>
+        /// Raw world state, as read from game
+        /// </summary>
+        public static WorldState State;
 
         // Current supply, does not take into account pending supply
         public static uint FreeSupply { get => MaxSupply - UsedSupply;}
-        public static uint UsedSupply { get => ObservationState.Observation.PlayerCommon.FoodUsed; set => ObservationState.Observation.PlayerCommon.FoodUsed = value; }
-        public static uint MaxSupply { get => ObservationState.Observation.PlayerCommon.FoodCap; }
+        public static uint UsedSupply { get => State.ObservationState.Observation.PlayerCommon.FoodUsed; set => State.ObservationState.Observation.PlayerCommon.FoodUsed = value; }
+        public static uint MaxSupply { get => State.ObservationState.Observation.PlayerCommon.FoodCap; }
 
-        public static uint CurrentMinerals { get => ObservationState.Observation.PlayerCommon.Minerals; set => ObservationState.Observation.PlayerCommon.Minerals = value; }
-        public static uint CurrentVespene { get => ObservationState.Observation.PlayerCommon.Vespene; set => ObservationState.Observation.PlayerCommon.Vespene = value; }
+        public static uint CurrentMinerals { get => State.ObservationState.Observation.PlayerCommon.Minerals; set => State.ObservationState.Observation.PlayerCommon.Minerals = value; }
+        public static uint CurrentVespene { get => State.ObservationState.Observation.PlayerCommon.Vespene; set => State.ObservationState.Observation.PlayerCommon.Vespene = value; }
 
         public static uint GetCurrentAndPendingSupply()
         {
-            UnitTypeData houseInfo = GetUnitInfo(GetHouseType());
-            UnitTypeData ccInfo = GetUnitInfo(GetCommandCenterUnitType());
-
+            UnitTypeData houseInfo = GetUnitInfo(RaceHouseType());
+            UnitTypeData ccInfo = GetUnitInfo(RaceCommandCenterUnitType());
             
-            uint depotFood = (uint)(GetUnitCountTotal(new HashSet<UnitId>() { GetHouseType(), UnitId.SUPPLY_DEPOT_LOWERED }) * houseInfo.FoodProvided);
-            uint ccFood = (uint)(GetUnitCountTotal(GetCommandCenterUnitType()) * ccInfo.FoodProvided);
+            uint depotFood = (uint)(GetUnitCountTotal(new HashSet<UnitId>() { RaceHouseType(), UnitId.SUPPLY_DEPOT_LOWERED }) * houseInfo.FoodProvided);
+            uint ccFood = (uint)(GetUnitCountTotal(RaceCommandCenterUnitType()) * ccInfo.FoodProvided);
 
             return depotFood + ccFood;
         }

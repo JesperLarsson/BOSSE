@@ -31,19 +31,10 @@ namespace BOSSE
     using static GeneralGameUtility;
     using static global::BOSSE.UnitConstants;
 
-    /// <summary>
-    /// Builds Pylons as necessary
-    /// </summary>
-    public class PylonProvider : ProtossBaseBuildOrder
+    public static class CurrentGameStateBase
     {
-        public override uint EvaluateBuildOrderViability()
-        {
-            return 1;
-        }
-
-        public override void PerformAction()
-        {
-            throw new NotImplementedException();
-        }
+        public static ResponseGameInfo GameInformation;
+        public static ResponseData GameData;
+        public static ResponseObservation ObservationState;
     }
 }

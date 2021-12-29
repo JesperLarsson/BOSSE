@@ -43,7 +43,7 @@ namespace BOSSE
 
         public TileMap()
         {
-            Size2DI size = CurrentGameState.GameInformation.StartRaw.MapSize;
+            Size2DI size = CurrentGameState.State.GameInformation.StartRaw.MapSize;
 
             this.Width = size.X;
             this.Height = size.Y;

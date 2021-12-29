@@ -103,7 +103,7 @@ namespace BOSSE
         /// </summary>
         public List<Unit> RequestWorkersForJobCloseToPointOrNull(Point2D point, int maxWorkerCount)
         {
-            List<Unit> workers = GetUnits(GetWorkerUnitType());
+            List<Unit> workers = GetUnits(RaceWorkerUnitType());
 
             // Sort by distance to point
             workers.Sort((a, b) => a.Position.AirDistanceSquared(point).CompareTo(b.Position.AirDistanceSquared(point)));
@@ -192,7 +192,7 @@ namespace BOSSE
 
                     int nonIdealWorkerCount = extractor.IdealWorkers - extractor.AssignedWorkers;
 
-                    List<Unit> workers = GetUnits(GetWorkerUnitType(), onlyCompleted: true);
+                    List<Unit> workers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
                     int movedWorkerCount = 0;
                     foreach (Unit workerIter in workers)
                     {
@@ -216,7 +216,7 @@ namespace BOSSE
                 {
                     foreach (Unit extractor in extractors)
                     {
-                        List<Unit> workers = GetUnits(GetWorkerUnitType(), onlyCompleted: true);
+                        List<Unit> workers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
                         int movedWorkerCount = 0;
                         foreach (Unit workerIter in workers)
                         {
@@ -306,7 +306,7 @@ namespace BOSSE
                 return;
 
             List<Unit> commandCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
-            UnitTypeData workerInfo = GetUnitInfo(GetWorkerUnitType());
+            UnitTypeData workerInfo = GetUnitInfo(RaceWorkerUnitType());
             foreach (Unit cc in commandCenters)
             {
                 if (cc.CurrentOrder != null)
@@ -321,7 +321,7 @@ namespace BOSSE
 
                 if (CurrentMinerals >= workerInfo.MineralCost && FreeSupply >= workerInfo.FoodRequired)
                 {
-                    Queue(CommandBuilder.TrainAction(cc, GetWorkerUnitType()));
+                    Queue(CommandBuilder.TrainAction(cc, RaceWorkerUnitType()));
                 }
             }
         }
@@ -337,7 +337,7 @@ namespace BOSSE
                 return true;
             }
 
-            List<Unit> miningWorkersGlobal = GetUnits(GetWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS).ToList();
+            List<Unit> miningWorkersGlobal = GetUnits(RaceWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.AbilityId == (int)AbilityId.GATHER_MINERALS).ToList();
             List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.WorkerTransferInProgress) && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
             if (basesToMineMainFirst.Count == 0)
             {
@@ -444,10 +444,10 @@ namespace BOSSE
 
                     if (workerTransferCompletedStartFrame == 0)
                     {
-                        workerTransferCompletedStartFrame = Globals.CurrentFrameIndex;
+                        workerTransferCompletedStartFrame = Globals.OnCurrentFrame;
                         return false;
                     }
-                    else if (Globals.CurrentFrameIndex - workerTransferCompletedStartFrame > WorkerTransferHystFrameCount)
+                    else if (Globals.OnCurrentFrame - workerTransferCompletedStartFrame > WorkerTransferHystFrameCount)
                     {
                         Log.Info("Worker transfer completed");
                         targetBase.WorkerTransferInProgress = false;
@@ -477,13 +477,13 @@ namespace BOSSE
 
         private bool ReturnIdleWorkers()
         {
-            List<Unit> idleWorkers = GetUnits(GetWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false).ToList();
+            List<Unit> idleWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false).ToList();
             if (idleWorkers.Count == 0)
             {
                 return false;
             }
 
-            List<Unit> commandCenters = GetUnits(GetCommandCenterUnitType(), onlyCompleted: true);
+            List<Unit> commandCenters = GetUnits(RaceCommandCenterUnitType(), onlyCompleted: true);
             if (commandCenters.Count == 0)
             {
                 Log.Warning("No cc found to return workers to");

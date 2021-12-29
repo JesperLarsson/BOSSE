@@ -32,18 +32,13 @@ namespace BOSSE
     using static global::BOSSE.UnitConstants;
 
     /// <summary>
-    /// Basic build order for spamming marines
+    /// Base build order for Protoss, sets race-specific default parameters only
     /// </summary>
-    //public class MarineSpam : TerranBaseBuildOrder
-    //{
-    //    public MarineSpam()
-    //    {
-    //        this.BuildName = "Marine Spam";
-    //    }
-
-    //    public override int EvaluateBuildOrderViability()
-    //    {
-    //        return 1;
-    //    }
-    //}
+    public abstract class ProtossBaseBuild : BuildStep
+    {
+        public ProtossBaseBuild()
+        {
+            this.IsRace = Race.Protoss;
+        }
+    }
 }

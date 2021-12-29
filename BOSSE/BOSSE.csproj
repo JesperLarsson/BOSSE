@@ -72,8 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\Base Class\ProtossBaseBuildOrder.cs" />
-    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\PylonProvider.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\Base Class\ProtossBaseBuild.cs" />
+    <Compile Include="BOSSE\Builds\Build Definitions\Protoss\HouseProvider.cs" />
     <Compile Include="BOSSE\Builds\Build Definitions\Terran\Base Class\TerranBaseBuildOrder.cs" />
     <Compile Include="BOSSE\Builds\Build Definitions\Terran\MarineSpam.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
@@ -90,6 +90,8 @@
     <Compile Include="BOSSE\Utility Managers\SpaceMovementReservationManager.cs" />
     <Compile Include="BOSSE\Utility Managers\RampManager.cs" />
     <Compile Include="BOSSE\Builds\CurrentBuildManager.cs" />
+    <Compile Include="Game Connection\Game Input\CurrentGameStateBase.cs" />
+    <Compile Include="Main\Entities\WorldState.cs" />
     <Compile Include="Main\Entities\Exception\BosseFatalException.cs" />
     <Compile Include="Main\Entities\Exception\BosseRecoverableException.cs" />
     <Compile Include="Main\Entities\Game\BaseLocation.cs" />

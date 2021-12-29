@@ -47,12 +47,12 @@ namespace DebugGui
 
         protected override Image RenderMap()
         {
-            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Image bmp = new Bitmap(CurrentGameState.State.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.State.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
             Graphics surface = Graphics.FromImage(bmp);
             surface.Clear(System.Drawing.Color.Black);
 
             // Terrain height
-            ImageData terrainMap = CurrentGameState.GameInformation.StartRaw.TerrainHeight;
+            ImageData terrainMap = CurrentGameState.State.GameInformation.StartRaw.TerrainHeight;
             for (int y = 0; y < terrainMap.Size.Y; y++)
             {
                 for (int x = 0; x < terrainMap.Size.X; x++)

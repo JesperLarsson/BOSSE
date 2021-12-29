@@ -53,7 +53,7 @@ namespace DebugGui
             if (!BOSSE.HasCompletedFirstFrameInit)
                 return null;
 
-            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Image bmp = new Bitmap(CurrentGameState.State.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.State.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
             Graphics surface = Graphics.FromImage(bmp);
             surface.Clear(System.Drawing.Color.Black);
             var instance = BOSSE.MapAnalysisRef.AnalysedStaticMapRef.ChokePointCollections[this.FromCluster.ClusterId][this.ToCluster.ClusterId];

@@ -175,7 +175,7 @@ namespace BOSSE
         /// </summary>
         public static bool IsPathable(this Point2D self)
         {
-            bool isPathable = CurrentGameState.GameInformation.StartRaw.PathingGrid.GetBit((int)self.X, (int)self.Y) != 0;
+            bool isPathable = CurrentGameState.State.GameInformation.StartRaw.PathingGrid.GetBit((int)self.X, (int)self.Y) != 0;
             return isPathable;
         }
 

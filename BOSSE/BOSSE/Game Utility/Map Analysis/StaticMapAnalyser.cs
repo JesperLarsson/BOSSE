@@ -93,7 +93,7 @@ namespace BOSSE
         {
             return null;
 
-            Size2DI size = CurrentGameState.GameInformation.StartRaw.MapSize;
+            Size2DI size = CurrentGameState.State.GameInformation.StartRaw.MapSize;
             TileMap<ulong> longMap = new TileMap<ulong>(size.X, size.Y);
 
             // Calculate score
@@ -102,7 +102,7 @@ namespace BOSSE
                 for (int fromY = 0; fromY < size.Y; fromY++)
                 {
                     // Optimization - Skip unpathable tiles
-                    if (CurrentGameState.GameInformation.StartRaw.PathingGrid.GetBit(fromX, fromY) == 0)
+                    if (CurrentGameState.State.GameInformation.StartRaw.PathingGrid.GetBit(fromX, fromY) == 0)
                         continue;
 
                     for (int innerX = 0; innerX < size.X; innerX++)
@@ -110,7 +110,7 @@ namespace BOSSE
                         for (int innerY = 0; innerY < size.Y; innerY++)
                         {
                             // Optimization - Skip unpathable tiles
-                            if (CurrentGameState.GameInformation.StartRaw.PathingGrid.GetBit(innerX, innerY) == 0)
+                            if (CurrentGameState.State.GameInformation.StartRaw.PathingGrid.GetBit(innerX, innerY) == 0)
                                 continue;
 
                             Point2D innerPos = new Point2D(innerX, innerY);

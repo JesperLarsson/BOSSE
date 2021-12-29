@@ -92,7 +92,7 @@ namespace DebugGui
             if (prevImage == null)
                 return null;
 
-            RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
+            RectangleI playArea = CurrentGameState.State.GameInformation.StartRaw.PlayableArea;
 
             int x = playArea.P0.X;
             int y = (int)CompensateY(playArea.P0.Y);
@@ -125,7 +125,7 @@ namespace DebugGui
         /// </summary>
         protected float CompensateY(float y)
         {
-            float yBase = CurrentGameState.GameInformation.StartRaw.MapSize.Y;
+            float yBase = CurrentGameState.State.GameInformation.StartRaw.MapSize.Y;
             return yBase - y;
         }
     }

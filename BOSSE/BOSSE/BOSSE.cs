@@ -121,7 +121,7 @@ namespace BOSSE
         public void FirstFrame()
         {
             // Set main location
-            Globals.MainBaseLocation = GetUnits(GetCommandCenterUnitType())[0].Position;
+            Globals.MainBaseLocation = GetUnits(RaceCommandCenterUnitType())[0].Position;
 
             // General map analysis
             PathFinderRef.Initialize();
@@ -153,7 +153,7 @@ namespace BOSSE
 
             // Assign a random worker to scout
             BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
-            Unit scoutingWorker = GetUnits(GetWorkerUnitType(), onlyCompleted: true)[0];
+            Unit scoutingWorker = GetUnits(RaceWorkerUnitType(), onlyCompleted: true)[0];
             Log.Info("Assigning worker " + scoutingWorker.Tag + " as initial scout");
             scoutingWorker.IsReserved = true;
             BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);

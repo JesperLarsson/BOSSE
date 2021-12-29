@@ -32,7 +32,7 @@ namespace BOSSE
     using static GeneralGameUtility;
 
     /// <summary>
-    /// Global parameters
+    /// Global parameters, acts as a blackboard
     /// </summary>
     public static class Globals
     {
@@ -65,7 +65,7 @@ namespace BOSSE
         /// <summary>
         /// We are currently running the current logical frame, starts at 0
         /// </summary>
-        public static ulong CurrentFrameIndex = 0;
+        public static ulong OnCurrentFrame = 0;
 
         /// <summary>
         /// Location of our main starting base

@@ -41,7 +41,8 @@ namespace BOSSE
         private List<BuildStep> availableBuildOrders = new List<BuildStep>()
         {
             // Protoss
-            new StalkerSpam(),
+            new HouseProvider(),
+            //new StalkerSpam(),
 
             // Terran
             //typeof(MarineSpam),
@@ -50,8 +51,7 @@ namespace BOSSE
 
         public override void OnFrameTick()
         {
-
-
+            
         }
     }
 }

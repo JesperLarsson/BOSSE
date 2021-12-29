@@ -149,7 +149,7 @@ namespace BOSSE
             }
             
             // Format
-            string fullPrefix = $"[{DateTime.Now.ToString("HH:mm:ss")} {typePrefix} {Globals.CurrentFrameIndex} {callingClassName}]";
+            string fullPrefix = $"[{DateTime.Now.ToString("HH:mm:ss")} {typePrefix} {Globals.OnCurrentFrame} {callingClassName}]";
             string fullMessageRow = String.Format("{0, -55}", fullPrefix) + lineToLog;
 
             // File operations is done in a separate thread for better performance

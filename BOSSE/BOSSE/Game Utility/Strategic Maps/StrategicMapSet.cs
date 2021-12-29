@@ -71,10 +71,10 @@ namespace BOSSE
         public static void CalculateNewFromCurrentMapState()
         {
             StrategicMapSet outObj = new StrategicMapSet();
-            //RectangleI playArea = CurrentGameState.GameInformation.StartRaw.PlayableArea;
+            //RectangleI playArea = CurrentGameState.State.GameInformation.StartRaw.PlayableArea;
 
-            int xSize = CurrentGameState.GameInformation.StartRaw.MapSize.X;
-            int ySize = CurrentGameState.GameInformation.StartRaw.MapSize.Y;
+            int xSize = CurrentGameState.State.GameInformation.StartRaw.MapSize.X;
+            int ySize = CurrentGameState.State.GameInformation.StartRaw.MapSize.Y;
 
             // Calculate per-side influence for each tile, depending on distance to their units
             float[,] SelfInfluence = new float[xSize, ySize];
@@ -83,7 +83,7 @@ namespace BOSSE
             {
                 for (int y = 0; y < ySize; y++)
                 {
-                    foreach (SC2APIProtocol.Unit unitIter in CurrentGameState.ObservationState.Observation.RawData.Units)
+                    foreach (SC2APIProtocol.Unit unitIter in CurrentGameState.State.ObservationState.Observation.RawData.Units)
                     {
                         const float standardInfluence = 1.0f;
                         const float dissipationRateFalloff = 0.9f;

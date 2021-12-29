@@ -17,28 +17,15 @@
 */
 namespace BOSSE
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Numerics;
-    using System.Security.Cryptography;
-    using System.Threading;
-
     using SC2APIProtocol;
-    using Google.Protobuf.Collections;
-    using Action = SC2APIProtocol.Action;
-    using static CurrentGameState;
-    using static GeneralGameUtility;
-    using static global::BOSSE.UnitConstants;
 
     /// <summary>
-    /// Base build order for Protoss, sets race-specific default parameters only
+    /// State of the game world
     /// </summary>
-    public abstract class ProtossBaseBuildOrder : BuildStep
+    public class WorldState
     {
-        public ProtossBaseBuildOrder()
-        {
-            this.IsRace = Race.Protoss;
-        }
+        public ResponseGameInfo GameInformation;
+        public ResponseData GameData;
+        public ResponseObservation ObservationState;
     }
 }

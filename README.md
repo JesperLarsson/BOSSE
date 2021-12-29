@@ -52,8 +52,7 @@ The protobuff schema needs to be rebuilt after each new game release, using the 
 6. (Optional) Update the protobuff NuGet package in Visual studio, necessary if the schema contained any new protobuff features
 
 ## Credits
-Based on the following starting template which bootstraps the game session: https://github.com/NikEyX/SC2-CSharpe-Starterkit
-Otherwise everything has been implemented from scratch.
+Based on the following starting template which bootstraps the game session: https://github.com/NikEyX/SC2-CSharpe-Starterkit. Otherwise everything has been implemented from scratch.
 
 ## Links
 - General info and wiki: http://wiki.sc2ai.net/Main_Page

@@ -50,7 +50,7 @@ namespace BOSSE
         {
             // Initialize A star grid
 #warning TODO: Include buildings, mineral fields, etc in pathfinding
-            ImageData pathingMap = CurrentGameState.GameInformation.StartRaw.PathingGrid;
+            ImageData pathingMap = CurrentGameState.State.GameInformation.StartRaw.PathingGrid;
             BossePathNode[,] grid = new BossePathNode[pathingMap.Size.X, pathingMap.Size.Y];
 
             for (int y = 0; y < pathingMap.Size.Y; y++)

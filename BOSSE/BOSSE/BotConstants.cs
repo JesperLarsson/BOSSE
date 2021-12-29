@@ -71,5 +71,10 @@ namespace BOSSE
         /// Value to be used for randomizing game behaviour when UseFixedGameSeed is set
         /// </summary>
         public const int FixedSeedValue = 123456798;
+
+        /// <summary>
+        /// Maximum amount of food allowed
+        /// </summary>
+        public const int FoodCap = 200;
     }
 }

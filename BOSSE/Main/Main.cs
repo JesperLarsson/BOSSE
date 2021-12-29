@@ -74,7 +74,7 @@ namespace BOSSE
             Globals.BotRef.Initialize();
 
             // Main loop
-            Globals.CurrentFrameIndex = 0;
+            Globals.OnCurrentFrame = 0;
             while (true)
             {
                 try
@@ -86,7 +86,7 @@ namespace BOSSE
                     ReadPerFrameState().Wait();
 
                     // Update bot
-                    if (Globals.CurrentFrameIndex == 0)
+                    if (Globals.OnCurrentFrame == 0)
                     {
                         Globals.BotRef.FirstFrame();
                     }
@@ -95,7 +95,7 @@ namespace BOSSE
                     // Send actions to sc2
                     SendQueuedActions().Wait();
 
-                    Globals.CurrentFrameIndex++;
+                    Globals.OnCurrentFrame++;
                     if (BotConstants.SinglestepMode)
                     {
                         Thread.Sleep(BotConstants.TickLockSleep);
@@ -135,8 +135,8 @@ namespace BOSSE
             dataReq.Data.UpgradeId = true;
             Response dataResponse = await Globals.GameConnection.SendRequest(dataReq);
 
-            CurrentGameState.GameInformation = gameInfoResponse.GameInfo;
-            CurrentGameState.GameData = dataResponse.Data;
+            CurrentGameState.State.GameInformation = gameInfoResponse.GameInfo;
+            CurrentGameState.State.GameData = dataResponse.Data;
         }
 
         /// <summary>
@@ -149,10 +149,10 @@ namespace BOSSE
             Response response = await Globals.GameConnection.SendRequest(observationRequest);
 
             // Update global state
-            CurrentGameState.ObservationState = response.Observation;
+            CurrentGameState.State.ObservationState = response.Observation;
 
             // Check for errors
-            foreach (ActionError errorIter in CurrentGameState.ObservationState.ActionErrors)
+            foreach (ActionError errorIter in CurrentGameState.State.ObservationState.ActionErrors)
             {
                 Log.Error("Received error from starcraft: " + errorIter.Result + "(unit " + errorIter.UnitTag + " ability " + errorIter.AbilityId + ")");
             }

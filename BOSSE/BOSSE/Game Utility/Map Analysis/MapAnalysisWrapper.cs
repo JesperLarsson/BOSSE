@@ -114,7 +114,7 @@ namespace BOSSE
                 return false;
             }
 
-            Log.Info("Loaded static map data for current map (" + CurrentGameState.GameInformation.MapName + ")");
+            Log.Info("Loaded static map data for current map (" + CurrentGameState.State.GameInformation.MapName + ")");
             return true;
         }
 
@@ -122,7 +122,7 @@ namespace BOSSE
         {
             const string mapFolder = "StaticMapData";
 
-            string mapName = CurrentGameState.GameInformation.MapName;
+            string mapName = CurrentGameState.State.GameInformation.MapName;
             mapName = Path.Combine(mapFolder, mapName);
             mapName = Path.ChangeExtension(mapName, ".bossemap");
 

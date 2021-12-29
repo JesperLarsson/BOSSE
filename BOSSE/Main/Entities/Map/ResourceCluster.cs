@@ -99,7 +99,7 @@ namespace BOSSE
                 Point2D tilePos = tileIter.Key;
                 float tileDistanceSq = tileIter.Value;
 
-                bool canPlaceCC = CanPlaceRequest(GetCommandCenterUnitType(), tilePos);
+                bool canPlaceCC = CanPlaceRequest(RaceCommandCenterUnitType(), tilePos);
                 if (canPlaceCC)
                 {
                     finalLocation = tilePos;

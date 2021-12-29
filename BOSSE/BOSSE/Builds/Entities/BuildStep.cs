@@ -73,6 +73,7 @@ namespace BOSSE
     //    Completed
     //}
 
+
     /// <summary>
     /// A single build order, indicates which units and structures to build
     /// </summary>
@@ -82,10 +83,10 @@ namespace BOSSE
 
         /// <summary>
         /// Indicates whether this build order is viable or not in the current world state
-        /// 0 = Not viable / does not want to run
-        /// Higher values = viability score, value is relative to other build orders (higher is more important and will override other steps)
+        /// Null = Not viable / does not want to run
+        /// Integer values = viability score, relative to other builds (higher is more important)
         /// </summary>
-        public abstract uint EvaluateBuildOrderViability();
+        public abstract uint? EvaluateBuildOrderViability();
 
         /// <summary>
         /// Performs this step right now

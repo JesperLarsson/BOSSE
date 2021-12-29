@@ -40,7 +40,7 @@ namespace BOSSE
         /// </summary>
         public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unitType)
         {
-            return (int)CurrentGameState.GameData.Units[(int)unitType].AbilityId;
+            return (int)CurrentGameState.State.GameData.Units[(int)unitType].AbilityId;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace BOSSE
         /// </summary>
         public static UnitTypeData GetUnitInfo(UnitId unitType)
         {
-            UnitTypeData info = CurrentGameState.GameData.Units[(int)unitType];
+            UnitTypeData info = CurrentGameState.State.GameData.Units[(int)unitType];
             return info;
         }
 
@@ -89,7 +89,7 @@ namespace BOSSE
             uint techId = (uint)requiredTech;
             HashSet<UnitId> resultList = new HashSet<UnitId>();
 
-            foreach (UnitTypeData unitDataIter in CurrentGameState.GameData.Units)
+            foreach (UnitTypeData unitDataIter in CurrentGameState.State.GameData.Units)
             {
                 if (unitDataIter.TechAlias == null)
                     continue;
@@ -193,7 +193,7 @@ namespace BOSSE
         public static Point2D GuessEnemyBaseLocation()
         {
 #warning TODO: Replace function with a better system
-            foreach (var startLocation in CurrentGameState.GameInformation.StartRaw.StartLocations)
+            foreach (var startLocation in CurrentGameState.State.GameInformation.StartRaw.StartLocations)
             {
                 Point2D enemyLocation = new Point2D(startLocation.X, startLocation.Y);
                 if (!enemyLocation.IsWithinRange(Globals.MainBaseLocation, 30))
@@ -209,7 +209,7 @@ namespace BOSSE
         /// </summary>
         public static bool CanAfford(UnitId unitType)
         {
-            UnitTypeData unitData = GameData.Units[(int)unitType];
+            UnitTypeData unitData = State.GameData.Units[(int)unitType];
             int foodConsumed = (int)(unitData.FoodRequired - unitData.FoodProvided);
 
             bool enoughFood = FreeSupply >= foodConsumed;
@@ -224,7 +224,7 @@ namespace BOSSE
         /// </summary>
         public static void SubtractCosts(UnitId unitType)
         {
-            UnitTypeData unitData = GameData.Units[(int)unitType];
+            UnitTypeData unitData = State.GameData.Units[(int)unitType];
             int foodConsumed = (int)(unitData.FoodProvided - unitData.FoodRequired);
 
             CurrentMinerals -= unitData.MineralCost;
@@ -252,7 +252,7 @@ namespace BOSSE
         {
             List<Unit> units = new List<Unit>();
 
-            foreach (SC2APIProtocol.Unit unit in CurrentGameState.ObservationState.Observation.RawData.Units)
+            foreach (SC2APIProtocol.Unit unit in CurrentGameState.State.ObservationState.Observation.RawData.Units)
             {
                 if (unitTypesToFind.Contains((UnitId)unit.UnitType) && unit.Alliance == alliance)
                 {
@@ -356,7 +356,7 @@ namespace BOSSE
         private static List<Unit> GetAllWorkersTaskedToBuildType(UnitId unitType)
         {
             int abilityID = GetAbilityIdToBuildUnit(unitType);
-            List<Unit> allWorkers = GetUnits(GetWorkerUnitType(), onlyCompleted: true);
+            List<Unit> allWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
             List<Unit> returnList = new List<Unit>();
 
             foreach (Unit worker in allWorkers)
@@ -487,7 +487,7 @@ namespace BOSSE
             return null;
         }
 
-        public static UnitId GetWorkerUnitType()
+        public static UnitId RaceWorkerUnitType()
         {
             if (BOSSE.UseRace == Race.Terran)
                 return UnitId.SCV;
@@ -499,7 +499,7 @@ namespace BOSSE
             throw new Exception("Unable to determine worker unit type");
         }
 
-        public static UnitId GetCommandCenterUnitType()
+        public static UnitId RaceCommandCenterUnitType()
         {
             if (BOSSE.UseRace == Race.Terran)
                 return UnitId.COMMAND_CENTER;
@@ -511,7 +511,7 @@ namespace BOSSE
             throw new Exception("Unable to determine command center type");
         }
 
-        public static UnitId GetHouseType()
+        public static UnitId RaceHouseType()
         {
             if (BOSSE.UseRace == Race.Terran)
                 return UnitId.SUPPLY_DEPOT;
@@ -520,7 +520,35 @@ namespace BOSSE
             if (BOSSE.UseRace == Race.Zerg)
                 return UnitId.OVERLORD;
 
-            throw new Exception("Unable to determine command center type");
+            throw new Exception("Unable to determine house type");
+        }
+
+        /// <summary>
+        /// Converts the given logical frame number into a timestamp, as if played at human speed
+        /// </summary>
+        public static TimeSpan TicksToHumanTime(ulong frameNumber)
+        {
+            Double doubleFrame = frameNumber;
+            doubleFrame = doubleFrame / 22.4d;
+
+            TimeSpan time = TimeSpan.FromSeconds(doubleFrame);
+            return time;
+        }
+
+        public static TimeSpan GameUptime()
+        {
+            return TicksToHumanTime(Globals.OnCurrentFrame);
+        }
+
+        public static ulong StartGameTimer()
+        {
+            return Globals.OnCurrentFrame;
+        }
+
+        public static TimeSpan MeasureGameTimer(ulong frame)
+        {
+            ulong frameDiff = Globals.OnCurrentFrame - frame;
+            return TicksToHumanTime(frameDiff);
         }
     }
 }

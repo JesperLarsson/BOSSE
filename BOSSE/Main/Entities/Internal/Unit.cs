@@ -84,7 +84,7 @@ namespace BOSSE
         public Unit(SC2APIProtocol.Unit unit) : base()
         {
             this.original = unit;
-            this.unitInformation = CurrentGameState.GameData.Units[(int)unit.UnitType];
+            this.unitInformation = CurrentGameState.State.GameData.Units[(int)unit.UnitType];
 
 #if DEBUG
             if (AllUnitInstances.ContainsKey(this.Tag))
@@ -122,7 +122,7 @@ namespace BOSSE
         public static void OnTick()
         {
             // Refresh unit data with new input
-            foreach (SC2APIProtocol.Unit sc2UnitData in CurrentGameState.ObservationState.Observation.RawData.Units)
+            foreach (SC2APIProtocol.Unit sc2UnitData in CurrentGameState.State.ObservationState.Observation.RawData.Units)
             {
                 if (!Unit.AllUnitInstances.ContainsKey(sc2UnitData.Tag))
                     continue;

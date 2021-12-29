@@ -135,7 +135,7 @@ namespace BOSSE
         private static Wall TryGetWallAtExactY(int estimateX, int y)
         {
             var wallConfig = NaturalWallinConfigNoGap;
-            ImageData gridMap = CurrentGameState.GameInformation.StartRaw.PlacementGrid;
+            ImageData gridMap = CurrentGameState.State.GameInformation.StartRaw.PlacementGrid;
 
             // 1. Search for starting position = first buildable tile
             const int radiusSearchX = 5;
@@ -213,7 +213,7 @@ namespace BOSSE
             int toX = fromX + building.BuildingSize.Width;
             int toY = fromY + building.BuildingSize.Height;
 
-            ImageData gridMap = new ImageData(CurrentGameState.GameInformation.StartRaw.PlacementGrid);
+            ImageData gridMap = new ImageData(CurrentGameState.State.GameInformation.StartRaw.PlacementGrid);
             for (int x = fromX; x < toX; x++)
             {
                 for (int y = fromY; y < toY; y++)

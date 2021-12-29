@@ -56,12 +56,12 @@ namespace DebugGui
 
         protected override Image RenderMap()
         {
-            Image bmp = new Bitmap(CurrentGameState.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
+            Image bmp = new Bitmap(CurrentGameState.State.GameInformation.StartRaw.MapSize.X * this.RenderScale, CurrentGameState.State.GameInformation.StartRaw.MapSize.Y * this.RenderScale);
             Graphics surface = Graphics.FromImage(bmp);
             surface.Clear(System.Drawing.Color.Black);
 
             // Pathing overlay - input data contains 1 bit per pixel
-            ImageData pathingMap = CurrentGameState.GameInformation.StartRaw.PathingGrid;
+            ImageData pathingMap = CurrentGameState.State.GameInformation.StartRaw.PathingGrid;
             for (int y = 0; y < pathingMap.Size.Y; y++)
             {
                 for (int x = 0; x < (pathingMap.Size.X / 8); x++)
