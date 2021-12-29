@@ -23,13 +23,14 @@ namespace BOSSE
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
+    using System.Linq;
 
     using SC2APIProtocol;
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static UnitConstants;
     using static AbilityConstants;
-
+    
     /// <summary>
     /// Various helper functions for interacting with StarCraft 2
     /// </summary>
@@ -601,7 +602,23 @@ namespace BOSSE
 
         public static void ApplyChronoBoostTo(Unit targetUnit)
         {
-            ; ...;
+            const int ChronoCost = 50;
+
+            if (BOSSE.UseRace != Race.Protoss)
+                return;
+
+            // Use the nexus with the most energy
+            List<Unit> allNexus = GetUnits(UnitId.NEXUS, onlyCompleted: true);
+            if (allNexus == null || allNexus.Count == 0)
+                return;
+
+            allNexus.OrderByDescending(o => o.Energy).ToList();
+            Unit useNexus = allNexus[0];
+            if (useNexus.Energy < ChronoCost)
+                return;
+
+            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.ChronoBoost, useNexus, targetUnit));
+            useNexus.Energy -= ChronoCost;
         }
 
         /// <summary>
