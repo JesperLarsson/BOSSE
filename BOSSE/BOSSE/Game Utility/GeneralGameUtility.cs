@@ -522,6 +522,18 @@ namespace BOSSE
             throw new Exception("Unable to determine house type");
         }
 
+        public static UnitId RaceGasExtractor()
+        {
+            if (BOSSE.UseRace == Race.Terran)
+                return UnitId.REFINERY;
+            if (BOSSE.UseRace == Race.Protoss)
+                return UnitId.ASSIMILATOR;
+            if (BOSSE.UseRace == Race.Zerg)
+                return UnitId.EXTRACTOR;
+
+            throw new Exception("Unable to determine gas type");
+        }
+
         public static AbilityId RaceMiningAction()
         {
             if (BOSSE.UseRace == Race.Terran)

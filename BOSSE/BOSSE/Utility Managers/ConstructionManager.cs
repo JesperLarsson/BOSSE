@@ -90,31 +90,34 @@ namespace BOSSE
         /// <summary>
         /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
         /// </summary>
-        public void BuildAutoSelectPosition(UnitId unitType)
+        public void BuildAutoSelectPosition(UnitId unitType, bool allowAsWallPart = true)
         {
             Point2D constructionSpot = null;
 
-            // Check if part of wall
-            Wall.BuildingInWall partOfWall = FindAsPartOfWall(unitType);
-            if (partOfWall != null)
+            // Check if it can be a part part of a building wall, typically at our natural expansion
+            if (allowAsWallPart)
             {
-                partOfWall.IsReserved = true;
-                constructionSpot = partOfWall.BuildingCenterPosition;
-                Log.Info("Building wall part " + unitType + " at " + constructionSpot.ToString2());
-
-                // Subscribe to it being placed so that we can update the unit reference
-                BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasPlacedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+                Wall.BuildingInWall partOfWall = FindAsPartOfWall(unitType);
+                if (partOfWall != null)
                 {
-                    if (affectedUnits.Count != 1)
-                    {
-                        Log.SanityCheckFailed("Could not assign back reference to wall part at " + constructionSpot.ToString2() + ", expected type = " + unitType);
-                        return;
-                    }
+                    partOfWall.IsReserved = true;
+                    constructionSpot = partOfWall.BuildingCenterPosition;
+                    Log.Info("Building wall part " + unitType + " at " + constructionSpot.ToString2());
 
-                    Unit building = affectedUnits.First();
-                    partOfWall.PlacedBuilding = building;
-                    Log.Info("Updated wall back ref with placed building " + building);
-                }), unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.Position.IsSameCoordinates(constructionSpot))), true);
+                    // Subscribe to it being placed so that we can update the unit reference
+                    BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasPlacedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
+                    {
+                        if (affectedUnits.Count != 1)
+                        {
+                            Log.SanityCheckFailed("Could not assign back reference to wall part at " + constructionSpot.ToString2() + ", expected type = " + unitType);
+                            return;
+                        }
+
+                        Unit building = affectedUnits.First();
+                        partOfWall.PlacedBuilding = building;
+                        Log.Info("Updated wall back ref with placed building " + building);
+                    }), unfilteredList => new HashSet<Unit>(unfilteredList.Where(unitIter => unitIter.Position.IsSameCoordinates(constructionSpot))), true);
+                }
             }
 
             // Find a valid spot, the slow way

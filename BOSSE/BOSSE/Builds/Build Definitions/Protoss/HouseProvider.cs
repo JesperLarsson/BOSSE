@@ -36,6 +36,8 @@ namespace BOSSE
     /// </summary>
     public class HouseProvider : ProtossBaseBuild
     {
+        private int buildCount = 0;
+
         public override uint? EvaluateBuildOrderViability()
         {
             uint currentAndPending = GetCurrentAndPendingSupply();
@@ -65,13 +67,16 @@ namespace BOSSE
                 if (CurrentMinerals < houseInfo.MineralCost)
                     return BuildStatus.WaitingForResources;
 
+                // We disallow the first house from being used as a wall so that we always have a Pylon in our home base for later use
+                bool allowAsWall = buildCount >= 1;
                 Log.Info($"Building house (auto selecting position)...");
 
-                BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(RaceHouseType());
+                BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(RaceHouseType(), allowAsWall);
+
                 supplyDiff += (uint)houseInfo.FoodProvided;
                 CurrentMinerals -= houseInfo.MineralCost;
-
                 status = BuildStatus.Completed;
+                buildCount++;
             }
 
             return status;

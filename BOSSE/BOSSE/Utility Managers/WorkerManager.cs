@@ -162,7 +162,7 @@ namespace BOSSE
 
         private void AssignWorkersToGasExtractors()
         {
-            List<Unit> extractors = GetUnits(UnitId.REFINERY, onlyCompleted: true);
+            List<Unit> extractors = GetUnits(RaceGasExtractor(), onlyCompleted: true);
             if (extractors.Count == 0)
                 return;
 
@@ -271,7 +271,7 @@ namespace BOSSE
 
         private void BuildNewGasExtractors(int numberOfExtractors)
         {
-            UnitTypeData extractorInfo = GetUnitInfo(UnitId.REFINERY);
+            UnitTypeData extractorInfo = GetUnitInfo(RaceGasExtractor());
             List<Unit> gasGeysers = GetUnits(UnitConstants.GasGeysers, Alliance.Neutral, false, true);
 
             for (int i = 0; i < gasGeysers.Count && i < numberOfExtractors && CurrentMinerals >= extractorInfo.MineralCost; i++)
@@ -292,7 +292,7 @@ namespace BOSSE
 
                 Log.Info($"WorkerManager - Building new gas extractor at " + geyser.Position.ToString2() + ", geyser = " + geyser.Tag);
                 geyser.IsReserved = true;
-                Queue(CommandBuilder.ConstructActionOnTarget(UnitId.REFINERY, worker, geyser));
+                Queue(CommandBuilder.ConstructActionOnTarget(RaceGasExtractor(), worker, geyser));
                 CurrentMinerals -= extractorInfo.MineralCost;
                 this.extractorCount++;
             }
