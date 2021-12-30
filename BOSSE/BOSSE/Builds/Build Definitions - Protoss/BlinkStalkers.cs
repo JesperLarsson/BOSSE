@@ -76,12 +76,27 @@ namespace BOSSE
 
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 1));
+
+            // Assign workers to gas
             RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 1));
+            RemainingSteps.Add(new WaitForCompletion(UnitId.ASSIMILATOR, 1));
+            RemainingSteps.Add(new CustomStep(() =>
+            {
+                BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(3);
+            }));
+
             RemainingSteps.Add(new RequireBuilding(UnitId.CYBERNETICS_CORE, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 2));
             RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 2));
             RemainingSteps.Add(new RequireUnit(UnitId.STALKER, 1) { AllowChronoBoost = true });
+
+            // Assign workers to gas nr 2
+            RemainingSteps.Add(new WaitForCompletion(UnitId.ASSIMILATOR, 2));
+            RemainingSteps.Add(new CustomStep(() =>
+            {
+                BOSSE.WorkerManagerRef.SetNumberOfWorkersOnGas(6);
+            }));
 
             RemainingSteps.Add(new WaitForCompletion(UnitId.CYBERNETICS_CORE, 1));
             RemainingSteps.Add(new WaitForCondition(() =>

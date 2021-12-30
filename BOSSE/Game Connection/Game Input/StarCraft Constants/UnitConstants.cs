@@ -25,6 +25,7 @@ namespace BOSSE
     using System.Threading;
 
     using SC2APIProtocol;
+
     using Action = SC2APIProtocol.Action;
 
     /// <summary>
@@ -754,6 +755,12 @@ namespace BOSSE
             UnitId.PROTOSS_VESPENE_GEYSER,
             UnitId.PURIFIER_VESPENE_GEYSER,
             UnitId.SHAKURAS_VESPENE_GEYSER,
+            UnitId.EXTRACTOR,
+            UnitId.ASSIMILATOR,
+            UnitId.REFINERY
+            };
+
+        public static readonly HashSet<UnitId> GasExtractors = new HashSet<UnitId> {
             UnitId.EXTRACTOR,
             UnitId.ASSIMILATOR,
             UnitId.REFINERY

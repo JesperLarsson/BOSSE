@@ -58,23 +58,24 @@ namespace BOSSE
             InitializeNaturalWall();
         }
 
-        public void BuildAtExactPosition(UnitId unitType, Point2D exactCoordinate)
+        public bool BuildAtExactPosition(UnitId unitType, Point2D exactCoordinate)
         {
             if (exactCoordinate == null || (exactCoordinate.X == 0 && exactCoordinate.Y == 0))
             {
                 Log.Warning($"Tried to build unit {unitType} without any coordinates set");
-                return;
+                return false;
             }
 
             Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(exactCoordinate);
             if (worker == null)
             {
                 Log.Warning($"Unable to find a worker to construct {unitType}");
-                return;
+                return false;
             }
 
             Queue(CommandBuilder.ConstructAction(unitType, worker, exactCoordinate));
             Log.Info($"Constructing {unitType} at {exactCoordinate.ToString2()} using worker " + worker.Tag);
+            return true;
         }
 
         public void BuildAtApproximatePosition(UnitId unitType, Point2D approximatePosition, int searchRadius = 12)
@@ -92,26 +93,33 @@ namespace BOSSE
         /// <summary>
         /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
         /// </summary>
-        public void BuildAutoSelectPosition(UnitId unitType, bool allowAsWallPart = true)
+        public bool BuildAutoSelectPosition(UnitId buildingType, bool allowAsWallPart = true)
         {
+            // Gas extractors are built by the worker manager
+            if (GasExtractors.Contains(buildingType))
+            {
+                bool ok = BOSSE.WorkerManagerRef.BuildNewGasExtractors(1);
+                return ok;
+            }
+
             Point2D constructionSpot = null;
 
             // Check if it can be a part part of a building wall, typically at our natural expansion
             if (allowAsWallPart)
             {
-                Wall.BuildingInWall partOfWall = FindAsPartOfWall(unitType);
+                Wall.BuildingInWall partOfWall = FindAsPartOfWall(buildingType);
                 if (partOfWall != null)
                 {
                     partOfWall.IsReserved = true;
                     constructionSpot = partOfWall.BuildingCenterPosition;
-                    Log.Info("Building wall part " + unitType + " at " + constructionSpot.ToString2());
+                    Log.Info("Building wall part " + buildingType + " at " + constructionSpot.ToString2());
 
                     // Subscribe to it being placed so that we can update the unit reference
                     BOSSE.SensorManagerRef.GetSensor(typeof(OwnStructureWasPlacedSensor)).AddHandler(new SensorEventHandler(delegate (HashSet<Unit> affectedUnits)
                     {
                         if (affectedUnits.Count != 1)
                         {
-                            Log.SanityCheckFailed("Could not assign back reference to wall part at " + constructionSpot.ToString2() + ", expected type = " + unitType);
+                            Log.SanityCheckFailed("Could not assign back reference to wall part at " + constructionSpot.ToString2() + ", expected type = " + buildingType);
                             return;
                         }
 
@@ -125,10 +133,11 @@ namespace BOSSE
             // Find a valid spot, the slow way
             if (constructionSpot == null)
             {
-                constructionSpot = AutoPickPosition(unitType);
+                constructionSpot = AutoPickPosition(buildingType);
             }
 
-            BuildAtExactPosition(unitType, constructionSpot);
+            bool buildOk = BuildAtExactPosition(buildingType, constructionSpot);
+            return buildOk;
         }
 
         /// <summary>
@@ -136,6 +145,7 @@ namespace BOSSE
         /// </summary>
         private Point2D AutoPickPosition(UnitId buildingType, Point2D argCloseToPosition = null, int searchRadius = 12)
         {
+            // Pick a spot, we will search around this location
             Point2D startingSpot;
             if (argCloseToPosition == null)
             {
@@ -146,14 +156,15 @@ namespace BOSSE
                 startingSpot = argCloseToPosition;
             }
 
+            // Protoss - Use pylon-based logic if possible, only falling back on the brute force method if necessary
             if (BOSSE.UseRace == Race.Protoss && (UnitConstants.ProtossBuildingsDoesNotRequirePylon.Contains(buildingType) == false))
             {
-                // Use pylon-based logic if possible, only falling back on the brute force method if necessary
                 Point2D point = AutoPickPositionNearPylon(buildingType, startingSpot);
                 if (point != null)
                     return point;
             }
 
+            // Try brute force method (slow)
             return AutoPickPositionBruteForce(buildingType, startingSpot, searchRadius);
         }
 

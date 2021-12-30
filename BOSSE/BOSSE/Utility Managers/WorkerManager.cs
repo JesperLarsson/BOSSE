@@ -269,25 +269,28 @@ namespace BOSSE
             }
         }
 
-        private void BuildNewGasExtractors(int numberOfExtractors)
+        public bool BuildNewGasExtractors(int numberOfExtractors)
         {
             UnitTypeData extractorInfo = GetUnitInfo(RaceGasExtractor());
             List<Unit> gasGeysers = GetUnits(UnitConstants.GasGeysers, Alliance.Neutral, false, true);
 
+            bool success = false;
             for (int i = 0; i < gasGeysers.Count && i < numberOfExtractors && CurrentMinerals >= extractorInfo.MineralCost; i++)
             {
                 Unit geyser = gasGeysers[i];
 
                 if (!geyser.Position.IsWithinRange(Globals.MainBaseLocation, 20))
-                    continue;
+                    continue; // should also cover our natural
                 if (geyser.IsReserved)
                     continue;
+                if (CanAfford(RaceGasExtractor()) == false)
+                    return false;
 
                 Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(geyser.Position);
                 if (worker == null)
                 {
                     Log.Warning($"Unable to find a worker to construct gas geyser near " + geyser.Position.ToString2());
-                    return;
+                    return false;
                 }
 
                 Log.Info($"WorkerManager - Building new gas extractor at " + geyser.Position.ToString2() + ", geyser = " + geyser.Tag);
@@ -295,7 +298,10 @@ namespace BOSSE
                 Queue(CommandBuilder.ConstructActionOnTarget(RaceGasExtractor(), worker, geyser));
                 CurrentMinerals -= extractorInfo.MineralCost;
                 this.extractorCount++;
+                success = true;
             }
+
+            return success;
         }
 
         #endregion
