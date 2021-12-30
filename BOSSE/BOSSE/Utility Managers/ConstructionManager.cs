@@ -131,7 +131,10 @@ namespace BOSSE
             BuildAtExactPosition(unitType, constructionSpot);
         }
 
-        private Point2D AutoPickPosition(UnitId unitType, Point2D argCloseToPosition = null, int searchRadius = 12)
+        /// <summary>
+        /// Attempts to automatically find a position to place the given building
+        /// </summary>
+        private Point2D AutoPickPosition(UnitId buildingType, Point2D argCloseToPosition = null, int searchRadius = 12)
         {
             Point2D startingSpot;
             if (argCloseToPosition == null)
@@ -143,9 +146,87 @@ namespace BOSSE
                 startingSpot = argCloseToPosition;
             }
 
+            if (BOSSE.UseRace == Race.Protoss && (UnitConstants.ProtossBuildingsDoesNotRequirePylon.Contains(buildingType) == false))
+            {
+                // Use pylon-based logic if possible, only falling back on the brute force method if necessary
+                Point2D point = AutoPickPositionNearPylon(buildingType, startingSpot);
+                if (point != null)
+                    return point;
+            }
+
+            return AutoPickPositionBruteForce(buildingType, startingSpot, searchRadius);
+        }
+
+        /// <summary>
+        /// "New" positioning style, only works for Protoss
+        /// </summary>
+        private Point2D AutoPickPositionNearPylon(UnitId buildingType, Point2D startingSpot)
+        {
+            List<Unit> pylons = GetUnits(UnitId.PYLON, onlyCompleted: true, onlyVisible: true, alliance: Alliance.Self);
+            if (pylons == null || pylons.Count == 0)
+                return null;
+
+            // Sort by distance to target spot
+            pylons.OrderBy(o => o.Position.AirDistanceAbsolute(startingSpot)).ToList();
+
+            Size size = GetSizeOfBuilding(buildingType);
+            List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
+            const int PylonRange = 6;
+            foreach (Unit pylonIter in pylons)
+            {
+                //if (pylonIter.Position.AirDistanceAbsolute(startingSpot) > searchRadius)
+                //    break; // reached max search distance
+
+                float xStart = pylonIter.Position.X - size.Width - PylonRange;
+                float xEnd = pylonIter.Position.X + size.Width + PylonRange;
+                float yStart = pylonIter.Position.Y - size.Height - PylonRange;
+                float yEnd = pylonIter.Position.Y + size.Height + PylonRange;
+
+                List<Point2D> candidateList = new List<Point2D>();
+                for (float x = xStart; x <= xEnd; x++)
+                {
+                    for (float y = yStart; y <= yEnd; y++)
+                    {
+                        Point2D point = new Point2D(x, y);
+
+                        // Can't collide with pylon
+                        float distanceToPylon = point.AirDistanceAbsolute(pylonIter.Position);
+                        if (distanceToPylon < size.Width || distanceToPylon < size.Height)
+                            continue;
+
+                        // Do not build close to mineral fields
+                        if (IsInRangeAny(point, mineralFields, 5))
+                            continue;
+
+                        candidateList.Add(point);
+                    }
+                }
+
+                // Try to build as close to Pylon as possible
+                candidateList.OrderBy(o => o.AirDistanceAbsolute(pylonIter.Position)).ToList();
+
+                foreach (Point2D pointIter in candidateList)
+                {
+                    if (!CanPlaceRequest(buildingType, pointIter))
+                        continue;
+
+                    // Matched location that we can build at
+                    return pointIter;
+                }
+            }
+
+            Log.SanityCheckFailed("Unable to auto-place building " + buildingType + " near a pylon at " + startingSpot.ToString2());
+            return null;
+        }
+
+        /// <summary>
+        /// Tries to find a placement position by polling random coordinates, slow and unreliable
+        /// </summary>
+        private Point2D AutoPickPositionBruteForce(UnitId buildingType, Point2D startingSpot, int searchRadius)
+        {
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
             List<Unit> pylons = null;
-            if (BOSSE.UseRace == Race.Protoss && unitType != UnitId.PYLON && unitType != UnitId.NEXUS && unitType != UnitId.ASSIMILATOR)
+            if (BOSSE.UseRace == Race.Protoss && buildingType != UnitId.PYLON && buildingType != UnitId.NEXUS && buildingType != UnitId.ASSIMILATOR)
                 pylons = GetUnits(UnitId.PYLON, onlyCompleted: true, onlyVisible: true, alliance: Alliance.Self);
 
             for (int _ = 0; _ < 10000; _++)
@@ -162,13 +243,13 @@ namespace BOSSE
                     continue;
 
                 // Must be buildable (polls game)
-                if (!CanPlaceRequest(unitType, constructionSpot))
+                if (!CanPlaceRequest(buildingType, constructionSpot))
                     continue;
 
                 return constructionSpot;
             }
 
-            Log.SanityCheckFailed("Unable to auto-place building " + unitType + " near " + startingSpot.ToString2());
+            Log.SanityCheckFailed("Unable to auto-place building " + buildingType + " near " + startingSpot.ToString2());
             return null;
         }
 

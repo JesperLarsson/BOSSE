@@ -227,6 +227,13 @@ namespace BOSSE
             UnitId.FACTORY_FLYING,
         };
 
+        public static readonly HashSet<UnitId> ProtossBuildingsDoesNotRequirePylon = new HashSet<UnitId>
+        {
+            UnitId.PYLON,
+            UnitId.NEXUS,
+            UnitId.ASSIMILATOR,
+        };
+
         public static readonly HashSet<UnitId> All = new HashSet<UnitId>
         {
             UnitId.HELLBAT,
