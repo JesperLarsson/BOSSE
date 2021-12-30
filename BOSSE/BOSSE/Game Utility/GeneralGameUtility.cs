@@ -633,7 +633,7 @@ namespace BOSSE
             if (useNexus.Energy < ChronoCost)
                 return;
 
-            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.TIMEWARP, useNexus, targetUnit));
+            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.CHRONOBOOSTENERGYCOST, useNexus, targetUnit));
             useNexus.Energy -= ChronoCost;
         }
 
@@ -706,7 +706,9 @@ namespace BOSSE
                     continue;
 
                 Queue(CommandBuilder.TrainAction(buildingIter, unitToBuild));
-                ApplyChronoBoostTo(buildingIter);
+
+                if (allowChronoBoost)
+                    ApplyChronoBoostTo(buildingIter);
 
                 return true;
             }
