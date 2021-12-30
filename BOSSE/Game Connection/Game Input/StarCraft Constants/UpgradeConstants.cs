@@ -335,8 +335,6 @@ namespace BOSSE
             AmplifiedShielding = 299,
             PsionicAmplifiers = 300,
             SecretedCoating = 301,
-
-
         }
     }
 }
