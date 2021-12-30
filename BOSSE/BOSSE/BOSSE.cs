@@ -155,13 +155,6 @@ namespace BOSSE
                 }
             }));
 
-            // Assign a random worker to scout
-            BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
-            Unit scoutingWorker = GetUnits(RaceWorkerUnitType(), onlyCompleted: true)[0];
-            Log.Info("Assigning worker " + scoutingWorker.Tag + " as initial scout");
-            scoutingWorker.IsReserved = true;
-            BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
-
             // Insert a random joke in chat
             //foreach (string jokeLine in JokeGenerator.GetJoke())
             //{

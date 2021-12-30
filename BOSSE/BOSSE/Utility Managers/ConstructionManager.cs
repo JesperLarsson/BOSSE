@@ -66,7 +66,7 @@ namespace BOSSE
                 return false;
             }
 
-            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(exactCoordinate);
+            Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(exactCoordinate, true);
             if (worker == null)
             {
                 Log.Warning($"Unable to find a worker to construct {unitType}");

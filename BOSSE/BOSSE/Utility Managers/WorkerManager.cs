@@ -89,9 +89,9 @@ namespace BOSSE
         /// <summary>
         /// Returns a single worker close to the given point which can be used for a new job
         /// </summary>
-        public Unit RequestWorkerForJobCloseToPointOrNull(Point2D point)
+        public Unit RequestWorkerForJobCloseToPointOrNull(Point2D point, bool isBuildingJob)
         {
-            var result = RequestWorkersForJobCloseToPointOrNull(point, 1);
+            var result = RequestWorkersForJobCloseToPointOrNull(point, 1, isBuildingJob);
             if (result == null || result.Count == 0)
                 return null;
 
@@ -102,7 +102,7 @@ namespace BOSSE
         /// Returns a multiple workers close to the given point which can be used for a new job
         /// Can return a partial amount, null = no workers found
         /// </summary>
-        public List<Unit> RequestWorkersForJobCloseToPointOrNull(Point2D point, int maxWorkerCount)
+        public List<Unit> RequestWorkersForJobCloseToPointOrNull(Point2D point, int maxWorkerCount, bool isBuildingJob)
         {
             List<Unit> workers = GetUnits(RaceWorkerUnitType());
 
@@ -114,17 +114,16 @@ namespace BOSSE
             {
                 // Is worker suitable?
                 if (worker.HasNewOrders)
-                {
                     continue;
-                }
+                if (worker.IsReserved)
+                    continue;
+                if (worker.IsBuilder && (isBuildingJob == false))
+                    continue;
+
                 if (worker.CurrentOrder == null)
-                {
                     matchedWorkers.Add(worker);
-                }
                 else if (HarvestGatherAbilities.Contains((AbilityId)worker.CurrentOrder.AbilityId))
-                {
                     matchedWorkers.Add(worker);
-                }
 
                 if (matchedWorkers.Count >= maxWorkerCount)
                     break;
@@ -294,7 +293,7 @@ namespace BOSSE
                     if (workersToPutOnExtractor == 0)
                         continue;
 
-                    List<Unit> workersToExtractor = RequestWorkersForJobCloseToPointOrNull(extractor.Position, workersToPutOnExtractor);
+                    List<Unit> workersToExtractor = RequestWorkersForJobCloseToPointOrNull(extractor.Position, workersToPutOnExtractor, false);
                     if (workersToExtractor == null)
                         continue;
 
@@ -321,7 +320,7 @@ namespace BOSSE
                 if (CanAfford(RaceGasExtractor()) == false)
                     return false;
 
-                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(geyser.Position);
+                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(geyser.Position, true);
                 if (worker == null)
                 {
                     Log.Warning($"Unable to find a worker to construct gas geyser near " + geyser.Position.ToString2());
@@ -524,7 +523,7 @@ namespace BOSSE
 
         private bool ReturnIdleWorkers()
         {
-            List<Unit> idleWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false).ToList();
+            List<Unit> idleWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false && unit.IsBuilder == false).ToList();
             if (idleWorkers.Count == 0)
             {
                 return false;

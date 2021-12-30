@@ -63,10 +63,18 @@ namespace BOSSE
                 3x Gas
              */
 
+            Unit buildingWorker = null;
             RemainingSteps.Add(new CustomStep(() =>
             {
                 // Disable auto-building of Pylons, it is a hardcoded part of our starting build
                 BOSSE.HouseProviderManagerRef.Disable();
+
+                // Send a worker to our natural right away, we will build here to start
+                buildingWorker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(Globals.MainBaseLocation, true);
+                buildingWorker.IsBuilder = true;
+
+                Point2D naturalWallPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalWallPosition();
+                GeneralGameUtility.Queue(CommandBuilder.MoveAction(new List<Unit> { buildingWorker }, naturalWallPos));
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 1));
@@ -82,7 +90,33 @@ namespace BOSSE
 
             RemainingSteps.Add(new RequireBuilding(UnitId.CYBERNETICS_CORE, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 1));
+
+            // Send a worker to scout
+            RemainingSteps.Add(new CustomStep(() =>
+            {
+                Unit scoutingWorker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(Globals.MainBaseLocation, false);
+                if (scoutingWorker == null)
+                {
+                    Log.Warning("Unable to find a worker to use as scout");
+                    return;
+                }
+                Log.Info("Assigning worker " + scoutingWorker.Tag + " as scout");
+
+                scoutingWorker.IsReserved = true;
+                BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
+                BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
+            }));
+
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 2));
+
+            // Move back builder to be a normal worker
+            RemainingSteps.Add(new CustomStep(() =>
+            {
+                if (buildingWorker != null)
+                    buildingWorker.IsBuilder = false;
+                buildingWorker = null;
+            }));
+
             RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 2));
             RemainingSteps.Add(new RequireUnit(UnitId.STALKER, 1) { AllowChronoBoost = true });
 

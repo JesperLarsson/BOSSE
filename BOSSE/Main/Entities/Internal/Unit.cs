@@ -56,6 +56,11 @@ namespace BOSSE
         public bool IsReserved = false;
 
         /// <summary>
+        /// If set, will not automatically be moved back to mining
+        /// </summary>
+        public bool IsBuilder = false;
+
+        /// <summary>
         /// Set if this unit was given new orders this tick
         /// This prevents other parts of the code from issuing duplicate orders
         /// </summary>
