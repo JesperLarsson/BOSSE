@@ -72,7 +72,7 @@ namespace BOSSE
 
         private void CallDownMule(Unit fromOrbitalCommand)
         {
-            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.CALL_DOWN_MULE, fromOrbitalCommand, GetMineralInMainMineralLine()));
+            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.CALLDOWNMULE, fromOrbitalCommand, GetMineralInMainMineralLine()));
             fromOrbitalCommand.Energy -= muleEnergyCost;
         }
 

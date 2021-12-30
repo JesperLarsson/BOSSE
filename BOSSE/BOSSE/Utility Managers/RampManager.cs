@@ -65,12 +65,12 @@ namespace BOSSE
         private void PutDownDepot(Unit depoToDown)
         {
             Log.Bulk("Putting down depot " + depoToDown);
-            Queue(CommandBuilder.UseAbility(AbilityId.SupplyDepotLower, depoToDown));
+            Queue(CommandBuilder.UseAbility(AbilityId.SUPPLYDEPOTLOWER_LOWER, depoToDown));
         }
 
-        private void PullUpDepot(Unit depoToDown)
+        private void PullUpDepot(Unit depoToUp)
         {
-            Queue(CommandBuilder.UseAbility(AbilityId.SupplyDepotLower, depoToDown));
+            Queue(CommandBuilder.UseAbility(AbilityId.SUPPLYDEPOTRAISE_RAISE, depoToUp));
         }
     }
 }

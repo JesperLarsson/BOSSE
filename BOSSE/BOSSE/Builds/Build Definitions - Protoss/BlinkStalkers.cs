@@ -93,7 +93,7 @@ namespace BOSSE
             {
                 // Buy warp upgrade
                 Unit cyberCore = GeneralGameUtility.GetUnits(UnitId.CYBERNETICS_CORE, onlyCompleted: true, onlyVisible: true).FirstOrDefault();
-                GeneralGameUtility.Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.CyberneticsCoreResearch_ResearchWarpGate, cyberCore));
+                GeneralGameUtility.Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.CYBERNETICSCORERESEARCH_RESEARCHWARPGATE, cyberCore));
 
                 // Boost out the upgrade
                 GeneralGameUtility.ApplyChronoBoostTo(cyberCore);
@@ -112,7 +112,7 @@ namespace BOSSE
             {
                 // Buy blink upgrade
                 Unit twilightCouncil = GeneralGameUtility.GetUnits(UnitId.TWILIGHT_COUNSEL, onlyCompleted: true, onlyVisible: true).FirstOrDefault();
-                GeneralGameUtility.Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.ResearchBlinkUpgrade, twilightCouncil));
+                GeneralGameUtility.Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.TWILIGHTCOUNCILRESEARCH_RESEARCHSTALKERTELEPORT, twilightCouncil));
 
                 // Boost out the upgrade
                 GeneralGameUtility.ApplyChronoBoostTo(twilightCouncil);

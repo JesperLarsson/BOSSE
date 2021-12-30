@@ -579,11 +579,11 @@ namespace BOSSE
         public static AbilityId RaceMiningAction()
         {
             if (BOSSE.UseRace == Race.Terran)
-                return AbilityId.HARVEST_GATHER_SCV;
+                return AbilityId.SCVHARVEST_GATHER;
             if (BOSSE.UseRace == Race.Protoss)
-                return AbilityId.HARVEST_GATHER_PROBE;
+                return AbilityId.PROBEHARVEST_GATHER;
             if (BOSSE.UseRace == Race.Zerg)
-                return AbilityId.HARVEST_GATHER_DRONE;
+                return AbilityId.DRONEHARVEST_GATHER;
 
             throw new Exception("Unable to determine mining type");
         }
@@ -633,7 +633,7 @@ namespace BOSSE
             if (useNexus.Energy < ChronoCost)
                 return;
 
-            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.ChronoBoost, useNexus, targetUnit));
+            Queue(CommandBuilder.UseAbilityOnOtherUnit(AbilityId.TIMEWARP, useNexus, targetUnit));
             useNexus.Energy -= ChronoCost;
         }
 
