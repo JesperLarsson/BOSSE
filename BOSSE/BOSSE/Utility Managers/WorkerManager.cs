@@ -80,6 +80,7 @@ namespace BOSSE
             //ReturnIdleWorkersToMining();
 
             ResolveGasNeeds();
+            ReturnWorkersFromBuildingAssimilators();
             AssignWorkersToGasExtractors();
 
             BalanceWorkersBetweenBases();
@@ -160,9 +161,43 @@ namespace BOSSE
             }
         }
 
+        /// <summary>
+        /// After assimilator is build, the worker will stand idle by and wait for it to finish. This will move them back to mining minerals instead
+        /// </summary>
+        private void ReturnWorkersFromBuildingAssimilators()
+        {
+            if (BOSSE.UseRace != Race.Protoss)
+                return;
+
+            List<Unit> extractors = GetUnits(RaceGasExtractor());
+            if (extractors.Count == 0)
+                return;
+
+            UnitId workerType = RaceWorkerUnitType();
+            List<Unit> workersToReturn = new List<Unit>();
+            foreach (Unit extractorIter in extractors)
+            {
+                if (extractorIter.BuildProgress >= 0.8)
+                    continue;
+
+                foreach (Unit workerIter in Unit.AllUnitInstances.Values)
+                {
+                    if (workerIter.UnitType != workerType)
+                        continue;
+                    if (workerIter.CurrentOrder == null)
+                        continue;
+
+                    if (workerIter.CurrentOrder.TargetUnitTag == extractorIter.Tag)
+                        workersToReturn.Add(workerIter);
+                }
+            }
+
+            Queue(CommandBuilder.MineMineralsAction(workersToReturn, GetMineralInMainMineralLine()));
+        }
+
         private void AssignWorkersToGasExtractors()
         {
-            List<Unit> extractors = GetUnits(RaceGasExtractor(), onlyCompleted: true);
+            List<Unit> extractors = GetUnits(RaceGasExtractor());
             if (extractors.Count == 0)
                 return;
 
@@ -384,8 +419,8 @@ namespace BOSSE
                         continue;
 
                     List<Unit> workersMiningFromBase = miningWorkersGlobal.Where(
-                        worker => (!worker.HasNewOrders) && 
-                        (!usedWorkers.Contains(worker.Tag)) && 
+                        worker => (!worker.HasNewOrders) &&
+                        (!usedWorkers.Contains(worker.Tag)) &&
                         worker.CurrentOrder != null &&
                         HarvestAbilities.Contains((AbilityId)worker.CurrentOrder.AbilityId) &&
                         fromIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])
@@ -499,7 +534,7 @@ namespace BOSSE
             if (commandCenters.Count == 0)
             {
                 Log.Warning("No cc found to return workers to");
-                return false; 
+                return false;
             }
 
             foreach (Unit idleWorkerIter in idleWorkers)

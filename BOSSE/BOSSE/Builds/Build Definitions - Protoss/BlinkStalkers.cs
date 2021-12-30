@@ -67,11 +67,6 @@ namespace BOSSE
             {
                 // Disable auto-building of Pylons, it is a hardcoded part of our starting build
                 BOSSE.HouseProviderManagerRef.Disable();
-
-#warning TODO: Re-enable walling
-                // Wallin seems to be unreliable sometimes, disabled for now
-                //; testa igen ;
-                //BOSSE.ConstructionManagerRef.AllowNaturalWallinIn = false;
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 1));
