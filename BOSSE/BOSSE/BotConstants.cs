@@ -44,7 +44,7 @@ namespace BOSSE
         /// False = Game behaves as during normal play, aka realtime mode
         /// True = Game will wait input and runs as fast as possible
         /// </summary>
-        public const bool SinglestepMode = true;
+        public const bool UseStepMode = true;
 
         /// <summary>
         /// Number of milliseconds to sleep after each bot tick
@@ -76,5 +76,20 @@ namespace BOSSE
         /// Maximum amount of food allowed
         /// </summary>
         public const int FoodCap = 200;
+
+        /// <summary>
+        /// Debug map to use
+        /// </summary>
+        public const string DebugMapName = "AcropolisLE.SC2Map";
+
+        /// <summary>
+        /// Debug opponent race
+        /// </summary>
+        public const Race DebugOpponentRace = Race.Zerg;
+
+        /// <summary>
+        /// Debug opponent difficulty (official AI)
+        /// </summary>
+        public const Difficulty DebugOpponentDifficulty = Difficulty.Easy;
     }
 }

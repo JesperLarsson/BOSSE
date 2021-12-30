@@ -42,6 +42,16 @@ namespace BOSSE
     {
         public AnalysedStaticMap AnalysedStaticMapRef = null;
         public AnalysedRuntimeMap AnalysedRuntimeMapRef = null;
+        private bool FileLoadOk = false;
+
+        public void LoadStaticData()
+        {
+            // Load static analysis if available
+            if (LoadStaticAnalysisFromFile())
+            {
+                this.FileLoadOk = true;
+            }
+        }
 
         public void Initialize()
         {
@@ -49,9 +59,9 @@ namespace BOSSE
             Log.Info("Performing runtime map analysis");
             this.AnalysedRuntimeMapRef = RuntimeMapAnalyser.AnalyseCurrentMapInitial();
 
-            // Load static analysis if available
-            if (!LoadStaticAnalysisFromFile())
+            if (this.FileLoadOk == false)
             {
+                // NOTE IMPORTANT - Re-ordered how static and dynamic analysis is loaded. Might not work for new maps without tweaking init order
                 CreateMapFolder();
 
                 Log.Info("Generating new map analysis (this will take a while)...");
@@ -59,6 +69,7 @@ namespace BOSSE
 
                 Log.Info("Map analysis generated, saving to file");
                 SaveStaticAnalysisToFile();
+                this.FileLoadOk = true;
             }
 
             // Hack - Some parts of the runtime analysis needs the static data (but static data needs the initial runtime analysis)
@@ -114,7 +125,7 @@ namespace BOSSE
                 return false;
             }
 
-            Log.Info("Loaded static map data for current map (" + CurrentGameState.State.GameInformation.MapName + ")");
+            Log.Info("Loaded static map data for current map (" + BotConstants.DebugMapName + ")");
             return true;
         }
 
@@ -122,7 +133,7 @@ namespace BOSSE
         {
             const string mapFolder = "StaticMapData";
 
-            string mapName = CurrentGameState.State.GameInformation.MapName;
+            string mapName = BotConstants.DebugMapName; // CurrentGameState.State.GameInformation.MapName;
             mapName = Path.Combine(mapFolder, mapName);
             mapName = Path.ChangeExtension(mapName, ".bossemap");
 

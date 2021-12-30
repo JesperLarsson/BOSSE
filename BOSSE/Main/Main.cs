@@ -37,11 +37,6 @@ namespace BOSSE
     /// </summary>
     public class MainLoop
     {
-        // Debug settings (vs Blizzard AI)
-        private static readonly string mapName = "AcropolisLE.SC2Map";
-        private static readonly Race opponentRace = Race.Zerg;
-        private static readonly Difficulty opponentDifficulty = Difficulty.Easy;
-
         /// <summary>
         /// Initializes the application
         /// </summary>
@@ -49,6 +44,8 @@ namespace BOSSE
         {
             GameBootstrapper bootStrapper = new GameBootstrapper();
             Globals.BotRef = new BOSSE();
+
+            Globals.BotRef.Initialize();
 
             // Set up game
             if (commandLineArguments.Length == 0)
@@ -60,7 +57,7 @@ namespace BOSSE
                     Globals.Random = new Random(BotConstants.FixedSeedValue);
 
                 DebugGui.BosseGui.StartGui();
-                Globals.GameConnection = bootStrapper.RunSinglePlayer(mapName, BOSSE.UseRace, opponentRace, opponentDifficulty).Result;
+                Globals.GameConnection = bootStrapper.RunSinglePlayer(BotConstants.DebugMapName, BOSSE.UseRace, BotConstants.DebugOpponentRace, BotConstants.DebugOpponentDifficulty).Result;
             }
             else
             {
@@ -71,7 +68,6 @@ namespace BOSSE
 
             // Game has started, read initial state
             ReadInitialState().Wait();
-            Globals.BotRef.Initialize();
 
             // Main loop
             Globals.OnCurrentFrame = 0;
@@ -96,7 +92,7 @@ namespace BOSSE
                     SendQueuedActions().Wait();
 
                     Globals.OnCurrentFrame++;
-                    if (BotConstants.SinglestepMode)
+                    if (BotConstants.UseStepMode)
                     {
                         Thread.Sleep(BotConstants.TickLockSleep);
                     }

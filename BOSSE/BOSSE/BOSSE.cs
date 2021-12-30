@@ -115,6 +115,9 @@ namespace BOSSE
         {
             //StrategicGoalRef.SetNewGoal(StrategicGoal.EconomyFocus);
             TacticalGoalRef.SetNewGoal(MilitaryGoal.DefendGeneral, null);
+
+            // General map analysis, takes a while to load
+            MapAnalysisRef.LoadStaticData();
         }
 
         /// <summary>
@@ -125,7 +128,6 @@ namespace BOSSE
             // Set main location
             Globals.MainBaseLocation = GetUnits(RaceCommandCenterUnitType())[0].Position;
 
-            // General map analysis
             PathFinderRef.Initialize();
             MapAnalysisRef.Initialize();
 

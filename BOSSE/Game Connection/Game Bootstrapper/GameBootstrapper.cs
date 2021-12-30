@@ -72,7 +72,7 @@ namespace BOSSE
         private async Task CreateGame(string mapName, Race opponentRace, Difficulty opponentDifficulty)
         {
             var createGame = new RequestCreateGame();
-            createGame.Realtime = !BotConstants.SinglestepMode;
+            createGame.Realtime = !BotConstants.UseStepMode;
 
             var mapPath = Path.Combine(starcraftMaps, mapName);
 
