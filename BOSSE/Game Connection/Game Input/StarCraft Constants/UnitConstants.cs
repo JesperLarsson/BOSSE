@@ -766,6 +766,20 @@ namespace BOSSE
             UnitId.REFINERY
             };
 
+        public static readonly HashSet<UnitId> CommandCenters = new HashSet<UnitId> {
+            UnitId.NEXUS,
+
+            UnitId.COMMAND_CENTER,
+            UnitId.COMMAND_CENTER_FLYING,
+            UnitId.ORBITAL_COMMAND,
+            UnitId.ORBITAL_COMMAND_FLYING,
+            UnitId.PLANETARY_FORTRESS,
+
+            UnitId.HATCHERY,
+            UnitId.LAIR,
+            UnitId.HIVE,
+            };
+
         public static readonly HashSet<UnitId> Workers = new HashSet<UnitId> {
             UnitId.SCV,
             UnitId.PROBE,

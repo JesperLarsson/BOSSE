@@ -705,7 +705,7 @@ namespace BOSSE
                 if (onlyFromFreeStructure && buildingIter.CurrentOrder != null)
                     continue;
 
-                Queue(CommandBuilder.TrainAction(buildingIter, unitToBuild));
+                Queue(CommandBuilder.TrainActionAndSubtractCosts(buildingIter, unitToBuild));
 
                 if (allowChronoBoost)
                     ApplyChronoBoostTo(buildingIter);

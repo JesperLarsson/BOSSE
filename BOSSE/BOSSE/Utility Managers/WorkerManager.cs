@@ -361,7 +361,7 @@ namespace BOSSE
 
                 if (CurrentMinerals >= workerInfo.MineralCost && FreeSupply >= workerInfo.FoodRequired)
                 {
-                    Queue(CommandBuilder.TrainAction(cc, RaceWorkerUnitType()));
+                    Queue(CommandBuilder.TrainActionAndSubtractCosts(cc, RaceWorkerUnitType()));
                 }
             }
         }

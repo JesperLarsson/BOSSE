@@ -91,6 +91,38 @@ namespace BOSSE
         }
 
         /// <summary>
+        /// Tries to expand to the next available base expansion position, if possible
+        /// </summary>
+        public bool BuildNextExpansion()
+        {
+            UnitId ccType = RaceCommandCenterUnitType();
+
+            // Expand
+            if (CanAfford(ccType))
+            {
+                Point2D constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.NaturalExpansion.GetCommandCenterPosition();
+
+                // Try third base if we have already expanded once before
+                if (IsOwnCcNear(constructionSpot))
+                {
+                    constructionSpot = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.ThirdExpansion.GetCommandCenterPosition();
+                    if (IsOwnCcNear(constructionSpot))
+                        return false;
+                }
+
+                Unit worker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(constructionSpot, true);
+                if (worker == null)
+                    return false;
+
+                Queue(CommandBuilder.ConstructAction(ccType, worker, constructionSpot));
+                SubtractCosts(ccType);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
         /// </summary>
         public bool BuildAutoSelectPosition(UnitId buildingType, bool allowAsWallPart = true)
@@ -102,9 +134,14 @@ namespace BOSSE
                 return ok;
             }
 
-            Point2D constructionSpot = null;
+            // Command centers needs to be built at specific expansion slots
+            if (CommandCenters.Contains(buildingType))
+            {
+                return BuildNextExpansion();
+            }
 
             // Check if it can be a part part of a building wall, typically at our natural expansion
+            Point2D constructionSpot = null;
             if (allowAsWallPart)
             {
                 Wall.BuildingInWall partOfWall = FindAsPartOfWall(buildingType);
@@ -302,6 +339,21 @@ namespace BOSSE
                 }
             }
             return null;
+        }
+
+        private bool IsOwnCcNear(Point2D point)
+        {
+            UnitId ccType = RaceCommandCenterUnitType();
+            List<Unit> ccNearNatural = GetUnits(ccType);
+            if (ccNearNatural == null || ccNearNatural.Count == 0)
+                return false;
+
+            ccNearNatural.OrderBy(o => o.Position.AirDistanceAbsolute(point)).ToList();
+
+            float distance = ccNearNatural[0].Position.AirDistanceAbsolute(point);
+            bool isNear = distance <= 8;
+
+            return isNear;
         }
 
         /// <summary>

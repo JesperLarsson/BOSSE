@@ -163,7 +163,7 @@ namespace BOSSE
         /// <summary>
         /// Build sc2 action to train the specified unit from the given resource center
         /// </summary>
-        public static Action TrainAction(Unit fromCenter, UnitId unitTypeToBuild, bool updateResourcesAvailable = true)
+        public static Action TrainActionAndSubtractCosts(Unit fromCenter, UnitId unitTypeToBuild, bool updateResourcesAvailable = true)
         {
             Log.Bulk($"Train {fromCenter.ToString()} {unitTypeToBuild}");
             if (fromCenter.QueuedOrders.Count > 0)

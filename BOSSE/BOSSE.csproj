@@ -73,7 +73,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BOSSE\Builds\Build Definitions - Protoss\BlinkStalkers.cs" />
-    <Compile Include="BOSSE\Builds\Entities\BuildOrder.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\BuildOrder.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\CustomStep.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\DebugStop.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\WaitForCondition.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\WaitForCompletion.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\RequireUnit.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\RequireBuilding.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyArmyUnitDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Enemy\EnemyResourceCenterDetectedFirstTimeSensor.cs" />
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnResourceCenterCompletedSensor.cs" />
@@ -94,7 +100,7 @@
     <Compile Include="Main\Entities\Exception\BosseFatalException.cs" />
     <Compile Include="Main\Entities\Exception\BosseRecoverableException.cs" />
     <Compile Include="Main\Entities\Game\BaseLocation.cs" />
-    <Compile Include="BOSSE\Builds\Entities\BuildStep.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\Base Class\BuildStep.cs" />
     <Compile Include="Main\Entities\Internal\Wall.cs" />
     <Compile Include="Main\Entities\Map\AnalysedRuntimeMap.cs" />
     <Compile Include="Main\Entities\Map\ChokepointCollectionBetweenPoints.cs" />
