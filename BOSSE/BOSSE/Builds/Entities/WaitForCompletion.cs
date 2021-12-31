@@ -31,14 +31,23 @@ namespace BOSSE
     using static GeneralGameUtility;
     using static global::BOSSE.UnitConstants;
 
-    /// <summary>
-    /// A single build order, indicates which units and structures to build
-    /// </summary>
-    public abstract class BuildStep
+    public class WaitForCompletion : BuildStep
     {
-        /// <summary>
-        /// Runs this step, return value indicates if it was successfully finished or not. If so, the step wil not be run again
-        /// </summary>
-        public abstract bool ResolveStep();
+        public UnitId UnitType;
+        public uint UnitCount;
+
+        public WaitForCompletion(UnitId unitType, uint unitCount)
+        {
+            UnitType = unitType;
+            UnitCount = unitCount;
+        }
+
+        public override bool ResolveStep()
+        {
+            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.UnitType, onlyCompleted: true, onlyVisible: true);
+            bool conditionOk = matchedUnits.Count >= this.UnitCount;
+
+            return conditionOk;
+        }
     }
 }

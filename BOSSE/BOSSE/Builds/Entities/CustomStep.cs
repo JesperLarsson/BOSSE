@@ -31,14 +31,19 @@ namespace BOSSE
     using static GeneralGameUtility;
     using static global::BOSSE.UnitConstants;
 
-    /// <summary>
-    /// A single build order, indicates which units and structures to build
-    /// </summary>
-    public abstract class BuildStep
+    public class CustomStep : BuildStep
     {
-        /// <summary>
-        /// Runs this step, return value indicates if it was successfully finished or not. If so, the step wil not be run again
-        /// </summary>
-        public abstract bool ResolveStep();
+        public System.Action Function;
+
+        public CustomStep(System.Action function)
+        {
+            Function = function;
+        }
+
+        public override bool ResolveStep()
+        {
+            this.Function();
+            return true;
+        }
     }
 }

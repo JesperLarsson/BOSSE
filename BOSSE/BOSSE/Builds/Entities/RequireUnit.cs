@@ -31,14 +31,34 @@ namespace BOSSE
     using static GeneralGameUtility;
     using static global::BOSSE.UnitConstants;
 
-    /// <summary>
-    /// A single build order, indicates which units and structures to build
-    /// </summary>
-    public abstract class BuildStep
+    public class RequireUnit : BuildStep
     {
-        /// <summary>
-        /// Runs this step, return value indicates if it was successfully finished or not. If so, the step wil not be run again
-        /// </summary>
-        public abstract bool ResolveStep();
+        public UnitId UnitType;
+        public uint UnitCount;
+        public bool AllowChronoBoost = false;
+
+        public RequireUnit(UnitId unitType, uint unitCount)
+        {
+            UnitType = unitType;
+            UnitCount = unitCount;
+        }
+
+        public override bool ResolveStep()
+        {
+            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.UnitType, onlyCompleted: true, onlyVisible: true, includeBuildingOrdersBuildingUnit: true);
+
+            if (matchedUnits.Count >= this.UnitCount)
+                return true;
+
+            int missingCount = (int)this.UnitCount - matchedUnits.Count;
+            for (int i = 0; i < missingCount; i++)
+            {
+                bool ok = GeneralGameUtility.TryBuildUnit(this.UnitType, true, this.AllowChronoBoost);
+                if (ok == false)
+                    return false;
+            }
+
+            return true;
+        }
     }
 }
