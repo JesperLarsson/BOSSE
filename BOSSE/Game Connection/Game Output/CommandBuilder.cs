@@ -41,7 +41,7 @@ namespace BOSSE
         /// <summary>
         /// Returns a raw sc2 command without any actions in it
         /// </summary>
-        private static Action RawCommand(int ability)
+        public static Action RawCommand(int ability)
         {
             Action action = new Action();
 
@@ -82,7 +82,6 @@ namespace BOSSE
             Log.Bulk($"MineMinerals {mineralPatch.ToString()} {units.ToString2()}");
             Action action = RawCommand((int)RaceMiningAction());
             action.ActionRaw.UnitCommand.TargetUnitTag = mineralPatch.Tag;
-            //action.ActionRaw.UnitCommand.TargetWorldSpacePos = mineralPatch.Position;
 
             foreach (var unit in units)
             {

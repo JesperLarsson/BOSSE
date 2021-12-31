@@ -122,7 +122,7 @@ namespace BOSSE
         /// <summary>
         /// Queues the given action for output to sc2
         /// </summary>
-        public static void Queue(Action action, bool allowOrderOverride = false)
+        public static void Queue(Action action, bool allowOrderOverride = false, bool shiftQueue = false)
         {
             if (action == null)
             {
@@ -132,6 +132,9 @@ namespace BOSSE
 
             if (action.ActionRaw != null && action.ActionRaw.UnitCommand != null)
             {
+                if (shiftQueue)
+                    action.ActionRaw.UnitCommand.QueueCommand = true;
+
                 foreach (ulong iter in action.ActionRaw.UnitCommand.UnitTags)
                 {
                     bool existed = Unit.AllUnitInstances.TryGetValue(iter, out Unit unitData);
@@ -141,7 +144,7 @@ namespace BOSSE
                         continue;
                     }
 
-                    if (unitData.HasNewOrders && (!allowOrderOverride))
+                    if (unitData.HasNewOrders && (!allowOrderOverride) && shiftQueue == false)
                     {
                         // This indicates an issue with the code somewhere, everything should check the current order and the HasNewOrders field
                         Log.Warning("NOTE: Queued duplicate orders for unit " + iter + ", they will be overriden");
@@ -154,6 +157,17 @@ namespace BOSSE
             }
 
             GameOutput.QueuedActions.Add(action);
+        }
+
+        /// <summary>
+        /// Queues the given action for output to sc2
+        /// </summary>
+        public static void Queue(List<Action> actions, bool allowOrderOverride = false, bool shiftQueue = false)
+        {
+            foreach (Action iter in actions)
+            {
+                Queue(iter, allowOrderOverride, shiftQueue);
+            }
         }
 
         /// <summary>
@@ -244,6 +258,33 @@ namespace BOSSE
             CurrentMinerals -= unitData.MineralCost;
             CurrentVespene -= unitData.VespeneCost;
             UsedSupply = (uint)(UsedSupply - foodConsumed);
+        }
+
+        /// <summary>
+        /// Get high-level unit instance created by us
+        /// </summary>
+        public static Unit GetUnitById(ulong tagId)
+        {
+            if (Unit.AllUnitInstances.ContainsKey(tagId))
+            {
+                return Unit.AllUnitInstances[tagId];
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get unit instance as read from starcraft
+        /// </summary>
+        public static SC2APIProtocol.Unit GetRawUnitById(ulong tagId)
+        {
+            foreach (SC2APIProtocol.Unit unitIter in CurrentGameState.State.ObservationState.Observation.RawData.Units)
+            {
+                if (unitIter.Tag == tagId)
+                    return unitIter;
+            }
+
+            return null;
         }
 
         /// <summary>

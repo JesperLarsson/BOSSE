@@ -89,8 +89,6 @@ namespace BOSSE
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.CYBERNETICS_CORE, 1));
-
-            //RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 2)); // builds expansion
 
             // Send a worker to scout
@@ -166,6 +164,8 @@ namespace BOSSE
 
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 4));
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 4));
+
+            RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 3));
 
             // Build finished

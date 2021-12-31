@@ -41,9 +41,14 @@ namespace BOSSE
         public static Dictionary<ulong, Unit> AllUnitInstances = new Dictionary<ulong, Unit>();
 
         /// <summary>
-        /// Original data as received from StarCraft
+        /// Original data as received from StarCraft this frame
         /// </summary>
-        private SC2APIProtocol.Unit original;
+        public SC2APIProtocol.Unit Original;
+
+        /// <summary>
+        /// Original data as received from StarCraft previous frame
+        /// </summary>
+        public SC2APIProtocol.Unit LastFrameData;
 
         /// <summary>
         /// Looked up unit information
@@ -68,27 +73,27 @@ namespace BOSSE
 
         // Property lookup helper functions
         public string Name { get => unitInformation.Name; }
-        public ulong Tag { get => original.Tag; }
-        public UnitConstants.UnitId UnitType { get => (UnitConstants.UnitId)original.UnitType; }
-        public float Integrity { get => (original.Health + original.Shield) / (original.HealthMax + original.ShieldMax); }
-        public bool IsVisible { get => original.DisplayType == DisplayType.Visible; }
-        public int IdealWorkers { get => original.IdealHarvesters; }
-        public int AssignedWorkers { get => original.AssignedHarvesters; }
-        public Alliance Alliance { get => original.Alliance; }
-        public float BuildProgress { get => original.BuildProgress; }
-        public float Energy { get => original.Energy; set => original.Energy = value; }
+        public ulong Tag { get => Original.Tag; }
+        public UnitConstants.UnitId UnitType { get => (UnitConstants.UnitId)Original.UnitType; }
+        public float Integrity { get => (Original.Health + Original.Shield) / (Original.HealthMax + Original.ShieldMax); }
+        public bool IsVisible { get => Original.DisplayType == DisplayType.Visible; }
+        public int IdealWorkers { get => Original.IdealHarvesters; }
+        public int AssignedWorkers { get => Original.AssignedHarvesters; }
+        public Alliance Alliance { get => Original.Alliance; }
+        public float BuildProgress { get => Original.BuildProgress; }
+        public float Energy { get => Original.Energy; set => Original.Energy = value; }
         public float MineralCost { get => unitInformation.MineralCost; }
         public float VespeneCost { get => unitInformation.VespeneCost; }
-        public RepeatedField<UnitOrder> QueuedOrders { get => original.Orders; }
+        public RepeatedField<UnitOrder> QueuedOrders { get => Original.Orders; }
         public UnitOrder CurrentOrder { get => QueuedOrders.Count > 0 ? QueuedOrders[0] : null; }
-        public Point2D Position { get => new Point2D(original.Pos.X, original.Pos.Y); }
+        public Point2D Position { get => new Point2D(Original.Pos.X, Original.Pos.Y); }
 
         /// <summary>
         /// Create a new instance from sc2 instance, we wrap around it and add some functionality
         /// </summary>
         public Unit(SC2APIProtocol.Unit unit) : base()
         {
-            this.original = unit;
+            this.Original = unit;
             this.unitInformation = CurrentGameState.State.GameData.Units[(int)unit.UnitType];
 
 #if DEBUG
@@ -108,8 +113,8 @@ namespace BOSSE
         /// </summary>
         public Unit(ulong tag) : base()
         {
-            this.original = new SC2APIProtocol.Unit();
-            this.original.Tag = tag;
+            this.Original = new SC2APIProtocol.Unit();
+            this.Original.Tag = tag;
         }
 
         /// <summary>
@@ -117,8 +122,10 @@ namespace BOSSE
         /// </summary>
         public void UpdateDataEachTick(SC2APIProtocol.Unit newOriginal)
         {
+            this.LastFrameData = this.Original;
+
             this.HasNewOrders = false;
-            this.original = newOriginal;
+            this.Original = newOriginal;
         }
 
         /// <summary>

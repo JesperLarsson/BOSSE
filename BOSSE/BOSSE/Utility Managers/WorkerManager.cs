@@ -77,13 +77,15 @@ namespace BOSSE
         public override void OnFrameTick()
         {
             TrainWorkersIfNecessary();
-            //ReturnIdleWorkersToMining();
-
             ResolveGasNeeds();
             ReturnWorkersFromBuildingAssimilators();
             AssignWorkersToGasExtractors();
 
-            BalanceWorkersBetweenBases();
+            // If we have idle workers, assign them to their closest base for now, we will then balance on the next tick if necessary
+            if (ReturnIdleWorkers() == false)
+            {
+                BalanceWorkersBetweenBases();
+            }
         }
 
         /// <summary>
@@ -371,12 +373,6 @@ namespace BOSSE
         /// </summary>
         private bool BalanceWorkersBetweenBases()
         {
-            // If we have idle workers, assign them to their closest base for now, we will then balance on the next tick if necessary
-            if (ReturnIdleWorkers())
-            {
-                return true;
-            }
-
             List<Unit> miningWorkersGlobal = GetUnits(RaceWorkerUnitType(), onlyCompleted: true, alliance: Alliance.Self).Where(unit => unit.CurrentOrder != null && HarvestAbilities.Contains((AbilityId)unit.CurrentOrder.AbilityId)).ToList();
             List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.WorkerTransferInProgress) && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
             if (basesToMineMainFirst.Count == 0)
@@ -418,11 +414,15 @@ namespace BOSSE
                         continue;
 
                     List<Unit> workersMiningFromBase = miningWorkersGlobal.Where(
+                        // Do not use workers which have already received an order this tick
                         worker => (!worker.HasNewOrders) &&
                         (!usedWorkers.Contains(worker.Tag)) &&
-                        worker.CurrentOrder != null &&
-                        HarvestAbilities.Contains((AbilityId)worker.CurrentOrder.AbilityId) &&
-                        fromIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])
+                        // Either no order
+                        worker.CurrentOrder == null || (
+                            // Or order targets one of our mineral fields, not returning cargo (no target)
+                            worker.CurrentOrder != null &&
+                            HarvestAbilities.Contains((AbilityId)worker.CurrentOrder.AbilityId) &&
+                                (worker.CurrentOrder.TargetUnitTag == 0 || fromIter.CenteredAroundCluster.MineralFields.Contains(Unit.AllUnitInstances[worker.CurrentOrder.TargetUnitTag])))
                     ).ToList();
 
                     for (int i = 0; i < workerCountRequest && i < workersMiningFromBase.Count; i++)
@@ -477,6 +477,7 @@ namespace BOSSE
 
                         if (worker.Position.IsWithinRange(mineralPatch.Position, 4))
                         {
+                            worker.HasNewOrders = true;
                             Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, mineralPatch), true);
                             arrivedWorkers.Add(worker);
                         }

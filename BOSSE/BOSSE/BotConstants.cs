@@ -48,6 +48,7 @@ namespace BOSSE
 
         /// <summary>
         /// Number of milliseconds to sleep after each bot tick
+        /// Set to a high value along with step mode flag to make the game run in slow motion
         /// </summary>
         public static readonly TimeSpan TickLockSleep = TimeSpan.FromMilliseconds(1);
 
