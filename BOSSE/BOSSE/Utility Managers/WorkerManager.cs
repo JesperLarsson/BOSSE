@@ -45,6 +45,8 @@ namespace BOSSE
         private uint extractorCount = 0;
         //private bool SkipNextFrame = false;
 
+        private const int OptimalWorkersPerMineralPatch = 2;
+
         public override void Initialize()
         {
             // Subscribe to extractors being destroyed
@@ -393,7 +395,11 @@ namespace BOSSE
         /// </summary>
         private bool BalanceWorkersBetweenBases()
         {
-            List<Unit> miningWorkersGlobal = GetUnits(RaceWorkerUnitType(), onlyCompleted: true, alliance: Alliance.Self).Where(unit => unit.CurrentOrder != null && HarvestAbilities.Contains((AbilityId)unit.CurrentOrder.AbilityId)).ToList();
+            List<Unit> allWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
+            if (allWorkers.Count == 0)
+                return false;
+
+            List<Unit> miningWorkersGlobal = allWorkers.Where(unit => unit.CurrentOrder != null && HarvestAbilities.Contains((AbilityId)unit.CurrentOrder.AbilityId)).ToList();
             List<BaseLocation> basesToMineMainFirst = BOSSE.BaseManagerRef.GetOwnBases().Where(obj => obj.OwnBaseReadyToAcceptWorkers && (!obj.WorkerTransferInProgress) && (!obj.IsHiddenBase) && obj.CommandCenterRef.Integrity > 0.95f).ToList();
             if (basesToMineMainFirst.Count == 0)
             {
@@ -470,35 +476,55 @@ namespace BOSSE
                 }
 
                 List<Unit> workersToMoveHere = newMiningTargets[targetBase];
-                List<Unit> targetMinerals = targetBase.CenteredAroundCluster.MineralFields.ToList();
+                if (workersToMoveHere.Count == 0)
+                    continue;
 
-                Unit mineralPatch = targetMinerals.First();
+                // NOTE: For some reason the mine action doesn't work here. Might be fog of war related?
+                // We work around this by moving first, and then sending a mine command when we get closer
+                List<Unit> targetMinerals = targetBase.CenteredAroundCluster.MineralFields.ToList();
+                Unit moveMineralPatch = targetMinerals.OrderBy(o => o.Position.AirDistanceSquared(workersToMoveHere[0].Position)).First();
                 for (int i = 0; i < workersToMoveHere.Count; i++)
                 {
                     Unit worker = workersToMoveHere[i];
 
-#warning TODO Debug: For some reason the mine action doesn't work here
-                    Queue(CommandBuilder.MoveAction(new List<Unit>() { worker }, mineralPatch.Position));
+                    //Queue(CommandBuilder.MoveAction(new List<Unit>() { worker }, moveMineralPatch.Position));
+                    Queue(CommandBuilder.MoveAction(new List<Unit>() { worker }, targetBase.CenteredAroundCluster.GetMineralCenter()));
+
                     //Queue(CommandBuilder.UseAbility(AbilityId.STOP, worker));
                     //Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, mineralPatch), true);
                 }
 
-                // Set up a continuous check that checks for when the workers arrive
                 HashSet<Unit> arrivedWorkers = new HashSet<Unit>();
                 ulong workerTransferCompletedStartFrame = 0;
                 ContinuousUnitOrder transferFinishedOrder = new ContinuousUnitOrder(delegate ()
                 {
-                    // We need a small hysteresis to allow workers to actually be assigned to mining after they arrive
                     const int WorkerTransferHystFrameCount = 100;
                     foreach (Unit worker in workersToMoveHere)
                     {
                         if (arrivedWorkers.Contains(worker))
                             continue;
 
-                        if (worker.Position.IsWithinRange(mineralPatch.Position, 4))
+                        if (worker.Position.IsWithinRange(targetBase.CenteredAroundCluster.GetMineralCenter(), 6))
                         {
+                            Unit optimalMineralPatch = moveMineralPatch;
+
+                            // Try to find the best mineral patch. We fall back on using the "move" patch if necessary
+                            List<Unit> mineralPrioList = targetMinerals.OrderBy(o => o.Position.AirDistanceSquared(targetBase.CommandCenterRef.Position)).ToList();
+                            foreach (Unit mineralIter in mineralPrioList)
+                            {
+                                List<Unit> workersTargetingMineralPatch = allWorkers.Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.TargetUnitTag == mineralIter.Tag).ToList();
+                                if (workersTargetingMineralPatch.Count >= OptimalWorkersPerMineralPatch)
+                                    continue;
+
+                                optimalMineralPatch = mineralIter;
+                                break;
+                            }
+
+                            if (worker.CurrentOrder != null)
+                                worker.CurrentOrder.TargetUnitTag = optimalMineralPatch.Tag;
                             worker.HasNewOrders = true;
-                            Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, mineralPatch), true);
+
+                            Queue(CommandBuilder.MineMineralsAction(new List<Unit>() { worker }, optimalMineralPatch), true);
                             arrivedWorkers.Add(worker);
                         }
                         else if (worker.Integrity < 0.5)
@@ -542,9 +568,59 @@ namespace BOSSE
             }
         }
 
+        /// <summary>
+        /// Sends the given workers to work at the given command center
+        /// Performs an optimized "split", and also populates the closest mineral patches first
+        /// </summary>
+        private bool SendWorkersToMineMineralsAtBase(List<Unit> workersToSend, Unit nearCommandCenter)
+        {
+            List<Unit> allWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
+            if (allWorkers.Count == 0)
+                return false;
+
+            List<Unit> allMineralFields = GetUnits(UnitConstants.MineralFields, alliance: Alliance.Neutral);
+            if (allMineralFields.Count == 0)
+                return false;
+
+            // Find fields which are close, and order by ascending distance
+            List<Unit> mineralFieldsNearCC = allMineralFields.Where(o => o.Position.AirDistanceAbsolute(nearCommandCenter.Position) <= 8).OrderBy(o => o.Position.AirDistanceAbsolute(nearCommandCenter.Position)).ToList();
+            foreach (Unit mineralPatch in mineralFieldsNearCC)
+            {
+                if (workersToSend.Count == 0)
+                    break;
+
+                List<Unit> workersTargetingMineralPatch = allWorkers.Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.TargetUnitTag == mineralPatch.Tag).ToList();
+                if (workersTargetingMineralPatch.Count >= OptimalWorkersPerMineralPatch)
+                    continue;
+
+                int numberOfWorkersToSend = OptimalWorkersPerMineralPatch - workersTargetingMineralPatch.Count;
+                for (int _ = 0; _ < numberOfWorkersToSend; _++)
+                {
+                    if (workersToSend.Count == 0)
+                        break;
+
+                    workersToSend = workersToSend.OrderBy(o => o.Position.AirDistanceAbsolute(mineralPatch.Position)).ToList();
+                    Unit workerToSend = workersToSend[0];
+                    workersToSend.RemoveAt(0);
+                    Log.Info("Sending idle worker " + workerToSend + " to mine mineral patch " + mineralPatch);
+
+                    if (workerToSend.CurrentOrder != null)
+                        workerToSend.CurrentOrder.TargetUnitTag = mineralPatch.Tag;
+                    workerToSend.HasNewOrders = true;
+
+                    Queue(CommandBuilder.MineMineralsAction(new List<Unit> { workerToSend }, mineralPatch));
+                }
+            }
+
+            return true;
+        }
+
         private bool ReturnIdleWorkers()
         {
             List<Unit> allWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
+            if (allWorkers.Count == 0)
+                return false;
+
             List<Unit> idleWorkers = allWorkers.Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false && unit.IsBuilder == false).ToList();
 
             // Special case - First frame, all of our workers will be sent an automated mining command, we want to override this with an optimized split
@@ -556,10 +632,6 @@ namespace BOSSE
 
             List<Unit> commandCenters = GetUnits(RaceCommandCenterUnitType(), onlyCompleted: true);
             if (commandCenters.Count == 0)
-                return false;
-
-            List<Unit> allMineralFields = GetUnits(UnitConstants.MineralFields, alliance: Alliance.Neutral);
-            if (allMineralFields.Count == 0)
                 return false;
 
             // Group workers by the CC that they should mine at
@@ -577,43 +649,18 @@ namespace BOSSE
             }
 
             // Send workers to the next available mineral patch. Patches which are closer to the CC mine slightly faster
+            bool allSuccess = true;
             foreach (var iter in ccToWorkerGroup)
             {
                 Unit commandCenter = iter.Key;
                 List<Unit> workersToSendToThisCC = iter.Value;
 
-                // Find fields which are close, and order by ascending distance
-                List<Unit> mineralFieldsNearCC = allMineralFields.Where(o => o.Position.AirDistanceAbsolute(commandCenter.Position) <= 8).OrderBy(o => o.Position.AirDistanceAbsolute(commandCenter.Position)).ToList();
-                foreach (Unit mineralPatch in mineralFieldsNearCC)
-                {
-                    if (workersToSendToThisCC.Count == 0)
-                        break;
-
-                    List<Unit> workersTargetingMineralPatch = allWorkers.Where(unit => unit.CurrentOrder != null && unit.CurrentOrder.TargetUnitTag == mineralPatch.Tag).ToList();
-                    if (workersTargetingMineralPatch.Count >= 2)
-                        continue;
-
-                    int numberOfWorkersToSend = 2 - workersTargetingMineralPatch.Count;
-                    for (int _ = 0; _ < numberOfWorkersToSend; _++)
-                    {
-                        if (workersToSendToThisCC.Count == 0)
-                            break;
-
-                        workersToSendToThisCC = workersToSendToThisCC.OrderBy(o => o.Position.AirDistanceAbsolute(mineralPatch.Position)).ToList();
-                        Unit workerToSend = workersToSendToThisCC[0];
-                        workersToSendToThisCC.RemoveAt(0);
-                        Log.Info("Sending idle worker " + workerToSend + " to mine mineral patch " + mineralPatch);
-
-                        if (workerToSend.CurrentOrder != null)
-                            workerToSend.CurrentOrder.TargetUnitTag = mineralPatch.Tag;
-                        workerToSend.HasNewOrders = true;
-
-                        Queue(CommandBuilder.MineMineralsAction(new List<Unit> { workerToSend }, mineralPatch));
-                    }
-                }
+                bool ccSuccess = this.SendWorkersToMineMineralsAtBase(workersToSendToThisCC, commandCenter);
+                if (ccSuccess == false)
+                    allSuccess = false;
             }
 
-            return true;
+            return allSuccess;
         }
     }
 }

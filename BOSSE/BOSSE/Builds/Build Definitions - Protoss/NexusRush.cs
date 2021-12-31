@@ -28,37 +28,22 @@ namespace BOSSE
     using Action = SC2APIProtocol.Action;
     using static CurrentGameState;
     using static UnitConstants;
+    using System.Linq;
 
     /// <summary>
-    /// Determines which build order to follow
+    /// Just rushes to build an expansion, used for debugging
     /// </summary>
-    public class CurrentBuildManager : Manager
+    public class NexusRush : BuildOrder
     {
-        /// <summary>
-        /// Allowed build orders
-        /// </summary>
-        private List<BuildOrder> buildsAvailable = new List<BuildOrder>()
+        public NexusRush()
         {
-            // Protoss
-            //new BlinkStalkers(),
-            new NexusRush(),
+            RemainingSteps.Add(new CustomStep(() =>
+            {
+                // Disable auto-building of Pylons, it is a hardcoded part of our starting build
+                BOSSE.HouseProviderManagerRef.Disable();
+            }));
 
-            // Terran
-            //new MarineSpam(),
-        };
-
-        private BuildOrder CurrentBuildOrder;
-
-        public CurrentBuildManager()
-        {
-            // Choose a random build order for this session
-            this.buildsAvailable.Shuffle();
-            this.CurrentBuildOrder = buildsAvailable[0];
-        }
-
-        public override void OnFrameTick()
-        {
-            this.CurrentBuildOrder.ResolveBuildOrder();
+            RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 2)); // builds expansion
         }
     }
 }
