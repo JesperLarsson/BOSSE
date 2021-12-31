@@ -47,6 +47,7 @@ namespace BOSSE
 
         /// <summary>
         /// Calculates the squared distance to other point
+        /// Recommended to use when results should be compared relatively to each other only
         /// </summary>
         public static float AirDistanceSquared(this Point2D self, Point2D other)
         {
@@ -55,6 +56,7 @@ namespace BOSSE
 
         /// <summary>
         /// Calculates the absolute distance to other point, slower than using the squared method
+        /// Recommended to use when results should be compared to absolute distances
         /// </summary>
         public static float AirDistanceAbsolute(this Point2D self, Point2D other)
         {
@@ -65,7 +67,8 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Calculates the ground distance to another point. null = no pathing possible
+        /// Calculates the ground distance to another point
+        /// Null = no pathing is possible
         /// Slightly overestimates the distance since it does not compute the diagonals
         /// </summary>
         public static float? GroundDistanceAbsolute(this Point2D self, Point2D other)

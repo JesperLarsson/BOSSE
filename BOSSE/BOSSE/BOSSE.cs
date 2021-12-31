@@ -123,7 +123,7 @@ namespace BOSSE
         /// <summary>
         /// First frame setup
         /// </summary>
-        public void FirstFrame()
+        public void OnFirstFrame()
         {
             // Set main location
             Globals.MainBaseLocation = GetUnits(RaceCommandCenterUnitType())[0].Position;
@@ -160,6 +160,11 @@ namespace BOSSE
             //{
             //    Queue(CommandBuilder.Chat(jokeLine));
             //}
+
+            foreach (Manager managerIter in AllManagers)
+            {
+                managerIter.OnFirstFrame();
+            }
 
             HasCompletedFirstFrameInit = true;
         }

@@ -43,6 +43,7 @@ namespace BOSSE
         private bool AllowWorkerOverProduction = false;
         private int RequestedWorkersOnGas = 0;
         private uint extractorCount = 0;
+        //private bool SkipNextFrame = false;
 
         public override void Initialize()
         {
@@ -71,11 +72,14 @@ namespace BOSSE
             AllowWorkerTraining = isAllowed;
         }
 
-        /// <summary>
-        /// Called periodically
-        /// </summary>
         public override void OnFrameTick()
         {
+            //if (this.SkipNextFrame)
+            //{
+            //    this.SkipNextFrame = false;
+            //    return;
+            //}
+
             TrainWorkersIfNecessary();
             ResolveGasNeeds();
             ReturnWorkersFromBuildingAssimilators();
@@ -87,6 +91,22 @@ namespace BOSSE
                 BalanceWorkersBetweenBases();
             }
         }
+
+        //public override void OnFirstFrame()
+        //{
+        //    // We should avoid running our general logic on the first frame, since we give new orders here
+        //    this.SkipNextFrame = true;
+
+        //    InitialWorkerSplit();
+        //}
+
+        ///// <summary>
+        ///// Performs an optimal-ish split of workers when the game starts
+        ///// </summary>
+        //public void InitialWorkerSplit()
+        //{
+
+        //}
 
         /// <summary>
         /// Returns a single worker close to the given point which can be used for a new job
@@ -526,16 +546,40 @@ namespace BOSSE
         {
             List<Unit> idleWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true).Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false && unit.IsBuilder == false).ToList();
             if (idleWorkers.Count == 0)
-            {
                 return false;
-            }
 
             List<Unit> commandCenters = GetUnits(RaceCommandCenterUnitType(), onlyCompleted: true);
             if (commandCenters.Count == 0)
-            {
-                Log.Warning("No cc found to return workers to");
                 return false;
-            }
+
+            List<Unit> allMineralFields = GetUnits(UnitConstants.MineralFields, alliance: Alliance.Neutral);
+            if (allMineralFields.Count == 0)
+                return false;
+
+            //// CC instance => workers to send there
+            //Dictionary<Unit, List<Unit>> ccToWorkerGroup = new Dictionary<Unit, List<Unit>>();
+            //foreach (Unit idleWorkerIter in idleWorkers)
+            //{
+            //    // Find the CC which is closest to the worker
+            //    commandCenters.Sort((a, b) => a.Position.AirDistanceSquared(idleWorkerIter.Position).CompareTo(b.Position.AirDistanceSquared(idleWorkerIter.Position)));
+            //    Unit closestCommandCenter = commandCenters[0];
+
+            //    if (ccToWorkerGroup.ContainsKey(closestCommandCenter) == false)
+            //        ccToWorkerGroup[closestCommandCenter] = new List<Unit>();
+
+            //    ccToWorkerGroup[closestCommandCenter].Add(idleWorkerIter);
+            //}
+
+            //foreach (var iter in ccToWorkerGroup)
+            //{
+            //    Unit commandCenter = iter.Key;
+            //    List<Unit> workersToSendToThisCC = iter.Value;
+
+            //    List<Unit> mineralFieldsNearCC = allMineralFields.Where( o => o.Position.AirDistanceAbsolute(commandCenter.Position) <= 8 ).ToList();
+            //    mineralFieldsNearCC = mineralFieldsNearCC.OrderBy(o => o.Position.AirDistanceAbsolute(commandCenter.Position)).ToList();
+            //}
+
+
 
             foreach (Unit idleWorkerIter in idleWorkers)
             {

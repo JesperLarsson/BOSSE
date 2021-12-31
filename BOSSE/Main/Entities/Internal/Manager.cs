@@ -74,5 +74,13 @@ namespace BOSSE
         {
 
         }
+
+        /// <summary>
+        /// Called once on the first game frame
+        /// </summary>
+        public virtual void OnFirstFrame()
+        {
+
+        }
     }
 }

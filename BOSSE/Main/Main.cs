@@ -84,7 +84,7 @@ namespace BOSSE
                     // Update bot
                     if (Globals.OnCurrentFrame == 0)
                     {
-                        Globals.BotRef.FirstFrame();
+                        Globals.BotRef.OnFirstFrame();
                     }
                     Globals.BotRef.OnFrameTick();
 

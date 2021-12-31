@@ -215,7 +215,7 @@ namespace BOSSE
                 return null;
 
             // Sort by distance to target spot
-            pylons.OrderBy(o => o.Position.AirDistanceAbsolute(startingSpot)).ToList();
+            pylons = pylons.OrderBy(o => o.Position.AirDistanceAbsolute(startingSpot)).ToList();
 
             Size size = GetSizeOfBuilding(buildingType);
             List<Unit> mineralFields = GetUnits(UnitConstants.MineralFields, onlyVisible: true, alliance: Alliance.Neutral);
@@ -251,7 +251,7 @@ namespace BOSSE
                 }
 
                 // Try to build as close to Pylon as possible
-                candidateList.OrderBy(o => o.AirDistanceAbsolute(pylonIter.Position)).ToList();
+                candidateList = candidateList.OrderBy(o => o.AirDistanceAbsolute(pylonIter.Position)).ToList();
 
                 foreach (Point2D pointIter in candidateList)
                 {
@@ -348,7 +348,7 @@ namespace BOSSE
             if (ccNearNatural == null || ccNearNatural.Count == 0)
                 return false;
 
-            ccNearNatural.OrderBy(o => o.Position.AirDistanceAbsolute(point)).ToList();
+            ccNearNatural = ccNearNatural.OrderBy(o => o.Position.AirDistanceAbsolute(point)).ToList();
 
             float distance = ccNearNatural[0].Position.AirDistanceAbsolute(point);
             bool isNear = distance <= 8;
