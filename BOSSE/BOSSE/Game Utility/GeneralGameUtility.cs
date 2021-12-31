@@ -669,7 +669,7 @@ namespace BOSSE
             if (allNexus == null || allNexus.Count == 0)
                 return;
 
-            allNexus.OrderByDescending(o => o.Energy).ToList();
+            allNexus = allNexus.OrderByDescending(o => o.Energy).ToList();
             Unit useNexus = allNexus[0];
             if (useNexus.Energy < ChronoCost)
                 return;
