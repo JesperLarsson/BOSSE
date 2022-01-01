@@ -43,7 +43,6 @@ namespace BOSSE
         private bool AllowWorkerOverProduction = false;
         private int RequestedWorkersOnGas = 0;
         private uint extractorCount = 0;
-        //private bool SkipNextFrame = false;
 
         private const int OptimalWorkersPerMineralPatch = 2;
 
@@ -76,12 +75,6 @@ namespace BOSSE
 
         public override void OnFrameTick()
         {
-            //if (this.SkipNextFrame)
-            //{
-            //    this.SkipNextFrame = false;
-            //    return;
-            //}
-
             TrainWorkersIfNecessary();
             ResolveGasNeeds();
             ReturnWorkersFromBuildingAssimilators();
@@ -94,21 +87,79 @@ namespace BOSSE
             }
         }
 
-        //public override void OnFirstFrame()
-        //{
-        //    // We should avoid running our general logic on the first frame, since we give new orders here
-        //    this.SkipNextFrame = true;
+        public bool ReturnIdleWorkers()
+        {
+            List<Unit> allWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
+            if (allWorkers.Count == 0)
+                return false;
 
-        //    InitialWorkerSplit();
-        //}
+            List<Unit> idleWorkers = allWorkers.Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false && unit.IsBuilder == false).ToList();
 
-        ///// <summary>
-        ///// Performs an optimal-ish split of workers when the game starts
-        ///// </summary>
-        //public void InitialWorkerSplit()
-        //{
+            // Special case - First frame, all of our workers will be sent an automated mining command, we want to override this with an optimized split
+            if (Globals.OnCurrentFrame == 0 && idleWorkers.Count == 0)
+                idleWorkers = allWorkers.Where(unit => unit.CurrentOrder != null && HarvestGatherAbilities.Contains((AbilityId)unit.CurrentOrder.AbilityId) && unit.IsReserved == false && unit.HasNewOrders == false && unit.IsBuilder == false).ToList();
 
-        //}
+            if (idleWorkers.Count == 0)
+                return false;
+
+            List<Unit> commandCenters = GetUnits(RaceCommandCenterUnitType(), onlyCompleted: true);
+            if (commandCenters.Count == 0)
+                return false;
+
+            // Group workers by the CC that they should mine at
+            Dictionary<Unit, List<Unit>> ccToWorkerGroup = new Dictionary<Unit, List<Unit>>();
+            foreach (Unit idleWorkerIter in idleWorkers)
+            {
+                // Find the CC which is closest to the worker
+                commandCenters.Sort((a, b) => a.Position.AirDistanceSquared(idleWorkerIter.Position).CompareTo(b.Position.AirDistanceSquared(idleWorkerIter.Position)));
+                Unit closestCommandCenter = commandCenters[0];
+
+                if (ccToWorkerGroup.ContainsKey(closestCommandCenter) == false)
+                    ccToWorkerGroup[closestCommandCenter] = new List<Unit>();
+
+                ccToWorkerGroup[closestCommandCenter].Add(idleWorkerIter);
+            }
+
+            // Send workers to the next available mineral patch. Patches which are closer to the CC mine slightly faster
+            bool allSuccess = true;
+            foreach (var iter in ccToWorkerGroup)
+            {
+                Unit commandCenter = iter.Key;
+                List<Unit> workersToSendToThisCC = iter.Value;
+
+                bool ccSuccess = this.SendWorkersToMineMineralsAtBase(workersToSendToThisCC, commandCenter);
+                if (ccSuccess == false)
+                    allSuccess = false;
+            }
+
+            return allSuccess;
+        }
+
+        public void TrainWorkersIfNecessary()
+        {
+            if (!this.AllowWorkerTraining)
+                return;
+
+            List<Unit> commandCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
+            UnitTypeData workerInfo = GetUnitInfo(RaceWorkerUnitType());
+            foreach (Unit cc in commandCenters)
+            {
+                if (cc.CurrentOrder != null)
+                    continue;
+
+                int idealWorkerCount = cc.IdealWorkers;
+                if (AllowWorkerOverProduction)
+                    idealWorkerCount = (int)(idealWorkerCount * 1.5f);
+
+                if (cc.AssignedWorkers >= idealWorkerCount)
+                    continue;
+
+                if (CurrentMinerals >= workerInfo.MineralCost && FreeSupply >= workerInfo.FoodRequired)
+                {
+                    Queue(CommandBuilder.TrainActionAndSubtractCosts(cc, RaceWorkerUnitType()));
+                }
+            }
+        }
 
         /// <summary>
         /// Returns a single worker close to the given point which can be used for a new job
@@ -364,32 +415,6 @@ namespace BOSSE
 
         #endregion
 
-        private void TrainWorkersIfNecessary()
-        {
-            if (!this.AllowWorkerTraining)
-                return;
-
-            List<Unit> commandCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
-            UnitTypeData workerInfo = GetUnitInfo(RaceWorkerUnitType());
-            foreach (Unit cc in commandCenters)
-            {
-                if (cc.CurrentOrder != null)
-                    continue;
-
-                int idealWorkerCount = cc.IdealWorkers;
-                if (AllowWorkerOverProduction)
-                    idealWorkerCount = (int)(idealWorkerCount * 1.5f);
-
-                if (cc.AssignedWorkers >= idealWorkerCount)
-                    continue;
-
-                if (CurrentMinerals >= workerInfo.MineralCost && FreeSupply >= workerInfo.FoodRequired)
-                {
-                    Queue(CommandBuilder.TrainActionAndSubtractCosts(cc, RaceWorkerUnitType()));
-                }
-            }
-        }
-
         /// <summary>
         /// Splits our work force between bases. Returns true if balancing was performed
         /// </summary>
@@ -613,54 +638,6 @@ namespace BOSSE
             }
 
             return true;
-        }
-
-        private bool ReturnIdleWorkers()
-        {
-            List<Unit> allWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
-            if (allWorkers.Count == 0)
-                return false;
-
-            List<Unit> idleWorkers = allWorkers.Where(unit => unit.CurrentOrder == null && unit.IsReserved == false && unit.HasNewOrders == false && unit.IsBuilder == false).ToList();
-
-            // Special case - First frame, all of our workers will be sent an automated mining command, we want to override this with an optimized split
-            if (Globals.OnCurrentFrame == 0 && idleWorkers.Count == 0)
-                idleWorkers = allWorkers.Where(unit => unit.CurrentOrder != null && HarvestGatherAbilities.Contains((AbilityId)unit.CurrentOrder.AbilityId) && unit.IsReserved == false && unit.HasNewOrders == false && unit.IsBuilder == false).ToList();
-
-            if (idleWorkers.Count == 0)
-                return false;
-
-            List<Unit> commandCenters = GetUnits(RaceCommandCenterUnitType(), onlyCompleted: true);
-            if (commandCenters.Count == 0)
-                return false;
-
-            // Group workers by the CC that they should mine at
-            Dictionary<Unit, List<Unit>> ccToWorkerGroup = new Dictionary<Unit, List<Unit>>();
-            foreach (Unit idleWorkerIter in idleWorkers)
-            {
-                // Find the CC which is closest to the worker
-                commandCenters.Sort((a, b) => a.Position.AirDistanceSquared(idleWorkerIter.Position).CompareTo(b.Position.AirDistanceSquared(idleWorkerIter.Position)));
-                Unit closestCommandCenter = commandCenters[0];
-
-                if (ccToWorkerGroup.ContainsKey(closestCommandCenter) == false)
-                    ccToWorkerGroup[closestCommandCenter] = new List<Unit>();
-
-                ccToWorkerGroup[closestCommandCenter].Add(idleWorkerIter);
-            }
-
-            // Send workers to the next available mineral patch. Patches which are closer to the CC mine slightly faster
-            bool allSuccess = true;
-            foreach (var iter in ccToWorkerGroup)
-            {
-                Unit commandCenter = iter.Key;
-                List<Unit> workersToSendToThisCC = iter.Value;
-
-                bool ccSuccess = this.SendWorkersToMineMineralsAtBase(workersToSendToThisCC, commandCenter);
-                if (ccSuccess == false)
-                    allSuccess = false;
-            }
-
-            return allSuccess;
         }
     }
 }

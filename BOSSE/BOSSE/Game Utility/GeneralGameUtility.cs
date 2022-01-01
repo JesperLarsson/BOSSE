@@ -538,15 +538,15 @@ namespace BOSSE
             requestQuery.Query = new RequestQuery();
             requestQuery.Query.Placements.Add(queryBuildingPlacement);
 
-            var result = GameOutput.SendSynchronousRequest_BLOCKING(requestQuery.Query);
+            ResponseQuery result = GameOutput.SendSynchronousRequest_BLOCKING(requestQuery.Query);
             if (result == null)
             {
                 Log.Warning("Did not receive a reply to sc2 synchronous request");
                 return false;
             }
 
-            if (result.Result.Placements.Count > 0)
-                return (result.Result.Placements[0].Result == ActionResult.Success);
+            if (result.Placements.Count > 0)
+                return (result.Placements[0].Result == ActionResult.Success);
 
             Log.SanityCheckFailed("No response from sc2 in regards to placement of " + unitType);
             return false;

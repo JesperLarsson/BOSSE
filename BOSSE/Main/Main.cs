@@ -79,17 +79,27 @@ namespace BOSSE
                     GameOutput.QueuedActions.Clear();
 
                     // Read from sc2
-                    ReadPerFrameState().Wait();
-
-                    // Update bot
-                    if (Globals.OnCurrentFrame == 0)
+                    lock (GameOutput.GameRequestMutex)
                     {
-                        Globals.BotRef.OnFirstFrame();
+                        ReadPerFrameState().Wait();
                     }
-                    Globals.BotRef.OnFrameTick();
+
+                    // Real time mode and stepping mode use different initialization methods
+                    // RT needs to be able to start as fast as possible, so we don't have time to perform map analysis etc before sending an action
+                    if (BotConstants.UseStepMode)
+                    {
+                        StepLockTick();
+                    }
+                    else
+                    {
+                        RealtimeTick();
+                    }
 
                     // Send actions to sc2
-                    SendQueuedActions().Wait();
+                    lock (GameOutput.GameRequestMutex)
+                    {
+                        SendQueuedActions().Wait();
+                    }
 
                     Globals.OnCurrentFrame++;
                     if (BotConstants.UseStepMode)
@@ -111,6 +121,42 @@ namespace BOSSE
                     Log.SanityCheckFailed("Cought top level exception: " + ex);
                 }
             }
+        }
+
+        private void RealtimeTick()
+        {
+            // Init in a separate thread
+            if (Globals.OnCurrentFrame == 0)
+            {
+                BOSSE.WorkerManagerRef.TrainWorkersIfNecessary();
+                BOSSE.WorkerManagerRef.ReturnIdleWorkers();
+
+                Thread initThread = new Thread(Globals.BotRef.OnFirstFrame);
+                initThread.Name = "InitThread";
+                initThread.Priority = ThreadPriority.AboveNormal;
+                initThread.Start();
+            }
+            else if (BOSSE.HasCompletedFirstFrameInit)
+            {
+                Globals.BotRef.OnFrameTick();
+            }
+            else
+            {
+                BOSSE.WorkerManagerRef.TrainWorkersIfNecessary();
+                BOSSE.WorkerManagerRef.ReturnIdleWorkers();
+            }
+        }
+
+        private void StepLockTick()
+        {
+            // Init
+            if (Globals.OnCurrentFrame == 0)
+            {
+                Globals.BotRef.OnFirstFrame();
+            }
+
+            // Normal update
+            Globals.BotRef.OnFrameTick();
         }
 
         /// <summary>
@@ -181,7 +227,8 @@ namespace BOSSE
         /// </summary>
         private async Task SendQueuedActions()
         {
-            const int stepSize = 1;
+            // NOTE: This might need to be increased to work around some SC2 issues where some orders take more than a single frame to apply
+            const int StepSize = 1;
 
             List<Action> actions = GameOutput.QueuedActions;
 
@@ -195,7 +242,7 @@ namespace BOSSE
 
             Request stepRequest = new Request();
             stepRequest.Step = new RequestStep();
-            stepRequest.Step.Count = stepSize;
+            stepRequest.Step.Count = StepSize;
             await Globals.GameConnection.SendRequest(stepRequest);
         }
     }

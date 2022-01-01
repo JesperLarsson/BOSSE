@@ -53,12 +53,6 @@ namespace BOSSE
         public static readonly TimeSpan TickLockSleep = TimeSpan.FromMilliseconds(1);
 
         /// <summary>
-        /// Number of logical ingame steps to perform each bot tick
-        /// The API can be slightly inconsistent and cause issues for lower values, ex orders not having being applied to the next tick
-        /// </summary>
-        public const int stepSize = 8;
-
-        /// <summary>
         /// Number of workers to aim for at each base
         /// </summary>
         public const int TargetWorkerPerBase = 16 + 6;

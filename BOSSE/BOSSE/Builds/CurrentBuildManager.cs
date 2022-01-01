@@ -40,8 +40,8 @@ namespace BOSSE
         private List<BuildOrder> buildsAvailable = new List<BuildOrder>()
         {
             // Protoss
-            //new BlinkStalkers(),
-            new NexusRush(),
+            new BlinkStalkers(),
+            //new NexusRush(),
 
             // Terran
             //new MarineSpam(),
@@ -54,6 +54,9 @@ namespace BOSSE
             // Choose a random build order for this session
             this.buildsAvailable.Shuffle();
             this.CurrentBuildOrder = buildsAvailable[0];
+
+            string chatString = $"Using build: {this.CurrentBuildOrder.GetType().Name}";
+            GeneralGameUtility.Queue(CommandBuilder.Chat(chatString));
         }
 
         public override void OnFrameTick()

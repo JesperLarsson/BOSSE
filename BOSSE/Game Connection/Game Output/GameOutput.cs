@@ -30,19 +30,26 @@ namespace BOSSE
     /// </summary>
     public static class GameOutput
     {
+        public static object GameRequestMutex = new object();
+
         /// <summary>
         /// Queued outgoing actions to the game
         /// These will be sent to the game at the end of each logical frame
         /// </summary>
         public static List<SC2APIProtocol.Action> QueuedActions = new List<SC2APIProtocol.Action>();
 
-        public static async Task<ResponseQuery> SendSynchronousRequest_BLOCKING(RequestQuery query)
+        public static ResponseQuery SendSynchronousRequest_BLOCKING(RequestQuery query)
         {
-            var request = new Request();
-            request.Query = query;
-            var response = await Globals.GameConnection.SendRequest(request);
+            lock (GameOutput.GameRequestMutex)
+            {
+                Request request = new Request();
+                request.Query = query;
 
-            return response.Query;
+                var task = Globals.GameConnection.SendRequest(request);
+                Response response = task.Result;
+
+                return response.Query;
+            }
         }
     }
 }

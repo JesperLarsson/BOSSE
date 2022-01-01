@@ -13,9 +13,6 @@ Development is mostly paused for now, but I will revisit the project every now a
 - Squad unit management with overridable logic
 - Building placement planning
 - Path finding through A*
-- Plays as either Protoss (preferred) or Terran
-- Multithreading
-- Capable of running in real time
 - Debug GUI. Draws various maps and other debugging data
 
 ## Screenshot (Debug GUI)

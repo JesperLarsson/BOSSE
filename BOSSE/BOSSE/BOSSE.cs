@@ -98,7 +98,7 @@ namespace BOSSE
         /// <summary>
         /// Set after the first frame initialization has been completed
         /// </summary>
-        public static bool HasCompletedFirstFrameInit = false;
+        public static volatile bool HasCompletedFirstFrameInit = false;
 
         /// <summary>
         /// New bot instance, global sc2 state is not valid yet
