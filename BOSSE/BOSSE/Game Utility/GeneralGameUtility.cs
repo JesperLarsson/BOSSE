@@ -238,6 +238,14 @@ namespace BOSSE
         public static bool CanAfford(UnitId unitType)
         {
             UnitTypeData unitData = State.GameData.Units[(int)unitType];
+            return CanAfford(unitData);
+        }
+
+        /// <summary>
+        /// Determines if we can afford to build/train the given unit
+        /// </summary>
+        public static bool CanAfford(UnitTypeData unitData)
+        {
             int foodConsumed = (int)(unitData.FoodRequired - unitData.FoodProvided);
 
             bool enoughFood = FreeSupply >= foodConsumed;
@@ -298,14 +306,14 @@ namespace BOSSE
         /// <summary>
         /// Returns all game units matching certain criteria
         /// </summary>
-        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildUnit = false, bool includeBuildingOrdersBuildingUnit = false)
+        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildRequestedUnit = false, bool includeBuildingOrdersBuildingUnit = false)
         {
             HashSet<UnitId> temp = new HashSet<UnitId>
             {
                 unitType
             };
 
-            return GetUnits(temp, alliance, onlyCompleted, onlyVisible, includeWorkersTaskedToBuildUnit, includeBuildingOrdersBuildingUnit);
+            return GetUnits(temp, alliance, onlyCompleted, onlyVisible, includeWorkersTaskedToBuildRequestedUnit, includeBuildingOrdersBuildingUnit);
         }
 
         /// <summary>

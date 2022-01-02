@@ -112,6 +112,7 @@ namespace BOSSE
                 }));
             }
 
+            RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 2));
 
             // Move back builder to be a normal worker

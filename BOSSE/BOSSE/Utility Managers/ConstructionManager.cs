@@ -167,7 +167,15 @@ namespace BOSSE
                 }
             }
 
-            // Find a valid spot, the slow way
+            // Sanity check that wall coordinates are actually buildable
+            // Check is disabled in real time mode due to performance concerns
+            if (BotConstants.UseStepMode && constructionSpot != null && CanPlaceRequest(buildingType, constructionSpot) == false)
+            {
+                Log.SanityCheckFailed($"Wall coordinates {constructionSpot} are not buildable! Falling back on auto-placement logic");
+                constructionSpot = null;
+            }
+
+            // Find a valid spot to build this building (slow)
             if (constructionSpot == null)
             {
                 constructionSpot = AutoPickPosition(buildingType);

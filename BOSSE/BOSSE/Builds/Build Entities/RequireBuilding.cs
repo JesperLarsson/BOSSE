@@ -44,7 +44,7 @@ namespace BOSSE
 
         public override bool ResolveStep()
         {
-            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.BuildingType, onlyCompleted: true, onlyVisible: true, includeWorkersTaskedToBuildUnit: true);
+            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.BuildingType, onlyCompleted: true, onlyVisible: true, includeWorkersTaskedToBuildRequestedUnit: true);
 
             if (matchedUnits.Count >= this.BuildingCount)
                 return true;

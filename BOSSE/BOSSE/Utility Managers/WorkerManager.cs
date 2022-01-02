@@ -140,24 +140,32 @@ namespace BOSSE
             if (!this.AllowWorkerTraining)
                 return;
 
+            UnitId workerType = RaceWorkerUnitType();
             List<Unit> commandCenters = GetUnits(UnitConstants.ResourceCenters, onlyCompleted: true);
-            UnitTypeData workerInfo = GetUnitInfo(RaceWorkerUnitType());
+
+            // When we in the process of expanding, just continue building more workers as we can surely use them
+            int numberOfCcsInProgress = GetUnits(RaceCommandCenterUnitType(), includeWorkersTaskedToBuildRequestedUnit: true).Where(o => (o.UnitType == workerType || o.BuildProgress < 1.0f)).Count();
+            bool forceBuildWorkers = numberOfCcsInProgress > 0;
+
             foreach (Unit cc in commandCenters)
             {
+                if (CanAfford(workerType) == false)
+                    return;
+
                 if (cc.CurrentOrder != null)
+                    continue;
+                if (cc.HasNewOrders)
                     continue;
 
                 int idealWorkerCount = cc.IdealWorkers;
                 if (AllowWorkerOverProduction)
                     idealWorkerCount = (int)(idealWorkerCount * 1.5f);
 
-                if (cc.AssignedWorkers >= idealWorkerCount)
+                if (cc.AssignedWorkers >= idealWorkerCount && (forceBuildWorkers == false))
                     continue;
 
-                if (CurrentMinerals >= workerInfo.MineralCost && FreeSupply >= workerInfo.FoodRequired)
-                {
-                    Queue(CommandBuilder.TrainActionAndSubtractCosts(cc, RaceWorkerUnitType()));
-                }
+                Queue(CommandBuilder.TrainActionAndSubtractCosts(cc, workerType));
+                cc.HasNewOrders = true;
             }
         }
 
