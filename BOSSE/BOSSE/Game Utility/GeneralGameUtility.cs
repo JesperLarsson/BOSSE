@@ -248,15 +248,23 @@ namespace BOSSE
         }
 
         /// <summary>
-        /// Subtracts the costs for the unit from our current total. Called after queuing an order to buy/construct
+        /// Subtracts the costs for the unit from our current total
         /// </summary>
         public static void SubtractCosts(UnitId unitType)
         {
             UnitTypeData unitData = State.GameData.Units[(int)unitType];
-            int foodConsumed = (int)(unitData.FoodProvided - unitData.FoodRequired);
+            uint foodConsumed = (uint)(unitData.FoodProvided - unitData.FoodRequired);
 
-            CurrentMinerals -= unitData.MineralCost;
-            CurrentVespene -= unitData.VespeneCost;
+            SubtractCosts(unitData.MineralCost, unitData.VespeneCost, foodConsumed);
+        }
+
+        /// <summary>
+        /// Subtracts the given costs from our current total
+        /// </summary>
+        public static void SubtractCosts(uint minerals, uint gas, uint foodConsumed)
+        {
+            CurrentMinerals -= minerals;
+            CurrentVespene -= gas;
             UsedSupply = (uint)(UsedSupply - foodConsumed);
         }
 

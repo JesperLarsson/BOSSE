@@ -63,6 +63,8 @@ namespace BOSSE
                 3x Gas
              */
 
+            const bool SendWorkerScout = false;
+
             Unit buildingWorker = null;
             RemainingSteps.Add(new CustomStep(() =>
             {
@@ -91,21 +93,24 @@ namespace BOSSE
             RemainingSteps.Add(new RequireBuilding(UnitId.CYBERNETICS_CORE, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 2)); // builds expansion
 
-            // Send a worker to scout
-            RemainingSteps.Add(new CustomStep(() =>
+            // Send a worker to scout, might not be necessary until we have better intel-parsing logic
+            if (SendWorkerScout)
             {
-                Unit scoutingWorker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(Globals.MainBaseLocation, false);
-                if (scoutingWorker == null)
+                RemainingSteps.Add(new CustomStep(() =>
                 {
-                    Log.Warning("Unable to find a worker to use as scout");
-                    return;
-                }
-                Log.Info("Assigning worker " + scoutingWorker.Tag + " as scout");
+                    Unit scoutingWorker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(Globals.MainBaseLocation, false);
+                    if (scoutingWorker == null)
+                    {
+                        Log.Warning("Unable to find a worker to use as scout");
+                        return;
+                    }
+                    Log.Info("Assigning worker " + scoutingWorker.Tag + " as scout");
 
-                scoutingWorker.IsReserved = true;
-                BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
-                BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
-            }));
+                    scoutingWorker.IsReserved = true;
+                    BOSSE.SquadManagerRef.AddNewSquad(new Squad("ScoutingWorker", new ScoutingWorkerController()));
+                    BOSSE.SquadManagerRef.GetSquadOrNull("ScoutingWorker").AddUnit(scoutingWorker);
+                }));
+            }
 
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 2));
 
@@ -130,17 +135,22 @@ namespace BOSSE
             RemainingSteps.Add(new WaitForCompletion(UnitId.CYBERNETICS_CORE, 1));
             RemainingSteps.Add(new WaitForCondition(() =>
             {
+#warning Refactoring TODO: Move upgrade costs somewhere insterad of hard coding here. They do not seem to be available in sc2 files
+
                 // Save resources for warp gate upgrade
                 return CurrentMinerals >= 50 && CurrentVespene >= 50;
             }));
             RemainingSteps.Add(new CustomStep(() =>
             {
-                // Buy warp upgrade
-                Unit cyberCore = GeneralGameUtility.GetUnits(UnitId.CYBERNETICS_CORE, onlyCompleted: true, onlyVisible: true).FirstOrDefault();
-                GeneralGameUtility.Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.CYBERNETICSCORERESEARCH_RESEARCHWARPGATE, cyberCore));
+                // Buy warp tech upgrade
+                Unit cyberCore = GeneralGameUtility.GetUnits(UnitId.CYBERNETICS_CORE, onlyCompleted: true, onlyVisible: true).FirstOrDefault();                
+                if (cyberCore != null)
+                {
+                    GeneralGameUtility.Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.CYBERNETICSCORERESEARCH_RESEARCHWARPGATE, cyberCore));
+                    GeneralGameUtility.ApplyChronoBoostTo(cyberCore);
 
-                // Boost out the upgrade
-                GeneralGameUtility.ApplyChronoBoostTo(cyberCore);
+                    GeneralGameUtility.SubtractCosts(50, 50, 0);
+                }
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.TWILIGHT_COUNSEL, 1));

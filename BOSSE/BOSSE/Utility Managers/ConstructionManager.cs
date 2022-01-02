@@ -222,6 +222,8 @@ namespace BOSSE
             const int PylonRange = 6;
             foreach (Unit pylonIter in pylons)
             {
+                // Removed max search distance limit for now
+                // This should make our build orders more reliable overall, as we will automatically fall back on another nearby pylon instead
                 //if (pylonIter.Position.AirDistanceAbsolute(startingSpot) > searchRadius)
                 //    break; // reached max search distance
 
@@ -250,8 +252,9 @@ namespace BOSSE
                     }
                 }
 
+#warning IMPORTANT TODO: This should be sorted, but our placement logic just happens to work better when walling without this
                 // Try to build as close to Pylon as possible
-                candidateList = candidateList.OrderBy(o => o.AirDistanceAbsolute(pylonIter.Position)).ToList();
+                //candidateList = candidateList.OrderBy(o => o.AirDistanceAbsolute(pylonIter.Position)).ToList();
 
                 foreach (Point2D pointIter in candidateList)
                 {
@@ -353,7 +356,7 @@ namespace BOSSE
             float distance = ccNearNatural[0].Position.AirDistanceAbsolute(point);
             bool isNear = distance <= 8;
 
-            return isNear;
+            return isNear; 
         }
 
         /// <summary>
