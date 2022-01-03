@@ -72,13 +72,17 @@ namespace BOSSE
                 BOSSE.HouseProviderManagerRef.Disable();
 
                 // Send a worker to our natural right away, we will build here to start
-                buildingWorker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(Globals.MainBaseLocation, true);
-                buildingWorker.IsBuilder = true;
+                if (BotConstants.EnableWalling)
+                {
+                    buildingWorker = BOSSE.WorkerManagerRef.RequestWorkerForJobCloseToPointOrNull(Globals.MainBaseLocation, true);
+                    buildingWorker.IsBuilder = true;
 
-                Point2D naturalWallPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalWallPosition();
-                GeneralGameUtility.Queue(CommandBuilder.MoveAction(new List<Unit> { buildingWorker }, naturalWallPos));
+                    Point2D naturalWallPos = BOSSE.MapAnalysisRef.AnalysedRuntimeMapRef.GetNaturalWallPosition();
+                    GeneralGameUtility.Queue(CommandBuilder.MoveAction(new List<Unit> { buildingWorker }, naturalWallPos));
+                }
             }));
 
+            RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 1));
 
@@ -156,7 +160,7 @@ namespace BOSSE
 
             RemainingSteps.Add(new RequireBuilding(UnitId.TWILIGHT_COUNSEL, 1));
 
-            RemainingSteps.Add(new DebugStop());
+            //RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 3));
 
             RemainingSteps.Add(new WaitForCompletion(UnitId.TWILIGHT_COUNSEL, 1));

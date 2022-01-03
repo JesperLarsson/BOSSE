@@ -19,15 +19,13 @@ namespace BOSSE
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.ComponentModel;
     using System.Numerics;
     using System.Security.Cryptography;
     using System.Threading;
 
     using SC2APIProtocol;
-    using Action = SC2APIProtocol.Action;
-    using static CurrentGameState;
-    using static UnitConstants;
 
     /// <summary>
     /// Bot constant values, set manually during development
@@ -86,5 +84,29 @@ namespace BOSSE
         /// Debug opponent difficulty (official AI)
         /// </summary>
         public const Difficulty DebugOpponentDifficulty = Difficulty.Easy;
+        //public const Difficulty DebugOpponentDifficulty = Difficulty.VeryHard;
+
+        /// <summary>
+        /// Toggles walling with buildings, have been bug-prone on some maps and in some configurations
+        /// </summary>
+        public const bool EnableWalling = true;
+
+        /// <summary>
+        /// Building setup to use when walling off our natural
+        /// </summary>
+        public static readonly List<Size> WallConfiguration = new List<Size>()
+        {
+            new Size(3, 3),
+            new Size(3, 3),
+            new Size(2, 2),
+        };
+
+        //public static readonly List<Size> WallConfiguration = new List<Size>()
+        //{
+        //    new Size(3, 3),
+        //    new Size(2, 2),
+        //    new Size(2, 2),
+        //    new Size(2, 2),
+        //};
     }
 }

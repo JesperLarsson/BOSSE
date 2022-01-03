@@ -38,25 +38,6 @@ namespace BOSSE
     /// </summary>
     public static class WallinUtility
     {
-        /// <summary>
-        /// Building sizes for natural wall
-        /// </summary>
-        //private static readonly List<Size> NaturalWallinConfigNoGap = new List<Size>()
-        //{
-        //    new Size(3, 3),
-        //    new Size(3, 3),
-        //    new Size(3, 3),
-        //};
-
-        // Gap support could be added simply by inserting a 1x1 tile in the configuration
-        private static readonly List<Size> NaturalWallinConfigNoGap = new List<Size>()
-        {
-            new Size(3, 3),
-            new Size(2, 2),
-            new Size(2, 2),
-            new Size(2, 2),
-        };
-
         private static Wall CachedNaturalWall = null;
 
         /// <summary>
@@ -134,7 +115,7 @@ namespace BOSSE
 
         private static Wall TryGetWallAtExactY(int estimateX, int y)
         {
-            var wallConfig = NaturalWallinConfigNoGap;
+            var wallConfig = BotConstants.WallConfiguration;
             ImageData gridMap = CurrentGameState.State.GameInformation.StartRaw.PlacementGrid;
 
             // 1. Search for starting position = first buildable tile

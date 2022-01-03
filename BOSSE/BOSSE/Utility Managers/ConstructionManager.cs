@@ -41,17 +41,10 @@ namespace BOSSE
     /// </summary>
     public class ConstructionManager : Manager
     {
-        public volatile bool AllowNaturalWallinIn = true;
-
         /// <summary>
         /// Pointer to our intended natural wall configuration, NULL = not possible to build a wall
         /// </summary>
         public Wall NaturalWallRef = null;
-
-        /// <summary>
-        /// First 2x2 tile in our wall is intended for use with a building addon
-        /// </summary>
-        private const bool First2x2IsReservedForAddon = true;
 
         public override void Initialize()
         {
@@ -145,7 +138,7 @@ namespace BOSSE
 
             // Check if it can be a part part of a building wall, typically at our natural expansion
             Point2D constructionSpot = null;
-            if (allowAsWallPart)
+            if (allowAsWallPart && BotConstants.EnableWalling)
             {
                 Wall.BuildingInWall partOfWall = FindAsPartOfWall(buildingType);
                 if (partOfWall != null)
@@ -323,7 +316,7 @@ namespace BOSSE
         /// </summary>
         private Wall.BuildingInWall FindAsPartOfWall(UnitId unitType)
         {
-            if (this.AllowNaturalWallinIn == false)
+            if (BotConstants.EnableWalling == false)
                 return null;
 
             Size size = GetSizeOfBuilding(unitType);
@@ -392,7 +385,9 @@ namespace BOSSE
             {
                 Log.Info("OK - Found natural wall location");
 
-                if (First2x2IsReservedForAddon)
+                bool first2x2IsReservedForAddon = BOSSE.UseRace == Race.Terran;
+
+                if (first2x2IsReservedForAddon)
                 {
                     foreach (var iter in this.NaturalWallRef.Buildings)
                     {
