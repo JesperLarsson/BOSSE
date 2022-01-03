@@ -239,7 +239,7 @@ namespace BOSSE
 
             if (extractorsNecessary > this.extractorCount)
             {
-                BuildNewGasExtractors((int)(extractorsNecessary - this.extractorCount));
+                BuildNewGasExtractors((int)(extractorsNecessary - this.extractorCount), subtractCosts: true);
             }
         }
 
@@ -386,7 +386,7 @@ namespace BOSSE
             }
         }
 
-        public bool BuildNewGasExtractors(int numberOfExtractors)
+        public bool BuildNewGasExtractors(int numberOfExtractors, bool subtractCosts)
         {
             UnitTypeData extractorInfo = GetUnitInfo(RaceGasExtractor());
             List<Unit> gasGeysers = GetUnits(UnitConstants.GasGeysers, Alliance.Neutral, false, true);
@@ -414,7 +414,9 @@ namespace BOSSE
                 geyser.IsReserved = true;
                 Queue(CommandBuilder.ConstructActionOnTarget(RaceGasExtractor(), worker, geyser));
 
-                CurrentMinerals -= extractorInfo.MineralCost;
+                if (subtractCosts)
+                    CurrentMinerals -= extractorInfo.MineralCost;
+
                 this.extractorCount++;
                 success = true;
             }

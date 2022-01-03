@@ -261,7 +261,7 @@ namespace BOSSE
         public static void SubtractCosts(UnitId unitType)
         {
             UnitTypeData unitData = State.GameData.Units[(int)unitType];
-            uint foodConsumed = (uint)(unitData.FoodProvided - unitData.FoodRequired);
+            int foodConsumed = (int)(unitData.FoodRequired - unitData.FoodProvided);
 
             SubtractCosts(unitData.MineralCost, unitData.VespeneCost, foodConsumed);
         }
@@ -269,13 +269,20 @@ namespace BOSSE
         /// <summary>
         /// Subtracts the given costs from our current total
         /// </summary>
-        public static void SubtractCosts(uint minerals, uint gas, uint foodConsumed)
+        public static void SubtractCosts(uint minerals, uint gas, int foodConsumed)
         {
+            if (CurrentMinerals < minerals)
+                Log.SanityCheckFailed("Tried to subtract more minerals than we have, have something been double-subtracted?");
+            if (CurrentVespene < gas)
+                Log.SanityCheckFailed("Tried to subtract more gas than we have, have something been double-subtracted?");
+            if (FreeSupply < foodConsumed)
+                Log.SanityCheckFailed("Tried to subtract more food than we have, have something been double-subtracted?");
+
             CurrentMinerals -= minerals;
             CurrentVespene -= gas;
-            UsedSupply = (uint)(UsedSupply - foodConsumed);
+            UsedSupply = (uint)(UsedSupply + foodConsumed); // can't use += because of explicity casting
 
-            Log.Bulk($"Subtracing costs {minerals}/{gas}/{foodConsumed}");
+            Log.Bulk($"Subtracing costs {minerals}/{gas} - Now {CurrentMinerals}/{CurrentVespene}");
         }
 
         /// <summary>

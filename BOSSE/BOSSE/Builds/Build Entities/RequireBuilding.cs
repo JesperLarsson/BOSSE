@@ -55,11 +55,9 @@ namespace BOSSE
                 if (HaveTechRequirementsToBuild(this.BuildingType) == false)
                     return false;
 
-                bool buildOk = BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(this.BuildingType);
+                bool buildOk = BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(this.BuildingType, subtractCosts: true);
                 if (buildOk == false)
                     return false;
-
-                SubtractCosts(this.BuildingType);
 
                 // Next frame, sanity check that the building is in progress
                 BOSSE.PreUpdate += ValidateBuildingWasPlacedCallback;

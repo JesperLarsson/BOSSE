@@ -93,7 +93,7 @@ namespace BOSSE
         /// <summary>
         /// Tries to expand to the next available base expansion position, if possible
         /// </summary>
-        public bool BuildNextExpansion()
+        public bool BuildNextExpansion( bool subtractCosts)
         {
             UnitId ccType = RaceCommandCenterUnitType();
 
@@ -115,7 +115,10 @@ namespace BOSSE
                     return false;
 
                 Queue(CommandBuilder.ConstructAction(ccType, worker, constructionSpot));
-                SubtractCosts(ccType);
+
+                if (subtractCosts)
+                    SubtractCosts(ccType);
+
                 return true;
             }
 
@@ -125,19 +128,19 @@ namespace BOSSE
         /// <summary>
         /// Builds the given structure anywhere - Note that this is slow since it polls the game for a valid location
         /// </summary>
-        public bool BuildAutoSelectPosition(UnitId buildingType, bool allowAsWallPart = true)
+        public bool BuildAutoSelectPosition(UnitId buildingType, bool subtractCosts, bool allowAsWallPart = true)
         {
             // Gas extractors are built by the worker manager
             if (GasExtractors.Contains(buildingType))
             {
-                bool ok = BOSSE.WorkerManagerRef.BuildNewGasExtractors(1);
+                bool ok = BOSSE.WorkerManagerRef.BuildNewGasExtractors(1, subtractCosts);
                 return ok;
             }
 
             // Command centers needs to be built at specific expansion slots
             if (CommandCenters.Contains(buildingType))
             {
-                return BuildNextExpansion();
+                return BuildNextExpansion(subtractCosts);
             }
 
             // Check if it can be a part part of a building wall, typically at our natural expansion
@@ -182,6 +185,9 @@ namespace BOSSE
             }
 
             bool buildOk = BuildAtExactPosition(buildingType, constructionSpot);
+            if (buildOk && subtractCosts)
+                SubtractCosts(buildingType);
+
             return buildOk;
         }
 

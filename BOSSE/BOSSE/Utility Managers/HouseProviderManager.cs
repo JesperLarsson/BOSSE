@@ -85,7 +85,6 @@ namespace BOSSE
 
                 availableSupply += (uint)houseInfo.FoodProvided;
                 currentAndPending += (uint)houseInfo.FoodProvided;
-
                 CurrentMinerals -= houseInfo.MineralCost;
                 buildCount++;
 

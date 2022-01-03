@@ -50,7 +50,10 @@ namespace BOSSE
             this.RemainingSteps.RemoveAt(0);
 
             // Go to next step
-            this.ResolveBuildOrder();
+            // Removed for now, we want a single frame to pass between each update
+            // Can otherwise cause two building orders to be placed in the spot on the same frame, as we poll the game for that information currently
+            // This should not greatly affect bot performance as a single frame is not much on the scale of build orders
+            //this.ResolveBuildOrder();
         }
     }
 }
