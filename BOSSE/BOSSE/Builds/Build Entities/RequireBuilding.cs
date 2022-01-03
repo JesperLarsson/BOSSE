@@ -47,7 +47,6 @@ namespace BOSSE
             if (this.HasMetBuildCriteria(out int missingBuildingCount))
                 return true;            
 
-            bool success = true;
             for (int i = 0; i < missingBuildingCount; i++)
             {
                 if (CanAfford(this.BuildingType) == false)
@@ -58,17 +57,17 @@ namespace BOSSE
                 bool buildOk = BOSSE.ConstructionManagerRef.BuildAutoSelectPosition(this.BuildingType, subtractCosts: true);
                 if (buildOk == false)
                     return false;
-
-                // Next frame, sanity check that the building is in progress
-                BOSSE.PreUpdate += ValidateBuildingWasPlacedCallback;
             }
 
-            return success;
+            // Next frame, sanity check that the building is in progress
+            // Is not strictly necessary, but helps debug our building placement logic etc
+            BOSSE.PreUpdate += ValidateBuildingWasPlacedCallback;
+
+            return true;
         }
 
         private void ValidateBuildingWasPlacedCallback(object sender, EventArgs e)
         {
-            // Sanity check results, this breaks our build order as we will already have passed this step
             if (HasMetBuildCriteria(out int _) == false)
                 Log.SanityCheckFailed($"Failed to build {this.BuildingType}");
 

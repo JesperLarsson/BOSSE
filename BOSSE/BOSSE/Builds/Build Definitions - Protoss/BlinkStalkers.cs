@@ -91,7 +91,7 @@ namespace BOSSE
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.CYBERNETICS_CORE, 1));
-            RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 2)); // builds expansion
+            RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 2)); // build expansion
 
             // Send a worker to scout, might not be necessary until we have better intel-parsing logic
             if (SendWorkerScout)
@@ -155,6 +155,8 @@ namespace BOSSE
             }));
 
             RemainingSteps.Add(new RequireBuilding(UnitId.TWILIGHT_COUNSEL, 1));
+
+            RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 3));
 
             RemainingSteps.Add(new WaitForCompletion(UnitId.TWILIGHT_COUNSEL, 1));
