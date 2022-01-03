@@ -274,6 +274,8 @@ namespace BOSSE
             CurrentMinerals -= minerals;
             CurrentVespene -= gas;
             UsedSupply = (uint)(UsedSupply - foodConsumed);
+
+            Log.Bulk($"Subtracing costs {minerals}/{gas}/{foodConsumed}");
         }
 
         /// <summary>

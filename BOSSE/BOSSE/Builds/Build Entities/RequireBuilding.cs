@@ -44,11 +44,8 @@ namespace BOSSE
 
         public override bool ResolveStep()
         {
-            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.BuildingType, onlyCompleted: true, onlyVisible: true, includeWorkersTaskedToBuildRequestedUnit: true);
-
-            if (matchedUnits.Count >= this.BuildingCount)
-                return true;
-            int missingBuildingCount = (int)this.BuildingCount - matchedUnits.Count;
+            if (this.HasMetBuildCriteria(out int missingBuildingCount))
+                return true;            
 
             bool success = true;
             for (int i = 0; i < missingBuildingCount; i++)
@@ -63,9 +60,30 @@ namespace BOSSE
                     return false;
 
                 SubtractCosts(this.BuildingType);
+
+                // Next frame, sanity check that the building is in progress
+                BOSSE.PreUpdate += ValidateBuildingWasPlacedCallback;
             }
 
             return success;
+        }
+
+        private void ValidateBuildingWasPlacedCallback(object sender, EventArgs e)
+        {
+            // Sanity check results, this breaks our build order as we will already have passed this step
+            if (HasMetBuildCriteria(out int _) == false)
+                Log.SanityCheckFailed($"Failed to build {this.BuildingType}");
+
+            BOSSE.PreUpdate -= ValidateBuildingWasPlacedCallback;
+        }
+
+        private bool HasMetBuildCriteria(out int missingBuildingCount)
+        {
+            List<Unit> matchedUnits = GeneralGameUtility.GetUnits(this.BuildingType, onlyCompleted: true, onlyVisible: true, includeWorkersTaskedToBuildRequestedUnit: true);
+            missingBuildingCount = (int)this.BuildingCount - matchedUnits.Count;
+
+            bool isOk = matchedUnits.Count >= this.BuildingCount;
+            return isOk;
         }
     }
 }

@@ -112,7 +112,7 @@ namespace BOSSE
                 }));
             }
 
-            RemainingSteps.Add(new DebugStop());
+            //RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 2));
 
             // Move back builder to be a normal worker
@@ -176,7 +176,7 @@ namespace BOSSE
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 4));
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 4));
 
-            RemainingSteps.Add(new DebugStop());
+            //RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 3));
 
             // Build finished

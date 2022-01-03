@@ -40,7 +40,7 @@ namespace BOSSE
     public class BOSSE
     {
         // Set to configure which race to spawn as, and which set of build orders to allow
-        public static Race UseRace = Race.Protoss;
+        public const Race UseRace = Race.Protoss;
 
         // Input managers
         public static readonly SensorManager SensorManagerRef = new SensorManager();
@@ -62,6 +62,16 @@ namespace BOSSE
         public static readonly SpaceMovementReservationManager SpaceMovementReservationManagerRef = new SpaceMovementReservationManager();
         public static readonly CurrentBuildManager BuildOrderManagerRef = new CurrentBuildManager();
         public static readonly HouseProviderManager HouseProviderManagerRef = new HouseProviderManager();
+
+        /// <summary>
+        /// Called first thing each update tick, before standard logic
+        /// </summary>
+        public static event EventHandler PreUpdate;
+
+        /// <summary>
+        /// Called last each update tick, after standard logic
+        /// </summary>
+        public static event EventHandler PostUpdate;
 
         // List of all active managers. NOTE: Order matters for which gets to update/initialize first
         public static readonly List<Manager> AllManagers = new List<Manager>
@@ -176,6 +186,8 @@ namespace BOSSE
         {
             Unit.OnTick();
 
+            PreUpdate?.Invoke(this, null);
+
             foreach (Manager managerIter in AllManagers)
             {
                 if (managerIter.Enabled == false)
@@ -183,6 +195,8 @@ namespace BOSSE
 
                 managerIter.OnFrameTick();
             }
+
+            PostUpdate?.Invoke(this, null);
         }
     }
 }

@@ -413,6 +413,7 @@ namespace BOSSE
                 Log.Info($"WorkerManager - Building new gas extractor at " + geyser.Position.ToString2() + ", geyser = " + geyser.Tag);
                 geyser.IsReserved = true;
                 Queue(CommandBuilder.ConstructActionOnTarget(RaceGasExtractor(), worker, geyser));
+
                 CurrentMinerals -= extractorInfo.MineralCost;
                 this.extractorCount++;
                 success = true;
