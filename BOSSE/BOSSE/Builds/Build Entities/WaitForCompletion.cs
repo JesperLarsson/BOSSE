@@ -49,5 +49,10 @@ namespace BOSSE
 
             return conditionOk;
         }
+
+        public override string ToString()
+        {
+            return $"Waiting for completion of {this.UnitType}";
+        }
     }
 }

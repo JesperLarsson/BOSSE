@@ -44,5 +44,10 @@ namespace BOSSE
         {
             return this.Condition();
         }
+
+        public override string ToString()
+        {
+            return $"Waiting on conditions...";
+        }
     }
 }

@@ -60,5 +60,10 @@ namespace BOSSE
 
             return true;
         }
+
+        public override string ToString()
+        {
+            return $"Train {this.UnitType}";
+        }
     }
 }

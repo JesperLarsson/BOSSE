@@ -67,6 +67,25 @@ namespace DebugGui
             {
                 int index = DropdownMapChoice.SelectedIndex;
                 this.PictureMain.Image = Maps[index].GetMap();
+
+                List<BuildStep> buldSteps = BOSSE.BuildOrderManagerRef.CurrentBuildOrder.RemainingSteps;
+                if (buldSteps == null || buldSteps.Count == 0)
+                {
+                    this.LblBuildStep.Text = "Done";
+                    this.LblFutureBuildSteps.Text = "";
+                }
+                else
+                {
+                    BuildStep nextStep = buldSteps[0];
+                    this.LblBuildStep.Text = nextStep.ToString();
+
+                    string futureSteps = "";
+                    for (int i = 1; i < buldSteps.Count; i++)
+                    {
+                        futureSteps += buldSteps[i].ToString() + Environment.NewLine;
+                    }
+                    this.LblFutureBuildSteps.Text = futureSteps;
+                }
             }
             catch (InvalidOperationException)
             {

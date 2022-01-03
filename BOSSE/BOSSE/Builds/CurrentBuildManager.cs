@@ -47,7 +47,7 @@ namespace BOSSE
             //new MarineSpam(),
         };
 
-        private BuildOrder CurrentBuildOrder;
+        public BuildOrder CurrentBuildOrder;
 
         public CurrentBuildManager()
         {

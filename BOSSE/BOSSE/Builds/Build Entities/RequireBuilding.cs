@@ -82,5 +82,10 @@ namespace BOSSE
             bool isOk = matchedUnits.Count >= this.BuildingCount;
             return isOk;
         }
+
+        public override string ToString()
+        {
+            return $"Build {this.BuildingType}";
+        }
     }
 }

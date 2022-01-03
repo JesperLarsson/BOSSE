@@ -32,6 +32,9 @@
             this.PictureMain = new System.Windows.Forms.PictureBox();
             this.DropdownMapChoice = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.LblBuildStep = new System.Windows.Forms.Label();
+            this.LblFutureBuildSteps = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,11 +66,43 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Map type:";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1367, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 21);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Build order:";
+            // 
+            // LblBuildStep
+            // 
+            this.LblBuildStep.AutoSize = true;
+            this.LblBuildStep.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblBuildStep.Location = new System.Drawing.Point(1463, 57);
+            this.LblBuildStep.Name = "LblBuildStep";
+            this.LblBuildStep.Size = new System.Drawing.Size(28, 25);
+            this.LblBuildStep.TabIndex = 4;
+            this.LblBuildStep.Text = "__";
+            // 
+            // LblFutureBuildSteps
+            // 
+            this.LblFutureBuildSteps.AutoSize = true;
+            this.LblFutureBuildSteps.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblFutureBuildSteps.Location = new System.Drawing.Point(1463, 82);
+            this.LblFutureBuildSteps.Name = "LblFutureBuildSteps";
+            this.LblFutureBuildSteps.Size = new System.Drawing.Size(24, 21);
+            this.LblFutureBuildSteps.TabIndex = 5;
+            this.LblFutureBuildSteps.Text = "__";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1186);
+            this.Controls.Add(this.LblFutureBuildSteps);
+            this.Controls.Add(this.LblBuildStep);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DropdownMapChoice);
             this.Controls.Add(this.PictureMain);
@@ -89,6 +124,9 @@
         private System.Windows.Forms.PictureBox PictureMain;
         private System.Windows.Forms.ComboBox DropdownMapChoice;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblBuildStep;
+        private System.Windows.Forms.Label LblFutureBuildSteps;
     }
 }
 

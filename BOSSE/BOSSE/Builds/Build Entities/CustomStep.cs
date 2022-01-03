@@ -45,5 +45,10 @@ namespace BOSSE
             this.Function();
             return true;
         }
+
+        public override string ToString()
+        {
+            return "Custom step";
+        }
     }
 }
