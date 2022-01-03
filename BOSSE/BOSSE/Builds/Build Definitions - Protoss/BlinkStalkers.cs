@@ -82,7 +82,6 @@ namespace BOSSE
                 }
             }));
 
-            RemainingSteps.Add(new DebugStop());
             RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 1));
 
@@ -152,9 +151,9 @@ namespace BOSSE
                 if (cyberCore != null)
                 {
                     GeneralGameUtility.Queue(CommandBuilder.UseAbility(AbilityConstants.AbilityId.CYBERNETICSCORERESEARCH_RESEARCHWARPGATE, cyberCore));
-                    GeneralGameUtility.ApplyChronoBoostTo(cyberCore);
-
                     GeneralGameUtility.SubtractCosts(50, 50, 0);
+
+                    GeneralGameUtility.ApplyChronoBoostTo(cyberCore);
                 }
             }));
 

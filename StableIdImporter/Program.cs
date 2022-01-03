@@ -50,7 +50,9 @@ namespace StableIdImporter
                 Schema.Rootobject file = JsonConvert.DeserializeObject<Schema.Rootobject>(body);
 
 #warning TODO: Implement unit import which is backwards compatible with current enum sets
+
                 File.WriteAllText("AbilityConstants.cs", BuildAbilitiesEnums(file.Abilities), Encoding.UTF8);
+                File.WriteAllText("BuffConstants.cs", BuildBuffsEnums(file.Buffs), Encoding.UTF8);
                 //File.WriteAllText("UnitConstants.cs", BuildUnitsEnums(file.Units), Encoding.UTF8); // Not working with current enums
 
                 Console.WriteLine("Done, outputs must be copied manually to main project");
@@ -130,6 +132,42 @@ namespace StableIdImporter
                 string fullRow = $"    {finalName} = {id},";
                 if (String.IsNullOrWhiteSpace(friendlyname) == false)
                     fullRow += $" // {friendlyname}";
+                fullRow += "\r\n";
+
+                if (usedNames.Contains(finalName))
+                    fullRow = "    // " + fullRow.Trim() + "\r\n";
+
+                usedNames.Add(finalName);
+                sb.Append(fullRow);
+            }
+
+            sb.Append("}\r\n");
+            return sb.ToString();
+        }
+
+        private static string BuildBuffsEnums(Schema.Buff[] buffs)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("public enum BuffId\r\n{\r\n");
+
+            HashSet<string> usedNames = new HashSet<string>();
+
+            foreach (Schema.Buff iter in buffs)
+            {
+                string name = iter.name;
+                int id = iter.id;
+
+                if (String.IsNullOrWhiteSpace(name))
+                    continue;
+                if (char.IsDigit(name[0]))
+                    name = "_" + name;
+
+                name = name.ToUpperInvariant();
+
+                string finalName = name;
+                finalName = finalName.Replace(" ", "").Trim();
+
+                string fullRow = $"    {finalName} = {id},";
                 fullRow += "\r\n";
 
                 if (usedNames.Contains(finalName))

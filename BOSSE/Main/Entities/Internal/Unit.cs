@@ -122,10 +122,12 @@ namespace BOSSE
         /// </summary>
         public void UpdateDataEachTick(SC2APIProtocol.Unit newOriginal)
         {
-            this.LastFrameData = this.Original;
-
             this.HasNewOrders = false;
+
+            this.LastFrameData = this.Original;
             this.Original = newOriginal;
+
+            this.ReapplyChronoBoostToSelf();
         }
 
         /// <summary>
@@ -146,6 +148,20 @@ namespace BOSSE
         public override string ToString()
         {
             return $"[{this.UnitType} {this.Tag} {this.Position.ToString2()}]";
+        }
+
+        private void ReapplyChronoBoostToSelf()
+        {
+            // Special case, re-apply chrono boost if it ran out
+            // If it was worth boosting before, it's worth boosting again!
+            bool hadChronoboost = this.LastFrameData.BuffIds.Contains((uint)BuffId.CHRONOBOOSTENERGYCOST);
+            bool hasChronoboost = this.Original.BuffIds.Contains((uint)BuffId.CHRONOBOOSTENERGYCOST);
+            bool hasKeptOrder = this.LastFrameData.Orders.Count == 1 && this.Original.Orders.Count == 1 && this.LastFrameData.Orders[0].AbilityId == this.Original.Orders[0].AbilityId;
+
+            if (hadChronoboost && (!hasChronoboost) && hasKeptOrder)
+            {
+                GeneralGameUtility.ApplyChronoBoostTo(this);
+            }
         }
     }
 }
