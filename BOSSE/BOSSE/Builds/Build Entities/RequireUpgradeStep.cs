@@ -55,7 +55,7 @@ namespace BOSSE
             if (CanAfford(mineralCost, gasCost, 0) == false)
                 return false;
 
-            Unit fromBuilding = GeneralGameUtility.GetUnits(researchedByBuilding, onlyCompleted: true, onlyVisible: true).Where(o => o.CurrentOrder != null).ToList().FirstOrDefault();
+            Unit fromBuilding = GeneralGameUtility.GetUnits(researchedByBuilding, onlyCompleted: true, onlyVisible: true).Where(o => o.CurrentOrder == null).ToList().FirstOrDefault();
             if (fromBuilding == null)
                 return false;
 
