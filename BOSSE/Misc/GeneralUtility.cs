@@ -40,6 +40,9 @@ namespace BOSSE
     /// </summary>
     public static class GeneralUtility
     {
+        /// <summary>
+        /// Stops visual studio if attached, otherwise does nothing
+        /// </summary>
         public static void BreakIfAttached()
         {
             if (Debugger.IsAttached)

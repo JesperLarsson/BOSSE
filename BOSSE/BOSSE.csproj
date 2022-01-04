@@ -75,6 +75,7 @@
     <Compile Include="BOSSE\Builds\Build Definitions - Protoss\NexusRush.cs" />
     <Compile Include="BOSSE\Builds\Build Definitions - Protoss\BlinkStalkers.cs" />
     <Compile Include="BOSSE\Builds\Build Entities\BuildOrder.cs" />
+    <Compile Include="BOSSE\Builds\Build Entities\RequireUpgradeStep.cs" />
     <Compile Include="BOSSE\Builds\Build Entities\CustomStep.cs" />
     <Compile Include="BOSSE\Builds\Build Entities\DebugStop.cs" />
     <Compile Include="BOSSE\Builds\Build Entities\WaitForCondition.cs" />

@@ -247,10 +247,17 @@ namespace BOSSE
         public static bool CanAfford(UnitTypeData unitData)
         {
             int foodConsumed = (int)(unitData.FoodRequired - unitData.FoodProvided);
+            return CanAfford(unitData.MineralCost, unitData.VespeneCost, foodConsumed);
+        }
 
-            bool enoughFood = FreeSupply >= foodConsumed;
-            bool enoughMinerals = CurrentMinerals >= unitData.MineralCost;
-            bool enoughGas = CurrentVespene >= unitData.VespeneCost;
+        /// <summary>
+        /// Determines if we can afford to build/train the given unit
+        /// </summary>
+        public static bool CanAfford(uint minerals, uint gas, int food)
+        {
+            bool enoughFood = FreeSupply >= food;
+            bool enoughMinerals = CurrentMinerals >= minerals;
+            bool enoughGas = CurrentVespene >= gas;
 
             return enoughMinerals && enoughGas && enoughFood;
         }
@@ -812,6 +819,35 @@ namespace BOSSE
             }
 
             return false;
+        }
+
+        public static bool GetUpgradeInfo(AbilityId upgradeAbility, out uint mineralCost, out uint gasCost, out UnitId researchedByBuilding)
+        {
+            if (upgradeAbility == AbilityId.CYBERNETICSCORERESEARCH_RESEARCHWARPGATE)
+            {
+                // Warp gates
+                mineralCost = 50;
+                gasCost = 50;
+                researchedByBuilding = UnitId.CYBERNETICS_CORE;
+            }
+            else if (upgradeAbility == AbilityId.TWILIGHTCOUNCILRESEARCH_RESEARCHSTALKERTELEPORT)
+            {
+                // Stalker blink
+                mineralCost = 150;
+                gasCost = 150;
+                researchedByBuilding = UnitId.TWILIGHT_COUNSEL;
+            }
+            else
+            {
+                Log.SanityCheckFailed($"Unsupported upgrade in build order {upgradeAbility}");
+
+                mineralCost = 0;
+                gasCost = 0;
+                researchedByBuilding = 0;
+                return false;
+            }
+
+            return true;
         }
     }
 }
