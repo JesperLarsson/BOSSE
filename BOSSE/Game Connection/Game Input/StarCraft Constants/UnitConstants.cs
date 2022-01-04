@@ -206,6 +206,9 @@ namespace BOSSE
         {
             UnitId.BARRACKS,
             UnitId.BARRACKS_FLYING,
+
+            UnitId.BARRACKS_TECHLAB,
+            UnitId.BARRACKS_REACTOR,
         };
 
         public static readonly HashSet<UnitId> TechlabVariations = new HashSet<UnitId>
@@ -226,6 +229,9 @@ namespace BOSSE
         {
             UnitId.FACTORY,
             UnitId.FACTORY_FLYING,
+
+            UnitId.FACTORY_REACTOR,
+            UnitId.FACTORY_TECHLAB,
         };
 
         public static readonly HashSet<UnitId> ProtossBuildingsDoesNotRequirePylon = new HashSet<UnitId>

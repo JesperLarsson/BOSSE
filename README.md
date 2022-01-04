@@ -8,7 +8,7 @@ Supports local debugging sessions (against the official AI or a human player), a
 Development is mostly paused for now, but I will revisit the project every now and then as time allows :).
 
 ## Features
-- Precalculated map analysis (chokepoints, expansion locations, ramps, etc). Calculated once per map and stored to file
+- Precalculated map analysis (expansion locations, chokepoints, wall locations, ramps, etc). Calculated once per map and stored to file
 - Runtime map analysis - Influence, tension, vulnerability, etc
 - Squad unit management with overridable logic
 - Building placement planning

@@ -312,31 +312,62 @@ namespace BOSSE
             return null;
         }
 
-        /// <summary>
-        /// Returns all game units matching certain criteria
-        /// </summary>
-        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildRequestedUnit = false, bool includeBuildingOrdersBuildingUnit = false)
+        public static HashSet<UnitId> GetEquivalentUnits(UnitId unitType)
         {
-            HashSet<UnitId> temp = new HashSet<UnitId>
+            HashSet<UnitId> unitSet = new HashSet<UnitId>
             {
                 unitType
             };
 
-            return GetUnits(temp, alliance, onlyCompleted, onlyVisible, includeWorkersTaskedToBuildRequestedUnit, includeBuildingOrdersBuildingUnit);
+            if (unitType == UnitId.GATEWAY)
+            {
+                unitSet.Add(UnitId.WARP_GATE);
+            }
+            else if (unitType == UnitId.WARP_GATE)
+            {
+                unitSet.Add(UnitId.GATEWAY);
+            }
+            else if (BarracksVariations.Contains(unitType))
+            {
+                return BarracksVariations;
+            }
+            else if (FactoryVariations.Contains(unitType))
+            {
+                return FactoryVariations;
+            }
+
+            return unitSet;
         }
 
         /// <summary>
-        /// Returns all game units matching certain criteria
+        /// Returns all units which match certain criteria
         /// </summary>
-        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildRequestedUnit = false, bool includeBuildingOrdersBuildingUnit = false)
+        public static List<Unit> GetUnits(UnitId unitType, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildRequestedUnit = false, bool includeBuildingOrdersBuildingUnit = false)
         {
-            List<Unit> units = new List<Unit>();
+            return GetUnits(new HashSet<UnitId> { unitType }, alliance, onlyCompleted, onlyVisible, includeWorkersTaskedToBuildRequestedUnit, includeBuildingOrdersBuildingUnit);
+        }
 
+        /// <summary>
+        /// Returns all units which match certain criteria
+        /// </summary>
+        public static List<Unit> GetUnits(HashSet<UnitId> unitTypesToFind, Alliance alliance = Alliance.Self, bool onlyCompleted = false, bool onlyVisible = false, bool includeWorkersTaskedToBuildRequestedUnit = false, bool includeUnitsInBuildiingProductionQueues = false)
+        {
+            // Resolve equivalent unit set
+            HashSet<UnitId> resolvedUnits = new HashSet<UnitId>();
+            foreach (UnitId unitIter in unitTypesToFind)
+            {
+                HashSet<UnitId> equivalents = GetEquivalentUnits(unitIter);
+                resolvedUnits.AddRange(equivalents);
+            }
+            unitTypesToFind = resolvedUnits;
+
+            // Find matching units
+            List<Unit> matchedUnits = new List<Unit>();
             foreach (SC2APIProtocol.Unit unitIter in CurrentGameState.State.ObservationState.Observation.RawData.Units)
             {
-                // Check building orders
+                // Check building production queue
                 bool addUnit = false;
-                if (includeBuildingOrdersBuildingUnit && unitIter.Orders != null)
+                if (includeUnitsInBuildiingProductionQueues && unitIter.Orders != null)
                 {
                     foreach (UnitOrder orderIter in unitIter.Orders)
                     {
@@ -379,10 +410,11 @@ namespace BOSSE
                         managedUnit = new Unit(unitIter);
                     }
 
-                    units.Add(managedUnit);
+                    matchedUnits.Add(managedUnit);
                 }
             }
 
+            // Find workers which are tasked to build the given unit type
             if (includeWorkersTaskedToBuildRequestedUnit)
             {
                 foreach (UnitId unitTypeIter in unitTypesToFind)
@@ -395,12 +427,12 @@ namespace BOSSE
                         if (onlyVisible && (workerIter.IsVisible == false))
                             continue;
 
-                        units.Add(workerIter);
+                        matchedUnits.Add(workerIter);
                     }
                 }
             }
 
-            return units;
+            return matchedUnits;
         }
 
         public static uint GetUnitCountTotal(UnitId unitTypeToFind, bool includePending = true, bool onlyCompleted = false, HashSet<ulong> excludeUnitTags = null, bool includeEquivalents = false)
