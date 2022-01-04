@@ -37,6 +37,8 @@ namespace BOSSE
         public AbilityConstants.AbilityId UpgradeAbility;
         public bool ApplyChronoboost;
 
+        private Unit BuiltFromBuilding;
+
         public RequireUpgradeStep(AbilityConstants.AbilityId upgrade, bool applyChronoboost)
         {
             UpgradeAbility = upgrade;
@@ -55,21 +57,42 @@ namespace BOSSE
             if (CanAfford(mineralCost, gasCost, 0) == false)
                 return false;
 
-            Unit fromBuilding = GeneralGameUtility.GetUnits(researchedByBuilding, onlyCompleted: true, onlyVisible: true).Where(o => o.CurrentOrder == null).FirstOrDefault();
-            if (fromBuilding == null)
+            this.BuiltFromBuilding = GeneralGameUtility.GetUnits(researchedByBuilding, onlyCompleted: true, onlyVisible: true).Where(o => o.CurrentOrder == null).FirstOrDefault();
+            if (this.BuiltFromBuilding == null)
                 return false;
 
-            GeneralGameUtility.Queue(CommandBuilder.UseAbility(this.UpgradeAbility, fromBuilding));
-            if (this.ApplyChronoboost)
-                GeneralGameUtility.ApplyChronoBoostTo(fromBuilding);
-
+            GeneralGameUtility.Queue(CommandBuilder.UseAbility(this.UpgradeAbility, this.BuiltFromBuilding));
             SubtractCosts(mineralCost, gasCost, 0);
+
+            if (this.ApplyChronoboost)
+            {
+                GeneralGameUtility.ApplyChronoBoostTo(this.BuiltFromBuilding);
+
+                // Make sure that the upgrade is continously chrono boosted
+                BOSSE.PreUpdate += ContinueBoosting;
+            }
+
             return true;
         }
 
         public override string ToString()
         {
             return $"Research {UpgradeAbility}";
+        }
+
+        /// <summary>
+        /// Continues chrono boosting out the upgrade if possible
+        /// </summary>
+        private void ContinueBoosting(object _, object __)
+        {
+            if (this.BuiltFromBuilding.CurrentOrder == null || this.BuiltFromBuilding.CurrentOrder.AbilityId != (int)this.UpgradeAbility)
+            {
+                BOSSE.PreUpdate -= ContinueBoosting;
+                return;
+            }
+
+            if (this.BuiltFromBuilding.Original.BuffIds.Contains((uint)BuffId.CHRONOBOOSTENERGYCOST) == false)
+                GeneralGameUtility.ApplyChronoBoostTo(this.BuiltFromBuilding);
         }
     }
 }
