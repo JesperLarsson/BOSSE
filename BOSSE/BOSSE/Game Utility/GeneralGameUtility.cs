@@ -800,7 +800,6 @@ namespace BOSSE
 
             UnitId producedFrom = WhichBuildingProducesUnit(unitToBuild);
             List<Unit> productionFacilities = GetUnits(producedFrom, onlyCompleted: true, onlyVisible: true);
-
             if (productionFacilities == null || productionFacilities.Count == 0)
                 return false;
 
@@ -812,15 +811,27 @@ namespace BOSSE
                     continue;
                 if (BOSSE.UseRace == Race.Protoss && buildingIter.Original.IsPowered == false)
                     continue;
-                if (buildingIter.UnitType == UnitId.WARP_GATE && (buildingIter.CanWarpIn() == false))
-                    continue;
 
-                Queue(CommandBuilder.TrainActionAndSubtractCosts(buildingIter, unitToBuild));
+                bool useWarpGateTech = buildingIter.UnitType == UnitId.WARP_GATE;
+                if (useWarpGateTech)
+                {
+                    // Special case - Warp gate technology
+                    //   Queue multiple warp in actions to ensure that it is successful, as warp in location might be used by something else
+                    for (int i = 0; i < 25; i++)
+                    {
+                        Queue(CommandBuilder.TrainActionAndSubtractCostsWarpTech(buildingIter, unitToBuild, updateResourcesAvailable: false));
+                    }
+                    SubtractCosts(unitToBuild);
+                }
+                else
+                {
+                    // Standard training
+                    Queue(CommandBuilder.TrainActionAndSubtractCosts(buildingIter, unitToBuild));
+                }
 
+                buildingIter.HasNewOrders = true;
                 if (allowChronoBoost)
                     ApplyChronoBoostTo(buildingIter);
-                if (buildingIter.UnitType == UnitId.WARP_GATE)
-                    buildingIter.PerformedWarpIn();
 
                 return true;
             }

@@ -276,7 +276,7 @@ namespace BOSSE
             throw new BosseFatalException("Unable to find a replacement position close to " + closeToPos);
         }
 
-        private static Action TrainActionAndSubtractCostsWarpTech(Unit fromCenter, UnitId unitTypeToBuild, bool updateResourcesAvailable = true)
+        public static Action TrainActionAndSubtractCostsWarpTech(Unit fromCenter, UnitId unitTypeToBuild, bool updateResourcesAvailable = true)
         {
             if (fromCenter.UnitType != UnitId.WARP_GATE)
                 Log.SanityCheckFailed("Tried to warp in units from non-warpgate building");
