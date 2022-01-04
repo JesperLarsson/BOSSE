@@ -35,11 +35,16 @@ namespace BOSSE
     public abstract class BuildOrder
     {
         public List<BuildStep> RemainingSteps = new List<BuildStep>();
+        public volatile bool IsCompleted = false;
 
         public void ResolveBuildOrder()
         {
             if (this.RemainingSteps.Count == 0)
+            {
+                this.IsCompleted = true;
                 return;
+            }
+
             BuildStep nextStep = this.RemainingSteps[0];
 
             bool resolvedOk = nextStep.ResolveStep();

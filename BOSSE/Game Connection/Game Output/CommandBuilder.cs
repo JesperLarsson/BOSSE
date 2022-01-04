@@ -131,8 +131,8 @@ namespace BOSSE
         public static Action ConstructAction(UnitId structureToBuild, Unit unitThatBuilds, Point2D targetPos)
         {
             Log.Bulk($"Construct {targetPos.ToString2()} {unitThatBuilds.ToString()} {structureToBuild}");
-            int abilityID = GetAbilityIdToBuildUnit(structureToBuild);
-            Action actionObj = CommandBuilder.RawCommand(abilityID);
+            AbilityId ability = GetAbilityIdToBuildUnit(structureToBuild);
+            Action actionObj = CommandBuilder.RawCommand((int)ability);
 
             actionObj.ActionRaw.UnitCommand.UnitTags.Add(unitThatBuilds.Tag);
             actionObj.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
@@ -150,8 +150,8 @@ namespace BOSSE
         public static Action ConstructActionOnTarget(UnitId structureToBuild, Unit unitThatBuilds, Unit onUnit)
         {
             Log.Bulk($"ConstructOnTarget {onUnit.ToString()} {unitThatBuilds.ToString()} {structureToBuild}");
-            int abilityID = GetAbilityIdToBuildUnit(structureToBuild);
-            Action actionObj = CommandBuilder.RawCommand(abilityID);
+            AbilityId ability = GetAbilityIdToBuildUnit(structureToBuild);
+            Action actionObj = CommandBuilder.RawCommand((int)ability);
 
             actionObj.ActionRaw.UnitCommand.UnitTags.Add(unitThatBuilds.Tag);
             actionObj.ActionRaw.UnitCommand.TargetUnitTag = onUnit.Tag;
@@ -168,8 +168,8 @@ namespace BOSSE
             if (fromCenter.QueuedOrders.Count > 0)
                 Log.SanityCheckFailed("No queueing is expected");
 
-            int abilityID = GetAbilityIdToBuildUnit(unitTypeToBuild);
-            Action action = CommandBuilder.RawCommand(abilityID);
+            AbilityId ability = GetAbilityIdToBuildUnit(unitTypeToBuild);
+            Action action = CommandBuilder.RawCommand((int)ability);
             action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
 
             if (updateResourcesAvailable)

@@ -39,9 +39,9 @@ namespace BOSSE
         /// <summary>
         /// Returns which ability builds the given unit
         /// </summary>
-        public static int GetAbilityIdToBuildUnit(UnitConstants.UnitId unitType)
+        public static AbilityConstants.AbilityId GetAbilityIdToBuildUnit(UnitConstants.UnitId unitType)
         {
-            return (int)CurrentGameState.State.GameData.Units[(int)unitType].AbilityId;
+            return (AbilityConstants.AbilityId)CurrentGameState.State.GameData.Units[(int)unitType].AbilityId;
         }
 
         /// <summary>
@@ -380,8 +380,8 @@ namespace BOSSE
                     {
                         foreach (UnitId searchParamUnit in unitTypesToFind)
                         {
-                            int abilityID = GetAbilityIdToBuildUnit(searchParamUnit);
-                            if (orderIter.AbilityId == abilityID)
+                            AbilityConstants.AbilityId ability = GetAbilityIdToBuildUnit(searchParamUnit);
+                            if (orderIter.AbilityId == (int)ability)
                             {
                                 addUnit = true;
                                 break;
@@ -502,13 +502,13 @@ namespace BOSSE
 
         private static List<Unit> GetAllWorkersTaskedToBuildType(UnitId unitType)
         {
-            int abilityID = GetAbilityIdToBuildUnit(unitType);
+            AbilityId ability = GetAbilityIdToBuildUnit(unitType);
             List<Unit> allWorkers = GetUnits(RaceWorkerUnitType(), onlyCompleted: true);
             List<Unit> returnList = new List<Unit>();
 
             foreach (Unit worker in allWorkers)
             {
-                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == abilityID)
+                if (worker.CurrentOrder != null && worker.CurrentOrder.AbilityId == (int)ability)
                 {
                     returnList.Add(worker);
                 }
@@ -590,10 +590,10 @@ namespace BOSSE
         /// </summary>
         public static bool CanPlaceRequest(UnitId unitType, Point2D targetPos)
         {
-            var abilityID = GetAbilityIdToBuildUnit(unitType);
+            AbilityId ability = GetAbilityIdToBuildUnit(unitType);
 
             RequestQueryBuildingPlacement queryBuildingPlacement = new RequestQueryBuildingPlacement();
-            queryBuildingPlacement.AbilityId = abilityID;
+            queryBuildingPlacement.AbilityId = (int)ability;
             queryBuildingPlacement.TargetPos = new Point2D();
             queryBuildingPlacement.TargetPos.X = targetPos.X;
             queryBuildingPlacement.TargetPos.Y = targetPos.Y;
@@ -745,12 +745,13 @@ namespace BOSSE
         /// <summary>
         /// Returns a set of buildings which can produce the given unit
         /// </summary>
-        public static UnitId WhichBuildingsProductUnit(UnitId unitToProduce)
+        public static UnitId WhichBuildingProducesUnit(UnitId unitToProduce)
         {
             // Protoss
             if (unitToProduce == UnitId.PROBE)
                 return UnitId.NEXUS;
 
+            // NOTE: Later equivalency check handles warp gates being same as gateways
             else if (unitToProduce == UnitId.ZEALOT)
                 return UnitId.GATEWAY;
             else if (unitToProduce == UnitId.SENTRY)
@@ -797,7 +798,7 @@ namespace BOSSE
             if (HaveTechRequirementsToBuild(unitToBuild) == false)
                 return false;
 
-            UnitId producedFrom = WhichBuildingsProductUnit(unitToBuild);
+            UnitId producedFrom = WhichBuildingProducesUnit(unitToBuild);
             List<Unit> productionFacilities = GetUnits(producedFrom, onlyCompleted: true, onlyVisible: true);
 
             if (productionFacilities == null || productionFacilities.Count == 0)

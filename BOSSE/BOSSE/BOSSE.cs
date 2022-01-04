@@ -62,6 +62,7 @@ namespace BOSSE
         public static readonly SpaceMovementReservationManager SpaceMovementReservationManagerRef = new SpaceMovementReservationManager();
         public static readonly CurrentBuildManager BuildOrderManagerRef = new CurrentBuildManager();
         public static readonly HouseProviderManager HouseProviderManagerRef = new HouseProviderManager();
+        public static readonly ArmyBuilderManager ArmyBuilderManagerRef = new ArmyBuilderManager();        
 
         /// <summary>
         /// Called first thing each update tick, before standard logic
@@ -96,6 +97,7 @@ namespace BOSSE
             RampManagerRef,
             HouseProviderManagerRef,
             WorkerManagerRef,
+            ArmyBuilderManagerRef,
         };
 
         // Background thread

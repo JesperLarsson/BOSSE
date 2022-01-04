@@ -63,5 +63,10 @@ namespace BOSSE
         {
             this.CurrentBuildOrder.ResolveBuildOrder();
         }
+
+        public bool HasCompletedBuildOrder()
+        {
+            return this.CurrentBuildOrder.IsCompleted;
+        }
     }
 }

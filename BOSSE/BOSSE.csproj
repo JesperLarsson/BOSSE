@@ -89,6 +89,7 @@
     <Compile Include="BOSSE\Sensors\Sensors\Self\OwnUnitChangedTypeSensor.cs" />
     <Compile Include="BOSSE\Tactical Layer\Squad Controllers\SquadControllerBase.cs" />
     <Compile Include="BOSSE\Tactical Layer\TacticalGoalManager.cs" />
+    <Compile Include="BOSSE\Utility Managers\ArmyBuilderManager.cs" />
     <Compile Include="BOSSE\Utility Managers\HouseProviderManager.cs" />
     <Compile Include="BOSSE\Utility Managers\OrbitalCommandManager.cs" />
     <Compile Include="BOSSE\Utility Managers\ConstructionManager.cs" />

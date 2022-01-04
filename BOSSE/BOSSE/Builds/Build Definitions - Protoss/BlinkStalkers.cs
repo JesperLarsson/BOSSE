@@ -36,40 +36,23 @@ namespace BOSSE
     /// </summary>
     public class BlinkStalkers : BuildOrder
     {
+        /// <summary>
+        /// Determines whether we will scout mid build
+        /// Might not be necessary until we have better intel-parsing logic which can act on the information given
+        /// </summary>
+        private const bool SendWorkerScout = false;
+
         public BlinkStalkers()
         {
-            /*
-                1x pylon
-                1x gateway
-                1x gas
-                1x cyber core
-                1x nexus
-                2x pylon
-                2x gas
-                1x stalker från gateway (chrono boost)
-
-                vänta på cyber core
-                    välj warp gate tech (chrono boost)
-
-                1x twilight countil
-                3x gateways
-
-                vänta på twilight council
-                    välj blink tech (chrono boost)
-
-                4x gateways
-                Pylon, foward position, ev x2
-                Pylon
-                3x Gas
-             */
-
-            const bool SendWorkerScout = false;
-
             Unit buildingWorker = null;
             RemainingSteps.Add(new CustomStep(() =>
             {
-                // Disable auto-building of Pylons, it is a hardcoded part of our starting build
+                // Disable auto-building of Pylons and army units, it is a hardcoded part of our starting build
                 BOSSE.HouseProviderManagerRef.Disable();
+                BOSSE.ArmyBuilderManagerRef.Disable();
+
+                // Build stalkers only
+                BOSSE.ArmyBuilderManagerRef.StartBuildingUnit(UnitId.STALKER);
 
                 // Send a worker to our natural right away, we will build here to start
                 if (BotConstants.EnableWalling)
@@ -96,7 +79,7 @@ namespace BOSSE
             RemainingSteps.Add(new RequireBuilding(UnitId.CYBERNETICS_CORE, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.NEXUS, 2)); // build expansion
 
-            // Send a worker to scout, might not be necessary until we have better intel-parsing logic
+            // Send a worker to scout
             if (SendWorkerScout)
             {
                 RemainingSteps.Add(new CustomStep(() =>
@@ -141,20 +124,22 @@ namespace BOSSE
 
             RemainingSteps.Add(new RequireBuilding(UnitId.TWILIGHT_COUNSEL, 1));
             RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 3));
-
             RemainingSteps.Add(new WaitForCompletion(UnitId.TWILIGHT_COUNSEL, 1));
             RemainingSteps.Add(new RequireUpgradeStep(AbilityConstants.AbilityId.TWILIGHTCOUNCILRESEARCH_RESEARCHSTALKERTELEPORT, true));
 
-            RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 4));
-            RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 4));
-
-            //RemainingSteps.Add(new DebugStop());
-            RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 3));
-
-            // Build finished
             RemainingSteps.Add(new CustomStep(() =>
             {
-                // Re-enable auto-building of Pylons
+                // Re-enable auto-building of army units
+                BOSSE.ArmyBuilderManagerRef.Enable();
+            }));
+
+            RemainingSteps.Add(new RequireBuilding(UnitId.GATEWAY, 4));
+            RemainingSteps.Add(new RequireBuilding(UnitId.PYLON, 4));
+            RemainingSteps.Add(new RequireBuilding(UnitId.ASSIMILATOR, 3));
+
+            RemainingSteps.Add(new CustomStep(() =>
+            {
+                // Re-enable auto-building of pylons
                 BOSSE.HouseProviderManagerRef.Enable();
             }));
         }
