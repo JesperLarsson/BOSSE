@@ -18,6 +18,7 @@
 namespace BOSSE
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Numerics;
@@ -164,22 +165,22 @@ namespace BOSSE
         /// </summary>
         public static Action TrainActionAndSubtractCosts(Unit fromCenter, UnitId unitTypeToBuild, bool updateResourcesAvailable = true)
         {
-            Log.Bulk($"Train {fromCenter.ToString()} {unitTypeToBuild}");
             if (fromCenter.QueuedOrders.Count > 0)
                 Log.SanityCheckFailed("No queueing is expected");
 
+            // Special case - Warp gates need special logic when training
+            if (fromCenter.UnitType == UnitId.WARP_GATE)
+                return TrainActionAndSubtractCostsWarpTech(fromCenter, unitTypeToBuild, updateResourcesAvailable);
+
+            Log.Bulk($"Train {fromCenter.ToString()} {unitTypeToBuild}");
+            
             AbilityId ability = GetAbilityIdToBuildUnit(unitTypeToBuild);
             Action action = CommandBuilder.RawCommand((int)ability);
             action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
 
             if (updateResourcesAvailable)
             {
-                var info = GetUnitInfo(unitTypeToBuild);
-                CurrentMinerals -= info.MineralCost;
-                CurrentVespene -= info.VespeneCost;
-
-                UsedSupply += (uint)info.FoodProvided;
-                UsedSupply -= (uint)info.FoodRequired;
+                SubtractCosts(unitTypeToBuild);
             }
 
             return action;
@@ -273,6 +274,54 @@ namespace BOSSE
             }
 
             throw new BosseFatalException("Unable to find a replacement position close to " + closeToPos);
+        }
+
+        private static Action TrainActionAndSubtractCostsWarpTech(Unit fromCenter, UnitId unitTypeToBuild, bool updateResourcesAvailable = true)
+        {
+            if (fromCenter.UnitType != UnitId.WARP_GATE)
+                Log.SanityCheckFailed("Tried to warp in units from non-warpgate building");
+
+            AbilityId ability = GetAbilityIdToBuildUnit(unitTypeToBuild);
+            ability = GetWarpInAbility(ability);
+
+            Point2D targetPos = GetWarpInSpot();
+            if (targetPos == null)
+                return null;
+
+            Log.Bulk($"WarpIn {unitTypeToBuild} at {targetPos}");
+            
+            Action action = CommandBuilder.RawCommand((int)ability);
+            action.ActionRaw.UnitCommand.UnitTags.Add(fromCenter.Tag);
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos = new Point2D();
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.X = targetPos.X;
+            action.ActionRaw.UnitCommand.TargetWorldSpacePos.Y = targetPos.Y;
+
+            if (updateResourcesAvailable)
+            {
+                SubtractCosts(unitTypeToBuild);
+            }
+
+            return action;
+        }
+
+        private static Point2D GetWarpInSpot()
+        {
+            // Use the pylon that is closest to the enemy base
+            List<Unit> pylons = GetUnits(UnitId.PYLON, onlyCompleted: true, onlyVisible: true, alliance: Alliance.Self);
+            if (pylons == null || pylons.Count == 0)
+                return null;
+
+            Point2D enemyPos = GuessEnemyBaseLocation();
+            pylons = pylons.OrderBy(o => o.Position.AirDistanceAbsolute(enemyPos)).ToList();
+            Unit targetPylon = pylons[0];
+
+            // Using a random offset should be good-enough to start with
+            // If we collide with something pre-existing, we will try to build another unit next frame anyway
+            int xOffset = Globals.Random.Next(-6, 6);
+            int yOffset = Globals.Random.Next(-6, 6);
+
+            Point2D warpPos = new Point2D(targetPylon.Position.X + xOffset, targetPylon.Position.Y + yOffset);
+            return warpPos;
         }
     }
 }

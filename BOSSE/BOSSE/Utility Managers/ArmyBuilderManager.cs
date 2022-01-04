@@ -62,13 +62,12 @@ namespace BOSSE
         {
             foreach (UnitId unitIter in this.UnitsToBuild)
             {
-                bool allowChrono = ChronoboostUnits();
-
+                bool allowChrono = ShouldChronoUnits();
                 GeneralGameUtility.TryBuildUnit(unitIter, true, allowChrono);
             }
         }
 
-        private bool ChronoboostUnits()
+        private bool ShouldChronoUnits()
         {
             if (BOSSE.UseRace != Race.Protoss)
                 return false;

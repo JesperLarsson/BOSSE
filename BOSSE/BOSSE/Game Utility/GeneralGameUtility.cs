@@ -810,11 +810,17 @@ namespace BOSSE
                     continue;
                 if (onlyFromFreeStructure && buildingIter.CurrentOrder != null)
                     continue;
+                if (BOSSE.UseRace == Race.Protoss && buildingIter.Original.IsPowered == false)
+                    continue;
+                if (buildingIter.UnitType == UnitId.WARP_GATE && (buildingIter.CanWarpIn() == false))
+                    continue;
 
                 Queue(CommandBuilder.TrainActionAndSubtractCosts(buildingIter, unitToBuild));
 
                 if (allowChronoBoost)
                     ApplyChronoBoostTo(buildingIter);
+                if (buildingIter.UnitType == UnitId.WARP_GATE)
+                    buildingIter.PerformedWarpIn();
 
                 return true;
             }
@@ -849,6 +855,21 @@ namespace BOSSE
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Returns the "warp in" equivalent of the given ability
+        /// </summary>
+        public static AbilityId GetWarpInAbility(AbilityId standardAbility)
+        {
+            if (standardAbility == AbilityId.GATEWAYTRAIN_STALKER)
+                return AbilityId.WARPGATETRAIN_STALKER;
+            else if (standardAbility == AbilityId.GATEWAYTRAIN_SENTRY)
+                return AbilityId.WARPGATETRAIN_SENTRY;
+            else if (standardAbility == AbilityId.GATEWAYTRAIN_ZEALOT)
+                return AbilityId.WARPGATETRAIN_ZEALOT;
+            else
+                throw new Exception($"Unexpected warp-in type {standardAbility}");
         }
     }
 }

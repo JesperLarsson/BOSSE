@@ -89,6 +89,11 @@ namespace BOSSE
         public Point2D Position { get => new Point2D(Original.Pos.X, Original.Pos.Y); }
 
         /// <summary>
+        /// Warp gates only. Game frame when we last warped in from this warp gate
+        /// </summary>
+        private ulong LastWarpInFrame = 0;
+
+        /// <summary>
         /// Create a new instance from sc2 instance, we wrap around it and add some functionality
         /// </summary>
         public Unit(SC2APIProtocol.Unit unit) : base()
@@ -148,6 +153,21 @@ namespace BOSSE
         public override string ToString()
         {
             return $"[{this.UnitType} {this.Tag} {this.Position.ToString2()}]";
+        }
+
+        public bool CanWarpIn()
+        {
+#warning TODO: There must be a better way of determining whether we can warp in or not, but the charge-mechanic does not seem to be exposed through the API. Is there a better workaround?
+            ulong framesSinceWarpIn = Globals.OnCurrentFrame - this.LastWarpInFrame;
+            TimeSpan time = TicksToHumanTime(framesSinceWarpIn);
+
+            bool canWarp = time.TotalMilliseconds >= 11000;
+            return canWarp;
+        }
+
+        public void PerformedWarpIn()
+        {
+            this.LastWarpInFrame = Globals.OnCurrentFrame;
         }
 
         private void ReapplyChronoBoostToSelf()
